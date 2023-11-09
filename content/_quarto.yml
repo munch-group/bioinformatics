@@ -53,5 +53,7 @@ format:
     include-in-header:
       - file: header_extra.tex
   epub:
-    cover-image: cover.png      
+    cover-image: cover.png
+    highlight-style: kate 
+    # epub-fonts: DejaVuSans-*.ttf
 
