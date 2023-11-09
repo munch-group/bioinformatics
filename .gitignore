@@ -160,4 +160,7 @@ cython_debug/
 #.idea/
 
 .DS_Store
-_book/
+content/_book/chapters/
+content/_book/index.html
+content/_book/search.json
+content/_book/site_libs/
