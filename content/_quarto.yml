@@ -52,6 +52,6 @@ format:
       - "exercises"
     include-in-header:
       - file: header_extra.tex
-  # epub:
-  #   cover-image: cover.png      
+  epub:
+    cover-image: cover.png      
 
