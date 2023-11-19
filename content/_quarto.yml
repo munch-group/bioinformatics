@@ -5,47 +5,63 @@ execute:
   echo: true
 
 book:
-  title: "Lecture notes in Bioinformatics and Programming"
+  title: "Bioinformatics and Programming Lecture Notes"
   author: "Kasper Munch"
 #  date: "9.11.2023"
   chapters:
     - index.qmd
-    - chapters/python/before_you_begin.qmd
-    - chapters/python/writing_a_program.qmd
-    - chapters/python/dealing_with_values.qmd
-    - chapters/python/the_order_of_events.qmd
-    - chapters/python/course_tools.qmd
-    - chapters/python/controlling_behavior.qmd
-    - chapters/python/organizing_your_code.qmd
-    - chapters/python/python_values_are_objects.qmd
-    - chapters/python/lists.qmd
-    - chapters/python/dictionaries.qmd
-    - chapters/python/gluing_values_in_sequence.qmd
-    - chapters/python/iteration_over_values.qmd
-    - chapters/python/working_with_data_files.qmd
-    - chapters/python/data_structures.qmd
-    - chapters/python/unleash_your_functions.qmd
-    - chapters/python/testing_your_code.qmd
-    - chapters/project/translation_project.qmd
-    - chapters/python/your_own_types_of_objects.qmd
-    - chapters/project/folding_project.qmd
-    - chapters/project/alignment_project.qmd
-    - chapters/project/codonbias_project.qmd
-    - chapters/project/hiv_project.qmd
-    - chapters/project/seqdist_project.qmd
-    - chapters/python/using_code_from_other_files.qmd
-    - chapters/project/orf_project.qmd
-    - chapters/project/assembly_project.qmd
-    - chapters/python/on_the_shoulders_of_giants.qmd
+    - part: "Python"
+      chapters:
+      - chapters/python/before_you_begin.qmd
+      - chapters/python/writing_a_program.qmd
+      - chapters/python/dealing_with_values.qmd
+      - chapters/python/the_order_of_events.qmd
+      - chapters/python/course_tools.qmd
+      - chapters/python/controlling_behavior.qmd
+      - chapters/python/organizing_your_code.qmd
+      - chapters/python/python_values_are_objects.qmd
+      - chapters/python/lists.qmd
+      - chapters/python/dictionaries.qmd
+      - chapters/python/gluing_values_in_sequence.qmd
+      - chapters/python/iteration_over_values.qmd
+      - chapters/python/working_with_data_files.qmd
+      - chapters/python/data_structures.qmd
+      - chapters/python/unleash_your_functions.qmd
+      - chapters/python/testing_your_code.qmd
+      - chapters/python/your_own_types_of_objects.qmd
+      - chapters/python/on_the_shoulders_of_giants.qmd
+      - chapters/python/using_code_from_other_files.qmd
+    - part: "Programming projects"
+      chapters: 
+      - chapters/project/translation_project.qmd
+      - chapters/project/folding_project.qmd
+      - chapters/project/alignment_project.qmd
+      - chapters/project/codonbias_project.qmd
+      - chapters/project/hiv_project.qmd
+      - chapters/project/seqdist_project.qmd
+      - chapters/project/orf_project.qmd
+      - chapters/project/assembly_project.qmd
+    # - part: "Bioinformatics"
+    #   chapters: 
+    #   - chapters/bioinf/tester.ipynb
+    #   - chapters/bioinf/tester2.ipynb
+    #   - chapters/bioinf/test.qmd
     - chapters/python/references.qmd
+
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    highlight-style: kate 
+    fig-width: 5
+    fig-height: 3
   pdf:
     documentclass: scrbook
+    highlight-style: kate 
+    fig-width: 7
+    fig-height: 5
     toc-depth: 2
     secPrefix:
       - "exercise"
@@ -56,4 +72,3 @@ format:
     cover-image: cover.png
     highlight-style: kate 
     # epub-fonts: DejaVuSans-*.ttf
-
