@@ -1,0 +1,41 @@
+
+# Paper title
+
+## Results
+
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+
+{{< embed tester2.ipynb#fig-test2 >}}
+
+aslfj alsdkjf laskjdf laskjdf laksjd flakjsd flakjs fdlaksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+
+{{< video https://www.youtube.com/embed/JOiGEI9pQBs >}}
+
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
+
+```{python}
+#| echo: false
+
+import plotly.io as pio
+pio.renderers.default = "plotly_mimetype+notebook_connected"
+```
+
+```{python}
+#| code-fold: true
+
+import plotly.express as px
+import plotly.io as pio
+df = px.data.iris()
+fig = px.scatter(df, x="sepal_width", y="sepal_length", 
+                 color="species", 
+                 marginal_y="violin", marginal_x="box", 
+                 trendline="ols", template="simple_white")
+fig.show()
+```

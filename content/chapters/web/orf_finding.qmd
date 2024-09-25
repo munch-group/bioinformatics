@@ -1,0 +1,48 @@
+
+# Finding open reading frames in a resistance plasmid
+
+Gene prediction in bacteria is a crucial step in understanding the genetic makeup of these microorganisms. It involves identifying the locations and boundaries of genes within bacterial genomes, essential for studying bacterial physiology and pathogenicity and developing targeted therapies. The main component of bacterial genes is the open reading frame (ORFs), which translates into protein. So, identifying ORFs is the main task in "de novo" prediction of bacterial genes. The most commonly used start codon is ATG, and less frequently, GTG and TTG. Stop codons are either one of TAA, TAG, or TGA. Although the three "reading frames" on each strand allow ORFs to overlap, this is mainly a feature of highly compacted viral genomes and not often observed in bacteria. Promoter and terminator DNA motifs provide additional information usually built into hidden Markov models or neural networks. Such models also asses the coding potential, codon usage, and length of ORFs to distinguish randomly occurring pairs of start and stop codons from those representing genes.
+
+A bacterial plasmid is a circular, double-stranded DNA molecule separate from the genome found in the cytoplasm of bacteria. It is relatively small, ranging from a few kilobases to several hundred kilobases in size, and replicates autonomously, passing to daughter cells at cell division. Although they are usually not essential to the bacterium's survival, plasmids often carry genes that can confer selective advantages to the bacteria under certain conditions. Such conditions include exposure to antibacterial agents like the antibiotics used to combat infections, and some plasmids carry genes making the bacterium resistant to such drugs. 
+
+In this exercise, the bacterial DNA you will investigate is a plasmid extracted from an Enterococcus faecium strain to test if it is responsible for its documented resistance to vancomycin. Vancomycin is used to treat infections of bacteria strains resistant to other antibiotics. Methicillin-resistant Staphylococcus aureus (MRSA) is one such strain. Because vancomycin is considered a "last resort" antibiotic, resistance to this drug is dangerous, and it must monitored carefully. 
+
+You will use the [NCBI's ORF Finder tool](https://www.ncbi.nlm.nih.gov/orffinder/) to identify ORFs in the plasmid, and then use various online tools to narrow down the ORFs to a set of likely resistance genes. You can download a fasta file with the plasmid sequence from Brightspace. 
+
+When you open up ORF Finder, start by pasting the fasta file into the "Query Sequence" field. Look at the search parameters, but do not change them yet. One parameter controls the minimum ORF length. We can change the expected genetic code, specify alternate start codons, and choose to ignore nested ORFs.
+
+#### Exercise
+Run ORF Finder with the default parameters. 
+- How many ORFs did you find?
+- What is the longest and shortest ORF in nucleotides (nt)? You can click on "length" to sort them.
+- To the right, there is an option to alter the tracks. Try adding the "six-frame translations", which are located under sequence. What is most common, start codons (green) or stop codons (red)?
+
+#### Exericse
+You can see that a lot of the identified ORFs are tiny and that many of them overlap other ORFs. Both are possible in bacterial plasmids but are much rarer than seen here. Return to the start page and rerun the search, but this time with a minimal ORF size of 300 nucleotides (100 amino acids).
+- How many overlapping ORFs do we find now? Which ORFs overlap? Some may be hard to distinguish visually; you can use the table below the tracks to see the start and stop and order them based on start/stop.
+- There is often a strand bias in transcripted regions. If two genes are close to each other, they need the same strandedness, as RNA polymerases can otherwise collide. Which strand is most common in this plasmid? How many genes are on the majority strand?
+
+#### Exercise
+With this improved list of possible genes, you are now ready to investigate the putative functions of the different ORFs. Sort the ORFs by size and Blast the longest 10. You can also Blast all the ORFs if you want to. Smartblast is recommended if you want to do it quickly, and it also has multiple useful features. These include showing a phylogeny of the closest related known proteins and a list of the best significant hits. Use a table or list, such as the one below, to keep track of your findings. Answer the three questions below for each of the top ten ORFs. 
+
+1. Is the translated ORF related to a known protein? You can blast multiple at the same time. Note down the best match with a descriptive name for Putative Function. Sometimes, the best match will be a "hypothetical protein" or similar, in which case you should move on to the next one on the list.
+2. What are the functions of the related proteins? Are any of them related to antibiotic resistance, and if so, wich antibiotics?
+3. The names of the gene homologs you find may themselves suggest resistance function. Go to the [NCBI Gene database](https://www.ncbi.nlm.nih.gov/gene) and search for the gene name to determine if you can find it in a resistance database, such as NDARO. If so, note it as a resistance gene.
+
+| ORF_Label | 	Length |	Putative Function |	Resistance? |
+| --- | --- | --- | --- |
+|       |       |    |    |
+|       |       |    |    |
+| ORF18 |	337 | ISL3 family transposase (no strong match) | No |
+|       |       |    |    |
+|       |       |    |    |
+|       |       |    |    |
+|       |       |    |    |
+
+#### Exercise
+Go back to the overlapping ORFs. Do both of the overlapping ORFs contain good hits?
+
+#### Exercise
+Conclude on your findings. Does the plasmid contain genes that confer antibiotic resistance? If so, what kinds of antibiotics does it provide resistance to?
+
+
