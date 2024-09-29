@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bioinformatics and Programming Lecture Notes - 14&nbsp; Structuring data</title>
+<title>Bioinformatics and Programming - 14&nbsp; Structuring data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -105,12 +112,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/before_you_begin.html">Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/data_structures.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Structuring data</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/before_you_begin.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/data_structures.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Structuring data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -120,10 +127,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">Bioinformatics and Programming Lecture Notes</a> 
+      <a href="../../">Bioinformatics and Programming</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -142,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Python</span></a>
+ <span class="menu-text">Learning Python</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -266,13 +273,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Programming projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Python projects</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/project/translation_project.html" class="sidebar-item-text sidebar-link">
@@ -306,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/project/seqdist_project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project: Clustering sequences based on distance ⁕</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project: Clustering sequences based on distance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -323,6 +330,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Bioinformatics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">What is an Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Investigating the HIV protecting CCR5-delta32 gene variant</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Finding a GWAS disease gene</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/long_reads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Inspecting long-read mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Investigating the role of horizontal gene transfer in the antibiotic resistance of MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Hands-on neural network architecture</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Finding open reading frames in a resistance plasmid</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/python/references.html" class="sidebar-item-text sidebar-link">
@@ -332,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -346,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/before_you_begin.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/data_structures.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Structuring data</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Structuring data</span></h1>
 </div>
@@ -361,11 +427,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>This section will further train your ability to create such data structures using iteration. Data structures in Python are fundamental tools that allow you to organize, store, and manipulate data effectively. They provide a way to represent and manage data in a structured and organized manner, making it easier to perform various operations on the data. Python offers a variety of built-in data structures, such as lists and dictionaries, with different properties and useful for different needs. Sometimes, a single list or dictionary is all you need. Still, sometimes you need to combine many lists and dictionaries to make elaborate data structure. As your programming skills progress, you will find that mastering the use of different data structures is crucial for becoming a proficient Python programmer.</p>
 <section id="sec-dict_count_fixed" class="level4" data-number="14.0.0.1">
-<h4 data-number="14.0.0.1" class="anchored" data-anchor-id="sec-dict_count_fixed"><span class="header-section-number">14.0.0.1</span> Exercise</h4>
+<h4 data-number="14.0.0.1" class="anchored" data-anchor-id="sec-dict_count_fixed"><strong>Exercise 14-1</strong></h4>
 <p>Imagine you want to count how many times each nucleotide appears in a DNA string like this one: <code>'ATGCCGATTAA'</code>. One way to proceed an account of this is in the form of a dictionary where the keys represent the different values we want to count (in this case <code>'A'</code>, <code>'T'</code>, <code>'C'</code> and <code>'G'</code>). The values associated with each key is the number of times we have seen that key (nucleotide). So we want to end up with a dictionary like this one (not necessarily with key-value pairs in this order):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'G'</span>: <span class="dv">2</span>, <span class="st">'C'</span>: <span class="dv">2</span>, <span class="st">'T'</span>: <span class="dv">3</span>, <span class="st">'A'</span>: <span class="dv">4</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remind yourself how you assign a value to an existing key in a dictionary. Here is some code to get you going:</p>
@@ -376,8 +444,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sec-dict_count" class="level4" data-number="14.0.0.2">
-<h4 data-number="14.0.0.2" class="anchored" data-anchor-id="sec-dict_count"><span class="header-section-number">14.0.0.2</span> Exercise</h4>
-<p>In <a href="#sec-dict_count_fixed"><span>Section&nbsp;14.0.0.1</span></a> we started by initializing a dictionary with a key for each nucleotide and the number zero for each key to show that we had not seen any of those nucleotides yet. <em>Then</em> we iterated over the values we wanted to count using the for-loop. This approach of cause only works if know which values we will encounter in the iteration. When counting nucleotides, this works because we know there are only four different nucleotides.</p>
+<h4 data-number="14.0.0.2" class="anchored" data-anchor-id="sec-dict_count"><strong>Exercise 14-2</strong></h4>
+<p>In <a href="#sec-dict_count_fixed" class="quarto-xref"><span>Section 14.0.0.1</span></a> we started by initializing a dictionary with a key for each nucleotide and the number zero for each key to show that we had not seen any of those nucleotides yet. <em>Then</em> we iterated over the values we wanted to count using the for-loop. This approach of cause only works if know which values we will encounter in the iteration. When counting nucleotides, this works because we know there are only four different nucleotides.</p>
 <p>Often, however, we are faced with one or both of the following problems:</p>
 <ul>
 <li>The number of different values to count is very large. If we were to count English words, we would have to initialize a dictionary with more than 170.000 key value pairs (which would be somewhat impractical). If we were to count numbers this would be impossible (as there are infinitely many of those).</li>
@@ -400,12 +468,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>{<span class="dv">3</span>: <span class="dv">2</span>, <span class="dv">42</span>: <span class="dv">1</span>, <span class="dv">51</span>: <span class="dv">2</span>, <span class="dv">13</span>: <span class="dv">1</span>, <span class="dv">6</span>: <span class="dv">1</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise" class="level4" data-number="14.0.0.3">
-<h4 data-number="14.0.0.3" class="anchored" data-anchor-id="exercise"><span class="header-section-number">14.0.0.3</span> Exercise</h4>
-<p>The counting technique you developed in <a href="#sec-dict_count"><span>Section&nbsp;14.0.0.2</span></a> lets you count pretty much anything that can be a key in a dictionary. Try using the same approach to count the number of each thing in this list:</p>
+<h4 data-number="14.0.0.3" class="anchored" data-anchor-id="exercise"><strong>Exercise 14-3</strong></h4>
+<p>The counting technique you developed in <a href="#sec-dict_count" class="quarto-xref"><span>Section 14.0.0.2</span></a> lets you count pretty much anything that can be a key in a dictionary. Try using the same approach to count the number of each thing in this list:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stuff <span class="op">=</span> [<span class="st">'sofa'</span>, <span class="dv">42</span>, <span class="dv">42</span>, <span class="fl">3.14159</span>, <span class="st">'sofa'</span>, <span class="st">'Dragon'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sec-build_lists_fixed" class="level4" data-number="14.0.0.4">
-<h4 data-number="14.0.0.4" class="anchored" data-anchor-id="sec-build_lists_fixed"><span class="header-section-number">14.0.0.4</span> Exercise</h4>
+<h4 data-number="14.0.0.4" class="anchored" data-anchor-id="sec-build_lists_fixed"><strong>Exercise 14-4</strong></h4>
 <p>Instead of counting values, we sometimes need to split the values we iterate over into categories. Here we build a dictionary where the keys are the first letter of each word we iterate over, and the value associated with each key is a list of all the words that start with that letter. So if we iterate over the words in this list:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'apricot'</span>, <span class="st">'banana'</span>, <span class="st">'ananas'</span>, <span class="st">'apple'</span>, <span class="st">'cherry'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>we should end up with this dictionary (not necessarily with key-value pairs in that order):</p>
@@ -418,8 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> {<span class="st">'a'</span>: [], <span class="st">'b'</span>: [], <span class="st">'c'</span>: []}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-1" class="level4" data-number="14.0.0.5">
-<h4 data-number="14.0.0.5" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">14.0.0.5</span> Exercise</h4>
-<p>Produce the same dictionary as in <a href="#sec-build_lists_fixed"><span>Section&nbsp;14.0.0.4</span></a> by reordering and indenting the following statements:</p>
+<h4 data-number="14.0.0.5" class="anchored" data-anchor-id="exercise-1"><strong>Exercise 14-5</strong></h4>
+<p>Produce the same dictionary as in <a href="#sec-build_lists_fixed" class="quarto-xref"><span>Section 14.0.0.4</span></a> by reordering and indenting the following statements:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>first_letter <span class="op">=</span> fruit[<span class="dv">0</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> {}</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>words[first_letter].append(fruit)</span>
@@ -427,10 +495,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'apricot'</span>, <span class="st">'banana'</span>, <span class="st">'ananas'</span>, <span class="st">'apple'</span>, <span class="st">'cherry'</span>]</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>words[first_letter] <span class="op">=</span> []</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fruit <span class="kw">in</span> names:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Compare the solution to that in <a href="#sec-build_lists_fixed"><span>Section&nbsp;14.0.0.4</span></a>. How is it different? Is it more generic? How does the difference relate to the difference between <a href="#sec-dict_count_fixed"><span>Section&nbsp;14.0.0.1</span></a> and <a href="#sec-dict_count"><span>Section&nbsp;14.0.0.2</span></a>?</p>
+<p>Compare the solution to that in <a href="#sec-build_lists_fixed" class="quarto-xref"><span>Section 14.0.0.4</span></a>. How is it different? Is it more generic? How does the difference relate to the difference between <a href="#sec-dict_count_fixed" class="quarto-xref"><span>Section 14.0.0.1</span></a> and <a href="#sec-dict_count" class="quarto-xref"><span>Section 14.0.0.2</span></a>?</p>
 </section>
 <section id="sec-mult_greetings" class="level4" data-number="14.0.0.6">
-<h4 data-number="14.0.0.6" class="anchored" data-anchor-id="sec-mult_greetings"><span class="header-section-number">14.0.0.6</span> Exercise</h4>
+<h4 data-number="14.0.0.6" class="anchored" data-anchor-id="sec-mult_greetings"><strong>Exercise 14-6</strong></h4>
 <p>Look at this code and figure make up your mind about what will be printed. Do we first greet one person in three languages or do we first greet all people in one language? Then try it out to see if you were right.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>greetings <span class="op">=</span> [<span class="st">'Hi'</span>, <span class="st">'Hola'</span>, <span class="st">'Ciao'</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'Mogens'</span>, <span class="st">'Preben'</span>, <span class="st">'Henning'</span>]</span>
@@ -439,8 +507,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(greeting, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-2" class="level4" data-number="14.0.0.7">
-<h4 data-number="14.0.0.7" class="anchored" data-anchor-id="exercise-2"><span class="header-section-number">14.0.0.7</span> Exercise</h4>
-<p>Now consider the code below. How is it different from the code in <a href="#sec-mult_greetings"><span>Section&nbsp;14.0.0.6</span></a>? How does that alter the order of what is printed?</p>
+<h4 data-number="14.0.0.7" class="anchored" data-anchor-id="exercise-2"><strong>Exercise 14-7</strong></h4>
+<p>Now consider the code below. How is it different from the code in <a href="#sec-mult_greetings" class="quarto-xref"><span>Section 14.0.0.6</span></a>? How does that alter the order of what is printed?</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>greetings <span class="op">=</span> [<span class="st">'Hi'</span>, <span class="st">'Hola'</span>, <span class="st">'Ciao'</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'Mogens'</span>, <span class="st">'Preben'</span>, <span class="st">'Henning'</span>]</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> names:</span>
@@ -448,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(greeting, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sec-pairs" class="level4" data-number="14.0.0.8">
-<h4 data-number="14.0.0.8" class="anchored" data-anchor-id="sec-pairs"><span class="header-section-number">14.0.0.8</span> Exercise</h4>
+<h4 data-number="14.0.0.8" class="anchored" data-anchor-id="sec-pairs"><strong>Exercise 14-8</strong></h4>
 <p>Decide what you think the code below does and why you think so. Do <em>every</em> step in your head including all the substitutions and reductions. Then write the code carefully and run it.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nr_list <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="op">=</span> []</span>
@@ -463,13 +531,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here I broke over three lines to make it fit on the page. You should print your own <code>combinations</code> list to make sure you got the code right.</p>
 </section>
 <section id="sec-pairs_no_doubles" class="level4" data-number="14.0.0.9">
-<h4 data-number="14.0.0.9" class="anchored" data-anchor-id="sec-pairs_no_doubles"><span class="header-section-number">14.0.0.9</span> Exercise</h4>
-<p>The code in <a href="#sec-pairs"><span>Section&nbsp;14.0.0.8</span></a> printed all combinations of numbers in the list – including those where the two numbers are the same. Change the code above so these pairs are <em>not</em> printed. You should end up with this list:</p>
+<h4 data-number="14.0.0.9" class="anchored" data-anchor-id="sec-pairs_no_doubles"><strong>Exercise 14-9</strong></h4>
+<p>The code in <a href="#sec-pairs" class="quarto-xref"><span>Section 14.0.0.8</span></a> printed all combinations of numbers in the list – including those where the two numbers are the same. Change the code above so these pairs are <em>not</em> printed. You should end up with this list:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>, <span class="dv">20</span>], [<span class="dv">10</span>, <span class="dv">30</span>], [<span class="dv">20</span>, <span class="dv">10</span>], [<span class="dv">20</span>, <span class="dv">30</span>], [<span class="dv">30</span>, <span class="dv">10</span>], [<span class="dv">30</span>, <span class="dv">20</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sec-pairs_unique" class="level4" data-number="14.0.0.10">
-<h4 data-number="14.0.0.10" class="anchored" data-anchor-id="sec-pairs_unique"><span class="header-section-number">14.0.0.10</span> Exercise</h4>
-<p>Can you solve the same task as in <a href="#sec-pairs_no_doubles"><span>Section&nbsp;14.0.0.9</span></a>, by modifying the code below? Begin by making sure you understand why it produces the same list as that in <a href="#sec-pairs"><span>Section&nbsp;14.0.0.8</span></a>. If you have trouble with that, then have another look at <a href="iteration_over_values.html#sec-ij_pairs"><span>Section&nbsp;12.0.0.7</span></a>.</p>
+<h4 data-number="14.0.0.10" class="anchored" data-anchor-id="sec-pairs_unique"><strong>Exercise 14-10</strong></h4>
+<p>Can you solve the same task as in <a href="#sec-pairs_no_doubles" class="quarto-xref"><span>Section 14.0.0.9</span></a>, by modifying the code below? Begin by making sure you understand why it produces the same list as that in <a href="#sec-pairs" class="quarto-xref"><span>Section 14.0.0.8</span></a>. If you have trouble with that, then have another look at <a href="iteration_over_values.html#sec-ij_pairs" class="quarto-xref"><span>Section 12.0.0.7</span></a>.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nr_list <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="op">=</span> []</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(nr_list)):</span>
@@ -478,13 +546,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        combinations.append(pair)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-3" class="level4" data-number="14.0.0.11">
-<h4 data-number="14.0.0.11" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">14.0.0.11</span> Exercise</h4>
+<h4 data-number="14.0.0.11" class="anchored" data-anchor-id="exercise-3"><strong>Exercise 14-11</strong></h4>
 <p>The code in the exercise above printed all combinations of <em>different</em> numbers in the list. But you can see that each pair of numbers still appear twice if you do not take their order into account (e.g.&nbsp;<code>[10, 30]</code> are the same two numbers as <code>[30, 10]</code>). Change the code you wrote for the previous exercise so these pairs are not printed. You should end up with a list like this:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>, <span class="dv">20</span>], [<span class="dv">10</span>, <span class="dv">30</span>], [<span class="dv">20</span>, <span class="dv">30</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Hint: the easiest way to do it is to use the value of <code>i</code> to change the range of numbers you iterate over in the second for-loop.</p>
 </section>
 <section id="sec-matrix" class="level4" data-number="14.0.0.12">
-<h4 data-number="14.0.0.12" class="anchored" data-anchor-id="sec-matrix"><span class="header-section-number">14.0.0.12</span> Exercise</h4>
+<h4 data-number="14.0.0.12" class="anchored" data-anchor-id="sec-matrix"><strong>Exercise 14-12</strong></h4>
 <p>Sometimes programmers (like you) work with matrices of numbers like the one below:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], </span>
@@ -502,8 +570,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        matrix[i].append(j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-4" class="level4" data-number="14.0.0.13">
-<h4 data-number="14.0.0.13" class="anchored" data-anchor-id="exercise-4"><span class="header-section-number">14.0.0.13</span> Exercise</h4>
-<p>If you understand how you created the matrix in <a href="#sec-matrix"><span>Section&nbsp;14.0.0.12</span></a>, you should be able to produce the matrix below using a small modification to the code from <a href="#sec-matrix"><span>Section&nbsp;14.0.0.12</span></a>.</p>
+<h4 data-number="14.0.0.13" class="anchored" data-anchor-id="exercise-4"><strong>Exercise 14-13</strong></h4>
+<p>If you understand how you created the matrix in <a href="#sec-matrix" class="quarto-xref"><span>Section 14.0.0.12</span></a>, you should be able to produce the matrix below using a small modification to the code from <a href="#sec-matrix" class="quarto-xref"><span>Section 14.0.0.12</span></a>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>],</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>],</span>
@@ -511,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-5" class="level4" data-number="14.0.0.14">
-<h4 data-number="14.0.0.14" class="anchored" data-anchor-id="exercise-5"><span class="header-section-number">14.0.0.14</span> Exercise</h4>
+<h4 data-number="14.0.0.14" class="anchored" data-anchor-id="exercise-5"><strong>Exercise 14-14</strong></h4>
 <p>Now produce this matrix:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
@@ -520,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-6" class="level4" data-number="14.0.0.15">
-<h4 data-number="14.0.0.15" class="anchored" data-anchor-id="exercise-6"><span class="header-section-number">14.0.0.15</span> Exercise</h4>
+<h4 data-number="14.0.0.15" class="anchored" data-anchor-id="exercise-6"><strong>Exercise 14-15</strong></h4>
 <p>Can you write some code that produces this matrix?:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>[[ <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>],</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a> [<span class="op">-</span><span class="dv">1</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>],</span>
@@ -534,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>By now you have learned a lot and the general exercises, which serve to keep it all current, get more complicated. But remember: even though the code may mix lists, for-loops, and functions, the <em>rules</em> for lists, for-loops and functions are <em>not</em> mixed. The separate simple rules for a list, a for-loop and a function are <em>still</em> the same. If you get confused, it is time revisit the sections about each separate topic. You will probably have to do that many times during the course.</p>
 </blockquote>
 <section id="exercise-7" class="level4" data-number="14.0.0.16">
-<h4 data-number="14.0.0.16" class="anchored" data-anchor-id="exercise-7"><span class="header-section-number">14.0.0.16</span> Exercise</h4>
+<h4 data-number="14.0.0.16" class="anchored" data-anchor-id="exercise-7"><strong>Exercise 14-16</strong></h4>
 <p>Write a function, <code>square_numbers</code>, that takes a list of numbers as argument and returns a new list with the numbers squared.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write your function definition here ...</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -544,12 +612,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> squared_numbers(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-8" class="level4" data-number="14.0.0.17">
-<h4 data-number="14.0.0.17" class="anchored" data-anchor-id="exercise-8"><span class="header-section-number">14.0.0.17</span> Exercise</h4>
+<h4 data-number="14.0.0.17" class="anchored" data-anchor-id="exercise-8"><strong>Exercise 14-17</strong></h4>
 <p>Write a function <code>count_characters</code>, which takes a string argument and returns a dictionary with the counts of each character in the string. When you call the function like this:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>count_characters(<span class="st">'banana'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>it must return (not necessarily with key-value pairs in that order):</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'n'</span>: <span class="dv">2</span>, <span class="st">'b'</span>: <span class="dv">1</span>, <span class="st">'a'</span>: <span class="dv">3</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The technique you should use is the one you learned in <a href="#sec-dict_count"><span>Section&nbsp;14.0.0.2</span></a>. Here we just iterate over a string of characters instead of over a list of numbers. Here is a bit of code to help you along…</p>
+<p>The technique you should use is the one you learned in <a href="#sec-dict_count" class="quarto-xref"><span>Section 14.0.0.2</span></a>. Here we just iterate over a string of characters instead of over a list of numbers. Here is a bit of code to help you along…</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_characters(text):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> {}</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill in the missing code ...</span></span>
@@ -557,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-9" class="level4" data-number="14.0.0.18">
-<h4 data-number="14.0.0.18" class="anchored" data-anchor-id="exercise-9"><span class="header-section-number">14.0.0.18</span> Exercise</h4>
+<h4 data-number="14.0.0.18" class="anchored" data-anchor-id="exercise-9"><strong>Exercise 14-18</strong></h4>
 <p>Use the function you made in the previous exercise to construct the following data structure:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>{ <span class="st">'banana'</span>: {<span class="st">'b'</span>: <span class="dv">1</span>, <span class="st">'a'</span>: <span class="dv">3</span>, <span class="st">'n'</span>: <span class="dv">2</span>},</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'apple'</span>: {<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'e'</span>: <span class="dv">1</span>, <span class="st">'p'</span>: <span class="dv">2</span>, <span class="st">'l'</span>: <span class="dv">1</span>}, </span>
@@ -571,7 +639,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Once you are done, what value do you think <code>my_database['banana']</code> represents? I.e. what will it reduce to if used in an expression? And what value does <code>my_database['banana']['a']</code> represent?</p>
 </section>
 <section id="exercise-10" class="level4" data-number="14.0.0.19">
-<h4 data-number="14.0.0.19" class="anchored" data-anchor-id="exercise-10"><span class="header-section-number">14.0.0.19</span> Exercise</h4>
+<h4 data-number="14.0.0.19" class="anchored" data-anchor-id="exercise-10"><strong>Exercise 14-19</strong></h4>
 <p>Read the code below and make sure you understand each single step before you write any of it. Revisit previous sections if you must, go look in the Python documentation. <em>Then</em> write and run the code - and enjoy that it was exactly what you expected.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_words(text, search_string):</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> []</span>
@@ -588,7 +656,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>.join(m_words))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-11" class="level4" data-number="14.0.0.20">
-<h4 data-number="14.0.0.20" class="anchored" data-anchor-id="exercise-11"><span class="header-section-number">14.0.0.20</span> Exercise</h4>
+<h4 data-number="14.0.0.20" class="anchored" data-anchor-id="exercise-11"><strong>Exercise 14-20</strong></h4>
 <p>This larger will take you through some of the most common string manipulations. A palindrome is a string that is spelled the same way backward and forwards.</p>
 <p><em>Write a function</em>, <code>is_palindrome</code>, which takes one argument:</p>
 <ul>
@@ -700,10 +768,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -713,8 +798,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -726,7 +820,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -770,6 +987,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -795,6 +1013,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -856,17 +1100,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/python/working_with_data_files.html" class="pagination-link">
+      <a href="../../chapters/python/working_with_data_files.html" class="pagination-link" aria-label="Working with data files">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working with data files</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/python/unleash_your_functions.html" class="pagination-link">
+      <a href="../../chapters/python/unleash_your_functions.html" class="pagination-link" aria-label="Unleash your functions">
         <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unleash your functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
