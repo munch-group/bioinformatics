@@ -6,7 +6,6 @@ book:
   author: "Kasper Munch"
   sidebar:
     collapse-level: 1  
-#  date: "9.11.2023"
   chapters:
     - index.qmd
     - part: "Learning Python"
