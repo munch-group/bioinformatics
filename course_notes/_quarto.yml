@@ -2,12 +2,14 @@ project:
   type: book
 
 book:
-  title: "Bioinformatics and Programming Lecture Notes"
+  title: "Bioinformatics and Programming"
   author: "Kasper Munch"
+  sidebar:
+    collapse-level: 1  
 #  date: "9.11.2023"
   chapters:
     - index.qmd
-    - part: "Python"
+    - part: "Learning Python"
       chapters:
       - chapters/python/before_you_begin.qmd
       - chapters/python/writing_a_program.qmd
@@ -28,7 +30,7 @@ book:
       - chapters/python/your_own_types_of_objects.qmd
       - chapters/python/on_the_shoulders_of_giants.qmd
       - chapters/python/using_code_from_other_files.qmd
-    - part: "Programming projects"
+    - part: "Python projects"
       chapters: 
       - chapters/project/translation_project.qmd
       - chapters/project/folding_project.qmd
@@ -43,7 +45,7 @@ book:
     #   - chapters/bioinf/tester.ipynb
     #   - chapters/bioinf/tester2.ipynb
     #   - chapters/bioinf/test.qmd
-    - part: "Web exercises"
+    - part: "Bioinformatics"
       chapters: 
       - chapters/web/aardwark_seqdist.qmd
       - chapters/web/ccr5_pwalign.qmd
@@ -58,16 +60,23 @@ book:
 
 bibliography: references.bib
 
+crossref:
+  sec-prefix: "exercise"
+  
 format:
   html:
-    theme: cosmo
+    theme: 
+      - default
+      - custom.scss
     highlight-style: kate 
-    toc-depth: 1    
     fig-width: 5
     fig-height: 3
     filters: 
       - quarto
       - headers.lua
+    notebook-links: global
+    # number-sections: false
+    number-sections: true      
   pdf:
     documentclass: scrbook
     papersize: a4
