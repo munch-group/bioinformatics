@@ -1,0 +1,171 @@
+# Lecture recordings
+
+## Week 1
+
+### Monday
+
+Unfortunately, the Monday recording failed :/
+
+### Wednesday
+
+{{< video https://www.youtube.com/embed/6Kl6b3r2uJ4 >}}
+
+## Week 2
+
+### Monday
+
+The sound quality is terrible on this one, sorry.
+
+{{< video https://www.youtube.com/embed/s3vKQY8rntw >}}
+
+### Wednesday
+
+The sound quality is terrible on this one, sorry.
+
+{{< video https://www.youtube.com/embed/IkQZI5XuNVU >}}
+
+## Week 3
+
+### Monday
+
+{{< video https://www.youtube.com/embed/injj7E0_ddI >}}
+ 
+### Wednesday
+
+{{< video https://www.youtube.com/embed/CHcq4_-isTM >}}
+
+## Week 4
+
+### Monday
+
+{{< video https://www.youtube.com/embed/e86mF44Sgyo >}}
+
+### Wednesday
+
+The sound is missing from most of this one. The mic battery ran out...
+
+{{< video https://www.youtube.com/embed/DthrBNwxmiM >}}
+
+## Week 5
+
+## Monday
+
+No recording.
+
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 6
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 7
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 8
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 9
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 10
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 11
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 12
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 13
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+## Week 14
+
+### Monday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+
+### Wednesday
+<!-- 
+{{< video https://www.youtube.com/embed/ >}}
+ -->
+

@@ -38,12 +38,12 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
-    - part: "Bioinformatics"
-      chapters: 
-      - chapters/bioinf/tester.ipynb
-      - chapters/bioinf/tester2.ipynb
-      - chapters/bioinf/test.qmd
-    - part: "Web"
+    # - part: "Bioinformatics"
+    #   chapters: 
+    #   - chapters/bioinf/tester.ipynb
+    #   - chapters/bioinf/tester2.ipynb
+    #   - chapters/bioinf/test.qmd
+    - part: "Web exercises"
       chapters: 
       - chapters/web/aardwark_seqdist.qmd
       - chapters/web/ccr5_pwalign.qmd
@@ -62,6 +62,7 @@ format:
   html:
     theme: cosmo
     highlight-style: kate 
+    toc-depth: 1    
     fig-width: 5
     fig-height: 3
     filters: 
@@ -69,6 +70,7 @@ format:
       - headers.lua
   pdf:
     documentclass: scrbook
+    papersize: a4
     highlight-style: kate 
     fig-width: 7
     fig-height: 5

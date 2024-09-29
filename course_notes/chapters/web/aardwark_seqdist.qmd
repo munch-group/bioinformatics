@@ -1,13 +1,13 @@
 # What is an Aardvark?
 
-“What is an Aardvark?" You may have bugged you for a while. It might have kept you up at night. You might have been twisting and turning due to the mystery that is the Aardvark. But fear not. Today, you will attempt to answer this exact question. Or at least a part of the question from a phylogenetic perspective. In the process, hopefully, you will learn something about phylogeny. Let’s start with a more straightforward question. “What does the Aardvark look like?", @fig:ardvark. 
+“What is an Aardvark?" You may have bugged you for a while. It might have kept you up at night. You might have been twisting and turning due to the mystery that is the Aardvark. But fear not. Today, you will attempt to answer this exact question. Or at least a part of the question from a phylogenetic perspective. In the process, hopefully, you will learn something about phylogeny. Let’s start with a more straightforward question. “What does the Aardvark look like?", @fig-ardvark. 
 
-![This is an Ardvaark](images/ardvark.png){#fig:ardvark width=80%}
+![This is an Ardvaark](images/ardvark.png){#fig-ardvark width=80%}
 
 The Aardvark is a nocturnal mammal found in Africa, with the size of a big rottweiler. 
-The long ears and face shape (not considering the nose) make you wonder if it is the long-lost cousin of the kangaroo. It mainly feeds on ants and termites, which might change your mind in regards to its heritage. It could be a type of anteater. Looking at the nose and considering that in Afrikaans, ‘erdvark’ means ‘earth pig’ or ‘ground pig,’ you might change your mind once again and consider it a type of pig. The Aardvark is truly a mystery. So, let's solve the mystery of the Aardvark’s evolutionary relation to these reference animals! Feel free to look up cute pictures of these animals while you work on the exercises. I have collected a list of animals that I think of when I look at the Aardvark. Have the animals in @fig:animals in mind when you do the exercises.
+The long ears and face shape (not considering the nose) make you wonder if it is the long-lost cousin of the kangaroo. It mainly feeds on ants and termites, which might change your mind in regards to its heritage. It could be a type of anteater. Looking at the nose and considering that in Afrikaans, ‘erdvark’ means ‘earth pig’ or ‘ground pig,’ you might change your mind once again and consider it a type of pig. The Aardvark is truly a mystery. So, let's solve the mystery of the Aardvark’s evolutionary relation to these reference animals! Feel free to look up cute pictures of these animals while you work on the exercises. I have collected a list of animals that I think of when I look at the Aardvark. Have the animals in @fig-animals in mind when you do the exercises.
 
-![A: Aardvark, **B**: Grey Kangaroo, C: Golden Mole, D: Elephant Shrew, E: Red River Hog, F: Collared anteater, G: African Elephant](images/animals.png){#fig:animals width=80%}
+![A: Aardvark, **B**: Grey Kangaroo, C: Golden Mole, D: Elephant Shrew, E: Red River Hog, F: Collared anteater, G: African Elephant](images/animals.png){#fig-animals width=80%}
 
 To uncover the mystery of the Aardvark and its relation to the reference animals, we will be looking at the evolutionary distance between the animals listed above and the Aardvark. To do so, we need to align sequences from each of the animals. Not any gene will do. We need a highly conserved gene found in all animals, that can represent to long evolutionary distances in question. 
 
@@ -60,9 +60,9 @@ Collared anteater | *Tamandua tetradactyla*
 African Elephant | *Loxodonta africana*
 
 
-We would like to find an animal that can serve as "outgroup" in our analysis. An outgroup is a sequence so distantly related animal to all your other sequences (your "ingroup") that you can safely assume that all your ingroup sequences find a common ancestor before before they find one with the outgroup sequence (@fig:outgroup). The point where the outgroup attaches to the ingroup tree must then be the common ancestor of your ingroup sequences. Since all your subject animals are all live-bearing mammals, you can use the platypus (a monotreme)(*Ornithorhynchus anatinus*) as the outgroup and add it to your fasta-file.
+We would like to find an animal that can serve as "outgroup" in our analysis. An outgroup is a sequence so distantly related animal to all your other sequences (your "ingroup") that you can safely assume that all your ingroup sequences find a common ancestor before before they find one with the outgroup sequence (@fig-outgroup). The point where the outgroup attaches to the ingroup tree must then be the common ancestor of your ingroup sequences. Since all your subject animals are all live-bearing mammals, you can use the platypus (a monotreme)(*Ornithorhynchus anatinus*) as the outgroup and add it to your fasta-file.
 
-![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig:outgroup width=40%}
+![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig-outgroup width=40%}
 
 ## One-click analysis {-}
 

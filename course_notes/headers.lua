@@ -1,8 +1,11 @@
 function Header(el)
     if el.level == 4 then
-      print(el.content[3])
       local name = pandoc.utils.stringify(el.content[3])
-      el.content =  pandoc.Strong(name .. " " .. el.attr.attributes.number:gsub(".0.0.", "-"))
+      local number = ""
+      if el.attr then
+        number = el.attr.attributes.number:gsub(".0.0.", "-")
+      end
+      el.content =  pandoc.Strong(name .. " " .. number)
       return el
     end
   end

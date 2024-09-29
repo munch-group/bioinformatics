@@ -12,7 +12,7 @@ MRSA's resilience stems from various genetic mutations but is prominently due to
 
 Given the role of HGT in the rapid spread of resistance, it's evident that MRSA's evolution isn't merely a product of its internal genetic changes. It's deeply intertwined with a broader microbial ecosystem, where genes, particularly those conferring survival advantages like antibiotic resistance, can be exchanged, adopted, and propagated. This understanding underscores the challenge that antibiotic resistance presents.
 
-![MRSA cases per year in Denmark. SSI hypothesises that COVID restrictions and effects is the main cause of the reduction in cases in later years](./images/mrsa_2021_figur1.png){#fig:mrsa_infections width=80%}
+![MRSA cases per year in Denmark. SSI hypothesises that COVID restrictions and effects is the main cause of the reduction in cases in later years](./images/mrsa_2021_figur1.png){#fig-mrsa_infections width=80%}
 
 <!-- https://www.ssi.dk/sygdomme-beredskab-og-forskning/sygdomsovervaagning/m/mrsa-2021  -->
 
@@ -29,7 +29,7 @@ The structural learning goals of this exercise are:
 ## Sequence Retrieval {-}
 
 #### Exercise
-Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig:mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
+Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig-mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
 
 #### Exercise
 Find the FASTA version of the genomic reference assembly. This will give you the genetic sequence of the gene. Keep the header of the sequence (“>... Staph…, complete cds”), as we will need this later.
@@ -37,7 +37,7 @@ Find the FASTA version of the genomic reference assembly. This will give you the
 #### Exericse
 Find the FASTA version of the protein sequence. There might be a link to this in “Related Information.”
 
-![Screenshot](./images/mecA_ncbi.png){#fig:mecA_ncbi width=80%}
+![Screenshot](./images/mecA_ncbi.png){#fig-mecA_ncbi width=80%}
 
 ## Database Searching using BLAST {-}
 
@@ -82,7 +82,7 @@ Choose five or more types of bacteria from your BLAST results, such as Staphyloc
 Go to Genbank and find nucleotide sequences for the MecA gene in each of your selected organisms. E.g., search for “Staphylococcus epidermidis MecA”. You should get the (when possible) complete sequence for the gene only. Get the header of the FASTA file as well.
 
 #### Exericise
-Go to ClustalW at https://www.genome.jp/tools-bin/clustalw and input the sequences (with header first) of the mecA sequences from MRSA and the selected organisms. See @fig:clustalw_genome_jp Select DNA as you’re inputting nucleotide sequences. Feel free to try the protein sequences.
+Go to ClustalW at https://www.genome.jp/tools-bin/clustalw and input the sequences (with header first) of the mecA sequences from MRSA and the selected organisms. See @fig-clustalw_genome_jp Select DNA as you’re inputting nucleotide sequences. Feel free to try the protein sequences.
 
 #### Exercise
 Run the multiple alignments. 
@@ -95,7 +95,7 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
 - What does the generated phylogram tell you?
 - How could we use phylograms to track the potential horizontal gene transfer between the different bacteria?
 
-![Screenshot](./images/clustalw_genome_jp.png){#fig:clustalw_genome_jp width=80%}
+![Screenshot](./images/clustalw_genome_jp.png){#fig-clustalw_genome_jp width=80%}
 
 ## Discussion {-}
 

@@ -4,6 +4,8 @@ In recent decades, next-generation sequencing (NGS) has become extremely popular
 
 The choice of sequencing technique is highly dependent on the specific research question, so it is worth understanding the capabilities of the methods before choosing how the DNA should be sequenced. 
 
+## HIFI reads
+
 In this exercise, you will work with PacBio HiFi reads. Currently, this sequencing technique is the most accurate of the NGS technologies.  The sequencing method is shown in the below figure. The biggest strength of this sequencing technique is that the reads are read multiple times. Every time the read is read, a subread is produced, and the final HiFi read is the consensus of all the subreads. This approach eliminates most of the sequencing errors found in the subreads.  
 
 ![HIFI reads. © 2023 PacBio](./images/HIFI_reads.png)
