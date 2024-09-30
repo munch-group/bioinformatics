@@ -59,7 +59,8 @@ book:
       - chapters/web/orf_finding.qmd
       - chapters/web/references.qmd
     - part: "Supplementary"
-      - supplementary/suppl2024.qmd
+      chapters: 
+      - supplementary/recordings2024.qmd
 
 bibliography: references.bib
 
