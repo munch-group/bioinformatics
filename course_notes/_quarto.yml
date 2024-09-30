@@ -8,6 +8,8 @@ book:
     collapse-level: 1  
   chapters:
     - index.qmd
+    - preface.qmd
+    - curriculum.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/before_you_begin.qmd
@@ -58,7 +60,6 @@ book:
     - part: "Supplementary"
       - supplementary/suppl2024.qmd
     - chapters/python/references.qmd
-
 
 bibliography: references.bib
 

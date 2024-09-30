@@ -1,9 +1,13 @@
 
 # Curriculum
 
-The curriculum for programming is a set of lecture notes that I have written myself to fit this course best.
+The curriculum for programming is a set of lecture notes available as both PDF and a web page.
 
-- Lecture notes
+- [Lecture notes as PDF](https://munch-group.org/bioinformatics/Bioinformatics-and-Programming.pdf)
+- [Lecture notes as HTML](https://munch-group.org/bioinformatics/Bioinformatics-and-Programming.pdf)
+
+<!-- [Lecture notes as epub book](https://munch-group.org/bioinformatics/Bioinformatics-and-Programming.epub) -->
+
 
 Bioinformatics is a rapidly developing field, and so textbooks often have parts that are out of date. So in this course, the curriculum for bioinformatics is put together from several sources. We use the best excerpts from the textbooks Understanding Bioinformatics by Jeremy Baum and Marketa J. Zvelebil, Biological Sequence analysis by Richard Durbin et al., and Exploring Bioinformatics by Caroline St. Clair and Jonathan E. Visick. I have collected the sections from each textbook in separate compendia. You will also be reading short up-to-date publications on selected topics in bioinformatics. 
 
