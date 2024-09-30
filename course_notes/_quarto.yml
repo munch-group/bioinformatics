@@ -55,7 +55,10 @@ book:
       - chapters/web/neural_networks.qmd
       - chapters/web/orf_finding.qmd
       - chapters/web/references.qmd
+    - part: "Supplementary"
+      - supplementary/suppl2024.qmd
     - chapters/python/references.qmd
+
 
 bibliography: references.bib
 

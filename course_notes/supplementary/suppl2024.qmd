@@ -57,9 +57,8 @@ No recording.
  -->
 
 ### Wednesday
-<!-- 
-{{< video https://www.youtube.com/embed/ >}}
- -->
+
+{{< video https://www.youtube.com/embed/Oym9VWLi1ks >}}
 
 ## Week 6
 
