@@ -1,0 +1,82 @@
+
+# Information om eksamen
+
+> Informationen på denne side fremgår også af eksamensopgaven.
+
+Eksamensopgave består af to dele, som vægtes lige i bedømmelsen:
+
+1. Et sæt programmeringsopgaver.
+2. Et sæt bioinformatikopgaver.
+
+## Filer til brug ved eksamen
+
+Udover denne PDF-fil som indeholder eksamensopgaverne, har du også downloaded tre andre filer fra eksamenssystemet, som du skal bruge til at løse eksamensopgaven:
+
+- `progexam.py`: Det er i denne fil, du skal skrive de Python funktioner, der bedes om i eksamensopgavens programmeringsdel.
+- `test_progexam.py`: Det er denne fil, du kan bruge til at teste de funktioner du skriver i `progexam.py`.
+- `bioinfexam.py`: Det er i denne fil, du skriver svarene på eksamensopgavens bioinformatik-del.
+
+## Sådan løser du programmeringsopgaverne
+
+Start med at åbne din terminal og naviger ind i den folder, som eksamenssystemet har lavet på din computer. Der er muligt at folderens navn indeholder mellemrum. For at navigere ind i en folder der indeholder et mellemrum vha. terminalen, kan man skrive starten af folder-navnet og så trykke på Tab. Så fuldendes navnet automatisk. F.eks.: Hvis folderen hedder “Eksamen Bioinf”, kan man skrive: “cd Eksamen og så trykke Tab. Så fuldendes navnet og man kan trykke Enter.
+
+Som i programmeringsprojekterne fra kurset skriver du din kode i `progexam.py` og kører koden sådan her:
+
+```
+python progexam.py
+```
+
+Som i programmeringsprojekterne i kurset kan du teste din kode sådan her:
+
+```
+python test_progexam.py
+```
+
+Test scriptet er tilgængeligt som en hjælp til at teste din kode, men du har selv det fulde ansvar for rigtigheden af din kode.
+
+Det er tilladt at bruge løsninger af opgaver til at løse senere opgaver. Man må altså gerne kalde tidligere definerede funktioner inde i andre funktioner, man senere bliver bedt om at skrive.
+
+Følgende er *afgørende* for at din eksamensbesvarelse kan evalueres korrekt:
+
+1. Hver funktion skal navngives *præcis* som angivet i opgaven. Funktioner der ikke er navngivet korrekt, regnes som ikke besvarede.
+2. Det er ikke tilladt importere kode fra andre filer, du har skrevet eller installeret. Det vil sige, at du ikke må bruge `import` statements i din fil.
+3. Når du afleverer `progexam.py` må den  *kun* indeholde definitioner af de funktioner, der er beskrevet i eksamensopgaven. Al kode udenfor funktionsdefinitioner skal slettes inden du afleverer, så sørg for at teste i god tid inden aflevering, om dine funktioner stadig virker, når du sletter sådan ekstra kode.
+
+**Allervigtigst:** Funktioner der ikke fuldstænding opfylder opgavens beskrivelse regnes som ikke besvarede. Så sørg for at lave dine funktioner færdige, så de klarer *alle* tests. Hvis ingen af dine funktioner er *helt rigtigt besvaret* får du *ingen point*.
+
+## Sådan løser du bioinformatikopgaverne
+
+Bioinformatikdelen af eksamensopgaven består af et sæt af  opgaver, der hver dækker et emne. Hver opgave indeholder flere delopgaver. Der er tre typer delopgaver:
+
+1. Udsagn der enten er sande eller falske og som skal besvares med `True` eller `False`.
+2. Spørgsmål der skal besvares med et tal (`int` eller `float`).
+3. Spørgsmål der skal besvares med en tekst streng (f.eks. `'Dette er mit bedste svar'`)
+
+Filen `bioinfexam.py` er en Python fil og indeholder en variabel for hver delopgave. For eksempel: den variabel der hører til delopgave tre i emne syv hedder `emne_7_del_3`. Hver variabel har en default værdi som enten er `None` eller en tom streng (`' '`):
+
+```python
+emne_7_del_3 = None
+emne_7_del_4 = ' '
+```
+
+1. Du besvarer sandt/falsk udsagn ved at udskifte `None` med enten `True` eller `False`. 
+2. Du besvarer tal-spørgsmål ved at udskifte `None` med et tal. 
+3. Du besvarer tekst-opgaver ved at fylde tekst i den tomme streng. 
+
+Det er anført i `bioinfexam.py` om en delopgave skal besvares med `True`/`False`, et tal, eller tekst.
+
+Følgende er *afgørende* for at din eksamensbesvarelse kan evalueres korrekt: Delopgaver som ikke er besvaret betragtes som forkert besvarede, *så du er bedst tjent med at gætte fremfor ikke at svare*.
+
+I nogle af opgaveemnerne refererer statements til en vist illustration. Alt efter størrelsen på din skærm kan du være nødt til at "zoome ind" på illustrationerne i det program du bruger til at vise denne PDF, ellers kan der være detaljer du ikke kan se.
+
+## Sådan afleverer du din eksamensopgave i Wiseflow
+
+Inden du afleverer, skal du tjekke at `progexam.py` kun indeholder definitioner af de funktioner der er beskrevet i eksamensopgaven. Hvis du har skrevet yderligere kode for at teste dine funktioner, skal du slette den inden du oplader din fil.
+
+Du afleverer din eksamensbesvarelse ved at uploade disse to filer til Wiseflow:
+
+* `progexam.py` skal afleveres som **_hoveddokument_**
+* `bioinfexam.py` skal afleveres som **_bilag_**.
+
+
+
