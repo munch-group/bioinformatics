@@ -1,4 +1,5 @@
-# Finding a GWAS disease gene
+
+# GWAS candidates
 
 ```{python}
 from IPython.display import display, Markdown

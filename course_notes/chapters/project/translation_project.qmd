@@ -1,4 +1,4 @@
-# Translating open reading frames
+# Translating ORFs
 
 *This chapter is about translating DNA into protein. If bacteria can do it, so can you.*
 

@@ -1,4 +1,4 @@
-# Clustering sequences based on distance
+# Sequence trees
 
 *This chapter is about clustering sequence based on the evolutionary distance between them.*
 

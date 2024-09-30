@@ -1,5 +1,5 @@
 
-# Finding open reading frames in a resistance plasmid
+# Plasmid ORFs
 
 Gene prediction in bacteria is a crucial step in understanding the genetic makeup of these microorganisms. It involves identifying the locations and boundaries of genes within bacterial genomes, essential for studying bacterial physiology and pathogenicity and developing targeted therapies. The main component of bacterial genes is the open reading frame (ORFs), which translates into protein. So, identifying ORFs is the main task in "de novo" prediction of bacterial genes. The most commonly used start codon is ATG, and less frequently, GTG and TTG. Stop codons are either one of TAA, TAG, or TGA. Although the three "reading frames" on each strand allow ORFs to overlap, this is mainly a feature of highly compacted viral genomes and not often observed in bacteria. Promoter and terminator DNA motifs provide additional information usually built into hidden Markov models or neural networks. Such models also asses the coding potential, codon usage, and length of ORFs to distinguish randomly occurring pairs of start and stop codons from those representing genes.
 

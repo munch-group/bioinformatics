@@ -1,7 +1,10 @@
 
 <!-- TODO: Add chapter "On the shoulders of giants" -->
 
-<!-- # On the shoulders of giants
+# Giant's shoulders
+
+
+On the shoulders of giants
 
 Python modules
 
@@ -22,4 +25,4 @@ Python modules
 
 ## Reading and writing sequence formats {.unnumbered}
 
- -->
+

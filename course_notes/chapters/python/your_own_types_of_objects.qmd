@@ -1,4 +1,4 @@
-# Your own type of object
+# Your kind of thing
 
 *Do you know that type you are? Python objects do, and this chapter is about how they know.*
 
@@ -44,3 +44,6 @@ Let us beak it down: We use the keyword `class` followed by the name of class we
 
 
 <!-- TODO: Finish chapter about classes -->
+
+
+

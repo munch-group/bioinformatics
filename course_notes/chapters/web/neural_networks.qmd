@@ -1,5 +1,5 @@
 
-# Hands-on neural network architecture
+# Neural networks
 
 Machine learning comes in many forms. Whether you want to call them artificial intelligence or just models is a matter of taste. Hidden Markov models are one class of models, and neural networks are another. 
 

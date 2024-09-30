@@ -1,4 +1,4 @@
-# Inspecting long-read mapping
+# Read mapping
 
 In recent decades, next-generation sequencing (NGS) has become extremely popular among geneticists and bioinformaticians. Three of the biggest sequencing companies are Illumina, Pacific Biosciences (PacBio), and Oxford Nanopore Technologies (ONT). The three companies use different technologies to sequence DNA, and they each have pros and cons. Illumina reads are relatively short (150 bp) but are also the cheapest solution. PacBio produces long, accurate reads (~15 kb) but is more than twice as expensive as Illumina. ONT can produce extremely long reads (60 kb) but suffers from low-quality base calls. 
 

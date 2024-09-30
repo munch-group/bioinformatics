@@ -1,4 +1,4 @@
-# Investigating the role of horizontal gene transfer in the antibiotic resistance of MRSA
+# MRSA
 
 Methicillin-resistant Staphylococcus aureus (MRSA) is a strain of the staph bacteria that's become resistant to the antibiotics typically used to treat ordinary staph infections. Originally, the Staphylococcus aureus bacterium was a common cause of skin infections, pneumonia, and other medical conditions. However, its methicillin-resistant counterpart, MRSA, emerged as a strain that resists many of the conventional antibiotics. This resistance is not limited to just methicillin but extends to other antibiotics, often rendering standard treatments ineffective. 
 

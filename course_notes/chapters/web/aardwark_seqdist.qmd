@@ -1,4 +1,4 @@
-# What is an Aardvark?
+# Aardvark?
 
 “What is an Aardvark?" You may have bugged you for a while. It might have kept you up at night. You might have been twisting and turning due to the mystery that is the Aardvark. But fear not. Today, you will attempt to answer this exact question. Or at least a part of the question from a phylogenetic perspective. In the process, hopefully, you will learn something about phylogeny. Let’s start with a more straightforward question. “What does the Aardvark look like?", @fig-ardvark. 
 
