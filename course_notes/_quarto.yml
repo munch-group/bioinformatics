@@ -31,6 +31,7 @@ book:
       - chapters/python/your_own_types_of_objects.qmd
       - chapters/python/on_the_shoulders_of_giants.qmd
       - chapters/python/using_code_from_other_files.qmd
+      - chapters/python/references.qmd
     - part: "Python projects"
       chapters: 
       - chapters/project/translation_project.qmd
@@ -59,7 +60,6 @@ book:
       - chapters/web/references.qmd
     - part: "Supplementary"
       - supplementary/suppl2024.qmd
-    - chapters/python/references.qmd
 
 bibliography: references.bib
 
