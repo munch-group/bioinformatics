@@ -23,6 +23,7 @@ book:
       - overview.qmd
       - weekplan.qmd
       - curriculum.qmd
+      - exam.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/before_you_begin.qmd
@@ -72,6 +73,7 @@ book:
     - part: "Supplementary"
       chapters: 
       - supplementary/recordings2024.qmd
+      - supplementary/bioinformatics_resources.qmd
 
 bibliography: references.bib
 
