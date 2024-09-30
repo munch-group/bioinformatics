@@ -1,5 +1,5 @@
 
-# Information om eksamen
+# Exam info {.unnumbered #sec-exam}
 
 > Informationen på denne side fremgår også af eksamensopgaven.
 

@@ -23,6 +23,7 @@ book:
       - overview.qmd
       - weekplan.qmd
       - curriculum.qmd
+      - assignments.qmd
       - exam.qmd
     - part: "Learning Python"
       chapters:
