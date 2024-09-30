@@ -1,4 +1,13 @@
 /*-- scss:defaults --*/
 $font-size-base:          0.95rem !default;
+$h4-font-size:          1.1rem !default;
 
+@font-face {
+    font-family: "Passata";
+    src: url("au_fonts/AUPassata_Rg.ttf");
+  }
+  @font-face {
+    font-family: "Peto";
+    src: url("au_fonts/AU_Peto.ttf");
+  }  
 /*-- scss:rules --*/

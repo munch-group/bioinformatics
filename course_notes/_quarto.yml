@@ -2,14 +2,27 @@ project:
   type: book
 
 book:
-  title: "Bioinformatics and Programming"
-  author: "Kasper Munch"
+  # title: "Bioinformatics and Programming"
+  title: "<br>"
+  # description: 'A course in bioinformatics and programming'
+  # author: "Kasper Munch"
   sidebar:
-    collapse-level: 1  
+    title: "Content"
+    collapse-level: 1
+    background: "white"      
+  # navbar:
+  #   background: "white" 
+  #   collapse-below: "xxl"
+  #   search: false     
   chapters:
     - index.qmd
-    - preface.qmd
-    - curriculum.qmd
+    # - preface.qmd
+    - part: "Course info"
+      chapters:
+      - course_description.qmd
+      - overview.qmd
+      - weekplan.qmd
+      - curriculum.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/before_you_begin.qmd
@@ -31,7 +44,6 @@ book:
       - chapters/python/your_own_types_of_objects.qmd
       - chapters/python/on_the_shoulders_of_giants.qmd
       - chapters/python/using_code_from_other_files.qmd
-      - chapters/python/references.qmd
     - part: "Python projects"
       chapters: 
       - chapters/project/translation_project.qmd
@@ -57,7 +69,6 @@ book:
       - chapters/web/mrsa_blast_multalign.qmd
       - chapters/web/neural_networks.qmd
       - chapters/web/orf_finding.qmd
-      - chapters/web/references.qmd
     - part: "Supplementary"
       chapters: 
       - supplementary/recordings2024.qmd
@@ -69,6 +80,7 @@ crossref:
   
 format:
   html:
+    # mainfont: "Passata"
     theme: 
       - default
       - custom.scss
@@ -81,6 +93,7 @@ format:
     notebook-links: global
     # number-sections: false
     number-sections: true      
+    code-block-bg: "#f9f9f9"
   pdf:
     documentclass: scrbook
     papersize: a4

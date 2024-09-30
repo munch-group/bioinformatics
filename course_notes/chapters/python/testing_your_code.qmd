@@ -39,13 +39,13 @@ Each project comes with two files that you download from the course page. They h
 
 To be able to test your functions, you *must* write your code in the file called `translationproject.py`. To run your code you type this in the Terminal as usual:
 
-```zsh
+```{.txt filename="Terminal"}
 python translationproject.py
 ```
 
 To test the functions as you complete each one, you can run the test script `test_translationproject.py` like this:
 
-```zsh
+```{.txt filename="Terminal"}
 python test_translationproject.py
 ```
 
@@ -53,7 +53,7 @@ The code in `test_translationproject.py` reads your code in `translationproject.
 
 **Case 1:** If you did not yet implement all the functions, the test script will remind you (once for each test) that you did not implement the functions with the names required.
 
-```
+```{.txt filename="Terminal"}
 *********************************************************
 ATTENTION! The following functions are not defined:
 
@@ -82,7 +82,7 @@ def translate_codon(codon):
 
 then you would get this message:
 
-```
+```{.txt filename="Terminal"}
 FAILED TEST CASE: test_translate_codon_2
 
 MESSAGE:

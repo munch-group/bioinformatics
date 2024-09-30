@@ -35,49 +35,49 @@ What is *Anaconda Powershell Prompt* and this *Terminal* thing, you ask. Both pr
 
 The terminal is a very useful tool. To use it, howevever, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You simply type the command you want and then hit enter. The place where you type is called a prompt (or command promt) and it may look a little different depending on which terminal emulator you use. In this book we represent the prompt with the character `$`. So a command in the examples below is the line of text to the left of the `$`. When you open the terminal you'll be located in a folder. You can see which folder you are in by typing `pwd`, and then press `Enter` on the keyboard. When you press `Enter` you tell the terminal to execute the command you just wrote. In this case, the command you typed simply tells you the path to the folder we are in. If I do it I get:
 
-```
+```{.txt filename="Terminal"}
 $ pwd
 /Users/kasper/programming
 ```
 
 If I had been on a windows machine it would have looked something like: 
 
-```
+```{.txt filename="Terminal"}
 $ cd
 C:\Users\kasper\programming
 ```
 
 So right now I am in the folder `programming`. `/Users/kasper/programming` is the path or "full address" of the folder with dashes (or backslashes on windows) separating nested folders. So `programming` is a subfolder of `kasper` which is a subfolder of `Users`. That way you not only know which folder you are in but also where that folder is. Let us see what is in this folder. You can use the `ls` command (l as in Lima and s as in Sierra). When I do that and press `Enter` I get:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 notes projects
 ```
 
 It seems that there are two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command you must specify which folder you want to walk into (in this case `notes`). We do this by typing `cd`, then a space and the then name of the folder. When I press enter I get:
 
-```
+```{.txt filename="Terminal"}
 $ cd notes
 $
 ```
 
 It seems that nothing really happened, but if I run the `pwd` command now to see which folder I am in, I get:
 
-```
+```{.txt filename="Terminal"}
 $ pwd
 /Users/kasper/programming/notes
 ```
 
 Just to keep track of what is happening: before we ran the `cd` command we were in the directory `/Users/kasper/programming` folder, and now we're in `/Users/kasper/programming/notes`. This means that we can now use the `ls` command to see what is in the `notes` folder:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 $
 ```
 
 Again it seems like nothing happened. Well, `ls` and `dir` do not show anything if the folder we are in is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming` we again use the `cd` command, but this time we do not need to name a folder. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e. the folder we just came from:
 
-```
+```{.txt filename="Terminal"}
 $ cd ..
 $ pwd
 /Users/kasper/programming
@@ -85,7 +85,7 @@ $ pwd
 
 Now when we run the `pwd` command we see that we are back where we started. Let us see if the two folders are still there:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 notes projects
 ```
@@ -103,49 +103,49 @@ Hopefully, you are now able to use navigate your folders and see what is in them
 
 <!-- The terminal is a very useful tool. To use it, howevever, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You simply type the command you want and then hit enter. The place where you type is called a prompt (or command promt) and it may look a little different depending on which terminal emulator you use. In this book we represent the prompt with the character `$`. So a command in the examples below is the line of text to the left of the `$`. When you open the terminal you'll be located in a folder. You can see which folder you are in by typing `pwd` on OSX and `cd` on windows, and then press `Enter` on the keyboard. When you press `Enter` you tell the terminal to execute the command you just wrote. In this case, the command you typed simply tells you the path to the folder we are in. If I do it I get:
 
-```
+```{.txt filename="Terminal"}
 $ pwd
 /Users/kasper/programming
 ```
 
 If I had been on a windows machine it would have looked something like: 
 
-```
+```{.txt filename="Terminal"}
 $ cd
 C:\Users\kasper\programming
 ```
 
 So right now I am in the folder `programming`. `/Users/kasper/programming` is the path or "full address" of the folder with dashes (or backslashes on windows) separating nested folders. So `programming` is a subfolder of `kasper` which is a subfolder of `Users`. That way you not only know which folder you are in but also where that folder is. Let us see what is in this folder. On OSX you type the `ls` command (l as in Lima and s as in Sierra). On windows you type `dir`. When I do that and press `Enter` I get:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 notes projects
 ```
 
 It seems that there are two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command you must specify which folder you want to walk into (in this case `notes`). We do this by typing `cd`, then a space and the then name of the folder. This is the same OSX and Windows. When I press enter I get:
 
-```
+```{.txt filename="Terminal"}
 $ cd notes
 $
 ```
 
 It seems that nothing really happened, but if I run the `pwd` command (`cd` on Windows) now to see which folder I am in, I get:
 
-```
+```{.txt filename="Terminal"}
 $ pwd
 /Users/kasper/programming/notes
 ```
 
 Just to keep track of what is happening: before we ran the `cd` command we were in the directory `/Users/kasper/programming` folder, and now we're in `/Users/kasper/programming/notes`. This means that we can now use the `ls` command (`dir` on Windows) to see what is in the `notes` folder:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 $
 ```
 
 Again it seems like nothing happened. Well, `ls` and `dir` do not show anything if the folder we are in is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming` we again use the `cd` command, but this time we do not need to name a folder. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e. the folder we just came from:
 
-```
+```{.txt filename="Terminal"}
 $ cd ..
 $ pwd
 /Users/kasper/programming
@@ -153,7 +153,7 @@ $ pwd
 
 Now when we run the `pwd` (or `cd`) command we see that we are back where we started. Let us see if the two folders are still there:
 
-```
+```{.txt filename="Terminal"}
 $ ls
 notes projects
 ```
@@ -181,7 +181,7 @@ When you install Anaconda, Conda makes a single base environment for you. It is 
 
 In this course, you need to install programs, and python libraries that could conflict with the packages you need for other courses or future projects. So we will create an isolated Conda environment for Bioinformatics and Programming to avoid such conflicts. Conda is a program you run from the command line, just like `python` or `cd`. So open your terminal (i.e., the "Terminal" program if you are on a Mac and the "Anaconda Powershell Prompt" program if you are on Windows). Now copy/paste these command lines into the terminal *one at a time* and press return (enter) after pasting each one:
 
-```
+```{.txt filename="Terminal"}
 conda create -y -n bioprog
 conda activate bioprog
 conda config --env --add channels conda-forge

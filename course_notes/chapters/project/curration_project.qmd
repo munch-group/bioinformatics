@@ -1,10 +1,10 @@
-# Project: Sequence Curation
+# Sequence Curation
 
 
 **TURN EXAM ASSIGNMENT INTO PROJECT**
 
 
-## Download the exam package
+## Download the exam package {.unnumbered}
 
 This assignment proceeds like the programming projects you completed during the course. You start by downloading the exam assignment from the Blackboard course home page. Once you have downloaded the package you must turn off internet on your computer. Internet is ***not*** allowed during the exam.
 
@@ -24,11 +24,11 @@ python test_exam.py
 
 Note that functions, which do not pass *ALL* tests, are considered failed. 
 
-## How to hand in your assingment
+## How to hand in your assingment {.unnumbered}
 
 At the end of the exam you will be allowed to go online and upload your solution under “Exam Assignment” on Blackboard (The same place you donwloaded `exam.zip` from). If you are done before the end of the exam you can raise your hand and you will be allowed to go online and upload your solution under supervision.
 
-## How to solve this assignment
+## How to solve this assignment {.unnumbered}
 
 In each problem below you are asked to write one function with a given name. You must name this function **exactly** as specified. Functions that are not correctly named are considered completely failed. Functions that do not work **exactly** as specified are considered completely failed. You can use the `test_exam.py` script to test your functions and to make sure they are named correctly, but the correct implementation of each function is entirely your own responsibility.
 
@@ -41,7 +41,7 @@ print("hello world")
 ```
 and whenever we refer to Python code inside a sentence it will be styled like `this`.
 
-## Introduction
+## Introduction {.unnumbered}
 
 In this exam assignment you will work with DNA sequences. For the purpose of this exam assignment we will assume that DNA sequences are always upper case. In some of the problems you will also work with strings of quality scores associated with the DNA sequences. In these cases, each DNA sequence has a string of quality scores of the same length as the DNA sequence. Each digit in the string of quality scores corresponds to a base in the DNA sequence and represents how certain we are that this base has been corrrectly called by the sequencing machine. Quality scores can take the values 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. E.g. if a DNA sequence is `'ATG'` and the associated string of quality scores is `'735'`, then the quality score of the first base, `'A'`, is `7`.
 
@@ -67,7 +67,7 @@ The actual assignment starts on the next page. Happy coding.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 1
+## Problem 1 {.unnumbered}
 
 We want to compute how long a DNA sequence is.
 
@@ -82,7 +82,7 @@ The function must return:
 Example usage: If the function is called like this `find_length("AGTC")` it should return `4`.
 
 
-## Problem 2
+## Problem 2 {.unnumbered}
 
 We want to compare the length of two sequenes to test if they have the same length. 
 
@@ -99,7 +99,7 @@ Example usage: If the function is called like this `compare_length("TGA", "TGAC"
 
 <div style="page-break-after: always;"></div>
 
-## Problem 3
+## Problem 3 {.unnumbered}
 
 We want to be able to count how many of each base that a DNA sequence contains.
 
@@ -125,7 +125,7 @@ it should return (not necessarily with key-value pairs in the same order):
 
 (assuming, of course, that `ex_s1` is defined as above).
 
-## Problem 4
+## Problem 4 {.unnumbered}
 
 We want to be able to count the number of differences between two DNA sequences.
 
@@ -148,7 +148,7 @@ it should return `2`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 5
+## Problem 5 {.unnumbered}
 
 We want to write a function that reverses a DNA sequence.
 
@@ -162,7 +162,7 @@ The function must return:
 
 Example usage: If the function is called like this `reverse_seq("ACTG)` it should return `'GTCA'`.
 
-## Problem 6
+## Problem 6 {.unnumbered}
 
 We want to obtain the reverse complement of a DNA sequence. I.e. the resulting DNA sequence should not only be in the reverse order, but each base must also be translated into its complementary base (A to T, T to A, C to G and G to C).
 
@@ -178,7 +178,7 @@ Example usage: If the function is called like this `reverse_complement_seq("ACTG
 
 <div style="page-break-after: always;"></div>
 
-## Problem 7
+## Problem 7 {.unnumbered}
 
 In DNA a "CpG" site is a C followed by a G: I.e. the string "CG". We want to find the location of all such CpG sites in a DNA sequence.
 
@@ -198,7 +198,7 @@ find_cpg_sites('CGAGCGAACG')
 
 it should return `[0, 4, 8]`.
 
-## Problem 8
+## Problem 8 {.unnumbered}
 
 We want to be able to find the CpG sites that appear at the *same* positions in *two* sequences of same length. 
 
@@ -221,7 +221,7 @@ it should return `[0, 8]`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 9
+## Problem 9 {.unnumbered}
 
 In several of the problems below you will work with strings of quality scores like this: `'4892743'`. To turn such strings of digits into a list of integers we need a function. You get this one for free, so to solve this problem all you need to do is define this function *exactly* as stated below:
 
@@ -242,7 +242,7 @@ it should return:
 [4, 7, 3]
 ```
 
-## Problem 10
+## Problem 10 {.unnumbered}
 
 We want to find the average sequencing quality of bases in a sequence.
 
@@ -258,7 +258,7 @@ Example usage: If the function is called like this `average_quality('12')` it sh
 
 <div style="page-break-after: always;"></div>
 
-## Problem 11
+## Problem 11 {.unnumbered}
 
 We suspect that the quality of adjacent bases may not be independent. To address this we want to compute the average difference between adjacent quality scores in a string of qualities. E.g. in the string `'125'` there are two adjacent pairs: `'12'` and `'25'`. The difference is `1` in the first case and `3` in the other, so the average difference is `2.0` in this case.
 
@@ -280,7 +280,7 @@ it should return `2.0`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 12
+## Problem 12 {.unnumbered}
 
 We want to find the average sequencing quality of each type of base (A, T, C and G) in the sequence.
 
@@ -308,7 +308,7 @@ it should return (not necessarily with key-value pairs in the same order):
 <div style="page-break-after: always;"></div>
 
 
-## Problem 13
+## Problem 13 {.unnumbered}
 
 We want to compute the average sequencing quality of bases that are part of CpG sites. I.e. all bases that are part of a "CG" pair.
 
@@ -329,7 +329,7 @@ average_quality_for_cpg_sites(ex_s1, ex_q1)
 
 it should return `4.0`.
 
-## Problem 14
+## Problem 14 {.unnumbered}
 
 We want to mask a DNA sequence so the bases with a sequencing quality below some cutoff are replaced by `'N'` characters.
 
@@ -353,7 +353,7 @@ it should return `'ANCT'`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 15
+## Problem 15 {.unnumbered}
 
 Given two strings of qualities of equal length, we want to find the lowest quality at each position.
 
@@ -376,7 +376,7 @@ it should return `[1, 2, 2, 1]`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 16
+## Problem 16 {.unnumbered}
 
 When comparing two homologous DNA sequences of equal length we suspect that differences could be due to sequencing errors rather than mutations. To address this problem we want to find out if the lowest quality base at positions where the DNA sequences differ (heterozygous positions) is lower than where the DNA sequences are the same (homozygous positions). 
 
@@ -401,7 +401,7 @@ it should return `[2.0, 1.0]`.
 
 <div style="page-break-after: always;"></div>
 
-## Problem 17
+## Problem 17 {.unnumbered}
 
 We want to count the number of occcurences of each base in a DNA sequence at the sequence positions associated with a specified quality score. 
 
@@ -429,7 +429,7 @@ is should return (not necessarily with key-value pairs in the same order):
 
 <div style="page-break-after: always;"></div>
 
-## Problem 18
+## Problem 18 {.unnumbered}
 
 We suspect there is a relation between quality at a site and which base that is called at that site. To address this we need to count the number of occcurences of different bases at sites with each quality score.
 
@@ -452,7 +452,7 @@ and if the dictionary to be returned is called `d` then `d[9]` should be `{'T': 
 
 <div style="page-break-after: always;"></div>
 
-## Problem 19
+## Problem 19 {.unnumbered}
 
 Replacing low-quality bases with `'N'` produces a DNA sequence with lots of Ns in it. We want to extract all the sub-sequences that do not have N characters in them.
 
@@ -478,7 +478,7 @@ it should return:
 
 <div style="page-break-after: always;"></div>
 
-## Problem 20
+## Problem 20 {.unnumbered}
 
 If we want to compare two sequences in an analysis we want sequence positions with low quality in *either* sequence to be replaced with `'N'` in *both* sequences. This way the two resulting sequences will have `'N'` characters in the same positions.
 

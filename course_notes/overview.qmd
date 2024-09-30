@@ -1,0 +1,41 @@
+
+# Overview {.unnumbered}
+
+Programming topics are normal font, bioinformatics topics are in **bold**.
+
+<!-- 
+Week    | Double lecture                                        | Exercises                                         | Single lecture
+---     | ---                                                   | ---                                               | ---                       
+1, 35   | Introduction, Python, values, operators, variables, logic, types  | Up and running, basic Python exercises            | substitution, reduction, course helper tools
+2, 36   | If, else, logic, functions, scope                     | Values, operators, math, variables                | functions, builtin functions
+3, 37   | Objects, methods, strings, lists                      | Functions                                         | dictionaries, tuples
+4, 38   | iteration                                             | objects, strings, lists, dictionaries (MO/B only) | Files, tests
+5, 39   | **Databases, sequencing, chipSeq, mapping, GWAS**     | Reprise of last week's exercise (MM only)         | Recursion
+6, 40   | **Global pairwise alignment**, data struct/project    | Iteration, files + translation project            | **Local pairwise alignment**
+7, 41   | **Substitution matrices**, classes/project            | **GWAS and databases** + Folding project          | **Multiple alignment**
+8, 43   | **Blast, alignment significance**, k-mers/project     | **HIV and alignment** + alignment project         | **Evolutionary distance**
+9, 44   | **Clustering**, python/project                        | **MRSA, blast and mult. aln.** + Codon usage project | BioPython, Master in bioinformatics
+10, 45  | **Phylogenetics**, python/project                     | **Aardwarks and DNA evolution** + HIV project     | TBA
+11, 46  | **Hidden Markov models**, python/project              | **Evolution of the whale** +  Clustering project  | **Hidden Markov models**
+12, 47  | **Assembly**, modules, python/project                 | **Archaea in the tree of life** +  ORF project    | **Neural networks**
+13, 48  | **Genome and protein annotation**                     | **Gene finding** + Assembly project               | **RNA structure**
+14, 49  | modules, biopython, **guest talk**                    | **RNA folding** + biopython                       | Evaluation, exam information
+ -->
+
+
+Week    | Double lecture                                        | Exercises                                         | Single lecture
+---     | ---                                                   | ---                                               | ---                       
+1, 35   | Introduction, Python, values, operators, variables, logic, types  | Up and running, basic Python exercises            | substitution, reduction, course helper tools
+2, 36   | If, else, logic, functions, scope                     | Values, operators, math, variables                | functions, builtin functions
+3, 37   | Objects, methods, strings, lists                      | Functions                                         | dictionaries, tuples
+4, 38   | iteration                                             | objects, strings, lists, dictionaries (MO/B only) | Files, tests
+5, 39   | **Databases, sequencing, chipSeq, mapping, GWAS**     | Reprise of last week's exercise (MM only)         | Recursion
+6, 40   | **Global pairwise alignment**, data struct/project    | Iteration, files + translation project            | **Local pairwise alignment**
+7, 41   | **Substitution matrices**, classes/project            | **GWAS and databases** + Folding project          | **Multiple alignment**
+8, 43   | **Blast, alignment significance**, k-mers/project     | **HIV and alignment** + alignment project         | **Evolutionary distance**
+9, 44   | **Clustering**, python/project                        | **MRSA, blast and mult. aln.** + Codon usage project | BioPython, Master in bioinformatics
+10, 45  | **Phylogenetics**, python/project                     | **Aardwarks and DNA evolution** + HIV project     | TBA
+11, 46  | **Hidden Markov models**, python/project              | **TBA** +  Clustering project                     | **Hidden Markov models**
+12, 47  | **Assembly**, modules, python/project                 | **TBA** +  ORF project                            | **Neural networks**
+13, 48  | **Genome and protein annotation**                     | **TBA** + Assembly project                        | **RNA structure**
+14, 49  | modules, biopython, **guest talk**                    | **TBA** + Biopython                               | Evaluation, exam information

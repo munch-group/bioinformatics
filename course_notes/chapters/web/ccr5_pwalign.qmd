@@ -19,7 +19,7 @@ The learning goals of this exercise are:
 - Getting acquainted with different file formats for storing sequence information. 
 
 
-## Fasta sequence format {-}
+## Fasta sequence format  {.unnumbered}
 
 Files containing DNA or protein sequences are just text files formatted in a particular way so that each sequence can be associated with additional information. The most simple format is called FASTA format, and files with sequences in this format are called FASTA files and are usually given either a “.fa” or “.fasta” suffix. A FASTA has two elements for each sequence: a header line with a leading ” >” character followed by one or more lines with the DNA or protein sequence (the sequence may be broken over several lines). The content of a FASTA file with two (short) sequences in it could look like this:
 
@@ -35,7 +35,7 @@ AAATTGGAATA
 The first word after the “>” in the header line is usually a sequence identifier; the rest is an additional description or information.
 
 
-## Aligning DNA sequences {-}
+## Aligning DNA sequences  {.unnumbered}
 
 For this this exercise, you will have four fasta files each with one sequence in it:
 
@@ -55,7 +55,7 @@ Now click “Submit”, to get your job queued on the server. You have to wait a
 #### Exercise
 Now, on to the actual investigation. Begin by aligning the mRNAs of CCR5 and CCR5-delta32 to each other using the Needleman-Wunsch algorithm using the default values of parameters. Look at the alignment. How many bases are the same? How many are different? How many indels are there? What characterizes the delta32 variant? Is it a deletions, insertion, or substitution? Is more than one base involved?
 
-## Aligning protein sequences {-}
+## Aligning protein sequences  {.unnumbered}
 
 #### Exercise
 Now, you will translate the coding sequence of CCR5 and CCR5-delta32 to see which effect the mutation has on the protein level. Go to the [Expasy translate](https://web.expasy.org/translate) website and set the “Output format” to “verbose”. Then, translate the two coding sequences, one at a time, by pasting the FASTA entries into the field (including the header line). What are the likely reading frames of each sequence? How does the mutation affect the protein? Is it a deletion, insertion, swap of amino acids, or a frameshift?
@@ -64,7 +64,7 @@ Now, you will translate the coding sequence of CCR5 and CCR5-delta32 to see whic
 Now go back to the EMBOSS Needle website and align the two protein sequences. How does the mutation reflect on the alignment?
 
 
-## Searching a database using Blast {-}
+## Searching a database using Blast  {.unnumbered}
 
 #### Exercise
 Sooty mangabays also have common variants in their CCR5 gene that seem to protect them against SIV (simian immunodeficiency virus). You can use Blast to find and investigate these sequences too. Go to the [Blast website at NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Clicking “Nucleotide BLAST” will take you to the search interface for the versions of Blast optimized for DNA and RNA searches. Leave the settings to their default values, but take a look around to see what options are available. “Program Selection” lists the version of Blast. We are using megablast, but click the “?” icon to learn a bit about each one. Knowing a bit about how Blast works, how do you think megablast and blastn may differ in the kmer sizes and thresholds they use?
@@ -77,7 +77,7 @@ Before you start the database search, you want to limit its scope to only sequen
 #### Exercise
 Once the search results appear, they are sorted by E-value. Remind yourself what the E-value represents. The light blue header row lets you sort them by other criteria. “Query cover” sorts the database hits by how much of your search sequence (query) they cover. Since you are looking for search hits to a mRNA in the other species, look for “C-C motif chemokine receptor 5 (CCR5), complete CDS” in the descriptions of search hits and pick the one with the highest percent identity. Clicking the corresponding link in the description column takes you to a local alignment of the part of your query sequence that aligns with the database sequence. In this case, it covers your entire CCR5 CDS. In how many alignment columns do the bases differ? How many gaps are there? Given what you now know about the human and mangabey CCR5 gees, do you expect that the delta32 mutation to have arisen before or after the common ancestor of humans and mangabeys?
 
-## GenBank sequence format {-}
+## GenBank sequence format  {.unnumbered}
 
 #### Exercise
 Now go back to the list of search hits by clicking the “Descriptions” link in the light blue bar above the alignment you were just looking at. See if you can find any search hits with names including “delta”. There should be a delta delta-24 allele among them. Pick the one with sequence ID AF079473.1. Inspect the alignment to the human CCR5. What characterizes these variants? What does the “delta” in the variant name refer to? 
@@ -101,7 +101,7 @@ MDYQVSSPTYDIDYYTSEPCQKINVKQIAARLLPPLYSLVFIFG
 #### Exercise
 Now, head back to the EBI needle website and align the two protein sequences. Make sure it is set to protein this time. Where is the deletion located? Does it just delete amino acids, and if so, how many, or does it change the reading frame or induce stop codons? How does the mangabey CCR5 mutation compare to that in humans?
 
-## Putting it all together {-}
+## Putting it all together  {.unnumbered}
 
 #### Exercise
 Have a look at this scientific paper:

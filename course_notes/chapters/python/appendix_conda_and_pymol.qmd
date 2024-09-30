@@ -16,36 +16,31 @@ Many of you take the course "Biomolecular Structure and Function" (let us call t
 
 **If your Mac is an M1/M2 Mac**, you create a conda environment for BSF by copy/pasteing these command lines into the terminal *one at a time* and press return (enter) after pasting each one:
 
-```
-CONDA_SUBDIR=osx-64 conda create -y -n BSF
-conda activate BSF
-conda config --env --set subdir osx-64
-conda install -y -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
+```{.txt filename="Terminal"}
+conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
 ```
 
 **Otherwise**, you create a conda environment for BSF by copy/pasteing these command lines into the terminal *one at a time* and press return (enter) after pasting each one:
 
-```
-conda create -y -n BSF
-conda activate BSF
-conda install -y -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
+```{.txt filename="Terminal"}
+conda create -y -n BSF -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
 ```
 
 Notice how the command prompt changed from "(base)" to "(bioprog)" to show that you are now in the bioprog environment. Looks like nothing changed, but now you have access to terminal commands not available in the base envirionment. You will learn about these later. Try this command:
 
-```
+```{.txt filename="Terminal"}
 conda deactivate
 ```
 
 Notice how it now again says "(base)" on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run `conda activate BSF` to activate the BSF environment to be able to access pymol. Try it out:
 
-```
+```{.txt filename="Terminal"}
 conda activate BSF
 ```
 
 and press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from "(base)" to "(BSF)" to show that you are now in the BSF environment. To run PyMol that you installed in this environment, just type
 
-```
+```{.txt filename="Terminal"}
 pymol
 ```
 
@@ -53,7 +48,7 @@ and hit enter.
 
 Now try to close PyMol. Then go back to your terminal and type
 
-```
+```{.txt filename="Terminal"}
 conda deactivate
 ```
 
@@ -63,13 +58,13 @@ Notice how it now again says "(base)" on your command prompt. That is because yo
 
 From now on, you can start PyMol by typing these commands into the terminal (Anaconda Powershell Prompt on Windows):
 
-```
+```{.txt filename="Terminal"}
 conda activate BSF
 ```
 
 (hit enter)
 
-```
+```{.txt filename="Terminal"}
 pymol
 ```
 

@@ -76,13 +76,13 @@ z = x * y + 4 # PRINT STEPS
 Say your file is called `myfile.py`, you would normally run the code like this:
 
 
-```python
+```{.txt filename="Terminal"}
 python myfile.py
 ```
 
 But to see the breakdown of expressions marked by `# PRINT STEPS`, you need to run your code with the `print-steps` program instead:
 
-```python
+```{.txt filename="Terminal"}
 print-steps myfile.py
 ```
 

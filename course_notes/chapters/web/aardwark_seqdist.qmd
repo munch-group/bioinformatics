@@ -19,7 +19,7 @@ We are not the first to think this specific gene would be neat to use for phylog
 
 > Before you go on, sit back and appreciate amazing all this is. Not only is this magnificent beast encoded by strings of only four different nucleic acids that we are able to extract becuse they are carried by all its cells. We can also identify the sequence of these nucleic acids and we can use models their evolution to place the Ardvark in the tree of life among the other species.
 
-## Build a FASTA file {-}
+## Build a FASTA file {.unnumbered}
 
 To investigate the mystery of the Aardvark, you need to collect the sequences of the COI genes of all the reference animals in a way that makes it possible to compare all the gene sequences. A common way to do so is to use FASTA files. FASTA is a file format used for sequences of nucleotides or amino acids that is used by almost all bioinformatic software tools. A FASTA file can contain multiple sequences as long as they are formatted as follows: First, a line starting with “>" followed by an ID and a description of the sequence. This is known as the "header" and is *one line only* The following lines are the sequence. This can take up as many lines as needed. The sequence is usually split across lines with 60-80 characters on each line. The example below has 70 characters per line. To start a new sequence in the file, simply add a new header, followed by a sequence. Like this:
 
@@ -64,7 +64,7 @@ We would like to find an animal that can serve as "outgroup" in our analysis. An
 
 ![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig-outgroup width=40%}
 
-## One-click analysis {-}
+## One-click analysis  {.unnumbered}
 
 Now that you have created a FASTA file with the COI (COX1) gene of the Aardvark and all the reference animals, it is time to look into the evolutionary distances between them. We will be using the web tool [www.phylogeny.fr](https://www.phylogeny.fr) for this exercise. When you do your phylogenetic analyses below, you need to screengrab/save your phylogenetic trees along the way. You should paste them into a document with notes on which models and parameters used for each tree. That way you can compare them all at the end.
 
@@ -133,13 +133,13 @@ PhyML (Phylogenetic Maximum Likelihood) employs a statistical approach (maximum 
 PhyML now lets you choose a substitution model. A substitution model is a mathematical model that describes how genetic sequences change over time. So now you will see how these different models actually affect your tree.
 Try the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format" and save the file. These tree files can be visualised by using the program “TreeDyn" under the top tab “Online Programmes". Do the trees formed by GTR and HKY85 look alike? What are the Aardvark's closest relatives according to the two trees?
 
-## Explore phylogeny - part 3 {-}
+## Explore phylogeny - part 3  {.unnumbered}
 
 Not only can you change the substitution model used in calculating the evolutionary distances. You can also use different tree-builders. You just tried PhyML, which uses a maximum likelihood approach. Next, try to use BioNJ. BioNJ stands for “Biased Neighbor Joining," which is an adaptation of the neighbor-joining algorithm (not currently a part of www.phylogeny.fr). Neighbour Joining is a distance-based tree-building method, and BioNJ uses the same approach, with a slight bias, to avoid errors with particularly long branches.
 Try the three DNA/RNA substitution models for BioNJ (kimura, jukes-cantor, hamming ). Remember to save your trees. 
 Do these three trees look alike? Do they look like the trees formed by PhyML? What are the Aardvark's closest relatives according to the three trees?
 
-## Food for thought {-}
+## Food for thought  {.unnumbered}
 Okay, step back from the Aardvark for a moment. What about the other animals we are looking at? Are their relations always the same? Are some always grouped together while others are always grouped far apart? If you are particularly curious, try to add other types of elephants to the FASTA-file and see how other types of elephants group when doing phylogeny.
 
 Now, you have looked at the Aardvark and its evolutionary relations with other animals. You have tried many different ways. Are you more confident in your knowledge about the Aardvark, or are you feeling more confused than ever? What of the animals in your analysis is the closest relative of the Aardvark?

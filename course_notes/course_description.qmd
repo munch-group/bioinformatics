@@ -1,0 +1,15 @@
+
+## Course description {.unnumbered}
+After the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.
+
+The participants must, at the end of the course, be able to:
+
+* Apply fundamental constructs of a programming language.
+* Analyse data and construct data structures for the representation of data.
+* Analyse simple computational problems and construct programs for their solution.
+* Describe and relate essential methods in bioinformatics analysis.
+* Apply bioinformatics software to biological data.
+* Judge the reliability of results obtained using Bioinformatics software.
+
+## Course contents {.unnumbered}
+The course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demonstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.

@@ -1,5 +1,5 @@
 
-# Curriculum
+# Curriculum {.unnumbered}
 
 The curriculum for programming is a set of lecture notes available as both PDF and a web page.
 

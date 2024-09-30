@@ -26,7 +26,7 @@ The structural learning goals of this exercise are:
 
 
 
-## Sequence Retrieval {-}
+## Sequence Retrieval  {.unnumbered}
 
 #### Exercise
 Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig-mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
@@ -39,7 +39,7 @@ Find the FASTA version of the protein sequence. There might be a link to this in
 
 ![Screenshot](./images/mecA_ncbi.png){#fig-mecA_ncbi width=80%}
 
-## Database Searching using BLAST {-}
+## Database Searching using BLAST  {.unnumbered}
 
 #### Exercise
 Go to the [NCBI BLAST web portal](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Use the mecA nucleotide sequence to search for similar sequences in the nucleotide database. Which organisms have regions with high similarity to the mecA gene nucleotide sequence in your query?  Tip: Check the “Show results in a new window” to allow searching multiple times and compare results. Further, know that it is normal for blasting to take a few minutes. Examine the following metrics (columns):  
@@ -73,7 +73,7 @@ According to Bloemendaal et al. (2010): "Methicillin Resistance Transfer from St
 - Does your results imply this may be true?
 - If this was the case in that one patient, does it mean the MecA gene in MRSA always stems from S. epidermidis?
 
-## Multiple Sequence Alignment using ClustalW {-}
+## Multiple Sequence Alignment using ClustalW  {.unnumbered}
 
 #### Exercise
 Choose five or more types of bacteria from your BLAST results, such as Staphylococcus epidermidis (include Staphylococcus aureus). You will be comparing the MecA gene’s sequence in each of these to find relations between them.
@@ -97,7 +97,7 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
 
 ![Screenshot](./images/clustalw_genome_jp.png){#fig-clustalw_genome_jp width=80%}
 
-## Discussion {-}
+## Discussion  {.unnumbered}
 
   1. Based on the BLAST and ClustalW results, which organisms might have been the potential source(s) for the mecA gene in MRSA?
   2. Discuss evidence of potential horizontal gene transfer events based on sequence similarity.
@@ -106,7 +106,7 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
   5. What are some ways we can use sequence alignments of MRSA to combat them? E.g., treatment, outbreak management (like tracking sources, spread, and evolution), and new drugs such as protein-targeting vaccines.
 
 
-## Additional tools {-}
+## Additional tools  {.unnumbered}
 DTU (Technical University of Denmark) has developed a set of tools highly relevant to antibiotic resistance and MRSE specifically. These are not part of the assignment, but check them out if you are curious:
 
 - [Identification of acquired antibiotic resistance genes](http://genepi.food.dtu.dk/resfinder)
