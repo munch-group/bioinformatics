@@ -55,6 +55,7 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
+    - project_files/index.qmd
     # - part: "Bioinformatics"
     #   chapters: 
     #   - chapters/bioinf/tester.ipynb
@@ -80,6 +81,8 @@ bibliography: references.bib
 crossref:
   sec-prefix: "exercise"
   
+# embed-resources: true
+
 format:
   html:
     # mainfont: "Passata"
@@ -96,8 +99,8 @@ format:
     # number-sections: false
     number-sections: true      
     code-block-bg: "#f9f9f9"
+    # code-tools: true    
   pdf:
-    prefer-html: true
     documentclass: scrbook
     papersize: a4
     highlight-style: kate 

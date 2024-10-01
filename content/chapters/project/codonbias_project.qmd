@@ -31,7 +31,7 @@ That data structure is a dictionary with keys corresponding to amino acids (i.e.
 
 Begin by downloading the files you need for the project:
 
-```{r}
+<!-- ```{r}
 #| echo: false
 
 project <- "codonbiasproject"
@@ -48,7 +48,7 @@ download_file(
   class = "btn-default",
   self_contained = FALSE
 )
-```  
+```   -->
 
 - `sample_orfs.txt` contains open reading frame sequences you can work on.
 - `codonbiasproject.py` is an empty file where you must write your code.

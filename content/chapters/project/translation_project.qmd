@@ -7,7 +7,7 @@ In this project you will write the code needed to translate an open reading fram
 <!-- ::: {.download_btn} -->
 
 
-```{css}
+<!-- ```{css}
 #| echo: false
 
 .btn-default,
@@ -26,13 +26,13 @@ In this project you will write the code needed to translate an open reading fram
 }
 
 
-```
+``` -->
 
-# Project files
+## Project files {.unnumbered}
 
 Begin by downloading the files you need for the project:
 
-```{r}
+<!-- ```{r}
 #| echo: false
 
 project <- "translationproject"
@@ -49,7 +49,11 @@ download_file(
   class = "btn-default",
   self_contained = FALSE
 )
-```  
+```   -->
+
+{{< downloadthis ../../project_files/translationproject/translationproject.py dname="translationproject" label="translationproject.py" type="light" >}} {{< downloadthis ../../project_files/translationproject/test_translationproject.py dname="test_translationproject" label="test_translationproject.py" type="light" >}}
+
+[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
 
 The file `translationproject.py` is for your code. The file `test_translationproject.py` is the script you use to test the functions you write for this project (see @sec-testing_your_code).
 
