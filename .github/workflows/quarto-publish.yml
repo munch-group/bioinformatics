@@ -21,6 +21,11 @@ jobs:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - run: pip install jupyter
 
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages:
+            any::downloadthis
+
       - name: Check out repository
         uses: actions/checkout@v4
         
