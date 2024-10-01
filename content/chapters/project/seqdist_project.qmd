@@ -2,7 +2,11 @@
 
 *This chapter is about clustering sequence based on the evolutionary distance between them.*
 
-On the course page you can download the files you need for this project:
+Download the files you need for this project:
+
+{{< downloadthis ../../project_files/seqdistproject/seqdistproject.py dname="seqdistproject" label="seqdistproject.py" type="light" >}} {{< downloadthis ../../project_files/seqdistproject/test_seqdistproject.py dname="test_seqdistproject" label="test_seqdistproject.py" type="light" >}}
+
+[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
 
 - `seqdistproject.py` is an empty file where you must write your code.
 - `test_seqdistproject.py` is the test program that lets you test the code you write in translationproject.py.

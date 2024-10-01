@@ -29,26 +29,11 @@ Given an open reading frame (ORF), you must compute the codon usage. Your goal i
 
 That data structure is a dictionary with keys corresponding to amino acids (i.e. single letter strings designating an amino acid such as `'R'` for arginine). The value associated with *each* amino acid key is also a dictionary, and the keys of *this* dictionary should be the different codons that encode the amino acid. The value associated with each codon key should be a number, representing the frequency with which that codon is used to encode that amino acid. The final data structure should only include amino acids that are found in the ORF.
 
-Begin by downloading the files you need for the project:
+Download the files you need for this project:
 
-<!-- ```{r}
-#| echo: false
+{{< downloadthis ../../project_files/codonbiasproject/codonbiasproject.py dname="codonbiasproject" label="codonbiasproject.py" type="light" >}} {{< downloadthis ../../project_files/codonbiasproject/test_codonbiasproject.py dname="test_codonbiasproject" label="test_codonbiasproject.py" type="light" >}} {{< downloadthis ../../project_files/codonbiasproject/sample_orfs.txt dname="sample_orfs" label="sample_orfs.txt" type="light" >}}
 
-project <- "codonbiasproject"
-
-library(downloadthis)
-path_files <- list.files(path = sprintf("../../project_files/%s", project), full.names = TRUE)
-download_file(
-  path = path_files,
-  output_name = project,
-  button_label = "Download project files",
-  button_type = "default",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  class = "btn-default",
-  self_contained = FALSE
-)
-```   -->
+[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
 
 - `sample_orfs.txt` contains open reading frame sequences you can work on.
 - `codonbiasproject.py` is an empty file where you must write your code.

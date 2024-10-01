@@ -6,7 +6,11 @@ You have now been introduced to all the programming rules you will see in this c
 
 The programming project in this chapter deals with DNA sequences from HIV viruses. There are two types of HIV: HIV-1, which is by far the most common, and HIV-2, which is mostly found in West Africa. HIV-1 vira are divided into groups M, N, O, and P. The most important group M (for major) is one primarily responsible for the global epidemic. Group M is further divided into subtypes A, B, C, D, F, G, J, K, and CRFs. In this project we will look at sequences from the subtypes A, B, C, and D. You have multiple database sequences for each of these four subtypes and you have one *unknown* sequence from a patient that you need to assign to either subtype A, B, C or D. To do this you will have to write a program that *predicts* the subtype of the unknown sequence. How cool is that?
 
-On the course page you can download the files you need for this project:
+Download the files you need for this project:
+
+{{< downloadthis ../../project_files/hivproject/hivproject.py dname="hivproject" label="hivproject.py" type="light" >}} {{< downloadthis ../../project_files/hivproject/test_hivproject.py dname="test_hivproject" label="test_hivproject.py" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeA.txt dname="subtypeA" label="subtypeA.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeB.txt dname="subtypeB" label="subtypeB.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeC.txt dname="subtypeC" label="subtypeC.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeD.txt dname="subtypeD" label="subtypeD.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/unknown_type.txt dname="unknown_type" label="unknown_type.txt" type="light" >}}
+
+[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
 
 - `unknown_type.txt` contains an HIV sequence of unknown subtype
 - `subtypeA.txt` contains a database of HIV sequences of subtype A
