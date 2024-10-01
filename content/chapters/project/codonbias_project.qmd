@@ -29,16 +29,30 @@ Given an open reading frame (ORF), you must compute the codon usage. Your goal i
 
 That data structure is a dictionary with keys corresponding to amino acids (i.e. single letter strings designating an amino acid such as `'R'` for arginine). The value associated with *each* amino acid key is also a dictionary, and the keys of *this* dictionary should be the different codons that encode the amino acid. The value associated with each codon key should be a number, representing the frequency with which that codon is used to encode that amino acid. The final data structure should only include amino acids that are found in the ORF.
 
-On the course page you can download the files you need for this project:
+Begin by downloading the files you need for the project:
+
+```{r}
+#| echo: false
+
+project <- "codonbiasproject"
+
+library(downloadthis)
+path_files <- list.files(path = sprintf("../../project_files/%s", project), full.names = TRUE)
+download_file(
+  path = path_files,
+  output_name = project,
+  button_label = "Download project files",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "btn-default",
+  self_contained = FALSE
+)
+```  
 
 - `sample_orfs.txt` contains open reading frame sequences you can work on.
-
-You also need to download the two project files:
-
 - `codonbiasproject.py` is an empty file where you must write your code.
 - `test_codonbiasproject.py` is the test program that lets you test the code you write in `codonbiasproject.py`.
-
-Put the files in a folder dedicated to this project. On most computers you can right-click on the link and choose "Save file as..." or "Download linked file".
 
 Now open each file in *VScode* and have a look at what is in `sample_orfs.txt`. (Do *not* change it in any way and do not save it after viewing. If VScode asks you if you want to save it before closing, say *no*.) How many sequences are there in each file?
 

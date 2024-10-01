@@ -28,8 +28,6 @@ In this project you will write the code needed to translate an open reading fram
 
 ```
 
-<!-- ::: {.callout-note icon=false} -->
-
 # Project files
 
 Begin by downloading the files you need for the project:
@@ -52,11 +50,6 @@ download_file(
   self_contained = FALSE
 )
 ```  
-  
-
-<!-- ::: -->
-
-
 
 The file `translationproject.py` is for your code. The file `test_translationproject.py` is the script you use to test the functions you write for this project (see @sec-testing_your_code).
 
