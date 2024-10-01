@@ -75,6 +75,7 @@ book:
       chapters: 
       - supplementary/recordings2024.qmd
       - supplementary/bioinformatics_resources.qmd
+  downloads: [pdf]
 
 bibliography: references.bib
 
