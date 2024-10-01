@@ -23,9 +23,11 @@ title-block-banner: images/banner3.png
   background-color: "#36B24A";
 }
 
+/* 
 * {
   font-family: Passata;
-}
+} 
+ */
 </style>
 
 # About {.unnumbered}
@@ -47,4 +49,6 @@ The participants must, at the end of the course, be able to:
 * Judge the reliability of results obtained using Bioinformatics software.
 
 ## Course contents {.unnumbered}
-The course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demonstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.
+The course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo
+nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.
+

@@ -4,10 +4,59 @@
 
 In this project you will write the code needed to translate an open reading frame (ORF) on a DNA sequence into into the corresponding sequence of amino acids.
 
-You need two project files for the project, which you can download from the course page:
+<!-- ::: {.download_btn} -->
 
-- **translationproject.py** is an empty file where you must write your code.
-- **test_translationproject.py** is the test program that lets you test the code you write in translationproject.py.
+
+```{css}
+#| echo: false
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 13px;
+  margin: 0px 0px 20px 0px;
+  color: black;
+  background-color: #eeeeee;
+  border-color: transparent;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+
+```
+
+<!-- ::: {.callout-note icon=false} -->
+
+# Project files
+
+Begin by downloading the files you need for the project:
+
+```{r}
+#| echo: false
+
+project <- "translationproject"
+
+library(downloadthis)
+path_files <- list.files(path = sprintf("../../project_files/%s", project), full.names = TRUE)
+download_file(
+  path = path_files,
+  output_name = project,
+  button_label = "Download project files",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "btn-default",
+  self_contained = FALSE
+)
+```  
+  
+
+<!-- ::: -->
+
+
 
 The file `translationproject.py` is for your code. The file `test_translationproject.py` is the script you use to test the functions you write for this project (see @sec-testing_your_code).
 
