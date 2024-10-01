@@ -97,6 +97,7 @@ format:
     number-sections: true      
     code-block-bg: "#f9f9f9"
   pdf:
+    prefer-html: true
     documentclass: scrbook
     papersize: a4
     highlight-style: kate 
