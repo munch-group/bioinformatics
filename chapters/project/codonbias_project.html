@@ -157,12 +157,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course_description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course description</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
@@ -377,6 +371,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../project_files/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -520,16 +520,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> <span class="st">'V'</span>: {<span class="st">'GTA'</span>: <span class="fl">0.6</span>, <span class="st">'GTC'</span>: <span class="fl">0.0</span>, <span class="st">'GTT'</span>: <span class="fl">0.2</span>, <span class="st">'GTG'</span>: <span class="fl">0.2</span>}, </span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a> <span class="st">'Y'</span>: {<span class="st">'TAT'</span>: <span class="fl">1.0</span>, <span class="st">'TAC'</span>: <span class="fl">0.0</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That data structure is a dictionary with keys corresponding to amino acids (i.e.&nbsp;single letter strings designating an amino acid such as <code>'R'</code> for arginine). The value associated with <em>each</em> amino acid key is also a dictionary, and the keys of <em>this</em> dictionary should be the different codons that encode the amino acid. The value associated with each codon key should be a number, representing the frequency with which that codon is used to encode that amino acid. The final data structure should only include amino acids that are found in the ORF.</p>
-<p>On the course page you can download the files you need for this project:</p>
+<p>Begin by downloading the files you need for the project:</p>
+<!-- ```{r}
+#| echo: false
+
+project <- "codonbiasproject"
+
+library(downloadthis)
+path_files <- list.files(path = sprintf("../../project_files/%s", project), full.names = TRUE)
+download_file(
+  path = path_files,
+  output_name = project,
+  button_label = "Download project files",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "btn-default",
+  self_contained = FALSE
+)
+```   -->
 <ul>
 <li><code>sample_orfs.txt</code> contains open reading frame sequences you can work on.</li>
-</ul>
-<p>You also need to download the two project files:</p>
-<ul>
 <li><code>codonbiasproject.py</code> is an empty file where you must write your code.</li>
 <li><code>test_codonbiasproject.py</code> is the test program that lets you test the code you write in <code>codonbiasproject.py</code>.</li>
 </ul>
-<p>Put the files in a folder dedicated to this project. On most computers you can right-click on the link and choose “Save file as…” or “Download linked file”.</p>
 <p>Now open each file in <em>VScode</em> and have a look at what is in <code>sample_orfs.txt</code>. (Do <em>not</em> change it in any way and do not save it after viewing. If VScode asks you if you want to save it before closing, say <em>no</em>.) How many sequences are there in each file?</p>
 <p>As in the translation project, you will need a data structure that pairs each codon to the amino acid it encodes. This is an obvious use of a dictionary and at the top of <code>codonbiasproject.py</code> I have defined such a dictionary you can use. Defining it outside the functions means that it is visible inside all your functions (unless you define <em>another</em> variable called <code>codon_map</code> inside a function). Defining variables globally like this sometimes make sense if some value can be considered a <em>constant</em> in your program and is <em>never</em> changed.</p>
 <blockquote class="blockquote">

@@ -4,20 +4,29 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "About\nThese lecture notes are inspired by the many different books and resources I have used in this course over the years. Especially, “Learning Python the hard way” and “How to think like a computer scientist” have inspired the my onwn notes on programming. These implement the following ideas, which I think best supports learning in an introduction to programming:\n\nEach topic and concept is introduced so that it can be applied right away on top of what you know so far.\nIntroduction of each topic covers only the most basic facts and rules required to then learn the rest through practical exercises.\n\nI would like to improve on these notes as much as I can. So you find errors in exercises, that something is poorly explained, that something is redundant, that something is missing, that something would work better in a different ordrer, please let me know. You can do this by reporting an issue.\nHappy coding, Kasper Munch",
+    "text": "About\nThis is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The Brightspace course page is only used for communication, and assignments.",
     "crumbs": [
       "About"
     ]
   },
   {
-    "objectID": "course_description.html",
-    "href": "course_description.html",
-    "title": "Course description",
-    "section": "",
-    "text": "Course contents\nThe course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demonstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.",
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "",
+    "section": "Course description",
+    "text": "Course description\nAfter the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.\nThe participants must, at the end of the course, be able to:\n\nApply fundamental constructs of a programming language.\nAnalyse data and construct data structures for the representation of data.\nAnalyse simple computational problems and construct programs for their solution.\nDescribe and relate essential methods in bioinformatics analysis.\nApply bioinformatics software to biological data.\nJudge the reliability of results obtained using Bioinformatics software.",
     "crumbs": [
-      "Course info",
-      "Course description"
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#course-contents",
+    "href": "index.html#course-contents",
+    "title": "",
+    "section": "Course contents",
+    "text": "Course contents\nThe course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.",
+    "crumbs": [
+      "About"
     ]
   },
   {
@@ -949,7 +958,18 @@
     "href": "chapters/project/translation_project.html",
     "title": "20  Translating ORFs",
     "section": "",
-    "text": "Translating a single codon\nWrite a function, translate_codon that takes one argument:\nThe function should return:\nExample usage:\nshould return\nBefore you start coding you should always outline for yourself intuitively what you need to do to complete the task at hand. In this case want to translate, or map, between a three letter string, codon, and the corresponding one letter string for the amino acid that the codon corresponds to. Notice that the keys in the codon_map dictionary are in upper case, so you must make sure that the keys you use are also in upper case. You can translate codon into an upper case version of itself using the upper() method.\nTry this out first:\nNow write the function so it uses the string parameter as a key to look up the corresponding amino acid letter and returns this letter. Before you go on, make a function that does only that.\nBefore you are completely done you need to make your function handle the situation when the argument to the function is not a key in the codon_map dictionary. Use an if-else construct to handle the two cases. The boolean expression must test if the function argument is a key in codon_map. Remember that you can use the in operator to do this.",
+    "text": "Project files\nBegin by downloading the files you need for the project:\ntranslationproject.py   test_translationproject.py\nhttps://munch-group.org/bioinformatics/project_files\nThe file translationproject.py is for your code. The file test_translationproject.py is the script you use to test the functions you write for this project (see Chapter 16).\nIn this project you will need a data structure that pairs each codon to the amino acid it encodes. This is an obvious use of a dictionary and at the top of translationproject.py I have defined such a dictionary you can use. Defining it outside the functions means that it is visible inside all your functions (unless you define another variable called codon_map inside a function). Defining variables globally to your program sometimes make sense if some value can be considered a constant in your program and is never changed.",
+    "crumbs": [
+      "Python projects",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Translating ORFs</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/project/translation_project.html#project-files",
+    "href": "chapters/project/translation_project.html#project-files",
+    "title": "20  Translating ORFs",
+    "section": "",
+    "text": "It is normally very bad programming style to access variables outside functions in this way because it may have all kinds of unexpected side effects across function calls. So make it a rule for yourself that code inside a function should never to access variables outside the function. The reason we define codon_map globally in this project is to help you understand that when Python cannot find a variable inside a function, it looks outside the function to find it. In this project functions will find codon_map in this way. However, as I already said, you should never do this yourself. The chance that you make an unexpected mistake is overwhelming.",
     "crumbs": [
       "Python projects",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Translating ORFs</span>"
@@ -959,8 +979,8 @@
     "objectID": "chapters/project/translation_project.html#translating-a-single-codon",
     "href": "chapters/project/translation_project.html#translating-a-single-codon",
     "title": "20  Translating ORFs",
-    "section": "",
-    "text": "A string, which is a codon.\n\n\n\nA string of length one (one character). If the string argument is a valid codon then this letter should the be an amino acid letter specified by the codon_map dictionary. Note that stop codons are represented by a star ('*'). If the string argument is not a valid codon, the function must return '?'.\n\n\ntranslate_codon('ACG')\n\n'T'\n\n\ncodon = 'TTG'\namino_acid = codon_map[codon]\nprint(amino_acid)",
+    "section": "Translating a single codon",
+    "text": "Translating a single codon\nWrite a function, translate_codon that takes one argument:\n\nA string, which is a codon.\n\nThe function should return:\n\nA string of length one (one character). If the string argument is a valid codon then this letter should the be an amino acid letter specified by the codon_map dictionary. Note that stop codons are represented by a star ('*'). If the string argument is not a valid codon, the function must return '?'.\n\nExample usage:\ntranslate_codon('ACG')\nshould return\n'T'\nBefore you start coding you should always outline for yourself intuitively what you need to do to complete the task at hand. In this case want to translate, or map, between a three letter string, codon, and the corresponding one letter string for the amino acid that the codon corresponds to. Notice that the keys in the codon_map dictionary are in upper case, so you must make sure that the keys you use are also in upper case. You can translate codon into an upper case version of itself using the upper() method.\nTry this out first:\ncodon = 'TTG'\namino_acid = codon_map[codon]\nprint(amino_acid)\nNow write the function so it uses the string parameter as a key to look up the corresponding amino acid letter and returns this letter. Before you go on, make a function that does only that.\nBefore you are completely done you need to make your function handle the situation when the argument to the function is not a key in the codon_map dictionary. Use an if-else construct to handle the two cases. The boolean expression must test if the function argument is a key in codon_map. Remember that you can use the in operator to do this.",
     "crumbs": [
       "Python projects",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Translating ORFs</span>"
@@ -1360,6 +1380,86 @@
     "crumbs": [
       "Python projects",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Genome assembly</span>"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html",
+    "href": "project_files/index.html",
+    "title": "Project files",
+    "section": "",
+    "text": "Translating open reading frames\ntranslationproject.py   test_translationproject.py",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#primer-analysis",
+    "href": "project_files/index.html#primer-analysis",
+    "title": "Project files",
+    "section": "Primer analysis",
+    "text": "Primer analysis\n foldingproject.py   test_foldingproject.py",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#pairwise-global-alignment",
+    "href": "project_files/index.html#pairwise-global-alignment",
+    "title": "Project files",
+    "section": "Pairwise global alignment",
+    "text": "Pairwise global alignment\n alignmentproject.py   test_alignmentproject.py",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#codon-usage-in-streptococcus-bacteria",
+    "href": "project_files/index.html#codon-usage-in-streptococcus-bacteria",
+    "title": "Project files",
+    "section": "Codon usage in Streptococcus bacteria",
+    "text": "Codon usage in Streptococcus bacteria\n codonbiasproject.py   test_codonbiasproject.py   sample_orfs.txt",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#identifying-the-subtype-of-an-hiv-sequence",
+    "href": "project_files/index.html#identifying-the-subtype-of-an-hiv-sequence",
+    "title": "Project files",
+    "section": "Identifying the subtype of an HIV sequence",
+    "text": "Identifying the subtype of an HIV sequence\n hivproject.py   test_hivproject.py   subtypeA.txt   subtypeB.txt   subtypeC.txt   subtypeD.txt   unknown_type.txt",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#clustering-sequences-based-on-distance",
+    "href": "project_files/index.html#clustering-sequences-based-on-distance",
+    "title": "Project files",
+    "section": "Clustering sequences based on distance",
+    "text": "Clustering sequences based on distance\n seqdistproject.py   test_seqdistproject.py",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#finding-genes-in-bacteria",
+    "href": "project_files/index.html#finding-genes-in-bacteria",
+    "title": "Project files",
+    "section": "Finding genes in bacteria",
+    "text": "Finding genes in bacteria\n orfproject.py   test_orfproject.py   e_coli_O157_H157_str_Sakai.fasta",
+    "crumbs": [
+      "Project files"
+    ]
+  },
+  {
+    "objectID": "project_files/index.html#genome-assembly",
+    "href": "project_files/index.html#genome-assembly",
+    "title": "Project files",
+    "section": "Genome assembly",
+    "text": "Genome assembly\n assemblyproject.py   test_assemblyproject.py   sequencing_reads.txt",
+    "crumbs": [
+      "Project files"
     ]
   },
   {

@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./course_description.html" rel="next">
+<link href="./overview.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -143,12 +143,6 @@ background-size: cover;
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./course_description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course description</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./overview.html" class="sidebar-item-text sidebar-link">
@@ -365,6 +359,12 @@ background-size: cover;
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_files/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -451,7 +451,11 @@ background-size: cover;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
+  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a>
+  <ul class="collapse">
+  <li><a href="#course-description" id="toc-course-description" class="nav-link" data-scroll-target="#course-description">Course description</a></li>
+  <li><a href="#course-contents" id="toc-course-contents" class="nav-link" data-scroll-target="#course-contents">Course contents</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -462,41 +466,54 @@ background-size: cover;
 
 
 
+<!-- Higher banner and AU font on front page -->
 <style>
 #title-block-header {
-  /* margin-block-end: 1rem; */
-  /* position: relative; */
-  /* margin-top: -1px; */
-  /* height: 75px; */
+  margin-block-end: 1rem;
+  position: relative;
+  margin-top: -1px;
+  height: 100px;
   background-color: "#36B24A";
 
 }
 
 .quarto-title-banner {
   font-family:  Passata;
-  /* margin-block-end: 1rem;
+  margin-block-end: 1rem;
   position: relative;
-  margin-top: -30px;
-  height: 85%; */
+  margin-top: -10px;
+  height: 100%;
   background-color: "#36B24A";
 }
+
+/* 
+* {
+  font-family: Passata;
+} 
+ */
 </style>
-<!-- <style>
-    * {
-      font-family: Passata;
-    }
-</style> -->
 <section id="about" class="level1 unnumbered">
 <h1 class="unnumbered">About</h1>
-<p>These lecture notes are inspired by the many different books and resources I have used in this course over the years. Especially, “Learning Python the hard way” and “How to think like a computer scientist” have inspired the my onwn notes on programming. These implement the following ideas, which I think best supports learning in an introduction to programming:</p>
-<ol type="1">
-<li>Each topic and concept is introduced so that it can be applied right away on top of what you know so far.</li>
-<li>Introduction of each topic covers only the most basic facts and rules required to then learn the rest through practical exercises.</li>
-</ol>
-<p>I would like to improve on these notes as much as I can. So you find errors in exercises, that something is poorly explained, that something is redundant, that something is missing, that something would work better in a different ordrer, please let me know. You can do this by <a href="https://github.com/munch-group/bioinformatics/issues">reporting an issue</a>.</p>
-<p>Happy coding,<br> Kasper Munch</p>
+<p>This is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The <a href="" title="https://brightspace.au.dk/d2l/home/145685">Brightspace course page</a> is only used for communication, and assignments.</p>
+<section id="course-description" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="course-description">Course description</h2>
+<p>After the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.</p>
+<p>The participants must, at the end of the course, be able to:</p>
+<ul>
+<li>Apply fundamental constructs of a programming language.</li>
+<li>Analyse data and construct data structures for the representation of data.</li>
+<li>Analyse simple computational problems and construct programs for their solution.</li>
+<li>Describe and relate essential methods in bioinformatics analysis.</li>
+<li>Apply bioinformatics software to biological data.</li>
+<li>Judge the reliability of results obtained using Bioinformatics software.</li>
+</ul>
+</section>
+<section id="course-contents" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="course-contents">Course contents</h2>
+<p>The course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -924,8 +941,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./course_description.html" class="pagination-link" aria-label="Course description">
-        <span class="nav-page-text">Course description</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./overview.html" class="pagination-link" aria-label="Overview">
+        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
