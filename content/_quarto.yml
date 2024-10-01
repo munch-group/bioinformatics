@@ -19,7 +19,6 @@ book:
     # - preface.qmd
     - part: "Course info"
       chapters:
-      - course_description.qmd
       - overview.qmd
       - weekplan.qmd
       - curriculum.qmd

@@ -1,3 +1,38 @@
+---
+title-block-banner: images/banner3.png
+---
+
+<!-- Higher banner and AU font on front page -->
+
+<style>
+#title-block-header {
+  margin-block-end: 1rem;
+  position: relative;
+  margin-top: -1px;
+  height: 100px;
+  background-color: "#36B24A";
+
+}
+
+.quarto-title-banner {
+  font-family:  Passata;
+  margin-block-end: 1rem;
+  position: relative;
+  margin-top: -10px;
+  height: 100%;
+  background-color: "#36B24A";
+}
+
+* {
+  font-family: Passata;
+}
+</style>
+
+# About {.unnumbered}
+
+[brightspace_2024]: (https://brightspace.au.dk/d2l/home/145685)
+
+This is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The [Brightspace course page][brightspace_2024] is only used for communication, and assignments.
 
 ## Course description {.unnumbered}
 After the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.

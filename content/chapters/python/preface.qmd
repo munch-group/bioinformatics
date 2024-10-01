@@ -1,36 +1,5 @@
----
-# title-block-banner: "#003257"
-# title-block-banner-color: "#003257"
-title-block-banner: images/banner3.png
----
 
-<style>
-#title-block-header {
-  /* margin-block-end: 1rem; */
-  /* position: relative; */
-  /* margin-top: -1px; */
-  /* height: 75px; */
-  background-color: "#36B24A";
-
-}
-
-.quarto-title-banner {
-  font-family:  Passata;
-  /* margin-block-end: 1rem;
-  position: relative;
-  margin-top: -30px;
-  height: 85%; */
-  background-color: "#36B24A";
-}
-</style> 
-
-<!-- <style>
-    * {
-      font-family: Passata;
-    }
-</style> -->
-
-# About {.unnumbered}
+# Preface {.unnumbered}
 
 These lecture notes are inspired by the many different books and resources I have used in this course over the years. Especially, "Learning Python the hard way" and "How to think like a computer scientist" have inspired the my onwn notes on programming. These implement the following ideas, which I think best supports learning in an introduction to programming:
 

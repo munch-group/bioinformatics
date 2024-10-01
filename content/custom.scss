@@ -1,5 +1,5 @@
 /*-- scss:defaults --*/
-$font-size-base:          0.95rem !default;
+$font-size-base:          0.9rem !default;
 //$h4-font-size:          1.1rem !default;
 $navbar-bg: white;
 $h1-font-size:                $font-size-base * 2 !default;
@@ -17,4 +17,9 @@ $h6-font-size:                $font-size-base !default;
     font-family: "Peto";
     src: url("au_fonts/AU_Peto.ttf");
   }  
+
+  // * {
+  //   font-family: Passata;
+  // }
+  
 /*-- scss:rules --*/
