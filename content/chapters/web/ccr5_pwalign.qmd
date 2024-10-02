@@ -110,3 +110,17 @@ Have a look at this scientific paper:
 
 #### Exercise
 What might be other questions you could try to answer learn something about the functional importance of the human and mangabey mutations and how they affect finished proteins?
+
+
+## Project files {.unnumbered}
+
+Download the files you need for this project:
+
+{{< downloadthis ../../web_files/ccr5_pwalign/CCR5_CDS.fa dname="CCR5_CDS" label="CCR5_CDS.fa" type="light" >}}
+{{< downloadthis ../../web_files/ccr5_pwalign/CCR5_CDS_delta32.fa dname="CCR5_CDS_delta32" label="CCR5_CDS_delta32.fa" type="light" >}}
+{{< downloadthis ../../web_files/ccr5_pwalign/CCR5_mRNA.fa dname="CCR5_mRNA" label="CCR5_mRNA.fa" type="light" >}}
+{{< downloadthis ../../web_files/ccr5_pwalign/CCR5_mRNA_delta32.fa dname="CCR5_mRNA_delta32" label="CCR5_mRNA_delta32.fa" type="light" >}}
+
+
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
+

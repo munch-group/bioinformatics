@@ -53,7 +53,7 @@ download_file(
 
 {{< downloadthis ../../project_files/translationproject/translationproject.py dname="translationproject" label="translationproject.py" type="light" >}} {{< downloadthis ../../project_files/translationproject/test_translationproject.py dname="test_translationproject" label="test_translationproject.py" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 The file `translationproject.py` is for your code. The file `test_translationproject.py` is the script you use to test the functions you write for this project (see @sec-testing_your_code).
 

@@ -146,7 +146,12 @@ Now, you have looked at the Aardvark and its evolutionary relations with other a
 Does Wikipedia agree with you? (https://en.wikipedia.org/wiki/Aardvark) (Read from the Introduction, Name, and Taxonomy). Do you trust Wikipedia? See if you can find the Aardvark (
 *Orycteropus afer*) in NCBI's Taxnomy Browser. What does that report its taxonomy?
 
+## Project files {.unnumbered}
 
+Download the files you need for this project:
 
+{{< downloadthis ../../web_files/aardvarg_seqdist/animals.fasta dname="animals" label="animals.fa" type="light" >}}
+
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 

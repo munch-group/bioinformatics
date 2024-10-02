@@ -113,3 +113,4 @@ DTU (Technical University of Denmark) has developed a set of tools highly releva
 - [SCCmecFinder identifies SCCmec elements in sequenced S. aureus isolate](https://cge.food.dtu.dk/services/SCCmecFinder/)
 - [Identification of acquired virulence genes](https://cge.food.dtu.dk/services/VirulenceFinder)
 - [spaTyper predicts the S. aureus spa type](https://cge.food.dtu.dk/services/spaTyper) 
+

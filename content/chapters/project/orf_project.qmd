@@ -7,9 +7,9 @@ In this project, you will analyze DNA to identify the open reading frames (ORFs)
 
 Download the files you need for this project:
 
-{{< downloadthis ../../project_files/orf_project/orfproject.py dname="orfproject" label="orfproject.py" type="light" >}} {{< downloadthis ../../project_files/orfproject/test_orfproject.py dname="test_orfproject" label="test_orfproject.py" type="light" >}}
+{{< downloadthis ../../project_files/orfproject/orfproject.py dname="orfproject" label="orfproject.py" type="light" >}} {{< downloadthis ../../project_files/orfproject/test_orfproject.py dname="test_orfproject" label="test_orfproject.py" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 - `e_coli_O157_H157_str_Sakai.fasta` contains the full genome of the *Escherichia coli* O157:H7 Sakai strain (yes the full genome).
 

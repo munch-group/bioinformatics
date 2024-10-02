@@ -1,0 +1,109 @@
+
+# Project files {.unnumbered}
+
+# Python projects
+
+In each sections below, you will find download links to the files you need for each python project.
+
+### Translating open reading frames {.unnumbered}
+
+{{< downloadthis ../project_files/translationproject/translationproject.py dname="translationproject" label="translationproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/translationproject/test_translationproject.py dname="test_translationproject" label="test_translationproject.py" type="light" >}}
+  
+### Primer analysis {.unnumbered}
+
+{{< downloadthis ../project_files/foldingproject/foldingproject.py dname="foldingproject" label="foldingproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/foldingproject/test_foldingproject.py dname="test_foldingproject" label="test_foldingproject.py" type="light" >}}
+
+### Pairwise global alignment {.unnumbered}
+
+{{< downloadthis ../project_files/alignmentproject/alignmentproject.py dname="alignmentproject" label="alignmentproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/alignmentproject/test_alignmentproject.py dname="test_alignmentproject" label="test_alignmentproject.py" type="light" >}}
+
+### Codon usage in Streptococcus bacteria {.unnumbered}
+
+{{< downloadthis ../project_files/codonbiasproject/codonbiasproject.py dname="codonbiasproject" label="codonbiasproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/codonbiasproject/test_codonbiasproject.py dname="test_codonbiasproject" label="test_codonbiasproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/codonbiasproject/sample_orfs.txt dname="sample_orfs" label="sample_orfs.txt" type="light" >}}
+
+### Identifying the subtype of an HIV sequence {.unnumbered}
+
+{{< downloadthis ../project_files/hivproject/hivproject.py dname="hivproject" label="hivproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/hivproject/test_hivproject.py dname="test_hivproject" label="test_hivproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/hivproject/subtypeA.txt dname="subtypeA" label="subtypeA.txt" type="light" >}}
+
+{{< downloadthis ../project_files/hivproject/subtypeB.txt dname="subtypeB" label="subtypeB.txt" type="light" >}} {{< downloadthis ../project_files/hivproject/subtypeC.txt dname="subtypeC" label="subtypeC.txt" type="light" >}}
+
+{{< downloadthis ../project_files/hivproject/subtypeD.txt dname="subtypeD" label="subtypeD.txt" type="light" >}} {{< downloadthis ../project_files/hivproject/unknown_type.txt dname="unknown_type" label="unknown_type.txt" type="light" >}}
+
+### Clustering sequences based on distance {.unnumbered}
+
+{{< downloadthis ../project_files/seqdistproject/seqdistproject.py dname="seqdistproject" label="seqdistproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/seqdistproject/test_seqdistproject.py dname="test_seqdistproject" label="test_seqdistproject.py" type="light" >}}
+
+### Finding genes in bacteria {.unnumbered}
+
+{{< downloadthis ../project_files/orfproject/orfproject.py dname="orfproject" label="orfproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/orfproject/test_orfproject.py dname="test_orfproject" label="test_orfproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/orfproject/e_coli_O157_H157_str_Sakai.fasta dname="e_coli_O157_H157_str_Sakai" label="e_coli_O157_H157_str_Sakai.fasta" type="light" >}}
+
+### Genome assembly {.unnumbered}
+
+{{< downloadthis ../project_files/assemblyproject/assemblyproject.py dname="assemblyproject" label="assemblyproject.py" type="light" >}} 
+
+{{< downloadthis ../project_files/assemblyproject/test_assemblyproject.py dname="test_assemblyproject" label="test_assemblyproject.py" type="light" >}}
+
+{{< downloadthis ../project_files/assemblyproject/sequencing_reads.txt dname="sequencing_reads" label="sequencing_reads.txt" type="light" >}}
+
+
+## Web exercises
+
+In each sections below, you will find download links to the files you need for each web exercise.
+
+### GWAS
+
+None
+
+### CCR5
+
+{{< downloadthis ../web_files/ccr5_pwalign/CCR5_CDS.fa dname="CCR5_CDS" label="CCR5_CDS.fa" type="light" >}}
+{{< downloadthis ../web_files/ccr5_pwalign/CCR5_CDS_delta32.fa dname="CCR5_CDS_delta32" label="CCR5_CDS_delta32.fa" type="light" >}}
+{{< downloadthis ../web_files/ccr5_pwalign/CCR5_mRNA.fa dname="CCR5_mRNA" label="CCR5_mRNA.fa" type="light" >}}
+{{< downloadthis ../web_files/ccr5_pwalign/CCR5_mRNA_delta32.fa dname="CCR5_mRNA_delta32" label="CCR5_mRNA_delta32.fa" type="light" >}}
+
+### MRSA
+
+None
+
+### Aardwark
+
+{{< downloadthis ../web_files/aardvarg_seqdist/animals.fasta dname="animals" label="animals.fasta" type="light" >}}
+
+### ORF finding
+
+{{< downloadthis ../web_files/orf_finding/Enterococcusfaeciumresistanceplasmidsequence.fa dname="Enterococcusfaeciumresistanceplasmidsequence" label="Enterococcusfaeciumresistanceplasmidsequence.fa" type="light" >}}
+
+### Long reads
+
+{{< downloadthis ../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
+
+{{< downloadthis ../web_files/long_reads/contig_1.bam.bai dname="contig_1.bam" label="contig_1.bam.bai" type="light" >}}
+
+{{< downloadthis ../web_files/long_reads/contig_1.fa dname="contig_1" label="contig_1.fa" type="light" >}}
+
+{{< downloadthis ../web_files/long_reads/contig_1.fa.fai dname="contig_1.fa" label="contig_1.fa.fai" type="light" >}}
+
+
+### Neural networks
+
+None

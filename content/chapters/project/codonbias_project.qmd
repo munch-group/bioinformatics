@@ -33,7 +33,7 @@ Download the files you need for this project:
 
 {{< downloadthis ../../project_files/codonbiasproject/codonbiasproject.py dname="codonbiasproject" label="codonbiasproject.py" type="light" >}} {{< downloadthis ../../project_files/codonbiasproject/test_codonbiasproject.py dname="test_codonbiasproject" label="test_codonbiasproject.py" type="light" >}} {{< downloadthis ../../project_files/codonbiasproject/sample_orfs.txt dname="sample_orfs" label="sample_orfs.txt" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 - `sample_orfs.txt` contains open reading frame sequences you can work on.
 - `codonbiasproject.py` is an empty file where you must write your code.

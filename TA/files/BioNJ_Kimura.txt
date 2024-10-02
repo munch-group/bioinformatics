@@ -1,0 +1,3 @@
+((Golden_Mol:0.123113,Red_River:0.120247):0.004572,(Aardvark:0.111798,
+African_El:0.134623):0.002983,(Collared_a:0.115352,(Grey_Kanga:0.114640,
+Elephant_S:0.128854):0.008608):0.004993);

@@ -55,24 +55,21 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
-    - project_files/index.qmd
-    # - part: "Bioinformatics"
-    #   chapters: 
-    #   - chapters/bioinf/tester.ipynb
-    #   - chapters/bioinf/tester2.ipynb
-    #   - chapters/bioinf/test.qmd
     - part: "Bioinformatics"
       chapters: 
-      - chapters/web/aardwark_seqdist.qmd
-      - chapters/web/ccr5_pwalign.qmd
+      # - chapters/bioinf/tester.ipynb
+      # - chapters/bioinf/tester2.ipynb
+      # - chapters/bioinf/test.qmd
       - chapters/web/gwas_databases.qmd
-      - chapters/web/images
-      - chapters/web/long_reads.qmd
+      - chapters/web/ccr5_pwalign.qmd
       - chapters/web/mrsa_blast_multalign.qmd
-      - chapters/web/neural_networks.qmd
+      - chapters/web/aardwark_seqdist.qmd
       - chapters/web/orf_finding.qmd
+      - chapters/web/long_reads.qmd
+      - chapters/web/neural_networks.qmd
     - part: "Supplementary"
       chapters: 
+      - supplementary/project_files.qmd
       - supplementary/recordings2024.qmd
       - supplementary/bioinformatics_resources.qmd
   downloads: [pdf]

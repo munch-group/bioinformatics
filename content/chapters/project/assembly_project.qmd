@@ -37,7 +37,7 @@ Download the files you need for this project:
 
 {{< downloadthis ../../project_files/assemblyproject/assemblyproject.py dname="assemblyproject" label="assemblyproject.py" type="light" >}} {{< downloadthis ../../project_files/assemblyproject/test_assemblyproject.py dname="test_assemblyproject" label="test_assemblyproject.py" type="light" >}} {{< downloadthis ../../project_files/assemblyproject/sequencing_reads.txt dname="sequencing_reads" label="sequencing_reads.txt" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 - `sequencing_reads.txt` contains the sequencing reads.
 

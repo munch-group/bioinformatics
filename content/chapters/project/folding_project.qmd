@@ -8,7 +8,7 @@ Download the files you need for this project:
 
 {{< downloadthis ../../project_files/foldingproject/foldingproject.py dname="foldingproject" label="foldingproject.py" type="light" >}} {{< downloadthis ../../project_files/foldingproject/test_foldingproject.py dname="test_foldingproject" label="test_foldingproject.py" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 - `foldingproject.py` is an empty file where you must write your code.
 - `test_foldingproject.py` is the test program that lets you test the code you write in translationproject.py.

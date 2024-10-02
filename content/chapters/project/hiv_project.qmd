@@ -10,7 +10,7 @@ Download the files you need for this project:
 
 {{< downloadthis ../../project_files/hivproject/hivproject.py dname="hivproject" label="hivproject.py" type="light" >}} {{< downloadthis ../../project_files/hivproject/test_hivproject.py dname="test_hivproject" label="test_hivproject.py" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeA.txt dname="subtypeA" label="subtypeA.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeB.txt dname="subtypeB" label="subtypeB.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeC.txt dname="subtypeC" label="subtypeC.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/subtypeD.txt dname="subtypeD" label="subtypeD.txt" type="light" >}} {{< downloadthis ../../project_files/hivproject/unknown_type.txt dname="unknown_type" label="unknown_type.txt" type="light" >}}
 
-[https://munch-group.org/bioinformatics/project_files](https://munch-group.org/bioinformatics/project_files)
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
 
 - `unknown_type.txt` contains an HIV sequence of unknown subtype
 - `subtypeA.txt` contains a database of HIV sequences of subtype A

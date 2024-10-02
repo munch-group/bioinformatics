@@ -97,3 +97,17 @@ It is time for the grand finale. Go to the end destination, which is found at `p
 - Highlight the region, and BLAST the sequence.
 - Which tissue do you think the DNA comes from?
 - If you have time, discover more interesting patterns in the data set.
+
+
+## Project files {.unnumbered}
+
+Download the files you need for this project:
+
+{{< downloadthis ../../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
+{{< downloadthis ../../web_files/long_reads/contig_1.bam.bai dname="contig_1.bam" label="contig_1.bam.bai" type="light" >}}
+{{< downloadthis ../../web_files/long_reads/contig_1.fa dname="contig_1" label="contig_1.fa" type="light" >}}
+{{< downloadthis ../../web_files/long_reads/contig_1.fa.fai dname="contig_1.fa" label="contig_1.fa.fai" type="light" >}}
+
+[https://munch-group.org/bioinformatics/supplementary/project_files](https://munch-group.org/bioinformatics/supplementary/project_files)
+
+
