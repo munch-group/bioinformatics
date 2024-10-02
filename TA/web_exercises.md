@@ -9,23 +9,36 @@ Presentation: https://docs.google.com/presentation/d/1jBpBfO7_RGzxD1iHuN0LW8NIQq
 
 Presentation: https://docs.google.com/presentation/d/1u6hFulg0Jk5Lrrx28qhOJX1ZJ4eaT8l17LBIHs6MwWI/edit#slide=id.g298136c1e23_0_0
 
-Alignment exercises:
+### Alignment exercises:
+
 1.1 Affine gaps are used, Score matrix is DNAfull, end gaps are used.
+
 1.2: 3629 bases align, 0 are mutated, 32 are indels.
+
 1.3: A singular 32-base deletion.
+
 1.4: Gap open is 10, gap extend is 0.5. If we set them to 100 and 10, nothing happens. The alignment is the same.
 
-Translation exercises:
+### Translation exercises:
+
 2.1: 5’-3’ means forwards, 3’-5’ means backwards, and 1, 2, and 3 means from the start, frameshifted 1 forwards, or 2 forwards, respectively.
+
 2.2: 5’-3’ frame 1 is the correct reading frame (it runs from the start codon at the start to the stop codon at the end).
+
 2.3: The consequence is a frameshift and a premature stop codon. This makes sense, as 32 / 3 is not a whole number, so there is a frameshift.
+
 2.4: the first segment aligns, but afterwards almost nothing aligns.
 
-Blast exercises:
+### Blast exercises:
+
 3.1: Blastn uses shorter kmers and lower thresholds to be able to find more distant matches.
+
 3.2: The E.value refers to the expected amount of matches of similar quality given the size of the search database. The bases differ at 25 positions, and there are 0 gaps. The mutation has arisen since the last common ancestor.
+
 3.3: A 24 basepair deletion. Delta means deletion.
+
 3.4: It only deletes amino acids, no frameshift is observed. There are also 2 other amino acid changes. The deletion is around amino acid 150.
+
 3.5: The findings corrosponds to our observations. We can observe the mutation is in transmembrane domain 4. The paper says that, although the mutation is not a frameshift, the protein ends up not being expressed on the cell surface.
 
 ## MRSA
@@ -42,11 +55,11 @@ Title field states: MecA gene sequence analysis of methicillin resistant Staphyl
 
 Here are the main sequences needed:
 
-
-
 1c:
 
 Nucleotide sequence
+
+```
 >KC243783.1 Staphylococcus aureus strain TN/CN/1/12 MecA (mecA) gene, complete cds
 ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
 CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
@@ -79,10 +92,13 @@ ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
 ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAA
 CGATGGTTGCTTCACTGTTTTATTATGAATTATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTC
 TTCATTTTCATTGTATGTTGAAAGTGACA
+```
 
 1d:
 
 Protein sequence
+
+```
 >AGC51118.1 MecA [Staphylococcus aureus]
 MKKIKIVPLILIVVVVGFGIYFYASKDKEINNTIDAIEDKNFKQVYKDSSYISKSDNGEVEMTERPIKIY
 NSLGVKDINIQDRKIKKVSKNKKRVDAQYKIKTNYGNIDRNVQFNFVKEDGMWKLDWDHSVIIPGMQKDQ
@@ -94,6 +110,7 @@ DKTSYKIDGKGWQKDKSWGGYNVTRYEVVNGNIDLKQAIESSDNIFFARVALELGSKKFEKGMKKLGVGE
 DIPSDYPFYNAQISNKNLDNEILLADSGYGQGEILINPVQILSIYSALENNGNINAPHLLKDTKNKVWKK
 NIISKENINLLTDGMQQVVNKTHKEDIYRSYANLIGKSGTAELKMKQGETGRQIGWFISYDKDNPNMMMA
 INVKDVQDKGMASYNAKISGKVYDELYENGNKKYDIDE
+```
  
 
 2.b
@@ -102,8 +119,8 @@ The following organisms give hits in the initial blasting:
 ![](images/mrsa_blast.png)
  
 2.c.i
--       You get more results and higher diversity in found organisms, including some that could be much more different to MRSA
--       You get results with lower E-value but which may be of relevance when determining the origins of the MecA gene.
+- You get more results and higher diversity in found organisms, including some that could be much more different to MRSA
+- You get results with lower E-value but which may be of relevance when determining the origins of the MecA gene.
  
 2.c.ii
 The taxonomy lists the matches per organism. It gives a better overview than the “Descriptions” page.
@@ -121,20 +138,21 @@ This depends on their experimentation. The idea is for them to look through the 
  
 2.d.ii
 The (?) help box on the site mentions the following:
-Megablast is intended for comparing a query to closely related sequences and works best if the target percent identity is 95% or more but is very fast.
-Discontiguous megablast uses an initial seed that ignores some bases (allowing mismatches) and is intended for cross-species comparisons.
-BlastN is slow, but allows a word-size down to seven bases.
+- Megablast is intended for comparing a query to closely related sequences and works best if the target percent identity is 95% or more but is very fast.
+- Discontiguous megablast uses an initial seed that ignores some bases (allowing mismatches) and is intended for cross-species comparisons.
+- BlastN is slow, but allows a word-size down to seven bases.
 
 2.e.i
 The protein matches with multiple Mammaliicoccus strains and even a hypothetical salmonella protein. It could mean that horizontal gene transfer between different bacteria genera happened. Note that Mammaliicoccus is a genus of bacteria that was previously classified within the Staphylococcus genus, so they are closely related. Also, these databases can have wrongly labeled information etc., so the salmonella match may not be relevant.
  
 On the risk of HGT between very different genera, chatGPT says:
 
- The mecA gene in MRSA is located on a mobile genetic element called the staphylococcal cassette chromosome mec (SCCmec). This element has been primarily identified in staphylococci. Whether this gene can transfer to other bacterial genera, such as Salmonella, depends on several factors:
-Presence of Mobile Genetic Elements: The mecA gene would need to be on a mobile genetic element that's compatible with the recipient bacteria's machinery. While SCCmec has so far been primarily found in Staphylococcus species, the potential for its transfer to other genera is not zero, but likely low.
-Ecological Overlap: For HGT to occur, the donor and recipient bacteria often need to inhabit the same or overlapping environments. Bacteria in the human gut, for instance, have more opportunities for gene exchange than bacteria from disparate habitats.
-Cellular Barriers: Different bacterial genera might have barriers that prevent the uptake of foreign DNA. Gram-negative bacteria, for example, have an outer membrane that can act as a barrier to DNA uptake.
-Selective Pressure: Even if the gene is transferred, it needs to confer a survival advantage for it to be maintained in the population. For example, in the presence of methicillin or other beta-lactams, a bacterium with the mecA gene would have a survival advantage.
+The mecA gene in MRSA is located on a mobile genetic element called the staphylococcal cassette chromosome mec (SCCmec). This element has been primarily identified in staphylococci. Whether this gene can transfer to other bacterial genera, such as Salmonella, depends on several factors:
+- Presence of Mobile Genetic Elements: The mecA gene would need to be on a mobile genetic element that's compatible with the recipient bacteria's machinery. While SCCmec has so far been primarily found in Staphylococcus species, the potential for its transfer to other genera is not zero, but likely low.
+- Ecological Overlap: For HGT to occur, the donor and recipient bacteria often need to inhabit the same or overlapping environments. Bacteria in the human gut, for instance, have more opportunities for gene exchange than bacteria from disparate habitats.
+- Cellular Barriers: Different bacterial genera might have barriers that prevent the uptake of foreign DNA. Gram-negative bacteria, for example, have an outer membrane that can act as a barrier to DNA uptake.
+- Selective Pressure: Even if the gene is transferred, it needs to confer a survival advantage for it to be maintained in the population. For example, in the presence of methicillin or other beta-lactams, a bacterium with the mecA gene would have a survival advantage.
+  
 To date, there's no documented evidence of the mecA gene transferring from Staphylococcus to genera like Salmonella. However, other resistance genes have been documented to jump between genera. For instance, resistance genes carried on plasmids, such as extended-spectrum beta-lactamase (ESBL) genes, have been found in various Enterobacteriaceae, including E. coli and Klebsiella.
 If such a transfer were to occur, especially to a pathogen with a different route of infection or resistance to other drugs, it could pose a significant public health concern. It's essential to continue monitoring and researching antibiotic resistance to identify and respond to new threats as they emerge.
  
@@ -150,6 +168,7 @@ We cannot conclude from one patient getting it from S. epidermidis that it alway
 3.a 
 Nucleotide sequences for MecA i andre bakterier (her bare 3, men de skal helst vælge flere):
 
+```
 >Staphylococcus-epidermidis
 ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
 CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
@@ -182,7 +201,9 @@ ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
 ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAA
 CGATGGTTGCTTCACTGTTTTATTATGAATTATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTC
 TTCATTTTCATTGT
+```
 
+```
 >Staphylococcus-Capitis
 ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
 CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
@@ -213,7 +234,9 @@ AAGAAGATATTTATAGATCTTATGCAAACTTAATTGGCAAATCCGGTACTGCAGAACTCAAAATGAAACA
 AGGAGAAACTGGCAGACAAATTGGGTGGTTTATATCATATGATAAAGATAATCCAAACATGATGATGGCT
 ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
 ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAA
+```
 
+```
 Staphylococcus-hominis
 >JF710613.1 UNVERIFIED: Staphylococcus hominis strain 4053 penicillin binding protein-like (mecA) gene, partial sequence
 AGTTGTAGTTGTCGGGTTTGGTATATATTTTTATGCTTCAAAAGATAAAGAAATTAATAATACTATTGAT
@@ -248,6 +271,7 @@ ACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAACGATGGTTGCTTCACTGTTTTATTATGAAT
 TATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTCTTCATTTTCATTGTATGTTGAAAGTGACAC
 TGTAACGAGTCCATTTTCTTTTTTTATGGATTTCTTATTTGTAATTTCAGCGATAACGTACAATGTATTA
 CCTGGGTATACAGGTTTAATAAA
+```
 
 3.d.i
 We get aligned sequences between the strains.
@@ -258,11 +282,7 @@ It may show us specific variations between strains that make it more or less pro
 3.e
 The answers depend on the chosen strains. But the phylograms can indicate which strains the HGT most likely happened between.
 
-
-
- ![](images/mrsa_tree.png)
-
-
+![](images/mrsa_tree.png)
 
 4.a
 This is still difficult to answer. But we see a lot of matches with other Staphylococcus strains, like S. epidermis. And there may have been some HGT to Mammaliicoccus since we see a good number of matches with those as well. Also, the HGT is likely continually happening between the strains.
@@ -274,18 +294,26 @@ This is still difficult to answer. But we see a lot of matches with other Staphy
 
 Presentation: https://docs.google.com/presentation/d/1pwiRdDBazXl35KePMS5PktpzccUuEMGR/edit#slide=id.p1
 
-A completed version of the animals.fasta file is attached as TA_animals.fasta. The students will be given a fasta-file containing only headers. They need to fill out the sequences themselves. 
-A completed curated multiple alignment is attaches as TA_aligned_cured.phy
-A folder with the completed newick trees is attached as TA_newick
-A completed fasta file with added extra elephants is attached as TA_animals_with_elephants.fasta
-Below are the answers to the questions in order.  I have added pictures where I find it suitable.
+- A completed version of the animals.fasta file is attached as TA_animals.fasta. The students will be given a fasta-file containing only headers. They need to fill out the sequences themselves. 
+- A completed curated multiple alignment is attaches as TA_aligned_cured.phy
+- A folder with the completed newick trees is attached as TA_newick
+- A completed fasta file with added extra elephants is attached as TA_animals_with_elephants.fasta
+- Below are the answers to the questions in order.  I have added pictures where I find it suitable.
 
-What does Flip do? Flip an entire tree at a node (see animation on the button)
-What does Swap do? Flip two branches at a node (see animation on the button)
-What does Reroot do? Picks an outgroup and reorders the tree accordingly
-Click on “Reset (cancel all changes)” in the section “Select an action”. Done
-How many terminal nodes (leafs) and how many internal nodes are there in the tree? 
-Leafs: 8 	Internal nodes:7 
+What does Flip do? 
+- Flip an entire tree at a node (see animation on the button)
+
+What does Swap do?
+- Flip two branches at a node (see animation on the button)
+
+What does Reroot do? 
+
+- Picks an outgroup and reorders the tree accordingly
+
+Click on “Reset (cancel all changes)” in the section “Select an action”. Done How many terminal nodes (leafs) and how many internal nodes are there in the tree? 
+
+- Leafs: 8 	
+- Internal nodes:7 
 
 ![](images/aardvarg_tree1.png)
 
@@ -293,72 +321,93 @@ Leafs: 8 	Internal nodes:7
 
 
 Which node represents the most recent common ancestor between the Aardvark and the African Elephant? What about the Elephant Shrew? 
-Elephant: Node with pink arrow
-Elephant shrew: node with green arrow  
- Which of the reference animals are closest related to the Aardvark according to this model?
-African Elephant
-Does the tree look like you expected? Surprised that the elephant is the closest relative, maybe.
-Go read the introduction in the Gblocks documentation. What kind of positions are NOT included after curation? “The selected blocks must fulfill certain requirements with respect to the lack of large segments of contiguous nonconserved positions, lack or low density of gap positions and high conservation of flanking positions, making the final alignment more suitable for phylogenetic analysis”
-Try out the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format” and save the file. These tree-files can be visualised by using the programme “TreeDyn” under the top tab “Online Programmes”.
-See newick files in the folder “TA_newick”
-Do the trees formed by GTR and HKY85 look alike? No
 
-HKY58
+- Elephant: Node with pink arrow
+- Elephant shrew: node with green arrow  
+- 
+
+Which of the reference animals are closest related to the Aardvark according to this model?
+
+- African Elephant
+
+Does the tree look like you expected? Surprised that the elephant is the closest relative, maybe.
+
+Go read the introduction in the Gblocks documentation. What kind of positions are NOT included after curation? 
+
+- “The selected blocks must fulfill certain requirements with respect to the lack of large segments of contiguous nonconserved positions, lack or low density of gap positions and high conservation of flanking positions, making the final alignment more suitable for phylogenetic analysis”
+  
+Try out the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format” and save the file. These tree-files can be visualised by using the programme “TreeDyn” under the top tab “Online Programmes”.
+
+- See newick files in the folder “TA_newick”
+
+Do the trees formed by GTR and HKY85 look alike?
+
+- No
+
+**HKY58**
 
 ![](images/aardvarg_tree3.png)
 
 
-GTR
+**GTR**
 
 ![](images/aardvarg_tree4.png)
 
 
 What are the Aardvarks closest relatives according to the two trees?
-HKY85: African Elephant
-GTR: Golden Mole
+
+- HKY85: African Elephant
+- GTR: Golden Mole
 
 Try out the three DNA/RNA substitution models for BioNJ (kimura, jukes-cantor, hamming ) Remember to save your trees. 
+
 See newick files in the folder “TA_newick”
+
 Do these three trees look alike? No, the observant student might notice that in the newick files, the distances differ, even though they give similar looking trees.
 
-Kimura
+**Kimura**
 
 ![](images/aardvarg_tree5.png)
 
 
-Jukes-Cantor
+**Jukes-Cantor**
 
 ![](images/aardvarg_tree6.png)
 
-Hamming
+**Hamming**
 
 ![](images/aardvarg_tree7.png)
 
-Do they look like the trees formed by PhyML? No.
-What are the Aardvarks closest relatives according to the three trees? African Elephant
+Do they look like the trees formed by PhyML?
 
+- No.
+- 
+What are the Aardvarks closest relatives according to the three trees?
+
+- African Elephant
 
 Food for thought exercise: With more elephants -> one-click analysis
-The elephants are very close compared to all the other animals, making it difficult to actually see the relations among themselves. This might open up for a discussion about the scope of analysis being determined by how closely related all the reference animals are. 
 
-
+- The elephants are very close compared to all the other animals, making it difficult to actually see the relations among themselves. This might open up for a discussion about the scope of analysis being determined by how closely related all the reference animals are. 
 
 End note exercise
+
 Wikipedia says the closest relative is the elephant shrew, but none of our analysis shows this. Other websites agree that elephants are the closest relative. So this is a quick note on “kildekritik” ;) 
 
 
 ##  Unsupervised Learning
 
 Notes for your fellow TAs (answers to questions etc)
-Continuity of the two circles is most important - they should not “jump” at any point, but be in a circle or figure of eight.
-The most important part here is distinguishing between the two global structures, so a high n_neighbors is important, while it seems slightly better with a low min_dist.
-The circles intertwining is an important part of the 3D structure and should be represented. On the other hand, locally, the points in each circle are always closer to points in the circle, so the expectation might be that we want something similar to 1.
-15 neighbors and 0.05 min_dist recapture the circles best (in my opinion), but it is not stable, and most other settings make the two circles independent. Higher n_neighbors are otherwise better, as they capture the circularity, unlike low n_neighbors.
-It is a gradual process, but it begins looking like a skeleton at 50 neighbors in my opinion, but with hints at 20 and definitely at 100.
-0.1 or 0.25 seems best, as there is some volume and global structure which it captures, without it being too stretched out.
-The legs, especially the front legs are detached fully. The spine/ribcage is prioritized as it has more points.
-The trefoil is mostly represented as a line or figure of eight, both of which are bad representations.
-It does. Adjusting min_dist is not needed, but does change how squiggly the lines are, but not that much else.
+
+- Continuity of the two circles is most important - they should not “jump” at any point, but be in a circle or figure of eight.
+- The most important part here is distinguishing between the two global structures, so a high n_neighbors is important, while it seems slightly better with a low min_dist.
+- The circles intertwining is an important part of the 3D structure and should be represented. On the other hand, locally, the points in each circle are always closer to points in the circle, so the expectation might be that we want something similar to 1.
+- 15 neighbors and 0.05 min_dist recapture the circles best (in my opinion), but it is not stable, and most other settings make the two circles independent. Higher n_neighbors are otherwise better, as they capture the circularity, unlike low n_neighbors.
+- It is a gradual process, but it begins looking like a skeleton at 50 neighbors in my opinion, but with hints at 20 and definitely at 100.
+- 0.1 or 0.25 seems best, as there is some volume and global structure which it captures, without it being too stretched out.
+- The legs, especially the front legs are detached fully. The spine/ribcage is prioritized as it has more points.
+- The trefoil is mostly represented as a line or figure of eight, both of which are bad representations.
+- It does. Adjusting min_dist is not needed, but does change how squiggly the lines are, but not that much else.
 
 ### Exercise text
 
@@ -413,7 +462,9 @@ Example result for the first group of questions
 ![](images/unsup2.png)
 
 X1 makes a vertical gradient, which means that the neurons have also made a vertical gradient, but it can still isolate the blue points by having vastly different biases. Therefore, the only real difference is the biases.
+
 Test loss is around 0.26, not that good.
+
 The current singular Feature is not enough to distinguish things that are not vertical, neurons/layers will not help here.
 
 Example result after 700 generations for the second group of questions.
@@ -462,17 +513,22 @@ The other features help a bit more, but all of these improvements are quite marg
 
 Presentation: https://docs.google.com/presentation/d/1amhu1Wrjg_wBtKpSc6C7KZh1dqCUjwDnJlm7dVzpAhA/edit#slide=id.p
 
-Part 1, ORF Finder
-Preamble: In general, ORFs can be found to be arbitrarily small. However, the larger the ORF is, the more strongly it indicates a true gene and significant function for it. We can use the standard genetic code, and it should work well since it is from a plasmid and therefore does not have the advanced eukaryotic features.
-1.1: 98
-1.2: 1095 and 78
-1.3: Stop codons. This is both due to stop codons having more options, but also due to the natural selection of start codons being restrained to only places wherein expression should happen.
-Example result page after restricting ORF search to 300+ nucleotides
+### Part 1, ORF Finder
 
+Preamble: In general, ORFs can be found to be arbitrarily small. However, the larger the ORF is, the more strongly it indicates a true gene and significant function for it. We can use the standard genetic code, and it should work well since it is from a plasmid and therefore does not have the advanced eukaryotic features.
+
+1.1: 98
+
+1.2: 1095 and 78
+
+1.3: Stop codons. This is both due to stop codons having more options, but also due to the natural selection of start codons being restrained to only places wherein expression should happen.
+
+Example result page after restricting ORF search to 300+ nucleotides
 
 ![](images/orf_finding.png)
 
 1.4: 3. ORF13 and ORF1 slightly overlap. ORF10 and ORF18 greatly overlap. ORF11 and ORF16 slightly overlap.
+
 1.5: + strand is most common. Only two genes are - strand, so 17 genes are + strand. The names are also ordered based on strandedness.
 Part 2, Expanding the search
 
