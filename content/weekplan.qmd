@@ -1,31 +1,6 @@
 
 # Schedule {.unnumbered}
 
-<!-- 
-
-## Lecture notes
-
-The [Lecture notes](book)
-
-## Bioinformatics exercises
-
-The [bioinformatics exercises](bioinf_exercises)
-
-## Programming projects
-
-The [programming projects](programming_projects)
-
-## Lectures
-
-The [lectures](lectures) 
-
-## Weekly notes
-
-The [weekly notes](weekly_notes)
-
--->
-
-
 
 ## Week 1 {.unnumbered}
 
@@ -93,6 +68,7 @@ Only MO and Bio classes attend the exercises this week. MM classes do not. The e
 The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in the curriculum from last week. Do what you can at home and do the rest at the TA session.
 
 
+
 ### Week 5  (39) {.unnumbered}
 
 **Reading Material**  
@@ -128,7 +104,9 @@ The topics for this week are iteration and data structures. You are meant to com
 
 **Exercises:**  
 
-You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for programming projects. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 ::: {.callout-important}
 "Translating open reading frames" is a mandatory project. The deadline for handing it in (on Brightspace) is the night before your exercise class in week 41.
@@ -150,8 +128,11 @@ You will also do the weekly programming project described in the chapter listed 
 - In the second lecture, I will talk about multiple alignment.
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
+- The web exercise: [GWAS candidates](chapters/web/gwas_databases.qmd)
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -169,8 +150,11 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the second lecture, I will talk about models of DNA evolution and how to measure evolutionary distance between sequences.
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
+- The web exercise: [CCR5-delta32](chapters/web/ccr5_pwalign.qmd)
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -186,11 +170,11 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the first lecture, I will talk about methods for sequence clustering In the first lecture, I will also talk about Python topics and the weekly programming project.
 - In the second lecture, I will talk about bioinformatics code libraries for Python, such as BioPython, and the Master in Bioinformatics that we offer at the Bioinformatics Centre.
 
-
-
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The web exercise: [MRSA](chapters/web/mrsa_blast_multalign.qmd)
+- The programming project described inthe lecture note reading for this week.
 
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -209,7 +193,10 @@ You will do the weekly bioinformatics web exercise. You can find the description
 <!-- TODO: Add topic for second lecture -->
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The web exercise: [Aardvark?](chapters/web/aardwark_seqdist.qmd)
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 **NB: This programming project "Identifying the subtype of an HIV sequence" is a mandatory exercise. The deadline for handing it in is the night before your exercise class in week 46.**
 
@@ -228,8 +215,10 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the second lecture, I will talk about more about HMMs
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -246,7 +235,10 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the second lecture, I will talk about neural networks.
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The web exercise: [Plasmid ORFs](chapters/web/orf_finding.qmd)
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -264,7 +256,10 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the second lecture, I will talk about RNA secondary structure prediction.
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The web exercise: [Read mapping](chapters/web/long_reads.qmd)
+- The programming project described inthe lecture note reading for this week.
+
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
 
@@ -280,7 +275,9 @@ You will do the weekly bioinformatics web exercise. You can find the description
 - In the last lecture, we will evaluate the course and review the exam's practicalities.
 
 **Exercises:**  
-You will do the weekly bioinformatics web exercise. You can find the description of the exercise and any relevant files below. You will also do the weekly programming project described in the chapter listed under Reading Material. You can download the files needed for the programming project under the "Programming project files" tab. There will be lots of work, so do what you can at home and do the rest at the TA session.
+- The web exercise: [Neural networks](chapters/web/neural_networks.qmd)
+- The programming project described inthe lecture note reading for this week.
 
+From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 

@@ -1,4 +1,4 @@
-# Appendix: Conda environment for BSF
+# Appendix: Conda environment for BSF 
 
 *This chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.*
 

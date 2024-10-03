@@ -1,5 +1,5 @@
 
-# Preface {.unnumbered}
+# Preface 
 
 These lecture notes are inspired by the many different books and resources I have used in this course over the years. Especially, "Learning Python the hard way" and "How to think like a computer scientist" have inspired the my onwn notes on programming. These implement the following ideas, which I think best supports learning in an introduction to programming:
 

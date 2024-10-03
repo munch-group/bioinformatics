@@ -16,11 +16,13 @@ book:
     - curriculum.qmd
     - part: "Schedule"
       chapters:
-      - overview.qmd
+      # - overview.qmd
       - weekplan.qmd
     - part: "Learning Python"
       chapters:
+      - chapters/python/preface.qmd
       - chapters/python/before_you_begin.qmd
+      - chapters/python/appendix_conda_and_pymol.qmd
       - chapters/python/writing_a_program.qmd
       - chapters/python/dealing_with_values.qmd
       - chapters/python/the_order_of_events.qmd
@@ -36,9 +38,9 @@ book:
       - chapters/python/data_structures.qmd
       - chapters/python/unleash_your_functions.qmd
       - chapters/python/testing_your_code.qmd
-      - chapters/python/your_own_types_of_objects.qmd
-      - chapters/python/using_code_from_other_files.qmd
-      - chapters/python/on_the_shoulders_of_giants.qmd
+      # - chapters/python/your_own_types_of_objects.qmd
+      # - chapters/python/using_code_from_other_files.qmd
+      # - chapters/python/on_the_shoulders_of_giants.qmd
     - part: "Python projects"
       chapters: 
       - chapters/project/translation_project.qmd
