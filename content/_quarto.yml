@@ -15,9 +15,10 @@ book:
     - index.qmd
     - curriculum.qmd
     - part: "Schedule"
-      chapters:
+      # chapters:
       # - overview.qmd
-      - weekplan.qmd
+      # - weekplan.qmd
+    - weekplan.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/preface.qmd

@@ -4,33 +4,30 @@
 
 ## Week 1 {.unnumbered}
 
-**Reading:**  
-I will cover chapters 1-7 in the lecture notes. Make sure you have installed Python and VScode for the first lecture.
+##### Reading:  
+- I will cover chapters 1-7 in the lecture notes. Make sure you have installed Python and VScode for the first lecture.
 
-**Lectures:**  
-In the first lecture, I will outline how the course is organized and how you will get the most out of your efforts in learning programming. I will also try to give you an intuitive understanding of what programming is and what the world looks like to a computer.
-
+##### Lectures:  
+- In the first lecture, I will outline how the course is organized and how you will get the most out of your efforts in learning programming.
 - In the first lecture, I will also talk about how a Python program works and about values, math, and logic.
-- In the second lecture, I will talk about variables, substitution, and reduction.
+- In the second lecture, I will talk about variables, operators, substitution, and reduction.
 
-**Exercises:**  
+##### Exercises:  
 If you have yet to do so at home, you will install Python and the text editor. To do this, follow the instructions "Before you begin". Then, start doing the exercises in the other three chapters. You will also have time to do these exercises in the TA session of week two, so go slow. It is important to properly absorb the basic concepts at the beginning of the course; otherwise, it will become too difficult later on.
 
 
 
 ## Week 2 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 I will cover chapters 8-9 in the lecture notes.
 
-**Lectures:**  
-In the first lecture, I will talk about how to use logic to control which statements in your program that get executed.
+##### Lectures:  
+- In the first lecture, I will talk about how to use logic to control which statements in your program that get executed.
+- In the first lecture, I will also talk about how you can efficiently organize your code using functions.
+- In the second lecture, I will talk more about functions.
 
-In the first lecture, I will also talk about how you can efficiently organize your code using functions.
-
-In the second lecture, I will talk more about functions.
-
-**Exercises:**  
+##### Exercises:  
 The topics for this week's exercises are statements, variables, operators, expressions, substitution, reduction, and logic. You will work on the rest of the exercises in last week's curriculum for the TA session. Do what you can at home and do the rest at the TA session.
 
 
@@ -40,26 +37,27 @@ The topics for this week's exercises are statements, variables, operators, expre
 **Reading Material**  
 I will cover chapters 10-13 in the lecture notes.
 
-**Lectures:**  
-- In the first lecture, I will talk about objects and methods. I will also talk about lists.
+##### Lectures:  
+- In the first lecture, I will talk about objects and methods. 
+- In the first lecture, I will also talk about lists.
 - In the second lecture, I will talk about dictionaries and a bit about tuples.
 
-**Exercises:**  
+##### Exercises:  
 The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in the curriculum from last week. Do what you can at home and do the rest at the TA session.
 
 
 
-### Week 4  (38) {.unnumbered}
+### Week 4 {.unnumbered}
 
 **Reading Material**  
 I will cover chapters 14-15 in the lecture notes.
 
-**Lectures:**  
+##### Lectures:  
 - In the first lecture, I will talk about iteration and lists.
 - In the second lecture, I will talk about how your code can interact with files on your computer.
 
 
-**Exercises:**  
+##### Exercises:  
 
 ::: {.callout-note}
 Only MO and Bio classes attend the exercises this week. MM classes do not. The exercise is repeated next week for the MM classes to attend*
@@ -69,7 +67,7 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 
 
 
-### Week 5  (39) {.unnumbered}
+### Week 5 {.unnumbered}
 
 **Reading Material**  
 
@@ -77,11 +75,12 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 - [Chapter 11: Genomewide Association Studies](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822)
 - [Benefits and limitations of genomewide association studies](https://www.nature.com/articles/s41576-019-0127-1)
 
-**Lectures:**  
+##### Lectures:  
 - In the first lecture, I will talk about databases, genotyping arrays, and genomewide association studies (GWAS).
+- In the first lecture, I will also talk about building simple data strutures in Python.
 - In the second lecture, I will talk about how to use recursion in Python.
 
-**Exercises:**  
+##### Exercises:  
 
 ::: {.callout-note}
 Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*.
@@ -91,18 +90,20 @@ The topics for this week are iteration and data structures. You are meant to com
 
 
 
-### Week 6 (40) {.unnumbered}
+### Week 6 {.unnumbered}
 
 **Reading Material**  
 
 - Chapter 19 in the lecture notes
 - Understanding Bioinformatics 127-141
 
-**Lectures:**  
-- In the first lecture, I will talk about global pairwise alignment In the first lecture, I will also talk about Python data structures and the weekly programming project. 
+##### Lectures:  
+
+- In the first lecture, I will talk about global pairwise alignment In the first lecture
+- In the first lecture, I will also talk about the weekly programming project. 
 - In the second lecture, I will talk about local pairwise alignment and more realistic gap scoring.
 
-**Exercises:**  
+##### Exercises:  
 
 - The programming project described inthe lecture note reading for this week.
 
@@ -114,20 +115,20 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 7 (41) {.unnumbered}
+### Week 7 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 20 in the lecture notes
 - Understanding Bioinformatics: 117-127
 - Alignment methods: strategies, challenges, benchmarking, and comparative overview (don't do the exercises).
 
-**Lectures:**  
+##### Lectures:  
 
-- In the first lecture, I will talk about protein substitution matrices and how to score protein alignments. In the first lecture, I will also talk about Python topics and the weekly programming project.
+- In the first lecture, I will talk about protein substitution matrices and how to score protein alignments. - In the first lecture, I will also talk Python classes and the weekly programming project.
 - In the second lecture, I will talk about multiple alignment.
 
-**Exercises:**  
+##### Exercises:  
 
 - The web exercise: [GWAS candidates](chapters/web/gwas_databases.qmd)
 - The programming project described inthe lecture note reading for this week.
@@ -136,20 +137,21 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 8 (43) {.unnumbered}
+### Week 8 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 21 in the lecture notes
 - Bioinformatics Explained: BLAST
 - Biological Sequence Analysis pp. 192-197
 
-**Lectures:**  
+##### Lectures:  
 
-- In the first lecture, I will talk about how to search for matches in a sequence database and how to asses alignment significance. In the first lecture, I will also talk about Python topics and the weekly programming project.
+- In the first lecture, I will talk about how to search for matches in a sequence database and how to asses alignment significance.
+- In the first lecture, I will also talk about programming topics and the weekly programming project.
 - In the second lecture, I will talk about models of DNA evolution and how to measure evolutionary distance between sequences.
 
-**Exercises:**  
+##### Exercises:  
 
 - The web exercise: [CCR5-delta32](chapters/web/ccr5_pwalign.qmd)
 - The programming project described inthe lecture note reading for this week.
@@ -158,19 +160,20 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 9 (44) {.unnumbered}
+### Week 9 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 22 in the lecture notes
-- Biological Sequence Analysis pp. 165-179
+- Biological Sequence Analysis pp. 165-179  <!-- UPGMA / NJ -->
 
-**Lectures:**  
+##### Lectures:  
 
-- In the first lecture, I will talk about methods for sequence clustering In the first lecture, I will also talk about Python topics and the weekly programming project.
+- In the first lecture, I will talk about methods for sequence clustering. 
+- In the first lecture, I will also talk about the programming project.
 - In the second lecture, I will talk about bioinformatics code libraries for Python, such as BioPython, and the Master in Bioinformatics that we offer at the Bioinformatics Centre.
 
-**Exercises:**  
+##### Exercises:  
 - The web exercise: [MRSA](chapters/web/mrsa_blast_multalign.qmd)
 - The programming project described inthe lecture note reading for this week.
 
@@ -178,43 +181,46 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 10 (45) {.unnumbered}
+### Week 10 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 23 in the lecture notes
-- Biological Sequence Analysis pp. 192-202
+- Biological Sequence Analysis pp. 192-202 <!-- phylogeny / felsenstein -->
 
-**Lectures:**  
+##### Lectures:  
 
-- In the first lecture, I will talk about phylogenetic trees. In the first lecture, I will also talk about Python topics and the weekly programming project.
-- In the second lecture, I will talk about ... (TBA) 
+- In the first lecture, I will talk about phylogenetic trees.
+- In the first lecture, I will also talk about Python topics and the weekly programming project.
+- In the second lecture, I will talk about gene prediction in prokaryotes.
 
-<!-- TODO: Add topic for second lecture -->
-
-**Exercises:**  
+##### Exercises:  
 - The web exercise: [Aardvark?](chapters/web/aardwark_seqdist.qmd)
 - The programming project described inthe lecture note reading for this week.
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
-**NB: This programming project "Identifying the subtype of an HIV sequence" is a mandatory exercise. The deadline for handing it in is the night before your exercise class in week 46.**
+::: {.callout-important}
+
+The programming project "Identifying the subtype of an HIV sequence" is a mandatory exercise. The deadline for handing it in is the night before your exercise class in week 46.
+
+:::
 
 
 
-### Week 11 (46) {.unnumbered}
+### Week 11 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 24 in the lecture notes
-- Biological Sequence Analysis pp. 46-66
-- Understanding Bioinformatics pp. 494-496
+- Biological Sequence Analysis pp. 46-66 <!-- HMMs -->
 
 ### Lectures
-- In the first lecture, I will talk about hidden Markov models (HMMs). In the first lecture, I will also talk about python topics and the weekly programming project.
+- In the first lecture, I will talk about hidden Markov models (HMMs).
+- In the first lecture, I will also talk about python topics and the weekly programming project.
 - In the second lecture, I will talk about more about HMMs
 
-**Exercises:**  
+##### Exercises:  
 
 - The programming project described inthe lecture note reading for this week.
 
@@ -222,19 +228,22 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 12 (47) {.unnumbered}
+### Week 12 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 25 in the lecture notes
-- [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032)
+- Understanding Bioinformatics pp. 438-448 <!--protein prediction -->
+- [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
+- [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032) <!-- genome assembly -->
 
 ### Lectures
 
-- In the first lecture, I will talk about genome assembly. In the first lecture, I will also talk about Python topics and the weekly programming project.
-- In the second lecture, I will talk about neural networks.
+- In the first lecture, I will talk about applications of hidden Markov models gene finding and protein annotation.
+- In the first lecture, I will also talk about Python topics and the weekly programming project.
+- In the second lecture, I will talk genome assembly.
 
-**Exercises:**  
+##### Exercises:  
 - The web exercise: [Plasmid ORFs](chapters/web/orf_finding.qmd)
 - The programming project described inthe lecture note reading for this week.
 
@@ -242,20 +251,20 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 13 (48) {.unnumbered}
+### Week 13 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
 - Chapter 26 in the lecture notes
-- [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
-- Understanding Bioinformatics pp. 438-448
-- Exploring Bioinformatics pp. 242-248
+- Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
+- Exploring Bioinformatics pp. 242-248  <!-- RNA structure -->
 
 ### Lectures
-- In the first lecture, I will talk about gene finding and protein annotation
+- In the first lecture, I will talk about neural networks
+- In the first lecture, I will also talk about the programming project.
 - In the second lecture, I will talk about RNA secondary structure prediction.
 
-**Exercises:**  
+##### Exercises:  
 - The web exercise: [Read mapping](chapters/web/long_reads.qmd)
 - The programming project described inthe lecture note reading for this week.
 
@@ -263,18 +272,19 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 
 
-### Week 14 (49) {.unnumbered}
+### Week 14 {.unnumbered}
 
-**Reading:**  
+##### Reading:  
 
-- TBA
+- None this week.
 
-**Lectures:**  
+##### Lectures:  
 
-- First lecture, TBA + Guest lecture
+<!-- TODO: Add toic for lecture in week 14 -->
+- In the first lecture, I will talk about python and algorithms. You will also hear a guest talk by about bioinformatics outside the class room.
 - In the last lecture, we will evaluate the course and review the exam's practicalities.
 
-**Exercises:**  
+##### Exercises:  
 - The web exercise: [Neural networks](chapters/web/neural_networks.qmd)
 - The programming project described inthe lecture note reading for this week.
 
