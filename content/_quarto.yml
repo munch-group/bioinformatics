@@ -52,6 +52,27 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
+    # - part: "Bioinformatics"
+    #   chapters: 
+    #   - chapters/bioinformatics/assembly_and_mapping.qmd
+    #   - chapters/bioinformatics/bioinf_resources.qmd
+    #   - chapters/bioinformatics/clustering.qmd
+    #   - chapters/bioinformatics/database_searching.qmd
+    #   - chapters/bioinformatics/databases.qmd
+    #   - chapters/bioinformatics/gwas.qmd
+    #   - chapters/bioinformatics/hidden_markov_models.qmd
+    #   - chapters/bioinformatics/master_in_bioinformatics.qmd
+    #   - chapters/bioinformatics/models_of_dna_evolution.qmd
+    #   - chapters/bioinformatics/multiple_alignment.qmd
+    #   - chapters/bioinformatics/neural_networks.qmd
+    #   - chapters/bioinformatics/pairwise_alignment.qmd
+    #   - chapters/bioinformatics/phylogenetics.qmd
+    #   - chapters/bioinformatics/preface.qmd
+    #   - chapters/bioinformatics/procaryote_gene_fiding.qmd
+    #   - chapters/bioinformatics/protein_substitution_matrices.qmd
+    #   - chapters/bioinformatics/references.qmd
+    #   - chapters/bioinformatics/rna_structure.qmd
+    #   - chapters/bioinformatics/sequence_annnotation.qmd
     - part: "Web exercises"
       chapters: 
       # - chapters/bioinf/tester.ipynb
