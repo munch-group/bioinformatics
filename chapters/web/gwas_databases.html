@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -502,36 +468,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="exercise" class="level4" data-number="28.0.0.1">
-<h4 data-number="28.0.0.1" class="anchored" data-anchor-id="exercise"><strong>Exercise 28-1</strong></h4>
-<p>aslkfj aslkdfj alsdkfj</p>
-<div id="9b0b8ab3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ta_reveals <span class="kw">and</span> Markdown(<span class="ss">f"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">**Answer:**</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">alskd flaskdj falskdjf asdf</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>) <span class="kw">or</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
-<p><strong>Answer:</strong></p>
-<p>alskd flaskdj falskdjf asdf</p>
-</div>
-</div>
-</section>
-<section id="exercise-1" class="level4" data-number="28.0.0.2">
-<h4 data-number="28.0.0.2" class="anchored" data-anchor-id="exercise-1"><strong>Exercise 28-2</strong></h4>
-<p>aslkfj aslkdfj alsdkfj</p>
-<div id="c91970aa" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
-<p><strong>Answer:</strong></p>
-<p>alskd flaskdj falskdjf asdf</p>
-</div>
-</div>
 <p>The purpose of this exercise is to expose you to the different kinds of information that are stored in databases relevant to bioinformatics. It takes experience and skill to navigate the user interface of these databases. Here, you will see a few important ones, but there are many others. I have put a list at the end of this exercise with some additional relevant ones on Brightspace. Browse them at your heart’s content.</p>
 <p>Genome-wide association studies (GWAS) are a powerful tool in genetics and genomics research to identify genetic variants associated with diseases or traits. When a significant SNP is identified in a GWAS, it is a genomic signpost tagging an associated genomic region. Still, it only partially reveals the genes causing the disease if the genomic region identified contains several genes or genomic features. Investigating candidate disease genes near a GWAS SNP involves: Exploring the genomic region around the SNP. Studying nearby genes and regulatory elements. Evaluating their potential roles in the disease or trait of interest. A standard GWAS only includes a select subset of the SNPs in the genome. So, the most significant included SNP variant is rarely responsible for the disease. Still, it is so close to the causal one that individuals with the causal SNP variant carry it. The closer two SNPs are along the genome, the more likely they appear together like this. The further away from each other, the more likely it is that genetic recombination has removed this correlation.</p>
 <p>Type 1 diabetes, often referred to as juvenile diabetes or insulin-dependent diabetes, is a chronic autoimmune condition that affects how the body regulates blood sugar (glucose). Unlike type 2 diabetes, which is commonly associated with lifestyle factors such as obesity and physical inactivity, type 1 diabetes is not preventable and typically develops early in life, often during childhood or adolescence. In type 1 diabetes, the immune system, usually responsible for defending the body against harmful invaders like bacteria and viruses, becomes misguided. It mistakenly identifies the insulin-producing beta cells within the pancreas as foreign threats. This misrecognition triggers an autoimmune response, leading immune cells to launch an attack on these vital beta cells. The pancreas, an organ located behind the stomach, is a key player in regulating blood sugar levels. It consists of clusters of cells called the Islets of Langerhans, which house the insulin-producing beta cells. When the immune system attacks these beta cells, it results in their destruction or severe impairment. This process is thought to involve various immune cells, such as T-cells and antibodies, which play pivotal roles in autoimmune reactions. Due to this autoimmune attack, the pancreas gradually loses its ability to produce insulin, a hormone with crucial responsibilities in maintaining proper blood sugar balance. Insulin acts as a molecular key that unlocks the doors of cells throughout the body, allowing glucose to enter and be used as an energy source. Think of insulin as a bridge that facilitates the movement of glucose from the bloodstream into cells. Research into type 1 diabetes is ongoing, and scientists are exploring potential cures and better management strategies. However, until a cure is found, individuals with type 1 diabetes continue to lead fulfilling lives by effectively managing their condition through insulin therapy, a balanced diet, regular exercise, and closely monitoring their blood sugar levels.</p>
-</section>
 <section id="browsing-snps-from-a-gwas" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="browsing-snps-from-a-gwas">Browsing SNPs from a GWAS</h2>
 <p>Start by examining a Manhattan plot or list of significant SNPs obtained from a GWAS study. We are going to select one of these SNPs and do further analysis. While doing the analysis, note the SNP identifier (rsID) and its significance level (p-value). Go to <a href="http://locuszoom.org">locuszoom.org</a> and press the blue button shown on <a href="#fig-locuszoom" class="quarto-xref">Figure&nbsp;<span>28.1</span></a>:</p>
@@ -561,28 +500,29 @@ Figure&nbsp;28.2: Screenshot of the UCSC genome browser
 </figure>
 </div>
 <p>Now, you see the SNP in a window. You can play around with the zoom function until you start seeing a couple of other SNP IDs. Now we want to look at surrounding genes, so scroll down to the “Genes and Gene predictions” Section. All the options you see here are called “tracks”, and they all contain different information about the genome. If you want to look at the annotated gene, select the “GENCODE V44” select “pack” and press refresh on the right side of the section. Play around with the different settings (pack, dense, squish, all). They all give you a different amount of information. Select the one that you are most comfortable with when exploring. You might have to change it for some types of questions. “Pack” is a good place to start.</p>
+<section id="exercise" class="level4" data-number="28.0.0.1">
+<h4 data-number="28.0.0.1" class="anchored" data-anchor-id="exercise"><strong>Exercise 28-1</strong></h4>
+<p>Play around with the zoom function. To the left of where you inserted the SNP ID is the size of the window you are looking at. The more you zoom out, the more genes you will be able to see.</p>
+<p>aslkfj aslkdfj alsdkfj</p>
+</section>
+<section id="exercise-1" class="level4" data-number="28.0.0.2">
+<h4 data-number="28.0.0.2" class="anchored" data-anchor-id="exercise-1"><strong>Exercise 28-2</strong></h4>
+<p>Identify nearby genes, including their names, locations, and orientations. Remember that linkage means that the causal gene may not be the one closest to the GWAS SNP. Are there any genes located close to the SNP of interest? If yes. Note them down for further analysis.</p>
+</section>
 <section id="exercise-2" class="level4" data-number="28.0.0.3">
 <h4 data-number="28.0.0.3" class="anchored" data-anchor-id="exercise-2"><strong>Exercise 28-3</strong></h4>
-<p>Play around with the zoom function. To the left of where you inserted the SNP ID is the size of the window you are looking at. The more you zoom out, the more genes you will be able to see.</p>
+<p>What is the genomic context (e.g., intronic, intergenic) of the SNP?</p>
 </section>
 <section id="exercise-3" class="level4" data-number="28.0.0.4">
 <h4 data-number="28.0.0.4" class="anchored" data-anchor-id="exercise-3"><strong>Exercise 28-4</strong></h4>
-<p>Identify nearby genes, including their names, locations, and orientations. Remember that linkage means that the causal gene may not be the one closest to the GWAS SNP. Are there any genes located close to the SNP of interest? If yes. Note them down for further analysis.</p>
+<p>You see the same gene multiple times in the gene track. Why do you think that is?</p>
 </section>
 <section id="exercise-4" class="level4" data-number="28.0.0.5">
 <h4 data-number="28.0.0.5" class="anchored" data-anchor-id="exercise-4"><strong>Exercise 28-5</strong></h4>
-<p>What is the genomic context (e.g., intronic, intergenic) of the SNP?</p>
+<p>Try to select other tracks such as promoters (EPDnew Promoters) and regulatory elements (ENCODE Regulation). See if there are known regulatory elements, such as enhancers or promoters, in the vicinity of the SNP.</p>
 </section>
 <section id="exercise-5" class="level4" data-number="28.0.0.6">
 <h4 data-number="28.0.0.6" class="anchored" data-anchor-id="exercise-5"><strong>Exercise 28-6</strong></h4>
-<p>You see the same gene multiple times in the gene track. Why do you think that is?</p>
-</section>
-<section id="exercise-6" class="level4" data-number="28.0.0.7">
-<h4 data-number="28.0.0.7" class="anchored" data-anchor-id="exercise-6"><strong>Exercise 28-7</strong></h4>
-<p>Try to select other tracks such as promoters (EPDnew Promoters) and regulatory elements (ENCODE Regulation). See if there are known regulatory elements, such as enhancers or promoters, in the vicinity of the SNP.</p>
-</section>
-<section id="exercise-7" class="level4" data-number="28.0.0.8">
-<h4 data-number="28.0.0.8" class="anchored" data-anchor-id="exercise-7"><strong>Exercise 28-8</strong></h4>
 <p>Are there any annotated regulatory elements near the SNP that might influence gene expression? Try to press the regulatory track. What kind of information does this track represent? (Hint: Read the description of the track).</p>
 </section>
 </section>
@@ -595,28 +535,28 @@ Figure&nbsp;28.2: Screenshot of the UCSC genome browser
 <li><a href="https://www.genecards.org">Genecards</a></li>
 </ul>
 <p>It’s important to understand what kind of information these sites provide and their intentions. So, let us do some light exploration.</p>
+<section id="exercise-6" class="level4" data-number="28.0.0.7">
+<h4 data-number="28.0.0.7" class="anchored" data-anchor-id="exercise-6"><strong>Exercise 28-7</strong></h4>
+<p>Google “NCBI”. What is it, and who administers it? Do the same with ENSEMBL. What’s its function, and who administers it?</p>
+</section>
+<section id="exercise-7" class="level4" data-number="28.0.0.8">
+<h4 data-number="28.0.0.8" class="anchored" data-anchor-id="exercise-7"><strong>Exercise 28-8</strong></h4>
+<p>On the NCBI Gene website, the drop-down menu shows “gene”, but other databases on NCBI exist. Get yourself an overview. Do you recognize other databases? Some you don’t know?</p>
+</section>
 <section id="exercise-8" class="level4" data-number="28.0.0.9">
 <h4 data-number="28.0.0.9" class="anchored" data-anchor-id="exercise-8"><strong>Exercise 28-9</strong></h4>
-<p>Google “NCBI”. What is it, and who administers it? Do the same with ENSEMBL. What’s its function, and who administers it?</p>
+<p>When a gene is found in the “About this gene” section at ENSEMBL, try to press “phenotypes” if there are any. Do you see diabetes for any of the genes?</p>
 </section>
 <section id="exercise-9" class="level4" data-number="28.0.0.10">
 <h4 data-number="28.0.0.10" class="anchored" data-anchor-id="exercise-9"><strong>Exercise 28-10</strong></h4>
-<p>On the NCBI Gene website, the drop-down menu shows “gene”, but other databases on NCBI exist. Get yourself an overview. Do you recognize other databases? Some you don’t know?</p>
+<p>The Genecards resource is different from the two other databases. Can you list two major differences?</p>
 </section>
 <section id="exercise-10" class="level4" data-number="28.0.0.11">
 <h4 data-number="28.0.0.11" class="anchored" data-anchor-id="exercise-10"><strong>Exercise 28-11</strong></h4>
-<p>When a gene is found in the “About this gene” section at ENSEMBL, try to press “phenotypes” if there are any. Do you see diabetes for any of the genes?</p>
+<p>By now, you should have a feeling for the databases and their goals. NCBI and ENSEMBL store the same sequence information, so it is mostly about which site presents data in the most useful way for the task at hand. Which one is your favorite one and why? Which of the genes are related to Type 1 Diabetes? If you can’t find a related gene, go back to “Accessing the UCSC Genome Browser and make initial exploration” and look at your tracks again. You may have missed it.</p>
 </section>
 <section id="exercise-11" class="level4" data-number="28.0.0.12">
 <h4 data-number="28.0.0.12" class="anchored" data-anchor-id="exercise-11"><strong>Exercise 28-12</strong></h4>
-<p>The Genecards resource is different from the two other databases. Can you list two major differences?</p>
-</section>
-<section id="exercise-12" class="level4" data-number="28.0.0.13">
-<h4 data-number="28.0.0.13" class="anchored" data-anchor-id="exercise-12"><strong>Exercise 28-13</strong></h4>
-<p>By now, you should have a feeling for the databases and their goals. NCBI and ENSEMBL store the same sequence information, so it is mostly about which site presents data in the most useful way for the task at hand. Which one is your favorite one and why? Which of the genes are related to Type 1 Diabetes? If you can’t find a related gene, go back to “Accessing the UCSC Genome Browser and make initial exploration” and look at your tracks again. You may have missed it.</p>
-</section>
-<section id="exercise-13" class="level4" data-number="28.0.0.14">
-<h4 data-number="28.0.0.14" class="anchored" data-anchor-id="exercise-13"><strong>Exercise 28-14</strong></h4>
 <p>With the gene you now have chosen, answer the following questions by using the 3 above databases.</p>
 <ol type="1">
 <li>How long is the entire of the gene (in bp or kb)?</li>
@@ -630,44 +570,44 @@ Figure&nbsp;28.2: Screenshot of the UCSC genome browser
 <section id="exploring-tissue-expression" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="exploring-tissue-expression">Exploring tissue expression</h2>
 <p>In this step, we are interested in investigating our gene’s expression. Or multiple genes if we have yet to choose a specific gene. Expression analysis will help us understand the genes better. Go to the GTEx Portal (https://www.gtexportal.org/home/) and search for the gene/genes associated with your SNP to see their expression profiles across tissues. Explore tissue-specific gene expression data for the identified genes. In which tissues is the gene(s) expressed, and is there any tissue where its expression is notably higher? You may know “EBV-transformed lymphocytes” as “lymphocytes” cells. They are important to the immune system.</p>
-<section id="exercise-14" class="level4" data-number="28.0.0.15">
-<h4 data-number="28.0.0.15" class="anchored" data-anchor-id="exercise-14"><strong>Exercise 28-15</strong></h4>
+<section id="exercise-12" class="level4" data-number="28.0.0.13">
+<h4 data-number="28.0.0.13" class="anchored" data-anchor-id="exercise-12"><strong>Exercise 28-13</strong></h4>
 <p>In which tissues is the gene(s) typically expressed, and are there variations in expression levels across different tissues?</p>
 </section>
-<section id="exercise-15" class="level4" data-number="28.0.0.16">
-<h4 data-number="28.0.0.16" class="anchored" data-anchor-id="exercise-15"><strong>Exercise 28-16</strong></h4>
+<section id="exercise-13" class="level4" data-number="28.0.0.14">
+<h4 data-number="28.0.0.14" class="anchored" data-anchor-id="exercise-13"><strong>Exercise 28-14</strong></h4>
 <p>Do the expression profiles make sense with the information you got from the other databases? Do you expect to see certain tissues with a high expression? Other with a low? Is it relevant to the disease we are investigating?</p>
 </section>
-<section id="exercise-16" class="level4" data-number="28.0.0.17">
-<h4 data-number="28.0.0.17" class="anchored" data-anchor-id="exercise-16"><strong>Exercise 28-17</strong></h4>
+<section id="exercise-14" class="level4" data-number="28.0.0.15">
+<h4 data-number="28.0.0.15" class="anchored" data-anchor-id="exercise-14"><strong>Exercise 28-15</strong></h4>
 <p>What can you infer about the potential functional relevance of the gene(s) in the context of the disease or trait?</p>
 </section>
 </section>
 <section id="hypotheses-and-discussion" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="hypotheses-and-discussion">Hypotheses and Discussion</h2>
 <p>Based on the information gathered from UCSC, various gene databases, and GTEx, propose hypotheses about the potential role of the identified gene(s) in the disease or trait associated with the SNP. Think about the importance of tissue-specific gene expression in understanding disease mechanisms. Are there any other genes or regulatory elements near the SNP that could also be relevant to the disease or trait?</p>
+<section id="exercise-15" class="level4" data-number="28.0.0.16">
+<h4 data-number="28.0.0.16" class="anchored" data-anchor-id="exercise-15"><strong>Exercise 28-16</strong></h4>
+<p>Based on the genomic and expression data, what are your hypotheses regarding the role of the identified gene(s) in the disease or trait?</p>
+</section>
+<section id="exercise-16" class="level4" data-number="28.0.0.17">
+<h4 data-number="28.0.0.17" class="anchored" data-anchor-id="exercise-16"><strong>Exercise 28-17</strong></h4>
+<p>How might tissue-specific gene expression patterns provide insights into the disease mechanism?</p>
+</section>
 <section id="exercise-17" class="level4" data-number="28.0.0.18">
 <h4 data-number="28.0.0.18" class="anchored" data-anchor-id="exercise-17"><strong>Exercise 28-18</strong></h4>
-<p>Based on the genomic and expression data, what are your hypotheses regarding the role of the identified gene(s) in the disease or trait?</p>
+<p>Are there potential challenges or limitations in establishing causality between the gene(s) and the disease?</p>
 </section>
 <section id="exercise-18" class="level4" data-number="28.0.0.19">
 <h4 data-number="28.0.0.19" class="anchored" data-anchor-id="exercise-18"><strong>Exercise 28-19</strong></h4>
-<p>How might tissue-specific gene expression patterns provide insights into the disease mechanism?</p>
+<p>Summarize your findings and discuss the significance of investigating candidate disease genes near a GWAS SNP. Reflect on the challenges and limitations of this approach in pinpointing causal genes for complex diseases.</p>
 </section>
 <section id="exercise-19" class="level4" data-number="28.0.0.20">
 <h4 data-number="28.0.0.20" class="anchored" data-anchor-id="exercise-19"><strong>Exercise 28-20</strong></h4>
-<p>Are there potential challenges or limitations in establishing causality between the gene(s) and the disease?</p>
+<p>What did you learn from this exercise about the importance of exploring the genomic context and tissue-specific gene expression in GWAS follow-up?</p>
 </section>
 <section id="exercise-20" class="level4" data-number="28.0.0.21">
 <h4 data-number="28.0.0.21" class="anchored" data-anchor-id="exercise-20"><strong>Exercise 28-21</strong></h4>
-<p>Summarize your findings and discuss the significance of investigating candidate disease genes near a GWAS SNP. Reflect on the challenges and limitations of this approach in pinpointing causal genes for complex diseases.</p>
-</section>
-<section id="exercise-21" class="level4" data-number="28.0.0.22">
-<h4 data-number="28.0.0.22" class="anchored" data-anchor-id="exercise-21"><strong>Exercise 28-22</strong></h4>
-<p>What did you learn from this exercise about the importance of exploring the genomic context and tissue-specific gene expression in GWAS follow-up?</p>
-</section>
-<section id="exercise-22" class="level4" data-number="28.0.0.23">
-<h4 data-number="28.0.0.23" class="anchored" data-anchor-id="exercise-22"><strong>Exercise 28-23</strong></h4>
 <p>How might these findings inform future research or therapeutic approaches for the disease or trait?</p>
 
 
