@@ -1,4 +1,4 @@
-# Databases and resources 
+# Databases and resources {.unnumbered}
 
 1. [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
 2. [UniProt](https://www.uniprot.org/)

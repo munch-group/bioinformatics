@@ -1,54 +1,54 @@
-# Lecture recordings
+# Lecture recordings {.unnumbered}
 
-## Week 1
+## Week 1 {.unnumbered}
 
-### Monday
+### Monday {.unnumbered}
 
 Unfortunately, the Monday recording failed :/
 
-### Wednesday
+### Wednesday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/6Kl6b3r2uJ4 >}}
 
-## Week 2
+## Week 2 {.unnumbered}
 
-### Monday
+### Monday {.unnumbered}
 
 The sound quality is terrible on this one, sorry.
 
 {{< video https://www.youtube.com/embed/s3vKQY8rntw >}}
 
-### Wednesday
+### Wednesday {.unnumbered}
 
 The sound quality is terrible on this one, sorry.
 
 {{< video https://www.youtube.com/embed/IkQZI5XuNVU >}}
 
-## Week 3
+## Week 3 {.unnumbered}
 
-### Monday
+### Monday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/injj7E0_ddI >}}
  
-### Wednesday
+### Wednesday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/CHcq4_-isTM >}}
 
-## Week 4
+## Week 4 {.unnumbered}
 
-### Monday
+### Monday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/e86mF44Sgyo >}}
 
-### Wednesday
+### Wednesday {.unnumbered}
 
 The sound is missing from most of this one. The mic battery ran out...
 
 {{< video https://www.youtube.com/embed/DthrBNwxmiM >}}
 
-## Week 5
+## Week 5 {.unnumbered}
 
-## Monday
+## Monday {.unnumbered}
 
 No recording.
 
@@ -56,115 +56,115 @@ No recording.
 {{< video https://www.youtube.com/embed/ >}}
  -->
 
-### Wednesday
+### Wednesday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/Oym9VWLi1ks >}}
 
-## Week 6
+## Week 6 {.unnumbered}
 
-### Monday
+### Monday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/k8EVqg2UXD8 >}}
 
-
-### Wednesday
 <!-- 
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 7
 
-### Monday
-<!-- 
+## Week 7 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 8
 
-### Monday
-<!-- 
+## Week 8 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 9
 
-### Monday
-<!-- 
+## Week 9 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 10
 
-### Monday
-<!-- 
+## Week 10 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 11
 
-### Monday
-<!-- 
+## Week 11 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 12
 
-### Monday
-<!-- 
+## Week 12 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 13
 
-### Monday
-<!-- 
+## Week 13 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-## Week 14
 
-### Monday
-<!-- 
+## Week 14 {.unnumbered}
+
+### Monday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
-### Wednesday
-<!-- 
+
+### Wednesday {.unnumbered}
+
 {{< video https://www.youtube.com/embed/ >}}
- -->
 
+ -->

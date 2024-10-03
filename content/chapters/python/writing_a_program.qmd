@@ -8,12 +8,6 @@ Dive in and make your first program. Begin by creating a new file in your editor
 
 Now write *exactly* this in the file (`hello.py`):
 
-```{python}
-#| echo: false
-x = 1
-```
-
-
 ```python
 print("Hello world")
 ```

@@ -11,7 +11,7 @@ ta_reveals = True
 aslkfj aslkdfj alsdkfj 
 
 ```{python}
-#| echo: false
+#| echo: true
 
 ta_reveals and Markdown(f"""
 

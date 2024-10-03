@@ -1,17 +1,18 @@
 ---
-title-block-banner: images/banner3.png
+# title-block-banner: images/banner3.png
+title-block-banner: "#003257"
+title-block-banner-color: "#FFFFFF"
 ---
 
-<!-- Higher banner and AU font on front page -->
 
 <style>
-#title-block-header {
+
+/* #title-block-header {
   margin-block-end: 1rem;
   position: relative;
   margin-top: -1px;
   height: 100px;
   background-color: "#36B24A";
-
 }
 
 .quarto-title-banner {
@@ -21,16 +22,18 @@ title-block-banner: images/banner3.png
   margin-top: -10px;
   height: 100%;
   background-color: "#36B24A";
-}
+} */
+</style>
 
-/* 
+
+<!-- 
+<style> 
 * {
   font-family: Passata;
 } 
- */
 </style>
-
-# About {.unnumbered}
+ -->
+# Welcome {.unnumbered}
 
 [brightspace_2024]: (https://brightspace.au.dk/d2l/home/145685)
 

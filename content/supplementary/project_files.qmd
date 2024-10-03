@@ -95,13 +95,25 @@ None
 
 ### Long reads
 
-{{< downloadthis ../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
+<!-- {{< downloadthis ../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
 
 {{< downloadthis ../web_files/long_reads/contig_1.bam.bai dname="contig_1.bam" label="contig_1.bam.bai" type="light" >}}
 
 {{< downloadthis ../web_files/long_reads/contig_1.fa dname="contig_1" label="contig_1.fa" type="light" >}}
 
-{{< downloadthis ../web_files/long_reads/contig_1.fa.fai dname="contig_1.fa" label="contig_1.fa.fai" type="light" >}}
+{{< downloadthis ../web_files/long_reads/contig_1.fa.fai dname="contig_1.fa" label="contig_1.fa.fai" type="light" >}} -->
+
+
+[contig_1.bam](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvY29udGlnXzEuYmFt/contig_1.bam?ou=145685)
+
+
+[contig_1.bam.bai](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvY29udGlnXzEuYmFtLmJhaQ/contig_1.bam.bai?ou=145685)
+
+[contig_1.fa](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvY29udGlnXzEuZmE/contig_1.fa?ou=145685)
+
+[contig_1.fa.fai](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvY29udGlnXzEuZmEuZmFp/contig_1.fa.fai?ou=145685)
+
+
 
 
 ### Neural networks

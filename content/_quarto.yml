@@ -2,28 +2,22 @@ project:
   type: book
 
 book:
-  # title: "Bioinformatics and Programming"
-  title: "<br>"
+  title: "Bioinformatics and Programming 2024"
+  # title: "<br>"
+  subtitle: "AU course: Bioinformatik og programmering"
   # description: 'A course in bioinformatics and programming'
   # author: "Kasper Munch"
   sidebar:
     title: "Content"
     collapse-level: 1
     background: "white"      
-  # navbar:
-  #   background: "white" 
-  #   collapse-below: "xxl"
-  #   search: false     
   chapters:
     - index.qmd
-    # - preface.qmd
-    - part: "Course info"
+    - curriculum.qmd
+    - part: "Schedule"
       chapters:
       - overview.qmd
       - weekplan.qmd
-      - curriculum.qmd
-      - assignments.qmd
-      - exam.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/before_you_begin.qmd
@@ -55,7 +49,7 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
-    - part: "Bioinformatics"
+    - part: "Web exercises"
       chapters: 
       # - chapters/bioinf/tester.ipynb
       # - chapters/bioinf/tester2.ipynb
@@ -71,7 +65,10 @@ book:
       chapters: 
       - supplementary/project_files.qmd
       - supplementary/recordings2024.qmd
+      - supplementary/slides2024.qmd
       - supplementary/bioinformatics_resources.qmd
+    - assignments.qmd
+    - exam.qmd
   downloads: [pdf]
 
 bibliography: references.bib
@@ -110,7 +107,7 @@ format:
       - "exercises"
     include-in-header:
       - file: header_extra.tex
-  epub:
-    cover-image: cover.png
-    highlight-style: kate 
-    # epub-fonts: DejaVuSans-*.ttf
+  # epub:
+  #   cover-image: cover.png
+  #   highlight-style: kate 
+  #   # epub-fonts: DejaVuSans-*.ttf
