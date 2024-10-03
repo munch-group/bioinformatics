@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "Bioinformatics and Programming 2024"
+  title: "Bioinformatics and Programming"
   # title: "<br>"
-  subtitle: "AU course: Bioinformatik og programmering"
+  subtitle: "AU course: Bioinformatik og programmering - 2024"
   # description: 'A course in bioinformatics and programming'
   # author: "Kasper Munch"
   sidebar:
