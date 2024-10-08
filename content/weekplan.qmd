@@ -234,7 +234,7 @@ Chapter @sec-hivproject is a mandatory assignment. The deadline for handing it i
 - Chapter @sec-seqdistproject
 - Biological Sequence Analysis pp. 46-66 <!-- HMMs -->
 
-### Lectures:
+##### Lectures:
 
 - In the first lecture, I will talk about hidden Markov models (HMMs).
 - In the first lecture, I will also talk about python topics and the weekly programming project.
@@ -256,7 +256,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 - [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
 - [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032) <!-- genome assembly -->
 
-### Lectures
+##### Lectures
 
 - In the first lecture, I will talk about applications of hidden Markov models gene finding and protein annotation.
 - In the first lecture, I will also talk about Python topics and the weekly programming project.
@@ -279,7 +279,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 - Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
 - Exploring Bioinformatics pp. 242-248  <!-- RNA structure -->
 
-### Lectures:
+##### Lectures:
 
 - In the first lecture, I will talk about neural networks
 - In the first lecture, I will also talk about the programming project.
