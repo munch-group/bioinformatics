@@ -1,5 +1,5 @@
 
-# Code in other files
+# Code in other files {#sec-modules}
 
 *This chapter is about  ...*
 

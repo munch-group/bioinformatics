@@ -1,4 +1,4 @@
-# Sequence trees
+# Sequence trees {#sec-seqdistproject}
 
 *This chapter is about clustering sequence based on the evolutionary distance between them.*
 

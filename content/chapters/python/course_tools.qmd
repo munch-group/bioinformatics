@@ -1,5 +1,5 @@
 
-# Course tools
+# Course tools {#sec-coursetools}
 
 ## Wax on, wax off {.unnumbered}
 

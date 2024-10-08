@@ -1,7 +1,7 @@
 
 <!-- TODO: Add chapter "On the shoulders of giants" -->
 
-# Giant's shoulders
+# Giant's shoulders  {#sec-libraries}
 
 
 On the shoulders of giants

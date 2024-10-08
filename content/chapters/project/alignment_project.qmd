@@ -1,4 +1,4 @@
-# Pairwise alignment
+# Pairwise alignment {#sec-alignmentproject}
 
 *This chapter is about global pairwise alignment and you will implement your own Needleman-Wunch algorithm.*
 

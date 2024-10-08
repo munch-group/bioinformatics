@@ -1,4 +1,4 @@
-# Values are objects
+# Values are objects {#sec-objects}
 
 *This chapter introduces the notion of an object, one of the most central aspects of Python. Once you get catch your breath, you will love that all Python values are objects.*
 

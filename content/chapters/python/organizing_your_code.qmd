@@ -1,4 +1,4 @@
-# Organizing code
+# Organizing code {#sec-functions}
 
 *This chapter is about how you can organize your code into chunks that you can call upon to perform a well defined tasks in your program.*
 
