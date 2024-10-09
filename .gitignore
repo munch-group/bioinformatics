@@ -167,3 +167,5 @@ content/_book/search.json
 content/_book/site_libs/
 
 /.luarc.json
+
+TA/class_participants.yaml

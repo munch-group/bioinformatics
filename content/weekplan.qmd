@@ -5,13 +5,13 @@
 
 ##### Reading:  
 
-  - Chapter @sec-preface
-  - Chapter @sec-before_you_begin
-  - Chapter @sec-bsf
-  - Chapter @sec-helloworld
-  - Chapter @sec-values
-  - Chapter @sec-precedence
-  - Chapter @sec-coursetools
+  - Lecture notes: chapter @sec-preface
+  - Lecture notes: chapter @sec-before_you_begin
+  - Lecture notes: chapter @sec-bsf
+  - Lecture notes: chapter @sec-helloworld
+  - Lecture notes: chapter @sec-values
+  - Lecture notes: chapter @sec-precedence
+  - Lecture notes: chapter @sec-coursetools
 
 Make sure you have installed Python and VScode for the first lecture.
 
@@ -32,8 +32,8 @@ And make sure to familiarize yourself with the Myiagi game and the print-steps t
 
 ##### Reading: 
 
-  - Chapter @sec-controlflow
-  - Chapter @sec-functions
+  - Lecture notes: chapter @sec-controlflow
+  - Lecture notes: chapter @sec-functions
   
 I will cover chapters 8-9 in the lecture notes.
 
@@ -52,10 +52,10 @@ The topics for this week's exercises are statements, variables, operators, expre
 
 ##### Reading:
 
-- Chapter @sec-objects
-- Chapter @sec-lists
-- Chapter @sec-dictionaries
-- Chapter @sec-tuples
+- Lecture notes: chapter @sec-objects
+- Lecture notes: chapter @sec-lists
+- Lecture notes: chapter @sec-dictionaries
+- Lecture notes: chapter @sec-tuples
 
 ##### Lectures:  
 
@@ -72,8 +72,8 @@ The topics for this week's exercises are if, else, logic, and functions. You are
 
 ##### Reading:
 
-- Chapter @sec-iteration
-- Chapter @sec-files
+- Lecture notes: chapter @sec-iteration
+- Lecture notes: chapter @sec-files
 
 ##### Lectures:  
 
@@ -93,9 +93,9 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 
 ##### Reading:
 
-- Chapter @sec-datastructures
-- Chapter @sec-recursion
-- Chapter @sec-testing_your_code
+- Lecture notes: chapter @sec-datastructures
+- Lecture notes: chapter @sec-recursion
+- Lecture notes: chapter @sec-testing_your_code
 - [Chapter 11: Genomewide Association Studies](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822)
 - [Benefits and limitations of genomewide association studies](https://www.nature.com/articles/s41576-019-0127-1)
 
@@ -118,7 +118,7 @@ The topics for this week are iteration and data structures. You are meant to com
 
 ##### Reading:
 
-- Chapter @sec-translationproject
+- Lecture notes: chapter @sec-translationproject
 - Understanding Bioinformatics 127-141
 
 ##### Lectures:  
@@ -142,7 +142,7 @@ Chapter @sec-translationproject is a mandatory assignment. The deadline for hand
 
 ##### Reading:  
 
-- Chapter @sec-foldingproject
+- Lecture notes: chapter @sec-foldingproject
 - Understanding Bioinformatics: 117-127
 - Alignment methods: strategies, challenges, benchmarking, and comparative overview (don't do the exercises).
 
@@ -163,7 +163,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Reading:  
 
-- Chapter @sec-alignmentproject
+- Lecture notes: chapter @sec-alignmentproject
 - Bioinformatics Explained: BLAST
 - Biological Sequence Analysis pp. 192-197
 
@@ -185,7 +185,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Reading:  
 
-- Chapter @sec-codonbiasproject
+- Lecture notes: chapter @sec-codonbiasproject
 - Biological Sequence Analysis pp. 165-179  <!-- UPGMA / NJ -->
 
 ##### Lectures:  
@@ -206,7 +206,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Reading:  
 
-- Chapter @sec-hivproject
+- Lecture notes: chapter @sec-hivproject
 - Biological Sequence Analysis pp. 192-202 <!-- phylogeny / felsenstein -->
 
 ##### Lectures:  
@@ -231,7 +231,7 @@ Chapter @sec-hivproject is a mandatory assignment. The deadline for handing it i
 
 ##### Reading:  
 
-- Chapter @sec-seqdistproject
+- Lecture notes: chapter @sec-seqdistproject
 - Biological Sequence Analysis pp. 46-66 <!-- HMMs -->
 
 ##### Lectures:
@@ -251,7 +251,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Reading:  
 
-- Chapter @sec-orfproject
+- Lecture notes: chapter @sec-orfproject
 - Understanding Bioinformatics pp. 438-448 <!--protein prediction -->
 - [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
 - [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032) <!-- genome assembly -->
@@ -275,7 +275,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Reading:  
 
-- Chapter @sec-assemblyproject
+- Lecture notes: chapter @sec-assemblyproject
 - Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
 - Exploring Bioinformatics pp. 242-248  <!-- RNA structure -->
 

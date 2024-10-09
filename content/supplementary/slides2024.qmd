@@ -21,7 +21,7 @@
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlBfd2VlazZfV2VkbmVzZGF5LnBkZg/BP_week6_Wednesday.pdf?ou=145685)
 - Week 7
     - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs3X01vbmRheS5wZGY/BP2024_week7_Monday.pdf?ou=145685)
-<!--     - [Wednesday]() -->
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs3X1dlZG5lc2RheS5wZGY/BP2024_week7_Wednesday.pdf?ou=145685)
 <!-- - Week 8
     - [Monday]()
     - [Wednesday]() -->
