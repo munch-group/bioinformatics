@@ -47,19 +47,19 @@ jobs:
           path: content
           # to: html
 
+      - name: Render Quarto Project - draft profile
+        uses: quarto-dev/quarto-actions/render@v2
+        env:
+          QUARTO_PROFILE: draft
+        with:
+          path: content
+          # to: html
+
       - name: Render Quarto Project - ta profile
         uses: quarto-dev/quarto-actions/render@v2
         env:
           QUARTO_PROFILE: ta
           # ENCRYPT_PASSPHRASE: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          path: content
-          # to: html
-
-      - name: Render Quarto Project - draft profile
-        uses: quarto-dev/quarto-actions/render@v2
-        env:
-          QUARTO_PROFILE: draft
         with:
           path: content
           # to: html
