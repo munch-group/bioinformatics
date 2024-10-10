@@ -59,6 +59,9 @@ book:
       - chapters/project/seqdist_project.qmd
       - chapters/project/orf_project.qmd
       - chapters/project/assembly_project.qmd
+    - part: "Project solutions"
+      chapters: 
+      - project_solutions/alignmentproject_solution.py
     # - part: "Bioinformatics"
     #   chapters: 
     #   - chapters/bioinformatics/assembly_and_mapping.qmd
