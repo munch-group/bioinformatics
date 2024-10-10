@@ -42,6 +42,22 @@ jobs:
           # uncomment below and fill to pin a version
           # version: SPECIFIC-QUARTO-VERSION-HERE
 
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        env:
+          QUARTO_PROFILE: default
+        with:
+          path: content
+          # to: html
+
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        env:
+          QUARTO_PROFILE: ta
+        with:
+          path: content
+          to: html
+
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
@@ -50,13 +66,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
 
-      - name: Publish to GitHub Pages - TA version
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-          path: content --profile ta # hack that adds the profile option
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
   
 
     permissions:

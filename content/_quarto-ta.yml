@@ -6,6 +6,7 @@ project:
 
 comments:
   hypothesis: true
+# TA Hypothes.is group link: https://hypothes.is/groups/BKNMYapJ/tas-bp2024  
 
 book:
   title: "Bioinformatics and Programming"
@@ -125,19 +126,3 @@ format:
     number-sections: true      
     code-block-bg: "#f9f9f9"
     # code-tools: true    
-  pdf:
-    documentclass: scrbook
-    papersize: a4
-    highlight-style: kate 
-    fig-width: 7
-    fig-height: 5
-    toc-depth: 2
-    secPrefix:
-      - "exercise"
-      - "exercises"
-    include-in-header:
-      - file: header_extra.tex
-  # epub:
-  #   cover-image: cover.png
-  #   highlight-style: kate 
-  #   # epub-fonts: DejaVuSans-*.ttf
