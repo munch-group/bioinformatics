@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>25&nbsp; Finding genes – Bioinformatics and Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/project/assembly_project.html" rel="next">
+<link href="../../chapters/project/seqdist_project.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html">Python projects</a></li><li class="breadcrumb-item"><a href="../../chapters/project/orf_project.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Finding genes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Content</a> 
+        <div class="sidebar-tools-main">
+    <a href="../../Bioinformatics-and-Programming.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Curriculum</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekplan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Learning Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/before_you_begin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Before you begin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/appendix_conda_and_pymol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/writing_a_program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing a program</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dealing_with_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dealing with values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/the_order_of_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The order of events</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/course_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Course tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/controlling_behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Controlling behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/organizing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Organizing code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/python_values_are_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Values are objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lists of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Pairs of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/gluing_values_in_sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grouping values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/iteration_over_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iterating values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/working_with_data_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Structuring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/unleash_your_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Recursion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/testing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Testing your code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/translation_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/folding_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Primer analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/alignment_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/codonbias_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Codon usage</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/hiv_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/seqdist_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/orf_project.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Finding genes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/assembly_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Genome assembly</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/long_reads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Read mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supplementary</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/project_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/recordings2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture recordings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/slides2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/bioinformatics_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam info</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#finding-open-reading-frames" id="toc-finding-open-reading-frames" class="nav-link active" data-scroll-target="#finding-open-reading-frames">Finding Open Reading Frames</a>
+  <ul class="collapse">
+  <li><a href="#find-the-start-positions-of-orfs-in-a-dna-sequence" id="toc-find-the-start-positions-of-orfs-in-a-dna-sequence" class="nav-link" data-scroll-target="#find-the-start-positions-of-orfs-in-a-dna-sequence">Find the start positions of ORFs in a DNA sequence</a></li>
+  <li><a href="#finding-the-next-occurrence-of-some-codon-in-an-orf" id="toc-finding-the-next-occurrence-of-some-codon-in-an-orf" class="nav-link" data-scroll-target="#finding-the-next-occurrence-of-some-codon-in-an-orf">Finding the next occurrence of some codon in an ORF</a></li>
+  <li><a href="#finding-the-first-stop-codon-in-an-orf" id="toc-finding-the-first-stop-codon-in-an-orf" class="nav-link" data-scroll-target="#finding-the-first-stop-codon-in-an-orf">Finding the first stop codon in an ORF</a></li>
+  <li><a href="#finding-orfs" id="toc-finding-orfs" class="nav-link" data-scroll-target="#finding-orfs">Finding ORFs</a></li>
+  </ul></li>
+  <li><a href="#translation-of-open-reading-frames" id="toc-translation-of-open-reading-frames" class="nav-link" data-scroll-target="#translation-of-open-reading-frames">Translation of open reading frames</a></li>
+  <li><a href="#put-everything-together" id="toc-put-everything-together" class="nav-link" data-scroll-target="#put-everything-together">Put everything together</a>
+  <ul class="collapse">
+  <li><a href="#read-in-genomic-sequences" id="toc-read-in-genomic-sequences" class="nav-link" data-scroll-target="#read-in-genomic-sequences">Read in genomic sequences</a></li>
+  <li><a href="#on-your-own" id="toc-on-your-own" class="nav-link" data-scroll-target="#on-your-own">On your own</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html">Python projects</a></li><li class="breadcrumb-item"><a href="../../chapters/project/orf_project.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Finding genes</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-orfproject" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Finding genes</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>This chapter is a programming project where you will find open reading frames in the genome of a particularly virulent strain of <em>E. coli</em>.</em></p>
+<p>In this project, you will analyze DNA to identify the open reading frames (ORFs) and the proteins they encode.</p>
+<p>Download the files you need for this project:</p>
+<p><a href="#dnldts13312" onclick="fetch('data:application/x-python;base64,DQpjb2Rvbl9tYXAgPSB7J1RUVCc6ICdGJywgJ1RUQyc6ICdGJywgJ1RUQSc6ICdMJywgJ1RURyc6ICdMJywgJ1RDVCc6ICdTJywNCiAgICAgICAgICAgICAnVENDJzogJ1MnLCAnVENBJzogJ1MnLCAnVENHJzogJ1MnLCAnVEFUJzogJ1knLCAnVEFDJzogJ1knLA0KICAgICAgICAgICAgICdUQUEnOiAnKicsICdUQUcnOiAnKicsICdUR1QnOiAnQycsICdUR0MnOiAnQycsICdUR0EnOiAnKicsDQogICAgICAgICAgICAgJ1RHRyc6ICdXJywgJ0NUVCc6ICdMJywgJ0NUQyc6ICdMJywgJ0NUQSc6ICdMJywgJ0NURyc6ICdMJywNCiAgICAgICAgICAgICAnQ0NUJzogJ1AnLCAnQ0NDJzogJ1AnLCAnQ0NBJzogJ1AnLCAnQ0NHJzogJ1AnLCAnQ0FUJzogJ0gnLA0KICAgICAgICAgICAgICdDQUMnOiAnSCcsICdDQUEnOiAnUScsICdDQUcnOiAnUScsICdDR1QnOiAnUicsICdDR0MnOiAnUicsDQogICAgICAgICAgICAgJ0NHQSc6ICdSJywgJ0NHRyc6ICdSJywgJ0FUVCc6ICdJJywgJ0FUQyc6ICdJJywgJ0FUQSc6ICdJJywNCiAgICAgICAgICAgICAnQVRHJzogJ00nLCAnQUNUJzogJ1QnLCAnQUNDJzogJ1QnLCAnQUNBJzogJ1QnLCAnQUNHJzogJ1QnLA0KICAgICAgICAgICAgICdBQVQnOiAnTicsICdBQUMnOiAnTicsICdBQUEnOiAnSycsICdBQUcnOiAnSycsICdBR1QnOiAnUycsDQogICAgICAgICAgICAgJ0FHQyc6ICdTJywgJ0FHQSc6ICdSJywgJ0FHRyc6ICdSJywgJ0dUVCc6ICdWJywgJ0dUQyc6ICdWJywNCiAgICAgICAgICAgICAnR1RBJzogJ1YnLCAnR1RHJzogJ1YnLCAnR0NUJzogJ0EnLCAnR0NDJzogJ0EnLCAnR0NBJzogJ0EnLA0KICAgICAgICAgICAgICdHQ0cnOiAnQScsICdHQVQnOiAnRCcsICdHQUMnOiAnRCcsICdHQUEnOiAnRScsICdHQUcnOiAnRScsDQogICAgICAgICAgICAgJ0dHVCc6ICdHJywgJ0dHQyc6ICdHJywgJ0dHQSc6ICdHJywgJ0dHRyc6ICdHJ30NCg0Kc3RhcnRfY29kb24gPSAnQVRHJw0KDQpzdG9wX2NvZG9ucyA9IFsnVEFHJywgJ1RHQScsICdUQUEnXQ0KDQoNCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMNCiMgV3JpdGUgeW91ciBmdW5jdGlvbnMgZGVmaW5pdGlvbnMgYmVsb3cuDQojIERvIG5vdCB3cml0ZSBhbnkgb3RoZXIgY29kZSBoZXJlLg0KIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KDQojIG9ubHkgeW91ciBmdW5jdGlvbiBkZWZpbml0aW9ucy4uLg0KDQoNCg0KDQoNCg0KDQoNCg0KIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KIyBDb2RlIGZvciBjYWxsaW5nIGFuZCB0ZXN0aW5nIHlvdXIgZnVuY3Rpb25zIHNob3VsZCBiZSBiZWxvdyANCiMgaGVyZS4gSWYgeW91IHNlcGFyYXRlIGZ1bmN0aW9uIGRlZmluaXRpb25zIGZyb20gdGhlIHJlc3Qgb2YNCiMgeW91ciBzY3JpcHQgaW4gdGhpcyB3YXksIHlvdSBhcmUgbGVzcyBsaWtlbHkgdG8gbWFrZSBtaXN0YWtlcy4NCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMNCg0KIyBhbnkgb3RoZXIgY29kZSAuLi4NCg0KDQoNCg0KDQoNCg0K').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'orfproject.py'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-light downloadthis  " id="dnldts13312"><i class="bi bi-download"></i> orfproject.py </button></a> <a href="#dnldts37421" onclick="fetch('data:application/x-python;base64,aW1wb3J0IGluc3BlY3QKaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IG9zLnBhdGgKaW1wb3J0IHVuaXR0ZXN0CmZyb20gdW5pdHRlc3QgaW1wb3J0IFRlc3RSZXN1bHQsIFRleHRUZXN0UnVubmVyLCBUZXN0TG9hZGVyCmZyb20gY29udGV4dGxpYiBpbXBvcnQgcmVkaXJlY3Rfc3Rkb3V0CmZyb20gaW8gaW1wb3J0IFN0cmluZ0lPCmltcG9ydCB0cmFjZWJhY2sKaW1wb3J0IHJlCgpHUkFERV9NT0RFID0gb3MuZ2V0ZW52KCdHUkFERV9NT0RFJykKClBST0pFQ1RfTkFNRSA9IG9zLnBhdGguc3BsaXRleHQob3MucGF0aC5iYXNlbmFtZShfX2ZpbGVfXykpWzBdLnJlcGxhY2UoJ3Rlc3RfJywgJycpCgpjbGFzcyBOdWxsRGV2aWNlOgoKICAgIGRlZiB3cml0ZShzZWxmLCBzKToKICAgICAgICBwYXNzCgojIFJlZGlyZWN0IGFsbCBzdGRvdXQgZnJvbSB0aGUgaW1wb3J0ZWQgbW9kdWxlIHRvIGEgbnVsbCBkZXZpY2UgdG8gbm90IGNvbmZ1c2UKIyB0aGUgc3R1ZGVudCB0b28gbXVjaC4uLgp0cnk6CiAgICB3aXRoIHJlZGlyZWN0X3N0ZG91dChOdWxsRGV2aWNlKCkpOgogICAgICAgICMgaW1wb3J0IHByb2dleGFtIGFzIHByb2plY3QKICAgICAgIHByb2plY3QgPSBfX2ltcG9ydF9fKFBST0pFQ1RfTkFNRSkKZXhjZXB0OgogICAgcHJpbnQoIllPVVIgQ09ERSBDQU5OT1QgQkUgUlVOOlxuXG5IZXJlIGlzIHRoZSBlcnJvcjpcbiIpCiAgICB0cmFjZWJhY2sucHJpbnRfZXhjKGZpbGU9c3lzLnN0ZG91dCkKICAgIHByaW50KCJcbkZJWCBUSEFUIEZJUlNUIEJFRk9SRSBZT1UgVVNFIFRIRSBURVNUIFNDUklQVCIpCiAgICBzeXMuZXhpdCg5OSkKCgphc3NlcnRpb25fbXNnID0gIiIiVGhlIGNhbGw6CgogICAge2Z1bmN9KHthcmdzfSkKCnJldHVybmVkOgoKICAgIHthY3R1YWx9CgpIb3dldmVyLCBpdCBzaG91bGQgcmV0dXJuOgoKICAgIHtleHBlY3RlZH0KIiIiCgoKZGVmIHN1aXRlRmFjdG9yeSgqdGVzdGNhc2VzKToKCiAgICBsbiAgICA9IGxhbWJkYSBmOiBnZXRhdHRyKHRjLCBmKS5fX2NvZGVfXy5jb19maXJzdGxpbmVubwogICAgbG5jbXAgPSBsYW1iZGEgYSwgYjogbG4oYSkgLSBsbihiKQoKICAgIHRlc3Rfc3VpdGUgPSB1bml0dGVzdC5UZXN0U3VpdGUoKQogICAgdGVzdF9sb2FkZXIgPSBUZXN0TG9hZGVyKCkKICAgIHRlc3RfbG9hZGVyLnNvcnRUZXN0TWV0aG9kc1VzaW5nID0gbG5jbXAKICAgIGZvciB0YyBpbiB0ZXN0Y2FzZXM6CiAgICAgICAgdGVzdF9zdWl0ZS5hZGRUZXN0KHRlc3RfbG9hZGVyLmxvYWRUZXN0c0Zyb21UZXN0Q2FzZSh0YykpCgogICAgcmV0dXJuIHRlc3Rfc3VpdGUKCgpkZWYgY2FzZUZhY3RvcnkoKToKICAgIGZyb20gaW5zcGVjdCBpbXBvcnQgZmluZHNvdXJjZQogICAgCiAgICBnID0gZ2xvYmFscygpLmNvcHkoKQogICAgY2FzZXMgPSBbZ1tvYmpdIGZvciBvYmogaW4gZyBpZiBvYmouc3RhcnRzd2l0aCgiVGVzdCIpIGFuZCBpc3N1YmNsYXNzKGdbb2JqXSwgdW5pdHRlc3QuVGVzdENhc2UpXQogICAgb3JkZXJlZF9jYXNlcyA9IHNvcnRlZChjYXNlcywga2V5PWxhbWJkYSBmOiBmaW5kc291cmNlKGYpWzFdKQogICAgcmV0dXJuIG9yZGVyZWRfY2FzZXMKCgpkZWYgZnVuY3Rpb25fbm90X2RlZmluZWQobW9kdWxlLCBmdW5jX25hbWUpOgogICAgcmV0dXJuIG5vdCAoaGFzYXR0cihtb2R1bGUsIGZ1bmNfbmFtZSkgYW5kIGNhbGxhYmxlKGdldGF0dHIobW9kdWxlLCBmdW5jX25hbWUpKSkKCgpkZWYgaW5kZW50KHRleHQsIGluZGVudD00KToKICAgIHJldHVybiAnXG4nLmpvaW4oWyhpbmRlbnQgKiAnICcpICsgbGluZSBmb3IgbGluZSBpbiB0ZXh0LnNwbGl0bGluZXMoKV0pCgoKZGVmIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yik6CiAgICBpZiB0YiBpcyBOb25lOgogICAgICAgIHJldHVybiB0YgogICAgaWYgdGIudGJfZnJhbWUuZl9jb2RlLmNvX2ZpbGVuYW1lLnN0YXJ0c3dpdGgoJ3Rlc3RfJyk6CiAgICAgICAgcmV0dXJuIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yi50Yl9uZXh0KQogICAgaWYgJ3VuaXR0ZXN0JyBpbiB0Yi50Yl9mcmFtZS5mX2NvZGUuY29fZmlsZW5hbWU6CiAgICAgICAgcmV0dXJuIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yi50Yl9uZXh0KQoKICAgIHJldHVybiB0YgoKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgpmcm9tIGNvcHkgaW1wb3J0IGRlZXBjb3B5CgpjbGFzcyBOb25TdGFuZGFyZEVsZW1lbnRFcnJvcihFeGNlcHRpb24pOgoKICAgIGRlZiBfX2luaXRfX18oc2VsZiwgZEVyckFyZ3VtZW50cyk6CiAgICAgICAgZGVmIF9faW5pdF9fKHNlbGYsKmFyZ3MsKiprd2FyZ3MpOgogICAgICAgICAgICBFeGNlcHRpb24uX19pbml0X18oc2VsZiwqYXJncywqKmt3YXJncykKICAKCmRlZiByb3VuZF9kYXRhc3RydWN0X3JlY3Vyc2l2ZWx5KGQpOgogICAgaWYgaXNpbnN0YW5jZShkLCBkaWN0KToKICAgICAgICBmb3IgaywgdiBpbiBkLml0ZW1zKCk6CiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UodiwgbGlzdCkgb3IgaXNpbnN0YW5jZSh2LCBkaWN0KToKICAgICAgICAgICAgICAgIHJvdW5kX2RhdGFzdHJ1Y3RfcmVjdXJzaXZlbHkodikKICAgICAgICAgICAgZWxpZiBpc2luc3RhbmNlKHYsIGZsb2F0KToKICAgICAgICAgICAgICAgIGRba10gPSByb3VuZChkW2tdLCA1KQogICAgZWxpZiBpc2luc3RhbmNlKGQsIGxpc3QpOgogICAgICAgIGZvciBpLCB2IGluIGVudW1lcmF0ZShkKToKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZSh2LCBsaXN0KSBvciBpc2luc3RhbmNlKHYsIGRpY3QpOgogICAgICAgICAgICAgICAgcm91bmRfZGF0YXN0cnVjdF9yZWN1cnNpdmVseSh2KQogICAgICAgICAgICBlbGlmIGlzaW5zdGFuY2UodiwgZmxvYXQpOgogICAgICAgICAgICAgICAgZFtpXSA9IHJvdW5kKGRbaV0sIDUpCiAgICBlbGlmIG5vdCAoaXNpbnN0YW5jZShkLCBmbG9hdCkgb3IgaXNpbnN0YW5jZShkLCBpbnQpIG9yIGlzaW5zdGFuY2UoZCwgc3RyKSk6CiAgICAgICAgcmFpc2UgTm9uU3RhbmRhcmRFbGVtZW50RXJyb3IoZCkKCmRlZiBjb21wYXJlX2RhdGFzdHJ1Y3RfbmljZShleHAsIGFjdCk6CiAgICAiIiIKICAgIENvbXBhcmVzIGRhdGEgc3RydWN0dXJlcyBpbiBhIHdheSB0aGF0IHJvdW5kcyBmbG9hdCB2YWx1ZXMgaW4gdGhlbQogICAgIiIiCiAgICBleHBfcm91bmRlZCA9IGRlZXBjb3B5KGV4cCkKICAgIGFjdF9yb3VuZGVkID0gZGVlcGNvcHkoYWN0KQogICAgdHJ5OgogICAgICAgIHJvdW5kX2RhdGFzdHJ1Y3RfcmVjdXJzaXZlbHkoZXhwX3JvdW5kZWQpCiAgICAgICAgcm91bmRfZGF0YXN0cnVjdF9yZWN1cnNpdmVseShhY3Rfcm91bmRlZCkKICAgIGV4Y2VwdCBOb25TdGFuZGFyZEVsZW1lbnRFcnJvciBhcyBlcnI6CiAgICAgICAgcmV0dXJuIEZhbHNlCiAgICByZXR1cm4gZXhwX3JvdW5kZWQgPT0gYWN0X3JvdW5kZWQKCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKY2xhc3MgQW52UHJvZ1Rlc3RSZXN1bHQoVGVzdFJlc3VsdCk6CiAgICBzZXBhcmF0b3IgPSAnPScgKiA3MAoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBzdHJlYW0sIGRlc2NyaXB0aW9ucywgdmVyYm9zaXR5KToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKHN0cmVhbSwgZGVzY3JpcHRpb25zLCB2ZXJib3NpdHkpCiAgICAgICAgc2VsZi5zdHJlYW0gPSBzdHJlYW0KICAgICAgICBzZWxmLnNob3dBbGwgPSBGYWxzZQogICAgICAgIHNlbGYuZG90cyA9IFRydWUKICAgICAgICBzZWxmLmRlc2NyaXB0aW9ucyA9IGRlc2NyaXB0aW9ucwoKICAgICAgICBzZWxmLnNraXBwZWRfZnVuY3Rpb25zID0gbGlzdCgpCgogICAgICAgIGlmIEdSQURFX01PREU6CiAgICAgICAgICAgIHJlcG9ydF9maWxlID0gb3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmJhc2VuYW1lKF9fZmlsZV9fKSlbMF0gKyAnLmNzdicKICAgICAgICAgICAgc2VsZi5maWxlID0gb3BlbihyZXBvcnRfZmlsZSwgJ3cnKQoKICAgICAgICAjIG1hdGNoID0gcmUuc2VhcmNoKHInYXNzaWdubWVudF8oYXVcZCspX2F0dGVtcHQnLCBvcy5wYXRoLmJhc2VuYW1lKG9zLmdldGN3ZCgpKSkKICAgICAgICAjIGlmIG1hdGNoOgogICAgICAgICMgICAgIHNlbGYuc3R1ZGVudF9pZCA9IG1hdGNoLmdyb3VwKDEpCiAgICAgICAgIyBlbHNlOgogICAgICAgICMgICAgIHNlbGYuc3R1ZGVudF9pZCA9ICdOQScKCiAgICAgICAgYmxhY2tib2FyZF9tYXRjaCA9IHJlLnNlYXJjaChyJ2Fzc2lnbm1lbnRfKGF1XGQrKV9hdHRlbXB0Jywgb3MucGF0aC5iYXNlbmFtZShvcy5nZXRjd2QoKSkpCiAgICAgICAgZGlnaXRhbGV4YW1fbWF0Y2ggPSByZS5zZWFyY2gocicoW15fXSspX1xkK19cZCtfLisnICsgUFJPSkVDVF9OQU1FLCBvcy5wYXRoLmJhc2VuYW1lKG9zLmdldGN3ZCgpKSkKCiAgICAgICAgaWYgYmxhY2tib2FyZF9tYXRjaDoKICAgICAgICAgICAgc2VsZi5zdHVkZW50X2lkID0gYmxhY2tib2FyZF9tYXRjaC5ncm91cCgxKQogICAgICAgIGVsaWYgZGlnaXRhbGV4YW1fbWF0Y2g6CiAgICAgICAgICAgIHNlbGYuc3R1ZGVudF9pZCA9IGRpZ2l0YWxleGFtX21hdGNoLmdyb3VwKDEpICAgICAgICAgICAgCiAgICAgICAgZWxzZToKICAgICAgICAgICAgc2VsZi5zdHVkZW50X2lkID0gJ05BJwoKICAgIGRlZiBhZGRTdWNjZXNzKHNlbGYsIHRlc3QpOgogICAgICAgIHN1cGVyKCkuYWRkU3VjY2Vzcyh0ZXN0KQoKICAgICAgICBpZiBHUkFERV9NT0RFOgogICAgICAgICAgICBzZWxmLmZpbGUud3JpdGUoJ3t9LHt9LHt9LHt9XG4nLmZvcm1hdChzZWxmLnN0dWRlbnRfaWQsIHRlc3QuX19jbGFzc19fLl9fbmFtZV9fLCB0ZXN0Ll90ZXN0TWV0aG9kTmFtZSwgJ29rJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgZGVmIGFkZEVycm9yKHNlbGYsIHRlc3QsIGVycik6CiAgICAgICAgc3VwZXIoKS5hZGRFcnJvcih0ZXN0LCBlcnIpCiAgICAgICAgZXJyY2xzLCBlcnJvYmosIHRiID0gZXJyCiAgICAgICAgbmV3X3RiID0gc2tpcF9pbml0aWFsX25vbmxvY2FsKHRiKQoKICAgICAgICBpZiBHUkFERV9NT0RFOgogICAgICAgICAgICBzZWxmLmZpbGUud3JpdGUoJ3t9LHt9LHt9LHt9XG4nLmZvcm1hdChzZWxmLnN0dWRlbnRfaWQsIHRlc3QuX19jbGFzc19fLl9fbmFtZV9fLCB0ZXN0Ll90ZXN0TWV0aG9kTmFtZSwgJ2Vycm9yJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnRVJST1IgRFVSSU5HIFRFU1QgQ0FTRToge30nLmZvcm1hdCh0ZXN0Ll90ZXN0TWV0aG9kTmFtZSkpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgJ1lPVVIgQ09ERSBGQUlMRUQgV0hJTEUgUlVOTklORyBBIFRFU1QgKHt9KScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdJdCBtZWFucyB0aGF0IHlvdXIgZnVuY3Rpb24gY291bGQgbm90IGJlIHJ1biB0aGUgd2F5IHNwZWNpZmllZCBpbiB0aGUgYXNzaWdubWVudC4nKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJ01FU1NBR0U6JykKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCgne30nLmZvcm1hdChlcnJvYmopKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdERVRBSUxFRDonKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgnQmVsb3cgaXMgYSBkZXRhaWxlZCBkZXNjcmlwdGlvbiBvZiB3aGVyZSB0aGUgZXJyb3Igb2NjdXJyZWQnKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCgKICAgICAgICAgICAgJ2FuZCB3aGF0IGNvZGUgd2FzIHJ1biBiZWZvcmUgdGhlIGVycm9yIG9jY3VycmVkLiBJdCBpcyBvZnRlbicpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oaW5kZW50KAogICAgICAgICAgICAnbW9zdCB1c2VmdWwgdG8gcmVhZCB0aGlzIGRlc2NyaXB0aW9uIGZyb20gdGhlIGJvdHRvbSBhbmQgdXAuJykpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICBpbmRlbnQoJ1xuJy5qb2luKHRyYWNlYmFjay5mb3JtYXRfdGIobmV3X3RiKSkpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgiLi4uU2tpcHBlZCBmcmFtZXMgbm90IHJlbGV2YW50IHRvIHlvdXIgY29kZS4uLiIpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgnJy5qb2luKHRyYWNlYmFjay5mb3JtYXRfZXhjZXB0aW9uKGVycmNscywgZXJyb2JqLCBuZXdfdGIpKSkpCgogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oc2VsZi5zZXBhcmF0b3IpCiAgICAgICAgc2VsZi5zdHJlYW0uZmx1c2goKQoKICAgIGRlZiBhZGRGYWlsdXJlKHNlbGYsIHRlc3QsIGVycik6CiAgICAgICAgc3VwZXIoKS5hZGRGYWlsdXJlKHRlc3QsIGVycikKICAgICAgICBfLCBlcnJvYmosIHRiID0gZXJyCgogICAgICAgIGlmIEdSQURFX01PREU6CiAgICAgICAgICAgIHNlbGYuZmlsZS53cml0ZSgne30se30se30se31cbicuZm9ybWF0KHNlbGYuc3R1ZGVudF9pZCwgdGVzdC5fX2NsYXNzX18uX19uYW1lX18sIHRlc3QuX3Rlc3RNZXRob2ROYW1lLCAnZmFpbGVkJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICdGQUlMRUQgVEVTVCBDQVNFOiB7fScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdNRVNTQUdFOicpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoc3RyKGVycm9iaikpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQoKICAgICAgICBpZiBpc2luc3RhbmNlKGVycm9iaiwgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcik6CiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJ0VYUEVDVEVEOicpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oaW5kZW50KHJlcHIoZXJyb2JqLmV4cGVjdGVkKSkpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdBQ1RVQUw6JykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQocmVwcihlcnJvYmouYWN0dWFsKSkpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQoKICAgICAgICAjIGlmIGlzaW5zdGFuY2UoZXJyb2JqLCBBc3NlcnRpb25FcnJvcik6CiAgICAgICAgIyAgICAgbmV3X3RiID0gc2tpcF9pbml0aWFsX25vbmxvY2FsKHRiKQogICAgICAgICMgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgICAgICdFUlJPUiBEVVJJTkcgVEVTVCBDQVNFOiB7fScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdNRVNTQUdFOicpCiAgICAgICAgIyAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoJ1lvdXIgZnVuY3Rpb24gY29udGFpbnMgYW4gImFzc2VydCIgc3RhdGVtZW50IHRoYXQgcmFpc2VkIGFuIGVycm9yJykpCiAgICAgICAgIyAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoJ1JlbW92ZSB0aGUgYXNzZXJ0IHN0YXRlbWVudCB0byByZXNvbHZlIHRoaXMgZXJyb3InKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdERVRBSUxFRDonKQogICAgICAgICMgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgICAgIGluZGVudCgnQmVsb3cgaXMgYSBkZXRhaWxlZCBkZXNjcmlwdGlvbiBvZiB3aGVyZSB0aGUgZXJyb3Igb2NjdXJyZWQnKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCh0cmFjZWJhY2suZm9ybWF0X3RiKG5ld190YilbLTFdKSkKICAgICAgICAjICAgICAjIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgIyAgICAgaW5kZW50KCdcbicuam9pbih0cmFjZWJhY2suZm9ybWF0X3RiKG5ld190YikpKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihzZWxmLnNlcGFyYXRvcikKICAgICAgICBzZWxmLnN0cmVhbS5mbHVzaCgpCgogICAgZGVmIGFkZFNraXAoc2VsZiwgdGVzdCwgcmVhc29uKToKICAgICAgICBzdXBlcigpLmFkZFNraXAodGVzdCwgcmVhc29uKQoKICAgICAgICBpZiByZWFzb24gbm90IGluIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnM6CiAgICAgICAgICAgIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnMuYXBwZW5kKHJlYXNvbikKCiAgICAgICAgaWYgR1JBREVfTU9ERToKICAgICAgICAgICAgc2VsZi5maWxlLndyaXRlKCd7fSx7fSx7fSx7fVxuJy5mb3JtYXQoc2VsZi5zdHVkZW50X2lkLCB0ZXN0Ll9fY2xhc3NfXy5fX25hbWVfXywgdGVzdC5fdGVzdE1ldGhvZE5hbWUsICdza2lwcGVkJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnQVRURU5USU9OISBBIHRlc3Qgb2YgInt9IiB3YXMgc2tpcHBlZCBiZWNhdXNlIHRoaXMgZnVuY3Rpb24gd2FzIG5vdCBkZWZpbmVkLiAnLmZvcm1hdChyZWFzb24pKQogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnRnVuY3Rpb25zIG5vdCBjb3JyZWN0bHkgZGVmaW5lZCBhcmUgbWFya2VkIGFzIEZBSUxFRC4gUGxlYXNlIG1ha2Ugc3VyZSB0aGlzIGlzIHdoYXQgeW91IGludGVuZGVkIScpCiAgICAgICAgIyBzZWxmLnN0cmVhbS53cml0ZWxuKCcnKQogICAgICAgICMgc2VsZi5zdHJlYW0uZmx1c2goKQoKICAgIGRlZiBhZGRFeHBlY3RlZEZhaWx1cmUoc2VsZiwgdGVzdCwgZXJyKToKICAgICAgICByYWlzZSBOb3RJbXBsZW1lbnRlZEVycm9yKCkKCiAgICBkZWYgYWRkVW5leHBlY3RlZFN1Y2Nlc3Moc2VsZiwgdGVzdCk6CiAgICAgICAgcmFpc2UgTm90SW1wbGVtZW50ZWRFcnJvcigpCgogICAgZGVmIHN0b3BUZXN0UnVuKHNlbGYpOgogICAgICAgIHN1cGVyKCkuc3RvcFRlc3RSdW4oKQoKICAgICAgICBpZiBzZWxmLnNraXBwZWRfZnVuY3Rpb25zOgogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbignKicqNTcpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICAgICAnQVRURU5USU9OISBUaGUgZm9sbG93aW5nIGZ1bmN0aW9ucyBhcmUgbm90IGRlZmluZWQ6JykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbignJykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgICAgICdcbicuam9pbignXHR7fScuZm9ybWF0KHgpIGZvciB4IGluIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnMpKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgICAgICdUaGVzZSBmdW5jdGlvbnMgYXJlIGVpdGhlciBub3QgY29ycmVjdGx5IG5hbWVkIChzcGVsbGVkKScpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICAgICAnb3Igbm90IGRlZmluZWQgYXQgYWxsLiBUaGV5IHdpbGwgYmUgbWFya2VkIGFzIEZBSUxFRC4nKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKAogICAgICAgICAgICAgICAgJ0NoZWNrIHlvdXIgc3BlbGxpbmcgaWYgdGhpcyBpcyBub3Qgd2hhdCB5b3UgaW50ZW5kLicpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJyonKjU3KQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0uZmx1c2goKQoKCmNsYXNzIEFudlByb2dUZXN0UnVubmVyKFRleHRUZXN0UnVubmVyKToKCiAgICBkZWYgX19pbml0X18oc2VsZiwgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKCphcmdzLCByZXN1bHRjbGFzcz1BbnZQcm9nVGVzdFJlc3VsdCwgKiprd2FyZ3MpCgoKY2xhc3MgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcihBc3NlcnRpb25FcnJvcik6CiAgICAiIiIKICAgIEEgc2ltcGxlIGV4dGVuc2lvbiBvZiBBc3NlcnRpb25FcnJvciBhbGxvd2luZyB1cyB0byBzdG9yZSB0aGUgYWN0dWFsIGFuZAogICAgZXhwZWN0ZWQgdmFsdWVzIGZvciBsYXRlciB1c2UuCiAgICAiIiIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgYWN0dWFsLCBleHBlY3RlZCwgbXNnKToKICAgICAgICBzdXBlcihBc3NlcnRFcXVhbEFzc2VydGlvbkVycm9yLCBzZWxmKS5fX2luaXRfXyhtc2cpCiAgICAgICAgc2VsZi5hY3R1YWwgPSBhY3R1YWwKICAgICAgICBzZWxmLmV4cGVjdGVkID0gZXhwZWN0ZWQKCgpjbGFzcyBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcihBc3NlcnRpb25FcnJvcik6CgogICAgZGVmIF9faW5pdF9fKHNlbGYsIGFjdHVhbCwgZXhwZWN0ZWQsIGZ1bmMsIGFyZ3MsIGt3YXJncyk6CiAgICAgICAgc2VsZi5hY3R1YWwgPSBhY3R1YWwKICAgICAgICBzZWxmLmV4cGVjdGVkID0gZXhwZWN0ZWQKICAgICAgICBzZWxmLmZ1bmMgPSBmdW5jCiAgICAgICAgc2VsZi5hcmdzID0gYXJncwogICAgICAgIHNlbGYua3dhcmdzID0ga3dhcmdzCgogICAgZGVmIF9fc3RyX18oc2VsZik6CiAgICAgICAgYXJnc19zdHIgPSAnLCAnLmpvaW4obWFwKHJlcHIsIHNlbGYuYXJncykpCiAgICAgICAgaWYgc2VsZi5rd2FyZ3M6CiAgICAgICAgICAgIGt3YXJnc19zdHIgPSAnLCAnLmpvaW4oJ3t9PXshcn0nLmZvcm1hdChrLCB3KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvciBrLCB3IGluIHNlbGYua3dhcmdzLml0ZW1zKCkpCiAgICAgICAgICAgIGFyZ3Nfc3RyICs9ICcsICcgKyBrd2FyZ3Nfc3RyCiAgICAgICAgcmV0dXJuIGFzc2VydGlvbl9tc2cuZm9ybWF0KAogICAgICAgICAgICBmdW5jPXNlbGYuZnVuYy5fX25hbWVfXywKICAgICAgICAgICAgYXJncz1hcmdzX3N0ciwKICAgICAgICAgICAgYWN0dWFsPXJlcHIoc2VsZi5hY3R1YWwpLAogICAgICAgICAgICBleHBlY3RlZD1yZXByKHNlbGYuZXhwZWN0ZWQpKQoKCmNsYXNzIEFudlByb2dUZXN0Q2FzZSh1bml0dGVzdC5UZXN0Q2FzZSk6CgogICAgZGVmIGFzc2VydEZ1bmN0aW9uRGVmaW5lZChzZWxmLCBtb2R1bGUsIG5hbWUpOgogICAgICAgIHNlbGYuYXNzZXJ0VHJ1ZShoYXNhdHRyKG1vZHVsZSwgbmFtZSksCiAgICAgICAgICAgICAgICAgICAgICAgIG1zZz0iJ3t9JyBpcyBub3QgZGVmaW5lZCIuZm9ybWF0KG5hbWUpKQogICAgICAgIHNlbGYuYXNzZXJ0VHJ1ZShjYWxsYWJsZShnZXRhdHRyKG1vZHVsZSwgbmFtZSkpLAogICAgICAgICAgICAgICAgICAgICAgICBtc2c9Iid7fScgaXMgbm90IGEgZnVuY3Rpb24iLmZvcm1hdChuYW1lKSkKCiAgICBkZWYgYXNzZXJ0RnVuY3Rpb25Qb3NQYXJhbXMoc2VsZiwgZnVuYywgZXhwZWN0ZWQpOgogICAgICAgIHNpZ25hdHVyZSA9IHN0cihpbnNwZWN0LnNpZ25hdHVyZShmdW5jKSkKICAgICAgICBzZWxmLmFzc2VydFRydWUoZXhwZWN0ZWQgPT0gc2lnbmF0dXJlLAogICAgICAgICAgICAgICAgICAgICAgICBtc2c9Ildyb25nIG5hbWVzIG9mIGZ1bmN0aW9uIHBhcmFtZXRlcnNcblxuIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgIkNvcnJlY3QgZnVuY3Rpb24gZGVmaW5pdGlvbjpcblxuIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgInt9XG5cbiIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJHb3Q6XG5cbiIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJ7fSIuZm9ybWF0KGZ1bmMuX19uYW1lX18gKyBleHBlY3RlZCwgZnVuYy5fX25hbWVfXyArIHNpZ25hdHVyZSkpCgogICAgZGVmIGFzc2VydEVxdWFsTmljZShzZWxmLCBleHBlY3RlZCwgZnVuYywgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBhY3R1YWwgPSBmdW5jKCphcmdzLCAqKmt3YXJncykKCiAgICAgICAgaWYgaXNpbnN0YW5jZShleHBlY3RlZCwgZGljdCkgb3IgaXNpbnN0YW5jZShhY3R1YWwsIGRpY3QpIG9yIFwKICAgICAgICAgICAgaXNpbnN0YW5jZShleHBlY3RlZCwgbGlzdCkgb3IgaXNpbnN0YW5jZShhY3R1YWwsIGxpc3QpOgogICAgICAgICAgICBpZiBub3QgY29tcGFyZV9kYXRhc3RydWN0X25pY2UoZXhwZWN0ZWQsIGFjdHVhbCk6CiAgICAgICAgICAgICAgICByYWlzZSBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcigKICAgICAgICAgICAgICAgICAgICBhY3R1YWwsIGV4cGVjdGVkLCBmdW5jLCBhcmdzLCBrd2FyZ3MpCgogICAgICAgIGVsaWYgaXNpbnN0YW5jZShleHBlY3RlZCwgZmxvYXQpIG9yIGlzaW5zdGFuY2UoYWN0dWFsLCBmbG9hdCk6CiAgICAgICAgICAgIGlmIGFicyhleHBlY3RlZCAtIGFjdHVhbCkgPiAxZS00OgogICAgICAgICAgICAgICAgcmFpc2UgQXNzZXJ0RXF1YWxOaWNlQXNzZXJ0aW9uRXJyb3IoCiAgICAgICAgICAgICAgICAgICAgYWN0dWFsLCBleHBlY3RlZCwgZnVuYywgYXJncywga3dhcmdzKQogICAgICAgIGVsaWYgYWN0dWFsICE9IGV4cGVjdGVkOgogICAgICAgICAgICByYWlzZSBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcigKICAgICAgICAgICAgICAgIGFjdHVhbCwgZXhwZWN0ZWQsIGZ1bmMsIGFyZ3MsIGt3YXJncykKCiAgICBkZWYgYXNzZXJ0RXF1YWwoc2VsZiwgZmlyc3QsIHNlY29uZCwgbXNnPU5vbmUpOgogICAgICAgICMgU3VwcHJlc3MgZGlmZnMgZm9yIHN0cmluZ3MuCiAgICAgICAgaWYgbXNnIGlzIE5vbmUgYW5kIGlzaW5zdGFuY2UoZmlyc3QsIHN0cikgYW5kIGlzaW5zdGFuY2Uoc2Vjb25kLCBzdHIpOgogICAgICAgICAgICBtc2cgPSAnR290IFwne31cJyBidXQgZXhwZWN0ZWQgXCd7fVwnJy5mb3JtYXQoZmlyc3QsIHNlY29uZCkKCiAgICAgICAgdHJ5OgogICAgICAgICAgICBzdXBlcigpLmFzc2VydEVxdWFsKGZpcnN0LCBzZWNvbmQsIG1zZz1tc2cpCiAgICAgICAgZXhjZXB0IEFzc2VydGlvbkVycm9yIGFzIGVycjoKICAgICAgICAgICAgaWYgbXNnIGlzIE5vbmU6CiAgICAgICAgICAgICAgICBtc2cgPSBlcnIuYXJnc1swXQoKICAgICAgICAgICAgcmFpc2UgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcihmaXJzdCwgc2Vjb25kLCBtc2cpCgogICAgZGVmIGFzc2VydFRydWUoc2VsZiwgZXhwciwgbXNnPU5vbmUpOgogICAgICAgICMgT3ZlcnJpZGUgc3VwZXIoKS5hc3NlcnRUcnVlKCkgdG8gc3VwcHJlc3MgdGhlIGRlZmF1bHQgJ1ggaXMgbm90IHRydWUnCiAgICAgICAgIyBvdXRwdXQgd2hlbiBtc2cgaXMgbm90IE5vbmUuCiAgICAgICAgaWYgbXNnIGlzIE5vbmU6CiAgICAgICAgICAgIG1zZyA9ICd7fSBpcyBub3QgdHJ1ZScuZm9ybWF0KGV4cHIpCiAgICAgICAgaWYgbm90IGV4cHI6CiAgICAgICAgICAgIHJhaXNlIEFzc2VydGlvbkVycm9yKG1zZykKCiAgICBkZWYgYXNzZXJ0RmFsc2Uoc2VsZiwgZXhwciwgbXNnPU5vbmUpOgogICAgICAgICMgT3ZlcnJpZGUgc3VwZXIoKS5hc3NlcnRGYWxzZSgpIHRvIHN1cHByZXNzIHRoZSBkZWZhdWx0ICdYIGlzIG5vdAogICAgICAgICMgZmFsc2UnIG91dHB1dCB3aGVuIG1zZyBpcyBub3QgTm9uZS4KICAgICAgICBpZiBtc2cgaXMgTm9uZToKICAgICAgICAgICAgbXNnID0gJ3t9IGlzIG5vdCBmYWxzZScuZm9ybWF0KGV4cHIpCiAgICAgICAgaWYgZXhwcjoKICAgICAgICAgICAgcmFpc2UgQXNzZXJ0aW9uRXJyb3IobXNnKQoKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjCiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBURVNUUyBIRVJFICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMKIyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIwojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgpjb2Rvbl9tYXAgPSB7J1RUVCc6ICdGJywgJ1RUQyc6ICdGJywgJ1RUQSc6ICdMJywgJ1RURyc6ICdMJywgJ1RDVCc6ICdTJywKICAgICAgICAgICAgICdUQ0MnOiAnUycsICdUQ0EnOiAnUycsICdUQ0cnOiAnUycsICdUQVQnOiAnWScsICdUQUMnOiAnWScsCiAgICAgICAgICAgICAnVEFBJzogJyonLCAnVEFHJzogJyonLCAnVEdUJzogJ0MnLCAnVEdDJzogJ0MnLCAnVEdBJzogJyonLAogICAgICAgICAgICAgJ1RHRyc6ICdXJywgJ0NUVCc6ICdMJywgJ0NUQyc6ICdMJywgJ0NUQSc6ICdMJywgJ0NURyc6ICdMJywKICAgICAgICAgICAgICdDQ1QnOiAnUCcsICdDQ0MnOiAnUCcsICdDQ0EnOiAnUCcsICdDQ0cnOiAnUCcsICdDQVQnOiAnSCcsCiAgICAgICAgICAgICAnQ0FDJzogJ0gnLCAnQ0FBJzogJ1EnLCAnQ0FHJzogJ1EnLCAnQ0dUJzogJ1InLCAnQ0dDJzogJ1InLAogICAgICAgICAgICAgJ0NHQSc6ICdSJywgJ0NHRyc6ICdSJywgJ0FUVCc6ICdJJywgJ0FUQyc6ICdJJywgJ0FUQSc6ICdJJywKICAgICAgICAgICAgICdBVEcnOiAnTScsICdBQ1QnOiAnVCcsICdBQ0MnOiAnVCcsICdBQ0EnOiAnVCcsICdBQ0cnOiAnVCcsCiAgICAgICAgICAgICAnQUFUJzogJ04nLCAnQUFDJzogJ04nLCAnQUFBJzogJ0snLCAnQUFHJzogJ0snLCAnQUdUJzogJ1MnLAogICAgICAgICAgICAgJ0FHQyc6ICdTJywgJ0FHQSc6ICdSJywgJ0FHRyc6ICdSJywgJ0dUVCc6ICdWJywgJ0dUQyc6ICdWJywKICAgICAgICAgICAgICdHVEEnOiAnVicsICdHVEcnOiAnVicsICdHQ1QnOiAnQScsICdHQ0MnOiAnQScsICdHQ0EnOiAnQScsCiAgICAgICAgICAgICAnR0NHJzogJ0EnLCAnR0FUJzogJ0QnLCAnR0FDJzogJ0QnLCAnR0FBJzogJ0UnLCAnR0FHJzogJ0UnLAogICAgICAgICAgICAgJ0dHVCc6ICdHJywgJ0dHQyc6ICdHJywgJ0dHQSc6ICdHJywgJ0dHRyc6ICdHJ30KCnN0YXJ0X2NvZG9uID0gJ0FURycKCnN0b3BfY29kb25zID0gWydUQUcnLCAnVEdBJywgJ1RBQSddCgpAdW5pdHRlc3Quc2tpcElmKGZ1bmN0aW9uX25vdF9kZWZpbmVkKHByb2plY3QsICdmaW5kX3N0YXJ0X3Bvc2l0aW9ucycpLCAnZmluZF9zdGFydF9wb3NpdGlvbnMnKQpjbGFzcyBUZXN0RmluZFN0YXJ0UG9zaXRpb25zKEFudlByb2dUZXN0Q2FzZSk6CgogICAgZGVmIHRlc3RfZmluZF9zdGFydF9wb3NpdGlvbnNfMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydFRydWUoaXNpbnN0YW5jZSgKICAgICAgICAgICAgcHJvamVjdC5maW5kX3N0YXJ0X3Bvc2l0aW9ucygnQUFUR0EnKSwgbGlzdCkpCgogICAgZGVmIHRlc3RfZmluZF9zdGFydF9wb3NpdGlvbnNfMihzZWxmKToKICAgICAgICBzZWxmLmFzc2VydFRydWUoaXNpbnN0YW5jZShwcm9qZWN0LmZpbmRfc3RhcnRfcG9zaXRpb25zKCcnKSwgbGlzdCkpCgogICAgZGVmIHRlc3RfZmluZF9zdGFydF9wb3NpdGlvbnNfMyhzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgKICAgICAgICAgICAgWzEsIDUsIDldLCBwcm9qZWN0LmZpbmRfc3RhcnRfcG9zaXRpb25zLCAnQUFUR0FBVEdUQVRHJykKCiAgICBkZWYgdGVzdF9maW5kX3N0YXJ0X3Bvc2l0aW9uc180KHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKAogICAgICAgICAgICBbMCwgMywgNl0sIHByb2plY3QuZmluZF9zdGFydF9wb3NpdGlvbnMsICdBVEdBVEdBVEcnKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ2ZpbmRfbmV4dF9jb2RvbicpLCAnZmluZF9uZXh0X2NvZG9uJykKY2xhc3MgVGVzdEZpbmROZXh0Q29kb24oQW52UHJvZ1Rlc3RDYXNlKToKCiAgICBkZWYgdGVzdF9maW5kX25leHRfY29kb25fMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSg2LCBwcm9qZWN0LmZpbmRfbmV4dF9jb2RvbiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnQUFUVFRBVFRUJywgMCwgJ1RUVCcpCgogICAgZGVmIHRlc3RfZmluZF9uZXh0X2NvZG9uXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoMiwgcHJvamVjdC5maW5kX25leHRfY29kb24sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ0FBVFRUQVRUVCcsIDIsICdUVFQnKQoKICAgIGRlZiB0ZXN0X2ZpbmRfbmV4dF9jb2Rvbl8zKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKAogICAgICAgICAgICBOb25lLCBwcm9qZWN0LmZpbmRfbmV4dF9jb2RvbiwgJ0FBVFRUQVRUVCcsIDEsICdUVFQnKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ2ZpbmRfbmV4dF9zdG9wX2NvZG9uJyksICdmaW5kX25leHRfc3RvcF9jb2RvbicpCmNsYXNzIFRlc3RGaW5kTmV4dFN0b3BDb2RvbihBbnZQcm9nVGVzdENhc2UpOgoKICAgIGRlZiB0ZXN0X2ZpbmRfbmV4dF9zdG9wX2NvZG9uXzEoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoMywgcHJvamVjdC5maW5kX25leHRfc3RvcF9jb2RvbiwgJ0FBQVRHQUFURycsIDApCgogICAgZGVmIHRlc3RfZmluZF9uZXh0X3N0b3BfY29kb25fMihzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgwLCBwcm9qZWN0LmZpbmRfbmV4dF9zdG9wX2NvZG9uLCAnVEFHVEdBQVRHJywgMCkKCiAgICBkZWYgdGVzdF9maW5kX25leHRfc3RvcF9jb2Rvbl8zKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKDUsIHByb2plY3QuZmluZF9uZXh0X3N0b3BfY29kb24sICdBVEdBQVRBRycsIDIpCgogICAgZGVmIHRlc3RfZmluZF9uZXh0X3N0b3BfY29kb25fNChzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgKICAgICAgICAgICAgTm9uZSwgcHJvamVjdC5maW5kX25leHRfc3RvcF9jb2RvbiwgJ0FUR0FBQVRBRycsIDIpCgoKQHVuaXR0ZXN0LnNraXBJZihmdW5jdGlvbl9ub3RfZGVmaW5lZChwcm9qZWN0LCAnZmluZF9vcmZzJyksICdmaW5kX29yZnMnKQpjbGFzcyBUZXN0RmluZE9yZnMoQW52UHJvZ1Rlc3RDYXNlKToKCiAgICBkZWYgdGVzdF9maW5kX29yZnNfMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZShbWzAsIDZdLCBbMTEsIDE3XV0sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvamVjdC5maW5kX29yZnMsICdBVEdBQUFUQUdBQUFUR0FBQVRBR1RBQScpCgogICAgZGVmIHRlc3RfZmluZF9vcmZzXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoW1swLCAxNV0sIFs0LCAxMF1dLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByb2plY3QuZmluZF9vcmZzLCAnQVRHQUFUR0FBQVRBR0FBVEdBQUEnKQoKICAgIGRlZiB0ZXN0X2ZpbmRfb3Jmc18zKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKFtdLCBwcm9qZWN0LmZpbmRfb3JmcywgJ0FBQVRHQUFBQUFBQUFBQScpCgoKY2xhc3MgVGVzdENvZG9uTWFwKEFudlByb2dUZXN0Q2FzZSk6CgogICAgZGVmIHRlc3RfY29kb25fbWFwX2RlZmluZWRfMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydFRydWUoaGFzYXR0cihwcm9qZWN0LCAnY29kb25fbWFwJyksCiAgICAgICAgICAgICAgICAgICAgICAgJ1RoZSB2YXJpYWJsZSBgY29kb25fbWFwYCBoYXMgbm90IGJlZW4gZGVmaW5lZC4nKQoKICAgIGRlZiB0ZXN0X2NvZG9uX21hcF9kZWZpbmVkXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChwcm9qZWN0LmNvZG9uX21hcCwgY29kb25fbWFwLAogICAgICAgICAgICAgICAgICAgICAgICdJdCBzZWVtcyB5b3UgaGF2ZSBjaGFuZ2VkIHRvIGBjb2Rvbl9tYXBgIGluIHlvdXIgZmlsZS4nKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ3RyYW5zbGF0ZV9jb2RvbicpLCAndHJhbnNsYXRlX2NvZG9uJykKY2xhc3MgVGVzdFRyYW5zbGF0ZUNvZG9uKEFudlByb2dUZXN0Q2FzZSk6CgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzEoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ00nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ0FURycpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJyonLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ1RBQScpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzMoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJz8nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ05OTicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzQoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ1QnLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ0FDRycpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzUoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJz8nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ05OTicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzYoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJyonLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ1RBQScpCgoKQHVuaXR0ZXN0LnNraXBJZihmdW5jdGlvbl9ub3RfZGVmaW5lZChwcm9qZWN0LCAnc3BsaXRfY29kb25zJyksICdzcGxpdF9jb2RvbnMnKQpjbGFzcyBUZXN0U3BsaXRDb2RvbnMoQW52UHJvZ1Rlc3RDYXNlKToKCiAgICBkZWYgdGVzdF9zcGxpdF9jb2RvbnNfMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZShbJ0FBQScsICdUVFQnLCAnQ0NDJywgJ0dHRyddLCBwcm9qZWN0LnNwbGl0X2NvZG9ucywgJ0FBQVRUVENDQ0dHRycpCgogICAgZGVmIHRlc3Rfc3BsaXRfY29kb25zXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoWydOTk4nLCAnTk5OJywgJ05OTicsICdOTk4nXSwgcHJvamVjdC5zcGxpdF9jb2RvbnMsICdOTk5OTk5OTk5OTk4nKQoKICAgIGRlZiB0ZXN0X3NwbGl0X2NvZG9uc18zKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKFsnQVRHJ10sIHByb2plY3Quc3BsaXRfY29kb25zLCAnQVRHJykKCiAgICBkZWYgdGVzdF9zcGxpdF9jb2RvbnNfNChzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZShbXSwgcHJvamVjdC5zcGxpdF9jb2RvbnMsICcnKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ3RyYW5zbGF0ZV9vcmYnKSwgJ3RyYW5zbGF0ZV9vcmYnKQpjbGFzcyBUZXN0VHJhbnNsYXRlT3JmKEFudlByb2dUZXN0Q2FzZSk6CgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX29yZl8xKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKCdNUE0qJywgcHJvamVjdC50cmFuc2xhdGVfb3JmLCAnQVRHQ0NDQVRHVEdBJykKCiAgICBkZWYgdGVzdF90cmFuc2xhdGVfb3JmXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ00/TSonLCBwcm9qZWN0LnRyYW5zbGF0ZV9vcmYsICdBVEdBVE5BVEdUR0EnKQoKICAgIGRlZiB0ZXN0X3RyYW5zbGF0ZV9vcmZfMyhzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgnTSonLCBwcm9qZWN0LnRyYW5zbGF0ZV9vcmYsICdBVEdUR0EnKQoKICAgIGRlZiB0ZXN0X3RyYW5zbGF0ZV9vcmZfNChzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgnJywgcHJvamVjdC50cmFuc2xhdGVfb3JmLCAnJykKCgpAdW5pdHRlc3Quc2tpcElmKGZ1bmN0aW9uX25vdF9kZWZpbmVkKHByb2plY3QsICdyZWFkX2dlbm9tZScpLCAncmVhZF9nZW5vbWUnKQpjbGFzcyBUZXN0UmVhZEdlbm9tZShBbnZQcm9nVGVzdENhc2UpOgoKICAgIGRlZiB0ZXN0X3JlYWRfZ2Vub21lXzEoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRUcnVlKHByb2plY3QucmVhZF9nZW5vbWUoCiAgICAgICAgICAgICdlX2NvbGlfTzE1N19IMTU3X3N0cl9TYWthaS5mYXN0YScpLmVuZHN3aXRoKCdDR0NDVFRBR1RBQUdUQVRUVFRUQycpKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ2ZpbmRfY2FuZGlkYXRlX3Byb3RlaW5zJyksICdmaW5kX2NhbmRpZGF0ZV9wcm90ZWlucycpCmNsYXNzIFRlc3RGaW5kQ2FuZGlkYXRlUHJvdGVpbnMoQW52UHJvZ1Rlc3RDYXNlKToKCgogICAgZGVmIHRlc3RfZmluZF9jYW5kaWRhdGVfcHJvdGVpbnNfMShzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgKICAgICAgICAgICAgWydNTSonLCAnTSonLCAnTU0qJywgJ00qJ10sIHByb2plY3QuZmluZF9jYW5kaWRhdGVfcHJvdGVpbnMsICJBQUFBVEdBVEdUQUdBQUFBVEdBVEdUQUdBQUEiKQoKICAgIGRlZiB0ZXN0X2ZpbmRfY2FuZGlkYXRlX3Byb3RlaW5zXzIoc2VsZik6CiAgICAgICAgZ2Vub21lID0gcHJvamVjdC5yZWFkX2dlbm9tZSgnZV9jb2xpX08xNTdfSDE1N19zdHJfU2FrYWkuZmFzdGEnKQogICAgICAgIHByZWRpY3RlZF9maXJzdF8xayA9IFsnTVNMQ0dMS0tFU0xUQUFTRUxWVENSRSonLCAnTUtSSVNUVElUVFRJVFRUSVRJVElUVEdOR0FHKicsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdNUU5WRkNHTFBJRldLQU1QR1JHUldQUFNTTFBQUEtTUFRUV1dSKicsICdNUEdSR1JXUFBTU0xQUFBLU1BUVFdXUionLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnTUxZUElTQU1QTlZGTFBORionLCAnTVBOVkZMUE5GKicsICdNU0NNQUxWQyonLCAnTUFMVkMqJ10KICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZShwcmVkaWN0ZWRfZmlyc3RfMWssCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvamVjdC5maW5kX2NhbmRpZGF0ZV9wcm90ZWlucywgZ2Vub21lWzoxMDAwXSkKCgppZiBfX25hbWVfXyA9PSAnX19tYWluX18nOgogICAgIyBpZiBHUkFERV9NT0RFOgogICAgIyAgICB1bml0dGVzdC5tYWluKGZhaWxmYXN0PUZhbHNlLCB0ZXN0UnVubmVyPUFudlByb2dUZXN0UnVubmVyKQogICAgIyBlbHNlOgogICAgIyAgICB1bml0dGVzdC5tYWluKGZhaWxmYXN0PVRydWUsIHRlc3RSdW5uZXI9QW52UHJvZ1Rlc3RSdW5uZXIpCiAgICBjYXNlcyA9IHN1aXRlRmFjdG9yeSgqY2FzZUZhY3RvcnkoKSkKICAgIGlmIEdSQURFX01PREU6CiAgICAgICBmYWlsZmFzdD1GYWxzZQogICAgZWxzZToKICAgICAgIGZhaWxmYXN0PVRydWUKICAgIHJ1bm5lciA9IEFudlByb2dUZXN0UnVubmVyKGZhaWxmYXN0PWZhaWxmYXN0KQogICAgdGVzdF9yZXN1bHQgPSBydW5uZXIucnVuKGNhc2VzKQogICAgc3lzLmV4aXQoaW50KG5vdCB0ZXN0X3Jlc3VsdC53YXNTdWNjZXNzZnVsKCkpKQ==').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'test_orfproject.py'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-light downloadthis  " id="dnldts37421"><i class="bi bi-download"></i> test_orfproject.py </button></a></p>
+<p><a href="https://munch-group.org/bioinformatics/supplementary/project_files">https://munch-group.org/bioinformatics/supplementary/project_files</a></p>
+<ul>
+<li><code>e_coli_O157_H157_str_Sakai.fasta</code> contains the full genome of the <em>Escherichia coli</em> O157:H7 Sakai strain (yes the full genome).</li>
+</ul>
+<p>You also need to download the two project files:</p>
+<ul>
+<li><code>orfproject.py</code> is an empty file where you must write your code.</li>
+<li><code>test_orfproject.py</code> is the test program that lets you test the code you write in <code>orfproject.py</code>.</li>
+</ul>
+<p>Put all three files in a folder dedicated to this project. On most computers you can right-click on the link and choose “Save file as…” or “Download linked file”.</p>
+<p>Four your convenience, the file <code>orfproject.py</code> already contains three global <em>constants</em> (variables that must never be changed by the code). One is a dictionary <code>codon_map</code>, which maps codons to letters that represent amino acids. The other two are a string, <code>start_codon</code>, and a list, <code>stop_codons</code>. You can refer to these three variables in your code, but obviously, never change them.</p>
+<p>The project has three parts.</p>
+<ol type="1">
+<li>In the first part of the project, you will write the code necessary to identify ORFs in a long genomic sequence.</li>
+<li>In the second part, you will use the code you wrote on the programming project about translating DNA to translate each ORF into a protein sequence.</li>
+<li>In the third part, you will use the code from parts one and two together to find candidate proteins encoded by ORFs in a genomic sequence.</li>
+</ol>
+<p>Start by reading through the exercise before you do anything else. That way you have a good overview of the tasks ahead. Here is a mind map of how we split the larger problem into smaller bits and how they fit together:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/orf_overview.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Overview</figcaption>
+</figure>
+</div>
+<section id="finding-open-reading-frames" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="finding-open-reading-frames">Finding Open Reading Frames</h2>
+<section id="find-the-start-positions-of-orfs-in-a-dna-sequence" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="find-the-start-positions-of-orfs-in-a-dna-sequence">Find the start positions of ORFs in a DNA sequence</h3>
+<p>The first task is to write a function that finds all the possible positions where an ORF can begin.</p>
+<p><em>Write a function</em>, <code>find_start_positions</code>, which takes one argument:</p>
+<ol type="1">
+<li>A string, which is a DNA sequence.</li>
+</ol>
+<p>The function must return:</p>
+<ul>
+<li>A list of integers, which represent the indexes of the first base in start codons in the DNA sequence argument.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>find_start_positions(<span class="st">'TATGCATGATG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your function should contain a for-loop that iterates over all possible positions in a DNA string where a codon can begin. Not surprisingly, these are all the positions except for the last two. So start out with this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_start_positions(seq):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(seq) <span class="op">-</span> <span class="dv">2</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, instead of just printing <code>i</code>, try and make it print the three bases following <code>i</code> using the slicing technique:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>triplet <span class="op">=</span> seq[i:i<span class="op">+</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I.e. if your sequence is <code>'TATGCATGATG'</code> it should first print <code>'TAT'</code> then <code>'ATG'</code> then <code>'TGC'</code> and so on.</p>
+<p>When you have this working you should change the code so that triplets are only printed if they are start codons. You can use an if-statement that tests if each triplet is equal to <code>start_codon</code>.</p>
+<p>Then try and make your function print <code>i</code> only when <code>i</code> is the first base of a start codon.</p>
+<p>Finally, modify the function so all the relevant values of <code>i</code> are collected in a list using the same technique as in the <code>split_codons(orf)</code> function, and then return this list from the function.</p>
+</section>
+<section id="finding-the-next-occurrence-of-some-codon-in-an-orf" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="finding-the-next-occurrence-of-some-codon-in-an-orf">Finding the next occurrence of some codon in an ORF</h3>
+<p>Now that you can find where the ORFs begin in our sequence you must also be able to identify where each of these end. As you know, an ORF ends at any of three different stop codons in the same reading frame as the start codon. So, starting at the start codon of the ORF, we need to be able to find the next occurrence of some specific codon. I.e. you should look at all codons after the start codon and find the first occurrence of some specified codon. If the function does not find that codon in the string it should return <code>None</code>.</p>
+<p><em>Write a function</em>, <code>find_next_codon</code>, that takes three arguments:</p>
+<ol type="1">
+<li>A string, which is the DNA sequence.</li>
+<li>An integer, which is the index in the sequence where the ORF starts.</li>
+<li>A string, which is the codon to find the next occurrence of.</li>
+</ol>
+<p>The function must return:</p>
+<ul>
+<li>An integer, which is the index of the first base in the next in-frame occurrence of the codon. If the function does not find that codon in the string it should return <code>None</code>.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>find_next_codon(<span class="st">'AAAAATTTAATTTAA'</span>, <span class="dv">1</span>, <span class="st">'TTT'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your function should contain a for-loop that iterates over all the relevant starts of codons. Remember that no valid codon can start at the last two positions in the sequence. E.g. if the second argument is 7 and the length of the sequence is 20 then the relevant indexes are 7, 10, 13, 16.</p>
+<p>Start by writing a function just with a for-loop that lets you print these indexes produced by <code>range</code>. Figure out how to make the <code>range</code> function iterate over the appropriate numbers.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_next_codon(seq, start, codon):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx <span class="kw">in</span> <span class="bu">range</span>( ?? ):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(idx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you have that working, use the slicing technique to instead print the codons that start at each index.</p>
+<p>Finally, add an if-statement that tests if each codon is equal to <code>codon</code>. When this is true, the function should return the value of <code>idx</code>.</p>
+</section>
+<section id="finding-the-first-stop-codon-in-an-orf" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="finding-the-first-stop-codon-in-an-orf">Finding the first stop codon in an ORF</h3>
+<p>Now that you can find the next occurrence of any codon, you are well set up to write a function that finds the index for the beginning of the next in-frame <em>stop codon</em> in an ORF.</p>
+<p><em>Write a function</em>, <code>find_next_stop_codon</code>, that takes two arguments:</p>
+<ol type="1">
+<li>A string, which is the DNA sequence.</li>
+<li>An integer, which is the index in the sequence where the ORF starts.</li>
+</ol>
+<p>The function must return:</p>
+<ul>
+<li>An integer, which is the index of the first base in the next in-frame stop codon. If there is no in-frame stop codon in the sequence the function should return <code>None</code>.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>find_next_stop_codon(<span class="st">'AAAAATAGATGAAAA'</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is some inspiration:</p>
+<ol type="1">
+<li>You should define a list to hold the indexes for the in-frame stop codons we find.</li>
+<li>Then we loop over the three possible stop codons to find the next in-frame occurrence of each one from the start index. You can use <code>find_next_codon</code> for this. Remember that it returns <code>None</code> if it does not find any. If it does find a position you can add it to your list.</li>
+<li>At the end, you should test if you have any indexes in your list.</li>
+<li>If you do, you should return the smallest index in the list. I.e the ones closest to the start codon.</li>
+<li>If you did not find any stop codons the function must return <code>None</code> to indicate this.</li>
+</ol>
+</section>
+<section id="finding-orfs" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="finding-orfs">Finding ORFs</h3>
+<p>Now you can write a function that uses <code>find_start_positions</code> and <code>find_next_stop_codon</code> to extract the start and end indexes of each ORF in a genomic sequence.</p>
+<p><em>Write a function</em>, <code>find_orfs</code>, that takes one argument:</p>
+<ol type="1">
+<li>A string, which is a DNA sequence.</li>
+</ol>
+<p>The function should return:</p>
+<ul>
+<li>A list, which contains lists with two integers. The list returned must contain a list for each ORF in the sequence argument. These lists each contain two integers. The first integer represents the start of the ORF, the second represents the end. The function should handle both uppercase and lowercase sequences.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>find_orfs(<span class="st">"AAAATGGGGTAGAATGAAATGA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>, <span class="dv">9</span>], [<span class="dv">13</span>, <span class="dv">19</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Start by using <code>find_start_positions</code> to get a list of all the start positions in sequence:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_orfs(seq):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    start_positions <span class="op">=</span> find_start_positions(seq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you have that working, add a for-loop that iterates over the start positions. Inside the for-loop, you can then get the next in-frame stop codon for each start position by calling <code>find_next_stop_codon</code>. Try to print the start and end indexes you find to make sure the code does what you think.</p>
+<p>Finally, you need to add a <code>[start, stop]</code> list for each ORF to the big list that the function returns. To append a list to a list you do write something like this:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>orf_coordinate_list.append([start, stop])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Test your function. Chances are that some of the end positions you get are None. This is because some of the start codons were not followed by an in-frame stop codon. Add an if-statement to your function that controls that only start-stop pairs with a valid stop coordinate are added to the list of results.</p>
+</section>
+</section>
+<section id="translation-of-open-reading-frames" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="translation-of-open-reading-frames">Translation of open reading frames</h2>
+<p>We need to translate the reading frames we find into the proteins they may encode. So why not use the code you already wrote in the programming project where you translated open frames? Copy the content of <code>translationproject.py</code> into <code>orfproject.py</code>. Now you can use the function <code>translate_orf</code> to translate your ORFs.</p>
+</section>
+<section id="put-everything-together" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="put-everything-together">Put everything together</h2>
+<section id="read-in-genomic-sequences" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="read-in-genomic-sequences">Read in genomic sequences</h3>
+<p>The file <code>e_coli_O157_H157_str_Sakai.fasta</code> contains the genome that we want to analyze to find open reading frames. This is an especially nasty strain of <em>Escherichia coli</em> O157:H7 isolated after a <a href="https://www.ncbi.nlm.nih.gov/pubmed/10522649">massive outbreak</a> of infection in school children in Sakai City, Japan, associated with consumption of white radish sprouts.</p>
+<p>You can use the function below to read the genome sequence into a string.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_genome(file_name):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="bu">open</span>(file_name, <span class="st">'r'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    header <span class="op">=</span> lines.pop(<span class="dv">0</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    substrings <span class="op">=</span> []</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        substrings.append(line.strip())</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    genome <span class="op">=</span> <span class="st">''</span>.join(substrings)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    f.close()</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> genome</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now for the grand finale: Using <code>read_genome</code>, <code>find_orfs</code> and <code>translate_orf</code> you can write a function that finds all protein sequences produced by open reading frames in the genome.</p>
+<p><em>Write a function</em>, <code>find_candidate_proteins</code>, that takes one argument:</p>
+<ol type="1">
+<li>A string, which is a genome DNA sequence.</li>
+</ol>
+<p>The function must return</p>
+<ul>
+<li>A list of strings, which each represent a possible protein sequence.</li>
+</ul>
+<p>Note that this is a full genome so finding all possible proteins will take a while (~5 min.). You can start by working on the first 1000 bases:</p>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>genome <span class="op">=</span> read_genome(<span class="st">'e_coli_O157_H157_str_Sakai.fasta'</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>first_1000_bases <span class="op">=</span> genome[:<span class="dv">1000</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>find_candidate_proteins(first_1000_bases)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'MSLCGLKKESLTAASELVTCRE*'</span>, <span class="st">'MKRISTTITTTITTTITITITTGNGAG*'</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'MQNVFCGLPIFWKAMPGRGRWPPSSLPPPKSPTTWWR*'</span>, <span class="st">'MPGRGRWPPSSLPPPKSPTTWWR*'</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'MLYPISAMPNVFLPNF*'</span>, <span class="st">'MPNVFLPNF*'</span>, <span class="st">'MSCMALVC*'</span>, <span class="st">'MALVC*'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function should call <code>find_orfs</code> to get the list of start-end pairs. For each index pair, you must then slice the ORF out of the sequence (remember that the end index represents the first base in the stop codon), translate the ORF to protein, and add it to a list of proteins that the function can return.</p>
+<p><strong>Hint:</strong> To check your result note that all returned sequences should start with a start codon <code>'M'</code>, end with a stop codon <code>'*'</code> and contain no stop codons in the middle.</p>
+</section>
+<section id="on-your-own" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="on-your-own">On your own</h3>
+<p>This is where this project ends, but <em>you</em> can continue if you like. Given a long list of candidate proteins of all sizes, what would you do to narrow down your prediction to a smaller set of very likely genes? If you have some ideas, then try them out.</p>
+<ul>
+<li>Maybe you can rank them by length? What is the expected minimum length of proteins?</li>
+<li>Maybe you can look for a Shine-Delgarno motif upstream of the start codon? You know how to do that from the lectures.</li>
+<li>You can also try to BLAST them against the proteins in Genbank. The true ones should have some homologs in other species.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/project/seqdist_project.html" class="pagination-link" aria-label="Sequence trees">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Sequence trees</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/project/assembly_project.html" class="pagination-link" aria-label="Genome assembly">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Genome assembly</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
