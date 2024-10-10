@@ -1,7 +1,7 @@
 
 profile:
   group: 
-    - [default, ta]
+    - [default, ta, draft]
   default: default
 
 # book:
