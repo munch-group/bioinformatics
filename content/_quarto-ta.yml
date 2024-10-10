@@ -1,7 +1,7 @@
 project:
   type: book
   output-dir: _book/ta
-  post-render:
+  pre-render:
     # decrypt project solutions before rendering
     - python ../scripts/encrypt.py -d banana project_solutions
   post-render: 
