@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>19&nbsp; Translating ORFs – Bioinformatics and Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/project/folding_project.html" rel="next">
+<link href="../../chapters/python/testing_your_code.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/downloadthis-1.9.1/downloadthis.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html">Python projects</a></li><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Translating ORFs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Content</a> 
+        <div class="sidebar-tools-main">
+    <a href="../../Bioinformatics-and-Programming.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Curriculum</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekplan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Learning Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/before_you_begin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Before you begin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/appendix_conda_and_pymol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/writing_a_program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing a program</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dealing_with_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dealing with values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/the_order_of_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The order of events</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/course_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Course tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/controlling_behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Controlling behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/organizing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Organizing code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/python_values_are_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Values are objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lists of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Pairs of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/gluing_values_in_sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grouping values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/iteration_over_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iterating values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/working_with_data_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Structuring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/unleash_your_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Recursion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/testing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Testing your code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/translation_project.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/folding_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Primer analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/alignment_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/codonbias_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Codon usage</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/hiv_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/seqdist_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/orf_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Finding genes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/assembly_project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Genome assembly</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Web exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/long_reads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Read mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supplementary</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/project_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/recordings2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture recordings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/slides2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/bioinformatics_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam info</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#project-files" id="toc-project-files" class="nav-link active" data-scroll-target="#project-files">Project files</a></li>
+  <li><a href="#translating-a-single-codon" id="toc-translating-a-single-codon" class="nav-link" data-scroll-target="#translating-a-single-codon">Translating a single codon</a></li>
+  <li><a href="#splitting-an-open-reading-frame-into-codons" id="toc-splitting-an-open-reading-frame-into-codons" class="nav-link" data-scroll-target="#splitting-an-open-reading-frame-into-codons">Splitting an open reading frame into codons</a></li>
+  <li><a href="#translating-an-open-reading-frame" id="toc-translating-an-open-reading-frame" class="nav-link" data-scroll-target="#translating-an-open-reading-frame">Translating an open reading frame</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html">Python projects</a></li><li class="breadcrumb-item"><a href="../../chapters/project/translation_project.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Translating ORFs</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-translationproject" class="quarto-section-identifier"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><em>This chapter is about translating DNA into protein. If bacteria can do it, so can you.</em></p>
+<p>In this project you will write the code needed to translate an open reading frame (ORF) on a DNA sequence into into the corresponding sequence of amino acids.</p>
+<!-- ::: {.download_btn} -->
+<!-- ```{css}
+#| echo: false
+
+.btn-default,
+.btn-default:hover,
+.btn-default:active {
+  font-size: 13px;
+  margin: 0px 0px 20px 0px;
+  color: black;
+  background-color: #eeeeee;
+  border-color: transparent;
+}
+
+.btn-default:hover {
+  color: grey;
+  transition: 0.2s;
+}
+
+
+``` -->
+<section id="project-files" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="project-files">Project files</h2>
+<p>Begin by downloading the files you need for the project:</p>
+<!-- ```{r}
+#| echo: false
+
+project <- "translationproject"
+
+library(downloadthis)
+path_files <- list.files(path = sprintf("../../project_files/%s", project), full.names = TRUE)
+download_file(
+  path = path_files,
+  output_name = project,
+  button_label = "Download project files",
+  button_type = "default",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  class = "btn-default",
+  self_contained = FALSE
+)
+```   -->
+<p><a href="#dnldts59645" onclick="fetch('data:application/x-python;base64,CmNvZG9uX21hcCA9IHsnVFRUJzogJ0YnLCAnVFRDJzogJ0YnLCAnVFRBJzogJ0wnLCAnVFRHJzogJ0wnLAogICAgICAgICAgICAgJ1RDVCc6ICdTJywgJ1RDQyc6ICdTJywgJ1RDQSc6ICdTJywgJ1RDRyc6ICdTJywgCiAgICAgICAgICAgICAnVEFUJzogJ1knLCAnVEFDJzogJ1knLCAnVEFBJzogJyonLCAnVEFHJzogJyonLCAKICAgICAgICAgICAgICdUR1QnOiAnQycsICdUR0MnOiAnQycsICdUR0EnOiAnKicsICdUR0cnOiAnVycsIAogICAgICAgICAgICAgJ0NUVCc6ICdMJywgJ0NUQyc6ICdMJywgJ0NUQSc6ICdMJywgJ0NURyc6ICdMJywKICAgICAgICAgICAgICdDQ1QnOiAnUCcsICdDQ0MnOiAnUCcsICdDQ0EnOiAnUCcsICdDQ0cnOiAnUCcsIAogICAgICAgICAgICAgJ0NBVCc6ICdIJywgJ0NBQyc6ICdIJywgJ0NBQSc6ICdRJywgJ0NBRyc6ICdRJywgCiAgICAgICAgICAgICAnQ0dUJzogJ1InLCAnQ0dDJzogJ1InLCAnQ0dBJzogJ1InLCAnQ0dHJzogJ1InLCAKICAgICAgICAgICAgICdBVFQnOiAnSScsICdBVEMnOiAnSScsICdBVEEnOiAnSScsICdBVEcnOiAnTScsIAogICAgICAgICAgICAgJ0FDVCc6ICdUJywgJ0FDQyc6ICdUJywgJ0FDQSc6ICdUJywgJ0FDRyc6ICdUJywgCiAgICAgICAgICAgICAnQUFUJzogJ04nLCAnQUFDJzogJ04nLCAnQUFBJzogJ0snLCAnQUFHJzogJ0snLCAKICAgICAgICAgICAgICdBR1QnOiAnUycsICdBR0MnOiAnUycsICdBR0EnOiAnUicsICdBR0cnOiAnUicsIAogICAgICAgICAgICAgJ0dUVCc6ICdWJywgJ0dUQyc6ICdWJywgJ0dUQSc6ICdWJywgJ0dURyc6ICdWJywgCiAgICAgICAgICAgICAnR0NUJzogJ0EnLCAnR0NDJzogJ0EnLCAnR0NBJzogJ0EnLCAnR0NHJzogJ0EnLCAKICAgICAgICAgICAgICdHQVQnOiAnRCcsICdHQUMnOiAnRCcsICdHQUEnOiAnRScsICdHQUcnOiAnRScsIAogICAgICAgICAgICAgJ0dHVCc6ICdHJywgJ0dHQyc6ICdHJywgJ0dHQSc6ICdHJywgJ0dHRyc6ICdHJ30KCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKIyBXcml0ZSB5b3VyIGZ1bmN0aW9ucyBkZWZpbml0aW9ucyBiZWxvdy4KIyBEbyBub3Qgd3JpdGUgYW55IG90aGVyIGNvZGUgaGVyZS4KIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKIyBvbmx5IHlvdXIgZnVuY3Rpb24gZGVmaW5pdGlvbnMuLi4KCgoKZGVmIHRyYW5zbGF0ZV9jb2Rvbih4KToKICAgICMgdHVybiBpbnRvIHVwcGVyIGNhc2U6CiAgICBjb2RvbiA9IHgudXBwZXIoKQogICAgIyBjaGVjayBpZiB0aGUgY29kb24gaXMgaW4gdGhlIGFtaW5vIGFjaWQgZGljdGlvbmFyeToKICAgIGlmIGNvZG9uIGluIGNvZG9uX21hcDoKICAgICAgICAjIHJldHVybiB0aGUgYW1pbm9hY2lkIGJ5IGxvb2tpbmcgdXAgaW4gdGhlIGRpY3Rpb25hcnk6CiAgICAgICAgcmV0dXJuIGNvZG9uX21hcFtjb2Rvbl0KICAgIGVsc2U6CiAgICAgICAgIyByZXR1cm4gJz8nIGlmIHdlIGNvdWxkIG5vdCB0cmFuc2xhdGUgdGhlIGNvZG9uOgogICAgICAgIHJldHVybiAna2FzcGVyJwoKCgoKCgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMgQ29kZSBmb3IgY2FsbGluZyBhbmQgdGVzdGluZyB5b3VyIGZ1bmN0aW9ucyBzaG91bGQgYmUgYmVsb3cKIyBoZXJlLiBJZiB5b3Ugc2VwYXJhdGUgZnVuY3Rpb24gZGVmaW5pdGlvbnMgZnJvbSB0aGUgcmVzdCBvZgojIHlvdXIgc2NyaXB0IGluIHRoaXMgd2F5LCB5b3UgYXJlIGxlc3MgbGlrZWx5IHRvIG1ha2UgbWlzdGFrZXMuCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiMgYW55IG90aGVyIGNvZGUgLi4uCgoKCgo=').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'translationproject.py'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-light downloadthis  " id="dnldts59645"><i class="bi bi-download"></i> translationproject.py </button></a> <a href="#dnldts39440" onclick="fetch('data:application/x-python;base64,aW1wb3J0IGluc3BlY3QKaW1wb3J0IG9zCmltcG9ydCBzeXMKaW1wb3J0IG9zLnBhdGgKaW1wb3J0IHVuaXR0ZXN0CmZyb20gdW5pdHRlc3QgaW1wb3J0IFRlc3RSZXN1bHQsIFRleHRUZXN0UnVubmVyLCBUZXN0TG9hZGVyCmZyb20gY29udGV4dGxpYiBpbXBvcnQgcmVkaXJlY3Rfc3Rkb3V0CmZyb20gaW8gaW1wb3J0IFN0cmluZ0lPCmltcG9ydCB0cmFjZWJhY2sKaW1wb3J0IHJlCgpHUkFERV9NT0RFID0gb3MuZ2V0ZW52KCdHUkFERV9NT0RFJykKClBST0pFQ1RfTkFNRSA9IG9zLnBhdGguc3BsaXRleHQob3MucGF0aC5iYXNlbmFtZShfX2ZpbGVfXykpWzBdLnJlcGxhY2UoJ3Rlc3RfJywgJycpCgpjbGFzcyBOdWxsRGV2aWNlOgoKICAgIGRlZiB3cml0ZShzZWxmLCBzKToKICAgICAgICBwYXNzCgojIFJlZGlyZWN0IGFsbCBzdGRvdXQgZnJvbSB0aGUgaW1wb3J0ZWQgbW9kdWxlIHRvIGEgbnVsbCBkZXZpY2UgdG8gbm90IGNvbmZ1c2UKIyB0aGUgc3R1ZGVudCB0b28gbXVjaC4uLgp0cnk6CiAgICB3aXRoIHJlZGlyZWN0X3N0ZG91dChOdWxsRGV2aWNlKCkpOgogICAgICAgICMgaW1wb3J0IHByb2dleGFtIGFzIHByb2plY3QKICAgICAgIHByb2plY3QgPSBfX2ltcG9ydF9fKFBST0pFQ1RfTkFNRSkKZXhjZXB0OgogICAgcHJpbnQoIllPVVIgQ09ERSBDQU5OT1QgQkUgUlVOOlxuXG5IZXJlIGlzIHRoZSBlcnJvcjpcbiIpCiAgICB0cmFjZWJhY2sucHJpbnRfZXhjKGZpbGU9c3lzLnN0ZG91dCkKICAgIHByaW50KCJcbkZJWCBUSEFUIEZJUlNUIEJFRk9SRSBZT1UgVVNFIFRIRSBURVNUIFNDUklQVCIpCiAgICBzeXMuZXhpdCg5OSkKCgphc3NlcnRpb25fbXNnID0gIiIiVGhlIGNhbGw6CgogICAge2Z1bmN9KHthcmdzfSkKCnJldHVybmVkOgoKICAgIHthY3R1YWx9CgpIb3dldmVyLCBpdCBzaG91bGQgcmV0dXJuOgoKICAgIHtleHBlY3RlZH0KIiIiCgoKZGVmIHN1aXRlRmFjdG9yeSgqdGVzdGNhc2VzKToKCiAgICBsbiAgICA9IGxhbWJkYSBmOiBnZXRhdHRyKHRjLCBmKS5fX2NvZGVfXy5jb19maXJzdGxpbmVubwogICAgbG5jbXAgPSBsYW1iZGEgYSwgYjogbG4oYSkgLSBsbihiKQoKICAgIHRlc3Rfc3VpdGUgPSB1bml0dGVzdC5UZXN0U3VpdGUoKQogICAgdGVzdF9sb2FkZXIgPSBUZXN0TG9hZGVyKCkKICAgIHRlc3RfbG9hZGVyLnNvcnRUZXN0TWV0aG9kc1VzaW5nID0gbG5jbXAKICAgIGZvciB0YyBpbiB0ZXN0Y2FzZXM6CiAgICAgICAgdGVzdF9zdWl0ZS5hZGRUZXN0KHRlc3RfbG9hZGVyLmxvYWRUZXN0c0Zyb21UZXN0Q2FzZSh0YykpCgogICAgcmV0dXJuIHRlc3Rfc3VpdGUKCgpkZWYgY2FzZUZhY3RvcnkoKToKICAgIGZyb20gaW5zcGVjdCBpbXBvcnQgZmluZHNvdXJjZQogICAgCiAgICBnID0gZ2xvYmFscygpLmNvcHkoKQogICAgY2FzZXMgPSBbZ1tvYmpdIGZvciBvYmogaW4gZyBpZiBvYmouc3RhcnRzd2l0aCgiVGVzdCIpIGFuZCBpc3N1YmNsYXNzKGdbb2JqXSwgdW5pdHRlc3QuVGVzdENhc2UpXQogICAgb3JkZXJlZF9jYXNlcyA9IHNvcnRlZChjYXNlcywga2V5PWxhbWJkYSBmOiBmaW5kc291cmNlKGYpWzFdKQogICAgcmV0dXJuIG9yZGVyZWRfY2FzZXMKCgpkZWYgZnVuY3Rpb25fbm90X2RlZmluZWQobW9kdWxlLCBmdW5jX25hbWUpOgogICAgcmV0dXJuIG5vdCAoaGFzYXR0cihtb2R1bGUsIGZ1bmNfbmFtZSkgYW5kIGNhbGxhYmxlKGdldGF0dHIobW9kdWxlLCBmdW5jX25hbWUpKSkKCgpkZWYgaW5kZW50KHRleHQsIGluZGVudD00KToKICAgIHJldHVybiAnXG4nLmpvaW4oWyhpbmRlbnQgKiAnICcpICsgbGluZSBmb3IgbGluZSBpbiB0ZXh0LnNwbGl0bGluZXMoKV0pCgoKZGVmIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yik6CiAgICBpZiB0YiBpcyBOb25lOgogICAgICAgIHJldHVybiB0YgogICAgaWYgdGIudGJfZnJhbWUuZl9jb2RlLmNvX2ZpbGVuYW1lLnN0YXJ0c3dpdGgoJ3Rlc3RfJyk6CiAgICAgICAgcmV0dXJuIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yi50Yl9uZXh0KQogICAgaWYgJ3VuaXR0ZXN0JyBpbiB0Yi50Yl9mcmFtZS5mX2NvZGUuY29fZmlsZW5hbWU6CiAgICAgICAgcmV0dXJuIHNraXBfaW5pdGlhbF9ub25sb2NhbCh0Yi50Yl9uZXh0KQoKICAgIHJldHVybiB0YgoKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgpmcm9tIGNvcHkgaW1wb3J0IGRlZXBjb3B5CgpjbGFzcyBOb25TdGFuZGFyZEVsZW1lbnRFcnJvcihFeGNlcHRpb24pOgoKICAgIGRlZiBfX2luaXRfX18oc2VsZiwgZEVyckFyZ3VtZW50cyk6CiAgICAgICAgZGVmIF9faW5pdF9fKHNlbGYsKmFyZ3MsKiprd2FyZ3MpOgogICAgICAgICAgICBFeGNlcHRpb24uX19pbml0X18oc2VsZiwqYXJncywqKmt3YXJncykKICAKCmRlZiByb3VuZF9kYXRhc3RydWN0X3JlY3Vyc2l2ZWx5KGQpOgogICAgaWYgaXNpbnN0YW5jZShkLCBkaWN0KToKICAgICAgICBmb3IgaywgdiBpbiBkLml0ZW1zKCk6CiAgICAgICAgICAgIGlmIGlzaW5zdGFuY2UodiwgbGlzdCkgb3IgaXNpbnN0YW5jZSh2LCBkaWN0KToKICAgICAgICAgICAgICAgIHJvdW5kX2RhdGFzdHJ1Y3RfcmVjdXJzaXZlbHkodikKICAgICAgICAgICAgZWxpZiBpc2luc3RhbmNlKHYsIGZsb2F0KToKICAgICAgICAgICAgICAgIGRba10gPSByb3VuZChkW2tdLCA1KQogICAgZWxpZiBpc2luc3RhbmNlKGQsIGxpc3QpOgogICAgICAgIGZvciBpLCB2IGluIGVudW1lcmF0ZShkKToKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZSh2LCBsaXN0KSBvciBpc2luc3RhbmNlKHYsIGRpY3QpOgogICAgICAgICAgICAgICAgcm91bmRfZGF0YXN0cnVjdF9yZWN1cnNpdmVseSh2KQogICAgICAgICAgICBlbGlmIGlzaW5zdGFuY2UodiwgZmxvYXQpOgogICAgICAgICAgICAgICAgZFtpXSA9IHJvdW5kKGRbaV0sIDUpCiAgICBlbGlmIG5vdCAoaXNpbnN0YW5jZShkLCBmbG9hdCkgb3IgaXNpbnN0YW5jZShkLCBpbnQpIG9yIGlzaW5zdGFuY2UoZCwgc3RyKSk6CiAgICAgICAgcmFpc2UgTm9uU3RhbmRhcmRFbGVtZW50RXJyb3IoZCkKCmRlZiBjb21wYXJlX2RhdGFzdHJ1Y3RfbmljZShleHAsIGFjdCk6CiAgICAiIiIKICAgIENvbXBhcmVzIGRhdGEgc3RydWN0dXJlcyBpbiBhIHdheSB0aGF0IHJvdW5kcyBmbG9hdCB2YWx1ZXMgaW4gdGhlbQogICAgIiIiCiAgICBleHBfcm91bmRlZCA9IGRlZXBjb3B5KGV4cCkKICAgIGFjdF9yb3VuZGVkID0gZGVlcGNvcHkoYWN0KQogICAgdHJ5OgogICAgICAgIHJvdW5kX2RhdGFzdHJ1Y3RfcmVjdXJzaXZlbHkoZXhwX3JvdW5kZWQpCiAgICAgICAgcm91bmRfZGF0YXN0cnVjdF9yZWN1cnNpdmVseShhY3Rfcm91bmRlZCkKICAgIGV4Y2VwdCBOb25TdGFuZGFyZEVsZW1lbnRFcnJvciBhcyBlcnI6CiAgICAgICAgcmV0dXJuIEZhbHNlCiAgICByZXR1cm4gZXhwX3JvdW5kZWQgPT0gYWN0X3JvdW5kZWQKCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKY2xhc3MgQW52UHJvZ1Rlc3RSZXN1bHQoVGVzdFJlc3VsdCk6CiAgICBzZXBhcmF0b3IgPSAnPScgKiA3MAoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBzdHJlYW0sIGRlc2NyaXB0aW9ucywgdmVyYm9zaXR5KToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKHN0cmVhbSwgZGVzY3JpcHRpb25zLCB2ZXJib3NpdHkpCiAgICAgICAgc2VsZi5zdHJlYW0gPSBzdHJlYW0KICAgICAgICBzZWxmLnNob3dBbGwgPSBGYWxzZQogICAgICAgIHNlbGYuZG90cyA9IFRydWUKICAgICAgICBzZWxmLmRlc2NyaXB0aW9ucyA9IGRlc2NyaXB0aW9ucwoKICAgICAgICBzZWxmLnNraXBwZWRfZnVuY3Rpb25zID0gbGlzdCgpCgogICAgICAgIGlmIEdSQURFX01PREU6CiAgICAgICAgICAgIHJlcG9ydF9maWxlID0gb3MucGF0aC5zcGxpdGV4dChvcy5wYXRoLmJhc2VuYW1lKF9fZmlsZV9fKSlbMF0gKyAnLmNzdicKICAgICAgICAgICAgc2VsZi5maWxlID0gb3BlbihyZXBvcnRfZmlsZSwgJ3cnKQoKICAgICAgICAjIG1hdGNoID0gcmUuc2VhcmNoKHInYXNzaWdubWVudF8oYXVcZCspX2F0dGVtcHQnLCBvcy5wYXRoLmJhc2VuYW1lKG9zLmdldGN3ZCgpKSkKICAgICAgICAjIGlmIG1hdGNoOgogICAgICAgICMgICAgIHNlbGYuc3R1ZGVudF9pZCA9IG1hdGNoLmdyb3VwKDEpCiAgICAgICAgIyBlbHNlOgogICAgICAgICMgICAgIHNlbGYuc3R1ZGVudF9pZCA9ICdOQScKCiAgICAgICAgYmxhY2tib2FyZF9tYXRjaCA9IHJlLnNlYXJjaChyJ2Fzc2lnbm1lbnRfKGF1XGQrKV9hdHRlbXB0Jywgb3MucGF0aC5iYXNlbmFtZShvcy5nZXRjd2QoKSkpCiAgICAgICAgZGlnaXRhbGV4YW1fbWF0Y2ggPSByZS5zZWFyY2gocicoW15fXSspX1xkK19cZCtfLisnICsgUFJPSkVDVF9OQU1FLCBvcy5wYXRoLmJhc2VuYW1lKG9zLmdldGN3ZCgpKSkKCiAgICAgICAgaWYgYmxhY2tib2FyZF9tYXRjaDoKICAgICAgICAgICAgc2VsZi5zdHVkZW50X2lkID0gYmxhY2tib2FyZF9tYXRjaC5ncm91cCgxKQogICAgICAgIGVsaWYgZGlnaXRhbGV4YW1fbWF0Y2g6CiAgICAgICAgICAgIHNlbGYuc3R1ZGVudF9pZCA9IGRpZ2l0YWxleGFtX21hdGNoLmdyb3VwKDEpICAgICAgICAgICAgCiAgICAgICAgZWxzZToKICAgICAgICAgICAgc2VsZi5zdHVkZW50X2lkID0gJ05BJwoKICAgIGRlZiBhZGRTdWNjZXNzKHNlbGYsIHRlc3QpOgogICAgICAgIHN1cGVyKCkuYWRkU3VjY2Vzcyh0ZXN0KQoKICAgICAgICBpZiBHUkFERV9NT0RFOgogICAgICAgICAgICBzZWxmLmZpbGUud3JpdGUoJ3t9LHt9LHt9LHt9XG4nLmZvcm1hdChzZWxmLnN0dWRlbnRfaWQsIHRlc3QuX19jbGFzc19fLl9fbmFtZV9fLCB0ZXN0Ll90ZXN0TWV0aG9kTmFtZSwgJ29rJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgZGVmIGFkZEVycm9yKHNlbGYsIHRlc3QsIGVycik6CiAgICAgICAgc3VwZXIoKS5hZGRFcnJvcih0ZXN0LCBlcnIpCiAgICAgICAgZXJyY2xzLCBlcnJvYmosIHRiID0gZXJyCiAgICAgICAgbmV3X3RiID0gc2tpcF9pbml0aWFsX25vbmxvY2FsKHRiKQoKICAgICAgICBpZiBHUkFERV9NT0RFOgogICAgICAgICAgICBzZWxmLmZpbGUud3JpdGUoJ3t9LHt9LHt9LHt9XG4nLmZvcm1hdChzZWxmLnN0dWRlbnRfaWQsIHRlc3QuX19jbGFzc19fLl9fbmFtZV9fLCB0ZXN0Ll90ZXN0TWV0aG9kTmFtZSwgJ2Vycm9yJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnRVJST1IgRFVSSU5HIFRFU1QgQ0FTRToge30nLmZvcm1hdCh0ZXN0Ll90ZXN0TWV0aG9kTmFtZSkpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgJ1lPVVIgQ09ERSBGQUlMRUQgV0hJTEUgUlVOTklORyBBIFRFU1QgKHt9KScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdJdCBtZWFucyB0aGF0IHlvdXIgZnVuY3Rpb24gY291bGQgbm90IGJlIHJ1biB0aGUgd2F5IHNwZWNpZmllZCBpbiB0aGUgYXNzaWdubWVudC4nKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJ01FU1NBR0U6JykKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCgne30nLmZvcm1hdChlcnJvYmopKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdERVRBSUxFRDonKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgnQmVsb3cgaXMgYSBkZXRhaWxlZCBkZXNjcmlwdGlvbiBvZiB3aGVyZSB0aGUgZXJyb3Igb2NjdXJyZWQnKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCgKICAgICAgICAgICAgJ2FuZCB3aGF0IGNvZGUgd2FzIHJ1biBiZWZvcmUgdGhlIGVycm9yIG9jY3VycmVkLiBJdCBpcyBvZnRlbicpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oaW5kZW50KAogICAgICAgICAgICAnbW9zdCB1c2VmdWwgdG8gcmVhZCB0aGlzIGRlc2NyaXB0aW9uIGZyb20gdGhlIGJvdHRvbSBhbmQgdXAuJykpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICBpbmRlbnQoJ1xuJy5qb2luKHRyYWNlYmFjay5mb3JtYXRfdGIobmV3X3RiKSkpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgiLi4uU2tpcHBlZCBmcmFtZXMgbm90IHJlbGV2YW50IHRvIHlvdXIgY29kZS4uLiIpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgIGluZGVudCgnJy5qb2luKHRyYWNlYmFjay5mb3JtYXRfZXhjZXB0aW9uKGVycmNscywgZXJyb2JqLCBuZXdfdGIpKSkpCgogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oc2VsZi5zZXBhcmF0b3IpCiAgICAgICAgc2VsZi5zdHJlYW0uZmx1c2goKQoKICAgIGRlZiBhZGRGYWlsdXJlKHNlbGYsIHRlc3QsIGVycik6CiAgICAgICAgc3VwZXIoKS5hZGRGYWlsdXJlKHRlc3QsIGVycikKICAgICAgICBfLCBlcnJvYmosIHRiID0gZXJyCgogICAgICAgIGlmIEdSQURFX01PREU6CiAgICAgICAgICAgIHNlbGYuZmlsZS53cml0ZSgne30se30se30se31cbicuZm9ybWF0KHNlbGYuc3R1ZGVudF9pZCwgdGVzdC5fX2NsYXNzX18uX19uYW1lX18sIHRlc3QuX3Rlc3RNZXRob2ROYW1lLCAnZmFpbGVkJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICdGQUlMRUQgVEVTVCBDQVNFOiB7fScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdNRVNTQUdFOicpCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoc3RyKGVycm9iaikpKQogICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQoKICAgICAgICBpZiBpc2luc3RhbmNlKGVycm9iaiwgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcik6CiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJ0VYUEVDVEVEOicpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oaW5kZW50KHJlcHIoZXJyb2JqLmV4cGVjdGVkKSkpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdBQ1RVQUw6JykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQocmVwcihlcnJvYmouYWN0dWFsKSkpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oKQoKICAgICAgICAjIGlmIGlzaW5zdGFuY2UoZXJyb2JqLCBBc3NlcnRpb25FcnJvcik6CiAgICAgICAgIyAgICAgbmV3X3RiID0gc2tpcF9pbml0aWFsX25vbmxvY2FsKHRiKQogICAgICAgICMgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgICAgICdFUlJPUiBEVVJJTkcgVEVTVCBDQVNFOiB7fScuZm9ybWF0KHRlc3QuX3Rlc3RNZXRob2ROYW1lKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdNRVNTQUdFOicpCiAgICAgICAgIyAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoJ1lvdXIgZnVuY3Rpb24gY29udGFpbnMgYW4gImFzc2VydCIgc3RhdGVtZW50IHRoYXQgcmFpc2VkIGFuIGVycm9yJykpCiAgICAgICAgIyAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihpbmRlbnQoJ1JlbW92ZSB0aGUgYXNzZXJ0IHN0YXRlbWVudCB0byByZXNvbHZlIHRoaXMgZXJyb3InKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCdERVRBSUxFRDonKQogICAgICAgICMgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgICAgIGluZGVudCgnQmVsb3cgaXMgYSBkZXRhaWxlZCBkZXNjcmlwdGlvbiBvZiB3aGVyZSB0aGUgZXJyb3Igb2NjdXJyZWQnKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKGluZGVudCh0cmFjZWJhY2suZm9ybWF0X3RiKG5ld190YilbLTFdKSkKICAgICAgICAjICAgICAjIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgIyAgICAgIyAgICAgaW5kZW50KCdcbicuam9pbih0cmFjZWJhY2suZm9ybWF0X3RiKG5ld190YikpKSkKICAgICAgICAjICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKCiAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbihzZWxmLnNlcGFyYXRvcikKICAgICAgICBzZWxmLnN0cmVhbS5mbHVzaCgpCgogICAgZGVmIGFkZFNraXAoc2VsZiwgdGVzdCwgcmVhc29uKToKICAgICAgICBzdXBlcigpLmFkZFNraXAodGVzdCwgcmVhc29uKQoKICAgICAgICBpZiByZWFzb24gbm90IGluIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnM6CiAgICAgICAgICAgIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnMuYXBwZW5kKHJlYXNvbikKCiAgICAgICAgaWYgR1JBREVfTU9ERToKICAgICAgICAgICAgc2VsZi5maWxlLndyaXRlKCd7fSx7fSx7fSx7fVxuJy5mb3JtYXQoc2VsZi5zdHVkZW50X2lkLCB0ZXN0Ll9fY2xhc3NfXy5fX25hbWVfXywgdGVzdC5fdGVzdE1ldGhvZE5hbWUsICdza2lwcGVkJykpCiAgICAgICAgICAgIHNlbGYuZmlsZS5mbHVzaCgpCgogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnQVRURU5USU9OISBBIHRlc3Qgb2YgInt9IiB3YXMgc2tpcHBlZCBiZWNhdXNlIHRoaXMgZnVuY3Rpb24gd2FzIG5vdCBkZWZpbmVkLiAnLmZvcm1hdChyZWFzb24pKQogICAgICAgICMgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAjICAgICAnRnVuY3Rpb25zIG5vdCBjb3JyZWN0bHkgZGVmaW5lZCBhcmUgbWFya2VkIGFzIEZBSUxFRC4gUGxlYXNlIG1ha2Ugc3VyZSB0aGlzIGlzIHdoYXQgeW91IGludGVuZGVkIScpCiAgICAgICAgIyBzZWxmLnN0cmVhbS53cml0ZWxuKCcnKQogICAgICAgICMgc2VsZi5zdHJlYW0uZmx1c2goKQoKICAgIGRlZiBhZGRFeHBlY3RlZEZhaWx1cmUoc2VsZiwgdGVzdCwgZXJyKToKICAgICAgICByYWlzZSBOb3RJbXBsZW1lbnRlZEVycm9yKCkKCiAgICBkZWYgYWRkVW5leHBlY3RlZFN1Y2Nlc3Moc2VsZiwgdGVzdCk6CiAgICAgICAgcmFpc2UgTm90SW1wbGVtZW50ZWRFcnJvcigpCgogICAgZGVmIHN0b3BUZXN0UnVuKHNlbGYpOgogICAgICAgIHN1cGVyKCkuc3RvcFRlc3RSdW4oKQoKICAgICAgICBpZiBzZWxmLnNraXBwZWRfZnVuY3Rpb25zOgogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbignKicqNTcpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICAgICAnQVRURU5USU9OISBUaGUgZm9sbG93aW5nIGZ1bmN0aW9ucyBhcmUgbm90IGRlZmluZWQ6JykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbignJykKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgICAgICdcbicuam9pbignXHR7fScuZm9ybWF0KHgpIGZvciB4IGluIHNlbGYuc2tpcHBlZF9mdW5jdGlvbnMpKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0ud3JpdGVsbigKICAgICAgICAgICAgICAgICdUaGVzZSBmdW5jdGlvbnMgYXJlIGVpdGhlciBub3QgY29ycmVjdGx5IG5hbWVkIChzcGVsbGVkKScpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oCiAgICAgICAgICAgICAgICAnb3Igbm90IGRlZmluZWQgYXQgYWxsLiBUaGV5IHdpbGwgYmUgbWFya2VkIGFzIEZBSUxFRC4nKQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKAogICAgICAgICAgICAgICAgJ0NoZWNrIHlvdXIgc3BlbGxpbmcgaWYgdGhpcyBpcyBub3Qgd2hhdCB5b3UgaW50ZW5kLicpCiAgICAgICAgICAgIHNlbGYuc3RyZWFtLndyaXRlbG4oJyonKjU3KQogICAgICAgICAgICBzZWxmLnN0cmVhbS53cml0ZWxuKCkKICAgICAgICAgICAgc2VsZi5zdHJlYW0uZmx1c2goKQoKCmNsYXNzIEFudlByb2dUZXN0UnVubmVyKFRleHRUZXN0UnVubmVyKToKCiAgICBkZWYgX19pbml0X18oc2VsZiwgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBzdXBlcigpLl9faW5pdF9fKCphcmdzLCByZXN1bHRjbGFzcz1BbnZQcm9nVGVzdFJlc3VsdCwgKiprd2FyZ3MpCgoKY2xhc3MgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcihBc3NlcnRpb25FcnJvcik6CiAgICAiIiIKICAgIEEgc2ltcGxlIGV4dGVuc2lvbiBvZiBBc3NlcnRpb25FcnJvciBhbGxvd2luZyB1cyB0byBzdG9yZSB0aGUgYWN0dWFsIGFuZAogICAgZXhwZWN0ZWQgdmFsdWVzIGZvciBsYXRlciB1c2UuCiAgICAiIiIKCiAgICBkZWYgX19pbml0X18oc2VsZiwgYWN0dWFsLCBleHBlY3RlZCwgbXNnKToKICAgICAgICBzdXBlcihBc3NlcnRFcXVhbEFzc2VydGlvbkVycm9yLCBzZWxmKS5fX2luaXRfXyhtc2cpCiAgICAgICAgc2VsZi5hY3R1YWwgPSBhY3R1YWwKICAgICAgICBzZWxmLmV4cGVjdGVkID0gZXhwZWN0ZWQKCgpjbGFzcyBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcihBc3NlcnRpb25FcnJvcik6CgogICAgZGVmIF9faW5pdF9fKHNlbGYsIGFjdHVhbCwgZXhwZWN0ZWQsIGZ1bmMsIGFyZ3MsIGt3YXJncyk6CiAgICAgICAgc2VsZi5hY3R1YWwgPSBhY3R1YWwKICAgICAgICBzZWxmLmV4cGVjdGVkID0gZXhwZWN0ZWQKICAgICAgICBzZWxmLmZ1bmMgPSBmdW5jCiAgICAgICAgc2VsZi5hcmdzID0gYXJncwogICAgICAgIHNlbGYua3dhcmdzID0ga3dhcmdzCgogICAgZGVmIF9fc3RyX18oc2VsZik6CiAgICAgICAgYXJnc19zdHIgPSAnLCAnLmpvaW4obWFwKHJlcHIsIHNlbGYuYXJncykpCiAgICAgICAgaWYgc2VsZi5rd2FyZ3M6CiAgICAgICAgICAgIGt3YXJnc19zdHIgPSAnLCAnLmpvaW4oJ3t9PXshcn0nLmZvcm1hdChrLCB3KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvciBrLCB3IGluIHNlbGYua3dhcmdzLml0ZW1zKCkpCiAgICAgICAgICAgIGFyZ3Nfc3RyICs9ICcsICcgKyBrd2FyZ3Nfc3RyCiAgICAgICAgcmV0dXJuIGFzc2VydGlvbl9tc2cuZm9ybWF0KAogICAgICAgICAgICBmdW5jPXNlbGYuZnVuYy5fX25hbWVfXywKICAgICAgICAgICAgYXJncz1hcmdzX3N0ciwKICAgICAgICAgICAgYWN0dWFsPXJlcHIoc2VsZi5hY3R1YWwpLAogICAgICAgICAgICBleHBlY3RlZD1yZXByKHNlbGYuZXhwZWN0ZWQpKQoKCmNsYXNzIEFudlByb2dUZXN0Q2FzZSh1bml0dGVzdC5UZXN0Q2FzZSk6CgogICAgZGVmIGFzc2VydEZ1bmN0aW9uRGVmaW5lZChzZWxmLCBtb2R1bGUsIG5hbWUpOgogICAgICAgIHNlbGYuYXNzZXJ0VHJ1ZShoYXNhdHRyKG1vZHVsZSwgbmFtZSksCiAgICAgICAgICAgICAgICAgICAgICAgIG1zZz0iJ3t9JyBpcyBub3QgZGVmaW5lZCIuZm9ybWF0KG5hbWUpKQogICAgICAgIHNlbGYuYXNzZXJ0VHJ1ZShjYWxsYWJsZShnZXRhdHRyKG1vZHVsZSwgbmFtZSkpLAogICAgICAgICAgICAgICAgICAgICAgICBtc2c9Iid7fScgaXMgbm90IGEgZnVuY3Rpb24iLmZvcm1hdChuYW1lKSkKCiAgICBkZWYgYXNzZXJ0RnVuY3Rpb25Qb3NQYXJhbXMoc2VsZiwgZnVuYywgZXhwZWN0ZWQpOgogICAgICAgIHNpZ25hdHVyZSA9IHN0cihpbnNwZWN0LnNpZ25hdHVyZShmdW5jKSkKICAgICAgICBzZWxmLmFzc2VydFRydWUoZXhwZWN0ZWQgPT0gc2lnbmF0dXJlLAogICAgICAgICAgICAgICAgICAgICAgICBtc2c9Ildyb25nIG5hbWVzIG9mIGZ1bmN0aW9uIHBhcmFtZXRlcnNcblxuIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgIkNvcnJlY3QgZnVuY3Rpb24gZGVmaW5pdGlvbjpcblxuIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgInt9XG5cbiIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJHb3Q6XG5cbiIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJ7fSIuZm9ybWF0KGZ1bmMuX19uYW1lX18gKyBleHBlY3RlZCwgZnVuYy5fX25hbWVfXyArIHNpZ25hdHVyZSkpCgogICAgZGVmIGFzc2VydEVxdWFsTmljZShzZWxmLCBleHBlY3RlZCwgZnVuYywgKmFyZ3MsICoqa3dhcmdzKToKICAgICAgICBhY3R1YWwgPSBmdW5jKCphcmdzLCAqKmt3YXJncykKCiAgICAgICAgaWYgaXNpbnN0YW5jZShleHBlY3RlZCwgZGljdCkgb3IgaXNpbnN0YW5jZShhY3R1YWwsIGRpY3QpIG9yIFwKICAgICAgICAgICAgaXNpbnN0YW5jZShleHBlY3RlZCwgbGlzdCkgb3IgaXNpbnN0YW5jZShhY3R1YWwsIGxpc3QpOgogICAgICAgICAgICBpZiBub3QgY29tcGFyZV9kYXRhc3RydWN0X25pY2UoZXhwZWN0ZWQsIGFjdHVhbCk6CiAgICAgICAgICAgICAgICByYWlzZSBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcigKICAgICAgICAgICAgICAgICAgICBhY3R1YWwsIGV4cGVjdGVkLCBmdW5jLCBhcmdzLCBrd2FyZ3MpCgogICAgICAgIGVsaWYgaXNpbnN0YW5jZShleHBlY3RlZCwgZmxvYXQpIG9yIGlzaW5zdGFuY2UoYWN0dWFsLCBmbG9hdCk6CiAgICAgICAgICAgIGlmIGFicyhleHBlY3RlZCAtIGFjdHVhbCkgPiAxZS00OgogICAgICAgICAgICAgICAgcmFpc2UgQXNzZXJ0RXF1YWxOaWNlQXNzZXJ0aW9uRXJyb3IoCiAgICAgICAgICAgICAgICAgICAgYWN0dWFsLCBleHBlY3RlZCwgZnVuYywgYXJncywga3dhcmdzKQogICAgICAgIGVsaWYgYWN0dWFsICE9IGV4cGVjdGVkOgogICAgICAgICAgICByYWlzZSBBc3NlcnRFcXVhbE5pY2VBc3NlcnRpb25FcnJvcigKICAgICAgICAgICAgICAgIGFjdHVhbCwgZXhwZWN0ZWQsIGZ1bmMsIGFyZ3MsIGt3YXJncykKCiAgICBkZWYgYXNzZXJ0RXF1YWwoc2VsZiwgZmlyc3QsIHNlY29uZCwgbXNnPU5vbmUpOgogICAgICAgICMgU3VwcHJlc3MgZGlmZnMgZm9yIHN0cmluZ3MuCiAgICAgICAgaWYgbXNnIGlzIE5vbmUgYW5kIGlzaW5zdGFuY2UoZmlyc3QsIHN0cikgYW5kIGlzaW5zdGFuY2Uoc2Vjb25kLCBzdHIpOgogICAgICAgICAgICBtc2cgPSAnR290IFwne31cJyBidXQgZXhwZWN0ZWQgXCd7fVwnJy5mb3JtYXQoZmlyc3QsIHNlY29uZCkKCiAgICAgICAgdHJ5OgogICAgICAgICAgICBzdXBlcigpLmFzc2VydEVxdWFsKGZpcnN0LCBzZWNvbmQsIG1zZz1tc2cpCiAgICAgICAgZXhjZXB0IEFzc2VydGlvbkVycm9yIGFzIGVycjoKICAgICAgICAgICAgaWYgbXNnIGlzIE5vbmU6CiAgICAgICAgICAgICAgICBtc2cgPSBlcnIuYXJnc1swXQoKICAgICAgICAgICAgcmFpc2UgQXNzZXJ0RXF1YWxBc3NlcnRpb25FcnJvcihmaXJzdCwgc2Vjb25kLCBtc2cpCgogICAgZGVmIGFzc2VydFRydWUoc2VsZiwgZXhwciwgbXNnPU5vbmUpOgogICAgICAgICMgT3ZlcnJpZGUgc3VwZXIoKS5hc3NlcnRUcnVlKCkgdG8gc3VwcHJlc3MgdGhlIGRlZmF1bHQgJ1ggaXMgbm90IHRydWUnCiAgICAgICAgIyBvdXRwdXQgd2hlbiBtc2cgaXMgbm90IE5vbmUuCiAgICAgICAgaWYgbXNnIGlzIE5vbmU6CiAgICAgICAgICAgIG1zZyA9ICd7fSBpcyBub3QgdHJ1ZScuZm9ybWF0KGV4cHIpCiAgICAgICAgaWYgbm90IGV4cHI6CiAgICAgICAgICAgIHJhaXNlIEFzc2VydGlvbkVycm9yKG1zZykKCiAgICBkZWYgYXNzZXJ0RmFsc2Uoc2VsZiwgZXhwciwgbXNnPU5vbmUpOgogICAgICAgICMgT3ZlcnJpZGUgc3VwZXIoKS5hc3NlcnRGYWxzZSgpIHRvIHN1cHByZXNzIHRoZSBkZWZhdWx0ICdYIGlzIG5vdAogICAgICAgICMgZmFsc2UnIG91dHB1dCB3aGVuIG1zZyBpcyBub3QgTm9uZS4KICAgICAgICBpZiBtc2cgaXMgTm9uZToKICAgICAgICAgICAgbXNnID0gJ3t9IGlzIG5vdCBmYWxzZScuZm9ybWF0KGV4cHIpCiAgICAgICAgaWYgZXhwcjoKICAgICAgICAgICAgcmFpc2UgQXNzZXJ0aW9uRXJyb3IobXNnKQoKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjCiMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBURVNUUyBIRVJFICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMKIyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIwojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgpjb2Rvbl9tYXAgPSB7J1RUVCc6ICdGJywgJ1RUQyc6ICdGJywgJ1RUQSc6ICdMJywgJ1RURyc6ICdMJywgJ1RDVCc6ICdTJywKICAgICAgICAgICAgICAgICAgJ1RDQyc6ICdTJywgJ1RDQSc6ICdTJywgJ1RDRyc6ICdTJywgJ1RBVCc6ICdZJywgJ1RBQyc6ICdZJywKICAgICAgICAgICAgICAgICAgJ1RBQSc6ICcqJywgJ1RBRyc6ICcqJywgJ1RHVCc6ICdDJywgJ1RHQyc6ICdDJywgJ1RHQSc6ICcqJywKICAgICAgICAgICAgICAgICAgJ1RHRyc6ICdXJywgJ0NUVCc6ICdMJywgJ0NUQyc6ICdMJywgJ0NUQSc6ICdMJywgJ0NURyc6ICdMJywKICAgICAgICAgICAgICAgICAgJ0NDVCc6ICdQJywgJ0NDQyc6ICdQJywgJ0NDQSc6ICdQJywgJ0NDRyc6ICdQJywgJ0NBVCc6ICdIJywKICAgICAgICAgICAgICAgICAgJ0NBQyc6ICdIJywgJ0NBQSc6ICdRJywgJ0NBRyc6ICdRJywgJ0NHVCc6ICdSJywgJ0NHQyc6ICdSJywKICAgICAgICAgICAgICAgICAgJ0NHQSc6ICdSJywgJ0NHRyc6ICdSJywgJ0FUVCc6ICdJJywgJ0FUQyc6ICdJJywgJ0FUQSc6ICdJJywKICAgICAgICAgICAgICAgICAgJ0FURyc6ICdNJywgJ0FDVCc6ICdUJywgJ0FDQyc6ICdUJywgJ0FDQSc6ICdUJywgJ0FDRyc6ICdUJywKICAgICAgICAgICAgICAgICAgJ0FBVCc6ICdOJywgJ0FBQyc6ICdOJywgJ0FBQSc6ICdLJywgJ0FBRyc6ICdLJywgJ0FHVCc6ICdTJywKICAgICAgICAgICAgICAgICAgJ0FHQyc6ICdTJywgJ0FHQSc6ICdSJywgJ0FHRyc6ICdSJywgJ0dUVCc6ICdWJywgJ0dUQyc6ICdWJywKICAgICAgICAgICAgICAgICAgJ0dUQSc6ICdWJywgJ0dURyc6ICdWJywgJ0dDVCc6ICdBJywgJ0dDQyc6ICdBJywgJ0dDQSc6ICdBJywKICAgICAgICAgICAgICAgICAgJ0dDRyc6ICdBJywgJ0dBVCc6ICdEJywgJ0dBQyc6ICdEJywgJ0dBQSc6ICdFJywgJ0dBRyc6ICdFJywKICAgICAgICAgICAgICAgICAgJ0dHVCc6ICdHJywgJ0dHQyc6ICdHJywgJ0dHQSc6ICdHJywgJ0dHRyc6ICdHJ30KCmNsYXNzIFRlc3RDb2Rvbk1hcChBbnZQcm9nVGVzdENhc2UpOgoKICAgIGRlZiB0ZXN0X2NvZG9uX21hcF9kZWZpbmVkXzEoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRUcnVlKGhhc2F0dHIocHJvamVjdCwgJ2NvZG9uX21hcCcpLAogICAgICAgICAgICAgICAgICAgICAgICdUaGUgdmFyaWFibGUgYGNvZG9uX21hcGAgaGFzIG5vdCBiZWVuIGRlZmluZWQuJykKCiAgICBkZWYgdGVzdF9jb2Rvbl9tYXBfZGVmaW5lZF8yKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwocHJvamVjdC5jb2Rvbl9tYXAsIGNvZG9uX21hcCwKICAgICAgICAgICAgICAgICAgICAgICAnSXQgc2VlbXMgeW91IGhhdmUgY2hhbmdlZCB0byBgY29kb25fbWFwYCBpbiB5b3VyIGZpbGUuJykKCgpAdW5pdHRlc3Quc2tpcElmKGZ1bmN0aW9uX25vdF9kZWZpbmVkKHByb2plY3QsICd0cmFuc2xhdGVfY29kb24nKSwgJ3RyYW5zbGF0ZV9jb2RvbicpCmNsYXNzIFRlc3RFeGVyY2lzZTUoQW52UHJvZ1Rlc3RDYXNlKToKCiAgICAjIGRlZiB0ZXN0X2FhYV90cmFuc2xhdGVfY29kb25fZXhpc3RzKHNlbGYpOgogICAgIyAgICAgc2VsZi5hc3NlcnRGdW5jdGlvbkRlZmluZWQocHJvamVjdCwgJ3RyYW5zbGF0ZV9jb2RvbicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzEoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ00nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ0FURycpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJyonLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ1RBQScpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzMoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJz8nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ05OTicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzQoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ1QnLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ0FDRycpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzUoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJz8nLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ05OTicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX2NvZG9uXzYoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJyonLCBwcm9qZWN0LnRyYW5zbGF0ZV9jb2RvbiwgJ1RBQScpCgoKQHVuaXR0ZXN0LnNraXBJZihmdW5jdGlvbl9ub3RfZGVmaW5lZChwcm9qZWN0LCAnc3BsaXRfY29kb25zJyksICdzcGxpdF9jb2RvbnMnKQpjbGFzcyBUZXN0RXhlcmNpc2U2KEFudlByb2dUZXN0Q2FzZSk6CgogICAgIyBkZWYgdGVzdF9hYWFfc3BsaXRfY29kb25zX2V4aXN0cyhzZWxmKToKICAgICMgICAgIHNlbGYuYXNzZXJ0RnVuY3Rpb25EZWZpbmVkKHByb2plY3QsICdzcGxpdF9jb2RvbnMnKQoKICAgIGRlZiB0ZXN0X3NwbGl0X2NvZG9uc18xKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKFsnQUFBJywgJ1RUVCcsICdDQ0MnLCAnR0dHJ10sIHByb2plY3Quc3BsaXRfY29kb25zLCAnQUFBVFRUQ0NDR0dHJykKCiAgICBkZWYgdGVzdF9zcGxpdF9jb2RvbnNfMihzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZShbJ05OTicsICdOTk4nLCAnTk5OJywgJ05OTiddLCBwcm9qZWN0LnNwbGl0X2NvZG9ucywgJ05OTk5OTk5OTk5OTicpCgogICAgZGVmIHRlc3Rfc3BsaXRfY29kb25zXzMoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoWydBVEcnXSwgcHJvamVjdC5zcGxpdF9jb2RvbnMsICdBVEcnKQoKCkB1bml0dGVzdC5za2lwSWYoZnVuY3Rpb25fbm90X2RlZmluZWQocHJvamVjdCwgJ3RyYW5zbGF0ZV9vcmYnKSwgJ3RyYW5zbGF0ZV9vcmYnKQpjbGFzcyBUZXN0RXhlcmNpc2U3KEFudlByb2dUZXN0Q2FzZSk6CgogICAgIyBkZWYgdGVzdF9hYWFfdHJhbnNsYXRlX29yZl9leGlzdHMoc2VsZik6CiAgICAjICAgICBzZWxmLmFzc2VydEZ1bmN0aW9uRGVmaW5lZChwcm9qZWN0LCAndHJhbnNsYXRlX29yZicpCgogICAgZGVmIHRlc3RfdHJhbnNsYXRlX29yZl8xKHNlbGYpOgogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWxOaWNlKCdNUE0qJywgcHJvamVjdC50cmFuc2xhdGVfb3JmLCAnQVRHQ0NDQVRHVEdBJykKCiAgICBkZWYgdGVzdF90cmFuc2xhdGVfb3JmXzIoc2VsZik6CiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbE5pY2UoJ00/TSonLCBwcm9qZWN0LnRyYW5zbGF0ZV9vcmYsICdBVEdBVE5BVEdUR0EnKQoKICAgIGRlZiB0ZXN0X3RyYW5zbGF0ZV9vcmZfMyhzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsTmljZSgnTSonLCBwcm9qZWN0LnRyYW5zbGF0ZV9vcmYsICdBVEdUR0EnKQoKCmlmIF9fbmFtZV9fID09ICdfX21haW5fXyc6CiAgICAjIGlmIEdSQURFX01PREU6CiAgICAjICAgIHVuaXR0ZXN0Lm1haW4oZmFpbGZhc3Q9RmFsc2UsIHRlc3RSdW5uZXI9QW52UHJvZ1Rlc3RSdW5uZXIpCiAgICAjIGVsc2U6CiAgICAjICAgIHVuaXR0ZXN0Lm1haW4oZmFpbGZhc3Q9VHJ1ZSwgdGVzdFJ1bm5lcj1BbnZQcm9nVGVzdFJ1bm5lcikKICAgIGNhc2VzID0gc3VpdGVGYWN0b3J5KCpjYXNlRmFjdG9yeSgpKQogICAgaWYgR1JBREVfTU9ERToKICAgICAgIGZhaWxmYXN0PUZhbHNlCiAgICBlbHNlOgogICAgICAgZmFpbGZhc3Q9VHJ1ZQogICAgcnVubmVyID0gQW52UHJvZ1Rlc3RSdW5uZXIoZmFpbGZhc3Q9ZmFpbGZhc3QpCiAgICB0ZXN0X3Jlc3VsdCA9IHJ1bm5lci5ydW4oY2FzZXMpCiAgICBzeXMuZXhpdChpbnQobm90IHRlc3RfcmVzdWx0Lndhc1N1Y2Nlc3NmdWwoKSkpCg==').then(res => res.blob()).then(blob => {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'test_translationproject.py'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+        });"><button class="btn btn-light downloadthis  " id="dnldts39440"><i class="bi bi-download"></i> test_translationproject.py </button></a></p>
+<p><a href="https://munch-group.org/bioinformatics/supplementary/project_files">https://munch-group.org/bioinformatics/supplementary/project_files</a></p>
+<p>The file <code>translationproject.py</code> is for your code. The file <code>test_translationproject.py</code> is the script you use to test the functions you write for this project (see <a href="../python/testing_your_code.html" class="quarto-xref"><span>Chapter 18</span></a>).</p>
+<p>In this project you will need a data structure that pairs each codon to the amino acid it encodes. This is an obvious use of a dictionary and at the top of <code>translationproject.py</code> I have defined such a dictionary you can use. Defining it outside the functions means that it is visible inside all your functions (unless you define <em>another</em> variable called <code>codon_map</code> inside a function). Defining variables globally to your program sometimes make sense if some value can be considered a <em>constant</em> in your program and is <em>never</em> changed.</p>
+<blockquote class="blockquote">
+<p>It is normally very bad programming style to access variables outside functions in this way because it may have all kinds of unexpected side effects across function calls. So make it a rule for yourself that code <em>inside</em> a function should never to access variables <em>outside</em> the function. The reason we define <code>codon_map</code> globally in this project is to help you understand that when Python cannot find a variable inside a function, it looks outside the function to find it. In this project functions will find <code>codon_map</code> in this way. However, as I already said, you should <em>never</em> do this yourself. The chance that you make an unexpected mistake is overwhelming.</p>
+</blockquote>
+</section>
+<section id="translating-a-single-codon" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="translating-a-single-codon">Translating a single codon</h2>
+<p>Write a function, <code>translate_codon</code> that takes one argument:</p>
+<ol type="1">
+<li>A string, which is a codon.</li>
+</ol>
+<p>The function should return:</p>
+<ul>
+<li>A string of length one (one character). If the string argument is a valid codon then this letter should the be an amino acid letter specified by the <code>codon_map</code> dictionary. Note that stop codons are represented by a star (<code>'*'</code>). If the string argument is <em>not</em> a valid codon, the function must return <code>'?'</code>.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>translate_codon(<span class="st">'ACG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">'T'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before you start coding you should always outline for yourself intuitively what you need to do to complete the task at hand. In this case want to translate, or map, between a three letter string, codon, and the corresponding one letter string for the amino acid that the codon corresponds to. Notice that the keys in the <code>codon_map</code> dictionary are in upper case, so you must make sure that the keys <em>you</em> use are also in upper case. You can translate codon into an upper case version of itself using the upper() method.</p>
+<p>Try this out first:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>codon <span class="op">=</span> <span class="st">'TTG'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>amino_acid <span class="op">=</span> codon_map[codon]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amino_acid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now write the function so it uses the string parameter as a key to look up the corresponding amino acid letter and returns this letter. Before you go on, make a function that does only that.</p>
+<p>Before you are completely done you need to make your function handle the situation when the argument to the function is not a key in the <code>codon_map</code> dictionary. Use an if-else construct to handle the two cases. The boolean expression must test if the function argument is a key in <code>codon_map</code>. Remember that you can use the <code>in</code> operator to do this.</p>
+</section>
+<section id="splitting-an-open-reading-frame-into-codons" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="splitting-an-open-reading-frame-into-codons">Splitting an open reading frame into codons</h2>
+<p>To translate an entire open reading frame into the corresponding amino acid sequence, you need to split the ORF sequence into codons. When we have done that we can translate each codon using the function <code>translate_codon</code> you just wrote.</p>
+<p><em>Write a function</em>, <code>split_codons</code>, that takes one argument:</p>
+<ol type="1">
+<li>A string, which is an ORF sequence</li>
+</ol>
+<p>The function must return:</p>
+<ul>
+<li>A list of strings. Each string must have length 3 and must represent the-non overlapping triplets in the same sequence as they appear in the string given as argument.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>split_codons(<span class="st">'ATGTATGCCTGA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'ATG'</span>, <span class="st">'TAT'</span>, <span class="st">'GCC'</span>, <span class="st">'TGA'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Divide the problem into simpler tasks like above. You need to loop over the sequence to perform operations on it. Start by writing a function that prints each character:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_codons(orf):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(orf)):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(orf[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now try to figure out how you can modify the function to make it move over the sequence in jumps of three. Look at the <a href="https://docs.python.org/3/library/stdtypes.html#range">documentation</a> for the <code>range</code> function to see how you can make it iterate over numbers with increments of three like this: 0, 3, 6, 9, 12, … . Modify your function so that it now prints every third character.</p>
+<p>What you want is obviously not every third character. You want three characters. I.e. every third character <em>and</em> the two characters that come right after. You can use the index in the for loop to get the corresponding codon using slicing. Modify your function so that it prints each codon.</p>
+<p>Now all that remains is to put each codon on a list that you can return from the function. You can define a list before your for-loop so you have a list to add codons to.</p>
+</section>
+<section id="translating-an-open-reading-frame" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="translating-an-open-reading-frame">Translating an open reading frame</h2>
+<p>Now you can use the two functions <code>split_codons</code> and <code>translate_codon</code> to write a function that translates an ORF into a protein sequence.</p>
+<p><em>Write a function</em>, <code>translate_orf</code>, that takes one argument:</p>
+<ol type="1">
+<li>A string, which is a DNA sequence.</li>
+</ol>
+<p>The function must return</p>
+<ul>
+<li>A string, which is the protein sequence translated from the ORF sequence argument.</li>
+</ul>
+<p>Example usage:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>translate_orf(<span class="st">'ATGGAGCTTANCAAATAG'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>should return</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">'MEL?K*'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/python/testing_your_code.html" class="pagination-link" aria-label="Testing your code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Testing your code</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/project/folding_project.html" class="pagination-link" aria-label="Primer analysis">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Primer analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
