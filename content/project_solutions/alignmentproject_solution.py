@@ -1,12 +1,10 @@
 # %% [markdown]
 # ---
-# title: alignmentproject
+# Alignment project solution
 # ---
 
-# %%  [markdown]
+# %% [markdown]
 """
-# Alignment Project
-
 This is the solution to the alignment project described in chapter @sec-alignmentproject
 
 The first function is given to the students:
@@ -25,7 +23,7 @@ def print_dp_matrix(seq1, seq2, matrix):
         lst.extend([seq1[i]] + list(map(repr, matrix[i])))
     print(mat_fmt.format(*lst))
 
-# %% %%  [markdown]
+# %% [markdown]
 """
 The remaining functions are for the students to solve:
 """
