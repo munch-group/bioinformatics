@@ -1580,7 +1580,7 @@
     "href": "chapters/web/orf_finding.html#project-files",
     "title": "31  Plasmid ORFs",
     "section": "Project files",
-    "text": "Project files\nDownload the files you need for this project:\nhttps://munch-group.org/bioinformatics/supplementary/project_files",
+    "text": "Project files\nDownload the files you need for this project:\n orfproject.py \n test_orfproject.py \n e_coli_O157_H157_str_Sakai.fasta \nhttps://munch-group.org/bioinformatics/supplementary/project_files",
     "crumbs": [
       "Web exercises",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>Plasmid ORFs</span>"
