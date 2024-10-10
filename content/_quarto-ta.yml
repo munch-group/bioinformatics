@@ -1,8 +1,8 @@
 project:
   type: book
   output-dir: _book/ta
-  # post-render: 
-  #   - python ... encryption from https://github.com/MaxLaumeister/PageCrypt/tree/master
+  post-render: 
+    - python scripts/pagecrypt.py --passphrase banana _book/ta
 
 comments:
   hypothesis: true
