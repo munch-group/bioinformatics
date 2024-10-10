@@ -1,8 +1,6 @@
 project:
-  output-dir: _book/ta
-
-project:
   type: book
+  output-dir: _book/ta
   # post-render: 
   #   - python ... encryption from https://github.com/MaxLaumeister/PageCrypt/tree/master
 
