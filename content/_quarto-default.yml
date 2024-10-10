@@ -1,0 +1,142 @@
+project:
+  output-dir: _book
+
+project:
+  type: book
+  # post-render: 
+  #   - quarto render --to html --profile ta  
+
+book:
+  title: "Bioinformatics and Programming"
+  # title: "<br>"
+  subtitle: "AU course: Bioinformatik og programmering - 2024"
+  # description: 'A course in bioinformatics and programming'
+  # author: "Kasper Munch"
+  sidebar:
+    title: "Content"
+    collapse-level: 1
+    background: "white"      
+  chapters:
+    - index.qmd
+    - curriculum.qmd
+    # - part: "Schedule"
+    #   chapters:
+    #   - overview.qmd
+    #   - weekplan.qmd
+    - weekplan.qmd
+    - part: "Learning Python"
+      chapters:
+      - chapters/python/preface.qmd
+      - chapters/python/before_you_begin.qmd
+      - chapters/python/appendix_conda_and_pymol.qmd
+      - chapters/python/writing_a_program.qmd
+      - chapters/python/dealing_with_values.qmd
+      - chapters/python/the_order_of_events.qmd
+      - chapters/python/course_tools.qmd
+      - chapters/python/controlling_behavior.qmd
+      - chapters/python/organizing_your_code.qmd
+      - chapters/python/python_values_are_objects.qmd
+      - chapters/python/lists.qmd
+      - chapters/python/dictionaries.qmd
+      - chapters/python/gluing_values_in_sequence.qmd
+      - chapters/python/iteration_over_values.qmd
+      - chapters/python/working_with_data_files.qmd
+      - chapters/python/data_structures.qmd
+      - chapters/python/unleash_your_functions.qmd
+      - chapters/python/testing_your_code.qmd
+      # - chapters/python/your_own_types_of_objects.qmd
+      # - chapters/python/using_code_from_other_files.qmd
+      # - chapters/python/on_the_shoulders_of_giants.qmd
+    - part: "Python projects"
+      chapters: 
+      - chapters/project/translation_project.qmd
+      - chapters/project/folding_project.qmd
+      - chapters/project/alignment_project.qmd
+      - chapters/project/codonbias_project.qmd
+      - chapters/project/hiv_project.qmd
+      - chapters/project/seqdist_project.qmd
+      - chapters/project/orf_project.qmd
+      - chapters/project/assembly_project.qmd
+    # - part: "Bioinformatics"
+    #   chapters: 
+    #   - chapters/bioinformatics/assembly_and_mapping.qmd
+    #   - chapters/bioinformatics/bioinf_resources.qmd
+    #   - chapters/bioinformatics/clustering.qmd
+    #   - chapters/bioinformatics/database_searching.qmd
+    #   - chapters/bioinformatics/databases.qmd
+    #   - chapters/bioinformatics/gwas.qmd
+    #   - chapters/bioinformatics/hidden_markov_models.qmd
+    #   - chapters/bioinformatics/master_in_bioinformatics.qmd
+    #   - chapters/bioinformatics/models_of_dna_evolution.qmd
+    #   - chapters/bioinformatics/multiple_alignment.qmd
+    #   - chapters/bioinformatics/neural_networks.qmd
+    #   - chapters/bioinformatics/pairwise_alignment.qmd
+    #   - chapters/bioinformatics/phylogenetics.qmd
+    #   - chapters/bioinformatics/preface.qmd
+    #   - chapters/bioinformatics/procaryote_gene_fiding.qmd
+    #   - chapters/bioinformatics/protein_substitution_matrices.qmd
+    #   - chapters/bioinformatics/references.qmd
+    #   - chapters/bioinformatics/rna_structure.qmd
+    #   - chapters/bioinformatics/sequence_annnotation.qmd
+    - part: "Web exercises"
+      chapters: 
+      # - chapters/bioinf/tester.ipynb
+      # - chapters/bioinf/tester2.ipynb
+      # - chapters/bioinf/test.qmd
+      - chapters/web/gwas_databases.qmd
+      - chapters/web/ccr5_pwalign.qmd
+      - chapters/web/mrsa_blast_multalign.qmd
+      - chapters/web/aardwark_seqdist.qmd
+      - chapters/web/orf_finding.qmd
+      - chapters/web/long_reads.qmd
+      - chapters/web/neural_networks.qmd
+    - part: "Supplementary"
+      chapters: 
+      - supplementary/project_files.qmd
+      - supplementary/recordings2024.qmd
+      - supplementary/slides2024.qmd
+      - supplementary/bioinformatics_resources.qmd
+    - assignments.qmd
+    - exam.qmd
+  downloads: [pdf]
+
+bibliography: references.bib
+
+crossref:
+  sec-prefix: "exercise"
+  
+# embed-resources: true
+
+format:
+  html:
+    # mainfont: "Passata"
+    theme: 
+      - default
+      - custom.scss
+    highlight-style: kate 
+    fig-width: 5
+    fig-height: 3
+    filters: 
+      - quarto
+      - headers.lua
+    notebook-links: global
+    # number-sections: false
+    number-sections: true      
+    code-block-bg: "#f9f9f9"
+    # code-tools: true    
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    highlight-style: kate 
+    fig-width: 7
+    fig-height: 5
+    toc-depth: 2
+    secPrefix:
+      - "exercise"
+      - "exercises"
+    include-in-header:
+      - file: header_extra.tex
+  # epub:
+  #   cover-image: cover.png
+  #   highlight-style: kate 
+  #   # epub-fonts: DejaVuSans-*.ttf

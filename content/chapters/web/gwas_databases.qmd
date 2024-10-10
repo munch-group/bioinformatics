@@ -1,11 +1,21 @@
 
 # GWAS candidates
 
-```{python}
+<!-- ```{python}
 import os
 from IPython.display import display, Markdown
 ta_reveals = False
-```
+``` -->
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 
 The purpose of this exercise is to expose you to the different kinds of information that are stored in databases relevant to bioinformatics. It takes experience and skill to navigate the user interface of these databases. Here, you will see a few important ones, but there are many others. I have put a list at the end of this exercise with some additional relevant ones on Brightspace. Browse them at your heart's content.
  
@@ -41,18 +51,16 @@ All the options you see here are called "tracks", and they all contain different
 Play around with the zoom function. To the left of where you inserted the SNP ID is the size of the window you are looking at. The more you zoom out, the more genes you will be able to see.
 
 
-
-aslkfj aslkdfj alsdkfj 
+<!-- aslkfj aslkdfj alsdkfj 
 
 ```{python}
 #| echo: false
 'REVEALS' in os.environ and Markdown(f"""
 
-**Answer:**  
-alskd flaskdj falskdjf asdf
+
 
 """) or None
-```
+``` -->
 
 
 
