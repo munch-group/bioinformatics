@@ -65,7 +65,14 @@ book:
       - chapters/project/assembly_project.qmd
     - part: "Project solutions"
       chapters: 
+      - project_solutions/translationproject_solution.py
+      - project_solutions/foldingproject_solution.py
       - project_solutions/alignmentproject_solution.py
+      - project_solutions/assemblyproject_solution.py
+      - project_solutions/codonbiasproject_solution.py
+      - project_solutions/seqdistproject_solution.py
+      - project_solutions/orfproject_solution.py
+      - project_solutions/hivproject_solution.py
     # - part: "Bioinformatics"
     #   chapters: 
     #   - chapters/bioinformatics/assembly_and_mapping.qmd
