@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: _book/ta
   post-render: 
-    - python scripts/pagecrypt.py --passphrase banana _book/ta
+    - python ../scripts/pagecrypt.py --passphrase banana _book/ta/chapters/web
 
 comments:
   hypothesis: true

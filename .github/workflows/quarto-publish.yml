@@ -15,11 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-
-
       - name: Check out repository
         uses: actions/checkout@v4
-
         
       - uses: actions/setup-python@v4
         with:
@@ -54,6 +51,7 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         env:
           QUARTO_PROFILE: ta
+          # ENCRYPT_PASSPHRASE: ${{ secrets.GITHUB_TOKEN }}
         with:
           path: content
           to: html
