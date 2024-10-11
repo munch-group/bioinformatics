@@ -351,11 +351,9 @@ def encrypt_file(inputfile, passphrase):
     # with open(os.path.join(projectFolder, "decryptTemplate.html")) as f:
     # 	templateHTML = f.read()
 
-    global templateHTML
-    templateHTML = templateHTML.replace('Password Protected Page', title)    
-
     encryptedPl = f'"{b64encode(salt+iv+encrypted+tag).decode("utf-8")}"'
-    encryptedDocument = templateHTML.replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
+    # encryptedDocument = templateHTML.replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
+    encryptedDocument = templateHTML.replace('Password Protected Page', title).replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
 
     filename, extension = os.path.splitext(inputfile)
     # outputfile = filename + "-protected" + extension
