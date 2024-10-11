@@ -628,7 +628,7 @@ Figure&nbsp;30.3: Ingroup and outgroup in a phylogeny
 <h4 data-number="30.0.0.8" class="anchored" data-anchor-id="exercise-6"><strong>Exercise 30-8</strong></h4>
 <p>Let’s explore how the evolutionary distances change when you use other models and also how the different tree construction methods make a difference. You can du this by running the steps from the “one-step” analysis, but change the model of DNA evolution to explore how this affects your results.</p>
 <p>You will start at step 1: Multiple sequence alignment. You need a multiple alignments of all your sequences. Lucky for you, www.phylogeny.fr has already done that in order to make the tree. Here, the MUSCLE program has been used (MUSCLE is conceptually close to ClustalW). We will not change the alignment method. To access the multiple alignments, click on the tab “3. Alignment”. To see the curated that, click on the tab “4. Curation”. In this tab, the alignment has been curated by the program Gblocks. Gblocks has identified the portions of the alignment suitable for distance calculation and tree-building and has underlined these portions with a dark blue box. You can read more about Gblocks in the <a href="https://home.cc.umanitoba.ca/~psgendb/doc/Castresana/Gblocks_documentation.html">Gblocks documentation</a>. Go read the introduction in the Gblocks documentation. What kind of positions are excluded after curation?</p>
-<p>Download the curated alignment by clicking on “Cured alignment in Phylip format” under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file.</p>
+<p>Download the curated alignment by clicking on “Cured alignment in Phylip format” under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file. Go read the introduction in the Gblocks documentation. What kind of positions are NOT included after curation?</p>
 </section>
 <section id="exercise-7" class="level4" data-number="30.0.0.9">
 <h4 data-number="30.0.0.9" class="anchored" data-anchor-id="exercise-7"><strong>Exercise 30-9</strong></h4>
@@ -649,7 +649,7 @@ Figure&nbsp;30.3: Ingroup and outgroup in a phylogeny
 <section id="project-files" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="project-files">Project files</h2>
 <p>Download the files you need for this project:</p>
-<p><a href="#dnldts39349" onclick="fetch('data:text/plain;base64,PiBBYXJkdmFyaw0KDQo+IEdyZXkgS2FuZ2Fyb28NCg0KPiBHb2xkZW4gTW9sZQ0KDQo+IEVsZXBoYW50IFNocmV3DQoNCj4gUmVkIFJpdmVyIEhvZw0KDQo+IENvbGxhcmVkIGFudGVhdGVyDQoNCj4gQWZyaWNhbiBFbGVwaGFudA0KDQo+IFBsYXR5cHVz').then(res => res.blob()).then(blob => {
+<p><a href="#dnldts57199" onclick="fetch('data:text/plain;base64,PiBBYXJkdmFyaw0KDQo+IEdyZXkgS2FuZ2Fyb28NCg0KPiBHb2xkZW4gTW9sZQ0KDQo+IEVsZXBoYW50IFNocmV3DQoNCj4gUmVkIFJpdmVyIEhvZw0KDQo+IENvbGxhcmVkIGFudGVhdGVyDQoNCj4gQWZyaWNhbiBFbGVwaGFudA0KDQo+IFBsYXR5cHVz').then(res => res.blob()).then(blob => {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -657,7 +657,7 @@ Figure&nbsp;30.3: Ingroup and outgroup in a phylogeny
       a.download = 'animals.fasta'; a.click();
       window.URL.revokeObjectURL(downloadURL);
       document.body.removeChild(a);
-        });"><button class="btn btn-light downloadthis  " id="dnldts39349"><i class="bi bi-download"></i> animals.fa </button></a></p>
+        });"><button class="btn btn-light downloadthis  " id="dnldts57199"><i class="bi bi-download"></i> animals.fa </button></a></p>
 <p><a href="https://munch-group.org/bioinformatics/supplementary/project_files">https://munch-group.org/bioinformatics/supplementary/project_files</a></p>
 
 
