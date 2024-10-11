@@ -1569,7 +1569,7 @@
     "href": "chapters/web/orf_finding.html",
     "title": "31  Plasmid ORFs",
     "section": "",
-    "text": "Exercise 31-1\nRun ORF Finder with the default parameters. - How many ORFs did you find? - What is the longest and shortest ORF in nucleotides (nt)? You can click on “length” to sort them. - To the right, there is an option to alter the tracks. Try adding the “six-frame translations”, which are located under sequence. What is most common, start codons (green) or stop codons (red)?",
+    "text": "Exercise 31-1\nRun ORF Finder with the default parameters.",
     "crumbs": [
       "Web exercises",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>Plasmid ORFs</span>"
