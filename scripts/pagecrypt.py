@@ -150,9 +150,6 @@ templateHTML = """
             </div>
         </div>
     </div>
-    <div id="attribution">
-        Protected by <a href="https://www.maxlaumeister.com/pagecrypt/">PageCrypt</a>
-    </div>
     <script>
     (function() {
 

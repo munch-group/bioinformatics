@@ -49,19 +49,64 @@ You can download the files on Brightspace.
 #### Exercise
 Before we head into the actual investigation, lets begin by looking at the exon/intron structure of CCR5 by aligning the mRNAs of CCR5 to its CDS using the Needleman-Wunsch algorithm. Go to the [EBI website for pairwise alignment](https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle). Under “Sequence type” you need to select “DNA” to enable alignment parameters suitable for DNA alignment. Now align the two sequences by copy/pasting the mRNA into the top input field and the CDS into the bottom one (you must include the header line with the “>” character). Leave the rest of the options with their default values. Click “More options” to see what they are. Which score matrix gap penalties are used? Does the program use linear or affine gap scoring? Are gaps at the ends of the alignment scored differently than the internal gaps? 
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Now click “Submit”, to get your job queued on the server. You have to wait a bit. When the job is completed and the output is shown, the lines beginning with “#” provide additional information about the alignment. The top part list the options used for running the “needle” program in the terminal, and the bottom part shows parameter values and alignment statistics. What gap scoring was used? Which substitution matrix was used? Below all this is the alignment itself. How many exons does the gene have?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Now, on to the actual investigation. Begin by aligning the mRNAs of CCR5 and CCR5-delta32 to each other using the Needleman-Wunsch algorithm using the default values of parameters. Look at the alignment. How many bases are the same? How many are different? How many indels are there? What characterizes the delta32 variant? Is it a deletions, insertion, or substitution? Is more than one base involved?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Aligning protein sequences  {.unnumbered}
 
 #### Exercise
 Now, you will translate the coding sequence of CCR5 and CCR5-delta32 to see which effect the mutation has on the protein level. Go to the [Expasy translate](https://web.expasy.org/translate) website and set the “Output format” to “verbose”. Then, translate the two coding sequences, one at a time, by pasting the FASTA entries into the field (including the header line). What are the likely reading frames of each sequence? How does the mutation affect the protein? Is it a deletion, insertion, swap of amino acids, or a frameshift?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Now go back to the EMBOSS Needle website and align the two protein sequences. How does the mutation reflect on the alignment?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 
 ## Searching a database using Blast  {.unnumbered}
@@ -69,21 +114,66 @@ Now go back to the EMBOSS Needle website and align the two protein sequences. Ho
 #### Exercise
 Sooty mangabays also have common variants in their CCR5 gene that seem to protect them against SIV (simian immunodeficiency virus). You can use Blast to find and investigate these sequences too. Go to the [Blast website at NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Clicking “Nucleotide BLAST” will take you to the search interface for the versions of Blast optimized for DNA and RNA searches. Leave the settings to their default values, but take a look around to see what options are available. “Program Selection” lists the version of Blast. We are using megablast, but click the “?” icon to learn a bit about each one. Knowing a bit about how Blast works, how do you think megablast and blastn may differ in the kmer sizes and thresholds they use?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Before you start the database search, you want to limit its scope to only sequences from sooty mangabey. Set organism to sooty mangabey (“sooty mangabey (taxid:9531)”). Once you do this, it should look like @fig-blast_interface. Now paste in the CCR5 CDS and click the blue “BLAST” button at the bottom of the page to queue your search request (you may have to wait a bit).
 
 ![BLAST search interface](./images/blast_interface.png){#fig-blast_interface width=80%}
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Once the search results appear, they are sorted by E-value. Remind yourself what the E-value represents. The light blue header row lets you sort them by other criteria. “Query cover” sorts the database hits by how much of your search sequence (query) they cover. Since you are looking for search hits to a mRNA in the other species, look for “C-C motif chemokine receptor 5 (CCR5), complete CDS” in the descriptions of search hits and pick the one with the highest percent identity. Clicking the corresponding link in the description column takes you to a local alignment of the part of your query sequence that aligns with the database sequence. In this case, it covers your entire CCR5 CDS. In how many alignment columns do the bases differ? How many gaps are there? Given what you now know about the human and mangabey CCR5 gees, do you expect that the delta32 mutation to have arisen before or after the common ancestor of humans and mangabeys?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## GenBank sequence format  {.unnumbered}
 
 #### Exercise
 Now go back to the list of search hits by clicking the “Descriptions” link in the light blue bar above the alignment you were just looking at. See if you can find any search hits with names including “delta”. There should be a delta delta-24 allele among them. Pick the one with sequence ID AF079473.1. Inspect the alignment to the human CCR5. What characterizes these variants? What does the “delta” in the variant name refer to? 
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Go back to the descriptions list by clicking the “Descriptions” link in the light blue bar. On the left are tick boxes for each search hit. Mark only the two you have been looking at (IDs AF051905.1 and AF079473.1). In the “Download” dropdown list pick “GenBank” to download the two sequences in GenBank format. GenBank is a sequence entry format like Fasta, includeing much more information about each sequence. Open the downloaded file in VScode and see what it looks like. What kinds of information does it provide for each sequence?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 In the GenBank file, you can find the translated sequences of each CDS. Make a new text file in VScode and paste the two translated sequences in to create a Fasta file like this:
@@ -98,8 +188,26 @@ MDYQVSSPTYDIDYYTSEPCQKINVKQIAARLLPPLYSLVFIFG
 … rest of the sequence …    
 ```     
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Now, head back to the EBI needle website and align the two protein sequences. Make sure it is set to protein this time. Where is the deletion located? Does it just delete amino acids, and if so, how many, or does it change the reading frame or induce stop codons? How does the mangabey CCR5 mutation compare to that in humans?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Putting it all together  {.unnumbered}
 
@@ -108,8 +216,26 @@ Have a look at this scientific paper:
 [“A Novel CCR5 Mutation Common in Sooty Mangabeys Reveals SIVsmm Infection of CCR5-Null Natural Hosts and Efficient Alternative Coreceptor Use In Vivo”](https://doi.org/10.1371/journal.ppat.1001064
 ) and look at Figure 1 to see if their findings correspond to your observations. What can you learn from the paper about the functional importance of the mutations?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 What might be other questions you could try to answer learn something about the functional importance of the human and mangabey mutations and how they affect finished proteins?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 
 ## Project files {.unnumbered}

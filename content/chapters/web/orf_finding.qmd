@@ -17,10 +17,28 @@ Run ORF Finder with the default parameters.
 - What is the longest and shortest ORF in nucleotides (nt)? You can click on "length" to sort them.
 - To the right, there is an option to alter the tracks. Try adding the "six-frame translations", which are located under sequence. What is most common, start codons (green) or stop codons (red)?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exericse
 You can see that a lot of the identified ORFs are tiny and that many of them overlap other ORFs. Both are possible in bacterial plasmids but are much rarer than seen here. Return to the start page and rerun the search, but this time with a minimal ORF size of 300 nucleotides (100 amino acids).
 - How many overlapping ORFs do we find now? Which ORFs overlap? Some may be hard to distinguish visually; you can use the table below the tracks to see the start and stop and order them based on start/stop.
 - There is often a strand bias in transcripted regions. If two genes are close to each other, they need the same strandedness, as RNA polymerases can otherwise collide. Which strand is most common in this plasmid? How many genes are on the majority strand?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 With this improved list of possible genes, you are now ready to investigate the putative functions of the different ORFs. Sort the ORFs by size and Blast the longest 10. You can also Blast all the ORFs if you want to. Smartblast is recommended if you want to do it quickly, and it also has multiple useful features. These include showing a phylogeny of the closest related known proteins and a list of the best significant hits. Use a table or list, such as the one below, to keep track of your findings. Answer the three questions below for each of the top ten ORFs. 
@@ -39,11 +57,38 @@ With this improved list of possible genes, you are now ready to investigate the 
 |       |       |    |    |
 |       |       |    |    |
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Go back to the overlapping ORFs. Do both of the overlapping ORFs contain good hits?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Conclude on your findings. Does the plasmid contain genes that confer antibiotic resistance? If so, what kinds of antibiotics does it provide resistance to?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 
 ## Project files {.unnumbered}

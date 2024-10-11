@@ -239,7 +239,13 @@ should return the following dictionary of dictionaries (but not necessarily with
  'Read6': {'Read1': 0, 'Read3': 43, 'Read2': 0, 'Read5': 0, 'Read4': 1}}
 ```
 
-Hint: You can use the `get_overlap` function you just made to find the overlap between a pair of reads. To generate all combinations of reads you need two for-loops. One looping over reads in left positions and another (inside the first one) looping over reads in right position. Remember that we do *not* want the overlap of a read to itself, so there should be an if-statement in the checking of the left and right reads are the same.
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+You can use the `get_overlap` function you just made to find the overlap between a pair of reads. To generate all combinations of reads you need two for-loops. One looping over reads in left positions and another (inside the first one) looping over reads in right position. Remember that we do *not* want the overlap of a read to itself, so there should be an if-statement in the checking of the left and right reads are the same.
+
+:::
 
 ### Print overlaps as a nice table {.unnumbered}
 
@@ -319,7 +325,13 @@ should return
 [0, 0, 1, 13, 39]
 ```
 
-Hint: once you have made a list of left overlaps, you can use the builtin function `sorted` to make a sorted version of the list that you can return from the function.
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+Once you have made a list of left overlaps, you can use the builtin function `sorted` to make a sorted version of the list that you can return from the function.
+
+:::
 
 OK, now that we have a function that can find all the overlaps to the left end of a given read, all we need to do is find the particular read that have no signifiant (>2) overlaps to its left end.
 
@@ -366,7 +378,13 @@ The function must return
 
 * A list of strings, which are read names in the order in which they represent the genomic sequence. 
 
-Hints: You know the first read is given by the first argument to the function, you also know that you can find the next read in the chain of overlapping reads by using the `find_key_for_largest_value` function, and you know that you should keep adding on reads to the chain as long as the overlap is larger than two (you can use a for-loop with an if-statement inside to check that the overlap is larger than 2).
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+You know the first read is given by the first argument to the function, you also know that you can find the next read in the chain of overlapping reads by using the `find_key_for_largest_value` function, and you know that you should keep adding on reads to the chain as long as the overlap is larger than two (you can use a for-loop with an if-statement inside to check that the overlap is larger than 2).
+
+:::
 
 Example usage: assuming that `overlaps` is a dictionary of dictionaries returned by `get_all_overlaps` then:
 
@@ -412,7 +430,13 @@ CCAGGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTCGTCCAGACCCCTAGCTGGTA
 CGTCTTCAGTAGAAAATTGTTTTTTTCTTCCAAGAGGTCGGAGTCGTGAACACATCAGT
 ```
 
-Hint: iterate over the reads in order and use the overlap information to extract and join the appropriate parts of the reads.
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+Iterate over the reads in order and use the overlap information to extract and join the appropriate parts of the reads.
+
+:::
 
 ### Putting the whole thing together {.unnumbered}
 
@@ -434,7 +458,7 @@ assemble_genome('sequencing_reads.txt')
 
 should return the assembled genome:
 
-```python    
+```txt    
 TGCGAGGGAAGTGAAGTATTTGACCCTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATT
 CCAGGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTCGTCCAGACCCCTAGCTGGTA
 CGTCTTCAGTAGAAAATTGTTTTTTTCTTCCAAGAGGTCGGAGTCGTGAACACATCAGT

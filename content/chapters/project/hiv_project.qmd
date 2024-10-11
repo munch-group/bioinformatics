@@ -69,6 +69,17 @@ def sequence_similarity(seq1, seq2):
 
 Remember that `range(len(seq1))` generates the numbers you can use to index the string `seq1`. You can use those numbers as indexes to look up positions in both strings. You will need a for-loop in your function and a variable that keeps track of how many similarities you have seen as you iterate through the sequences. 
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def sequence_similarity(seq1, seq2):
+    num_similar = 0
+    for i in range(len(seq1)):
+        if seq1[i] == seq2[i]:
+            num_similar = num_similar + 1
+    return num_similar / len(seq1)
+```
+:::
+
 ### Compare aligned sequences {.unnumbered}
 
 All sequences, including the unknown sequence, are from the same multiple alignment. This ensures that sequence positions match up across all sequences but also means that a lot of gap characters (`'-'`) are inserted. To compute similarities between such sequences you need to make function much like `seqeuence_similarity` that does not consider sequence positions where both bases are a gap (`'-'`) characters. In other words, you must not only count the number of characters that are the same, you also need to count how many alignment columns that are `"-"` for both sequences. E.g. the following mini alignment has five such columns and four columns where the bases are the same. So in the following alignment, the similarity is 0.8 (4/5):
@@ -91,13 +102,33 @@ alignment_similarity('A-CT-A', 'A-CTTA')
 
 should return `0.8`.
 
-**Hint:** Use an if-statement to test if the two characters at some index are equal to `'-'` in both sequences. You can use an expression like this:
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+Use an if-statement to test if the two characters at some index are equal to `'-'` in both sequences. You can use an expression like this:
 
 ```python
 seq1[i] == '-' and seq2[i] == '-'
 ```
 
+:::
+
 Once your function has computed both the number of identical bases and the number of alignment columns that are not both `'-'`, you can have it return the similarity as the ratio of the two.
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def alignment_similarity(seq1, seq2):
+    num_similar = 0
+    num_gap_cols = 0
+    for i in range(len(seq1)):
+        if seq1[i] == '-' and seq2[i] == '-':
+            num_gap_cols = num_gap_cols + 1
+        elif seq1[i] == seq2[i]:
+            num_similar = num_similar + 1
+    return num_similar / (len(seq1) - num_gap_cols)
+```
+:::
 
 ## Read the HIV sequences into your program {.unnumbered}
 
@@ -183,6 +214,16 @@ similarities = []
 
 This is the list of results that your function must return. To compute the similarity between you unknown sequence and each of the sequences of known subtype, you can use your `alignment_similarity` function inside a for-loop.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def get_similarities(unknown, typed_sequences):
+    list_of_similarities = []
+    for target_seq in typed_sequences:
+        list_of_similarities.append(alignment_similarity(unknown, target_seq))
+    return list_of_similarities
+```
+:::
+
 ## Compute maximum similarity to each subtype {.unnumbered}
 
 To predict the subtype of the unknown HIV sequence you need to compare the unknown sequence to all the sequences of each of the different subtypes. The subtype of the sequence with the highest similarity to your unknown sequence is then our predicted subtype (or our best guess). 
@@ -214,6 +255,16 @@ subtypeA_similarities = get_similarities(unknown_list[0], typed_data['A'])
 subtypeA_max = max(subtypeA_similarities)
 ```
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def get_max_similarities(unknown, typed_data):
+    return {'A': max(get_similarities(unknown, typed_data['A'])),
+            'B': max(get_similarities(unknown, typed_data['B'])),
+            'C': max(get_similarities(unknown, typed_data['C'])),
+            'D': max(get_similarities(unknown, typed_data['D']))}
+```
+:::
+
 <!-- TODO: Have them also compute mean similarity to each group -->
 
 
@@ -242,3 +293,13 @@ The function must return:
 The function should use `get_max_similarities` to compute the dictionary of max similarities and then extract from that dictionary the key with the highest value (similarity). So the function must return `'A'` if the unknown sequence is most similar to a sequence of subtype A, `'B'` if the unknown sequence is most similar to a sequence of subtype B and so on.
 
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def predict_subtype(unknown, typed_data):
+    d = get_max_similarities(unknown, typed_data)
+    max_val = max(d.values())
+    for subtype in d:
+    	if d[subtype] == max_val:
+    		return subtype
+```
+:::

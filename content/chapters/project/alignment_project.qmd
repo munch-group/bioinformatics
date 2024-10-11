@@ -33,6 +33,22 @@ The function returns:
 
 * None, but it *prints* a nice representation of the matrix lined with the bases of the two sequences.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def print_dp_matrix(seq1, seq2, matrix):
+    max_len = max(len(str(cell)) for row in matrix for cell in row)
+    fmt = "{{:>{}}}".format(max_len+1)
+    row_fmt = fmt * (len(matrix[0])+1) + '\n'
+    mat_fmt = row_fmt *  (len(matrix)+1)
+    seq1 = ' ' + seq1
+    seq2 = ' ' + seq2
+    lst = [' '] + list(seq2)
+    for i in range(len(seq1)):
+        lst.extend([seq1[i]] + list(map(repr, matrix[i])))
+    print(mat_fmt.format(*lst))
+```
+:::
+
 ## Filling in the dynamic programming matrix {.unnumbered}
 
 ### Make a matrix {.unnumbered}
@@ -58,6 +74,19 @@ returns a list with *three* lists each of length *four*:
 ```python
 [[None, None, None, None], [None, None, None, None], [None, None, None, None]]
 ```
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def empty_matrix(m, n):
+    matrix = []
+    for i in range(m):
+        row = []
+        for j in range(n):
+            row.append(None)
+        matrix.append(row)
+    return matrix
+```
+:::
 
 Even though this is a list of lists we can *think of it* as a three by four matrix:
 
@@ -93,10 +122,6 @@ If it changed the first value in *all* the lists, it means that all your lists a
 ```
 
 
-
-
-
-
 ### Fill top row and left column {.unnumbered}
 Now that you can make a matrix with the correct dimensions, you need to write a function that fills in the top row and the left column in accordance with what the gap score is. E.g. if the gap score is `-2` you want the matrix to look something like this when you print it with `print_dp_matrix`:
 
@@ -127,9 +152,33 @@ must return:
 [[0, -2, -4, -6], [-2, None, None, None], [-4, None, None, None]]
 ```
 
-**Hint:** You should call `empty_matrix` inside `prepare_matrix` to get a matrix filled with `None`. 
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+You should call `empty_matrix` inside `prepare_matrix` to get a matrix filled with `None`. 
+
+:::
 
 Now all you need to do is replace the right `None` values with *multiples* of the gap score. E.g. the third element in the first sub-list is `matrix[2][0]`, which you would need to assign the value: `2` times the gap score. In the same way `matrix[3][0]` should be `3` times the gap score. So you need to figure out which elements you should replace and which pairs of indexes you need to access those elements. Then use `range` to generate those indexes and for-loops to loop over them. 
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def prepare_matrix(m, n, gap_score):
+
+    matrix = empty_matrix(m, n)
+
+    for i in range(len(matrix)):
+        matrix[i][0] = gap_score * i
+
+    for j in range(len(matrix[0])):
+        matrix[0][j] = gap_score * j
+
+    return matrix
+```
+:::
+
+
 
 ### Fill the entire matrix {.unnumbered}
 Now that we are able to fill the top row and left column we can start thinking about how to fill the whole matrix. 
@@ -175,11 +224,18 @@ If you print that matrix using `print_dp_matrix` it should look like this:
 	A -2  0  0 -2
 	T -4 -2  0  2
 
-**Hint:** You should call `prepare_matrix` inside `fill_matrix` to get a matrix with the top row and left column filled. Assuming `seq1` is sequence one and `seq2` is sequence two then you can do it like this:
+
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+You should call `prepare_matrix` inside `fill_matrix` to get a matrix with the top row and left column filled. Assuming `seq1` is sequence one and `seq2` is sequence two then you can do it like this:
 
 ```python
 matrix = prepare_matrix(len(seq1)+1, len(seq2)+1, gap_score)
 ```
+
+:::
 
 Now you only need to fill out the rest. To produce the indexes of the elements in the list of lists that you need to assign values to, you need two nested for-loops.
 
@@ -195,6 +251,25 @@ Examine this code and make sure you understand why we give those arguments to `r
 1. The value of the cell to the left (`matrix[i][j-1]`) plus the gap score.
 2. The cell above (`matrix[i-1][j]`) plus the gap score.
 3. The diagonal cell (`matrix[i-1][j-1]`) plus the match score for base number `i` (index `i-1`) of sequence one and base number `j` (index `j-1`) of sequence two.
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def fill_matrix(seq1, seq2, score_matrix, gap_score):
+
+    matrix = prepare_matrix(len(seq1)+1, len(seq2)+1, gap_score)
+
+    for i in range(1, len(seq1)+1):
+        for j in range(1, len(seq2)+1):
+            base1 = seq1[i-1]
+            base2 = seq2[j-1]
+            diag = matrix[i-1][j-1] + score_matrix[base1][base2]
+            left = matrix[i][j-1] + gap_score
+            up = matrix[i-1][j] + gap_score
+            matrix[i][j] = max(left, up, diag)
+
+    return matrix
+```
+:::
 
 ## Reconstructing the optimal alignment {.unnumbered}
 
@@ -229,10 +304,7 @@ def trace_back(seq1, seq2, matrix, score_matrix, gap_score):
     # Strings to store the growing alignment strings:
     aligned1 = ''
     aligned2 = ''
-# continues...
-```
 
-```python
     # The row and col index of the bottom right cell:
     row = len(seq1)
     col = len(seq2)
@@ -270,10 +342,7 @@ def trace_back(seq1, seq2, matrix, score_matrix, gap_score):
             aligned2 = base2 + aligned2
             # next cell is the cell to the left:
             col -= 1
-# continues...
-```
 
-```python
     # If row is not zero, step along the top row to the top left cell:
     while row > 0:
         base1 = seq1[row-1]
@@ -325,3 +394,11 @@ alignment = align('ATAT', 'GATGAT', score_matrix, -2)
 for s in alignment:
     print(s)
 ```
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def align(seq1, seq2, score_matrix, gap_score):
+    dp = fill_matrix(seq1, seq2, score_matrix, gap_score)
+    return trace_back(seq1, seq2, dp, score_matrix, gap_score)
+```
+:::

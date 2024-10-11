@@ -31,13 +31,40 @@ The structural learning goals of this exercise are:
 #### Exercise
 Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig-mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Find the FASTA version of the genomic reference assembly. This will give you the genetic sequence of the gene. Keep the header of the sequence (“>... Staph…, complete cds”), as we will need this later.
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exericse
 Find the FASTA version of the protein sequence. There might be a link to this in “Related Information.”
 
 ![Screenshot](./images/mecA_ncbi.png){#fig-mecA_ncbi width=80%}
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Database Searching using BLAST  {.unnumbered}
 
@@ -47,12 +74,30 @@ Go to the [NCBI BLAST web portal](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Use
 - **E-value (Expect value)**: The number of hits one can "expect" to see by chance when searching a database of a particular size. Lower E-values indicate a more significant match. Typically, E-values below 0.05 or especially 0.01 suggest a significant match, but the threshold can depend on the content and especially the size of the search. The longer a search term, the less likely it is for random matches.
 - **Percent Identity**: The percentage of identical matches between the query and subject sequences over the aligned region.
   
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Try adjusting the number of maximum target sequences in “Algorithm Parameters” (e.g., to 1000). You can also exclude “Staphylococcus aureus” from the search results to only see other organisms.  
 
 - How did this affect the results?
 - Check the taxonomy of your found organisms.
 - Check the graphic summary of the results. 
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
   
 #### Exercise
 Try the other programs (“Program Selection”). They may be slower but can find less similar matches that may uncover the potential sources of the gene.
@@ -61,11 +106,38 @@ Try the other programs (“Program Selection”). They may be slower but can fin
 - What are the main differences between the programs (megablast, discontiguous megablast, and blastn). 
 - What do we expect from the different algorithms? It is okay to use Wikipedia or similar resources.
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Try the protein blast algorithms and compare the findings. This requires the protein sequence. Do you find the MecA gene product (i.e., protein) in other types of bacteria (i.e., not Staphylococcus strains)? If so, what may this imply about horizontal gene transfer of this gene? Is there a risk of MRSA “helping” completely different, and perhaps more dangerous, bacteria genera become antibiotics resistant?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 You might see multiple Staphylococcus strains when allowing higher maximum target sequences. What are the potential interpretations of this concerning horizontal gene transfer? Can we deduce a single origin of the gene in Staphylococcus aureus from these results? Remember that we see a snapshot of where the genes were present during various studies – this is ever-changing.
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exericse
 According to Bloemendaal et al. (2010): "Methicillin Resistance Transfer from Staphylococcus epidermidis to Methicillin-Susceptible Staphylococcus aureus in a Patient during Antibiotic Therapy", mecA may be transferred from Staphylococcus epidermidis. The mecA gene is located on the Staphylococcal Cassette Chromosome mec (SCCmec), and they found that the SCCmec were almost identical in MRSA and in S. epidermidis in a patient. 
@@ -73,21 +145,66 @@ According to Bloemendaal et al. (2010): "Methicillin Resistance Transfer from St
 - Does your results imply this may be true?
 - If this was the case in that one patient, does it mean the MecA gene in MRSA always stems from S. epidermidis?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 ## Multiple Sequence Alignment using ClustalW  {.unnumbered}
 
 #### Exercise
 Choose five or more types of bacteria from your BLAST results, such as Staphylococcus epidermidis (include Staphylococcus aureus). You will be comparing the MecA gene’s sequence in each of these to find relations between them.
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 Go to Genbank and find nucleotide sequences for the MecA gene in each of your selected organisms. E.g., search for “Staphylococcus epidermidis MecA”. You should get the (when possible) complete sequence for the gene only. Get the header of the FASTA file as well.
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exericise
 Go to ClustalW at https://www.genome.jp/tools-bin/clustalw and input the sequences (with header first) of the mecA sequences from MRSA and the selected organisms. See @fig-clustalw_genome_jp Select DNA as you’re inputting nucleotide sequences. Feel free to try the protein sequences.
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 Run the multiple alignments. 
 - What does the output tell us?
 - How may these alignments be useful to us in determining the origin of the MecA gene?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 At the top of the output page, select a method in the tree menu (e.g., FastTree) and press Exec. This will generate a phylogram. A phylogram is a depiction of evolutionary relationships between taxa, in this case, the mecA gene from different types of bacteria. The branch lengths illustrate evolutionary distance and nodes from where the tree branches can be interpreted as common ancestors when we are working with vertical gene transfer. Try to imagine what the nodes could be interpreted as when we are talking about horizontal gene transfer. Hint: maybe the nodes could be interpreted as possible horizontal gene transfer events.  
@@ -96,6 +213,15 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
 - How could we use phylograms to track the potential horizontal gene transfer between the different bacteria?
 
 ![Screenshot](./images/clustalw_genome_jp.png){#fig-clustalw_genome_jp width=80%}
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Discussion  {.unnumbered}
 

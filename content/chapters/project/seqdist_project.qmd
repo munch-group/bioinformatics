@@ -46,6 +46,17 @@ should return
 0.25
 ```
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def sequence_difference(seq1, seq2):
+    differences = 0
+    for i in range(len(seq1)):
+        if seq1[i] != seq2[i]:
+            differences += 1
+    return differences / len(seq1)
+```
+:::
+
 ### Make the Jukes-Cantor correction {.unnumbered}
 
 To take into account that some substitutions may fall on top of others you must do the Jukes-Cantor correction you read about in the book. The formula is like this:
@@ -79,6 +90,15 @@ should return
 ```python
 0.10732563273050497
 ```
+
+::: {.content-hidden unless-profile="ta"}
+```python
+from math import log
+
+def jukes_cantor(dist):
+    return -(3/4) * log(1 - (4/3)*dist)
+```
+:::
 
 ## Lower triangular distance matrices {.unnumbered}
 
@@ -174,6 +194,20 @@ You should use `sequence_difference` to compute the proportion of differences be
 
 Start by figuring out what pairs of indexes you need and then figure out how you can make two nested for-loops generate them. Remember that the length of each sublist is equal to its index in the big list.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def lower_trian_matrix(seq_list):
+    lower_trian = []
+    for i in range(len(seq_list)):
+        row = []
+        for j in range(i):
+            diff = sequence_difference(seq_list[i], seq_list[j])
+            row.append(jukes_cantor(diff))
+        lower_trian.append(row)
+    return lower_trian
+```
+:::
+
 ## Clustering {.unnumbered}
 
 Now that you have the distance matrix you are ready for the actual clustering. There are three steps to that:
@@ -210,6 +244,22 @@ Should return
 [1, 0]
 ```
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def find_lowest_cell(table):
+    x = 1
+    y = 0
+    min_val = table[x][y]
+    for i in range(len(table)):
+        for j in range(len(table[i])):
+            if table[i][j] < min_val:
+                min_val = table[i][j]
+                x = i
+                y = j
+    return [x, y]
+```
+:::
+
 ### Decide on a linkage method {.unnumbered}
 
 You also need a function that computes a new distance from two original ones using the the centroid-like linkage we have decided to use.
@@ -234,6 +284,14 @@ Should return:
 ```python
 0.3
 ```
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def link(x, y):
+    # mean, makes this WPGMA (centroid-like linking - not UPGMA)
+    return (x + y) / 2
+```
+:::
 
 ## Perform the clustering {.unnumbered}
 

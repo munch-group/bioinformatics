@@ -39,6 +39,17 @@ then it should return (not necessarily with key-value pairs in the same order):
 {"A": 1, "C": 0, "G": 2, "T": 1}
 ```
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def count_bases(seq):
+	counts = {'C': 0, 'G':0, 'T':0, 'A':0}
+	for b in seq:
+		counts[b] += 1
+	return counts
+```
+:::
+
+
 ## Compute the melting temperature {.unnumbered}
 
 Knowing the base composition in your sequence, you can now calculate the melting temperature the double-stranded DNA that forms when your primer pairs up with the sequence to amplify. If the primer has less than 14 bases the formula for calculating melting temperature is:
@@ -73,6 +84,16 @@ then it should return:
 8
 ```
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def melting_temp(s):
+	d = count_bases(s)
+	if len(s) < 14:
+		return (d['A'] + d['T']) * 2 + (d['G'] + d['C']) * 4
+	else:
+		return 64.9 + 41 * (d['G']+d['C']-16.4) / len(s)
+```
+:::
 
 ## Reverse complement the sequence {.unnumbered}
 
@@ -97,6 +118,17 @@ then it should return:
 ```python
 "GAATT"
 ```
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def reverse_complement(s):
+	d = {'A': 'T', 'T': 'A','C': 'G', 'G': 'C'}
+	l = []
+	for i in range(1, len(s)+1):
+		l.append(d[s[-i]])
+	return ''.join(l)
+```
+:::
 
 <!-- TODO: Add function to test if the primer can form a dimer (interacting with another sequence) -->
 
@@ -154,3 +186,18 @@ def has_hairpin(s, k):
 
 
 Hint A: Here you need to extract a substring of length k starting at i. Hint B: Here you need to extract all the sequence to the right of `substr`.
+
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def has_hairpin(s, k):
+	looplen = 4
+	for i in range(len(s)-k+1):
+		subs = s[i:i+k]
+		right = s[i+k:]
+		revcl = reverse_complement(subs)
+		if revcl in right[looplen:]:
+			return True
+	return False
+```
+:::

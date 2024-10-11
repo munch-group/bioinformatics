@@ -64,6 +64,15 @@ We would like to find an animal that can serve as "outgroup" in our analysis. An
 
 ![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig-outgroup width=40%}
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 ## One-click analysis  {.unnumbered}
 
 Now that you have created a FASTA file with the COI (COX1) gene of the Aardvark and all the reference animals, it is time to look into the evolutionary distances between them. We will be using the web tool [www.phylogeny.fr](https://www.phylogeny.fr) for this exercise. When you do your phylogenetic analyses below, you need to screengrab/save your phylogenetic trees along the way. You should paste them into a document with notes on which models and parameters used for each tree. That way you can compare them all at the end.
@@ -77,9 +86,27 @@ Go to [www.phylogeny.fr](https://www.phylogeny.fr) and get aquianted with the we
 3. Building of the phylogenetic tree according to evolutionary distances calculated from the curated multiple sequence alignment.
 4. Visualization of the tree.
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 
 Now that you have navigated to the "one-click" analysis page, you can upload the FASTA file you created in the previous task. Then click submit. The result is a phylogenetic tree describing the evolutionary distances between COI genes of the different animals. Take a good look at it. Does it look anything like what you expected?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 
@@ -89,6 +116,15 @@ If you want to make the tree easier to interpret or to highlight specific relati
 2. What does Swap do?
 3. What does Reroot do?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise
 
 You have played around with the tree a bit, and now you are ready address what it tells you. Start by clicking on “Reset (cancel all changes)" in the section “Select an action" and follow up by rerooting the tree with Platypus as the outgroup. Now answer the following questions:
@@ -97,6 +133,15 @@ You have played around with the tree a bit, and now you are ready address what i
 2. How many terminal nodes (leaves) and how many internal nodes are there in the tree?
 3. Which node represents the most recent common ancestor between the Aardvark and the African Elephant? Which one is the common ancestor between the Aardvark and the Elephant Shrew? Does this hold no matter whether you forced the platypus as the outgroup? 
 4. Which of the reference animals are closest related to the Aardvark according to this model? Does the tree look like you expected?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Different models of DNA evolution
 
@@ -116,6 +161,15 @@ The **Hamming distance** is not a traditional substitution model used for phylog
 
 What might be the reason for not alway choosing the model with the largest number of parameters?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
+
 #### Exercise 
 
 Let’s explore how the evolutionary distances change when you use other models and also how the different tree construction methods make a difference. You can du this by running the steps from the "one-step" analysis, but change the model of DNA evolution to explore how this affects your results. 
@@ -123,6 +177,15 @@ Let’s explore how the evolutionary distances change when you use other models 
 You will start at step 1: Multiple sequence alignment. You need a multiple alignments of all your sequences. Lucky for you, www.phylogeny.fr has already done that in order to make the tree. Here, the MUSCLE program has been used (MUSCLE is conceptually close to ClustalW). We will not change the alignment method. To access the multiple alignments, click on the tab “3. Alignment". To see the curated that, click on the tab “4. Curation". In this tab, the alignment has been curated by the program Gblocks. Gblocks has identified the portions of the alignment suitable for distance calculation and tree-building and has underlined these portions with a  dark blue box. You can read more about Gblocks in the [Gblocks documentation](https://home.cc.umanitoba.ca/~psgendb/doc/Castresana/Gblocks_documentation.html). Go read the introduction in the Gblocks documentation. What kind of positions are excluded after curation?
 
 Download the curated alignment by clicking on “Cured alignment in Phylip format" under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file. 
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 #### Exercise
 
@@ -132,6 +195,15 @@ PhyML (Phylogenetic Maximum Likelihood) employs a statistical approach (maximum 
 
 PhyML now lets you choose a substitution model. A substitution model is a mathematical model that describes how genetic sequences change over time. So now you will see how these different models actually affect your tree.
 Try the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format" and save the file. These tree files can be visualised by using the program “TreeDyn" under the top tab “Online Programmes". Do the trees formed by GTR and HKY85 look alike? What are the Aardvark's closest relatives according to the two trees?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Explore phylogeny - part 3  {.unnumbered}
 
@@ -145,6 +217,15 @@ Okay, step back from the Aardvark for a moment. What about the other animals we 
 Now, you have looked at the Aardvark and its evolutionary relations with other animals. You have tried many different ways. Are you more confident in your knowledge about the Aardvark, or are you feeling more confused than ever? What of the animals in your analysis is the closest relative of the Aardvark?
 Does Wikipedia agree with you? (https://en.wikipedia.org/wiki/Aardvark) (Read from the Introduction, Name, and Taxonomy). Do you trust Wikipedia? See if you can find the Aardvark (
 *Orycteropus afer*) in NCBI's Taxnomy Browser. What does that report its taxonomy?
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Some note for TAs
+
+:::
+:::
 
 ## Project files {.unnumbered}
 

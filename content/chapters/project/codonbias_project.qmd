@@ -124,6 +124,21 @@ should return:
 
 In the function, you should use the `split_codons` function to split the ORF into a list of codons. Then create an empty dictionary that you can populate with counts. You want *all* the possible codons to be in your dictionary. That way, the codons you do *not* find in your ORF will have a count of `0`. In this case, such absence is also valuable information. To achieve this you must start by filling the dictionary with a key for each codon and give each a count of `0`. You can do that by iterating over the keys in the dictionary that maps codons to amino acids. Then you must iterate over all the codons in the list of codons produced by the `split_codons` function and add counts to the dictionary as you go.
 
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def count_codons(orf):
+    orf = orf.upper()
+    codon_list = split_codons(orf)
+    counts = {}
+    for codon in codon_map:
+        counts[codon] = 0
+    for codon in codon_list:
+        counts[codon] += 1
+    return counts
+```
+:::
+
 ## Group codon counts by amino acid {.unnumbered}
 
 Having counted how many times each codon appears in the ORF, you need to group the counted codons by the amino acid they encode. 
@@ -184,6 +199,20 @@ grouped_counts[acid][codon] = codon_counts[codon]
 
 Your function should begin by defining an empty dictionary to add to. Then use a for-loop to run through all codon/amino-acid pairs and populate your dictionary of dictionaries.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def group_counts_by_amino_acid(codon_counts):
+    counts_by_amino_acid = {}
+    for codon in codon_counts:
+        acid = codon_map[codon]
+        if acid not in counts_by_amino_acid:
+            counts_by_amino_acid[acid] = {}
+        counts_by_amino_acid[acid][codon] = codon_counts[codon]
+    return counts_by_amino_acid
+
+```
+:::
+
 ## Turn counts into frequencies {.unnumbered}
 
 Now you know how many times each codon represents a certain amino acid, but we would like to know with which *frequency* a certain codon represents an amino acid. So you need to normalize the counts so they become frequencies. You do that by dividing each codon count by the total number of codons encoding the same amino acid. We split the solution to this problem in two. We first write a helper function that turns codon counts for *one* amino acid into frequencies.
@@ -209,6 +238,19 @@ should return:
 ```
 
    -- though not necessarily with key-value pairs in that order.
+
+
+::: {.content-hidden unless-profile="ta"}
+```python
+def normalize_counts(counts):
+    total_count = sum(counts.values())
+    if total_count:
+        freqs = {}
+        for codon in counts:
+            freqs[codon] = counts[codon] / total_count
+        return freqs
+```
+:::
 
 Now you have solved part of the task, what remains is to now use that function to normalise the codon counts of *each* amino acid in your grouped counts:
 
@@ -248,6 +290,19 @@ def normalize_grouped_counts(grouped_counts):
 
 Amino acids with no codon counts should *not* be part of the data structure. Remember that in this case `normalize_counts` returns `None`, so you can simply test if the return value from `normalize_counts` is `None`
 
+::: {.content-hidden unless-profile="ta"}
+```python
+def normalize_grouped_counts(grouped_counts):
+    grouped_freqs = {}
+    for aa in grouped_counts:
+        counts = grouped_counts[aa]
+        freqs = normalize_counts(counts)
+        if freqs:
+            grouped_freqs[aa] = freqs
+    return grouped_freqs
+```
+:::
+
 ## Compute the codon usage {.unnumbered}
 
 Now all that remains is to tie together the functions you have written in a final function that generates your big data structure from an ORF:
@@ -260,5 +315,12 @@ The function must return:
 
 * A dictionary of dictionaries, same as that returned by `normalize_grouped_counts`.
 
- 
- 
+::: {.content-hidden unless-profile="ta"}
+```python
+def codon_usage(orf):
+    codon_counts = count_codons(orf)
+    stats_per_amino_acid = group_counts_by_amino_acid(codon_counts)
+    freqs = normalize_grouped_counts(stats_per_amino_acid)
+    return freqs
+```
+:::

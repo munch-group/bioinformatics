@@ -4,9 +4,11 @@ project:
   pre-render:
     # decrypt project solutions before rendering
     - python ../scripts/encrypt.py -d banana project_solutions
+    - python ../scripts/encrypt.py -d banana chapters/project
   post-render: 
     # encrypt rendered web exercise html wth TA reveals
     - python ../scripts/pagecrypt.py --passphrase banana _book/ta/chapters/web
+    - python ../scripts/pagecrypt.py --passphrase banana _book/ta/chapters/project
 
 comments:
   hypothesis: true

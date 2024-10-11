@@ -80,6 +80,12 @@ Then try and make your function print `i` only when `i` is the first base of a s
 
 Finally, modify the function so all the relevant values of `i` are collected in a list using the same technique as in the `split_codons(orf)` function, and then return this list from the function.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+
+```
+:::
+
 ### Finding the next occurrence of some codon in an ORF {.unnumbered}
 
 Now that you can find where the ORFs begin in our sequence you must also be able to identify where each of these end. As you know, an ORF ends at any of three different stop codons in the same reading frame as the start codon. So, starting at the start codon of the ORF, we need to be able to find the next occurrence of some specific codon. I.e. you should look at all codons after the start codon and find the first occurrence of some specified codon. If the function does not find that codon in the string it should return `None`.
@@ -120,6 +126,12 @@ When you have that working, use the slicing technique to instead print the codon
 
 Finally, add an if-statement that tests if each codon is equal to `codon`. When this is true, the function should return the value of `idx`.
 
+::: {.content-hidden unless-profile="ta"}
+```python
+
+```
+:::
+
 ### Finding the first stop codon in an ORF {.unnumbered}
 
 Now that you can find the next occurrence of any codon, you are well set up to write a function that finds the index for the beginning of the next in-frame *stop codon* in an ORF.
@@ -152,6 +164,13 @@ Here is some inspiration:
 4. At the end, you should test if you have any indexes in your list.
 5. If you do, you should return the smallest index in the list. I.e  the ones closest to the start codon.
 6. If you did not find any stop codons the function must return `None` to indicate this.
+
+
+::: {.content-hidden unless-profile="ta"}
+```python
+
+```
+:::
 
 ### Finding ORFs {.unnumbered}
 
@@ -193,6 +212,12 @@ orf_coordinate_list.append([start, stop])
 ```
 
 Test your function. Chances are that some of the end positions you get are None. This is because some of the start codons were not followed by an in-frame stop codon. Add an if-statement to your function that controls that only start-stop pairs with a valid stop coordinate are added to the list of results.
+
+::: {.content-hidden unless-profile="ta"}
+```python
+
+```
+:::
 
 ## Translation of open reading frames {.unnumbered}
 
@@ -249,7 +274,19 @@ should return
 
 The function should call `find_orfs` to get the list of start-end pairs. For each index pair, you must then slice the ORF out of the sequence (remember that the end index represents the first base in the stop codon), translate the ORF to protein, and add it to a list of proteins that the function can return.
 
-**Hint:** To check your result note that all returned sequences should start with a start codon `'M'`, end with a stop codon `'*'` and contain no stop codons in the middle.
+::: {.callout-note appearance="simple" collapse=true}
+
+# Hint
+
+To check your result note that all returned sequences should start with a start codon `'M'`, end with a stop codon `'*'` and contain no stop codons in the middle.
+
+:::
+
+::: {.content-hidden unless-profile="ta"}
+```python
+
+```
+:::
 
 ### On your own {.unnumbered}
 
