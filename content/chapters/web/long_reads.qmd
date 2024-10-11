@@ -32,7 +32,7 @@ Go to the [IGV download page](https://igv.org/doc/desktop/#DownloadPage) and dow
 **Clipping**: If a proportion of the read does not fit the reference sequence, that proportion can be masked/clipped. Because of this masking, the read will look shorter in IGV.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -53,7 +53,7 @@ You will see two red and green lines on one of the reads. To find out what the l
 - Now go back to `ptg000001l:1003200-1007274`. You have probably figured out that the colored lines represent a mismatch in the alignment. These mismatches could be rare but true mutations, but they could also be sequencing errors. Use your knowledge about the np tag and QV tag to determine whether the mismatches are due to sequencing errors or true mutations. (Hint: Compare the tags with the reads that do not have mismatches)
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -69,7 +69,7 @@ Now that you are an expert in IGV, we are ready for more advanced stuff. Pack yo
 - You might have noticed that some of the reads have turned white. What does the white color mean (Hint: Look at the tags)?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -94,7 +94,7 @@ You should be able to see four SNPs. Click on the colored bars in the coverage p
 - Compare the five values with the MAPQ of five reads found in the previous region (`ptg000001l:2879315:2879495`). Are they different? Which region do you trust more?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -112,7 +112,7 @@ Zoom in on one of the blue/red boxes and click some. What do they show you?
 Go to `ptg000001l:910,755-912,644`. You might have noticed that the blue/red color represents the probability of the C being methylated. In this region, you can see that the blue color dominates and that the concentration of CpG sites is high. To see this more clearly, zoom out by clicking the minus button five times. The region looks unique, so let’s investigate it a bit more. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -131,7 +131,7 @@ Go to the [Bast home page](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blas
 ![IGV screenshot](./images/IGV.png)
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -144,7 +144,7 @@ Some note for TAs
 Go to `ptg000001l:1,855,223-1,901,969``. You should see a region with a high number of CpGs, but the base modification differs between the reads. Discuss what causes this pattern. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -162,7 +162,7 @@ It is time for the grand finale. Go to the end destination, which is found at `p
 - If you have time, discover more interesting patterns in the data set.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs

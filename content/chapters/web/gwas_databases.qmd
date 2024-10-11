@@ -8,10 +8,10 @@ ta_reveals = False
 ``` -->
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+Presentation: https://docs.google.com/presentation/d/1jBpBfO7_RGzxD1iHuN0LW8NIQqjthGYacxKAuTszbQI/edit#slide=id.p
 
 :::
 :::
@@ -50,7 +50,7 @@ All the options you see here are called "tracks", and they all contain different
 Play around with the zoom function. To the left of where you inserted the SNP ID is the size of the window you are looking at. The more you zoom out, the more genes you will be able to see.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -62,7 +62,7 @@ Some note for TAs
 Identify nearby genes, including their names, locations, and orientations. Remember that linkage means that the causal gene may not be the one closest to the GWAS SNP. Are there any genes located close to the SNP of interest? If yes. Note them down for further analysis.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -74,7 +74,7 @@ Some note for TAs
 What is the genomic context (e.g., intronic, intergenic) of the SNP?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -86,7 +86,7 @@ Some note for TAs
 You see the same gene multiple times in the gene track. Why do you think that is?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -98,7 +98,7 @@ Some note for TAs
 Try to select other tracks such as promoters (EPDnew Promoters) and regulatory elements (ENCODE Regulation). See if there are known regulatory elements, such as enhancers or promoters, in the vicinity of the SNP.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -110,7 +110,7 @@ Some note for TAs
 Are there any annotated regulatory elements near the SNP that might influence gene expression? Try to press the regulatory track. What kind of information does this track represent? (Hint: Read the description of the track). 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -131,7 +131,7 @@ It's important to understand what kind of information these sites provide and th
 Google "NCBI". What is it, and who administers it? Do the same with ENSEMBL. What's its function, and who administers it?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -143,7 +143,7 @@ Some note for TAs
 On the NCBI Gene website, the drop-down menu shows "gene", but other databases on NCBI exist. Get yourself an overview. Do you recognize other databases? Some you don't know?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -155,7 +155,7 @@ Some note for TAs
 When a gene is found in the "About this gene" section at ENSEMBL, try to press "phenotypes" if there are any. Do you see diabetes for any of the genes?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -167,7 +167,7 @@ Some note for TAs
 The Genecards resource is different from the two other databases. Can you list two major differences?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -179,7 +179,7 @@ Some note for TAs
 By now, you should have a feeling for the databases and their goals. NCBI and ENSEMBL store the same sequence information, so it is mostly about which site presents data in the most useful way for the task at hand. Which one is your favorite one and why? Which of the genes are related to Type 1 Diabetes? If you can't find a related gene, go back to "Accessing the UCSC Genome Browser and make initial exploration" and look at your tracks again. You may have missed it. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -197,7 +197,7 @@ With the gene you now have chosen, answer the following questions by using the 3
 5. At ENSEMBL, try to click on the UniprotKN identifier. This takes you to a page in the "UniProt" database. Can you retrive the amino acid sequence? - Do that.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -213,7 +213,7 @@ In this step, we are interested in investigating our gene's expression. Or multi
 In which tissues is the gene(s) typically expressed, and are there variations in expression levels across different tissues?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -225,7 +225,7 @@ Some note for TAs
 Do the expression profiles make sense with the information you got from the other databases? Do you expect to see certain tissues with a high expression? Other with a low? Is it relevant to the disease we are investigating? 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -237,7 +237,7 @@ Some note for TAs
 What can you infer about the potential functional relevance of the gene(s) in the context of the disease or trait?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -252,7 +252,7 @@ Based on the information gathered from UCSC, various gene databases, and GTEx, p
 Based on the genomic and expression data, what are your hypotheses regarding the role of the identified gene(s) in the disease or trait?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -264,7 +264,7 @@ Some note for TAs
 How might tissue-specific gene expression patterns provide insights into the disease mechanism?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -276,7 +276,7 @@ Some note for TAs
 Are there potential challenges or limitations in establishing causality between the gene(s) and the disease?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -289,7 +289,7 @@ Summarize your findings and discuss the significance of investigating candidate 
 Reflect on the challenges and limitations of this approach in pinpointing causal genes for complex diseases.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -301,7 +301,7 @@ Some note for TAs
 What did you learn from this exercise about the importance of exploring the genomic context and tissue-specific gene expression in GWAS follow-up?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -313,7 +313,7 @@ Some note for TAs
 How might these findings inform future research or therapeutic approaches for the disease or trait?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs

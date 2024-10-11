@@ -1,5 +1,15 @@
 # Aardvark?
 
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple" collapse="true"}
+## TA note
+
+Presentation: https://docs.google.com/presentation/d/1pwiRdDBazXl35KePMS5PktpzccUuEMGR/edit#slide=id.p1
+
+:::
+:::
+
 “What is an Aardvark?" You may have bugged you for a while. It might have kept you up at night. You might have been twisting and turning due to the mystery that is the Aardvark. But fear not. Today, you will attempt to answer this exact question. Or at least a part of the question from a phylogenetic perspective. In the process, hopefully, you will learn something about phylogeny. Let’s start with a more straightforward question. “What does the Aardvark look like?", @fig-ardvark. 
 
 ![This is an Ardvaark](images/ardvark.png){#fig-ardvark width=80%}
@@ -65,10 +75,14 @@ We would like to find an animal that can serve as "outgroup" in our analysis. An
 ![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig-outgroup width=40%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+The students will be given a fasta-file containing only headers. They need to fill out the sequences themselves. 
+
+A completed version of the animals.fasta file is attached as TA_animals.fasta. 
+
+{{< downloadthis ../../../TA/files/TA_animals.fasta dname="TA_animals" label="TA_animals.fasta" type="light" >}}
 
 :::
 :::
@@ -87,11 +101,12 @@ Go to [www.phylogeny.fr](https://www.phylogeny.fr) and get aquianted with the we
 4. Visualization of the tree.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+A completed curated multiple alignment is attaches as TA_aligned_cured.phy
 
+{{< downloadthis ../../../TA/files/TA_align_cured.phy dname="TA_align_cured" label="TA_align_cured.phy" type="light" >}}
 :::
 :::
 
@@ -100,7 +115,7 @@ Some note for TAs
 Now that you have navigated to the "one-click" analysis page, you can upload the FASTA file you created in the previous task. Then click submit. The result is a phylogenetic tree describing the evolutionary distances between COI genes of the different animals. Take a good look at it. Does it look anything like what you expected?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -117,10 +132,12 @@ If you want to make the tree easier to interpret or to highlight specific relati
 3. What does Reroot do?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+1. Flip an entire tree at a node (see animation on the button)
+2. Flip two branches at a node (see animation on the button)
+3. Picks an outgroup and reorders the tree accordingly
 
 :::
 :::
@@ -135,11 +152,29 @@ You have played around with the tree a bit, and now you are ready address what i
 4. Which of the reference animals are closest related to the Aardvark according to this model? Does the tree look like you expected?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+Click on “Reset (cancel all changes)” in the section “Select an action”. Done How many terminal nodes (leafs) and how many internal nodes are there in the tree? 
 
+- Leafs: 8 	
+- Internal nodes:7 
+
+![](images/aardvarg_tree1.png)
+
+![](images/aardvarg_tree2.png)
+
+
+Which node represents the most recent common ancestor between the Aardvark and the African Elephant? What about the Elephant Shrew? 
+
+- Elephant: Node with pink arrow
+- Elephant shrew: node with green arrow  
+- 
+
+Which of the reference animals are closest related to the Aardvark according to this model?
+
+- African Elephant
+  
 :::
 :::
 
@@ -162,7 +197,7 @@ The **Hamming distance** is not a traditional substitution model used for phylog
 What might be the reason for not alway choosing the model with the largest number of parameters?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -176,13 +211,13 @@ Let’s explore how the evolutionary distances change when you use other models 
 
 You will start at step 1: Multiple sequence alignment. You need a multiple alignments of all your sequences. Lucky for you, www.phylogeny.fr has already done that in order to make the tree. Here, the MUSCLE program has been used (MUSCLE is conceptually close to ClustalW). We will not change the alignment method. To access the multiple alignments, click on the tab “3. Alignment". To see the curated that, click on the tab “4. Curation". In this tab, the alignment has been curated by the program Gblocks. Gblocks has identified the portions of the alignment suitable for distance calculation and tree-building and has underlined these portions with a  dark blue box. You can read more about Gblocks in the [Gblocks documentation](https://home.cc.umanitoba.ca/~psgendb/doc/Castresana/Gblocks_documentation.html). Go read the introduction in the Gblocks documentation. What kind of positions are excluded after curation?
 
-Download the curated alignment by clicking on “Cured alignment in Phylip format" under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file. 
+Download the curated alignment by clicking on “Cured alignment in Phylip format" under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file. Go read the introduction in the Gblocks documentation. What kind of positions are NOT included after curation? 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+“The selected blocks must fulfill certain requirements with respect to the lack of large segments of contiguous nonconserved positions, lack or low density of gap positions and high conservation of flanking positions, making the final alignment more suitable for phylogenetic analysis”
 
 :::
 :::
@@ -197,10 +232,41 @@ PhyML now lets you choose a substitution model. A substitution model is a mathem
 Try the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format" and save the file. These tree files can be visualised by using the program “TreeDyn" under the top tab “Online Programmes". Do the trees formed by GTR and HKY85 look alike? What are the Aardvark's closest relatives according to the two trees?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+Do the trees formed by GTR and HKY85 look alike?
+
+- No
+
+HKY58:
+
+![](images/aardvarg_tree3.png)
+
+PhyML_HKY85.txt:
+
+```txt
+((((Golden_Mol:1.770432,Red_River:1.213225)0.239000:0.320206,(Aardvark:0.920700,
+African_El:2.021196)0.681000:0.188120)0.619000:0.196596,Elephant_S:1.897230)
+0.022000:0.329309,Grey_Kanga:1.105003,Collared_a:1.279808);
+```
+
+GTR:
+
+![](images/aardvarg_tree4.png)
+
+PhyML_GTR.txt:
+
+```txt
+((((African_El:0.628600,Red_River:0.559674)0.165000:0.069529,(Aardvark:0.326772,
+Golden_Mol:0.586933)0.149000:0.076902)0.760000:0.077234,Elephant_S:0.727699)
+0.351000:0.085600,Grey_Kanga:0.537334,Collared_a:0.446054);
+```
+
+What are the Aardvarks closest relatives according to the two trees?
+
+- HKY85: African Elephant
+- GTR: Golden Mole
 
 :::
 :::
@@ -211,6 +277,8 @@ Not only can you change the substitution model used in calculating the evolution
 Try the three DNA/RNA substitution models for BioNJ (kimura, jukes-cantor, hamming ). Remember to save your trees. 
 Do these three trees look alike? Do they look like the trees formed by PhyML? What are the Aardvark's closest relatives according to the three trees?
 
+
+
 ## Food for thought  {.unnumbered}
 Okay, step back from the Aardvark for a moment. What about the other animals we are looking at? Are their relations always the same? Are some always grouped together while others are always grouped far apart? If you are particularly curious, try to add other types of elephants to the FASTA-file and see how other types of elephants group when doing phylogeny.
 
@@ -219,13 +287,74 @@ Does Wikipedia agree with you? (https://en.wikipedia.org/wiki/Aardvark) (Read fr
 *Orycteropus afer*) in NCBI's Taxnomy Browser. What does that report its taxonomy?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+Do these three trees look alike? No, the observant student might notice that in the newick files, the distances differ, even though they give similar looking trees.
+
+**Kimura**
+
+![](images/aardvarg_tree5.png)
+
+
+BioNJ_Kimura.txt:
+
+```txt
+((Golden_Mol:0.123113,Red_River:0.120247):0.004572,(Aardvark:0.111798,
+African_El:0.134623):0.002983,(Collared_a:0.115352,(Grey_Kanga:0.114640,
+Elephant_S:0.128854):0.008608):0.004993);
+```
+
+**Jukes-Cantor**
+
+![](images/aardvarg_tree6.png)
+
+BioNJ_Jukes_Cantor.txt:
+
+```txt
+((Golden_Mol:0.118188,Red_River:0.116918):0.003841,(Aardvark:0.108637,
+African_El:0.130041):0.003100,(Collared_a:0.110687,(Grey_Kanga:0.110186,
+Elephant_S:0.123141):0.008748):0.004254);
+```
+
+**Hamming**
+
+![](images/aardvarg_tree7.png)
+
+BioNJ_Hamming.txt:
+
+```txt
+((Golden_Mol:155.673782,Red_River:154.326218):4.257894,(Aardvark:145.141327,
+African_El:168.858673):3.390268,(Collared_a:147.386536,(Grey_Kanga:146.800003,
+Elephant_S:161.199997):9.631905):4.711679);
+```
+
+Do they look like the trees formed by PhyML?
+
+- No.
+
+What are the Aardvarks closest relatives according to the three trees?
+
+- African Elephant
 
 :::
 :::
+
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple" collapse="true"}
+## TA note
+
+Food for thought: With more elephants -> one-click analysis
+
+- The elephants are very close compared to all the other animals, making it difficult to actually see the relations among themselves. This might open up for a discussion about the scope of analysis being determined by how closely related all the reference animals are. 
+- 
+A completed fasta file with added extra elephants is attached
+
+{{< downloadthis ../../../TA/files/TA_animals_with_elephants.fasta dname="TA_animals_with_elephants" label="TA_animals_with_elephants.fasta" type="light" >}}
+:::
+:::
+
 
 ## Project files {.unnumbered}
 

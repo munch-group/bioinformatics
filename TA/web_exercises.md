@@ -294,6 +294,68 @@ This is still difficult to answer. But we see a lot of matches with other Staphy
 
 Presentation: https://docs.google.com/presentation/d/1pwiRdDBazXl35KePMS5PktpzccUuEMGR/edit#slide=id.p1
 
+
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple" collapse="true"}
+## TA note
+
+A completed curated multiple alignment is attaches as TA_aligned_cured.phy
+
+A folder with the completed newick trees is attached as TA_newick
+
+A completed fasta file with added extra elephants is attached
+
+{{< downloadthis ../../../TA/files/TA_animals_with_elephants.fasta dname="TA_animals_with_elephants" label="TA_animals_with_elephants.fasta" type="light" >}}
+
+Below are the answers to the questions in order.  I have added pictures where I find it suitable.
+
+{{< downloadthis ../../../TA/files/TA_aligm_cured.phy dname="TA_align_cured" label="TA_align_cured.phy" type="light" >}}
+
+
+
+BioNJ_Hamming.txt:
+
+```txt
+((Golden_Mol:155.673782,Red_River:154.326218):4.257894,(Aardvark:145.141327,
+African_El:168.858673):3.390268,(Collared_a:147.386536,(Grey_Kanga:146.800003,
+Elephant_S:161.199997):9.631905):4.711679);
+```
+
+BioNJ_Jukes_Cantor.txt:
+
+```txt
+((Golden_Mol:0.118188,Red_River:0.116918):0.003841,(Aardvark:0.108637,
+African_El:0.130041):0.003100,(Collared_a:0.110687,(Grey_Kanga:0.110186,
+Elephant_S:0.123141):0.008748):0.004254);
+```
+
+BioNJ_Kimura.txt:
+
+```txt
+((Golden_Mol:0.123113,Red_River:0.120247):0.004572,(Aardvark:0.111798,
+African_El:0.134623):0.002983,(Collared_a:0.115352,(Grey_Kanga:0.114640,
+Elephant_S:0.128854):0.008608):0.004993);
+```
+
+PhyML_GTR.txt:
+
+```txt
+((((African_El:0.628600,Red_River:0.559674)0.165000:0.069529,(Aardvark:0.326772,
+Golden_Mol:0.586933)0.149000:0.076902)0.760000:0.077234,Elephant_S:0.727699)
+0.351000:0.085600,Grey_Kanga:0.537334,Collared_a:0.446054);
+```
+
+PhyML_HKY85.txt:
+
+```txt
+((((Golden_Mol:1.770432,Red_River:1.213225)0.239000:0.320206,(Aardvark:0.920700,
+African_El:2.021196)0.681000:0.188120)0.619000:0.196596,Elephant_S:1.897230)
+0.022000:0.329309,Grey_Kanga:1.105003,Collared_a:1.279808);
+```
+:::
+:::
+
+
 - A completed version of the animals.fasta file is attached as TA_animals.fasta. The students will be given a fasta-file containing only headers. They need to fill out the sequences themselves. 
 - A completed curated multiple alignment is attaches as TA_aligned_cured.phy
 - A folder with the completed newick trees is attached as TA_newick

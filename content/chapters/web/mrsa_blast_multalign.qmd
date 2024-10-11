@@ -1,5 +1,14 @@
 # MRSA
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple" collapse="true"}
+## TA note
+
+Presentation: https://docs.google.com/presentation/d/1Sxbzewzm8RaVhwb8F547iwrPi3xdIsItogt7VGG0M5o/edit#slide=id.p
+
+:::
+:::
+
 Methicillin-resistant Staphylococcus aureus (MRSA) is a strain of the staph bacteria that's become resistant to the antibiotics typically used to treat ordinary staph infections. Originally, the Staphylococcus aureus bacterium was a common cause of skin infections, pneumonia, and other medical conditions. However, its methicillin-resistant counterpart, MRSA, emerged as a strain that resists many of the conventional antibiotics. This resistance is not limited to just methicillin but extends to other antibiotics, often rendering standard treatments ineffective. 
 
 Individuals infected with MRSA can experience a range of ailments, from skin and wound infections to more severe conditions like pneumonia, bloodstream infections, and sepsis. Particularly concerning is its ability to cause life-threatening complications in older or immunocompromised people or people with chronic illnesses. 
@@ -24,18 +33,17 @@ The structural learning goals of this exercise are:
 - Build practical experience using Blast
 - Acquire practical experience with multiple alignment tools.
 
-
-
 ## Sequence Retrieval  {.unnumbered}
 
 #### Exercise
 Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig-mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+
+mecA reference genome from https://www.ncbi.nlm.nih.gov/nuccore/KC243783.1
 
 :::
 :::
@@ -44,10 +52,45 @@ Some note for TAs
 Find the FASTA version of the genomic reference assembly. This will give you the genetic sequence of the gene. Keep the header of the sequence (“>... Staph…, complete cds”), as we will need this later.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+```txt
+>KC243783.1 Staphylococcus aureus strain TN/CN/1/12 MecA (mecA) gene, complete cds
+ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
+CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
+AGATAGCAGTTATATTTCTAAAAGCGATAATGGTGAAGTAGAAATGACTGAACGTCCGATAAAAATATAT
+AATAGTTTAGGCGTTAAAGATATAAACATTCAGGATCGTAAAATAAAAAAAGTATCTAAAAATAAAAAAC
+GAGTAGATGCTCAATATAAAATTAAAACAAACTACGGTAACATTGATCGCAACGTTCAATTTAATTTTGT
+TAAAGAAGATGGTATGTGGAAGTTAGATTGGGATCATAGCGTCATTATTCCAGGAATGCAGAAAGACCAA
+AGCATACATATTGAAAATTTAAAATCAGAACGTGGTAAAATTTTAGACCGAAACAATGTGGAATTGGCCA
+ATACAGGAACAGCATATGAGATAGGCATCGTTCCAAAGAATGTATCTAAAAAAGATTATAAAGCAATCGC
+TAAAGAACTAAGTATTTCTGAAGACTATATCAAACAACAAATGGATCAAAATTGGGTACAAGATGATACC
+TTCGTTCCACTTAAAACCGTTAAAAAAATGGATGAATATTTAAGTGATTTCGCAAAAAAATTTCATCTTA
+CAACTAATGAAACAAAAAGTCGTAACTATCCTCTAGAAAAAGCGACTTCACATCTATTAGGTTATGTTGG
+TCCCATTAACTCTGAAGAATTAAAACAAAAAGAATATAAAGGCTATAAAGATGATGCAGTTATTGGTAAA
+AAGGGACTCGAAAAACTTTACGATAAAAAGCTCCAACATGAAGATGGCTATCGTGTCACAATCGTTGACG
+ATAATAGCAATACAATCGCACATACATTAATAGAGAAAAAGAAAAAAGATGGCAAAGATATTCAACTAAC
+TATTGATGCTAAAGTTCAAAAGAGTATTTATAACAACATGAAAAATGATTATGGCTCAGGTACTGCTATC
+CACCCTCAAACAGGTGAATTATTAGCACTTGTAAGCACACCTTCATATGACGTCTATCCATTTATGTATG
+GCATGAGTAACGAAGAATATAATAAATTAACCGAAGATAAAAAAGAACCTCTGCTCAACAAGTTCCAGAT
+TACAACTTCACCAGGTTCAACTCAAAAAATATTAACAGCAATGATTGGGTTAAATAACAAAACATTAGAC
+GATAAAACAAGTTATAAAATCGATGGTAAAGGTTGGCAAAAAGATAAATCTTGGGGTGGTTACAACGTTA
+CAAGATATGAAGTGGTAAATGGTAATATCGACTTAAAACAAGCAATAGAATCATCAGATAACATTTTCTT
+TGCTAGAGTAGCACTCGAATTAGGCAGTAAGAAATTTGAAAAAGGCATGAAAAAACTAGGTGTTGGTGAA
+GATATACCAAGTGATTATCCATTTTATAATGCTCAAATTTCAAACAAAAATTTAGATAATGAAATATTAT
+TAGCTGATTCAGGTTACGGACAAGGTGAAATACTGATTAACCCAGTACAGATCCTTTCAATCTATAGCGC
+ATTAGAAAATAATGGCAATATTAACGCACCTCACTTATTAAAAGACACGAAAAACAAAGTTTGGAAGAAA
+AATATTATTTCCAAAGAAAATATCAATCTATTAACTGATGGTATGCAACAAGTCGTAAATAAAACACATA
+AAGAAGATATTTATAGATCTTATGCAAACTTAATTGGCAAATCCGGTACTGCAGAACTCAAAATGAAACA
+AGGAGAAACTGGCAGACAAATTGGGTGGTTTATATCATATGATAAAGATAATCCAAACATGATGATGGCT
+ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
+ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAA
+CGATGGTTGCTTCACTGTTTTATTATGAATTATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTC
+TTCATTTTCATTGTATGTTGAAAGTGACA
+```
+
+Title field states: MecA gene sequence analysis of methicillin resistant Staphylococcus aureus (MRSA) hospital isolate from Tamil Nadu
 
 :::
 :::
@@ -58,11 +101,22 @@ Find the FASTA version of the protein sequence. There might be a link to this in
 ![Screenshot](./images/mecA_ncbi.png){#fig-mecA_ncbi width=80%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
-
+```txt
+>AGC51118.1 MecA [Staphylococcus aureus]
+MKKIKIVPLILIVVVVGFGIYFYASKDKEINNTIDAIEDKNFKQVYKDSSYISKSDNGEVEMTERPIKIY
+NSLGVKDINIQDRKIKKVSKNKKRVDAQYKIKTNYGNIDRNVQFNFVKEDGMWKLDWDHSVIIPGMQKDQ
+SIHIENLKSERGKILDRNNVELANTGTAYEIGIVPKNVSKKDYKAIAKELSISEDYIKQQMDQNWVQDDT
+FVPLKTVKKMDEYLSDFAKKFHLTTNETKSRNYPLEKATSHLLGYVGPINSEELKQKEYKGYKDDAVIGK
+KGLEKLYDKKLQHEDGYRVTIVDDNSNTIAHTLIEKKKKDGKDIQLTIDAKVQKSIYNNMKNDYGSGTAI
+HPQTGELLALVSTPSYDVYPFMYGMSNEEYNKLTEDKKEPLLNKFQITTSPGSTQKILTAMIGLNNKTLD
+DKTSYKIDGKGWQKDKSWGGYNVTRYEVVNGNIDLKQAIESSDNIFFARVALELGSKKFEKGMKKLGVGE
+DIPSDYPFYNAQISNKNLDNEILLADSGYGQGEILINPVQILSIYSALENNGNINAPHLLKDTKNKVWKK
+NIISKENINLLTDGMQQVVNKTHKEDIYRSYANLIGKSGTAELKMKQGETGRQIGWFISYDKDNPNMMMA
+INVKDVQDKGMASYNAKISGKVYDELYENGNKKYDIDE
+```
 :::
 :::
 
@@ -75,10 +129,10 @@ Go to the [NCBI BLAST web portal](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Use
 - **Percent Identity**: The percentage of identical matches between the query and subject sequences over the aligned region.
   
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+![](images/mrsa_blast.png)
 
 :::
 :::
@@ -91,11 +145,18 @@ Try adjusting the number of maximum target sequences in “Algorithm Parameters�
 - Check the graphic summary of the results. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+You get more results and higher diversity in found organisms, including some that could be much more different to MRSA. You get results with lower E-value but which may be of relevance when determining the origins of the MecA gene.
 
+The taxonomy lists the matches per organism. It gives a better overview than the “Descriptions” page.
+ 
+The graphical summary shows that most of the matches match completely while some only overlap partially.
+ 
+ ![](images/mrsa_blast2.png)
+
+ (I used 500 max matches)
 :::
 :::
   
@@ -107,11 +168,16 @@ Try the other programs (“Program Selection”). They may be slower but can fin
 - What do we expect from the different algorithms? It is okay to use Wikipedia or similar resources.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+This depends on their experimentation. The idea is for them to look through the different panes (graphical, taxonomy, etc.). Depending on settings, the difference may be little.
+ 
+The (?) help box on the site mentions the following:
 
+- Megablast is intended for comparing a query to closely related sequences and works best if the target percent identity is 95% or more but is very fast.
+- Discontiguous megablast uses an initial seed that ignores some bases (allowing mismatches) and is intended for cross-species comparisons.
+- BlastN is slow, but allows a word-size down to seven bases.
 :::
 :::
 
@@ -119,11 +185,22 @@ Some note for TAs
 Try the protein blast algorithms and compare the findings. This requires the protein sequence. Do you find the MecA gene product (i.e., protein) in other types of bacteria (i.e., not Staphylococcus strains)? If so, what may this imply about horizontal gene transfer of this gene? Is there a risk of MRSA “helping” completely different, and perhaps more dangerous, bacteria genera become antibiotics resistant?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+The protein matches with multiple Mammaliicoccus strains and even a hypothetical salmonella protein. It could mean that horizontal gene transfer between different bacteria genera happened. Note that Mammaliicoccus is a genus of bacteria that was previously classified within the Staphylococcus genus, so they are closely related. Also, these databases can have wrongly labeled information etc., so the salmonella match may not be relevant.
 
+ 
+On the risk of HGT between very different genera, chatGPT says:
+
+The mecA gene in MRSA is located on a mobile genetic element called the staphylococcal cassette chromosome mec (SCCmec). This element has been primarily identified in staphylococci. Whether this gene can transfer to other bacterial genera, such as Salmonella, depends on several factors:
+- Presence of Mobile Genetic Elements: The mecA gene would need to be on a mobile genetic element that's compatible with the recipient bacteria's machinery. While SCCmec has so far been primarily found in Staphylococcus species, the potential for its transfer to other genera is not zero, but likely low.
+- Ecological Overlap: For HGT to occur, the donor and recipient bacteria often need to inhabit the same or overlapping environments. Bacteria in the human gut, for instance, have more opportunities for gene exchange than bacteria from disparate habitats.
+- Cellular Barriers: Different bacterial genera might have barriers that prevent the uptake of foreign DNA. Gram-negative bacteria, for example, have an outer membrane that can act as a barrier to DNA uptake.
+- Selective Pressure: Even if the gene is transferred, it needs to confer a survival advantage for it to be maintained in the population. For example, in the presence of methicillin or other beta-lactams, a bacterium with the mecA gene would have a survival advantage.
+  
+To date, there's no documented evidence of the mecA gene transferring from Staphylococcus to genera like Salmonella. However, other resistance genes have been documented to jump between genera. For instance, resistance genes carried on plasmids, such as extended-spectrum beta-lactamase (ESBL) genes, have been found in various Enterobacteriaceae, including E. coli and Klebsiella.
+If such a transfer were to occur, especially to a pathogen with a different route of infection or resistance to other drugs, it could pose a significant public health concern. It's essential to continue monitoring and researching antibiotic resistance to identify and respond to new threats as they emerge.
 :::
 :::
 
@@ -131,11 +208,10 @@ Some note for TAs
 You might see multiple Staphylococcus strains when allowing higher maximum target sequences. What are the potential interpretations of this concerning horizontal gene transfer? Can we deduce a single origin of the gene in Staphylococcus aureus from these results? Remember that we see a snapshot of where the genes were present during various studies – this is ever-changing.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
-
+It probably does suggest HGT is very likely between the Staphylococcus strains. But it doesn’t tell us the order of the transferring. We’re just seeing a snapshot of the “current” state.
 :::
 :::
 
@@ -146,11 +222,12 @@ According to Bloemendaal et al. (2010): "Methicillin Resistance Transfer from St
 - If this was the case in that one patient, does it mean the MecA gene in MRSA always stems from S. epidermidis?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+They should see Staphylococcus epidermidis in their results, implying it could be true.
 
+We cannot conclude from one patient getting it from S. epidermidis that it always comes from there.
 :::
 :::
 
@@ -160,11 +237,10 @@ Some note for TAs
 Choose five or more types of bacteria from your BLAST results, such as Staphylococcus epidermidis (include Staphylococcus aureus). You will be comparing the MecA gene’s sequence in each of these to find relations between them.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
-
 :::
 :::
 
@@ -172,37 +248,133 @@ Some note for TAs
 Go to Genbank and find nucleotide sequences for the MecA gene in each of your selected organisms. E.g., search for “Staphylococcus epidermidis MecA”. You should get the (when possible) complete sequence for the gene only. Get the header of the FASTA file as well.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
 
+Nucleotide sequences for MecA i andre bakterier (her bare 3, men de skal helst vælge flere):
+
+```
+>Staphylococcus-epidermidis
+ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
+CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
+AGATAGCAGTTATATTTCTAAAAGCGATAATGGTGAAGTAGAAATGACTGAACGTCCGATAAAAATATAT
+AATAGTTTAGGCGTTAAAGATATAAACATTCAGGATCGTAAAATAAAAAAAGTATCTAAAAATAAAAAAC
+GAGTAGATGCTCAATATAAAATTAAAACAAACTACGGTAACATTGATCGCAACGTTCAATTTAATTTTGT
+TAAAGAAGATGGTATGTGGAAGTTAGATTGGGATCATAGCGTCATTATTCCAGGAATGCAGAAAGACCAA
+AGCATACATATTGAAAATTTAAAATCAGAACGTGGTAAAATTTTAGACCGAAACAATGTGGAATTGGCCA
+ATACAGGAACAGCATATGAGATAGGCATCGTTCCAAAGAATGTATCTAAAAAAGATTATAAAGCAATCGC
+TAAAGAACTAAGTATTTCTGAAGACTATATCAAACAACAAATGGATCAAAAGTGGGTACAAGATGATACC
+TTCGTTCCACTTAAAACCGTTAAAAAAATGGATGAATATTTAAGTGATTTCGCAAAAAAATTTCATCTTA
+CAACTAATGAAACAGAAAGTCGTAACTATCCTCTAGGAAAAGCGACTTCACATCTATTAGGTTATGTTGG
+TCCCATTAACTCTGAAGAATTAAAACAAAAAGAATATAAAGGCTATAAAGATGATGCAGTTATTGGTAAA
+AAGGGACTCGAAAAACTTTACGATAAAAAGCTCCAACATGAAGATGGCTATCGTGTCACAATCGTTGACG
+ATAATAGCAATACAATCGCACATACATTAATAGAGAAAAAGAAAAAAGATGGCAAAGATATTCAACTAAC
+TATTGATGCTAAAGTTCAAAAGAGTATTTATAACAACATGAAAAATGATTATGGCTCAGGTACTGCTATC
+CACCCTCAAACAGGTGAATTATTAGCACTTGTAAGCACACCTTCATATGACGTCTATCCATTTATGTATG
+GCATGAGTAACGAAGAATATAATAAATTAACCGAAGATAAAAAAGAACCTCTGCTCAACAAGTTCCAGAT
+TACAACTTCACCAGGTTCAACTCAAAAAATATTAACAGCAATGATTGGGTTAAATAACAAAACATTAGAC
+GATAAAACAAGTTATAAAATCGATGGTAAAGGTTGGCAAAAAGATAAATCTTGGGGTGGTTACAACGTTA
+CAAGATATGAAGTGGTAAATGGTAATATCGACTTAAAACAAGCAATAGAATCATCAGATAACATTTTCTT
+TGCTAGAGTAGCACTCGAATTAGGCAGTAAGAAATTTGAAAAAGGCATGAAAAAACTAGGTGTTGGTGAA
+GATATACCAAGTGATTATCCATTTTATAATGCTCAAATTTCAAACAAAAATTTAGATAATGAAATATTAT
+TAGCTGATTCAGGTTACGGACAAGGTGAAATACTGATTAACCCAGTACAGATCCTTTCAATCTATAGCGC
+ATTAGAAAATAATGGCAATATTAACGCACCTCACTTATTAAAAGACACGAAAAACAAAGTTTGGAAGAAA
+AATATTATTTCCAAAGAAAATATCAATCTATTAACTGATGGTATGCAACAAGTCGTAAATAAAACACATA
+AAGAAGATATTTATAGATCTTATGCAAACTTAATTGGCAAATCCGGTACTGCAGAACTCAAAATGAAACA
+AGGAGAAACTGGCAGACAAATTGGGTGGTTTATATCATATGATAAAGATAATCCAAACATGATGATGGCT
+ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
+ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAA
+CGATGGTTGCTTCACTGTTTTATTATGAATTATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTC
+TTCATTTTCATTGT
+```
+
+```
+>Staphylococcus-Capitis
+ATGAAAAAGATAAAAATTGTTCCACTTATTTTAATAGTTGTAGTTGTCGGGTTTGGTATATATTTTTATG
+CTTCAAAAGATAAAGAAATTAATAATACTATTGATGCAATTGAAGATAAAAATTTCAAACAAGTTTATAA
+AGATAGCAGTTATATTTCTAAAAGCGATAATGGTGAAGTAGAAATGACTGAACGTCCGATAAAAATATAT
+AAAAGTTTAGGCGTTAAAGATATAAACATTCAGGATCGTAAAATAAAAAAAGTATCTAAAAATAAAAAAC
+GAGTAGATGCTCAATATAAAATTAAAACAAACTACGGTAACATTGATCGCAACGTTCAATTTAATTTTGT
+TAAAGAAGATGGTATGTGGAAGTTAGATTGGAATCATAGCGTCATTATTCCAGGAATGCAGAAAGACCAA
+AGCATACATATTGAAAATTTAAAATCAGAACGTGGTAAAATTTTAGACCGAAACAATGTGGAATTGGCCA
+ATACAGGAACAGCATATGAGATAGGCATCGTTCCAAAGAATGTATCTAAAAAAGATTATAAAGCAATCGC
+TAAAGAACTAAGTATTTCTGAAGACTATATCAAACAACAAATGGATCAAAATTGGGTACAAGATGATACC
+TTCGTTCCACTTAAAACCGTTAAAAAAATGGATGAAGATTTAAGTGATTTCGCAAAAAAATTTCATCTTA
+CAACTAATGAAACAGAAAGTCGTAACTATCCTCTAGAAAAAGCGACTTCACATCTATTAGGTTATGTTGG
+TCCCATTAACTCTGAAGAATTAAAACAAAAAGAATATAAAGGCTATAAAGATGATGCAGTTATTGGTAAA
+AAGGGACTCGAAAAACTTTACGATAAAAAGCTCCAACATGAAGATGGCTATCGTGTCACAATCGTTGACG
+ATAATAGCAATACAATCGCACATACATTAATAGAGAAAAAGAAAAAAGATGGCAAAGATATTCAACTAAC
+TATTGATGCTAAAGTTCAAAAGAGTATTTATAACAACATGAAAAATGATTATGGCTCAGGTACTGCTATC
+CACCCTCAAACAGGTGAATTATTAGCACTTGTAAGCACACCTTCATATGACGTCTATCCATTTATGTATG
+GCATGAGTAACGAAGAATATAATAAATTAACCGAAGATAAAAAAGAACCTCTGCTCAACAAGTTCCAGAT
+TACAACTTCACCAGGTTCAACTCAAAAAATATTAACAGCAATGATTGGGTTAAATAACAAAACATTAGAC
+GATAAAACAAGTTATAAAATCGATGGTAAAGGTTGGCAAAAAGATAAATCTTGGGGTGGTTACAACGTTA
+CAAGATATGAAGTGGTAAATGGTAATATCGACTTAAAACAAGCAATAGAATCATCAGATAACATTTTCTT
+TGCTAGAGTAGCACTCGAATTAGGCAGTAAGAAATTTGAAAAAGGCATGAAAAAACTAGGTGTTGGTGAA
+GATATACCAAGTGATTATCCATTTTATAATGCTCAAATTTCAAACAAAAATTTAGATAATGAAATATTAT
+TAGCTGATTCAGGTTACGGACAAGGTGAAATACTGATTAACCCAGTACAGATCCTTTCAATCTATAGCGC
+ATTAGAAAATAATGGCAATATTAACGCACCTCACTTATTAAAAGACACGAAAAACAAAGTTTGGAAGAAA
+AATATTATTTCCAAAGAAAATATAAATCTATTAACTGATGGTATGCAACAAGTCGTAAATAAAACACATA
+AAGAAGATATTTATAGATCTTATGCAAACTTAATTGGCAAATCCGGTACTGCAGAACTCAAAATGAAACA
+AGGAGAAACTGGCAGACAAATTGGGTGGTTTATATCATATGATAAAGATAATCCAAACATGATGATGGCT
+ATTAATGTTAAAGATGTACAAGATAAAGGAATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATG
+ATGAGCTATATGAGAACGGTAATAAAAAATACGATATAGATGAATAA
+```
+
+```
+Staphylococcus-hominis
+>JF710613.1 UNVERIFIED: Staphylococcus hominis strain 4053 penicillin binding protein-like (mecA) gene, partial sequence
+AGTTGTAGTTGTCGGGTTTGGTATATATTTTTATGCTTCAAAAGATAAAGAAATTAATAATACTATTGAT
+GCAATTGAAGATAAAAATTTCAAACAAGTTTATAAAGATAGCAGTTATATTTCTAAAAGCGATAATGGTG
+AAGTAGAAATGACTGAACGTCCGATAAAAATATATAATAGTTTAGGCGTTAAAGATATAAACATTCAGGA
+TCGTAAAATAAAAAAAGTATCTAAAAATAAAAAACGAGTAGATGCTCAATATAAAATTAAAACAAACTAC
+GGTAACATTGATCGCAACGTTCAATTTAATTTTGTTAAAGAAGATGGTATGTGGAAGTTAGATTGGGATC
+ATAGCGTCATTATTCCAGGAATGCAGAAAGACCAAAGCATACATATTGAAAATTTAAAATCAGAACGTGG
+TAAAATTTTAGACCGAAACAATGTGGAATTGGCCAATACAGGAACAGCATATGAGATAGGCATCGTTCCA
+AAGAATGTATCTAAAAAAGATTATAAAGCAATCGCTAAAGAACTAAGTATTTCTGAAGACTATATCAAAC
+AACAAATGGATCAAAATTGGGTACAAGATGATACCTTCGTTCCACTTAAAACCGTTAAAAAAATGGATGA
+ATATTTAAGAGATTTCGCAAAAAAATTTCATCTTACAACTAATGAAACAGAAAGTCGTAACTATCCTCTA
+GGAAAAGCGACTTCACATCTATTAGGTTATGTTGGTCCCATTAACTCTGAAGAATTAAAACAAAAAGAAT
+ATAAAGGCTATAAAGATGATGCAGTTATTGGTAAAAAGGGACTCGAAAAACTTTACGATAAAAAGCTCCA
+ACATGAAGATGGCTATCGTGTCACAATCGTTAGAGTCGACGATAATAGCAATACAATCGCACATACATTA
+ATAGAGAAAAAGAAAAAAGATGGCAAAGATATTCAACTAACTATTGATGCTAAAGTTCAAAAGAGTATTT
+ATAACAACATGAAAAATGATTATGGCTCAGGTACTGCTATCCACCCTCAAACAGGTGAATTATTAGCACT
+TGTAAGCACACCTTCATATGACGTCTATCCATTTATGTATGGCATGAGTAACGAAGAATATAATAAATTA
+ACCGAAGATAAAAAAGAACCTCTGCTCAACAAGTTCCAGATTACAACTTCACCAGGTTCAACTCAAAAAA
+TATTAACAGCAATGATTGGGTTAAATAACAAAACATTAGACGATAAAACAAGTTATAAAATCGATGGTAA
+AGGTTGGCAAAAAGATAAATCTTGGGGTGGTTACAACGTTACAAGATATGAAGTGGTAAATGGTAATATC
+GACTTAAAACAAGCAATAGAATCATCAGATAACATTTTCTTTGCTAGAGTAGCACTCGAATTAGGCAGTA
+AGAAATTTGAAAAAGGCATGAAAAAACTAGGTGTTGGTGAAGATATACCAAGTGATTATCCATTTTATAA
+TGCTCAAATTTCAAACAAAAATTTAGATAAGAAATATGATTTGCTGATTCAGGTTACGGACAAGGTGAAA
+TACTGATTAACCCAGTACAGATCCTTTCAATCTATAGCGCATTAGAAAATAATGGCAATATTAACGCACC
+TCACTTATTAAAAGACACGAAAAACAAAGTTTGGAAGAAAAATATTATTTCCAAAGAAAATATCAATCTA
+TTAACTGATGGTATGCAACAAGTCGTAAATAAAACACATAAAGAAGATATTTATAGATCTTATGCAAACT
+TAATTGGCAAATCCGGTACTGCAGAACTCAAAATGAAACAAGGAGAAACTGGCAGACAAATTGGGTGGTT
+TATATCATATGATAAAGATAATCCAAACATGATGATGGCTATTAATGTTAAAGATGTACAAGATAAAGGA
+ATGGCTAGCTACAATGCCAAAATCTCAGGTAAAGTGTATGATGAGCTATATGAGAACGGTAATAAAAAAT
+ACGATATAGATGAATAACAAAACAGTGAAGCAATCCGTAACGATGGTTGCTTCACTGTTTTATTATGAAT
+TATTAATAAGTGCTGTTACTTCTCCCTTAAATACAATTTCTTCATTTTCATTGTATGTTGAAAGTGACAC
+TGTAACGAGTCCATTTTCTTTTTTTATGGATTTCTTATTTGTAATTTCAGCGATAACGTACAATGTATTA
+CCTGGGTATACAGGTTTAATAAA
+```
 :::
 :::
 
 #### Exericise
 Go to ClustalW at https://www.genome.jp/tools-bin/clustalw and input the sequences (with header first) of the mecA sequences from MRSA and the selected organisms. See @fig-clustalw_genome_jp Select DNA as you’re inputting nucleotide sequences. Feel free to try the protein sequences.
 
-::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
-## TA note
-
-Some note for TAs
-
-:::
-:::
-
-#### Exercise
 Run the multiple alignments. 
 - What does the output tell us?
 - How may these alignments be useful to us in determining the origin of the MecA gene?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+We get aligned sequences between the strains.
 
+It may show us specific variations between strains that make it more or less probable that the HGT happened between those strains. E.g. if two strains have the same single nucleotide variation that the others do not have.
 :::
 :::
 
@@ -215,22 +387,35 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
 ![Screenshot](./images/clustalw_genome_jp.png){#fig-clustalw_genome_jp width=80%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
-Some note for TAs
+The answers depend on the chosen strains. But the phylograms can indicate which strains the HGT most likely happened between.
 
+![](images/mrsa_tree.png)
 :::
 :::
 
 ## Discussion  {.unnumbered}
 
-  1. Based on the BLAST and ClustalW results, which organisms might have been the potential source(s) for the mecA gene in MRSA?
-  2. Discuss evidence of potential horizontal gene transfer events based on sequence similarity.
-  3. Reason about the roles of the various HGT approaches in MRSA (i.e., Conjugation, Transduction, Transformation). What types are most likely between staph bacteria?
-  4. Discuss the significance of horizontal gene transfer in the rapid emergence of antibiotic resistance.
-  5. What are some ways we can use sequence alignments of MRSA to combat them? E.g., treatment, outbreak management (like tracking sources, spread, and evolution), and new drugs such as protein-targeting vaccines.
+Based on the BLAST and ClustalW results, which organisms might have been the potential source(s) for the mecA gene in MRSA?
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple" collapse="true"}
+## TA note
+
+This is still difficult to answer. But we see a lot of matches with other Staphylococcus strains, like S. epidermis. And there may have been some HGT to Mammaliicoccus since we see a good number of matches with those as well. Also, the HGT is likely continually happening between the strains.
+ 
+The rest of the questions are open-ended questions that should get them thinking.
+:::
+:::
+
+
+- Discuss evidence of potential horizontal gene transfer events based on sequence similarity.
+- Reason about the roles of the various HGT approaches in MRSA (i.e., Conjugation, Transduction, Transformation). What types are most likely between staph bacteria?
+- Discuss the significance of horizontal gene transfer in the rapid emergence of antibiotic resistance.
+- What are some ways we can use sequence alignments of MRSA to combat them? E.g., treatment, outbreak management (like tracking sources, spread, and evolution), and new drugs such as protein-targeting vaccines.
+- 
 
 ## Additional tools  {.unnumbered}
 DTU (Technical University of Denmark) has developed a set of tools highly relevant to antibiotic resistance and MRSE specifically. These are not part of the assignment, but check them out if you are curious:

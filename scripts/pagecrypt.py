@@ -311,7 +311,7 @@ try:
 except:
     print("install pycrypto: \"pip3 install pycrypto\"")
     exit(1)
-import os, sys
+import os, re
 from base64 import b64encode
 from getpass import getpass
 import codecs
@@ -332,6 +332,8 @@ def encrypt_file(inputfile, passphrase):
         print("Cannot open file: %s"%inputfile)
         exit(1)
 
+    title = re.search(r'<title.*?>(.+?)</title>', data.decode()).group(1)
+
     salt = Random.new().read(32)
     key = PBKDF2(
         passphrase.encode('utf-8'), 
@@ -349,6 +351,8 @@ def encrypt_file(inputfile, passphrase):
     # with open(os.path.join(projectFolder, "decryptTemplate.html")) as f:
     # 	templateHTML = f.read()
 
+    global templateHTML
+    templateHTML = templateHTML.replace('Password Protected Page', title)    
 
     encryptedPl = f'"{b64encode(salt+iv+encrypted+tag).decode("utf-8")}"'
     encryptedDocument = templateHTML.replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)

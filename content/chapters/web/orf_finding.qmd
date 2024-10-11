@@ -18,7 +18,7 @@ Run ORF Finder with the default parameters.
 - To the right, there is an option to alter the tracks. Try adding the "six-frame translations", which are located under sequence. What is most common, start codons (green) or stop codons (red)?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -32,7 +32,7 @@ You can see that a lot of the identified ORFs are tiny and that many of them ove
 - There is often a strand bias in transcripted regions. If two genes are close to each other, they need the same strandedness, as RNA polymerases can otherwise collide. Which strand is most common in this plasmid? How many genes are on the majority strand?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -58,7 +58,7 @@ With this improved list of possible genes, you are now ready to investigate the 
 |       |       |    |    |
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -70,7 +70,7 @@ Some note for TAs
 Go back to the overlapping ORFs. Do both of the overlapping ORFs contain good hits?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
@@ -82,7 +82,7 @@ Some note for TAs
 Conclude on your findings. Does the plasmid contain genes that confer antibiotic resistance? If so, what kinds of antibiotics does it provide resistance to?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple"}
+::: {.callout-note appearance="simple" collapse="true"}
 ## TA note
 
 Some note for TAs
