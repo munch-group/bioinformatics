@@ -517,6 +517,9 @@ Then run it with a high level of n_neighbors (80-100). Does it look more like a 
 Presentation: https://docs.google.com/presentation/d/1EFSuxP3f8PLj8E4-5CafL_l8RIlpkwtx5U-G_glH66w/edit#slide=id.p
 
 
+----------------------------------------------------------------------
+
+
 ## Neural networks
 
 Example result for the first group of questions
@@ -528,6 +531,9 @@ X1 makes a vertical gradient, which means that the neurons have also made a vert
 Test loss is around 0.26, not that good.
 
 The current singular Feature is not enough to distinguish things that are not vertical, neurons/layers will not help here.
+
+
+
 
 Example result after 700 generations for the second group of questions.
 
@@ -552,19 +558,27 @@ Using X12 and X22 allows it to form a circle in the middle, so only a single neu
 
 This model has many features and neurons going for it, but it cannot distinguish between left and right nor what is the center, and therefore fails to create a good fit.
 
+
+
 ![](images/unsup7.png)
 
 Minimal network that I could identify that fit very well with some consistency. It was run multiple times for 500 Epochs, and some of the runs did not perform well. The times it did fit well were usually after 200 Epochs, otherwise, it got stuck in a local minima.
 Usually, one or more neurons in the last layer look spiral-like - in the above example, neuron 1 and 3 in the second layer has the imprint of a spiral. These are also the neurons that primarily determine the output, as neuron 2 has a much lower weight.
 Even just removing one feature (such as X22) which seems to be weakly performing makes the network perform much worse.
 
+
+
 ![](images/unsup8.png)
 
 X1 and X2 are not enough to get a Test Loss under 0.005. It gets close (around 0.01), and the Training loss is quite close to the Test, so we are not overfitting. It is already performing quite well with just eight neurons.
 
+
+
 ![](images/unsup9.png)
 
 More layers help some but not that much. More than 2 layers are not needed either, as the neurons in layer 2 are quite similar to the neurons in layer 1, each depicting a slope.
+
+
 
 ![](images/unsup10.png)
 

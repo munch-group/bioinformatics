@@ -1,5 +1,14 @@
 # Read mapping
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Presentation: https://docs.google.com/presentation/d/1EFSuxP3f8PLj8E4-5CafL_l8RIlpkwtx5U-G_glH66w/edit#slide=id.p
+
+:::
+:::
+
 In recent decades, next-generation sequencing (NGS) has become extremely popular among geneticists and bioinformaticians. Three of the biggest sequencing companies are Illumina, Pacific Biosciences (PacBio), and Oxford Nanopore Technologies (ONT). The three companies use different technologies to sequence DNA, and they each have pros and cons. Illumina reads are relatively short (150 bp) but are also the cheapest solution. PacBio produces long, accurate reads (~15 kb) but is more than twice as expensive as Illumina. ONT can produce extremely long reads (60 kb) but suffers from low-quality base calls. 
 
 The choice of sequencing technique is highly dependent on the specific research question, so it is worth understanding the capabilities of the methods before choosing how the DNA should be sequenced. 

@@ -26,7 +26,68 @@ Press play to start the training. Pay close attention to how the weights and out
 ::: {.callout-note appearance="simple"}
 ## TA note
 
-Some note for TAs
+Example result for the first group of questions
+
+![](images/unsup2.png)
+
+X1 makes a vertical gradient, which means that the neurons have also made a vertical gradient, but it can still isolate the blue points by having vastly different biases. Therefore, the only real difference is the biases.
+
+Test loss is around 0.26, not that good.
+
+The current singular Feature is not enough to distinguish things that are not vertical, neurons/layers will not help here.
+
+
+
+
+Example result after 700 generations for the second group of questions.
+
+![](images/unsup3.png)
+
+Yes, it is around 0.22 now.
+It does not have to be vertical slices anymore, through the combination of X1 and X2 gradients it can pick any slope for each neuron.
+As it can now combine two slopes by using two neurons, it works better than the previous model, but still with a lot of incorrect classification.
+
+![](images/unsup4.png)
+
+
+Only a single neuron more is needed (three total), as it can now shape a triangle-like shape with its three slopes.
+
+![](images/unsup5.png)
+
+
+Using X12 and X22 allows it to form a circle in the middle, so only a single neuron is needed.
+
+![](images/unsup6.png)
+
+
+This model has many features and neurons going for it, but it cannot distinguish between left and right nor what is the center, and therefore fails to create a good fit.
+
+
+
+![](images/unsup7.png)
+
+Minimal network that I could identify that fit very well with some consistency. It was run multiple times for 500 Epochs, and some of the runs did not perform well. The times it did fit well were usually after 200 Epochs, otherwise, it got stuck in a local minima.
+Usually, one or more neurons in the last layer look spiral-like - in the above example, neuron 1 and 3 in the second layer has the imprint of a spiral. These are also the neurons that primarily determine the output, as neuron 2 has a much lower weight.
+Even just removing one feature (such as X22) which seems to be weakly performing makes the network perform much worse.
+
+
+
+![](images/unsup8.png)
+
+X1 and X2 are not enough to get a Test Loss under 0.005. It gets close (around 0.01), and the Training loss is quite close to the Test, so we are not overfitting. It is already performing quite well with just eight neurons.
+
+
+
+![](images/unsup9.png)
+
+More layers help some but not that much. More than 2 layers are not needed either, as the neurons in layer 2 are quite similar to the neurons in layer 1, each depicting a slope.
+
+
+
+![](images/unsup10.png)
+
+The other features help a bit more, but all of these improvements are quite marginal. 
+
 
 :::
 :::

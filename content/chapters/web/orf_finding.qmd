@@ -1,6 +1,17 @@
 
 # Plasmid ORFs
 
+::: {.content-hidden unless-profile="ta"}
+::: {.callout-note appearance="simple"}
+## TA note
+
+Presentation: https://docs.google.com/presentation/d/1amhu1Wrjg_wBtKpSc6C7KZh1dqCUjwDnJlm7dVzpAhA/edit#slide=id.p
+
+Preamble: In general, ORFs can be found to be arbitrarily small. However, the larger the ORF is, the more strongly it indicates a true gene and significant function for it. We can use the standard genetic code, and it should work well since it is from a plasmid and therefore does not have the advanced eukaryotic features.
+
+:::
+:::
+
 Gene prediction in bacteria is a crucial step in understanding the genetic makeup of these microorganisms. It involves identifying the locations and boundaries of genes within bacterial genomes, essential for studying bacterial physiology and pathogenicity and developing targeted therapies. The main component of bacterial genes is the open reading frame (ORFs), which translates into protein. So, identifying ORFs is the main task in "de novo" prediction of bacterial genes. The most commonly used start codon is ATG, and less frequently, GTG and TTG. Stop codons are either one of TAA, TAG, or TGA. Although the three "reading frames" on each strand allow ORFs to overlap, this is mainly a feature of highly compacted viral genomes and not often observed in bacteria. Promoter and terminator DNA motifs provide additional information usually built into hidden Markov models or neural networks. Such models also asses the coding potential, codon usage, and length of ORFs to distinguish randomly occurring pairs of start and stop codons from those representing genes.
 
 A bacterial plasmid is a circular, double-stranded DNA molecule separate from the genome found in the cytoplasm of bacteria. It is relatively small, ranging from a few kilobases to several hundred kilobases in size, and replicates autonomously, passing to daughter cells at cell division. Although they are usually not essential to the bacterium's survival, plasmids often carry genes that can confer selective advantages to the bacteria under certain conditions. Such conditions include exposure to antibacterial agents like the antibiotics used to combat infections, and some plasmids carry genes making the bacterium resistant to such drugs. 
@@ -13,6 +24,7 @@ When you open up ORF Finder, start by pasting the fasta file into the "Query Seq
 
 #### Exercise
 Run ORF Finder with the default parameters. 
+
 - How many ORFs did you find?
 - What is the longest and shortest ORF in nucleotides (nt)? You can click on "length" to sort them.
 - To the right, there is an option to alter the tracks. Try adding the "six-frame translations", which are located under sequence. What is most common, start codons (green) or stop codons (red)?
@@ -21,7 +33,11 @@ Run ORF Finder with the default parameters.
 ::: {.callout-note appearance="simple"}
 ## TA note
 
-Some note for TAs
+98
+
+1095 and 78
+
+Stop codons. This is both due to stop codons having more options, but also due to the natural selection of start codons being restrained to only places wherein expression should happen.
 
 :::
 :::
@@ -35,7 +51,14 @@ You can see that a lot of the identified ORFs are tiny and that many of them ove
 ::: {.callout-note appearance="simple"}
 ## TA note
 
-Some note for TAs
+Example result page after restricting ORF search to 300+ nucleotides
+
+![](images/orf_finding.png)
+
+1.4: 3. ORF13 and ORF1 slightly overlap. ORF10 and ORF18 greatly overlap. ORF11 and ORF16 slightly overlap.
+
+1.5: + strand is most common. Only two genes are - strand, so 17 genes are + strand. The names are also ordered based on strandedness.
+Part 2, Expanding the search
 
 :::
 :::
@@ -61,7 +84,32 @@ With this improved list of possible genes, you are now ready to investigate the 
 ::: {.callout-note appearance="simple"}
 ## TA note
 
-Some note for TAs
+Table for answering question 1-3 below:
+Preamble: When blasting the found ORFs, it is very good if you find a large match, but even just a very good match in part of the ORF also indicates that there is a gene present in the area of the ORF. Smartblast works well for quick answers and a good sampling of possible matches. Make sure that they note down their results in a notebook, file or table.
+
+2.1: All 10 have related known proteins. Depending on your criteria, 2-5 have relatively bad matches, but large regions seem similar, indicating that it is a real protein product.
+
+2.2: Many genes refer to Vancomycin resistance, which is a common antibiotic used against severe infections.
+
+2.3: 7 out of 10 genes are implicated in antibiotic resistance. This does not mean that it is certain they confer resistance (see the transferases), but the genes on plasmid are often there for a reason, strongly indicating that this plasmid confers antibiotic resistance.
+
+2.4: ORF13/ORF1 both have good, resistance-related hits. ORF18 seems plausible, while ORF10 has no hits. ORF16/ORF11 are not the best hits, but both seem possible.
+
+2.5-7: It confers resistance, primarily against Vancomycin, which is a glycopeptide antibiotic used against gram-positive bacteria already resistant to other antibiotics. It is rarely used against Enterococcus nowadays, as they often are resistant.
+
+| ORF_Label | Length | Putative Function | Resistance? | 
+|:---|:---|:---|:---|
+| ORF8 | 364 | Vancomycin resistance histidine kinase VanS | Yes |
+| ORF1 | 343 | Vancomycin/teicoplanin A-type resistance protein VanA  | Yes |
+| ORF18 | 337 | ISL3 family transposase (only bad matches) | No |
+| ORF13 | 322 | Vancomycin resistance protein VanH  | Yes |
+| ORF12 | 302 | Aminoglycoside 6-adenylyltransferase AadK (only bad matches) | Yes |
+| ORF11 | 289 | Nucleotidyltransferase domain-containing protein | No |
+| ORF17 | 264 | Aminoglycoside O-phosphotransferase APH(3')-IIIa | Yes | 
+| ORF3 | 245 | 23S rRNA (adenine(2058)-N(6))-methyltransferase Erm(B) | Yes |
+| ORF16 | 244 | class I SAM-dependent methyltransferase | No |
+| ORF7 | 231 | Vancomycin resistance response regulator transcription factor VanR-G-Cd | Yes | 
+| ORF19 | (11th hit) | 228 | IS6-like element ISSod8 family transposase (only bad matches) | No | 
 
 :::
 :::
