@@ -122,7 +122,7 @@ templateHTML = """
     <div id="dialogWrap">
         <div id="dialogWrapCell">
             <div id="mainDialog">
-                <div id="dialogText">This page is for TAs only.</div>
+                <div id="dialogText">Password protected</div>
                 <div id="passArea">
                     <p id="passwordPrompt">Password</p>
                     <input id="pass" type="password" name="pass" autofocus>
@@ -355,7 +355,7 @@ def encrypt_file(inputfile, passphrase):
     # encryptedDocument = templateHTML.replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
     encryptedDocument = templateHTML.replace('Password Protected Page', title).replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
 
-    filename, extension = os.path.splitext(inputfile)
+    # filename, extension = os.path.splitext(inputfile)
     # outputfile = filename + "-protected" + extension
     outputfile = inputfile
     with codecs.open(outputfile, 'w','utf-8-sig') as f:

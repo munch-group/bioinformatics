@@ -2,7 +2,7 @@
 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Presentation: https://docs.google.com/presentation/d/1pwiRdDBazXl35KePMS5PktpzccUuEMGR/edit#slide=id.p1
@@ -75,7 +75,7 @@ We would like to find an animal that can serve as "outgroup" in our analysis. An
 ![Ingroup and outgroup in a phylogeny](images/outgroup.png){#fig-outgroup width=40%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 The students will be given a fasta-file containing only headers. They need to fill out the sequences themselves. 
@@ -101,7 +101,7 @@ Go to [www.phylogeny.fr](https://www.phylogeny.fr) and get aquianted with the we
 4. Visualization of the tree.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 A completed curated multiple alignment is attaches as TA_aligned_cured.phy
@@ -115,7 +115,7 @@ A completed curated multiple alignment is attaches as TA_aligned_cured.phy
 Now that you have navigated to the "one-click" analysis page, you can upload the FASTA file you created in the previous task. Then click submit. The result is a phylogenetic tree describing the evolutionary distances between COI genes of the different animals. Take a good look at it. Does it look anything like what you expected?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -132,7 +132,7 @@ If you want to make the tree easier to interpret or to highlight specific relati
 3. What does Reroot do?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 1. Flip an entire tree at a node (see animation on the button)
@@ -152,7 +152,7 @@ You have played around with the tree a bit, and now you are ready address what i
 4. Which of the reference animals are closest related to the Aardvark according to this model? Does the tree look like you expected?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Click on “Reset (cancel all changes)” in the section “Select an action”. Done How many terminal nodes (leafs) and how many internal nodes are there in the tree? 
@@ -197,7 +197,7 @@ The **Hamming distance** is not a traditional substitution model used for phylog
 What might be the reason for not alway choosing the model with the largest number of parameters?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -214,7 +214,7 @@ You will start at step 1: Multiple sequence alignment. You need a multiple align
 Download the curated alignment by clicking on “Cured alignment in Phylip format" under the Outputs section. This gives you the equal-length aligned sequences resulting from curation by Gblocks in a phy-file. Go read the introduction in the Gblocks documentation. What kind of positions are NOT included after curation? 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 “The selected blocks must fulfill certain requirements with respect to the lack of large segments of contiguous nonconserved positions, lack or low density of gap positions and high conservation of flanking positions, making the final alignment more suitable for phylogenetic analysis”
@@ -232,7 +232,7 @@ PhyML now lets you choose a substitution model. A substitution model is a mathem
 Try the two DNA/RNA substitution models for PhyML (HKY58 and GTR). Remember to save your tree by clicking “Tree in newick format" and save the file. These tree files can be visualised by using the program “TreeDyn" under the top tab “Online Programmes". Do the trees formed by GTR and HKY85 look alike? What are the Aardvark's closest relatives according to the two trees?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Do the trees formed by GTR and HKY85 look alike?
@@ -287,7 +287,7 @@ Does Wikipedia agree with you? (https://en.wikipedia.org/wiki/Aardvark) (Read fr
 *Orycteropus afer*) in NCBI's Taxnomy Browser. What does that report its taxonomy?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Do these three trees look alike? No, the observant student might notice that in the newick files, the distances differ, even though they give similar looking trees.
@@ -342,7 +342,7 @@ What are the Aardvarks closest relatives according to the three trees?
 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Food for thought: With more elephants -> one-click analysis

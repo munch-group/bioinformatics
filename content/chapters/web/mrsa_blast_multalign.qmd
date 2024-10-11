@@ -1,7 +1,7 @@
 # MRSA
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Presentation: https://docs.google.com/presentation/d/1Sxbzewzm8RaVhwb8F547iwrPi3xdIsItogt7VGG0M5o/edit#slide=id.p
@@ -39,7 +39,7 @@ The structural learning goals of this exercise are:
 Obtain the genetic sequence for the mecA gene from MRSA. Go to [Genbank](https://www.ncbi.nlm.nih.gov/genbank) and find a complete sequence for mecA in Staphylococcus aureus. That is, do a nucleotide search for “Staphylococcus aureus mecA” and select a MecA gene version with “complete cds”. See @fig-mecA_ncbi. Do not pick the complete genome. Check if MRSA is mentioned in the documentation for the result. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 
@@ -52,7 +52,7 @@ mecA reference genome from https://www.ncbi.nlm.nih.gov/nuccore/KC243783.1
 Find the FASTA version of the genomic reference assembly. This will give you the genetic sequence of the gene. Keep the header of the sequence (“>... Staph…, complete cds”), as we will need this later.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 ```txt
@@ -101,7 +101,7 @@ Find the FASTA version of the protein sequence. There might be a link to this in
 ![Screenshot](./images/mecA_ncbi.png){#fig-mecA_ncbi width=80%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 ```txt
@@ -129,7 +129,7 @@ Go to the [NCBI BLAST web portal](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Use
 - **Percent Identity**: The percentage of identical matches between the query and subject sequences over the aligned region.
   
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 ![](images/mrsa_blast.png)
@@ -145,7 +145,7 @@ Try adjusting the number of maximum target sequences in “Algorithm Parameters�
 - Check the graphic summary of the results. 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 You get more results and higher diversity in found organisms, including some that could be much more different to MRSA. You get results with lower E-value but which may be of relevance when determining the origins of the MecA gene.
@@ -168,7 +168,7 @@ Try the other programs (“Program Selection”). They may be slower but can fin
 - What do we expect from the different algorithms? It is okay to use Wikipedia or similar resources.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 This depends on their experimentation. The idea is for them to look through the different panes (graphical, taxonomy, etc.). Depending on settings, the difference may be little.
@@ -185,7 +185,7 @@ The (?) help box on the site mentions the following:
 Try the protein blast algorithms and compare the findings. This requires the protein sequence. Do you find the MecA gene product (i.e., protein) in other types of bacteria (i.e., not Staphylococcus strains)? If so, what may this imply about horizontal gene transfer of this gene? Is there a risk of MRSA “helping” completely different, and perhaps more dangerous, bacteria genera become antibiotics resistant?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 The protein matches with multiple Mammaliicoccus strains and even a hypothetical salmonella protein. It could mean that horizontal gene transfer between different bacteria genera happened. Note that Mammaliicoccus is a genus of bacteria that was previously classified within the Staphylococcus genus, so they are closely related. Also, these databases can have wrongly labeled information etc., so the salmonella match may not be relevant.
@@ -208,7 +208,7 @@ If such a transfer were to occur, especially to a pathogen with a different rout
 You might see multiple Staphylococcus strains when allowing higher maximum target sequences. What are the potential interpretations of this concerning horizontal gene transfer? Can we deduce a single origin of the gene in Staphylococcus aureus from these results? Remember that we see a snapshot of where the genes were present during various studies – this is ever-changing.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 It probably does suggest HGT is very likely between the Staphylococcus strains. But it doesn’t tell us the order of the transferring. We’re just seeing a snapshot of the “current” state.
@@ -222,7 +222,7 @@ According to Bloemendaal et al. (2010): "Methicillin Resistance Transfer from St
 - If this was the case in that one patient, does it mean the MecA gene in MRSA always stems from S. epidermidis?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 They should see Staphylococcus epidermidis in their results, implying it could be true.
@@ -237,7 +237,7 @@ We cannot conclude from one patient getting it from S. epidermidis that it alway
 Choose five or more types of bacteria from your BLAST results, such as Staphylococcus epidermidis (include Staphylococcus aureus). You will be comparing the MecA gene’s sequence in each of these to find relations between them.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -248,7 +248,7 @@ Some note for TAs
 Go to Genbank and find nucleotide sequences for the MecA gene in each of your selected organisms. E.g., search for “Staphylococcus epidermidis MecA”. You should get the (when possible) complete sequence for the gene only. Get the header of the FASTA file as well.
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 
@@ -369,7 +369,7 @@ Run the multiple alignments.
 - How may these alignments be useful to us in determining the origin of the MecA gene?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 We get aligned sequences between the strains.
@@ -387,7 +387,7 @@ At the top of the output page, select a method in the tree menu (e.g., FastTree)
 ![Screenshot](./images/clustalw_genome_jp.png){#fig-clustalw_genome_jp width=80%}
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 The answers depend on the chosen strains. But the phylograms can indicate which strains the HGT most likely happened between.
@@ -401,7 +401,7 @@ The answers depend on the chosen strains. But the phylograms can indicate which 
 Based on the BLAST and ClustalW results, which organisms might have been the potential source(s) for the mecA gene in MRSA?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 This is still difficult to answer. But we see a lot of matches with other Staphylococcus strains, like S. epidermis. And there may have been some HGT to Mammaliicoccus since we see a good number of matches with those as well. Also, the HGT is likely continually happening between the strains.

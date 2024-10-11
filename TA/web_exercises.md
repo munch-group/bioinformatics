@@ -296,7 +296,7 @@ Presentation: https://docs.google.com/presentation/d/1pwiRdDBazXl35KePMS5Pktpzcc
 
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 A completed curated multiple alignment is attaches as TA_aligned_cured.phy

@@ -23,7 +23,7 @@ Press play to start the training. Pay close attention to how the weights and out
 4. Do you think adding more features, neurons, or layers will improve the classification?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -40,7 +40,7 @@ We may need more features. Try adding the input node capturing the X2 feature an
 3. It seems to have quite a different fit - will adding more neurons make it even better?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -55,7 +55,7 @@ Two neurons may not allow for enough flexibility. Add more neurons to the hidden
 1. How many neurons must you add to gain Test Loss under > 0.005?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -71,7 +71,7 @@ Now lets see how good you are:
 2. Challenge: Try creating a model that performs poorly despite having at least three features and four neurons (poorly being Test Loss over 0.1).
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -89,7 +89,7 @@ The ring-shaped classification problem is relatively easy (for neural networks).
 4. Summarize the changes you had to make to the network to make it fit the spiral data. Do these changes capture the non-linear pattern in the data?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
@@ -107,7 +107,7 @@ Let's wrap up with a different kind of problem - regression. In contrast to clas
 4. Does the addition of some features only improve models with more than one hidden layer?
 
 ::: {.content-hidden unless-profile="ta"}
-::: {.callout-note appearance="simple" collapse="true"}
+::: {.callout-note appearance="simple"}
 ## TA note
 
 Some note for TAs
