@@ -454,7 +454,7 @@ Food for thought exercise: With more elephants -> one-click analysis
 
 End note exercise
 
-Wikipedia says the closest relative is the elephant shrew, but none of our analysis shows this. Other websites agree that elephants are the closest relative. So this is a quick note on “kildekritik” ;) 
+Wikipedia says the closest relative is the elephant shrew, but none of our analysis shows this. Other websites agree that elephants are the closest relative. So this is a quick note on “kildekritik”
 
 
 ##  Unsupervised Learning
