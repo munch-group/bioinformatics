@@ -37,6 +37,7 @@ def find_assignment_file(wd, prefix):
     for path in wd.iterdir():
         if path.is_dir() or path.suffix == '.txt':
             continue
+        # path = path.rename(re.sub(r"\s+\(\d+\)\.py", ".py", path.name))
         if path.match('{}*'.format(prefix)):
             return path
     return None
@@ -282,7 +283,8 @@ For digital exam assignments the script works much the same way, but also parses
 bioinformatics assignments (see README.md in exam_evaluation for details).
 """
 
-    repo_dir = '/Users/kmt/google_drive/teaching/bop/bioinf-prog-course'
+    # repo_dir = '/Users/kmt/google_drive/teaching/bop/bioinf-prog-course'
+    repo_dir = os.path.abspath('../../')
 
     global PROJECTS
     # The keys in PROJECTS must be the basenames of the files that the students produce.
@@ -293,7 +295,7 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'translationproject': {
             'test_file': 'test_translationproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/translationproject/test_translationproject.py': 'test_translationproject.py',
+                f'{repo_dir}/content/project_files/translationproject/test_translationproject.py': 'test_translationproject.py',
             }
         },
 
@@ -301,12 +303,12 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'hivproject': { 
             'test_file': 'test_hivproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/hivproject/test_hivproject.py': 'test_hivproject.py',
-                f'{repo_dir}/programming_projects/hivproject/subtypeA.txt': 'subtypeA.txt',
-                f'{repo_dir}/programming_projects/hivproject/subtypeB.txt': 'subtypeB.txt',
-                f'{repo_dir}/programming_projects/hivproject/subtypeC.txt': 'subtypeC.txt',
-                f'{repo_dir}/programming_projects/hivproject/subtypeD.txt': 'subtypeD.txt',
-                f'{repo_dir}/programming_projects/hivproject/unknown_type.txt': 'unknown_type.txt',
+                f'{repo_dir}/content/project_files/hivproject/test_hivproject.py': 'test_hivproject.py',
+                f'{repo_dir}/content/project_files/hivproject/subtypeA.txt': 'subtypeA.txt',
+                f'{repo_dir}/content/project_files/hivproject/subtypeB.txt': 'subtypeB.txt',
+                f'{repo_dir}/content/project_files/hivproject/subtypeC.txt': 'subtypeC.txt',
+                f'{repo_dir}/content/project_files/hivproject/subtypeD.txt': 'subtypeD.txt',
+                f'{repo_dir}/content/project_files/hivproject/unknown_type.txt': 'unknown_type.txt',
             }
         },
 
@@ -314,8 +316,8 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'codonbiasproject': {
             'test_file': 'test_codonbiasproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/codonbiasproject/test_codonbiasproject.py': 'test_codonbiasproject.py',
-                f'{repo_dir}/programming_projects/codonbiasproject/sample_orfs.txt': 'sample_orfs.txt',
+                f'{repo_dir}/content/project_files/codonbiasproject/test_codonbiasproject.py': 'test_codonbiasproject.py',
+                f'{repo_dir}/content/project_files/codonbiasproject/sample_orfs.txt': 'sample_orfs.txt',
             }
         },
 
@@ -323,8 +325,8 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'assemblyproject': { 
             'test_file': 'test_assemblyproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/assemblyproject/test_assemblyproject.py': 'test_assemblyproject.py',
-                f'{repo_dir}/programming_projects/assemblyproject/sequencing_reads.txt': 'sequencing_reads.txt',
+                f'{repo_dir}/content/project_files/assemblyproject/test_assemblyproject.py': 'test_assemblyproject.py',
+                f'{repo_dir}/content/project_files/assemblyproject/sequencing_reads.txt': 'sequencing_reads.txt',
             }
         },
 
@@ -332,8 +334,8 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'orfproject': { 
             'test_file': 'test_orfproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/orfproject/test_orfproject.py': 'test_orfproject.py',
-                f'{repo_dir}/programming_projects/orfproject/e_coli_O157_H157_str_Sakai.fasta': 'e_coli_O157_H157_str_Sakai.fasta',
+                f'{repo_dir}/content/project_files/orfproject/test_orfproject.py': 'test_orfproject.py',
+                f'{repo_dir}/content/project_files/orfproject/e_coli_O157_H157_str_Sakai.fasta': 'e_coli_O157_H157_str_Sakai.fasta',
             }
         },
 
@@ -341,7 +343,7 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         'foldingproject': { 
             'test_file': 'test_foldingproject.py',
             'files': {
-                f'{repo_dir}/programming_projects/foldingproject/test_foldingproject.py': 'test_foldingproject.py',
+                f'{repo_dir}/content/project_files/foldingproject/test_foldingproject.py': 'test_foldingproject.py',
             }
         },
 
@@ -395,9 +397,14 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
         for ta_class in ta_classes:
             name_list = []
             id_list = []
-            for student_info in ta_classes[ta_class]:
-                last, first, auid, rawauid = student_info.split(', ')
-                name_list.append(f'{first} {last}')
+            # for student_info in ta_classes[ta_class]:
+                # print(student_info)
+                # last, first, auid, rawauid = student_info.split(', ')
+                # name_list.append(f'{first} {last}')
+                # id_list.append(auid)
+            for auid in ta_classes[ta_class]:
+                last, first = ta_classes[ta_class][auid].split(', ')
+                name_list.append(f'{first.strip()} {last.strip()}')
                 id_list.append(auid)
             ta_classes[ta_class] = dict(zip(id_list, name_list))
 

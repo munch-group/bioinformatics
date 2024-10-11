@@ -169,3 +169,5 @@ content/_book/site_libs/
 /.luarc.json
 
 TA/class_participants.yaml
+
+TA/mandatory_assignments/handins/
