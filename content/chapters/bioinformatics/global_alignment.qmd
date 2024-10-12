@@ -1,5 +1,5 @@
 
-# Pairwise alignment
+# Pairwise global alignment
 <!-- ★ -->
 
 ## An optimal alignment {-}

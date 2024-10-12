@@ -45,49 +45,75 @@ book:
       - chapters/python/your_own_types_of_objects.qmd
       - chapters/python/using_code_from_other_files.qmd
       - chapters/python/on_the_shoulders_of_giants.qmd
-    - part: "Python projects"
-      chapters: 
-      - chapters/project/translation_project.qmd
-      - chapters/project/folding_project.qmd
-      - chapters/project/alignment_project.qmd
-      - chapters/project/codonbias_project.qmd
-      - chapters/project/hiv_project.qmd
-      - chapters/project/seqdist_project.qmd
-      - chapters/project/orf_project.qmd
-      - chapters/project/assembly_project.qmd
     - part: "Bioinformatics"
       chapters: 
-      - chapters/bioinformatics/assembly_and_mapping.qmd
-      - chapters/bioinformatics/bioinf_resources.qmd
-      - chapters/bioinformatics/clustering.qmd
-      - chapters/bioinformatics/database_searching.qmd
-      - chapters/bioinformatics/databases.qmd
-      - chapters/bioinformatics/gwas.qmd
-      - chapters/bioinformatics/hidden_markov_models.qmd
-      - chapters/bioinformatics/master_in_bioinformatics.qmd
-      - chapters/bioinformatics/models_of_dna_evolution.qmd
-      - chapters/bioinformatics/multiple_alignment.qmd
-      - chapters/bioinformatics/neural_networks.qmd
-      - chapters/bioinformatics/pairwise_alignment.qmd
-      - chapters/bioinformatics/phylogenetics.qmd
+
+      # I should still do lectures one week and exercises/project next
+
+      # NB: they learn python for bioinformatics, so they should be able to use it for the bioinformatics part of the course ...!
+      # If possible, the python and web projects should be connected (the project could be downstream of a web finding)
+
+      # NB: for each topic introduce a case and problem to solve, do theory and have them solve problem with web and project
       - chapters/bioinformatics/preface.qmd
-      - chapters/bioinformatics/procaryote_gene_fiding.qmd
-      - chapters/bioinformatics/protein_substitution_matrices.qmd
-      - chapters/bioinformatics/references.qmd
-      - chapters/bioinformatics/rna_structure.qmd
+
+      # finding information
+      # problem: GWAS candidates
+      - chapters/bioinformatics/gwas.qmd # serves only as extended exercise introduction
+      - chapters/bioinformatics/databases.qmd
+      - chapters/web/gwas_databases.qmd # W
+      - chapters/project/translation_project.qmd # P
+
+      # HMM
+      # problem: finding genes
+      - chapters/bioinformatics/hidden_markov_models.qmd
       - chapters/bioinformatics/sequence_annnotation.qmd
-    - part: "Web exercises"
-      chapters: 
-      # - chapters/bioinf/tester.ipynb
-      # - chapters/bioinf/tester2.ipynb
-      # - chapters/bioinf/test.qmd
-      - chapters/web/gwas_databases.qmd
-      - chapters/web/ccr5_pwalign.qmd
-      - chapters/web/mrsa_blast_multalign.qmd
-      - chapters/web/aardwark_seqdist.qmd
-      - chapters/web/orf_finding.qmd
-      - chapters/web/long_reads.qmd
-      - chapters/web/neural_networks.qmd
+      - chapters/web/new_hmm_exercise.qmd # web exercise using hmm # W
+      - chapters/project/orf_project.qmd # P
+
+      # NN
+      # problem: signal peptide?      
+      - chapters/bioinformatics/neural_networks.qmd
+      - chapters/web/neural_networks.qmd # W
+      - chapters/project/folding_project.qmd # P
+
+      # Assembly
+      # problem: long read sequencing of unknown thing
+      - chapters/bioinformatics/assembly_and_mapping.qmd # serves only as extended exercise introduction
+      - chapters/project/assembly_project.qmd # P
+
+      # alignment
+      # problem: ccr5     
+      - chapters/bioinformatics/global_alignment.qmd
+      - chapters/bioinformatics/local_alignment.qmd
+      - chapters/project/alignment_project.qmd # P
+      - chapters/web/ccr5_pwalign.qmd # W
+
+      # sub matrices / blast (with expanded blossum)
+      # problem: MRSA     
+      - chapters/bioinformatics/protein_substitution_matrices.qmd
+      - chapters/bioinformatics/database_searching.qmd
+      - chapters/web/mrsa_blast_multalign.qmd # W
+      - chapters/project/hiv_project.qmd # P (maybe modified to use local alignmnet)
+
+      # sequence clustering
+      - chapters/bioinformatics/multiple_alignment.qmd # serves only as extended exercise introduction
+      - chapters/bioinformatics/clustering.qmd      
+      - chapters/project/seqdist_project.qmd # P
+
+      # phylogentics
+      - chapters/bioinformatics/models_of_dna_evolution.qmd
+      - chapters/bioinformatics/phylogenetics.qmd
+      - chapters/web/aardwark_seqdist.qmd # W
+
+
+
+
+
+
+
+
+      - chapters/web/orf_finding.qmd # W
+#      - chapters/web/long_reads.qmd # W
     - part: "Supplementary"
       chapters: 
       - supplementary/project_files.qmd

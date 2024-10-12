@@ -71,11 +71,10 @@ With this improved list of possible genes, you are now ready to investigate the 
 3. The names of the gene homologs you find may themselves suggest resistance function. Go to the [NCBI Gene database](https://www.ncbi.nlm.nih.gov/gene) and search for the gene name to determine if you can find it in a resistance database, such as NDARO. If so, note it as a resistance gene.
 
 | ORF_Label | 	Length |	Putative Function |	Resistance? |
-| --- | --- | --- | --- |
+|:---|:---|:---|:---|
 |       |       |    |    |
 |       |       |    |    |
 | ORF18 |	337 | ISL3 family transposase (no strong match) | No |
-|       |       |    |    |
 |       |       |    |    |
 |       |       |    |    |
 |       |       |    |    |

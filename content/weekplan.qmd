@@ -153,7 +153,7 @@ Chapter @sec-translationproject is a mandatory assignment. The deadline for hand
 
 ##### Exercises:  
 
-- The web exercise: [GWAS candidates](chapters/web/gwas_databases.qmd)
+- The web exercise: [GWAS candidates](chapters/web/gwas_databases/index.qmd)
 - The programming project described in chapter @sec-foldingproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -175,7 +175,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [CCR5-delta32](chapters/web/ccr5_pwalign.qmd)
+- The web exercise: [CCR5-delta32](chapters/web/ccr5_pwalign/index.qmd)
 - The programming project described in chapter @sec-alignmentproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -196,7 +196,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [MRSA](chapters/web/mrsa_blast_multalign.qmd)
+- The web exercise: [MRSA](chapters/web/mrsa_blast_multalign/index.qmd)
 - The programming project described in chapter @sec-codonbiasproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -217,7 +217,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [Aardvark?](chapters/web/aardwark_seqdist.qmd)
+- The web exercise: [Aardvark?](chapters/web/aardwark_seqdist/index.qmd)
 - The programming project described in chapter @sec-hivproject.
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -264,7 +264,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [Plasmid ORFs](chapters/web/orf_finding.qmd)
+- The web exercise: [Plasmid ORFs](chapters/web/orf_finding/index.qmd)
 - The programming project described in chapter @sec-orfproject (not a mandatory assignment).
 
 
@@ -287,7 +287,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [Read mapping](chapters/web/long_reads.qmd)
+- The web exercise: [Read mapping](chapters/web/long_reads/index.qmd)
 - The programming project described in chapter @sec-assemblyproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -307,7 +307,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ##### Exercises:  
 
-- The web exercise: [Neural networks](chapters/web/neural_networks.qmd)
+- The web exercise: [Neural networks](chapters/web/neural_networks/index.qmd)
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
