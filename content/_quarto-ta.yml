@@ -57,14 +57,14 @@ book:
       # - chapters/python/on_the_shoulders_of_giants.qmd
     - part: "Python projects"
       chapters: 
-      - chapters/project/translation_project.qmd
-      - chapters/project/folding_project.qmd
-      - chapters/project/alignment_project.qmd
-      - chapters/project/codonbias_project.qmd
-      - chapters/project/hiv_project.qmd
-      - chapters/project/seqdist_project.qmd
-      - chapters/project/orf_project.qmd
-      - chapters/project/assembly_project.qmd
+      - chapters/project/translation_project/index.qmd
+      - chapters/project/folding_project/index.qmd
+      - chapters/project/alignment_project/index.qmd
+      - chapters/project/codonbias_project/index.qmd
+      - chapters/project/hiv_project/index.qmd
+      - chapters/project/seqdist_project/index.qmd
+      - chapters/project/orf_project/index.qmd
+      - chapters/project/assembly_project/index.qmd
     # - part: "Project solutions"
     #   chapters: 
     #   - project_solutions/translationproject_solution.py
@@ -101,13 +101,13 @@ book:
       # - chapters/bioinf/tester.ipynb
       # - chapters/bioinf/tester2.ipynb
       # - chapters/bioinf/test.qmd
-      - chapters/web/gwas_databases/index.qmd
-      - chapters/web/ccr5_pwalign/index.qmd
-      - chapters/web/mrsa_blast_multalign/index.qmd
-      - chapters/web/aardwark_seqdist/index.qmd
-      - chapters/web/orf_finding/index.qmd
-      - chapters/web/long_reads/index.qmd
-      - chapters/web/neural_networks/index.qmd
+      - chapters/web/gwas_databases.qmd
+      - chapters/web/ccr5_pwalign.qmd
+      - chapters/web/mrsa_blast_multalign.qmd
+      - chapters/web/aardwark_seqdist.qmd
+      - chapters/web/orf_finding.qmd
+      - chapters/web/long_reads.qmd
+      - chapters/web/neural_networks.qmd
     - part: "Supplementary"
       chapters: 
       - supplementary/project_files.qmd

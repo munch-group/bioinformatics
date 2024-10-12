@@ -47,14 +47,14 @@ book:
       # - chapters/python/on_the_shoulders_of_giants.qmd
     - part: "Python projects"
       chapters: 
-      - chapters/project/translation_project.qmd
-      - chapters/project/folding_project.qmd
-      - chapters/project/alignment_project.qmd
-      - chapters/project/codonbias_project.qmd
-      - chapters/project/hiv_project.qmd
-      - chapters/project/seqdist_project.qmd
-      - chapters/project/orf_project.qmd
-      - chapters/project/assembly_project.qmd
+      - chapters/project/translation_project/index.qmd
+      - chapters/project/folding_project/index.qmd
+      - chapters/project/alignment_project/index.qmd
+      - chapters/project/codonbias_project/index.qmd
+      - chapters/project/hiv_project/index.qmd
+      - chapters/project/seqdist_project/index.qmd
+      - chapters/project/orf_project/index.qmd
+      - chapters/project/assembly_project/index.qmd
     # - part: "Bioinformatics"
     #   chapters: 
     #   - chapters/bioinformatics/assembly_and_mapping.qmd

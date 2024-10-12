@@ -60,50 +60,50 @@ book:
       # problem: GWAS candidates
       - chapters/bioinformatics/gwas.qmd # serves only as extended exercise introduction
       - chapters/bioinformatics/databases.qmd
-      - chapters/web/gwas_databases.qmd # W
-      - chapters/project/translation_project.qmd # P
+      - chapters/web/gwas_databases/index.qmd # W
+      - chapters/project/translation_project/index.qmd # P
 
       # HMM
       # problem: finding genes
       - chapters/bioinformatics/hidden_markov_models.qmd
       - chapters/bioinformatics/sequence_annnotation.qmd
-      - chapters/web/new_hmm_exercise.qmd # web exercise using hmm # W
-      - chapters/project/orf_project.qmd # P
+      - chapters/web/new_hmm_exercise/index.qmd # web exercise using hmm # W
+      - chapters/project/orf_project/index.qmd # P
 
       # NN
       # problem: signal peptide?      
       - chapters/bioinformatics/neural_networks.qmd
-      - chapters/web/neural_networks.qmd # W
-      - chapters/project/folding_project.qmd # P
+      - chapters/web/neural_networks/index.qmd # W
+      - chapters/project/folding_project/index.qmd # P
 
       # Assembly
       # problem: long read sequencing of unknown thing
       - chapters/bioinformatics/assembly_and_mapping.qmd # serves only as extended exercise introduction
-      - chapters/project/assembly_project.qmd # P
+      - chapters/project/assembly_project/index.qmd # P
 
       # alignment
       # problem: ccr5     
       - chapters/bioinformatics/global_alignment.qmd
       - chapters/bioinformatics/local_alignment.qmd
-      - chapters/project/alignment_project.qmd # P
-      - chapters/web/ccr5_pwalign.qmd # W
+      - chapters/project/alignment_project/index.qmd # P
+      - chapters/web/ccr5_pwalign/index.qmd # W
 
       # sub matrices / blast (with expanded blossum)
       # problem: MRSA     
       - chapters/bioinformatics/protein_substitution_matrices.qmd
       - chapters/bioinformatics/database_searching.qmd
-      - chapters/web/mrsa_blast_multalign.qmd # W
-      - chapters/project/hiv_project.qmd # P (maybe modified to use local alignmnet)
+      - chapters/web/mrsa_blast_multalign/index.qmd # W
+      - chapters/project/hiv_project/index.qmd # P (maybe modified to use local alignmnet)
 
       # sequence clustering
       - chapters/bioinformatics/multiple_alignment.qmd # serves only as extended exercise introduction
       - chapters/bioinformatics/clustering.qmd      
-      - chapters/project/seqdist_project.qmd # P
+      - chapters/project/seqdist_project/index.qmd # P
 
       # phylogentics
       - chapters/bioinformatics/models_of_dna_evolution.qmd
       - chapters/bioinformatics/phylogenetics.qmd
-      - chapters/web/aardwark_seqdist.qmd # W
+      - chapters/web/aardwark_seqdist/index.qmd # W
 
 
 
