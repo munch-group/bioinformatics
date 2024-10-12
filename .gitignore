@@ -171,3 +171,5 @@ content/_book/site_libs/
 TA/class_participants.yaml
 
 TA/mandatory_assignments/handins/
+
+content/project_solutions/*.py
