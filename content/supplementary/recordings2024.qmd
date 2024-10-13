@@ -66,28 +66,23 @@ No recording.
 
 {{< video https://www.youtube.com/embed/k8EVqg2UXD8 >}}
 
-
 ### Wednesday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/GCeLRJCsDyU >}}
 
 
-
-
-
-<!-- 
 ## Week 7 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+{{< video https://www.youtube.com/embed/cTr7DPec4D8 >}}
 
 
 ### Wednesday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+{{< video https://www.youtube.com/embed/H7_UHCayxr4 >}}
 
-
+<!-- 
 ## Week 8 {.unnumbered}
 
 ### Monday {.unnumbered}
