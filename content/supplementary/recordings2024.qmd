@@ -82,14 +82,14 @@ No recording.
 
 {{< video https://www.youtube.com/embed/H7_UHCayxr4 >}}
 
-<!-- 
+
 ## Week 8 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+{{< video https://www.youtube.com/embed/9UR9uqbMSaU >}}
 
-
+<!-- 
 ### Wednesday {.unnumbered}
 
 {{< video https://www.youtube.com/embed/ >}}
