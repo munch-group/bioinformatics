@@ -20,10 +20,10 @@ Links to material you need to download yourself. You need to be on campus or use
 - [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032)
 
 
-[Alignment methods: strategies, challenges, benchmarking, and comparative overview](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=AlignmentMethods.pdf)
-[Bioinformatics explained: BLAST (CLCbio)](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=CLC_Bioinformatics_explained_BLAST.pdf)
+[Alignment methods: strategies, challenges, benchmarking, and comparative overview](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=AlignmentMethods.pdf)
+[Bioinformatics explained: BLAST (CLCbio)](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=CLC_Bioinformatics_explained_BLAST.pdf)
 [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
 
 Curriculum on webpages (not PDF format):
 
-[Using neural nets to recognize handwritten digits](https://neuralnetworksanddeeplearning.com/chap1.html) (if you have trouble accessing the page, download [this zip file](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=Neural+networks.zip) with the HTML content, unzip it, and view it locally).
+[Using neural nets to recognize handwritten digits](https://neuralnetworksanddeeplearning.com/chap1.html) (if you have trouble accessing the page, download [this zip file](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=Neural+networks.zip) with the HTML content, unzip it, and view it locally).
