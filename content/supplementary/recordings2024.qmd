@@ -89,24 +89,24 @@ No recording.
 
 {{< video https://www.youtube.com/embed/9UR9uqbMSaU >}}
 
-<!-- 
+ 
 ### Wednesday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+This lecture was canceled.
 
 
 ## Week 9 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+{{< video https://youtu.be/3HCgpZHHATY >}}
 
 
 ### Wednesday {.unnumbered}
 
-{{< video https://www.youtube.com/embed/ >}}
+{{< video https://youtu.be/iQNMasqnQi8 >}}
 
-
+<!--
 ## Week 10 {.unnumbered}
 
 ### Monday {.unnumbered}
