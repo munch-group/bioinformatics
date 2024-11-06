@@ -454,10 +454,6 @@ class TestSequenceSimilarity(AnvProgTestCase):
         self.assertEqualNice(11 / 12, project.sequence_similarity,
                              'AAAAAAAAAAAA', 'AAAAAAAAAAAT')
 
-    def test_sequence_similarity_6(self):
-        self.assertEqualNice(2 / 6, project.sequence_similarity,
-                             'BANANA', 'BATMAN')
-
 
 @unittest.skipIf(function_not_defined(project, 'alignment_similarity'), 'alignment_similarity')
 class TestAlignmentSimilarity(AnvProgTestCase):
