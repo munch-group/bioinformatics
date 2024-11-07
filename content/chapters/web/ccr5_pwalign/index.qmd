@@ -1,14 +1,22 @@
 # CCR5-delta32
 
+
+## Human Immunodeficiency Virus targets immune cells {.unnumbered}
+
 ![](images/ccr5_structure.png)
+
 
 HIV (Human Immunodeficiency Virus) infects immune cells by specifically targeting and binding to certain receptors on the surface of these cells. The primary immune cells that HIV infects are CD4+ T cells (commonly known as T-helper cells), macrophages, and dendritic cells. Here's a simplified step-by-step explanation of how HIV infects immune cells: The first step in the infection process involves the attachment of HIV to immune cells. The virus carries a glycoprotein on its surface called gp120, which binds to the CD4 receptor on the surface of CD4+ T cells, macrophages, and dendritic cells. This interaction is the initial binding event between the virus and the host cell. After binding to CD4, HIV also requires a co-receptor to gain entry into the host cell. Two common co-receptors used by the virus are CCR5 and CXCR4. Depending on the viral strain, it can use one or both of these co-receptors. This interaction between gp120 and the co-receptor triggers a conformational change in the virus, allowing it to fuse with the host cell membrane. The conformational change in the virus membrane allows it to fuse with the host cell membrane. This fusion event enables the virus to release its genetic material into the interior of the host cell. Once inside the host cell, HIV carries an enzyme called reverse transcriptase, which converts its single-stranded RNA genome into double-stranded DNA. This process is known as reverse transcription. 
 
 The newly formed viral DNA is transported into the cell's nucleus, where it is integrated into the host cell's DNA. The enzyme integrase plays a critical role in this step. Once integrated, the viral DNA becomes a permanent part of the host cell's genetic material. The integrated viral DNA is transcribed into messenger RNA (mRNA), which is then translated by the host cell's machinery to produce viral proteins and RNA. This leads to the assembly of new viral particles. New viral particles are assembled in the host cell and are released from the cell's surface in a process known as budding. The new virus particles can go on to infect other immune cells and continue the cycle of infection. As HIV continues to infect and replicate within CD4+ T cells, macrophages, and dendritic cells, the immune system's response is compromised. Over time, the gradual loss of CD4+ T cells, which are crucial for coordinating the immune response, weakens the immune system's ability to defend the body against various infections. This progressive immune system decline eventually leads to the clinical symptoms associated with AIDS (Acquired Immunodeficiency Syndrome).
 
+## Can specific gene variants provide resistance to HIV? {.unnumbered}
+
 The CCR5 gene and its protective variant, CCR5-delta32, thus play a pivotal role in the complex interplay between human genetics and HIV. The CCR5 gene, specifically its CCR5-delta32 mutation, has garnered significant attention in the field of HIV research due to its remarkable ability to confer a degree of natural resistance against the virus. The CCR5 gene, short for "C-C chemokine receptor type 5," encodes a protein receptor found on the surface of certain immune cells, including T-cells and macrophages. This receptor acts as a gateway for HIV to enter these cells, a critical step in the virus's infection cycle. However, a naturally occurring genetic variant of CCR5 known as CCR5-delta32 possesses a mutation that renders the receptor non-functional. Individuals who inherit two copies of this mutation are notably resistant to HIV infection, as the virus struggles to enter and infect their immune cells. This extraordinary genetic resistance has raised considerable interest in the scientific and medical communities, as it offers insights into potential HIV treatment strategies and the development of innovative therapies. 
 
 The frequency of the CCR5-delta32 variant varies significantly across different populations worldwide. It is important to note that historical factors, such as population migrations, genetic bottlenecks, and the prevalence of diseases like HIV, can influence the presence and distribution of this protective mutation. Here's an overview of the frequency of the CCR5-delta32 mutation in different regions: The CCR5-delta32 mutation is most common in populations of Northern European descent, particularly in Scandinavia. In some regions of Northern Europe, such as Sweden and Finland, the mutation can be found in approximately 10-15% of the population. This high prevalence is thought to have resulted from strong selection pressures due to past epidemics, like the bubonic plague. As you move southward in Europe, the frequency of the CCR5-delta32 mutation decreases. In Southern European countries like Spain and Italy, the prevalence drops to about 5% or even lower. The CCR5-delta32 mutation is relatively rare in African, Asian, and Indigenous populations. In most cases, it occurs in less than 1% of these populations. The low frequency can be attributed to the historical lack of selective pressure from diseases like HIV in these regions.
+
+## Aim {.unnumbered}
 
 Your goal is to use pairwise alignment to find the position of the delta32 mutation and establish if it is a deletion, insertion, or nucleotide substitution. This way, you, or other researchers, will be able to learn how the mutation changes the gene's protein-coding sequence.
 
@@ -21,7 +29,8 @@ The learning goals of this exercise are:
 - Getting acquainted with different file formats for storing sequence information. 
 
 
-## Fasta sequence format  {.unnumbered}
+## Preparation {.unnumbered}
+### Fasta sequence format  {.unnumbered}
 
 Files containing DNA or protein sequences are just text files formatted in a particular way so that each sequence can be associated with additional information. The most simple format is called FASTA format, and files with sequences in this format are called FASTA files and are usually given either a “.fa” or “.fasta” suffix. A FASTA has two elements for each sequence: a header line with a leading ” >” character followed by one or more lines with the DNA or protein sequence (the sequence may be broken over several lines). The content of a FASTA file with two (short) sequences in it could look like this:
 
@@ -36,8 +45,7 @@ AAATTGGAATA
 
 The first word after the “>” in the header line is usually a sequence identifier; the rest is an additional description or information.
 
-
-## Aligning DNA sequences  {.unnumbered}
+### Aligning DNA sequences  {.unnumbered}
 
 For this this exercise, you will have four fasta files each with one sequence in it:
 
@@ -48,8 +56,16 @@ For this this exercise, you will have four fasta files each with one sequence in
 
 You can download the files on Brightspace.
 
-#### Exercise
-Before we head into the actual investigation, lets begin by looking at the exon/intron structure of CCR5 by aligning the mRNAs of CCR5 to its CDS using the Needleman-Wunsch algorithm. Go to the [EBI website for pairwise alignment](https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle). Under “Sequence type” you need to select “DNA” to enable alignment parameters suitable for DNA alignment. Now align the two sequences by copy/pasting the mRNA into the top input field and the CDS into the bottom one (you must include the header line with the “>” character). Leave the rest of the options with their default values. Click “More options” to see what they are. Which score matrix gap penalties are used? Does the program use linear or affine gap scoring? Are gaps at the ends of the alignment scored differently than the internal gaps? 
+#### Exercise 
+
+Before we head into the actual investigation, lets begin by looking at the exon/intron structure of CCR5 by aligning the mRNAs of CCR5 to its CDS using the Needleman-Wunsch algorithm.
+Go to the [EBI website for pairwise alignment](https://www.ebi.ac.uk/jdispatcher/psa/emboss_needle). Under “Sequence type” you need to select “DNA” to enable alignment parameters suitable for DNA alignment. Now align the two sequences by copy/pasting the mRNA into the top input field and the CDS into the bottom one (you must include the header line with the “>” character). Leave the rest of the options with their default values.
+
+##### Guided Reflections {.unnumbered}
+- What are the other default values? Click "more options" to see what they are.
+- Which score matrix gap penalties are used?
+- Does the program use linear or affine gap scoring? 
+- Are gaps at the ends of the alignment scored differently than the internal gaps? 
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -61,7 +77,14 @@ Some note for TAs
 :::
 
 #### Exercise
-Now click “Submit”, to get your job queued on the server. You have to wait a bit. When the job is completed and the output is shown, the lines beginning with “#” provide additional information about the alignment. The top part list the options used for running the “needle” program in the terminal, and the bottom part shows parameter values and alignment statistics. What gap scoring was used? Which substitution matrix was used? Below all this is the alignment itself. How many exons does the gene have?
+Now click “Submit”, to get your job queued on the server. Yol, and the bottom part shows parau have to wait a bit. When the job is completed and the output is shown, the lines beginning with “#” provide additional information about the alignment. The top part list the options used for running the “needle” program in the terminameter values and alignment statistics. 
+
+##### Guided Reflections {.unnumbered}
+
+- What gap scoring was used?
+- Which substitution matrix was used?
+- Where do you find the result of the alignment?
+- The alignment shows differences and similarities between the two sequences. Which differences do you see between the mRNA and the CDS? Why is there a difference?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -73,7 +96,12 @@ Some note for TAs
 :::
 
 #### Exercise
-Now, on to the actual investigation. Begin by aligning the mRNAs of CCR5 and CCR5-delta32 to each other using the Needleman-Wunsch algorithm using the default values of parameters. Look at the alignment. How many bases are the same? How many are different? How many indels are there? What characterizes the delta32 variant? Is it a deletions, insertion, or substitution? Is more than one base involved?
+Now, on to the actual investigation. Begin by aligning the mRNAs of CCR5 and CCR5-delta32 to each other using the Needleman-Wunsch algorithm using the default values of parameters. Look at the alignment results.
+
+##### Guided Reflections {.unnumbered}
+
+- Describe the similarities between the two sequences. How many bases are the same and where are they located?
+- Describe the differences between the two sequences. Where are the differences located on the mRNA and how many bases are involved? (Hint: 5'-UTR, 3'-UTR, Coding region)
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -87,7 +115,13 @@ Some note for TAs
 ## Aligning protein sequences  {.unnumbered}
 
 #### Exercise
-Now, you will translate the coding sequence of CCR5 and CCR5-delta32 to see which effect the mutation has on the protein level. Go to the [Expasy translate](https://web.expasy.org/translate) website and set the “Output format” to “verbose”. Then, translate the two coding sequences, one at a time, by pasting the FASTA entries into the field (including the header line). What are the likely reading frames of each sequence? How does the mutation affect the protein? Is it a deletion, insertion, swap of amino acids, or a frameshift?
+
+Now, you will translate the coding sequence of CCR5 and CCR5-delta32 to see which effect the mutation has on the protein level. Go to the [Expasy translate](https://web.expasy.org/translate) website and set the “Output format” to “verbose”. Then, translate the two coding sequences, one at a time, by pasting the FASTA entries into the field (including the header line). 
+
+##### Guided Reflections {.unnumbered}
+
+- What are the likely reading frames of each sequence? (number and direction)
+- Which differences do you observe based on the translated sequence?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -99,7 +133,14 @@ Some note for TAs
 :::
 
 #### Exercise
-Now go back to the EMBOSS Needle website and align the two protein sequences. How does the mutation reflect on the alignment?
+
+Now go back to the EMBOSS Needle website and align the two protein sequences. Look at the results of the alignment.
+
+##### Guided Reflections {.unnumbered}
+
+- Where are the similarities between the two protein sequences?
+- Where are the differences between the two protein sequences?
+- How does the mutation affect the protein? (Hints: deletion, insertion, missense, nonsense, frameshift)
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -113,8 +154,15 @@ Some note for TAs
 
 ## Searching a database using Blast  {.unnumbered}
 
+Sooty mangabay (Cercocebus atys) is a species of primates. Sooty mangabays also have common variants in their CCR5 gene that seem to protect them against SIV (simian immunodeficiency virus). We want to investigate how the Sooty mangabay CCR5 variants are similar or different to the gene variants found in the human CCR5.
+
 #### Exercise
-Sooty mangabays also have common variants in their CCR5 gene that seem to protect them against SIV (simian immunodeficiency virus). You can use Blast to find and investigate these sequences too. Go to the [Blast website at NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Clicking “Nucleotide BLAST” will take you to the search interface for the versions of Blast optimized for DNA and RNA searches. Leave the settings to their default values, but take a look around to see what options are available. “Program Selection” lists the version of Blast. We are using megablast, but click the “?” icon to learn a bit about each one. Knowing a bit about how Blast works, how do you think megablast and blastn may differ in the kmer sizes and thresholds they use?
+
+ You can use Blast to find and investigate these sequences too. Go to the [Blast website at NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Clicking “Nucleotide BLAST” will take you to the search interface for the versions of Blast optimized for DNA and RNA searches. Leave the settings to their default values, but take a look around to see what options are available. “Program Selection” lists the version of Blast. We are using megablast for this.
+
+##### Guided Reflections {.unnumbered}
+
+ - Click the “?” icon to learn a bit about each one. How do you think megablast and blastn may differ in the kmer sizes and thresholds they use?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -130,17 +178,21 @@ Before you start the database search, you want to limit its scope to only sequen
 
 ![BLAST search interface](./images/blast_interface.png){#fig-blast_interface width=80%}
 
-::: {.content-hidden unless-profile="ta" collapse=true}
-::: {.callout-note appearance="simple"}
-## TA note
+Once the search results appear, they are sorted by E-value. The light blue header row lets you sort them by other criteria. “Query cover” sorts the database hits by how much of your search sequence (query) they cover.
 
-Some note for TAs
+##### Guided Reflections {.unnumbered}
 
-:::
-:::
+- What does the E-value mean?
+- What types of sequences does the BLAST search return?
 
 #### Exercise
-Once the search results appear, they are sorted by E-value. Remind yourself what the E-value represents. The light blue header row lets you sort them by other criteria. “Query cover” sorts the database hits by how much of your search sequence (query) they cover. Since you are looking for search hits to a mRNA in the other species, look for “C-C motif chemokine receptor 5 (CCR5), complete CDS” in the descriptions of search hits and pick the one with the highest percent identity. Clicking the corresponding link in the description column takes you to a local alignment of the part of your query sequence that aligns with the database sequence. In this case, it covers your entire CCR5 CDS. In how many alignment columns do the bases differ? How many gaps are there? Given what you now know about the human and mangabey CCR5 gees, do you expect that the delta32 mutation to have arisen before or after the common ancestor of humans and mangabeys?
+
+Since you are looking for search hits to a CDS in the other species, look for “C-C motif chemokine receptor 5 (CCR5), complete CDS” in the descriptions of search hits and pick the one with the highest percent identity.
+Clicking the corresponding link in the description column takes you to a local alignment of the part of your query sequence that aligns with the database sequence. In this case, it covers your entire CCR5 CDS.
+
+##### Guided Reflections {.unnumbered}
+
+- Describe the differences shown by the alignment. How many bases are different? How many gaps are there?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -154,7 +206,13 @@ Some note for TAs
 ## GenBank sequence format  {.unnumbered}
 
 #### Exercise
-Now go back to the list of search hits by clicking the “Descriptions” link in the light blue bar above the alignment you were just looking at. See if you can find any search hits with names including “delta”. There should be a delta delta-24 allele among them. Pick the one with sequence ID AF079473.1. Inspect the alignment to the human CCR5. What characterizes these variants? What does the “delta” in the variant name refer to? 
+
+Now go back to the list of search hits by clicking the “Descriptions” link in the light blue bar above the alignment you were just looking at. See if you can find any search hits with names including “delta”. There should be a delta delta-24 allele among them. Pick the one with sequence ID AF079473.1. Inspect the alignment to the human CCR5. 
+
+##### Guided Reflections {.unnumbered}
+
+- What characterizes these variants? What does the “delta” in the variant name refer to? 
+- Given what you now know about the human and mangabey CCR5 genes, do you expect that the delta32 mutation to have arisen before or after the common ancestor of humans and mangabeys?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -166,7 +224,13 @@ Some note for TAs
 :::
 
 #### Exercise
-Go back to the descriptions list by clicking the “Descriptions” link in the light blue bar. On the left are tick boxes for each search hit. Mark only the two you have been looking at (IDs AF051905.1 and AF079473.1). In the “Download” dropdown list pick “GenBank” to download the two sequences in GenBank format. GenBank is a sequence entry format like Fasta, includeing much more information about each sequence. Open the downloaded file in VScode and see what it looks like. What kinds of information does it provide for each sequence?
+Go back to the descriptions list by clicking the “Descriptions” link in the light blue bar. On the left are tick boxes for each search hit. Mark only the two you have been looking at (IDs AF051905.1 and AF079473.1). In the “Download” dropdown list pick “GenBank” to download the two sequences in GenBank format. GenBank is a sequence entry format like Fasta, including much more information about each sequence. Open the downloaded file in VScode and see what it looks like.
+
+##### Guided Reflections {.unnumbered}
+
+- When were the sequences determined/published?
+- What sequencing method was used?
+- For each sequence, note another piece of information provided in the GenBank entry format.
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -178,6 +242,7 @@ Some note for TAs
 :::
 
 #### Exercise
+
 In the GenBank file, you can find the translated sequences of each CDS. Make a new text file in VScode and paste the two translated sequences in to create a Fasta file like this:
 
 ```
@@ -190,17 +255,13 @@ MDYQVSSPTYDIDYYTSEPCQKINVKQIAARLLPPLYSLVFIFG
 … rest of the sequence …    
 ```     
 
-::: {.content-hidden unless-profile="ta" collapse=true}
-::: {.callout-note appearance="simple"}
-## TA note
+Now, head back to the EBI needle website and align the two protein sequences. Make sure it is set to protein this time. 
 
-Some note for TAs
+##### Guided Reflections {.unnumbered}
 
-:::
-:::
-
-#### Exercise
-Now, head back to the EBI needle website and align the two protein sequences. Make sure it is set to protein this time. Where is the deletion located? Does it just delete amino acids, and if so, how many, or does it change the reading frame or induce stop codons? How does the mangabey CCR5 mutation compare to that in humans?
+- Where is the deletion located?
+- Does it just delete amino acids, and if so, how many, or does it change the reading frame or induce stop codons?
+- How does the mangabey CCR5 mutation compare to that in humans?
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -216,7 +277,13 @@ Some note for TAs
 #### Exercise
 Have a look at this scientific paper:
 [“A Novel CCR5 Mutation Common in Sooty Mangabeys Reveals SIVsmm Infection of CCR5-Null Natural Hosts and Efficient Alternative Coreceptor Use In Vivo”](https://doi.org/10.1371/journal.ppat.1001064
-) and look at Figure 1 to see if their findings correspond to your observations. What can you learn from the paper about the functional importance of the mutations?
+) and look at Figure 1 and its figure legend.
+
+##### Guided Reflections {.unnumbered}
+
+- Figure 1A shows the alignment of 6 different gene variants. What species are they from and what variants are shown?
+- Figure 1B shows the alignment of the predicted protein sequence. What do the grey boxes mean? What do the arrows mean? What does the highlighted sequence mean?
+- We have now looked at the sequences of different mutations. Suggest an experimental method/setup, that might show something about the functional importance of the mutations.
 
 ::: {.content-hidden unless-profile="ta" collapse=true}
 ::: {.callout-note appearance="simple"}
@@ -226,19 +293,6 @@ Some note for TAs
 
 :::
 :::
-
-#### Exercise
-What might be other questions you could try to answer learn something about the functional importance of the human and mangabey mutations and how they affect finished proteins?
-
-::: {.content-hidden unless-profile="ta" collapse=true}
-::: {.callout-note appearance="simple"}
-## TA note
-
-Some note for TAs
-
-:::
-:::
-
 
 ## Project files {.unnumbered}
 
