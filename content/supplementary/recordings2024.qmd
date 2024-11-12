@@ -121,7 +121,7 @@ This lecture was canceled.
 
 ### Monday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/5XwD7EWxtVY >}}
 
 <!--
 
