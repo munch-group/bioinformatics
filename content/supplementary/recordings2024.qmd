@@ -112,11 +112,9 @@ This lecture was canceled.
 
 {{< video https://youtu.be/l4UShr240EU >}}
 
-<!--
-
 ### Wednesday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/Cm-A_ybQ10g >}}
 
 
 ## Week 11 {.unnumbered}
@@ -125,6 +123,7 @@ This lecture was canceled.
 
 {{< video https://youtu.be/ >}}
 
+<!--
 
 ### Wednesday {.unnumbered}
 
