@@ -31,9 +31,9 @@
 - Week 10
     - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs5X01vbmRheS5wZGY/BP2024_week10_Monday.pdf?ou=145685)
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs5X1dlZG5lc2RheS5wZGY/BP2024_week10_Wednesday.pdf?ou=145685)
-<!-- - Week 11
-    - [Monday]()
-    - [Wednesday]() -->
+- Week 11
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs5X1dlZG5lc2RheS5wZGY/BP2024_week11_Monday.pdf?ou=145685)
+    - [Wednesday]((https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs5X1dlZG5lc2RheS5wZGY/BP2024_week11_Wednesday.pdf?ou=145685))
 <!-- - Week 12
     - [Monday]()
     - [Wednesday]() -->
