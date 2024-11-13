@@ -123,12 +123,11 @@ This lecture was canceled.
 
 {{< video https://youtu.be/5XwD7EWxtVY >}}
 
-<!--
-
 ### Wednesday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/q0usuYKaaaI >}}
 
+<!--
 
 ## Week 12 {.unnumbered}
 
