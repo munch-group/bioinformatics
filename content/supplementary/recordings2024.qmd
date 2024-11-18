@@ -133,7 +133,7 @@ This lecture was canceled.
 
 ### Monday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/wEj7w4GNAkY >}}
 
 
 ### Wednesday {.unnumbered}
