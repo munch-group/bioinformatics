@@ -127,7 +127,6 @@ This lecture was canceled.
 
 {{< video https://youtu.be/q0usuYKaaaI >}}
 
-<!--
 
 ## Week 12 {.unnumbered}
 
@@ -135,11 +134,11 @@ This lecture was canceled.
 
 {{< video https://youtu.be/wEj7w4GNAkY >}}
 
-
 ### Wednesday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/CHHPOKgdZ8k >}}
 
+<!--
 
 ## Week 13 {.unnumbered}
 
