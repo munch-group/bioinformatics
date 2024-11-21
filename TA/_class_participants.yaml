@@ -1,4 +1,10 @@
 
+# Get class lists per class
+# copy/paste the list from the html table
+# subst "Not flagged.*?(?=\d)" for ""
+# subst \s+Student for nothing
+
+
 AP1: # 23
     200000000: Name Name Surname Surname
     200000000: Name Name Surname Surname

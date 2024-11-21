@@ -402,9 +402,13 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
                 # last, first, auid, rawauid = student_info.split(', ')
                 # name_list.append(f'{first} {last}')
                 # id_list.append(auid)
+            # for auid in ta_classes[ta_class]:
+            #     last, first = ta_classes[ta_class][auid].split(', ')
+            #     name_list.append(f'{first.strip()} {last.strip()}')
+            #     id_list.append(auid)
             for auid in ta_classes[ta_class]:
-                last, first = ta_classes[ta_class][auid].split(', ')
-                name_list.append(f'{first.strip()} {last.strip()}')
+                name = ta_classes[ta_class][auid]
+                name_list.append(name.strip())
                 id_list.append(auid)
             ta_classes[ta_class] = dict(zip(id_list, name_list))
 
