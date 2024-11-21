@@ -8,6 +8,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 import traceback
 import re
+import random
 
 GRADE_MODE = os.getenv('GRADE_MODE')
 
@@ -615,6 +616,45 @@ class TestPredictSubtype(AnvProgTestCase):
     def test_predict_subtype_1(self):
         self.assertEqual(project.predict_subtype(unknown_list[0], typed_data), 'A')
 
+    def dynamic_sequence_generator(self, base_sequence: str, mutation_rate: float) -> str:
+        nucleotides = ['A', 'T', 'C', 'G']
+        new_sequence = ''
+        for base in base_sequence:
+            if random.random() < mutation_rate:
+                possible_bases = nucleotides.copy()
+                possible_bases.remove(base)
+                new_base = random.choice(possible_bases)
+                new_sequence += new_base
+            else:
+                new_sequence += base
+        return new_sequence
+
+    def test_predict_dynamic_sequences(self):
+        nucleotides = ['A', 'T', 'C', 'G']
+        sequence_length = 100
+        mutation_rate = 0.1
+        sequences_per_subtype = 5
+        num_tests = 10
+
+        for i in range(num_tests):
+            random.seed(i)
+
+            base_sequences = {}
+            for subtype in ['A', 'B', 'C', 'D']:
+                base_sequences[subtype] = ''.join(random.choices(nucleotides, k=sequence_length))
+
+            typed_data = {}
+            for subtype, base_seq in base_sequences.items():
+                sequences = [self.dynamic_sequence_generator(base_seq, mutation_rate) for _ in range(sequences_per_subtype)]
+                typed_data[subtype] = sequences
+
+            unknown_subtype = random.choice(['A', 'B', 'C', 'D'])
+            unknown_base_seq = base_sequences[unknown_subtype]
+            unknown_sequence = self.dynamic_sequence_generator(unknown_base_seq, mutation_rate)
+
+            predict_subtype = project.predict_subtype(unknown_sequence, typed_data)
+
+            self.assertEqual(predict_subtype, unknown_subtype)
 
 
 if __name__ == '__main__':
