@@ -17,13 +17,15 @@ Many of you take the course "Biomolecular Structure and Function" (let us call t
 **If your Mac is an M1/M2 Mac**, you create a conda environment for BSF by copy/pasteing these command lines into the terminal *one at a time* and press return (enter) after pasting each one:
 
 ```{.txt filename="Terminal"}
-conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
+conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8
+
 ```
 
 **Otherwise**, you create a conda environment for BSF by copy/pasteing these command lines into the terminal *one at a time* and press return (enter) after pasting each one:
 
 ```{.txt filename="Terminal"}
-conda create -y -n BSF -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt
+conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8
+
 ```
 
 Notice how the command prompt changed from "(base)" to "(bioprog)" to show that you are now in the bioprog environment. Looks like nothing changed, but now you have access to terminal commands not available in the base envirionment. You will learn about these later. Try this command:
