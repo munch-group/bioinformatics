@@ -138,13 +138,14 @@ This lecture was canceled.
 
 {{< video https://youtu.be/CHHPOKgdZ8k >}}
 
-<!--
-
 ## Week 13 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-{{< video https://youtu.be/ >}}
+{{< video https://youtu.be/HpMw-CS2g88 >}}
+
+
+<!--
 
 
 ### Wednesday {.unnumbered}
