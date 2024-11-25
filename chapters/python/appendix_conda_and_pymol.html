@@ -491,14 +491,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Otherwise</strong>, you create a conda environment for BSF by copy/pasteing these command lines into the terminal <em>one at a time</em> and press return (enter) after pasting each one:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. Looks like nothing changed, but now you have access to terminal commands not available in the base envirionment. You will learn about these later. Try this command:</p>
 <div class="code-with-filename">

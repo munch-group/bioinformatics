@@ -161,7 +161,7 @@
     "href": "chapters/python/appendix_conda_and_pymol.html#creating-an-environment-for-bsf",
     "title": "3  Appendix: Conda environment for BSF",
     "section": "",
-    "text": "Terminal\n\nconda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt\n\n\n\n\nTerminal\n\nconda create -y -n BSF -c conda-forge -c anaconda -c schrodinger pymol-bundle pyqt\n\n\n\n\nTerminal\n\nconda deactivate\n\n\n\n\nTerminal\n\nconda activate BSF\n\n\n\n\nTerminal\n\npymol\n\n\n\n\n\nTerminal\n\nconda deactivate",
+    "text": "Terminal\n\nconda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8\n\n\n\n\nTerminal\n\nconda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8\n\n\n\n\nTerminal\n\nconda deactivate\n\n\n\n\nTerminal\n\nconda activate BSF\n\n\n\n\nTerminal\n\npymol\n\n\n\n\n\nTerminal\n\nconda deactivate",
     "crumbs": [
       "Learning Python",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: Conda environment for BSF</span>"
