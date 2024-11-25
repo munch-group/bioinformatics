@@ -97,6 +97,8 @@ None
 
 <!-- {{< downloadthis ../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
 
+**NB:** These files are on Brightspace. So you need to be logged into Brigtspace in another browser tab to be able to download them.
+
 {{< downloadthis ../web_files/long_reads/contig_1.bam.bai dname="contig_1.bam" label="contig_1.bam.bai" type="light" >}}
 
 {{< downloadthis ../web_files/long_reads/contig_1.fa dname="contig_1" label="contig_1.fa" type="light" >}}
