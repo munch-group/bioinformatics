@@ -277,13 +277,13 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 - Lecture notes: chapter @sec-assemblyproject
 - Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
-- Exploring Bioinformatics pp. 242-248  <!-- RNA structure -->
+- ~~Exploring Bioinformatics pp. 242-248~~  <!-- RNA structure -->
 
 ##### Lectures:
 
 - In the first lecture, I will talk about neural networks
 - In the first lecture, I will also talk about the programming project.
-- In the second lecture, I will talk about RNA secondary structure prediction.
+- In the second lecture, I will talk about applications of HMMs ~~RNA secondary structure prediction~~.
 
 ##### Exercises:  
 
