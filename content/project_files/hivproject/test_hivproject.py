@@ -613,9 +613,44 @@ class TestExercise5(AnvProgTestCase):
 class TestPredictSubtype(AnvProgTestCase):
 
     def test_predict_subtype_1(self):
-        self.assertEqual(project.predict_subtype(unknown_list[0], typed_data), 'A')
+        self.assertEqual(project.predict_subtype(
+            unknown_list[0], typed_data), 'A')
 
+    def test_predict_subtype_2(self):
+        self.assertEqual(project.predict_subtype(
+            typed_data['A'][0], typed_data), 'A')
 
+    def test_predict_subtype_3(self):
+        self.assertEqual(project.predict_subtype(
+            typed_data['B'][0], typed_data), 'B')
+
+    def test_predict_subtype_4(self):
+        self.assertEqual(project.predict_subtype(
+            typed_data['C'][0], typed_data), 'C')
+
+    def test_predict_subtype_5(self):
+        self.assertEqual(project.predict_subtype(
+            typed_data['D'][0], typed_data), 'D')
+
+    def test_predict_subtype_6(self):
+        i, n = 100, 10
+        self.assertEqual(project.predict_subtype(
+            typed_data['A'][0][:i] + ' ' * n + typed_data['A'][0][i+n:] , typed_data), 'A')
+
+    def test_predict_subtype_7(self):
+        i, n = 100, 10
+        self.assertEqual(project.predict_subtype(
+            typed_data['B'][0][:i] + ' ' * n + typed_data['B'][0][i+n:] , typed_data), 'B')
+        
+    def test_predict_subtype_8(self):
+        i, n = 200, 5
+        self.assertEqual(project.predict_subtype(
+            typed_data['C'][0][:i] + ' ' * n + typed_data['C'][0][i+n:] , typed_data), 'C')
+
+    def test_predict_subtype_9(self):
+        i, n = 300, 15
+        self.assertEqual(project.predict_subtype(
+            typed_data['D'][0][:i] + ' ' * n + typed_data['D'][0][i+n:] , typed_data), 'D')
 
 if __name__ == '__main__':
     # if GRADE_MODE:
