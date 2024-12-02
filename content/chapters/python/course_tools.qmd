@@ -22,7 +22,7 @@ myiagi
  
 ![Visual Studio Code (VScode)](./images/myiagi.png){#fig-myiagi width=80%}
 
-It should look like [@fig-myiagi], and the simple game is as follows. The program generates a Python expression. From that expression, it then performs all the substitution and reduction steps. Each substitution or reduction results in an intermediate expression until only a single Python value remains. Here is an example where the expression is `4 * y + x` and the value it reduces to is `37`:
+It should look like [@fig-myiagi], and the simple game is as follows. The program generates a Python expression. From that expression, all the substitution and reduction steps are performed. Each substitution or reduction results in an intermediate expression until only a single Python value remains. Here is an example where the expression is `4 * y + x` and the value it reduces to is `37`:
 
 ```python
 1.   4 * y + x
