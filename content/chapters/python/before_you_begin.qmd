@@ -5,7 +5,7 @@
 
 ## Install Python {.unnumbered}
 
-In this course, we use the Python programming language and need the Python program to run the code we will  write. We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings.
+In this course, we use the Python programming language and need the Python program to run the code we will  write. We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings.
 
 ## The text editor {.unnumbered}
 
@@ -27,13 +27,13 @@ For more details, please visit https://support.apple.com/kb/HT208050.
 
 ![Anaconda Powershell Prompt app on Windows](./images/powershellprompt.png){#fig-anacondaprompt width=75%}
 
-Do __*not*__ update your account __*after*__ you install Anaconda (see below). If you do, *Terminal* will not be able to find the Anaconda Python (If you did so by mistake anyway, you change back using this command: `chsh -s /bin/bash`.
+Do __*not*__ update your account __*after*__ you install Anaconda (see below). If you do, *Terminal* will not be able to find the Anaconda Python (If you did so by mistake, you change back using this command: `chsh -s /bin/bash`.
 
-On Windows, the tool you need is called the Anaconda Powershell Prompt, which was installed along with Anaconda Python. You should be able to find it from the Start menu. Make sure you open *Anaconda Powershell Prompt* and **not** *Anaconda Powershell Prompt*. They are different programs. If you open *Anaconda Powershell Prompt*, you should see something like @fig-anacondaprompt.
+On Windows, the tool you need is called the Anaconda Powershell Prompt, which was installed along with Anaconda Python. You should be able to find it from the Start menu. Ensure you open *Anaconda Powershell Prompt* and **not** *Anaconda Powershell Prompt*. They are different programs. If you open *Anaconda Powershell Prompt*, you should see something like @fig-anacondaprompt.
 
-What is *Anaconda Powershell Prompt* and this *Terminal* thing? Both programs are what we call *terminal emulators*. They are programs used to run other programs, like  the ones you will write yourself. I will informally refer to both *Terminal* and *Anaconda Powershell Prompt* as "the terminal." So if I write something like "open the terminal," you should open *Anaconda Powershell Prompt* if you are running Windows and the *Terminal* application if you are running OS X.
+What is *Anaconda Powershell Prompt* and this *Terminal* thing? Both programs are what we call *terminal emulators*. They are used to run other programs, like  the ones you will write yourself. I will informally refer to both *Terminal* and *Anaconda Powershell Prompt* as "the terminal." So if I write something like "open the terminal," you should open *Anaconda Powershell Prompt* if you are running Windows and the *Terminal* application if you are running OS X.
 
-The terminal is a very useful tool. However, to use it, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You type the command you want and then hit enter. The place where you type is called a prompt (or command prompt), and it may look a little different depending on which terminal emulator you use. In this book, we represent the prompt with the character `$`. So, a command in the examples below is the line of text to the left of the `$`. When you open the terminal, you'll be redirected to a folder. You can see which folder you are in by typing `pwd`, and then press `Enter` on the keyboard. When you press `Enter`, you tell the terminal to execute the command you wrote. In this case, the command you typed tells you the path to the folder we are in. If I do it, I get:
+The terminal is a very useful tool. However, to use it, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You type the command you want and then hit enter. The place where you type is called a prompt (or command prompt), and it may look a little different depending on which terminal emulator you use. In this book, we represent the prompt with the character `$`. So, a command in the examples below is the line of text to the left of the `$`. When you open the terminal, you'll be redirected to a folder. You can see which folder you are in by typing `pwd`, and then press `Enter` on the keyboard. When you press `Enter`, you tell the terminal to execute your written command. In this case, the command you typed tells you the path to the folder we are in. If I do it, I get:
 
 ```{.txt filename="Terminal"}
 $ pwd
@@ -54,14 +54,14 @@ $ ls
 notes projects
 ```
 
-It seems that there are two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command, you must specify which folder you want to walk into (in this case, `notes`). We do this by typing `cd`, then a space, and then the name of the folder. When I press `Enter` I get:
+There seem to be two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command, you must specify which folder you want to walk into (in this case, `notes`). We do this by typing `cd`, then a space, and then the folder's name. When I press `Enter` I get the following:
 
 ```{.txt filename="Terminal"}
 $ cd notes
 $
 ```
 
-It seems that nothing really happened, but if I run the `pwd` command now to see which folder I am in, I get:
+It seems that nothing really happened, but if I run the `pwd` command now to see which folder I am in, I get the following:
 
 ```{.txt filename="Terminal"}
 $ pwd
@@ -75,7 +75,7 @@ $ ls
 $
 ```
 
-Again, it seems like nothing happened. Well, `ls` and `dir` do not show anything if the folder we are in is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming`, we again use the `cd` command, but this time we do not need to name a folder. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e., the folder we just came from:
+Again, it seems like nothing happened. Well, `ls` and `dir` do not show anything if the folder we are in is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming`, we again use the `cd` command, but we do not need to name a folder this time. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e., the folder we just came from:
 
 ```{.txt filename="Terminal"}
 $ cd ..
@@ -83,7 +83,7 @@ $ pwd
 /Users/kasper/programming
 ```
 
-Now, when we run the `pwd` command, we see that we are back where we started. Let us see if the two folders are still there:
+When we run the `pwd` command, we see that we are back where we started. Let us see if the two folders are still there:
 
 ```{.txt filename="Terminal"}
 $ ls
@@ -92,7 +92,7 @@ notes projects
 
 They are! 
 
-Hopefully, you are now able to navigate your folders and see what is in them. You will need this later to access the folders with the code you write for the exercises and projects during the course.
+Hopefully, you can now navigate your folders and see what is in them. You will need this later to access the folders with the code you write for the exercises and projects during the course.
 
 | Action | OSX |
 |:---|:---|
@@ -101,7 +101,7 @@ Hopefully, you are now able to navigate your folders and see what is in them. Yo
 | Go to subfolder "notes" | `cd notes` |
 | Go to parent folder | `cd ..` |
 
-<!-- The terminal is a very useful tool. However, to use it, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You simply type the command you want and then hit enter. The place where you type is called a prompt (or command prompt), and it may look a little different depending on which terminal emulator you use. In this book, we represent the prompt with the character `$`. So, a command in the examples below is the line of text to the left of the `$`. When you open the terminal, you'll be redirected to a folder. You can see which folder you are in by typing `pwd` on OSX and `cd` on Windows, and then press `Enter` on the keyboard. When you press `Enter` you tell the terminal to execute the command you just wrote. In this case, the command you typed simply tells you the path to the folder we are in. If I do it, I get:
+<!-- The terminal is a very useful tool. However, to use it, you need to know a few basics. First of all, a terminal lets you execute commands on your computer. You type the command you want and then hit enter. The place where you type is called a prompt (or command prompt), and it may look a little different depending on which terminal emulator you use. In this book, we represent the prompt with the character `$`. So, a command in the examples below is the line of text to the left of the `$`. When you open the terminal, you'll be redirected to a folder. You can see which folder you are in by typing `pwd` on OSX and `cd` on Windows and then pressing `Enter` on the keyboard. When you press `Enter` you tell the terminal to execute the command you just wrote. In this case, the command you typed simply tells you the path to the folder we are in. If I do it, I get:
 
 ```{.txt filename="Terminal"}
 $ pwd
@@ -122,14 +122,14 @@ $ ls
 notes projects
 ```
 
-There seem to be two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command, you must specify which folder you want to walk into (in this case, `notes`). We do this by typing `cd`, then a space, and then the name of the folder. This is the same OSX and Windows. When I press `Enter` I get:
+There seem to be two other folders, one called `notes` and another called `projects`. If you are curious about what is inside the `notes` folder, you can "walk" into the folder with the `cd` command. To use this command, specify which folder you want to walk into (in this case, `notes`). We do this by typing `cd`, then a space, and then the name of the folder. This is the same OSX and Windows. When I press `Enter` I get:
 
 ```{.txt filename="Terminal"}
 $ cd notes
 $
 ```
 
-It seems that nothing really happened, but if I run the `pwd` command (`cd` on Windows) now to see which folder I am in, I get:
+It seems that nothing happened, but if I run the `pwd` command (`cd` on Windows) now to see which folder I am in, I get the following:
 
 ```{.txt filename="Terminal"}
 $ pwd
@@ -143,7 +143,7 @@ $ ls
 $
 ```
 
-Again, it seems like nothing happened. Well, `ls` and `dir` do not show anything if our folder is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming` we again use the `cd` command, but we do not need to name a folder this time. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e., the folder we just came from:
+Again, it seems like nothing happened. Well, `ls` and `dir` show nothing if our folder is empty. So `notes` must be empty. Let us go back to where we came from. To walk "back" or "up" to `/Users/kasper/programming`, we again use the `cd` command, but we do not need to name a folder this time. Instead, we use the special name `..` to say that we wish to go to the parent folder called `programming`, i.e., the folder we just came from:
 
 ```{.txt filename="Terminal"}
 $ cd ..
@@ -173,7 +173,7 @@ Hopefully, you are now able to navigate your folders and see what is in them. Yo
 
 In bioinformatics, we install packages and programs to use them in our analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. If only you could create a small insulated world for each project that only contained the packages you needed for that particular project. If each project lived in an isolated world, then there would be no such version conflicts. Fortunately, a tool lets you do just that, and its name is Conda.
 
-> Conda is an open-source and environment management system for installing multiple versions of software packages and their dependencies and switching easily between them.
+> Conda is an open-source environment management system for installing multiple versions of software packages and their dependencies and easily switching between them.
 
 The small worlds that Conda creates are called "environments". You can create as many environments as you like and then use each for a separate bioinformatics project, a course, a bachelor project, or whatever you want to insulate from everything else. Conda also downloads and installs the packages for you, ensuring that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.
 
@@ -198,7 +198,7 @@ Notice how the command prompt changed from "(base)" to "(bioprog)" to show that 
 conda deactivate
 ```
 
-Notice how it again says "(base)" on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you must run `conda activate bioprog` to activate the environment and access the course tools.
+Notice how it again says "(base)" on your command prompt. That is because you are back in your base environment. When you start a new terminal window, you must run `conda activate bioprog` to activate the environment and access the course tools.
 
 
 ## You are all set {.unnumbered}
