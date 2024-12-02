@@ -477,44 +477,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><em>This chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.</em></p>
-<p>In bioinformatics, we install packages and programs so we can use them in our analyses and pipelines. Sometimes, however, the versions of packages you need for one project conflicts with the versions you need for other projects that you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small insulated world for each project, which then only contained the packages you needed for that particular project?. If each project had its own isolated world, then there would be no such version conflicts. Fortunately, there is a tool that lets you do just that, and its name is Conda.</p>
+<p>In bioinformatics, we install packages and programs to use them in our analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small insulated world for each project, which then only contained the packages you needed for that particular project? If each project had its own isolated world, then there would be no such version conflicts. Fortunately, a tool lets you do just that, and its name is Conda.</p>
 <blockquote class="blockquote">
-<p>Conda is an open source package management system and environment management system for installing multiple versions of software packages and their dependencies and switching easily between them.</p>
+<p>Conda is an open-source package management and environment management system for installing multiple versions of software packages and their dependencies and easily switching between them.</p>
 </blockquote>
-<p>The small worlds that Conda creates are called “environments”. You can create as many environments as you like, and then use each one for a separate bioinformatics project, a course, a bachelor project, or whatever you would like to insulate from everything else. Conda also downloads and installs the packages for you and it makes sure that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.</p>
+<p>The small worlds that Conda creates are called “environments.” You can create as many environments as you like and then use each for a separate bioinformatics project, a course, a bachelor project, or whatever you want to insulate from everything else. Conda also downloads and installs the packages for you, ensuring that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.</p>
 <section id="creating-an-environment-for-bsf" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="creating-an-environment-for-bsf">Creating an environment for BSF</h2>
-<p>When you install Anaconda, Conda makes a single base environment for you. It is called “base” and this is why it says “(base)” on your terminal.</p>
-<p>Many of you take the course “Biomolecular Structure and Function” (let us call that BSF) alongside this course. In BSF, you need to install programs (e.g.&nbsp;PyMol) that may conflict with the packages you need for Bioinformatics and Programming. So we will create isolated Conda environments for each course to avoid such conflicts. Conda is a program you run from the command line, just like <code>python</code> or <code>cd</code>. So open your terminal (i.e., the “Terminal” program if you are on a Mac and the “Anaconda Powershell Prompt” program if you are on Windows). You need to two different set of commands depending on what chip set your computer has. If you have a new Mac it may have the new M1 or M2 chips. If you click the top left apple icon and select “About This Mac”, it will say “Apple M1” or “Apple M2” if it is.</p>
-<p><strong>If your Mac is an M1/M2 Mac</strong>, you create a conda environment for BSF by copy/pasteing these command lines into the terminal <em>one at a time</em> and press return (enter) after pasting each one:</p>
+<p>When you install Anaconda, Conda makes a single base environment for you. It is called “base,” and this is why it says “(base)” on your terminal.</p>
+<p>Many of you take the “Biomolecular Structure and Function” (let us call that BSF) alongside this course. In BSF, you must install programs (e.g., PyMol) that may conflict with the packages you need for Bioinformatics and Programming. So, we will create isolated Conda environments for each course to avoid such conflicts. Conda is a program you run from the command line, like <code>python</code> or <code>cd</code>. So open your terminal (i.e., the “Terminal” program if you are on a Mac and the “Anaconda Powershell Prompt” program if you are on Windows). You need two different commands depending on your computer’s chipset. If you have a new Mac, it may have the new M1 or M2 chips. If you click the top left apple icon and select “About This Mac,” it will say “Apple M1” or “Apple M2” if it is.</p>
+<p><strong>If your Mac is an M1/M2 Mac</strong>, you create a conda environment for BSF by copying/pasting the command line below into the terminal. <em>Before</em> you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. <em>Now</em> press return.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
 <div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Otherwise</strong>, you create a conda environment for BSF by copy/pasteing these command lines into the terminal <em>one at a time</em> and press return (enter) after pasting each one:</p>
+<p><strong>Otherwise</strong>, you create a conda environment for BSF by copying/pasting the command line below into the terminal. <em>Before</em> you press return (enter), check that the pasted command looks exactly the same. Sometimes, a space between words needs to be included. <em>Now</em> press return.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
 <div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. Looks like nothing changed, but now you have access to terminal commands not available in the base envirionment. You will learn about these later. Try this command:</p>
+<p>Notice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. It looks like nothing has changed, but now you have access to terminal commands that are not available in the base environment. You’ll be able to learn about these later. Try this command:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
 <div class="sourceCode" id="cb3" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice how it now again says “(base)” on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run <code>conda activate BSF</code> to activate the BSF environment to be able to access pymol. Try it out:</p>
+<p>Notice how it again says “(base)” on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run <code>conda activate BSF</code> to activate the BSF environment and access Pymol. Try it out:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
 <div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conda activate BSF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>and press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from “(base)” to “(BSF)” to show that you are now in the BSF environment. To run PyMol that you installed in this environment, just type</p>
+<p>and press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from “(base)” to “(BSF)” to show that you are now in the BSF environment. To run the PyMol that you installed in this environment, just type</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
@@ -522,14 +522,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pymol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and hit enter.</p>
-<p>Now try to close PyMol. Then go back to your terminal and type</p>
+<p>Now try to close PyMol. Then go back to your terminal and type:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
 <div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice how it now again says “(base)” on your command prompt. That is because you are back in your base environment. Try to type <code>pymol</code> (and hit enter), you terminal will tell you that it could not find anything called <code>pymol</code>. This is the way it should be. That is because PyMols is installed in the BSF environment, <em>not</em> in the base environment. It illustrates how the base environment is entirely separate from the BSF environment you just made.</p>
+<p>Notice how it now again says “(base)” on your command prompt. That is because you are back in your base environment. Try to type <code>pymol</code> (and hit enter). Your terminal will tell you it could not find anything called <code>pymol</code>. This is the way it should be. That is because PyMols is installed in the BSF environment, <em>not</em> in the base environment. It illustrates how the base environment is entirely separate from the BSF environment you just made.</p>
 </section>
 <section id="starting-pymol" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="starting-pymol">Starting PyMol</h2>
