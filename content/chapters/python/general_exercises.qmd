@@ -92,7 +92,7 @@ result = x + y
 
 #### Exercise
 
-In the code below, I have shuffled the statements. Put them in the right order to make the code print `9`. To do that, you must think about which values each variable will have in each statement depending on how you order the statements.
+In the code below, I have shuffled the statements. Put them in the right order to make the code print `9`. To do that, you must think about which values each variable will have in each statement, depending on how you order the statements.
 
 ```python
 x = x + 1
