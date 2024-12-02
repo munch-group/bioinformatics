@@ -17,7 +17,7 @@ Unlike strings that can only store the order of characters, lists can contain *a
 mixed_list = [42, True, 'programming', [1, 2, 3] ]
 ```
 
-By now, you have probably guessed you will make a list with two square brackets. Between them, you can put values with commas in-between. A list is a *container* of other values, and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:
+By now, you have probably guessed you will make a list with two square brackets. Between them, you can put values with commas in between. A list is a *container* of other values, and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:
 
 ```python
 my_list = []
@@ -275,7 +275,7 @@ You can produce a string by joining the elements of a list (if all the elements 
 "".join(['A', 'T', 'G'])
 ```
 
-Notice how you can join something on an empty string. This is a very useful technique if you want to turn a list of characters into a string.
+Notice how you can join something on an empty string. This is a very useful technique to turn a list of characters into a string.
 
 ## General exercises {.unnumbered}
 
