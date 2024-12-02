@@ -483,15 +483,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>This chapter is about lists and dictionaries that are Python values that can contain other Python values. Lists and dictionaries lets you build relationships between values, which is what data structures represent.</em></p>
+<p><em>This chapter is about lists and dictionaries that are Python values that can contain other Python values. Lists and dictionaries let you build relationships between values, which is what data structures represent.</em></p>
 <section id="lists" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="lists">Lists</h2>
-<p>For many kinds of data, the order of things is important. Just like the order of characters is important for the meaning of text in a string, we sometimes we want to specify the order of other things because the relative order of items in the list has some meaning. It could be a grocery list where you have listed the things to buy in the order you get to them in the supermarket. This is where Python lists are useful. When you print a list it nicely shows all the values it contains.</p>
+<p>For many kinds of data, the order of things is important. Just like the order of characters is important for the meaning of the text in a string, we sometimes want to specify the order of other things because the relative order of items in the list has some meaning. It could be a grocery list where you have listed the things to buy in the order you get to them in the supermarket. This is where Python lists are helpful. When you print a list, it nicely shows all the values it contains.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grocery_list <span class="op">=</span> [<span class="st">"salad"</span>, <span class="st">"canned beans"</span>, <span class="st">"milk"</span>, <span class="st">'beer'</span>, <span class="st">'candy'</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grocery_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Unlike strings that can only store the order of characters, lists can contain <em>any</em> kind of values and you can mix different types of values any way you like. Here is a list that contains an integer, a boolean, a string and a list:</p>
+<p>Unlike strings that can only store the order of characters, lists can contain <em>any</em> kind of values, and you can mix different types of values in any way you like. Here is a list that contains an integer, a boolean, a string, and a list:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mixed_list <span class="op">=</span> [<span class="dv">42</span>, <span class="va">True</span>, <span class="st">'programming'</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>] ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>By now you have probably guessed that you make a list with two square brackets. Between them you can put values with commas in-between. A list is a <em>container</em> of other values and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:</p>
+<p>By now, you have probably guessed you will make a list with two square brackets. Between them, you can put values with commas in between. A list is a <em>container</em> of other values, and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You can add single values to the end of a list using the <code>append</code> method of lists. Try it out:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>desserts <span class="op">=</span> []</span>
@@ -502,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desserts)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>desserts.append(<span class="st">'Creme brulee'</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desserts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you have a list you want to add to the end of another list you use the <code>extend</code> method:</p>
+<p>If you have a list you want to add to the end of another list, you use the <code>extend</code> method:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cheeses <span class="op">=</span> [<span class="st">'Gorgonzola'</span>, <span class="st">'Emmentaler'</span>, <span class="st">'Camembert'</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>desserts.extend(cheeses)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desserts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -514,17 +514,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Emmentaler'</span>, </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Camembert'</span>]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cheeses)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Surprised? Code inside parentheses, brackets and braces can span several lines, which can sometimes make your code easier to read.</p>
+<p>Surprised? Code inside parentheses, brackets, and braces can span several lines, sometimes making your code easier to read.</p>
 </section>
 <section id="exercise-1" class="level4" data-number="11.0.0.2">
 <h4 data-number="11.0.0.2" class="anchored" data-anchor-id="exercise-1"><strong>Exercise 11-2</strong></h4>
-<p>If you want to test if a value is in a list you use the <code>in</code> operator. Try this:</p>
+<p>You use the’ in’ operator to test if a value is in a list. Try this:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tiramisu'</span> <span class="kw">in</span> desserts)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Meatloaf'</span> <span class="kw">in</span> desserts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-2" class="level4" data-number="11.0.0.3">
 <h4 data-number="11.0.0.3" class="anchored" data-anchor-id="exercise-2"><strong>Exercise 11-3</strong></h4>
-<p>You can concatenate two lists to produce a new joined list. Make sure you figure out how this works before you try it out. Then experiment with changing the lists. Can you concatenate two empty lists?</p>
+<p>You can concatenate two lists to produce a new joined list. Make sure you figure out how this works before you try it. Then, experiment with changing the lists. Can you concatenate two empty lists?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>some_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>merged_list <span class="op">=</span> some_list <span class="op">+</span> another_list</span>
@@ -542,18 +542,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="indexing-and-slicing-lists" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="indexing-and-slicing-lists">Indexing and slicing lists</h2>
-<p>Now you know how to make lists, but to work with the values in lists you must also know how to access the individual values that a list contains. Fortunately, indexing lists works just like indexing strings: Each value in a list is identified by an <em>index</em> exactly like each character in a string:</p>
+<p>Now you know how to make lists, but to work with the values in lists, you must also know how to access the individual values a list contains. Fortunately, indexing lists work just like indexing strings: Each value in a list is identified by an <em>index</em> exactly like each character in a string:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">1</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"first value is"</span>, numbers[<span class="dv">0</span>])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"second value is"</span>, numbers[<span class="dv">1</span>])</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"third value is"</span>, numbers[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Notice that the function <code>len</code> can also compute the length of a list. So you also get the last value in list like this:</p>
+<p>Notice that the function <code>len</code> can also compute the length of a list. So you also get the last value in a list like this:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">1</span>]</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>last_index <span class="op">=</span> <span class="bu">len</span>(numbers)<span class="op">-</span><span class="dv">1</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Last element is"</span>, numbers[last_index])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you want a sub-list of values from a list (we also call that a <em>slice</em>) you specify a start index and an end index separated by a colon, just like with strings:</p>
+<p>If you want a sub-list of values from a list (we also call that a <em>slice</em>), you specify a start index and an end index separated by a colon, just like with strings:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numbers[<span class="dv">1</span>:<span class="dv">4</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When you run that you can see that <code>numbers[1:4]</code> is substituted for <code>[4, 6, 2]</code>, so the slicing operation produces a new list of the specified values.</p>
+<p>When you run that, you can see that <code>numbers[1:4]</code> is substituted for <code>[4, 6, 2]</code>, so the slicing operation produces a new list of the specified values.</p>
 <section id="exercise-4" class="level4" data-number="11.0.0.5">
 <h4 data-number="11.0.0.5" class="anchored" data-anchor-id="exercise-4"><strong>Exercise 11-5</strong></h4>
 <p>What do these two expressions reduce to?</p>
@@ -561,13 +561,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-5" class="level4" data-number="11.0.0.6">
 <h4 data-number="11.0.0.6" class="anchored" data-anchor-id="exercise-5"><strong>Exercise 11-6</strong></h4>
-<p>What is printed here? Do all the substitution and reduction steps and compare to the exercise above.</p>
+<p>What is printed here? Do all the substitution and reduction steps and compare them to the exercise above.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>] </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-6" class="level4" data-number="11.0.0.7">
 <h4 data-number="11.0.0.7" class="anchored" data-anchor-id="exercise-6"><strong>Exercise 11-7</strong></h4>
-<p>What is printed here? Do <em>all</em> the substitution and reduction steps – and do it <em>twice</em>. Next week you will be happy you did.</p>
+<p>What is printed here? Do all the substitution and reduction steps — and do them twice. Next week, you will be happy you did.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(number[i])</span>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>] </span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">4</span>] <span class="op">=</span> <span class="st">"Donald"</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Were you surprised what happened? Compare to <a href="python_values_are_objects.html#sec-immutable_strings" class="quarto-xref"><span>Section 10.0.0.15</span></a>. Lists are not immutable like strings and you can replace values by assigning a new value to an index in the list.</p>
+<p>Were you surprised by what happened? Compare to <a href="python_values_are_objects.html#sec-immutable_strings" class="quarto-xref"><span>Section 10.0.0.15</span></a>. Lists are not immutable like strings, and you can replace values by assigning a new value to an index in the list.</p>
 </section>
 <section id="exercise-8" class="level4" data-number="11.0.0.9">
 <h4 data-number="11.0.0.9" class="anchored" data-anchor-id="exercise-8"><strong>Exercise 11-9</strong></h4>
@@ -601,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-10" class="level4" data-number="11.0.0.11">
 <h4 data-number="11.0.0.11" class="anchored" data-anchor-id="exercise-10"><strong>Exercise 11-11</strong></h4>
-<p>Do you think you also get an error when you specify a slice where the end is too high? Try it out:</p>
+<p>Do you also get an error when you specify a slice where the end is too high? Try it out:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(l[<span class="dv">4</span>:<span class="dv">99</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I guess that is also worth remembering.</p>
@@ -613,7 +613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-12" class="level4" data-number="11.0.0.13">
 <h4 data-number="11.0.0.13" class="anchored" data-anchor-id="exercise-12"><strong>Exercise 11-13</strong></h4>
-<p>If you do not like Emmentaler you can just delete it. What do you think the <code>del</code> keyword does?</p>
+<p>If you do not like Emmentaler, you can delete it. What does the <code>del</code> keyword do?</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cheeses <span class="op">=</span> [<span class="st">'Gorgonzola'</span>, <span class="st">'Emmentaler'</span>, <span class="st">'Camembert'</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cheeses)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> cheeses[<span class="dv">1</span>]</span>
@@ -621,12 +621,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-13" class="level4" data-number="11.0.0.14">
 <h4 data-number="11.0.0.14" class="anchored" data-anchor-id="exercise-13"><strong>Exercise 11-14</strong></h4>
-<p>Because intervals are “ends exclusive” we can compute the length of a slice as <code>end - start</code>:</p>
+<p>Because intervals are “ends exclusive,” we can compute the length of a slice as <code>end - start</code>:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">1</span>]</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> has length </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(l[start:end], end<span class="op">-</span>start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Think about what this code would look like if ends were included in intervals.</p>
+<p>Consider what this code would look like if ends were included in intervals.</p>
 </section>
 <section id="exercise-14" class="level4" data-number="11.0.0.15">
 <h4 data-number="11.0.0.15" class="anchored" data-anchor-id="exercise-14"><strong>Exercise 11-15</strong></h4>
@@ -636,11 +636,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>beginning <span class="op">=</span> numbers[:i]</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> numbers[i:]</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beginning <span class="op">+</span> end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If ends were included in intervals this would not be as simple.</p>
+<p>If ends were included in intervals, this would be more complex.</p>
 </section>
 <section id="exercise-15" class="level4" data-number="11.0.0.16">
 <h4 data-number="11.0.0.16" class="anchored" data-anchor-id="exercise-15"><strong>Exercise 11-16</strong></h4>
-<p>Do <em>all</em> the substitution and reduction steps in your head (or on paper) before you write any of the following code. Think carefully and make up your mind what you think will be printed below. Remember that the <em>value</em> of a list is a container that holds other <em>values</em> in it. Then write the code and see if you were right. If you were not, make sure you figure out what led you to the wrong conclusion.</p>
+<p>Do <em>all</em> the substitution and reduction steps in your head (or on paper) before you write any of the following code. Think carefully and decide what you think will be printed below. Remember that the <em>value</em> of a list is a container that holds other <em>values</em> in it. Then, write the code and see if you are right. If you were not, figure out what led you to the wrong conclusion.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">'A'</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">'B'</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="st">'C'</span></span>
@@ -661,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-17" class="level4" data-number="11.0.0.18">
 <h4 data-number="11.0.0.18" class="anchored" data-anchor-id="exercise-17"><strong>Exercise 11-18</strong></h4>
-<p>You can produce a list by splitting a long string into smaller parts. Think: “<em>Hey string, split yourself on this smaller string</em>”. Try these variations to figure out how it works</p>
+<p>You can produce a list by splitting a long string into smaller parts. Think: “<em>Hey string, split yourself on this smaller string</em>”. Try these variations to figure out how it works.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Homo sapiens neanderthalensis"</span>.split(<span class="st">" "</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">"Homo sapiens neanderthalensis"</span>.split(<span class="st">'en'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">'ATGCTCGTAACGACACTGCACTACTACAATAG'</span>.split(<span class="st">''</span>)</span>
@@ -673,16 +673,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-18" class="level4" data-number="11.0.0.19">
 <h4 data-number="11.0.0.19" class="anchored" data-anchor-id="exercise-18"><strong>Exercise 11-19</strong></h4>
-<p>You can produce a string by joining the elements of a list (if all the elements are strings of course). Think: “<em>Hey string, put yourself in between all the strings in this list</em>”.</p>
+<p>You can produce a string by joining the elements of a list (if all the elements are strings, of course). Think: “<em>Hey string, put yourself between all the strings in this list</em>”.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">"-"</span>.join([<span class="st">'Homo'</span>, <span class="st">'sapiens'</span>, <span class="st">'neanderthalensis'</span>])</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">"..."</span>.join([<span class="st">'Homo'</span>, <span class="st">'sapiens'</span>, <span class="st">'neanderthalensis'</span>])</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">""</span>.join([<span class="st">'A'</span>, <span class="st">'T'</span>, <span class="st">'G'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Notice how you can join something on an empty string. This is a very useful technique; for example if you want to turn a list of characters into a string.</p>
+<p>Notice how you can join something on an empty string. This is a very useful technique to turn a list of characters into a string.</p>
 </section>
 </section>
 <section id="general-exercises" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="general-exercises">General exercises</h2>
-<p>What does this expression reduce to? <code>'aaaaa'</code>, <code>'BaBaBa'</code>, or <code>'Banan'</code>. Make up your mind and and then run the expression to check.</p>
+<p>What does this expression reduce to? <code>'aaaaa'</code>, <code>'BaBaBa'</code>, or <code>'Banan'</code>. Make up your mind, and then run the expression to check.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">'a'</span>.join(<span class="st">'Banana'</span>.split(<span class="st">'a'</span>)[:<span class="dv">3</span>] <span class="op">*</span> <span class="dv">4</span>)[<span class="op">-</span><span class="dv">5</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
