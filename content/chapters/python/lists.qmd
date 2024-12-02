@@ -1,23 +1,23 @@
 # Lists of things {#sec-lists}
 
-*This chapter is about lists and dictionaries that are Python values that can contain other Python values. Lists and dictionaries lets you build relationships between values, which is what data structures represent.*
+*This chapter is about lists and dictionaries that are Python values that can contain other Python values. Lists and dictionaries let you build relationships between values, which is what data structures represent.*
 
 ## Lists {.unnumbered}
 
-For many kinds of data, the order of things is important. Just like the order of characters is important for the meaning of text in a string, we sometimes we want to specify the order of other things because the relative order of items in the list has some meaning. It could be a grocery list where you have listed the things to buy in the order you get to them in the supermarket. This is where Python lists are useful. When you print a list it nicely shows all the values it contains.
+For many kinds of data, the order of things is important. Just like the order of characters is important for the meaning of the text in a string, we sometimes want to specify the order of other things because the relative order of items in the list has some meaning. It could be a grocery list where you have listed the things to buy in the order you get to them in the supermarket. This is where Python lists are helpful. When you print a list, it nicely shows all the values it contains.
 
 ```python
 grocery_list = ["salad", "canned beans", "milk", 'beer', 'candy']
 print(grocery_list)
 ```
 
-Unlike strings that can only store the order of characters, lists can contain *any* kind of values and you can mix different types of values any way you like. Here is a list that contains an integer, a boolean, a string and a list:
+Unlike strings that can only store the order of characters, lists can contain *any* kind of values, and you can mix different types of values in any way you like. Here is a list that contains an integer, a boolean, a string, and a list:
 
 ```python
 mixed_list = [42, True, 'programming', [1, 2, 3] ]
 ```
 
-By now you have probably guessed that you make a list with two square brackets. Between them you can put values with commas in-between. A list is a *container* of other values and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:
+By now, you have probably guessed you will make a list with two square brackets. Between them, you can put values with commas in-between. A list is a *container* of other values, and the value of the list itself does not depend on the values it contains. This makes sense. Otherwise, an empty list would not have a value:
 
 ```python
 my_list = []
@@ -36,7 +36,7 @@ desserts.append('Creme brulee')
 print(desserts)
 ```
 
-If you have a list you want to add to the end of another list you use the `extend` method:
+If you have a list you want to add to the end of another list, you use the `extend` method:
 
 ```python
 cheeses = ['Gorgonzola', 'Emmentaler', 'Camembert']
@@ -56,10 +56,10 @@ cheeses = ['Gorgonzola',
 print(cheeses)
 ```
 
-Surprised? Code inside parentheses, brackets and braces can span several lines, which can sometimes make your code easier to read.
+Surprised? Code inside parentheses, brackets, and braces can span several lines, sometimes making your code easier to read.
 
 #### Exercise
-If you want to test if a value is in a list you use the `in` operator. Try this:
+You use the' in' operator to test if a value is in a list. Try this:
 
 ```python
 print('Tiramisu' in desserts)
@@ -67,7 +67,7 @@ print('Meatloaf' in desserts)
 ```
 
 #### Exercise
-You can concatenate two lists to produce a new joined list. Make sure you figure out how this works before you try it out. Then experiment with changing the lists. Can you concatenate two empty lists?
+You can concatenate two lists to produce a new joined list. Make sure you figure out how this works before you try it. Then, experiment with changing the lists. Can you concatenate two empty lists?
 
 ```python
 some_list = [1, 2, 3]
@@ -90,7 +90,7 @@ print(my_list)
 
 ## Indexing and slicing lists {.unnumbered}
 
-Now you know how to make lists, but to work with the values in lists you must also know how to access the individual values that a list contains. Fortunately, indexing lists works just like indexing strings: Each value in a list is identified by an *index* exactly like each character in a string:
+Now you know how to make lists, but to work with the values in lists, you must also know how to access the individual values a list contains. Fortunately, indexing lists work just like indexing strings: Each value in a list is identified by an *index* exactly like each character in a string:
 
 ```python
 numbers = [7, 4, 6, 2, 8, 1]
@@ -99,7 +99,7 @@ print("second value is", numbers[1])
 print("third value is", numbers[2])
 ```
 
-Notice that the function `len` can also compute the length of a list. So you also get the last value in list like this:
+Notice that the function `len` can also compute the length of a list. So you also get the last value in a list like this:
 
 ```python
 numbers = [7, 4, 6, 2, 8, 1]
@@ -107,13 +107,13 @@ last_index = len(numbers)-1
 print("Last element is", numbers[last_index])
 ```
 
-If you want a sub-list of values from a list (we also call that a *slice*) you specify a start index and an end index separated by a colon, just like with strings:
+If you want a sub-list of values from a list (we also call that a *slice*), you specify a start index and an end index separated by a colon, just like with strings:
 
 ```python
 print(numbers[1:4])
 ```
 
-When you run that you can see that `numbers[1:4]` is substituted for `[4, 6, 2]`, so the slicing operation produces a new list of the specified values.
+When you run that, you can see that `numbers[1:4]` is substituted for `[4, 6, 2]`, so the slicing operation produces a new list of the specified values.
 
 #### Exercise
 What do these two expressions reduce to?
@@ -123,7 +123,7 @@ What do these two expressions reduce to?
 ```
 
 #### Exercise
-What is printed here? Do all the substitution and reduction steps and compare to the exercise above.
+What is printed here? Do all the substitution and reduction steps and compare them to the exercise above.
 
 ```python
 l = [11, 12, 13, 14, 15, 16, 17] 
@@ -131,7 +131,7 @@ print(l[2])
 ```
 
 #### Exercise
-What is printed here? Do *all* the substitution and reduction steps -- and do it *twice*. Next week you will be happy you did.
+What is printed here? Do all the substitution and reduction steps — and do them twice. Next week, you will be happy you did.
 
 ```python
 numbers = [1,2,3]
@@ -152,7 +152,7 @@ l[4] = "Donald"
 print(l)
 ```
 
-Were you surprised what happened? Compare to @sec-immutable_strings. Lists are not immutable like strings and you can replace values by assigning a new value to an index in the list.
+Were you surprised by what happened? Compare to @sec-immutable_strings. Lists are not immutable like strings, and you can replace values by assigning a new value to an index in the list.
 
 #### Exercise
 With your knowledge of slicing, what do you think is printed below:
@@ -175,7 +175,7 @@ print(l[7])
 Read and understand the error message. Does it ring a bell?
 
 #### Exercise
-Do you think you also get an error when you specify a slice where the end is too high? Try it out:
+Do you also get an error when you specify a slice where the end is too high? Try it out:
 
 ```python
 l = [11, 12, 13, 14, 15, 16, 17]
@@ -192,7 +192,7 @@ l[len(l)-1]
 ```
 
 #### Exercise
-If you do not like Emmentaler you can just delete it. What do you think the `del` keyword does?
+If you do not like Emmentaler, you can delete it. What does the `del` keyword do?
 
 ```python
 cheeses = ['Gorgonzola', 'Emmentaler', 'Camembert']
@@ -202,7 +202,7 @@ print(cheeses)
 ```
 
 #### Exercise
-Because intervals are "ends exclusive" we can compute the length of a slice as `end - start`:
+Because intervals are "ends exclusive," we can compute the length of a slice as `end - start`:
 
 ```python
 l = [7, 4, 6, 2, 8, 1]
@@ -211,7 +211,7 @@ end = 4
 print("{} has length {}".format(l[start:end], end-start))
 ```
 
-Think about what this code would look like if ends were included in intervals.
+Consider what this code would look like if ends were included in intervals.
 
 #### Exercise
 Another advantage of "ends exclusive" intervals is that you only need one index to split a list in two:
@@ -224,10 +224,10 @@ end = numbers[i:]
 print(beginning + end)
 ```
 
-If ends were included in intervals this would not be as simple.
+If ends were included in intervals, this would be more complex.
 
 #### Exercise
-Do *all* the substitution and reduction steps in your head (or on paper) before you write any of the following code. Think carefully and make up your mind what you think will be printed below. Remember that the *value* of a list is a container that holds other *values* in it. Then write the code and see if you were right. If you were not, make sure you figure out what led you to the wrong conclusion. 
+Do *all* the substitution and reduction steps in your head (or on paper) before you write any of the following code. Think carefully and decide what you think will be printed below. Remember that the *value* of a list is a container that holds other *values* in it. Then, write the code and see if you are right. If you were not, figure out what led you to the wrong conclusion. 
 
 ```python
 x = 'A'
@@ -252,7 +252,7 @@ print(l[::-1])
 ```
 
 #### Exercise
-You can produce a list by splitting a long string into smaller parts. Think: "*Hey string, split yourself on this smaller string*". Try these variations to figure out how it works
+You can produce a list by splitting a long string into smaller parts. Think: "*Hey string, split yourself on this smaller string*". Try these variations to figure out how it works.
 
 ```python
 "Homo sapiens neanderthalensis".split(" ")
@@ -267,7 +267,7 @@ You can produce a list by splitting a long string into smaller parts. Think: "*H
 Notice that the method has a default behavior when no argument is passed to it.
 
 #### Exercise
-You can produce a string by joining the elements of a list (if all the elements are strings of course). Think: "*Hey string, put yourself in between all the strings in this list*".
+You can produce a string by joining the elements of a list (if all the elements are strings, of course). Think: "*Hey string, put yourself between all the strings in this list*".
 
 ```python
 "-".join(['Homo', 'sapiens', 'neanderthalensis'])
@@ -275,11 +275,11 @@ You can produce a string by joining the elements of a list (if all the elements 
 "".join(['A', 'T', 'G'])
 ```
 
-Notice how you can join something on an empty string. This is a very useful technique; for example if you want to turn a list of characters into a string.
+Notice how you can join something on an empty string. This is a very useful technique if you want to turn a list of characters into a string.
 
 ## General exercises {.unnumbered}
 
-What does this expression reduce to? `'aaaaa'`, `'BaBaBa'`, or `'Banan'`. Make up your mind and and then run the expression to check.
+What does this expression reduce to? `'aaaaa'`, `'BaBaBa'`, or `'Banan'`. Make up your mind, and then run the expression to check.
 
 ```python
 'a'.join('Banana'.split('a')[:3] * 4)[-5:]
