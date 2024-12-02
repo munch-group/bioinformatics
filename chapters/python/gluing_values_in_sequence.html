@@ -478,9 +478,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="tuples" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="tuples">Tuples</h2>
-<p>A tuple is a sequence of values just like a list. However, unlike a list, the elements of a tuple can not be changed. You cannot append to a tuple either. Once a tuple is made it is immutable (or unchangeable). To make a tuple you just use round brackets instead of square brackets:</p>
+<p>A tuple is a sequence of values, just like a list. However, unlike a list, the elements of a tuple can not be changed. You cannot append to a tuple, either. Once a tuple is made, it is immutable (or unchangeable). To make a tuple, you just use round brackets instead of square brackets:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> (<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It may seem strange that Python has both tuples and lists. One reason is that whereas lists are more flexible, tuples are more efficient. We will not use tuples a lot, but you need to know what they are.</p>
+<p>It may seem strange that Python has both tuples and lists. One reason is that tuples are more efficient, whereas lists are more flexible. We will not use tuples often, but you must know what they are.</p>
 <p>You can do most of the operations on a tuple that you can also do on a list. The following exercises should be easy if you remember how to do the same thing on lists:</p>
 <section id="exercise" class="level4" data-number="13.0.0.1">
 <h4 data-number="13.0.0.1" class="anchored" data-anchor-id="exercise"><strong>Exercise 13-1</strong></h4>
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercise-2" class="level4" data-number="13.0.0.3">
 <h4 data-number="13.0.0.3" class="anchored" data-anchor-id="exercise-2"><strong>Exercise 13-3</strong></h4>
-<p>Try to change the second element of the <code>fruits</code> tuple to <code>"apple"</code> and see what happens. It should be someting like this:</p>
+<p>Try to change the second element of the <code>fruits</code> tuple to <code>"apple"</code> and see what happens. It should be something like this:</p>
 <pre><code>Traceback (most recent call last):
   File "script.py", line 2, in &lt;module&gt;
     fruits[3] = "apple"
@@ -525,19 +525,19 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 </section>
 <section id="exercise-4" class="level4" data-number="13.0.0.5">
 <h4 data-number="13.0.0.5" class="anchored" data-anchor-id="exercise-4"><strong>Exercise 13-5</strong></h4>
-<p>Try this and read the err or message:</p>
+<p>Try this and read the error message:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>family <span class="op">=</span> (<span class="st">"Donald"</span>, <span class="st">"Ivana"</span>, <span class="st">"Eric"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>father, mother, son, daughter <span class="op">=</span> family</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Compare to the error message in the previous exercise.</p>
 </section>
 <section id="exercise-5" class="level4" data-number="13.0.0.6">
 <h4 data-number="13.0.0.6" class="anchored" data-anchor-id="exercise-5"><strong>Exercise 13-6</strong></h4>
-<p>Say want to swap the values of two variable <code>a</code> and <code>b</code>. To do that you would need to keep one of the values in an extra variable like this:</p>
+<p>Say you want to swap the values of two variables, <code>a</code> and <code>b</code>. To do that, you would need to keep one of the values in an extra variable like this:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> a</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> b</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> temp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Can you come up with a simple and pretty way of swapping <code>a</code> and <code>b</code> in one statement, using what you have learned in this chapter? Maybe it occurs to you before you realize how it works, so make sure you can connect your solution to the rules of tuples and tuple assignment.</p>
-<!-- TODO: Find annother example than Donald Trump -->
+<p>Using what you have learned in this chapter, can you devise a simple and pretty way of swapping <code>a</code> and <code>b</code> in one statement? It may occur to you before you realize how it works, so make sure you can connect your solution to the rules of tuples and tuple assignment.</p>
+<!-- TODO: Find another example than Donald Trump -->
 
 
 </section>
