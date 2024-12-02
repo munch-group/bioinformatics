@@ -3,11 +3,11 @@
 
 #### Exercise
 
-Remind yourself of the different types of Python values you know. E.g. one of them is integer (`int`). Make a list.
+Remind yourself of the different types of Python values you know. For example, one of them is an integer (`int`). Make a list.
 
 #### Exercise {#sec-coercion_of_type}
 
-You already know about several types of data values in Python. Two of them are integers called `int`, and decimal numbers (or floating points) called `float`. When you use an operator like `+` or `>` it produces a value. No matter what you put on either side of `>` in it produces a boolean value (`bool`), `True` or `False`. For other operators what type of value that is produced depends on which values the operator work on. Try this and see if you print an integer or a float (`8` or `8.0`):
+You already know about several types of data values in Python. Two of them are integers called `int`, and decimal numbers (or floating points) called `float`. When you use an operator like `+` or `>`, it produces a value. No matter what you put on either side of `>`, it produces a boolean value (`bool`), `True` or `False`. For other operators, the type of value produced depends on which values the operator works on. Try this and see if you print an integer or a float (`8` or `8.0`):
 
 ```python
 x = 4
@@ -16,11 +16,11 @@ result = x * y
 print(result)
 ```
 
-Now try to replace `4` with `4.0`. What type is result now?. Try to also replace `2` with `2.0`. What type is result now? Can you extract a rule for what the `*` operator produces depending on the what types the two values have?
+Now try to replace `4` with `4.0`. What type is result now?. Try to also replace `2` with `2.0`. What type is the result now? Can you extract a rule for what the `*` operator produces depending on what types the two values have?
 
 #### Exercise
 
-In @sec-coercion_of_type you investigated what types of values the `*` operator produce. Redo that exercise with the operators: `+`, `-`, `/`, `**`, `//`, and `%`. What are the rules for what is returned if both values are integers, one values is a float, or both values are floats?
+In @sec-coercion_of_type, you investigated what types of values the `*` operator produces. Redo that exercise with the operators: `+`, `-`, `/`, `**`, `//`, and `%`. What are the rules for what is returned if both values are integers, one value is a float, or both values are floats?
 
 #### Exercise 
 
@@ -92,7 +92,7 @@ result = x + y
 
 #### Exercise
 
-In the code below I have shuffled the statements. Put them in the right order to make the code print `9`. To do that you must think about which values each variable will in each statement depending on the how you order the statements.
+In the code below, I have shuffled the statements. Put them in the right order to make the code print `9`. To do that, you must think about which values each variable will have in each statement depending on how you order the statements.
 
 ```python
 x = x + 1
@@ -105,7 +105,7 @@ y = y * x
 
 #### Exercise
 
-In the code below I have shuffled the statements. Put them in the right order to make the code print ``
+In the code below, I have shuffled the statements. Reorder them to make the code print "Mogens".
 
 ```python
 c = b
@@ -119,4 +119,4 @@ a = 'ens'
 
 #### Exercise
 
-Make three exercises that requires the knowledge of programming so far. Have your fellow students solve them.
+Make three exercises that require the knowledge of programming so far. Have your fellow students solve them.
