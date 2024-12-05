@@ -1,4 +1,12 @@
 
+# Example of exam assignment
+
+There is no test script for this assignment. For this assignment you need a data file that you can also get below. Your exam assignment will not need any data from input files. 
+
+{{< downloadthis ../exam/old_exam_example/EksamensOpgaveAP2014.pdf dname="EksamensOpgaveAP2014" label="EksamensOpgaveAP2014.pdf" type="light" >}}
+
+{{< downloadthis ../exam/old_exam_example/EksamensOpgaveAP2014_input.txt dname="EksamensOpgaveAP2014_input" label="EksamensOpgaveAP2014_input.txt" type="light" >}}
+  
 # Exam info {.unnumbered #sec-exam}
 
 > Informationen på denne side fremgår også af eksamensopgaven.
