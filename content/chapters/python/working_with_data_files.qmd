@@ -1,10 +1,10 @@
 # Working with files {#sec-files}
 
-*This chapter covers the bare necessities of making your program read data from a file on your computer and how to create a file to which it can write results.*
+*This chapter covers the bare necessities of making your program read data from a file on your computer and how to create a file to write results.*
 
 ## Writing files {.unnumbered}
 
-To interact with a file on your hard disk, you need to know the name of the file and whether you want to write to it or read from it. Then, you can use the built-in function `open` to create a file object that lets you read or write to that file. The `open` function takes two arguments: The first is a string, which gives the file's name. The second argument is also a string and should be `'w'` for "write" if you want to write to the file or `'r'` for "read" if you are going to read from the file. To keep things simple, we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the `open` function.
+To interact with a file on your hard disk, you need to know its name and whether you want to write to it or read from it. Then, you can use the built-in function `open` to create a file object that lets you read or write to that file. The `open` function takes two arguments: The first is a string, which gives the file's name. The second argument is also a string and should be `'w'` for "write" if you want to write to the file or `'r'` for "read" if you are going to read from the file. To keep things simple, we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the `open` function.
 
 #### Exercise {#sec-write_to_file}
 Try to write the code below and run it:
@@ -23,14 +23,14 @@ First line
 Second line
 ```
 
-Lets break down what happened:
+Let's break down what happened:
 
-1. You used the `open` builtin function to open a file called "workfile.txt" in *writing* mode using the `'w'` as the second argument.
+1. You used the `open` built-in function to open a file called "workfile.txt" in *writing* mode using the `'w'` as the second argument.
 2. You then wrote the string `"First line\n"`  to the file using the `write` method of the file object.
 3. You wrote another string `"Second line\n"`  to the file using the `write` method of the file object.
 4. You closed the file using the `close` method of the file object.
 
-Note that if you open a file for writing, a file with that name is created. If a file of that name already exist, it is overwritten.
+Note that if you open a file for writing, a file with that name is created. If a file of that name already exists, it is overwritten.
 
 #### Exercise
 Close workfile.txt in *VScode* again and change your program above to this (removing the `\n` characters):
@@ -56,7 +56,7 @@ f.close()
 Can you see how that is equivalent to what you did before? Open workfile.txt in *VScode* again and have a look.
 
 #### Exercise {#sec-write_to_file_with_print}
-You can also make `print` write to a file instead of the terminal. That way your output ends up in the file instead of the terminal. To make print write to a file, you need to use the `file` keyword argument to give print the file object that represents the file you want to write to (`file=f` below). Try to write the code below and run it:
+You can also make `print` write to a file instead of the terminal. That way, your output will end up in the file instead of the terminal. To make print write to a file, you need to use print's `file` keyword argument to tell print which file to write to. The argument must be an object that represents the file you want to write to (`file=f` below). Try to write the code below and run it:
 
 ```python
 f = open('workfile.txt', 'w')
@@ -65,11 +65,11 @@ print("Second line, file=f")
 f.close()
 ```
 
-Compare the the code to that in @sec-write_to_file. Notice how  the strings we print do end with a newline. This is because the default behaviour for `print` is to add a newline to the end of what it prints - just like when you print to the terminal.
+Compare the code to that in @sec-write_to_file. Notice how the strings we print end with a newline character `\n`. This is because the default behavior for `print` is to add a new line to the end of what it prints—just like when you print to the terminal.
 
 ## Reading files {.unnumbered}
 
-When you want to read a from an existing file you give the `open` function the name of that file and specify `'r'` for reading as second argument. If the file you name does not exist, Python will tell you that it does not exist (it is nice like that). Before you head into the next rest of this section make sure you redo @sec-write_to_file so the content of workfile.txt is:
+When you want to read a from an existing file, you give the `open` function the name of that file and specify `'r'` for reading as a second argument. If the file you name does not exist, Python will tell you it does not exist (it is nice like that). Before you head into the rest of this section, make sure you redo @sec-write_to_file so the content of workfile.txt is:
 
 ```zsh
 First line
@@ -85,10 +85,10 @@ print(file_content)
 f.close()
 ```
 
-Lets break down what happened:
+Let's break down what happened:
 
-1. You used the `open` builtin function to open a file called workfile.txt in *reading* mode using the `'r'` as the second argument.
-2. You then read the content of the file using the `read` method, which return the contents as a string.
+1. You used the `open` built-in function to open a file called workfile.txt in *reading* mode using the `'r'` as the second argument.
+2. You then read the file's content using the `read` method, which returns the contents as a string.
 3. You printed the string. 
 4. You closed the file using the `close` method of the file object.
 
@@ -116,7 +116,7 @@ line = f.readline()
 print(line)
 ```
 
-Once you decide, try it out. What is printed in the last print statement? The thing is, the file object keeps track of how much of the file it has read. Once it is at the end you can read as much as you like -- there is nothing left. If you want to start reading from the top of the file you can close and open the file again. Try to insert the following two statements at various places in the code above and see what happens?
+Once you decide, try it out. What is printed in the last print statement? The thing is, the file object keeps track of how much of the file it has read. Once it ends, you can read as much as you like- nothing is left. If you want to start reading from the top of the file, you can close it and open it again. Try to insert the following two statements at various places in the code above and see what happens.
 
 ```python
 f.close()
@@ -135,9 +135,9 @@ for line in input_file:
     output_file.write(line)
 ```
 
-Then run it and open results.txt in *VScode* and see what it produced.
+Then, run it and open results.txt in *VScode* and see what it produced.
 
-Were you surprised that the file object can be an iterator in a for-loop? Just like stings can iterate over characters, lists can iterate over values and dictionaries can iterate over keys, file objects can iterate over the lines in the file.
+Were you surprised that the file object can be an iterator in a for-loop? Just like stings can iterate over characters, lists can iterate over values, dictionaries can iterate over keys, and file objects can iterate over the lines in the file.
 
 Try to modify your code to use the `print` function instead of the `write` method (see @sec-write_to_file_with_print).
 
@@ -145,7 +145,7 @@ Try to modify your code to use the `print` function instead of the `write` metho
 ## General exercises {.unnumbered}
 
 #### Exercise
-Write a function `read_file` that takes the name of a file as argument. The file should read the content of the file and return it. Like:
+Write a function `read_file` that takes the name of a file as an argument. The function should read the content and return it. Like:
 
 ```python
 content_of_file = read_file('some_file.txt')
