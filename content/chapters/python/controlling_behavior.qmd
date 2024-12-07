@@ -6,7 +6,7 @@
 
 So far, the small programs you have written run the same sequence of statements (lines). Imagine if you could control which statements were run depending on the circumstances. Then, you would be able to write more flexible and useful programs. Cue the music - and let me introduce the "if-statement".
 
-Write the following carefully into a file. It is a small program that monitors bus passenger status. Notice the colon ending the if-statements. Also, note that the lines below each if-statement are indented with exactly four spaces. While writing the program, figure out what the if-statement does. Then, run the code and see what happens.
+Write the following carefully into a file. It is a small program that monitors bus passenger status. Notice the colon ending the if-statements. Also, note that the lines below each if-statement are indented with precisely four spaces. While writing the program, figure out what the if-statement does. Then, run the code and see what happens.
 
 ```python
 bus_seats = 32
@@ -267,7 +267,7 @@ x = 3 # or something else
 Now solve the same problem using only *one* `if` statement and *one* `elif` statement.
 
 #### Exercise
-Assign values to two variables, `x` and `y`. Then, write some code that prints `OK` if either `x` or `y` is zero but not if both are zero (this is a tricky one).
+Assign values to two variables, `x` and `y`. Then, write some code that prints `OK` if either `x` or `y` is zero but not if both are zero (this is tricky).
 
 ```python
 x = 3 # or something else
@@ -294,7 +294,7 @@ print(s)
 ```
 
 <!-- #### Exercise
-Say you have two values represented by the variables `x` and `y`. Now you want to assign the largest of those two values to a third value `z`. Can you see that the two pieces of code below are essentially two ways of expressing the same thing? (You must define `x` and `y` yourself and print `z` to see its value.) This is a tricky one, but it trains both variables, assignment, operators, precedence, substitution, reduction, logic, and control flow. Make sure you are aware of how.
+Say you have two values represented by the variables `x` and `y`. Now you want to assign the largest of those two values to a third value `z`. Can you see that the two pieces of code below are essentially two ways of expressing the same thing? (You must define `x` and `y` yourself and print `z` to see its value.) This is tricky, but it trains both variables, assignment, operators, precedence, substitution, reduction, logic, and control flow. Make sure you are aware of how.
 
 ```python
 if x > y:
