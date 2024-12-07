@@ -4,7 +4,7 @@
 
 ## If-statement {.unnumbered}
 
-The small programs you have written so far all run the same sequence of statements (lines). Imagine if you could control which statements were run depending on the circumstances. Then, you would be able to write more flexible and useful programs. Cue the music - and let me introduce the "if-statement".
+So far, the small programs you have written run the same sequence of statements (lines). Imagine if you could control which statements were run depending on the circumstances. Then, you would be able to write more flexible and useful programs. Cue the music - and let me introduce the "if-statement".
 
 Write the following carefully into a file. It is a small program that monitors bus passenger status. Notice the colon ending the if-statements. Also, note that the lines below each if-statement are indented with exactly four spaces. While writing the program, figure out what the if-statement does. Then, run the code and see what happens.
 
