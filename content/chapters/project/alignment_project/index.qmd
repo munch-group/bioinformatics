@@ -1,10 +1,10 @@
 # Pairwise alignment {#sec-alignmentproject}
 
-*This chapter is about global pairwise alignment and you will implement your own Needleman-Wunch algorithm.*
+*This chapter is about global pairwise alignment, and you will implement your own Needleman-Wunch algorithm.*
 
-Your task is to find an optimal alignment of two sequences. If two such sequences are both roughly 140 bases long, there are as many different ways to align them as there are atoms in the visible universe, literally. Finding an optimal alignment among those $10^{80}$ possibilities is obviously a hard problem, but implementing the Needleman-Wunch algorithm will let you do it.
+Your task is to find an optimal alignment of two sequences. If two such sequences are roughly 140 bases long, there are as many different ways to align them as there are atoms in the visible universe. Finding an optimal alignment among those $10^{80}$ possibilities is a hard problem, but implementing the Needleman-Wunch algorithm will let you do it.
 
-This project is meant to train your coding abilities and consolidate your understanding of the Needleman-Wunch algorithm. The better you understand the algorithm before you begin, the easier and more rewarding the project will be. So re-read the book chapter about pairwise alignment and browse through the lecture slides.
+This project is meant to train your coding abilities and consolidate your understanding of the Needleman-Wunch algorithm. The better you understand the algorithm before you begin, the easier and more rewarding the project will be. So, re-read the book chapter about pairwise alignment and browse the lecture slides.
 
 Download the files you need for this project:
 
@@ -14,14 +14,14 @@ Download the files you need for this project:
 - `alignmentproject.py` is the file where you must write your code. It already contains a function I wrote for you.
 - `test_alignmentproject.py` is the test program that lets you test the code you write in `alignmentproject.py`.
 
-Put the files in a folder dedicated to this project. On most computers you can right-click on the link and choose "Save file as..." or "Download linked file".
+Put the files in a folder dedicated to this project. On most computers, you can right-click on the link and choose "Save the file as..." or "Download linked file."
 
 The project is split into two parts: 
 
 1. Filling in a dynamic programming matrix.
 2. Reconstructing the optimal alignment by doing traceback through the dynamic programming matrix.
 
-To help you along, the `alignmentproject.py` file already contains a function I wrote for you so you can print your dynamic programming (DP) matrix as you gradually fill it in. You are not expected to understand how this function works. I tried to make it as condensed as possible so it does not take up so much space in your file. 
+To help you along, the `alignmentproject.py` file already contains a function I wrote for you, so you can print your dynamic programming (DP) matrix as you gradually fill it in. You are not expected to understand how this function works. I made it as condensed as possible so it does not take up so much space in your file. 
 
 The function is named `print_dp_matrix` and takes two arguments:
 
@@ -52,7 +52,7 @@ def print_dp_matrix(seq1, seq2, matrix):
 ## Filling in the dynamic programming matrix {.unnumbered}
 
 ### Make a matrix {.unnumbered}
-We start out by making a list of lists (a matrix) that has the right shape but only holds `None` values. We use the `None` values as place-holders, which you can later replace with scores. You can think of it as an empty matrix that you can fill scores into, just as we did at the lectures. If you want to align two sequences like `AT` and `GAT` you want a matrix that has 3 rows and 4 columns. Note that the matrix must have one more row than the number of bases in sequence one, and one more column than the number of bases in sequence two.
+We start by making a list of lists (a matrix) with the right shape but only holds `None` values. We use the `None` values as placeholders, which you can later replace with scores. You can think of it as an empty matrix into which you can fill scores, just as we did in the lectures. If you want to align two sequences like `AT` and `GAT`, you want a matrix with three rows and four columns. Note that the matrix must have one more row than the number of bases in sequence one and one more column than the number of bases in sequence two.
 
 *Write a function*, `empty_matrix`, that takes two arguments
 
@@ -61,7 +61,7 @@ We start out by making a list of lists (a matrix) that has the right shape but o
 
 The function must return:
 
-* A list of lists. The number of sub-lists be must equal to the first integer argument. Each sublist must contain a number of `None` values equal to the second integer argument.
+* A list of lists. The number of sub-lists must be equal to the first integer argument. Each sublist must contain a number of `None` values equal to the second integer argument.
 
 Example usage:
 
@@ -88,20 +88,20 @@ def empty_matrix(m, n):
 ```
 :::
 
-Even though this is a list of lists we can *think of it* as a three by four matrix:
+Even though this is a list of lists, we can *think of it* as a three-by-four matrix:
 
     [[None, None, None, None], 
      [None, None, None, None], 
      [None, None, None, None]]
 
-If you want to print the matrix in a way that looks like the slides I showed you at the lecture, you can use the `print_dp_matrix` function (again `None` represents empty cells):
+If you want to print the matrix in a way that looks like the slides I showed you at the lecture, you can use the `print_dp_matrix` function (again, `None` represents empty cells):
 
               G    A    T
       None None None None
     A None None None None
     T None None None None
 
-**Important:** You can implement `empty_matrix` in a way superficially looks ok but will cause you all kinds of grief when you start filling it in. When you create the list of lists (e.g. three lists as above) you need to generate and add three *separate* lists. If you add the *same* list three times you do not have three separate  rows in your matrix. Instead you have *three* references to the *same* row. You can test if you did it right this way -- by changing the value of one cell to see what happens: 
+**Important:** You can implement `empty_matrix` in a way that superficially looks ok but will cause you all kinds of grief when you start filling it in. When you create the list of lists (e.g., three as above), you must generate and add three *separate* lists. If you add the *same* list three times, you do not have three separate  rows in your matrix. Instead, you have *three* references to the *same* row. You can test if you did it right this way -- by changing the value of one cell to see what happens: 
 
 ```python
 empty = empty_matrix(3, 4)
@@ -122,8 +122,8 @@ If it changed the first value in *all* the lists, it means that all your lists a
 ```
 
 
-### Fill top row and left column {.unnumbered}
-Now that you can make a matrix with the correct dimensions, you need to write a function that fills in the top row and the left column in accordance with what the gap score is. E.g. if the gap score is `-2` you want the matrix to look something like this when you print it with `print_dp_matrix`:
+### Fill the top row and left column {.unnumbered}
+Now that you can make a matrix with the correct dimensions, you need to write a function that fills in the top row and the left column with multiples of the gap score. E.g., if the gap score is `-2`, you want the matrix to look something like this when you print it with `print_dp_matrix`:
 
               G    A    T
          0   -2   -4   -6
@@ -138,7 +138,7 @@ Now that you can make a matrix with the correct dimensions, you need to write a 
 
 The function must return:
 
-* A list of lists. The number of sub-lists be must equal to the first integer argument. The values in the first sub-list must be multiples of the gap score given as the third argument. The first elements of remaining sub-lists must be multiples of the gap score. All remaining elements of sub-lists must be `None`.
+* A list of lists. The number of sub-lists must be equal to the first integer argument. The values in the first sub-list must be multiples of the gap score given as the third argument. The first elements of the remaining sub-lists must be multiples of the gap score. All remaining elements of sub-lists must be `None`.
 
 Example usage:
 
@@ -160,7 +160,7 @@ You should call `empty_matrix` inside `prepare_matrix` to get a matrix filled wi
 
 :::
 
-Now all you need to do is replace the right `None` values with *multiples* of the gap score. E.g. the third element in the first sub-list is `matrix[2][0]`, which you would need to assign the value: `2` times the gap score. In the same way `matrix[3][0]` should be `3` times the gap score. So you need to figure out which elements you should replace and which pairs of indexes you need to access those elements. Then use `range` to generate those indexes and for-loops to loop over them. 
+Now, all you need to do is replace the right `None` values with *multiples* of the gap score. For example, the third element in the first sub-list is `matrix[2][0]`, for which you would need to assign the value `2` times the gap score. In the same way `matrix[3][0]` should be `3` times the gap score. So, you need to figure out which elements you should replace and which pairs of indexes you need to access those elements. Then, use `range` to generate those indexes and for-loops to loop them over. 
 
 ::: {.content-hidden unless-profile="ta"}
 ```python
@@ -181,9 +181,9 @@ def prepare_matrix(m, n, gap_score):
 
 
 ### Fill the entire matrix {.unnumbered}
-Now that we are able to fill the top row and left column we can start thinking about how to fill the whole matrix. 
+Now that we can fill the top row and left column, we can start thinking about how to fill the whole matrix. 
 
-For that we need a score matrix of match scores. In Python that is most easily represented as a dictionary of dictionaries like this:
+For that, we need a score matrix of match scores. In Python, that is most easily represented as a dictionary of dictionaries like this:
 
 ```python
 score_matrix = {'A': {'A': 2, 'T': 0, 'G': 0, 'C': 0},
@@ -205,7 +205,7 @@ The function must return:
 
 * A list of lists of integers, which represents a correctly filled dynamic programming matrix given the two sequences, the match scores, and the gap score.
 
-Example usage: If `score_matrix` is defined as above then
+Example usage: If `score_matrix` is defined as above, then
 
 ```python
 fill_matrix('AT', 'GAT', score_matrix, -2)
@@ -229,7 +229,7 @@ If you print that matrix using `print_dp_matrix` it should look like this:
 
 # Hint
 
-You should call `prepare_matrix` inside `fill_matrix` to get a matrix with the top row and left column filled. Assuming `seq1` is sequence one and `seq2` is sequence two then you can do it like this:
+You should call `prepare_matrix` inside `fill_matrix` to get a matrix with the top row and left column filled. Assuming `seq1` is sequence one and `seq2` is sequence two, then you can do it like this:
 
 ```python
 matrix = prepare_matrix(len(seq1)+1, len(seq2)+1, gap_score)
@@ -237,7 +237,7 @@ matrix = prepare_matrix(len(seq1)+1, len(seq2)+1, gap_score)
 
 :::
 
-Now you only need to fill out the rest. To produce the indexes of the elements in the list of lists that you need to assign values to, you need two nested for-loops.
+Now, you only need to fill out the rest. You need two nested for-loops to produce the indexes of the elements in the list of lists that you need to assign values to.
 
 ```python
 for i in range(1, len(seq1)+1):
@@ -246,7 +246,7 @@ for i in range(1, len(seq1)+1):
 
 ```
 
-Examine this code and make sure you understand why we give those arguments to `range`. Each combination of `i` and `j` let you access an element `matrix[i][j]` in `matrix` (list of lists) that you can to assign a value to. The value to assign to `matrix[i][j]` (green cell on the slides) is the maximum of three values (the yellow cells on the slide):
+Examine this code and make sure you understand why we give those arguments to `range`. Each combination of `i` and `j` lets you access an element `matrix[i][j]` in `matrix` (list of lists) that you can assign a value to. The value to assign to `matrix[i][j]` (green cell on the slides) is the maximum of three values (the yellow cells on the slide):
 
 1. The value of the cell to the left (`matrix[i][j-1]`) plus the gap score.
 2. The cell above (`matrix[i-1][j]`) plus the gap score.
@@ -273,7 +273,7 @@ def fill_matrix(seq1, seq2, score_matrix, gap_score):
 
 ## Reconstructing the optimal alignment {.unnumbered}
 
-This is the most difficult part, so I will hold your hand here. Below is first a function that identifies which of three cells (the yellow cells on the slides) some cell (green cell on the slides) is derived from. On the slides, this is the cell pointed to by the red arrow.
+This is the most challenging part, so I will hold your hand here. Below is first a function that identifies which of three cells (the yellow cells on the slides) some cell (green cell on the slides) is derived from. On the slides, this is the cell pointed to by the red arrow.
 
 ```python
 def get_traceback_arrow(matrix, row, col, match_score, gap_score):
@@ -294,9 +294,9 @@ def get_traceback_arrow(matrix, row, col, match_score, gap_score):
         return 'up'
 ```
 
-Write (no copy paste) this into your file and make sure that it works and that you understand exactly how it works before you go on. 
+Write (do not copy and paste) this into your file, and make sure that it works and that you understand exactly how it works before you proceed. 
 
-Here is a function that uses `get_traceback_arrow` to do the traceback. It reconstructs the alignment starting from the last column adding columns in front as the traceback proceeds. It is big, so it breaks across three pages.
+Here is a function that uses `get_traceback_arrow` to do the traceback. It reconstructs the alignment starting from the last column, adding columns in front as the traceback proceeds. It is big, so it breaks across three pages.
 
 ```python
 def trace_back(seq1, seq2, matrix, score_matrix, gap_score):
@@ -362,7 +362,7 @@ def trace_back(seq1, seq2, matrix, score_matrix, gap_score):
 
 Once you have *written* it into your file, make sure you understand the correspondence to the sequences of events on the lecture slides. 
 
-Now you can write a function you can call to do perform the alignment. You get to do that yourself. It just calls `fill_matrix` and then `trace_back` to get the optimal alignment
+Now you can write a function that performs the alignment. You get to do that yourself. It just calls `fill_matrix` and then `trace_back` to get the optimal alignment
 
 *Write a function*, `align`, that takes four arguments:
 
@@ -373,7 +373,7 @@ Now you can write a function you can call to do perform the alignment. You get t
 
 The function must return:
 
-* A list of length two. The first element of that list must be a string, representing the aligned sequence one. The second element must be a string, representing the aligned sequence two.
+* A list of length two. The first element of that list must be a string representing the aligned sequence one. The second element must be a string, representing the aligned sequence two.
 
 Example usage:
 
@@ -387,7 +387,7 @@ must return:
 ['-AT-AT', 'GATGAT']
 ```
 
-Once you have written that function you can print your alignment like this:
+Once you have written that function, you can print your alignment like this:
 
 ```python
 alignment = align('ATAT', 'GATGAT', score_matrix, -2)
