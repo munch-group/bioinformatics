@@ -477,10 +477,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>This chapter covers the bare necessities of how to make your program read data from a file on your computer and how to make it create a file that it can write results to.</em></p>
+<p><em>This chapter covers the bare necessities of making your program read data from a file on your computer and how to create a file to which it can write results.</em></p>
 <section id="writing-files" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="writing-files">Writing files</h2>
-<p>To interact with a file on your harddisk you need to know the name of the file and whether you want to write to it or read from it. Then you can use the builtin function <code>open</code> to create a file object that lets you read or write to that file. The <code>open</code> function takes two arguments: The first is a string, which gives the name of the file. The second argument is also a string and should be <code>'w'</code> for “write” if you want to write to the file or <code>'r'</code> for “read” if you want to read from the file. To keep things simple we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the <code>open</code> function.</p>
+<p>To interact with a file on your hard disk, you need to know the name of the file and whether you want to write to it or read from it. Then, you can use the built-in function <code>open</code> to create a file object that lets you read or write to that file. The <code>open</code> function takes two arguments: The first is a string, which gives the file’s name. The second argument is also a string and should be <code>'w'</code> for “write” if you want to write to the file or <code>'r'</code> for “read” if you are going to read from the file. To keep things simple, we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the <code>open</code> function.</p>
 <section id="sec-write_to_file" class="level4" data-number="15.0.0.1">
 <h4 data-number="15.0.0.1" class="anchored" data-anchor-id="sec-write_to_file"><strong>Exercise 15-1</strong></h4>
 <p>Try to write the code below and run it:</p>
