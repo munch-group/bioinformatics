@@ -478,15 +478,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>Lets get you started…</em></p>
+<p><em>Let’s get you started…</em></p>
 <section id="hello-world" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="hello-world">Hello World</h2>
-<p>Dive in and make your first program. Begin by creating a new file in your editor (<em>VScode</em>) and save it as <code>hello.py</code>. The <code>.py</code> suffix tells your editor that this file contains Python code. As you will see, this makes your life a whole lot easier. Such a file with Python code is usually called a <em>script</em>, but we can also call it a program.</p>
+<p>Dive in and make your first program. Create a new file in your editor (<em>VScode</em>) and save it as <code>hello.py</code>. The <code>.py</code> suffix tells your editor that this file contains Python code. As you will see, this makes your life a whole lot easier. Such a file with Python code is usually called a <em>script</em>, but we can also call it a program.</p>
 <p>Now write <em>exactly</em> this in the file (<code>hello.py</code>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Your editor will color your code a little differently, but that is not important. Save your file with the added code, and you have your first program! Of course, there is not much point in having a program if it just sits there on your computer. To run your program, do the following:</p>
+<p>Your editor will color your code differently, but that is unimportant. Save your file with the added code and have your first program! Of course, there is not much point in having a program if it just sits there on your computer. To run your program, do the following:</p>
 <ol type="1">
-<li>Open the terminal and navigate to the folder (directory) where you saved <code>hello.py</code>. Use the <code>cd</code> command to do so. If you do not remember how, go back and read the previous chapter again.</li>
+<li>Open the terminal and navigate to the folder (directory) where you saved <code>hello.py</code>. Use the <code>cd</code> command to do so. If you do not remember how, reread the previous chapter.</li>
 <li>Type <code>python hello.py</code> in the terminal and hit Enter.</li>
 </ol>
 <p>You should see something like <a href="#fig-hello_world" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
@@ -500,20 +500,19 @@ Figure&nbsp;4.1: Hello world
 </figcaption>
 </figure>
 </div>
-<p>This is where you shout “it’s alive!”, toss your head back and do the insane scientist laugh.</p>
-<p>Okay, what just happened? You wrote a program by creating a file in which you wrote one line of code. You then ran the program using Python and it wrote (printed) <code>Hello world</code> in the terminal. Do not worry about the parentheses and quotes for now and just enjoy your new life as a programmer.</p>
-<p>Maybe you wonder why we write <code>print</code> and not <code>write</code> or something else? That actually goes all the way back to the days when computers were big clunky things with no screens attached. They could only interact with the user by <em>printing</em> out things on a real physical paper printer. Back then, the output you now see on the screen was printed onto a piece of paper that the programmer could then look at. These days print shows up in the terminal, but the story should help you remember that <code>print</code> spits text <em>out of your program</em> just like a printer.</p>
+<p>This is where you shout, “It’s alive!” toss your head back, and do the insane scientist laugh.</p>
+<p>Okay, what just happened? You wrote a program by creating a file in which you wrote one line of code. You then ran the program using Python, and it wrote (printed) <code>Hello world</code> in the terminal. Do not worry about the parentheses and quotes for now; just enjoy your new life as a programmer.</p>
+<p>Maybe you wonder why we write <code>print</code> and not <code>write</code> or something else. That goes back to when computers were enormous, clunky things with no screens attached. They could only interact with the user by <em>printing</em> things on an actual physical paper printer. Back then, the output you now see on the screen was printed onto a piece of paper that the programmer could then look at. These days, print shows up in the terminal, but the story should help you remember that <code>print</code> spits text <em>out of your program</em> just like a printer.</p>
 <p>Now try to add another line of code like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"I am your first program"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Save the file and run it again by typing <code>python hello.py</code> in your terminal and hit Enter.</p>
+<p>Save the file and run it again by typing <code>python hello.py</code> into your terminal and hitting Enter.</p>
 <p>You should see this:</p>
 <pre><code>Hello world
 I am your first program</code></pre>
-<p>Now your program first prints <code>Hello world</code> and <em>then</em> it prints <code>I am your first program</code>. The <em>then</em>-part is important. That is how a Python program works. Python (the <code>python</code> you write in front of <code>hello.py</code>) reads your <code>hello.py</code> file and then executes the code, one line after another until it reaches the end of the file.</p>
-<p>This is essential, so read that paragraph again. Now read it once more. It may seem trivial, but it is absolutely fundamental always to remember that this is how Python runs your code. So here is oath 2:</p>
+<p>Now your program prints <code>Hello world</code> and <em>then</em> prints <code>I am your first program</code>. The <em>then</em>-part is important. That is how a Python program works. Python (the <code>python</code> you write in front of <code>hello.py</code>) reads your <code>hello.py</code> file and then executes the code, one line after another, until it reaches the end of the file. This is essential, so reread from the beginning of the paragraph. Now, read it once more. It may seem trivial, but it is fundamental to remember that this is how Python runs your code. So here is Oath 2:</p>
 <blockquote class="blockquote">
-<p><strong>Oath 2:</strong> I swear always to remember that each line of code in my script is executed one after another, starting from the first line in the script and ending at the last line.</p>
+<p><strong>Oath 2:</strong> I swear to always remember that each line of code in my script is executed one after another, starting from the first line and ending at the last line.</p>
 </blockquote>
 <p>When you write Python code, you always follow this workflow:</p>
 <ol type="1">
@@ -523,10 +522,10 @@ I am your first program</code></pre>
 <li>Start over.</li>
 </ol>
 <p>Make sure you get the hang of this in the following exercises.</p>
-<p><strong>Important:</strong> The examples and exercises in this course are designed to work if you execute your scripts from the folder they are stored in. So you must navigate into the relevant folder before you execute your script. If your script is called <code>hello.py</code>, you must <em>always</em> execute it exactly like this: <code>python hello.py</code>. On some computers it is possible to just type <code>hello.py</code> without <code>python</code> in front of it. Do <em>not</em> do that. Also, do <em>not</em> “drag” the script file into the Terminal either.</p>
+<p><strong>Important:</strong> The examples and exercises in this course are designed to work if you execute your scripts from their stored folder. So, you’ll need to go ahead and navigate the relevant folder before you’re done with your script. If your script is called <code>hello.py</code>, you must <em>always</em> execute it precisely like this: <code>python hello.py</code>. If you do it any other way, you may use a different Python version than you think. On some computers, it is possible to type <code>hello.py</code> without <code>python</code> in front of it. Don’t do that. Do <em>not</em> “drag” the script file into the Terminal either. In VScode, you can press a small play icon on the top right to execute the code. Don’t do that either. There are many other things you should not do, but you get the drift.</p>
 <section id="exercise" class="level4" data-number="4.0.0.1">
 <h4 data-number="4.0.0.1" class="anchored" data-anchor-id="exercise"><strong>Exercise 4-1</strong></h4>
-<p>Try to swap the two lines of code in the file and run the program again. What does it print now?</p>
+<p>Try swapping the two lines of code in the file and rerun the program. What does it print now?</p>
 </section>
 <section id="exercise-1" class="level4" data-number="4.0.0.2">
 <h4 data-number="4.0.0.2" class="anchored" data-anchor-id="exercise-1"><strong>Exercise 4-2</strong></h4>
@@ -541,61 +540,61 @@ I am your first program</code></pre>
 </section>
 <section id="error-messages" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="error-messages">Error Messages</h2>
-<p>Did you get everything just right with your first program or did you get error messages when you executed your code with <code>python</code>? Maybe you wrote the following code (adding an extra closing parenthesis):</p>
+<p>Did you get everything right with your first program, or did you get error messages when executing your code with <code>python</code>? Maybe you wrote the following code (adding an extra closing parenthesis):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>– and then got an error like this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"hello.py"</span>, line <span class="dv">1</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello world'</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                        <span class="op">^</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">SyntaxError</span>: invalid syntax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is Python’s way of telling you that the <code>hello.py</code> script has an error in line 1. If you write something that does not conform to the proper syntax for Python code then you will get a <code>SyntaxError</code>. Python will do its best to figure out where the problem is and point to it with a <code>^</code> character.</p>
-<p>You will see many such error messages in your new life as a programmer. So it is important that you practice reading them. At first, they will be hard to decipher, but once you get used to them, they will help you quickly identify where the problem is. If there is an error message that you do not understand the internet is your friend. Just paste the error message into Google’s search field, and you will see that you are not the only one out there getting started on Python programming. It is okay if you do not know how to fix the problem right now, but it is essential to remember that these error messages are Pythons way of helping you understand what you did wrong.</p>
+<p>This is Python’s way of telling you that the <code>hello.py</code> script has an error in line 1. If you write something that does not conform to the proper syntax for Python code, you will get a <code>SyntaxError</code>. Python will do its best to figure out where the problem is and point to it with a <code>^</code> character.</p>
+<p>You will see many error messages in your new life as a programmer. So you must practice reading them. At first, they will be hard to decipher, but once you get used to them, they will help you quickly identify where the problem is. If there is an error message that you do not understand, the internet is your friend. Just paste the error message into Google’s search field, and you will see that you are not the only one on the internet getting started on Python programming. It is okay if you do not know how to fix the problem right now, but it is essential to remember that these error messages are Python’s way of helping you understand what you did wrong.</p>
 <section id="exercise-3" class="level4" data-number="4.0.0.4">
 <h4 data-number="4.0.0.4" class="anchored" data-anchor-id="exercise-3"><strong>Exercise 4-4</strong></h4>
 <p>Try to break your new shiny program and make it produce an error message when you run it. An easy way of doing this is to remove or change random characters from the program. If you run this (with a missing end-parenthesis:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"I am your first program"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You will get this error</p>
+<p>You will get this error:</p>
 <pre><code>  File "hello.py", line 2
     print("I am your first program")
         ^
 SyntaxError: invalid syntax</code></pre>
-<p>The <code>^</code> character tells you when your code stopped making sense to Python. Some times that is a bit after where you made your mistake.</p>
-<p>Try to make other kinds of errors. Which error messages do you see? Do you see the same error message every time, or are they different? Try googling the error messages you get. Can you figure out why the change you made broke the program? How many different error messages can you produce?</p>
+<p>The <code>^</code> character tells you when your code stops making sense to Python. Sometimes, that is a bit after where you made your mistake.</p>
+<p>Try to make other kinds of errors. Which error messages do you see? Do you always see the same error message, or are they different? Try googling the error messages you get. Can you figure out why the change you made broke the program? How many other error messages can you produce?</p>
 </section>
 </section>
 <section id="strings" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="strings">Strings</h2>
-<p>In programs, text values are called <em>strings</em>, and you have already used strings a lot in your first program. A string is simply a piece of text, but we call it a string because it is a “string of characters”. In Python, we represent a string like this:</p>
+<p>In programs, text values are called <em>strings</em>, and you have already used strings a lot in your first program. A string is simply a text, but we call it a string because it is a “string of characters”. In Python, we represent a string like this:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">"this is a string"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or like this:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Hello world'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>That is, we take the text we wish to use as our value, and we put quotes around it. We are allowed to use either double quotes (the first example) or single quotes (the second example). We can mix them like this:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'this is "some text" with a quotes'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That is, we take the text we wish to use as our value and put quotes around it. We can use double quotes (the first example) or single quotes (the second example). We can mix them like this:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'this is "some text" with a quote'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>– but not like this:</p>
 <pre><code>print("this is a broken string')</code></pre>
-<p>Can you see why, and how it is handy to have both single and double quotes? Well, if we did not have both, we could not have text with quotes in it. You just need to remember to use the same kind of quotes at each end of the string. Running the latter example gives an error message telling you that Python cannot find the quote that was supposed to end the string:</p>
+<p>Can you see why and how handy it is to have single and double quotes? If we did not have both, we could not have text with quotes. However, you must use the same kind of quotes at each end of the string. Running the latter example gives an error message telling you that Python cannot find the quote that was supposed to end the string:</p>
 <pre><code>  File "broken.py", line 1
     print("this is a broken string')
                                    ^
 SyntaxError: EOL while scanning string literal</code></pre>
-<p>It is Python’s way of saying: “I got to the end of the line (EOL) without finding an matching end quote”.</p>
+<p>It is Python’s way of saying, ” I reached the end of the line (EOL) without finding a matching end quote.”</p>
 </section>
 <section id="comments" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="comments">Comments</h2>
-<p>You have already learnt that Python reads and executes one line of code at a time until your program has no more lines of code.</p>
+<p>You have already learned that Python reads and executes one line of code at a time until your program has no more lines of code.</p>
 <p>However, we can make a line invisible to Python by putting a <code>#</code> symbol in front of it, like this:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print("Hello world")</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Greetings from your first program"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When you do that, Python simply does not read that line. It is not part of the program. Run the program again. You will notice that now only the second line is part of your program:</p>
+<p>When you do that, Python does not read that line. It is not part of the program. Rerun the program. You will notice that now only the second line is part of your program:</p>
 <pre><code>$ python hello.py
 Greetings from your first program</code></pre>
 <p>This is useful in two ways:</p>
 <ol type="1">
-<li>It lets you disable certain lines of your code, by keeping Python from reading them. For example, you may want to see what happens if that line of code was not executed to understand how your program works.</li>
-<li>It allows you to write notes in your code Python to help you remember how your code works.</li>
+<li>It lets you disable certain lines of your code by keeping Python from reading them. For example, see what happens if that line of code is not executed to understand how your program works.</li>
+<li>It allows you to write notes in your Python code to help you remember how it works.</li>
 </ol>
-<p>Lines with a <code>#</code> in front are called “comments” because we normally use them to write comments about the code we write. If you ask for help about some problem, you will often hear your instructor say: try to “comment out” line two. When your instructor says that, it simply means that you should add a <code>#</code> in front of line two to see what then happens.</p>
+<p>Lines with a <code>#</code> in front are called “comments” because we usually use them to write comments about our code. If you ask for help with some problem, you will often hear your instructor say: try to “comment out” in line two. When your instructor says that, it simply means that you should add a <code>#</code> in front of line two to see what then happens.</p>
 <section id="exercise-4" class="level4" data-number="4.0.0.5">
 <h4 data-number="4.0.0.5" class="anchored" data-anchor-id="exercise-4"><strong>Exercise 4-5</strong></h4>
 <p>What happens if I put a <code>#</code> in the middle of a line of code? Try it out!</p>
@@ -612,7 +611,7 @@ Greetings from your first program</code></pre>
 <p>Try this:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>) <span class="co"># actually, everything after a # is ignored</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Greetings from your first program"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>What did yo learn? Which parts of each line are considered part of the program?</p>
+<p>What did you learn? Which parts of each line are considered part of the program?</p>
 </section>
 <section id="exercise-7" class="level4" data-number="4.0.0.8">
 <h4 data-number="4.0.0.8" class="anchored" data-anchor-id="exercise-7"><strong>Exercise 4-8</strong></h4>
