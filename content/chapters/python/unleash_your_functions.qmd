@@ -1,10 +1,10 @@
 
 <!-- TODO: write recursion chapter -->
-<!-- Serve to make you understnad exactly how functions work. If you understand recursion, you will undertand functions too. -->
+<!-- Serve to make you understand exactly how functions work. If you understand recursion, you will understand functions too. -->
 
 # Recursion {#sec-recursion}
 
-*At time of "printing" this chapter was not finished. So I have added some empty pages so you can merge the chapter into the pdf later without messing up the chapter, exercise and page numbers*
+*At the time of "printing," this chapter was unfinished. So I have added some empty pages so you can merge the chapter into the pdf later without messing up the chapter, exercise and page numbers*
 
 <!-- $$f(x) = f(x-1)$$ {#eq:some_label}
 
