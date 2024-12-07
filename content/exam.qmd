@@ -1,7 +1,7 @@
 
 # Exam info {.unnumbered #sec-exam}
 
-# Example of exam assignment  {.unnumbered}
+## Example of exam assignment  {.unnumbered}
 
 There is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files. 
 
@@ -9,7 +9,7 @@ There is no test script for this assignment. You need a data file for this assig
 
 {{< downloadthis ../exam/old_exam_example/EksamensOpgaveAP2014_input.txt dname="EksamensOpgaveAP2014_input" label="EksamensOpgaveAP2014_input.txt" type="light" >}}
   
-# About the written exam
+## About the written exam
 
 > Informationen på denne side fremgår også af eksamensopgaven.
 
