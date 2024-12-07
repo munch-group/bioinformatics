@@ -460,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#compute-all-read-overlaps" id="toc-compute-all-read-overlaps" class="nav-link" data-scroll-target="#compute-all-read-overlaps">Compute all read overlaps</a></li>
   <li><a href="#print-overlaps-as-a-nice-table" id="toc-print-overlaps-as-a-nice-table" class="nav-link" data-scroll-target="#print-overlaps-as-a-nice-table">Print overlaps as a nice table</a></li>
   </ul></li>
-  <li><a href="#find-the-right-order-of-reads" id="toc-find-the-right-order-of-reads" class="nav-link" data-scroll-target="#find-the-right-order-of-reads">Find the right order of reads</a>
+  <li><a href="#find-the-correct-order-of-reads" id="toc-find-the-correct-order-of-reads" class="nav-link" data-scroll-target="#find-the-correct-order-of-reads">Find the correct order of reads</a>
   <ul class="collapse">
   <li><a href="#find-the-first-read" id="toc-find-the-first-read" class="nav-link" data-scroll-target="#find-the-first-read">Find the first read</a></li>
   <li><a href="#find-the-order-of-reads" id="toc-find-the-order-of-reads" class="nav-link" data-scroll-target="#find-the-order-of-reads">Find the order of reads</a></li>
@@ -496,16 +496,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><em>This chapter is a programming project where you will assemble a small genomic sequence from a set of short sequencing reads.</em></p>
-<p>In genome assembly, many short sequences (reads) from a sequencing machine are assembled into long sequences – ultimately chromosomes. This is done by ordering overlapping reads so that they together represent genomic sequences. For example given these three reads: <code>AGGTCGTAG</code>, <code>CGTAGAGCTGGGAG</code>, <code>GGGAGGTTGAAA</code> ordering them based on their overlap like this</p>
+<p>In genome assembly, many short sequences (reads) from a sequencing machine are assembled into long sequences – ultimately chromosomes. This is done by ordering overlapping reads so that they together represent genomic sequences. For example, given these three reads: <code>AGGTCGTAG</code>, <code>CGTAGAGCTGGGAG</code>, <code>GGGAGGTTGAAA</code>, ordering them based on their overlap like this</p>
 <pre><code>AGGTCGTAG
     CGTAGAGCTGGGAG
              GGGAGGTTGAAA</code></pre>
 <p>produces the following genomic sequence:</p>
 <pre><code>AGGTCGTAGAGCTGGGAGGTTGAAA</code></pre>
-<p>Real genome assembly is, of course, more sophisticated than what we do here, but the idea is the same. To limit the complexity of the problem we make two simplifying assumptions:</p>
+<p>Real genome assembly is, of course, more sophisticated than what we do here, but the idea is the same. To limit the complexity of the problem, we make two simplifying assumptions:</p>
 <ol type="1">
 <li>There are no sequencing errors, implying that true overlaps between reads can be identified as perfectly matching overlaps.</li>
-<li>No reads are nested in other reads. I.e. They are never a smaller part of another read.</li>
+<li>No reads are nested in other reads. I.e., They are never a smaller part of another read.</li>
 </ol>
 <p>The second assumption implies that overlaps are always of this type:</p>
 <pre><code>    CGTAGAGCTGGGAG
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>and never of this type:</p>
 <pre><code>    CGTAGAGCTGGGAG
        AGAGCTG</code></pre>
-<p>In this project, you will be asked to write functions that together solve the problem of assembling a genomic sequence. Each function each solve a small problem, and you may need to call these functions inside other functions, to put together solutions to larger subproblems.</p>
+<p>In this project, you will be asked to write functions that solve the problem of assembling a genomic sequence. Each function solves a small problem, and you may need to call these functions inside other functions to put together solutions to larger subproblems.</p>
 <p>Download the files you need for this project:</p>
 <p> </p>
 <p><a href="https://munch-group.org/bioinformatics/supplementary/project_files">https://munch-group.org/bioinformatics/supplementary/project_files</a></p>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>test_assemblyproject.py</code> is the test program that lets you test the code you write in <code>assemblyproject.py</code>.</li>
 </ul>
 <p>Put the files in a folder dedicated to this project. On most computers you can right-click on the link and choose “Save file as…” or “Download linked file”.</p>
-<p>Now open each file in your editor and have a look at what is in <code>sequencing_reads.txt</code>. (Do <em>not</em> change it in any way and do not save it after viewing. If your editor asks you if you want to save it before closing, say <em>no</em>.) How many sequences are there in each file?</p>
+<p>Now open each file in your editor and look at what is in <code>sequencing_reads.txt</code>. (Do <em>not</em> change it in any way, and do not save it after viewing. If your editor asks you if you want to save it before closing, say <em>no</em>.) How many sequences are there in each file?</p>
 <p>The project is split into four parts:</p>
 <ol type="1">
 <li>Read and analyze the sequencing reads.</li>
@@ -534,20 +534,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Find the right order of reads.</li>
 <li>Reconstruct the genomic sequence.</li>
 </ol>
-<p>Here is an overview of the functions you will write in each part of the project and of which functions that are used by other functions.</p>
+<p>Here is an overview of the functions you will write in each part of the project and of which functions are used by other functions.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/assembly_overview.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Overview</figcaption>
 </figure>
 </div>
-<p>Make sure you read the entire exercise and understand what you are supposed to do before you begin!</p>
+<p>Make sure to read the entire exercise and understand what you are supposed to do before you begin!</p>
 <section id="read-and-analyze-the-sequencing-reads" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="read-and-analyze-the-sequencing-reads">Read and analyze the sequencing reads</h2>
 <p>The first task is to read and parse the input data. The sequence reads for the mini-assembly are in the file <code>sequencing_reads.txt</code>. The first two lines of the file look like this:</p>
 <pre><code>Read1 GGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTCGTCCAGACCCCTAGC
 Read2 CTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATTCCAGGCTCCCCACGGG</code></pre>
-<p>Each line represents a read. The first field on each line is the name of the read and the second field is the read sequence itself. So for the first line <code>Read1</code> is the name and <code>ATGCG...</code> is the sequence.</p>
+<p>Each line represents a read. The first field on each line is the name of the read, and the second field is the read sequence itself. So for the first line, <code>Read1</code> is the name, and <code>ATGCG...</code> is the sequence.</p>
 <section id="read-the-sequencing-reads-into-your-program" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="read-the-sequencing-reads-into-your-program">Read the sequencing reads into your program</h3>
 <p><em>Write a function</em>, <code>read_data</code>, that takes one argument:</p>
@@ -567,7 +567,7 @@ Read2 CTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATTCCAGGCTCCCCACGGG</code></pre>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'Read5'</span>: <span class="st">'CGATTCCAGGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTC'</span>,</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'Read4'</span>: <span class="st">'TGCGAGGGAAGTGAAGTATTTGACCCTTTACCCGGAAGAGCG'</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="st">'Read6'</span>: <span class="st">'TGACAGTAGATCTCGTCCAGACCCCTAGCTGGTACGTCTTCAGTAGAAAATTGTTTTTTTCTTCCAAGAGGTCGGAGT'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here is some scaffold code to get you started:</p>
+<p>Here is some scaffolding code to get you started:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_data(file_name):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    input_file <span class="op">=</span> <span class="bu">open</span>(file_name)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
@@ -577,11 +577,11 @@ Read2 CTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATTCCAGGCTCCCCACGGG</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    input_file.close() </span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>line</code> variable in the for loop holds each line in the file including the <code>\n</code> newline character at the end. To split each line into the name of the read and the read sequence, you can use the <code>split</code> method of strings. You can see the documentation for that method by typing <code>pydoc str.split</code> in your terminal.</p>
+<p>The <code>line</code> variable in the for loop holds each line in the file, including the <code>\n</code> newline character at the end. You can use the’ split’ method of strings to split each line into the name of the read and the read sequence. You can see the documentation for that method by typing <code>pydoc str.split</code> in your terminal.</p>
 </section>
 <section id="compute-the-mean-length-of-reads" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="compute-the-mean-length-of-reads">Compute the mean length of reads</h3>
-<p>Having written that function we would like to get some idea about how long the reads are. More often than not there are too many reads to look at them manually, so we need to make a function that computes the mean length of the reads.</p>
+<p>After writing that function, we would like to get an idea about the length of the reads. There are often too many reads to look at manually, so we need to make a function that computes the mean length of the reads.</p>
 <p><em>Write a function</em>, <code>mean_length</code>, that takes one argument:</p>
 <ol type="1">
 <li>A dictionary, in which keys are read names and values are read sequences (this is a dictionary like that returned by <code>read_data</code>).</li>
@@ -605,18 +605,18 @@ Read2 CTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATTCCAGGCTCCCCACGGG</code></pre>
 </section>
 <section id="compute-overlaps-between-reads" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="compute-overlaps-between-reads">Compute overlaps between reads</h2>
-<p>Next thing is to figure out which reads overlap each other. To do that we need a function that takes two read sequences and computes their overlap. Remember that in the input data none of the reads are completely nested in another read.</p>
+<p>The next step is to determine which reads overlap each other. We need a function that takes two read sequences and computes their overlap to do that. Remember that in the input data, none of the reads are completely nested in another read.</p>
 <section id="compute-the-overlap-between-two-reads" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="compute-the-overlap-between-two-reads">Compute the overlap between two reads</h3>
-<p>We know that there are no sequencing errors, so in the overlap, the sequence match will be perfect. To compute the overlap between the 3’ (right) end of the left read with the 5’ (left) end of the right read, you need to loop over all possible overlaps honoring that one sequence is the left one and the other is the right one. In the for loop, start with the largest possible overlap ( <code>min(len(left), len(right))</code>) and evaluate smaller and smaller overlaps until you find an exact match.</p>
+<p>We know there are no sequencing errors so that the sequence match will be perfect in the overlap. To compute the overlap between the 3’ (right) end of the left read with the 5’ (left) end of the righthand read, you need to loop over all possible overlaps, honoring that one sequence is the left one and the other is the right one. In the for loop, start with the largest possible overlap ( <code>min(len(left), len(right))</code>) and evaluate smaller and smaller overlaps until you find an exact match.</p>
 <p><em>Write a function</em>, <code>get_overlap</code>, that takes two arguments</p>
 <ol type="1">
-<li>A string, which is the left read sequence.</li>
-<li>A string, which is the right read sequence.</li>
+<li>A string, which is the lefthand read sequence.</li>
+<li>A string, which is the righthand read sequence.</li>
 </ol>
 <p>The function must return</p>
 <ul>
-<li>A string, which is the overlapping sequence. If there is no overlap it should return an empty string.</li>
+<li>A string, which is the overlapping sequence. If there is no overlap, it should return an empty string.</li>
 </ul>
 <p>Example usage:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> <span class="st">"CGATTCCAGGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTC"</span></span>
@@ -627,7 +627,7 @@ Read2 CTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATTCCAGGCTCCCCACGGG</code></pre>
 <p>and <code>get_overlap(s2, s1)</code></p>
 <p>should return the string</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">'C'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>From these two examples it seems that <code>s1</code> and <code>s2</code> overlap and that <code>s1</code> is the left one and <code>s2</code> is the right one. Treating <code>s2</code> as the left one and <code>s1</code> as the right one only gives an overlap of one base (we expect a few bases of overlap even for unrelated sequences).</p>
+<p>From these two examples, it seems that <code>s1</code> and <code>s2</code> overlap and that <code>s1</code> is the left and <code>s2</code> is the right. Treating <code>s2</code> as the left one and <code>s1</code> as the right one only gives an overlap of one base (we expect a few bases of overlap even for unrelated sequences).</p>
 <!-- 
 ```
 GGGTTTTTT  ->  GGGTTTTTT  ->  GGGTTTTTT   -> ... -> GGGTTTTTT
@@ -652,14 +652,14 @@ def get_all_overlaps(reads):
 </section>
 <section id="compute-all-read-overlaps" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="compute-all-read-overlaps">Compute all read overlaps</h3>
-<p>When you have written <code>get_overlap</code> you can use it to evaluate the overlap between all pairs of reads in both left-right and right-left orientations.</p>
+<p>When you have written <code>get_overlap</code>, you can use it to evaluate the overlap between all pairs of reads in both left-right and right-left orientations.</p>
 <p><em>Write a function</em>, <code>get_all_overlaps</code>, that takes one argument:</p>
 <ol type="1">
 <li>A dictionary with read data as returned by <code>read_data</code>.</li>
 </ol>
 <p>The function must return</p>
 <ul>
-<li>A dictionary of dictionaries, specifying the number of overlapping bases for a pair of reads in a specific left-right orientation. Computing the overlap of a read to itself is meaningless and must not be included. Assuming the resulting dictionary of dictionaries is called <code>d</code>, then <code>d['Read2']</code> will be a dictionary where keys are the names of reads that have an overlap with read <code>'Read2'</code> when <code>'Read2'</code> is put in the left position, and the values for these keys are the number of overlapping bases for those reads.</li>
+<li>A dictionary of dictionaries specifying the number of overlapping bases for a pair of reads in a specific left-right orientation. Computing the overlap of a read to itself is meaningless and must not be included. Assuming the resulting dictionary of dictionaries is called <code>d</code>, then <code>d['Read2']</code> will be a dictionary where keys are the names of reads that have an overlap with read <code>'Read2'</code> when <code>'Read2'</code> is put in the left position, and the values for these keys are the number of overlapping bases for those reads.</li>
 </ul>
 <p>Example usage: assuming that <code>reads</code> is a dictionary returned by <code>read_data</code> then:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>get_all_overlaps(reads)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -682,19 +682,19 @@ Hint
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You can use the <code>get_overlap</code> function you just made to find the overlap between a pair of reads. To generate all combinations of reads you need two for-loops. One looping over reads in left positions and another (inside the first one) looping over reads in right position. Remember that we do <em>not</em> want the overlap of a read to itself, so there should be an if-statement in the checking of the left and right reads are the same.</p>
+<p>You can use the <code>get_overlap</code> function you just made to find the overlap between a pair of reads. To generate all combinations of reads, you need two for-loops. One looping over reads in the left position, and another (inside the first one) looping over reads in the right position. Remember that we do <em>not</em> want the overlap of a read to itself, so there should be an if-statement checking that the left and right reads are not the same.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="print-overlaps-as-a-nice-table" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="print-overlaps-as-a-nice-table">Print overlaps as a nice table</h3>
-<p>The dictionary returned by <code>get_all_overlaps</code> is a little messy to look at. We want to print it in a nice matrix-like format so we can better see which pairs overlap in what orientations.</p>
-<p>This <code>pretty_print</code> function, should take one argument:</p>
+<p>The dictionary returned by <code>get_all_overlaps</code> is a bit messy. We want to print it in a nice matrix-like format so we can better see which pairs overlap in which orientations.</p>
+<p>This <code>pretty_print</code> function should take one argument:</p>
 <ol type="1">
 <li>A dictionary of dictionaries as returned by <code>get_all_overlaps</code>.</li>
 </ol>
-<p>The function should <em>not</em> return anything but must <em>print</em> a matrix exactly as shown in the example below with nicely aligned and right-justified columns. The first column must hold names of reads in left orientation. The top row holds names of reads in right orientation. Remaining cells must each hold the number of overlapping bases for a left-right read pair. The diagonal corresponds to overlaps to the read itself. You must put dashes in these cells.</p>
+<p>The function should <em>not</em> return anything but must <em>print</em> a matrix exactly as shown in the example below with nicely aligned and right-justified columns. The first column must hold names of reads in left orientation. The top row holds names of reads in right orientation. The remaining cells must each have the number of overlapping bases for a left-right read pair. The diagonal corresponds to overlaps with the read itself. You must put dashes in these cells.</p>
 <p>Example usage: assuming that <code>overlaps</code> is a dictionary of dictionaries returned by <code>get_all_overlaps</code> then:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pretty_print(overlaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>should print exactly</p>
@@ -705,7 +705,7 @@ Read3      0      0      -      1      0      1
 Read4      1     17      1      -      2      0 
 Read5     39      1      0      0      -     14 
 Read6      0      0     43      1      0      -</code></pre>
-<p>This function is hard to get completely right. So to spare you the frustration, this one is on me:</p>
+<p>This function is hard to get completely right. So, to spare you the frustration, this one is on me:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pretty_print(d):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'      '</span>, end<span class="op">=</span><span class="st">''</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">sorted</span>(d):</span>
@@ -723,13 +723,13 @@ Read6      0      0     43      1      0      -</code></pre>
 <p>Make sure you understand how it works. You can look up in the documentation what <code>"{: &gt;6}".format(i)</code> does.</p>
 </section>
 </section>
-<section id="find-the-right-order-of-reads" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="find-the-right-order-of-reads">Find the right order of reads</h2>
-<p>Now that we know how the reads overlap we can chain them together pair by pair from left to right to get the order in which they represent the genomic sequence. To do this we take the first (left-most) read and identify which read has the largest overlap to its right end. Then we take that read and find the read with the largest overlap to the right end of that - and so on until we reach the rightmost (last) read.</p>
+<section id="find-the-correct-order-of-reads" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="find-the-correct-order-of-reads">Find the correct order of reads</h2>
+<p>Now that we know how the reads overlap, we can chain them pair by pair from left to right to get the order in which they represent the genomic sequence. To do this, we take the first (left-most) read and identify which read has the largest overlap at its right end. Then we take that read and find the read with the largest overlap to the right end of that - until we reach the rightmost (last) read.</p>
 <section id="find-the-first-read" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="find-the-first-read">Find the first read</h3>
-<p>The first thing you need to do is to identify the first (leftmost) read so we know where to start. This read is identified as the one that has no significant (&gt;2) overlaps to its left end (it only has a good overlap when positioned to the left of other reads). In the example output from <code>pretty_print</code> above the first read would be read <code>'Read4'</code> because the <code>'Read4'</code> column has no significant overlaps (no one larger than two).</p>
-<p>We break the problem in two and first write a function that gets all the overlaps to the left end of a read (i.e.&nbsp;when it is in the right position):</p>
+<p>The first thing you need to do is to identify the first (leftmost) read so we know where to start. This read is identified as the one that has no significant (&gt;2) overlaps to its left end (it only has a good overlap when positioned to the left of other reads). In the example output from <code>pretty_print</code> above, the first read would be read <code>'Read4'</code> because the <code>'Read4'</code> column has no significant overlaps (no one larger than two).</p>
+<p>We break the problem in two and first write a function that gets all the overlaps to the left end of a read (i.e., when it is in the right position):</p>
 <p><em>Write a function</em>, <code>get_left_overlaps</code>, that takes two arguments:</p>
 <ol type="1">
 <li>A dictionary of dictionaries as returned from <code>get_all_overlaps</code>.</li>
@@ -755,11 +755,11 @@ Hint
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Once you have made a list of left overlaps, you can use the builtin function <code>sorted</code> to make a sorted version of the list that you can return from the function.</p>
+<p>Once you have made a list of left overlaps, you can use the built-in function <code>sorted</code> to make a sorted version of the list that you can return from the function.</p>
 </div>
 </div>
 </div>
-<p>OK, now that we have a function that can find all the overlaps to the left end of a given read, all we need to do is find the particular read that have no signifiant (&gt;2) overlaps to its left end.</p>
+<p>OK, now that we have a function that can find all the overlaps to the left end of a given read, all we need to do is find the particular read with no significant (&gt;2) overlaps to its left end.</p>
 <p><em>Write a function</em>, <code>find_first_read</code>, that takes one argument:</p>
 <ol type="1">
 <li>A dictionary of dictionaries as returned from <code>get_all_overlaps</code>.</li>
@@ -775,18 +775,18 @@ Hint
 </section>
 <section id="find-the-order-of-reads" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="find-the-order-of-reads">Find the order of reads</h3>
-<p>Now that we have the first read we can find the correct ordering of reads. We want a list of the read names in the right order.</p>
-<p>Given the first (left) read, the next read is the one that has the largest overlap to the right end of that read. To figure out which read that is, we use our dictionary of overlaps. If the first read is <code>'Read4'</code> then <code>overlaps['Read4']</code> is a dictionary of reads with overlap to the right end of read <code>'Read4'</code>. So to find the name of the read with the largest overlap you must write a function that finds the key associated with the largest value in a dictionary. We do that first:</p>
+<p>Now that we have the first read, we can find the correct order of the reads. We want a list of the read names in the right order.</p>
+<p>Given the first (left) read, the next read is the one that has the largest overlap to the right end of that read. We use our dictionary of overlaps to figure out which read that is. If the first read is <code>'Read4'</code>, then <code>overlaps['Read4']</code> is a dictionary of reads with overlap to the right end of read <code>'Read4'</code>. So, to find the name of the read with the largest overlap, you must write a function that finds the key associated with the largest value in a dictionary. We do that first:</p>
 <p><em>Write a function</em>, <code>find_key_for_largest_value</code>, that takes one argument:</p>
 <ol type="1">
 <li>A dictionary.</li>
 </ol>
 <p>The function must return the key associated with the largest value in the dictionary argument.</p>
-<p>Having written <code>find_key_for_largest_value</code> you can use it as a tool in the function the finds the order of reads:</p>
+<p>Having written <code>find_key_for_largest_value</code>, you can use it as a tool in the function that finds the order of reads:</p>
 <p><em>Write a function</em>, <code>find_order_of_reads</code>, that takes two arguments:</p>
 <ol type="1">
-<li>A string, which is the name of the first (left-most) read (that returned by <code>find_first_read</code>).</li>
-<li>A dictionary of dictionaries, of all overlaps (that returned by <code>get_all_overlaps</code>).</li>
+<li>A string, which is the name of the first (left-most) read (that is returned by <code>find_first_read</code>).</li>
+<li>A dictionary of dictionaries of all overlaps (that returned by <code>get_all_overlaps</code>).</li>
 </ol>
 <p>The function must return</p>
 <ul>
@@ -804,7 +804,7 @@ Hint
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You know the first read is given by the first argument to the function, you also know that you can find the next read in the chain of overlapping reads by using the <code>find_key_for_largest_value</code> function, and you know that you should keep adding on reads to the chain as long as the overlap is larger than two (you can use a for-loop with an if-statement inside to check that the overlap is larger than 2).</p>
+<p>You know the first read is given by the first argument to the function. You also know that you can find the next read in the chain of overlapping reads by using the <code>find_key_for_largest_value</code> function. You should keep adding reads to the chain as long as the overlap is larger than two (you can use a for loop with an if statement inside to check that the overlap is larger than 2).</p>
 </div>
 </div>
 </div>
@@ -812,12 +812,12 @@ Hint
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>find_order_of_reads(<span class="st">'Read4'</span>, overlaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>should return:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'Read4'</span>, <span class="st">'Read2'</span>, <span class="st">'Read5'</span>, <span class="st">'Read1'</span>, <span class="st">'Read6'</span>, <span class="st">'Read3'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Make sure you understand why this is the right list of read names before you try to implement the function.</p>
+<p>Before you implement the function, make sure you understand why this is the right list of read names.</p>
 </section>
 </section>
 <section id="reconstruct-the-genomic-sequence" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="reconstruct-the-genomic-sequence">Reconstruct the genomic sequence</h2>
-<p>Now that you have the number of overlapping bases between reads and the correct order of the reads you can reconstruct the genomic sequence.</p>
+<p>Now that you have the number of overlapping bases between reads and the correct order of the reads, you can reconstruct the genomic sequence.</p>
 <section id="reconstruct-the-genomic-sequence-from-the-reads" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="reconstruct-the-genomic-sequence-from-the-reads">Reconstruct the genomic sequence from the reads</h3>
 <p><em>Write a function</em>, <code>reconstruct_sequence</code>, that takes three arguments:</p>
@@ -832,7 +832,7 @@ Hint
 </ul>
 <p>Example usage: assuming that <code>order</code> is the list of strings returned by <code>find_order_of_reads</code>, that <code>reads</code> is the dictionary returned by <code>read_data</code> and that <code>overlaps</code> is a dictionary of dictionaries returned by <code>get_all_overlaps</code> then:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>reconstruct_sequence(order, reads, overlaps)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>should return one long DNA string (had to break it in three to make it fit on the page):</p>
+<p>should return one long DNA string (I had to break it in three to make it fit on the page):</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>TGCGAGGGAAGTGAAGTATTTGACCCTTTACCCGGAAGAGCGGGACGCTGCCCTGCGCGATT</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>CCAGGCTCCCCACGGGGTACCCATAACTTGACAGTAGATCTCGTCCAGACCCCTAGCTGGTA</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>CGTCTTCAGTAGAAAATTGTTTTTTTCTTCCAAGAGGTCGGAGTCGTGAACACATCAGT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -855,10 +855,10 @@ Hint
 </section>
 <section id="putting-the-whole-thing-together" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="putting-the-whole-thing-together">Putting the whole thing together</h3>
-<p>Now that you have written functions to take care of each step you can write one last function that uses them to do the entire assembly.</p>
+<p>Now that you have written functions to handle each step, you can write one last function that uses them to complete the entire assembly.</p>
 <p><em>Write a function</em>, <code>assemble_genome</code>, that takes one argument:</p>
 <ol type="1">
-<li>A string, which is the name of a file with sequencing reads in the format described in the beginning of this project description.</li>
+<li>A string, which is the name of a file with sequencing reads in the format described at the beginning of this project description.</li>
 </ol>
 <p>The function must return</p>
 <ul>
