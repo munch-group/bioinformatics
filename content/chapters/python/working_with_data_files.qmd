@@ -1,10 +1,10 @@
 # Working with files {#sec-files}
 
-*This chapter covers the bare necessities of how to make your program read data from a file on your computer and how to make it create a file that it can write results to.*
+*This chapter covers the bare necessities of making your program read data from a file on your computer and how to create a file to which it can write results.*
 
 ## Writing files {.unnumbered}
 
-To interact with a file on your harddisk you need to know the name of the file and whether you want to write to it or read from it. Then you can use the builtin function `open` to create a file object that lets you read or write to that file. The `open` function takes two arguments: The first is a string, which gives the name of the file. The second argument is also a string and should be `'w'` for "write" if you want to write to the file or `'r'` for "read" if you want to read from the file. To keep things simple we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the `open` function.
+To interact with a file on your hard disk, you need to know the name of the file and whether you want to write to it or read from it. Then, you can use the built-in function `open` to create a file object that lets you read or write to that file. The `open` function takes two arguments: The first is a string, which gives the file's name. The second argument is also a string and should be `'w'` for "write" if you want to write to the file or `'r'` for "read" if you are going to read from the file. To keep things simple, we will assume that the file you want to open is always in the same folder (directory) as the Python script that calls the `open` function.
 
 #### Exercise {#sec-write_to_file}
 Try to write the code below and run it:
