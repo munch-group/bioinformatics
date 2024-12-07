@@ -481,7 +481,7 @@ window.Quarto = {
   <li><a href="#filling-in-the-dynamic-programming-matrix" id="toc-filling-in-the-dynamic-programming-matrix" class="nav-link active" data-scroll-target="#filling-in-the-dynamic-programming-matrix">Filling in the dynamic programming matrix</a>
   <ul class="collapse">
   <li><a href="#make-a-matrix" id="toc-make-a-matrix" class="nav-link" data-scroll-target="#make-a-matrix">Make a matrix</a></li>
-  <li><a href="#fill-top-row-and-left-column" id="toc-fill-top-row-and-left-column" class="nav-link" data-scroll-target="#fill-top-row-and-left-column">Fill top row and left column</a></li>
+  <li><a href="#fill-the-top-row-and-left-column" id="toc-fill-the-top-row-and-left-column" class="nav-link" data-scroll-target="#fill-the-top-row-and-left-column">Fill the top row and left column</a></li>
   <li><a href="#fill-the-entire-matrix" id="toc-fill-the-entire-matrix" class="nav-link" data-scroll-target="#fill-the-entire-matrix">Fill the entire matrix</a></li>
   </ul></li>
   <li><a href="#reconstructing-the-optimal-alignment" id="toc-reconstructing-the-optimal-alignment" class="nav-link" data-scroll-target="#reconstructing-the-optimal-alignment">Reconstructing the optimal alignment</a></li>
@@ -510,19 +510,19 @@ window.Quarto = {
 </header>
 
 
-<p><em>This chapter is about global pairwise alignment and you will implement your own Needleman-Wunch algorithm.</em></p>
-<p>Your task is to find an optimal alignment of two sequences. If two such sequences are both roughly 140 bases long, there are as many different ways to align them as there are atoms in the visible universe, literally. Finding an optimal alignment among those <span class="math inline">\(10^{80}\)</span> possibilities is obviously a hard problem, but implementing the Needleman-Wunch algorithm will let you do it.</p>
-<p>This project is meant to train your coding abilities and consolidate your understanding of the Needleman-Wunch algorithm. The better you understand the algorithm before you begin, the easier and more rewarding the project will be. So re-read the book chapter about pairwise alignment and browse through the lecture slides.</p>
+<p><em>This chapter is about global pairwise alignment, and you will implement your own Needleman-Wunch algorithm.</em></p>
+<p>Your task is to find an optimal alignment of two sequences. If two such sequences are roughly 140 bases long, there are as many different ways to align them as there are atoms in the visible universe. Finding an optimal alignment among those <span class="math inline">\(10^{80}\)</span> possibilities is a hard problem, but implementing the Needleman-Wunch algorithm will let you do it.</p>
+<p>This project is meant to train your coding abilities and consolidate your understanding of the Needleman-Wunch algorithm. The better you understand the algorithm before you begin, the easier and more rewarding the project will be. So, re-read the book chapter about pairwise alignment and browse the lecture slides.</p>
 <p>Download the files you need for this project:</p>
 <p> </p>
 <p><a href="https://munch-group.org/bioinformatics/supplementary/project_files">https://munch-group.org/bioinformatics/supplementary/project_files</a> - <code>alignmentproject.py</code> is the file where you must write your code. It already contains a function I wrote for you. - <code>test_alignmentproject.py</code> is the test program that lets you test the code you write in <code>alignmentproject.py</code>.</p>
-<p>Put the files in a folder dedicated to this project. On most computers you can right-click on the link and choose “Save file as…” or “Download linked file”.</p>
+<p>Put the files in a folder dedicated to this project. On most computers, you can right-click on the link and choose “Save the file as…” or “Download linked file.”</p>
 <p>The project is split into two parts:</p>
 <ol type="1">
 <li>Filling in a dynamic programming matrix.</li>
 <li>Reconstructing the optimal alignment by doing traceback through the dynamic programming matrix.</li>
 </ol>
-<p>To help you along, the <code>alignmentproject.py</code> file already contains a function I wrote for you so you can print your dynamic programming (DP) matrix as you gradually fill it in. You are not expected to understand how this function works. I tried to make it as condensed as possible so it does not take up so much space in your file.</p>
+<p>To help you along, the <code>alignmentproject.py</code> file already contains a function I wrote for you, so you can print your dynamic programming (DP) matrix as you gradually fill it in. You are not expected to understand how this function works. I made it as condensed as possible so it does not take up so much space in your file.</p>
 <p>The function is named <code>print_dp_matrix</code> and takes two arguments:</p>
 <ol type="1">
 <li>A string, which represents a DNA sequence of some length <code>m</code>.</li>
@@ -537,7 +537,7 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="filling-in-the-dynamic-programming-matrix">Filling in the dynamic programming matrix</h2>
 <section id="make-a-matrix" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="make-a-matrix">Make a matrix</h3>
-<p>We start out by making a list of lists (a matrix) that has the right shape but only holds <code>None</code> values. We use the <code>None</code> values as place-holders, which you can later replace with scores. You can think of it as an empty matrix that you can fill scores into, just as we did at the lectures. If you want to align two sequences like <code>AT</code> and <code>GAT</code> you want a matrix that has 3 rows and 4 columns. Note that the matrix must have one more row than the number of bases in sequence one, and one more column than the number of bases in sequence two.</p>
+<p>We start by making a list of lists (a matrix) with the right shape but only holds <code>None</code> values. We use the <code>None</code> values as placeholders, which you can later replace with scores. You can think of it as an empty matrix into which you can fill scores, just as we did in the lectures. If you want to align two sequences like <code>AT</code> and <code>GAT</code>, you want a matrix with three rows and four columns. Note that the matrix must have one more row than the number of bases in sequence one and one more column than the number of bases in sequence two.</p>
 <p><em>Write a function</em>, <code>empty_matrix</code>, that takes two arguments</p>
 <ol type="1">
 <li>An integer (which represents the length of sequence one + 1).</li>
@@ -545,22 +545,22 @@ window.Quarto = {
 </ol>
 <p>The function must return:</p>
 <ul>
-<li>A list of lists. The number of sub-lists be must equal to the first integer argument. Each sublist must contain a number of <code>None</code> values equal to the second integer argument.</li>
+<li>A list of lists. The number of sub-lists must be equal to the first integer argument. Each sublist must contain a number of <code>None</code> values equal to the second integer argument.</li>
 </ul>
 <p>Example usage:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>returns a list with <em>three</em> lists each of length <em>four</em>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[[<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Even though this is a list of lists we can <em>think of it</em> as a three by four matrix:</p>
+<p>Even though this is a list of lists, we can <em>think of it</em> as a three-by-four matrix:</p>
 <pre><code>[[None, None, None, None], 
  [None, None, None, None], 
  [None, None, None, None]]</code></pre>
-<p>If you want to print the matrix in a way that looks like the slides I showed you at the lecture, you can use the <code>print_dp_matrix</code> function (again <code>None</code> represents empty cells):</p>
+<p>If you want to print the matrix in a way that looks like the slides I showed you at the lecture, you can use the <code>print_dp_matrix</code> function (again, <code>None</code> represents empty cells):</p>
 <pre><code>          G    A    T
   None None None None
 A None None None None
 T None None None None</code></pre>
-<p><strong>Important:</strong> You can implement <code>empty_matrix</code> in a way superficially looks ok but will cause you all kinds of grief when you start filling it in. When you create the list of lists (e.g.&nbsp;three lists as above) you need to generate and add three <em>separate</em> lists. If you add the <em>same</em> list three times you do not have three separate rows in your matrix. Instead you have <em>three</em> references to the <em>same</em> row. You can test if you did it right this way – by changing the value of one cell to see what happens:</p>
+<p><strong>Important:</strong> You can implement <code>empty_matrix</code> in a way that superficially looks ok but will cause you all kinds of grief when you start filling it in. When you create the list of lists (e.g., three as above), you must generate and add three <em>separate</em> lists. If you add the <em>same</em> list three times, you do not have three separate rows in your matrix. Instead, you have <em>three</em> references to the <em>same</em> row. You can test if you did it right this way – by changing the value of one cell to see what happens:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>empty[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">=</span> <span class="st">'Mogens'</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -569,9 +569,9 @@ T None None None None</code></pre>
 <p>If it changed the first value in <em>all</em> the lists, it means that all your lists are the same (which is not what you want).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>[[<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fill-top-row-and-left-column" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="fill-top-row-and-left-column">Fill top row and left column</h3>
-<p>Now that you can make a matrix with the correct dimensions, you need to write a function that fills in the top row and the left column in accordance with what the gap score is. E.g. if the gap score is <code>-2</code> you want the matrix to look something like this when you print it with <code>print_dp_matrix</code>:</p>
+<section id="fill-the-top-row-and-left-column" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-the-top-row-and-left-column">Fill the top row and left column</h3>
+<p>Now that you can make a matrix with the correct dimensions, you need to write a function that fills in the top row and the left column with multiples of the gap score. E.g., if the gap score is <code>-2</code>, you want the matrix to look something like this when you print it with <code>print_dp_matrix</code>:</p>
 <pre><code>          G    A    T
      0   -2   -4   -6
 A   -2 None None None
@@ -584,7 +584,7 @@ T   -4 None None None</code></pre>
 </ol>
 <p>The function must return:</p>
 <ul>
-<li>A list of lists. The number of sub-lists be must equal to the first integer argument. The values in the first sub-list must be multiples of the gap score given as the third argument. The first elements of remaining sub-lists must be multiples of the gap score. All remaining elements of sub-lists must be <code>None</code>.</li>
+<li>A list of lists. The number of sub-lists must be equal to the first integer argument. The values in the first sub-list must be multiples of the gap score given as the third argument. The first elements of the remaining sub-lists must be multiples of the gap score. All remaining elements of sub-lists must be <code>None</code>.</li>
 </ul>
 <p>Example usage:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prepare_matrix(<span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -606,12 +606,12 @@ Hint
 </div>
 </div>
 </div>
-<p>Now all you need to do is replace the right <code>None</code> values with <em>multiples</em> of the gap score. E.g. the third element in the first sub-list is <code>matrix[2][0]</code>, which you would need to assign the value: <code>2</code> times the gap score. In the same way <code>matrix[3][0]</code> should be <code>3</code> times the gap score. So you need to figure out which elements you should replace and which pairs of indexes you need to access those elements. Then use <code>range</code> to generate those indexes and for-loops to loop over them.</p>
+<p>Now, all you need to do is replace the right <code>None</code> values with <em>multiples</em> of the gap score. For example, the third element in the first sub-list is <code>matrix[2][0]</code>, for which you would need to assign the value <code>2</code> times the gap score. In the same way <code>matrix[3][0]</code> should be <code>3</code> times the gap score. So, you need to figure out which elements you should replace and which pairs of indexes you need to access those elements. Then, use <code>range</code> to generate those indexes and for-loops to loop them over.</p>
 </section>
 <section id="fill-the-entire-matrix" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-the-entire-matrix">Fill the entire matrix</h3>
-<p>Now that we are able to fill the top row and left column we can start thinking about how to fill the whole matrix.</p>
-<p>For that we need a score matrix of match scores. In Python that is most easily represented as a dictionary of dictionaries like this:</p>
+<p>Now that we can fill the top row and left column, we can start thinking about how to fill the whole matrix.</p>
+<p>For that, we need a score matrix of match scores. In Python, that is most easily represented as a dictionary of dictionaries like this:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>score_matrix <span class="op">=</span> {<span class="st">'A'</span>: {<span class="st">'A'</span>: <span class="dv">2</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">'T'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">2</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'G'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">2</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
@@ -628,7 +628,7 @@ Hint
 <ul>
 <li>A list of lists of integers, which represents a correctly filled dynamic programming matrix given the two sequences, the match scores, and the gap score.</li>
 </ul>
-<p>Example usage: If <code>score_matrix</code> is defined as above then</p>
+<p>Example usage: If <code>score_matrix</code> is defined as above, then</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fill_matrix(<span class="st">'AT'</span>, <span class="st">'GAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>must return:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -649,16 +649,16 @@ Hint
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You should call <code>prepare_matrix</code> inside <code>fill_matrix</code> to get a matrix with the top row and left column filled. Assuming <code>seq1</code> is sequence one and <code>seq2</code> is sequence two then you can do it like this:</p>
+<p>You should call <code>prepare_matrix</code> inside <code>fill_matrix</code> to get a matrix with the top row and left column filled. Assuming <code>seq1</code> is sequence one and <code>seq2</code> is sequence two, then you can do it like this:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> prepare_matrix(<span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>, <span class="bu">len</span>(seq2)<span class="op">+</span><span class="dv">1</span>, gap_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-<p>Now you only need to fill out the rest. To produce the indexes of the elements in the list of lists that you need to assign values to, you need two nested for-loops.</p>
+<p>Now, you only need to fill out the rest. You need two nested for-loops to produce the indexes of the elements in the list of lists that you need to assign values to.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(seq2)<span class="op">+</span><span class="dv">1</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i, j) <span class="co"># just to see what i and j are</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Examine this code and make sure you understand why we give those arguments to <code>range</code>. Each combination of <code>i</code> and <code>j</code> let you access an element <code>matrix[i][j]</code> in <code>matrix</code> (list of lists) that you can to assign a value to. The value to assign to <code>matrix[i][j]</code> (green cell on the slides) is the maximum of three values (the yellow cells on the slide):</p>
+<p>Examine this code and make sure you understand why we give those arguments to <code>range</code>. Each combination of <code>i</code> and <code>j</code> lets you access an element <code>matrix[i][j]</code> in <code>matrix</code> (list of lists) that you can assign a value to. The value to assign to <code>matrix[i][j]</code> (green cell on the slides) is the maximum of three values (the yellow cells on the slide):</p>
 <ol type="1">
 <li>The value of the cell to the left (<code>matrix[i][j-1]</code>) plus the gap score.</li>
 <li>The cell above (<code>matrix[i-1][j]</code>) plus the gap score.</li>
@@ -668,7 +668,7 @@ Hint
 </section>
 <section id="reconstructing-the-optimal-alignment" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="reconstructing-the-optimal-alignment">Reconstructing the optimal alignment</h2>
-<p>This is the most difficult part, so I will hold your hand here. Below is first a function that identifies which of three cells (the yellow cells on the slides) some cell (green cell on the slides) is derived from. On the slides, this is the cell pointed to by the red arrow.</p>
+<p>This is the most challenging part, so I will hold your hand here. Below is first a function that identifies which of three cells (the yellow cells on the slides) some cell (green cell on the slides) is derived from. On the slides, this is the cell pointed to by the red arrow.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_traceback_arrow(matrix, row, col, match_score, gap_score):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># yellow cells:</span></span>
@@ -685,8 +685,8 @@ Hint
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'left'</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score_current <span class="op">==</span> score_up <span class="op">+</span> gap_score:</span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'up'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Write (no copy paste) this into your file and make sure that it works and that you understand exactly how it works before you go on.</p>
-<p>Here is a function that uses <code>get_traceback_arrow</code> to do the traceback. It reconstructs the alignment starting from the last column adding columns in front as the traceback proceeds. It is big, so it breaks across three pages.</p>
+<p>Write (do not copy and paste) this into your file, and make sure that it works and that you understand exactly how it works before you proceed.</p>
+<p>Here is a function that uses <code>get_traceback_arrow</code> to do the traceback. It reconstructs the alignment starting from the last column, adding columns in front as the traceback proceeds. It is big, so it breaks across three pages.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace_back(seq1, seq2, matrix, score_matrix, gap_score):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strings to store the growing alignment strings:</span></span>
@@ -747,7 +747,7 @@ Hint
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [aligned1, aligned2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once you have <em>written</em> it into your file, make sure you understand the correspondence to the sequences of events on the lecture slides.</p>
-<p>Now you can write a function you can call to do perform the alignment. You get to do that yourself. It just calls <code>fill_matrix</code> and then <code>trace_back</code> to get the optimal alignment</p>
+<p>Now you can write a function that performs the alignment. You get to do that yourself. It just calls <code>fill_matrix</code> and then <code>trace_back</code> to get the optimal alignment</p>
 <p><em>Write a function</em>, <code>align</code>, that takes four arguments:</p>
 <ol type="1">
 <li>A string, which represents sequence one.</li>
@@ -757,13 +757,13 @@ Hint
 </ol>
 <p>The function must return:</p>
 <ul>
-<li>A list of length two. The first element of that list must be a string, representing the aligned sequence one. The second element must be a string, representing the aligned sequence two.</li>
+<li>A list of length two. The first element of that list must be a string representing the aligned sequence one. The second element must be a string, representing the aligned sequence two.</li>
 </ul>
 <p>Example usage:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>must return:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'-AT-AT'</span>, <span class="st">'GATGAT'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once you have written that function you can print your alignment like this:</p>
+<p>Once you have written that function, you can print your alignment like this:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alignment <span class="op">=</span> align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> alignment:</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
