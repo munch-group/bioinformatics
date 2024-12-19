@@ -7,6 +7,8 @@ from contextlib import redirect_stdout
 import argparse
 import subprocess
 import random
+import re
+import textwrap
 random.seed(999)
 
 
@@ -245,11 +247,16 @@ if __name__ == '__main__':
                         dest='front_page',
                         default='None',
                         help="Markdown file with explanatory text for front page")
-    parser.add_argument("-p", "--programming-assignments", 
+    parser.add_argument("-p", "--programming-solutions", 
                         type=str,
-                        dest='programming_assingments',
+                        dest='programming_solutions',
                         default='None',
-                        help="Markdown file with programming assignments")
+                        help="Python file with functions and docstrings for programming assignments")
+    # parser.add_argument("-p", "--programming-assignments", 
+    #                     type=str,
+    #                     dest='programming_assingments',
+    #                     default='None',
+    #                     help="Markdown file with programming assignments")
     parser.add_argument("-r", "--shuffle-bioinf", 
                         action="store_true",
                         help="Shuffle order of bioinf topics")
@@ -293,6 +300,18 @@ if __name__ == '__main__':
 # True/False eller tekst. 
 """
 
+    problems = re.findall('(?:\n[\t ]*)\"{3}(.*?)\"{3}', open(args.programming_solutions).read(), re.M | re.S)
+    intro = problems.pop(0)
+    with open('programming_assignments.md', 'w') as f:
+        print(intro, file=f)
+        for problem in problems:
+            if '"' in problem:
+                print("Problem contains double quotes, they render badly in the PDF assignment")
+                print(problem)
+                sys.exit(1)
+            print(f'\n\n## Problem\n\n{textwrap.dedent(problem)}  \n\n', file=f)
+
+
     with open(latex_file_name, 'w') as tex_file:
         with redirect_stdout(tex_file):
 
@@ -309,7 +328,7 @@ if __name__ == '__main__':
 
             print(markdown2latex("# Programming assignments"))
 
-            with open(args.programming_assingments) as f:
+            with open("programming_assignments.md") as f:
                 content = f.read()
                 delim = '## Problem'
                 for i, text in enumerate(content.split(delim)):
