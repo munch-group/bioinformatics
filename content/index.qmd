@@ -33,6 +33,12 @@ title-block-banner-color: "#FFFFFF"
 } 
 </style>
  -->
+
+**[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=course_page_html.zip) (unzip once downloaded and double-click index.html).**
+
+**[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
+
+
 # Welcome {.unnumbered}
 
 [brightspace_2024]: (https://brightspace.au.dk/d2l/home/145685)
