@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Bioinformatics and Programming",
     "section": "",
-    "text": "Welcome\nThis is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The Brightspace course page is only used for communication, and assignments.",
+    "text": "Welcome\nDownload the HTML course website for offline viewing at the exam (unzip once downloaded and double-click index.html).\nDownload the HTML Python documentation for offline viewing at the exam (unzip once downloaded and double-click index.html).\nThis is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The Brightspace course page is only used for communication, and assignments.",
     "crumbs": [
       "Welcome"
     ]
@@ -1865,7 +1865,17 @@
     "href": "exam.html",
     "title": "Exam info",
     "section": "",
-    "text": "Example of exam assignment\nThere is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files.\nEksamensOpgaveAP2014.pdf\nEksamensOpgaveAP2014_input.txt",
+    "text": "Download the course homepage and Python documentation\nDownload the HTML course website for offline viewing at the exam (unzip once downloaded and double-click index.html).\nDownload the HTML Python documentation for offline viewing at the exam (unzip once downloaded and double-click index.html).",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#example-of-exam-assignment",
+    "href": "exam.html#example-of-exam-assignment",
+    "title": "Exam info",
+    "section": "Example of exam assignment",
+    "text": "Example of exam assignment\nThere is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files.\n EksamensOpgaveAP2014.pdf \n EksamensOpgaveAP2014_input.txt",
     "crumbs": [
       "Exam info"
     ]
