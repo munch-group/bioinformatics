@@ -1,6 +1,13 @@
 
 # Exam info {.unnumbered #sec-exam}
 
+## Download the course homepage and Python documentation
+
+**[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=course_page_html.zip) (unzip once downloaded and double-click index.html).**
+
+**[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
+
+
 ## Example of exam assignment  {.unnumbered}
 
 There is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files. 
