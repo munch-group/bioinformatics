@@ -173,3 +173,9 @@ TA/class_participants.yaml
 TA/mandatory_assignments/handins/
 
 content/project_solutions/*.py
+
+*hand_ins/
+*prog_check/
+*bioinf_check/
+protocol*
+grades*

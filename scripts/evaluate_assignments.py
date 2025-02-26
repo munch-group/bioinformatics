@@ -34,11 +34,16 @@ def remove_tree(path):
 
 
 def find_assignment_file(wd, prefix):
-    for path in wd.iterdir():
-        if path.is_dir() or path.suffix == '.txt':
-            continue
+
+    for path in wd.rglob('*.py'):
+        # if path.is_dir() or path.suffix == '.txt':
+        #     continue
         # path = path.rename(re.sub(r"\s+\(\d+\)\.py", ".py", path.name))
-        if path.match('{}*'.format(prefix)):
+        # print(path)
+        # print(prefix)
+        # print()
+        if str(path).startswith(str(prefix)):
+        # if path.match('{}*'.format(prefix)):
             return path
     return None
 
@@ -137,18 +142,19 @@ def check_project(wd, failed_dir, student_name, student_file, project_name, over
         with open(str(import_error_file), 'w') as f:
             print(script_output, file=f)
 
+
         if ta_suffix:
             ta_failed_dir = failed_dir / ta_suffix
             ta_failed_dir.mkdir(exist_ok=True)
-            copy_tree(project_dir, ta_failed_dir / project_dir.name)
-            copy_file(ta_note_file, ta_failed_dir / ta_note_file.name)
+            copy_tree(project_dir, ta_failed_dir / f'{student_name}_{project_dir.name}')
+            copy_file(ta_note_file, ta_failed_dir / f'{student_name}_{ta_note_file.name}')
             # copy_file(student_file, ta_failed_dir / student_file.name)
-            copy_file(import_error_file, ta_failed_dir / import_error_file.name)
+            copy_file(import_error_file, ta_failed_dir / f'{student_name}_{import_error_file.name}')
         else:
-            copy_tree(project_dir, failed_dir / project_dir.name)
-            copy_file(ta_note_file, failed_dir / ta_note_file.name)
+            copy_tree(project_dir, failed_dir / f'{student_name}_{project_dir.name}')
+            copy_file(ta_note_file, failed_dir / f'{student_name}_{ta_note_file.name}')
             # copy_file(student_file, failed_dir / student_file.name)
-            copy_file(import_error_file, failed_dir / import_error_file.name)
+            copy_file(import_error_file, failed_dir / f'{student_name}_{import_error_file.name}')
 
 
     elif script_return_status or 'skipped' in script_stderr:
@@ -158,13 +164,11 @@ def check_project(wd, failed_dir, student_name, student_file, project_name, over
         if ta_suffix:
             ta_failed_dir = failed_dir / ta_suffix
             ta_failed_dir.mkdir(exist_ok=True)
-            copy_tree(project_dir, ta_failed_dir / project_dir.name)
-            copy_file(ta_note_file, ta_failed_dir / ta_note_file.name)
-            # copy_file(student_file, ta_failed_dir / student_file.name)
+            copy_tree(project_dir, ta_failed_dir / f'{student_name}_{project_dir.name}')
+            copy_file(ta_note_file, ta_failed_dir / f'{student_name}_{ta_note_file.name}')
         else:
-            copy_tree(project_dir, failed_dir / project_dir.name)
-            copy_file(ta_note_file, failed_dir / ta_note_file.name)
-            # copy_file(student_file, failed_dir / student_file.name)
+            copy_tree(project_dir, failed_dir / f'{student_name}_{project_dir.name}')
+            copy_file(ta_note_file, failed_dir / f'{student_name}_{ta_note_file.name}')
 
     else:
         # print('PASSED', ta_suffix, student_name)
@@ -242,6 +246,7 @@ def check_bioinf_answers(assignment_dir, student_file, student_name, project_nam
         print("Problem with: ", str(student_file).translate(ESC_TRANS))
         print("Edit this copy of the student file:\n{}\n".format(str(student_file_copy).translate(ESC_TRANS)))
         print(stderr)
+        print(stdout)
         print("####################################################################")
         sys.exit()
 
@@ -372,7 +377,7 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
                        type=Path,
                        help='Path to yaml file with students divided in to classes.')
     parser.add_argument('--data',
-                        choices=['brightspace', 'blackboard', 'digitalexam'],
+                        choices=['brightspace', 'blackboard', 'digitalexam', 'wiseflow'],
                         default='brightspace',
                         help='Type of data to parse')
     parser.add_argument('assignment_dir', 
@@ -491,7 +496,7 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
                 print()
                 raise
 
-    else:
+    elif args.data == 'digitalexam':
         # digital exam
 
         import PyPDF2 # for reading meta info file on student
@@ -515,7 +520,7 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
             for path in args.assignment_dir.glob('*.pdf'):
 
                 student_id = get_student_id_from_pdf(str(path))
-
+                print(path)
                 student_name, student_exam_id, hand_in_id, _cover_page, _suf = path.name.split('_')
                 assert _cover_page == 'Forside'
 
@@ -583,6 +588,123 @@ bioinformatics assignments (see README.md in exam_evaluation for details).
                         for l in f:
                             print("{},{}".format(student_id, l.strip()), file=csv_file)
 
+    else: # wiseflow
+
+        import PyPDF2 # for reading meta info file on student
+
+        def get_student_id_from_pdf(file_name):
+            pdfFileObj = open(file_name,'rb')     #'rb' for read binary mode
+            pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+            #pdfReader.numPages
+            pageObj = pdfReader.getPage(0)          #'9' is the page number
+            text = pageObj.extractText()
+            # student_id = re.search(r'(\d+)@post.au.dk', text).group(1)
+            student_id = re.search(r'Besvarelsen afleveres af\n(\d+)', text).group(1)
+            assert student_id
+            return student_id
+
+        prog_result_files = list()
+        bioinf_result_files = list()
+
+        with open(str(args.assignment_dir / 'student_list.csv'), 'w') as student_csv_file:
+
+            for path in args.assignment_dir.iterdir():
+                if not (path.is_dir() and re.match(r'\[\d+_\d+\]', path.name)):
+                    continue
+                # protocol_index, student_index = re.search(r'\[(\d+)_(\d+)\]_Omslag.pdf', path.name).groups()
+                protocol_index, student_index = re.search(r'\[(\d+)_(\d+)\]', path.name).groups()
+
+                # student_name, student_exam_id = f'protocol_idx_{protocol_index}', f'stud_idx_{student_index}'
+                student_name = f'[{protocol_index}_{student_index}]' 
+                student_id = student_index
+                student_exam_id = student_index
+
+                # student_id = get_student_id_from_pdf(str(path))
+
+                # student_name, student_exam_id, hand_in_id, _cover_page, _suf = path.name.split('_')
+                # assert _cover_page == 'Forside'
+
+
+                # stud_regex = re.compile(''.join(x if x.isascii() else '..?' for x in student_name) + f'_{student_exam_id}')
+
+                dummy_bioinfexam_file = Path('../bioinfexam_no_answers.py')
+
+                student_row = [student_id, student_name] 
+
+                student_dir = args.assignment_dir / student_name 
+
+                progexam_file = student_dir / 'Ekstramateriale' / 'progexam.py'
+                bioinfexam_file = student_dir / 'Ekstramateriale' / 'bioinfexam.py'
+
+                # # make empty files if student has not handed in
+                # if (student_dir / 'Ikke afleveret.txt').exists():
+                #     assert not progexam_file.exists() and not bioinfexam_file.exists()
+                #     os.makedirs(student_dir / 'Ekstramateriale')
+                #     bioinfexam_file.symlink_to(dummy_bioinfexam_file)
+                #     progexam_file.touch()
+
+                # (student_dir / 'Ekstramateriale').mkdir(exist_ok=True)
+
+                # get prog exam file
+                # lst = [f for f in args.assignment_dir.glob('*progexam.py') if stud_regex.search(str(f))]
+                # lst = list(args.assignment_dir.glob('{}_{}*{}.py'.format(student_name, student_exam_id, args.project_name)))
+                # assert len(lst) <= 1, lst
+                if progexam_file.exists(): #len(lst) == 1:
+                    # progexam_file = lst[0]
+                    # student_row.append('handin')
+                    student_row.extend(['handin', progexam_file])
+                    result_file = check_project(args.assignment_dir, failed_dir, student_name, progexam_file, 
+                        args.project_name, args.overwrite)
+                    prog_result_files.append((student_id, result_file))
+                else:
+                    if (student_dir / 'Ikke afleveret.txt').exists():
+                        assert not progexam_file.exists()
+                        print('Ikke afleveret:', student_name)
+                    else:
+                        # student_row.append('missing')
+                        print("MISSING PROGRAMMING FILE: {} (copy orig file to version with correct name)\n\t{}".format(student_name,
+                            str(args.assignment_dir / student_name / 'Ekstramateriale').translate(ESC_TRANS)), file=sys.stderr)
+                    student_row.extend(['missing', None])
+
+
+                # lst = [f for f in args.assignment_dir.glob('*bioinfexam.py') if stud_regex.search(str(f))]
+                # lst = list(args.assignment_dir.glob('{}_{}*bioinfexam.py'.format(student_name, student_exam_id)))
+                # assert len(lst) <= 1, lst
+                # if len(lst) == 1:
+
+                if bioinfexam_file.exists(): #len(lst) == 1:
+                    # bioinfexam_file = lst[0]
+                    #student_row.append('handin')
+                    student_row.extend(['handin', bioinfexam_file])
+                    result_file = check_bioinf_answers(args.assignment_dir, bioinfexam_file, student_name, args.project_name, args.overwrite)
+                    bioinf_result_files.append((student_id, result_file))
+                else:
+                    if (student_dir / 'Ikke afleveret.txt').exists():
+                        assert not bioinfexam_file.exists()
+                        print('Ikke afleveret:', student_name)
+                    else:
+                        #student_row.append('missing')
+                        print("MISSING BIOINF FILE: {} (copy orig file to version with correct name)\n\t{}".format(student_name, 
+                            str(args.assignment_dir / student_name / 'Ekstramateriale').translate(ESC_TRANS)), file=sys.stderr)
+                    student_row.extend(['missing', None])
+
+                print(*student_row, sep=',', file=student_csv_file)
+
+        # collect all prog answers
+        with open(str(args.assignment_dir / 'prog_hand_in_summary.csv'), 'w') as csv_file:
+            for student_id, path in prog_result_files:
+                if path.exists():
+                    with open(str(path)) as f:
+                        for l in f:
+                            print("{},{}".format(student_id, l.strip()), file=csv_file)
+
+        # collect all bioinf answers
+        with open(str(args.assignment_dir / 'bioinf_hand_in_summary.csv'), 'w') as csv_file:
+            for student_id, path in bioinf_result_files:
+                if path.exists():
+                    with open(str(path)) as f:
+                        for l in f:
+                            print("{},{}".format(student_id, l.strip()), file=csv_file)
 
 
 if __name__ == "__main__":
