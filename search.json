@@ -1437,7 +1437,7 @@
     "href": "chapters/web/ccr5_pwalign/index.html#project-files",
     "title": "28  CCR5-delta32",
     "section": "Project files",
-    "text": "Project files\nDownload the files you need for this project:\nhttps://munch-group.org/bioinformatics/supplementary/project_files",
+    "text": "Project files\nDownload the files you need for this project:\n \nhttps://munch-group.org/bioinformatics/supplementary/project_files",
     "crumbs": [
       "Web exercises",
       "<span class='chapter-number'>28</span>  <span class='chapter-title'>CCR5-delta32</span>"
@@ -1591,7 +1591,7 @@
     "href": "chapters/web/orf_finding/index.html#project-files",
     "title": "31  Plasmid ORFs",
     "section": "Project files",
-    "text": "Project files\nDownload the files you need for this project:\nhttps://munch-group.org/bioinformatics/supplementary/project_files",
+    "text": "Project files\nDownload the files you need for this project:\n \nhttps://munch-group.org/bioinformatics/supplementary/project_files",
     "crumbs": [
       "Web exercises",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>Plasmid ORFs</span>"
@@ -1657,7 +1657,7 @@
     "href": "supplementary/project_files.html#web-exercises",
     "title": "Project files",
     "section": "Web exercises",
-    "text": "Web exercises\nIn each sections below, you will find download links to the files you need for each web exercise.\n\nGWAS\nNone\n\n\nCCR5\n CCR5_CDS.fa \n CCR5_CDS_delta32.fa \n CCR5_mRNA.fa \n CCR5_mRNA_delta32.fa \n\n\nMRSA\nNone\n\n\nAardwark\n animals.fasta \n\n\nORF finding\n Enterococcusfaeciumresistanceplasmidsequence.fa \n\n\nLong reads\n\ncontig_1.bam\ncontig_1.bam.bai\ncontig_1.fa\ncontig_1.fa.fai\n\n\nNeural networks\nNone",
+    "text": "Web exercises\nIn each sections below, you will find download links to the files you need for each web exercise.\n\nGWAS\nNone\n\n\nCCR5\n CCR5_CDS.fa   CCR5_CDS_delta32.fa   CCR5_mRNA.fa   CCR5_mRNA_delta32.fa \n\n\nMRSA\nNone\n\n\nAardwark\n animals.fasta \n\n\nORF finding\n Enterococcusfaeciumresistanceplasmidsequence.fa \n\n\nLong reads\n\ncontig_1.bam\ncontig_1.bam.bai\ncontig_1.fa\ncontig_1.fa.fai\n\n\nNeural networks\nNone",
     "crumbs": [
       "Supplementary",
       "Project files"
@@ -1875,7 +1875,7 @@
     "href": "exam.html#example-of-exam-assignment",
     "title": "Exam info",
     "section": "Example of exam assignment",
-    "text": "Example of exam assignment\nThere is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files.\n EksamensOpgaveAP2014.pdf \n EksamensOpgaveAP2014_input.txt",
+    "text": "Example of exam assignment\nThere is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files.",
     "crumbs": [
       "Exam info"
     ]
