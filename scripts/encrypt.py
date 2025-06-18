@@ -8,9 +8,9 @@ from pathlib import Path
 import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('-d', '--decrypt', action='store_true',
+parser.add_argument('--decrypt', action='store_true',
                 help='Decrypt input file.')
-parser.add_argument('-o', '--overwrite', action='store_true',
+parser.add_argument('--overwrite', action='store_true',
                 help='Overwrite existing files.')
 parser.add_argument('encryptionkey', type=str,
                 help='Passkey for encryption.')
@@ -32,6 +32,8 @@ key = base64.urlsafe_b64encode(kdf.derive(encryptionkey)) # Can only use kdf onc
 
 def decrypt(input_file, output_file):
 
+    print(f"Decrypting {input_file}")
+
     with open(input_file, 'rb') as f:
         data = f.read()
 
@@ -46,6 +48,8 @@ def decrypt(input_file, output_file):
         f.write(encrypted)
 
 def encrypt(input_file, output_file):
+
+    print(f"Encrypting {input_file}")
 
     output_file = input_file.with_suffix(input_file.suffix + '.encrypted')
     with open(input_file, 'rb') as f:
