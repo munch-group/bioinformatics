@@ -1,14 +1,864 @@
+---
+title: Hidden Markov Models
+author: "Kasper Munch"
+# format: 
+#   html:
+#     toc: true
+#     toc-depth: 3
+    # number-sections: true
+    # code-fold: true
+# bibliography: references.bib
+---
 
-# Hidden Markov models
-<!-- ★ -->
+# Introduction: Why Do We Need Hidden Markov Models in Biology?
 
-## What it is {-}
+When you look at a DNA sequence like `ATGCGTAACGTTTAAGGCCTAG`, what do you see? At first glance, it appears to be a random string of four letters. However, this sequence contains a wealth of biological information hidden beneath its surface. It might encode a protein-coding gene, contain regulatory elements that control gene expression, or include structural features that affect how the DNA is packaged in the cell. The challenge facing computational biologists is how to automatically detect and annotate these functional elements from raw sequence data.
 
+Consider the human genome, which contains over 3 billion base pairs of DNA. Within this vast sequence lie approximately 20,000 protein-coding genes, hundreds of thousands of regulatory elements, and numerous other functional features. Manual annotation of such sequences is impossible, yet accurate identification of these elements is crucial for understanding how genes are regulated, how proteins are made, and how genetic variations contribute to disease.
 
-## Forward algorithm {-}
+Hidden Markov Models provide an elegant computational framework for solving these biological annotation problems. They excel at identifying patterns in sequences where the underlying biological function is not directly observable but must be inferred from the sequence content. For instance, when we see the sequence `ATGAAATTTGCCTAG`, we cannot directly observe whether each nucleotide is part of an exon, intron, or intergenic region. However, we can use the statistical properties of the sequence—such as codon usage patterns, presence of start and stop codons, and splice site signals—to infer the most likely functional annotation.
 
+```{.mermaid}
+graph LR
+    A[DNA Sequence<br/>ATGAAATTTGCCTAG] --> B[Hidden States<br/>Start-Coding-Coding-Stop]
+    B --> C[Functional Annotation<br/>Gene Structure]
+    
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e8
+```
 
-## Posterior decoding {-}
+The power of HMMs lies in their ability to model sequential dependencies while handling uncertainty. Biological sequences exhibit complex patterns where the function of one region influences the likely function of neighboring regions. For example, in eukaryotic genes, exons are typically followed by introns, which are then followed by more exons. Promoter regions contain specific sequence motifs that tend to cluster together upstream of transcription start sites. CpG islands, regions with unusually high frequencies of cytosine-guanine dinucleotides, often mark the beginning of genes and play important roles in gene regulation.
 
+In protein analysis, HMMs help us understand the relationship between amino acid sequence and protein structure. The sequence `MKLILLFAIVSLVF` might not immediately reveal its function, but an HMM trained on transmembrane proteins would recognize this as a likely signal peptide based on its hydrophobic character and typical length. Similarly, the alternating pattern of hydrophobic and hydrophilic regions in a protein sequence can reveal the presence of membrane-spanning α-helices.
 
-## Training / parameter estimation {-}
+HMMs address three fundamental questions that arise repeatedly in computational biology:
+
+1. **Decoding Problem**: Given a DNA or protein sequence, what is the most likely functional annotation?
+2. **Evaluation Problem**: How well does a particular sequence fit a known biological pattern?  
+3. **Posterior Inference**: How confident can we be in our predictions?
+
+These questions correspond to different biological applications: finding the most likely annotation of a sequence, evaluating how well a sequence fits a particular model, and determining the uncertainty in our predictions.
+
+# Hidden Markov Models and the Structure of Biological Sequences
+
+Hidden Markov Models represent one of the most elegant and powerful frameworks in computational biology for modeling sequential data with underlying structure. The fundamental premise of an HMM is that we observe a sequence of DNA nucleotides or protein amino acids, but the biological function generating these observations follows an unobservable sequence of functional states. This hidden state sequence evolves according to the Markov property, which states that the probability of transitioning to any future functional state depends only on the current state, not on the entire history of previous states.
+
+```{.mermaid}
+graph TD
+    subgraph "Hidden States (Functional Annotation)"
+        H1[Intergenic] --> H2[Start Codon]
+        H2 --> H3[Coding Sequence]
+        H3 --> H3
+        H3 --> H4[Stop Codon]
+        H4 --> H1
+    end
+    
+    subgraph "Observed Sequence"
+        O1[A] 
+        O2[T]
+        O3[G]
+        O4[A]
+        O5[A]
+        O6[A]
+        O7[T]
+        O8[A]
+        O9[G]
+    end
+    
+    H1 -.-> O1
+    H2 -.-> O2
+    H2 -.-> O3
+    H2 -.-> O4
+    H3 -.-> O5
+    H3 -.-> O6
+    H3 -.-> O7
+    H4 -.-> O8
+    H4 -.-> O9
+    
+    style H1 fill:#ffebee
+    style H2 fill:#e8f5e8
+    style H3 fill:#e3f2fd
+    style H4 fill:#fff3e0
+```
+
+Consider a simple example of gene finding in a bacterial genome. When we examine the DNA sequence `ATGAAACGTTTTAATGCCTAG`, we observe nucleotides (A, T, G, C), but what we really want to know is the functional annotation: which nucleotides are part of the start codon, which are in the protein-coding region, and which represent the stop codon. The hidden states might represent "start codon," "coding sequence," and "stop codon," while the observations are the actual nucleotides we can measure experimentally.
+
+In mathematical terms, an HMM is characterized by several key components that directly correspond to biological features. The hidden state sequence is denoted as $\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_L)$, where each $\pi_i$ represents the functional state at position $i$ in a DNA or protein sequence of length $L$. For example, in gene finding, $\pi_i$ might indicate whether position $i$ is in an exon, intron, or intergenic region. The observed sequence is represented as $\mathbf{x} = (x_1, x_2, \ldots, x_L)$, where each $x_i$ is an observable nucleotide (A, T, G, C) or amino acid.
+
+The model parameters include transition probabilities $a_{kl} = P(\pi_{i+1} = l \mid \pi_i = k)$ representing the probability of moving from functional state $k$ to functional state $l$. In gene finding, this might represent the probability of transitioning from an exon to an intron, which would be high near splice sites but low in the middle of exons. The emission probabilities $e_k(b) = P(x_i = b \mid \pi_i = k)$ represent the probability that functional state $k$ produces nucleotide or amino acid $b$. For instance, start codon states would have high emission probabilities for ATG and low probabilities for other codons.
+
+The joint probability of observing both the hidden state sequence and the observed sequence captures the complete biological model:
+
+$$
+P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
+$$ {#eq-joint-prob}
+
+where $a_{0\pi_1}$ represents the initial probability of starting in state $\pi_1$. This factorization reflects biological reality: the likelihood of observing a particular DNA sequence depends on both the functional states that generated it and the transitions between those states.
+
+The theoretical foundation of HMMs addresses three fundamental computational problems that arise constantly in bioinformatics:
+
+1. **Annotation Problem**: Given a DNA sequence like `ATGCGTAACGTTTAAGGCCTAG`, what is the most likely sequence of functional states?
+2. **Evaluation Problem**: How likely is it that a particular DNA sequence was generated by a specific biological process?
+3. **Learning Problem**: Given many examples of DNA sequences with known annotations, how can we estimate model parameters?
+
+# The Viterbi Algorithm - Finding Optimal Gene Structures
+
+The Viterbi algorithm solves the annotation problem by finding the single most probable sequence of functional states that could have generated the observed DNA or protein sequence. This algorithm is fundamental to many bioinformatics applications, from identifying exon-intron boundaries in genes to predicting the membrane topology of proteins.
+
+```{.mermaid}
+graph LR
+    subgraph "Dynamic Programming Table"
+        A[Position 1] --> B[Position 2]
+        B --> C[Position 3]
+        C --> D["Position i"]
+        D --> E["Position L"]
+    end
+    
+    subgraph "States at each position"
+        S1[State 1<br/>v₁(i)]
+        S2[State 2<br/>v₂(i)]
+        S3[State 3<br/>v₃(i)]
+        S4[State k<br/>vₖ(i)]
+    end
+    
+    subgraph "Traceback"
+        T1[Optimal Path] --> T2[Best State Sequence]
+    end
+    
+    D --> S1
+    D --> S2  
+    D --> S3
+    D --> S4
+    
+    S1 --> T1
+    
+    style S1 fill:#e8f5e8
+    style T1 fill:#fff3e0
+```
+
+Consider the problem of annotating a eukaryotic gene. When we see the DNA sequence `ATGAAACGTACGTAAG...TTTCCAGTAG`, we need to determine which regions correspond to exons (protein-coding sequences) and which correspond to introns (non-coding sequences that are spliced out). The Viterbi algorithm leverages the biological fact that gene structure follows predictable patterns: exons tend to maintain open reading frames, contain typical codon usage patterns, and are flanked by specific splice site sequences.
+
+The mathematical foundation of the Viterbi algorithm rests on dynamic programming principles that exploit the sequential nature of biological sequences. We define $v_l(i)$ as the joint probability of the most probable functional annotation ending in state $l$ at position $i$, along with the nucleotide sequence up to position $i$. For gene finding, this represents the probability of the best gene structure annotation ending in state $l$ (such as "exon" or "intron") at nucleotide position $i$.
+
+Formally:
+$$
+v_l(i) = \max_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
+$$ {#eq-viterbi-def}
+
+The recursive relationship that enables efficient computation captures the biological reality that optimal gene structures are built from optimal sub-structures:
+
+$$
+v_l(i) = e_l(x_i) \times \max_k(v_k(i-1) \times a_{kl})
+$$ {#eq-viterbi-recursion}
+
+This equation integrates three types of biological information. The emission probability $e_l(x_i)$ represents how likely functional state $l$ is to produce nucleotide $x_i$. For example, exon states might have high probabilities for nucleotides that maintain open reading frames and low probabilities for in-frame stop codons. The transition probability $a_{kl}$ captures biological constraints on gene structure, such as the fact that exons are typically followed by introns at splice sites. The optimal probability up to the previous position $v_k(i-1)$ ensures that we build upon the best possible gene structure annotation up to that point.
+
+In gene finding applications, the states might represent different functional regions. A simple bacterial gene finder might include states for "intergenic region," "start codon," "coding sequence," and "stop codon." The emission probabilities would reflect the different nucleotide composition patterns in these regions.
+
+```{.mermaid}
+stateDiagram-v2
+    [*] --> Intergenic
+    Intergenic --> StartCodon
+    StartCodon --> CodingSequence
+    CodingSequence --> CodingSequence
+    CodingSequence --> StopCodon
+    StopCodon --> Intergenic
+    Intergenic --> [*]
+    
+    note right of StartCodon
+        High P(ATG)
+        Low P(other codons)
+    end note
+    
+    note right of CodingSequence
+        Triplet periodicity
+        Avoid stop codons
+        Codon usage bias
+    end note
+    
+    note right of StopCodon
+        High P(TAA,TAG,TGA)
+        Low P(other codons)
+    end note
+```
+
+For eukaryotic gene finding, the model becomes more complex, with states representing "5' UTR," "first exon," "intron," "internal exon," "last exon," and "3' UTR." The transition probabilities encode biological knowledge about gene structure. For instance, the probability of transitioning from "first exon" to "intron" would be high near GT dinucleotides (donor splice sites), while the probability of transitioning from "intron" to "internal exon" would be high near AG dinucleotides (acceptor splice sites).
+
+The algorithm proceeds by filling a dynamic programming table where rows represent functional states and columns represent positions in the DNA sequence. The base case initializes the algorithm:
+
+$$
+v_{\mathcal{B}}(0) = 1
+$$ {#eq-viterbi-base}
+
+for the begin state $\mathcal{B}$, representing the fact that we start with certainty in the begin state when no sequence has been processed.
+
+The traceback phase reconstructs the optimal gene annotation by following pointers backward from the functional state with the highest probability at the final position:
+
+$$
+\pi^*_L = \arg\max_l v_l(L)
+$$ {#eq-viterbi-final}
+
+The complete optimal gene structure is then recovered by following the traceback pointers.
+
+# The Forward Algorithm - Evaluating Sequence Likelihood
+
+While the Viterbi algorithm finds the single best gene structure annotation, the Forward algorithm addresses a different biological question: how likely is it that a particular DNA or protein sequence was generated by a specific biological process? This question is crucial for sequence classification, model comparison, and quality assessment in bioinformatics applications.
+
+Consider the problem of determining whether a newly discovered DNA sequence represents a protein-coding gene or a pseudogene (a non-functional gene copy). Both might contain start codons, stop codons, and regions with codon-like triplet structure, but true genes maintain open reading frames and exhibit characteristic codon usage patterns throughout their length. The Forward algorithm calculates the total probability that the observed sequence could be generated by a "true gene" HMM versus a "pseudogene" HMM.
+
+```{mermaid}
+graph TD
+    subgraph "All Possible Paths"
+        P1[Path 1: States 1→2→1→3]
+        P2[Path 2: States 1→1→2→3]  
+        P3[Path 3: States 2→1→2→3]
+        P4[Path n: States 2→2→1→3]
+    end
+    
+    subgraph "Forward Algorithm"
+        F[Sum all path probabilities<br/>P(sequence)]
+    end
+    
+    P1 --> F
+    P2 --> F
+    P3 --> F
+    P4 --> F
+    
+    style F fill:#e3f2fd
+```
+
+The Forward algorithm follows a similar dynamic programming approach to Viterbi but replaces the maximization operation with summation, reflecting the biological reality that many different functional pathways could lead to the same observed sequence. We define $f_l(i)$ as the joint probability of all possible functional annotations ending in state $l$ at position $i$, along with the nucleotide or amino acid sequence up to position $i$.
+
+Mathematically:
+$$
+f_l(i) = \sum_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
+$$ {#eq-forward-def}
+
+The recursive relationship becomes:
+
+$$
+f_l(i) = e_l(x_i) \times \sum_k f_k(i-1) \times a_{kl}
+$$ {#eq-forward-recursion}
+
+By summing over all possible previous functional states rather than taking the maximum, we accumulate probability mass from all possible biological explanations for the sequence data. This is particularly important in biological applications where multiple explanations might be plausible.
+
+For example, in CpG island detection, a particular DNA sequence might be generated by several different pathways through the "CpG island" states of an HMM. The sequence `GCGCGCGC` could arise from transitioning through CpG-rich states in various orders, and the Forward algorithm accounts for all these possibilities when calculating how likely the sequence is to come from a CpG island.
+
+The base case initializes with $f_{\mathcal{B}}(0) = 1$ for the begin state, similar to the Viterbi algorithm. The total probability of the sequence $P(\mathbf{x})$ is obtained by summing the forward probabilities of all functional states at the final position:
+
+$$
+P(\mathbf{x}) = \sum_l f_l(L)
+$$ {#eq-sequence-prob}
+
+This probability has important biological interpretations. For gene finding, a high $P(\mathbf{x})$ under a gene model versus a non-gene model suggests that the sequence is likely to encode a functional protein. For protein structure prediction, a high $P(\mathbf{x})$ under a transmembrane protein model versus a soluble protein model indicates likely membrane association.
+
+Consider transmembrane protein prediction as a concrete example. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops that reside in the aqueous environment on either side of the membrane. An HMM for transmembrane proteins might include states for "outside loop," "transmembrane helix," and "inside loop," with emission probabilities reflecting the amino acid preferences of these different structural environments.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> OutsideLoop
+    OutsideLoop --> TransMembraneHelix
+    TransMembraneHelix --> InsideLoop
+    InsideLoop --> TransMembraneHelix
+    TransMembraneHelix --> OutsideLoop
+    OutsideLoop --> [*]
+    InsideLoop --> [*]
+    
+    note right of OutsideLoop
+        Hydrophilic amino acids
+        P(K,R,D,E) high
+    end note
+    
+    note right of TransMembraneHelix
+        Hydrophobic amino acids
+        P(L,I,V,F,A) high
+        Length: 20-25 residues
+    end note
+    
+    note right of InsideLoop
+        Positive-inside rule
+        P(K,R) > P(D,E)
+    end note
+```
+
+The transmembrane helix states would have high emission probabilities for hydrophobic amino acids like leucine (L), isoleucine (I), valine (V), and phenylalanine (F), and low probabilities for charged amino acids like lysine (K) and aspartate (D). The outside and inside loop states would have complementary preferences, favoring hydrophilic amino acids. Additionally, the inside loop states might have elevated probabilities for positively charged amino acids (K, R) reflecting the "positive-inside rule" observed in transmembrane proteins.
+
+When we apply the Forward algorithm to a protein sequence like `MKLILLFAIVSLVFSSAYAFIRVLYSKVLHLLGLFGSAFIII...`, we can calculate $P(\mathbf{x})$ under both a transmembrane protein HMM and a soluble protein HMM. The sequence's hydrophobic character would yield a much higher probability under the transmembrane model, indicating likely membrane association.
+
+# The Backward Algorithm and Confidence in Biological Predictions
+
+The Backward algorithm complements the Forward algorithm by computing the probability of observing the remainder of a DNA or protein sequence starting from any given position and functional state. This enables us to answer a crucial biological question: how confident can we be that a particular nucleotide or amino acid is in a specific functional state, such as an exon, transmembrane helix, or CpG island?
+
+Consider the challenge of identifying CpG islands in mammalian genomes. CpG islands are regions of DNA with unusually high frequencies of cytosine-guanine dinucleotides that often mark gene promoters and play important roles in gene regulation. However, the boundaries of CpG islands are not sharply defined, and different regions within a potential CpG island may have varying degrees of CpG enrichment. The Backward algorithm helps us quantify our confidence that each nucleotide position is truly within a CpG island rather than in background genomic sequence.
+
+We define $b_l(i)$ as the probability of observing the remainder of the sequence from position $i+1$ to the end, given that we are in functional state $l$ at position $i$:
+
+$$
+b_l(i) = \sum_{\pi_{i+1},\ldots,\pi_L} P(x_{i+1}, \ldots, x_L, \pi_{i+1}, \ldots, \pi_L \mid \pi_i = l)
+$$ {#eq-backward-def}
+
+The Backward algorithm proceeds from the end of the sequence toward the beginning, using the recursive relationship:
+
+$$
+b_l(i) = \sum_k a_{lk} \times e_k(x_{i+1}) \times b_k(i+1)
+$$ {#eq-backward-recursion}
+
+The base case sets all backward probabilities to 1 at the end of the sequence:
+
+$$
+b_l(L) = 1 \text{ for all states } l
+$$ {#eq-backward-base}
+
+reflecting the fact that no additional nucleotides or amino acids need to be explained beyond the sequence end.
+
+```{mermaid}
+graph LR
+    subgraph "Forward Probabilities"
+        F1[f₁(i)] 
+        F2[f₂(i)]
+        F3[f₃(i)]
+    end
+    
+    subgraph "Backward Probabilities"  
+        B1[b₁(i)]
+        B2[b₂(i)]
+        B3[b₃(i)]
+    end
+    
+    subgraph "Posterior Probability"
+        P[P(πᵢ = k | x) = fₖ(i) × bₖ(i) / P(x)]
+    end
+    
+    F1 --> P
+    F2 --> P
+    F3 --> P
+    B1 --> P
+    B2 --> P
+    B3 --> P
+    
+    style P fill:#e8f5e8
+```
+
+The combination of forward and backward probabilities enables the computation of posterior probabilities, which answer the question: given that we observed the entire DNA or protein sequence, what is the probability that we were in functional state $k$ at position $i$? This posterior probability is computed using Bayes' theorem:
+
+$$
+P(\pi_i = k \mid \mathbf{x}) = \frac{P(\pi_i = k, \mathbf{x})}{P(\mathbf{x})} = \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
+$$ {#eq-posterior-prob}
+
+These posterior probabilities provide a measure of confidence in our functional annotations at each sequence position. For gene finding, they tell us how certain we can be that each nucleotide is in an exon versus an intron. For protein structure prediction, they indicate our confidence that each amino acid is in a transmembrane helix versus an aqueous loop.
+
+Consider a concrete example from eukaryotic gene finding. Suppose we have identified a potential exon-intron boundary in the sequence `...CAGGTAAGT...` where the GT dinucleotide represents a potential donor splice site. The posterior probabilities might show:
+
+- Position of C: $P(\text{exon}) = 0.95$, $P(\text{intron}) = 0.05$
+- Position of A: $P(\text{exon}) = 0.90$, $P(\text{intron}) = 0.10$  
+- Position of G: $P(\text{exon}) = 0.30$, $P(\text{intron}) = 0.70$
+- Position of G: $P(\text{exon}) = 0.05$, $P(\text{intron}) = 0.95$
+- Position of T: $P(\text{exon}) = 0.02$, $P(\text{intron}) = 0.98$
+
+This pattern clearly indicates the splice site boundary, with high confidence that nucleotides upstream of GT are in the exon and nucleotides downstream are in the intron. The intermediate probabilities at the GT dinucleotide itself reflect the transitional nature of the splice site.
+
+For any position $i$, the posterior probabilities sum to 1:
+
+$$
+\sum_k P(\pi_i = k \mid \mathbf{x}) = 1
+$$ {#eq-posterior-sum}
+
+ensuring that we have a complete probabilistic description of the functional state uncertainty at each position.
+
+# Viterbi vs. Posterior Decoding in Biological Sequence Analysis
+
+An important distinction exists between the optimal gene structure or protein annotation found by the Viterbi algorithm and the sequence of functional states with highest posterior probability at each position. This difference has significant implications for biological sequence analysis and reflects different approaches to handling uncertainty in computational predictions.
+
+The Viterbi algorithm finds the functional annotation $\boldsymbol{\pi}^*$ that maximizes:
+
+$$
+\boldsymbol{\pi}^* = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi} \mid \mathbf{x}) = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi}, \mathbf{x})
+$$ {#eq-viterbi-optimal}
+
+This approach finds the single most probable complete gene structure or protein annotation. For example, in eukaryotic gene finding, Viterbi decoding might predict the gene structure: 5'UTR → first exon → intron → internal exon → intron → last exon → 3'UTR, ensuring that this complete structure represents a valid gene organization with proper splice sites and reading frame maintenance.
+
+In contrast, posterior decoding finds the functional state sequence $\hat{\boldsymbol{\pi}}$ where each position is chosen independently:
+
+$$
+\hat{\pi}_i = \arg\max_k P(\pi_i = k \mid \mathbf{x}) = \arg\max_k \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
+$$ {#eq-posterior-decoding}
+
+Posterior decoding selects the most probable functional state at each sequence position without considering whether the resulting annotation represents a biologically valid structure.
+
+```{mermaid}
+graph TB
+    subgraph "Viterbi Decoding"
+        V1[Finds globally optimal path]
+        V2[Respects transition constraints]
+        V3[Biologically valid structure]
+        V1 --> V2 --> V3
+    end
+    
+    subgraph "Posterior Decoding"  
+        P1[Finds locally optimal states]
+        P2[May violate constraints]
+        P3[Provides uncertainty information]
+        P1 --> P2 --> P3
+    end
+    
+    subgraph "Example: Splice Sites"
+        E1[Viterbi: Valid GT-AG pattern]
+        E2[Posterior: May predict impossible transitions]
+    end
+    
+    V3 --> E1
+    P3 --> E2
+    
+    style V3 fill:#e8f5e8
+    style P3 fill:#fff3e0
+    style E1 fill:#e8f5e8
+    style E2 fill:#ffebee
+```
+
+This difference becomes critically important in biological applications with complex structural constraints. Consider splice site prediction in eukaryotic genes. Splicing must maintain the reading frame of the protein-coding sequence, which requires that the number of nucleotides in each intron be independent of the reading frame (since introns are completely removed). Additionally, canonical splice sites follow the GT-AG rule, where introns begin with GT and end with AG.
+
+Viterbi decoding respects these biological constraints. If an HMM includes states for donor splice sites (GT), intron sequences, and acceptor splice sites (AG), the Viterbi path will always predict biologically valid exon-intron structures. The algorithm would never predict an intron that begins with AT or ends with CC, because such transitions would have zero probability in a properly constructed HMM.
+
+Posterior decoding, however, might violate these constraints. At each position, it selects the functional state with highest posterior probability without considering the states at neighboring positions. In principle, posterior decoding might predict the sequence `...exon-exon-intron-intron-exon...` even though the transition from exon directly to exon without an intervening splice site is biologically impossible.
+
+The choice between these approaches depends on the specific biological application and the nature of the structural constraints. Posterior decoding maximizes the expected number of correctly predicted nucleotide or amino acid positions, making it optimal when local accuracy is most important. This approach is particularly valuable when sequence boundaries are genuinely ambiguous, as often occurs in CpG island detection or identification of low-complexity regions in proteins.
+
+Viterbi decoding maximizes the probability of predicting the entire gene structure or protein annotation correctly, making it preferable when global structural consistency is crucial. This approach is essential for applications like gene finding, where the predicted gene structure must be biologically valid for downstream analyses such as protein translation or regulatory element identification.
+
+# Training HMMs from Biological Data
+
+The power of HMMs extends beyond sequence analysis to include learning the statistical patterns of biological sequences from experimental data. This learning process is essential because the parameters that govern biological processes—such as codon usage frequencies, splice site preferences, and amino acid propensities in different protein structural environments—vary between organisms and sequence types.
+
+When we have training sequences with known functional annotations, parameter estimation becomes straightforward through maximum likelihood estimation. For example, if we want to build an HMM for gene finding in a newly sequenced bacterial genome, we might start with a set of experimentally verified genes where the locations of start codons, coding sequences, and stop codons are known.
+
+For transition probabilities, we count transitions between functional states:
+
+$$
+a_{kl} = \frac{A_{kl}}{\sum_{l'} A_{kl'}}
+$$ {#eq-transition-mle}
+
+where $A_{kl}$ represents the number of observed transitions from functional state $k$ to state $l$. In gene finding, this might represent counting how often "coding sequence" states are followed by "stop codon" states at the ends of genes, or how often "intergenic" states are followed by "start codon" states at the beginnings of genes.
+
+Similarly, for emission probabilities:
+
+$$
+e_k(b) = \frac{E_k(b)}{\sum_{b'} E_k(b')}
+$$ {#eq-emission-mle}
+
+where $E_k(b)$ is the number of times functional state $k$ produced nucleotide or amino acid $b$. For example, to learn the codon usage pattern in coding sequences, we would count how often each codon appears in experimentally verified coding regions and normalize to obtain probability estimates.
+
+```{mermaid}
+graph TD
+    subgraph "Supervised Learning"
+        S1[Known annotations] --> S2[Count transitions & emissions]
+        S2 --> S3[Maximum likelihood estimates]
+    end
+    
+    subgraph "Unsupervised Learning (Baum-Welch)"
+        U1[Unknown annotations] --> U2[E-step: Compute expectations]
+        U2 --> U3[M-step: Update parameters]
+        U3 --> U2
+        U3 --> U4[Converged parameters]
+    end
+    
+    style S3 fill:#e8f5e8
+    style U4 fill:#e8f5e8
+```
+
+However, biological applications often involve situations where the true functional annotations are unknown or only partially known. For instance, we might have DNA sequences from a newly sequenced genome where some genes have been experimentally verified but most remain unannotated. The Baum-Welch algorithm, an instance of the Expectation-Maximization (EM) algorithm, addresses this challenge by iteratively improving parameter estimates based on all available sequence data.
+
+The Baum-Welch algorithm alternates between two steps. In the Expectation step, we compute the expected number of transitions and emissions using current parameter estimates. For transitions, we calculate:
+
+$$
+A_{kl} = \sum_n \sum_i P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}^n)
+$$ {#eq-expected-transitions}
+
+where the sum is over all training sequences $n$ and positions $i$. The probability of a specific transition is:
+
+$$
+P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}) = \frac{f_k(i) \times a_{kl} \times e_l(x_{i+1}) \times b_l(i+1)}{P(\mathbf{x})}
+$$ {#eq-transition-posterior}
+
+This equation captures our uncertainty about functional annotations by weighting each possible transition by its probability given the observed sequence data.
+
+For emissions, we compute:
+
+$$
+E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x}^n)}
+$$ {#eq-expected-emissions}
+
+where the inner sum is over all positions $i$ where the observed nucleotide or amino acid equals $b$.
+
+In the Maximization step, we use these expected counts to update our parameter estimates using the same maximum likelihood formulas as in the supervised case. The algorithm iterates these steps until convergence, typically measured by the change in log-likelihood:
+
+$$
+\mathcal{L} = \sum_n \log P(\mathbf{x}^n)
+$$ {#eq-log-likelihood}
+
+The mathematical foundation ensures that each iteration increases the likelihood of the observed sequence data: $\mathcal{L}^{(t+1)} \geq \mathcal{L}^{(t)}$, guaranteeing convergence to at least a local optimum.
+
+A practical example involves training HMMs for transmembrane protein topology prediction. We might start with a database of proteins where membrane topology has been experimentally determined through biochemical methods. From these proteins, we can learn the amino acid preferences of transmembrane helices (enriched in hydrophobic residues), outside loops (enriched in hydrophilic residues), and inside loops (enriched in positively charged residues according to the positive-inside rule).
+
+However, many proteins in sequence databases lack experimental structural information. The Baum-Welch algorithm allows us to include these proteins in training by treating their membrane topology as unknown and iteratively refining our model parameters. Initially, the algorithm might make poor predictions about which regions are membrane-spanning, but as the parameters improve, the topology predictions become more accurate, which in turn leads to better parameter estimates.
+
+# Biological Applications and Sophisticated Model Design
+
+The design of effective HMMs for biological applications requires careful consideration of the underlying biological processes and the incorporation of domain-specific knowledge into model structure. This chapter explores several important applications that demonstrate how biological insight can be encoded into HMM architectures to solve complex sequence analysis problems.
+
+## Gene Finding in Eukaryotic Genomes
+
+Gene finding in eukaryotic genomes represents one of the most sophisticated applications of HMMs in computational biology. Unlike bacterial genes, which consist of simple continuous coding sequences, eukaryotic genes have complex structures with multiple exons separated by introns, alternative splicing patterns, and regulatory elements.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> Intergenic
+    Intergenic --> FiveUTR
+    FiveUTR --> FirstExon
+    FirstExon --> Intron
+    Intron --> InternalExon
+    InternalExon --> Intron
+    InternalExon --> LastExon
+    LastExon --> ThreeUTR
+    ThreeUTR --> Intergenic
+    Intergenic --> [*]
+    
+    note right of FirstExon
+        Contains start codon
+        Maintains reading frame
+        Codon usage bias
+    end note
+    
+    note right of Intron
+        GT...AG splice sites
+        Branch point sequence
+        Variable length
+    end note
+    
+    note right of InternalExon
+        Maintains reading frame
+        No start/stop codons
+        Triplet periodicity
+    end note
+```
+
+A comprehensive gene finding HMM must model all these features while maintaining computational efficiency. A basic eukaryotic gene finding model includes states representing different functional regions: 5' untranslated regions (5' UTR), first exons, introns, internal exons, last exons, and 3' untranslated regions (3' UTR). The emission probabilities reflect the different sequence characteristics of these regions. Exon states avoid in-frame stop codons and exhibit the triplet periodicity characteristic of protein-coding sequences, while intron states have more uniform nucleotide composition and may contain repetitive elements.
+
+The transition probabilities encode biological knowledge about gene structure. The probability of transitioning from "first exon" to "intron" is high near GT dinucleotides (donor splice sites), while the probability of transitioning from "intron" to "internal exon" is high near AG dinucleotides (acceptor splice sites). These transition probabilities can be made position-specific to model the sequence conservation around splice sites more accurately.
+
+For example, the donor splice site model might include a series of states $D_1, D_2, \ldots, D_9$ that model the conserved sequence around the splice site:
+
+- $e_{D_1}(\text{G}) \approx 0.95$, modeling the highly conserved G in the GT dinucleotide
+- $e_{D_2}(\text{T}) \approx 0.95$, modeling the highly conserved T in the GT dinucleotide  
+- $e_{D_3}$ through $e_{D_9}$ model the less conserved but still biased positions
+
+This approach allows the HMM to recognize splice sites based on both the canonical GT-AG signals and the more subtle sequence preferences in the surrounding regions.
+
+## CpG Island Detection
+
+CpG island detection provides another excellent example of sophisticated HMM design. CpG islands are regions of genomic DNA with elevated frequencies of cytosine-guanine dinucleotides that often mark gene promoters and regulatory regions. The challenge is that CpG islands are not uniformly CpG-rich but contain regions of varying CpG density, and their boundaries are often gradual rather than sharp.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> Background
+    Background --> LowCpG
+    LowCpG --> MediumCpG
+    MediumCpG --> HighCpG
+    HighCpG --> MediumCpG
+    MediumCpG --> LowCpG
+    LowCpG --> Background
+    Background --> [*]
+    
+    note right of Background
+        P(CG) = 0.01
+        Typical genomic frequency
+    end note
+    
+    note right of LowCpG
+        P(CG) = 0.04
+        CpG island periphery
+    end note
+    
+    note right of MediumCpG
+        P(CG) = 0.08
+        Intermediate regions
+    end note
+    
+    note right of HighCpG
+        P(CG) = 0.15
+        CpG island core
+    end note
+```
+
+A sophisticated model might include multiple CpG island states representing different levels of CpG enrichment:
+
+- High CpG state: $P(\text{CG}) = 0.15$, $P(\text{other dinucleotides}) = 0.85/15$
+- Medium CpG state: $P(\text{CG}) = 0.08$, $P(\text{other dinucleotides}) = 0.92/15$  
+- Low CpG state: $P(\text{CG}) = 0.04$, $P(\text{other dinucleotides}) = 0.96/15$
+- Background state: $P(\text{CG}) = 0.01$, $P(\text{other dinucleotides}) = 0.99/15$
+
+The transition structure allows gradual transitions between these states, modeling the fact that CpG islands often have cores of high CpG density surrounded by regions of intermediate CpG density.
+
+## Transmembrane Protein Topology Prediction
+
+Transmembrane protein topology prediction illustrates how biophysical knowledge can be incorporated into HMM design. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops in the aqueous environment.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> OutsideLoop
+    OutsideLoop --> TMHelix
+    TMHelix --> InsideLoop
+    InsideLoop --> TMHelix
+    TMHelix --> OutsideLoop
+    OutsideLoop --> [*]
+    InsideLoop --> [*]
+    
+    note right of OutsideLoop
+        Hydrophilic residues
+        P(K,R,D,E) high
+        Negative charge bias
+    end note
+    
+    note right of TMHelix
+        Hydrophobic residues
+        P(L,I,V,F,A) high
+        Length: 20-25 residues
+    end note
+    
+    note right of InsideLoop
+        Positive-inside rule
+        P(K,R) > P(D,E)
+        Cytoplasmic side
+    end note
+```
+
+The design of an effective transmembrane protein HMM requires modeling several biological constraints. First, the hydrophobic nature of membrane-spanning regions must be captured through appropriate emission probabilities. Transmembrane helix states have high emission probabilities for hydrophobic amino acids (L, I, V, F, A) and low probabilities for charged amino acids (K, R, D, E).
+
+Second, the length constraints of transmembrane helices must be modeled. Membrane-spanning α-helices typically contain 20-25 amino acids, corresponding to the thickness of the lipid bilayer. This can be modeled using a series of transmembrane states or explicit length distributions.
+
+Third, the "positive-inside rule" must be incorporated. This rule states that the cytoplasmic side of transmembrane proteins contains more positively charged amino acids than the extracellular side. This can be modeled by having different inside and outside loop states with different emission probabilities for charged amino acids:
+
+- Inside loop: $P(\text{K}) = 0.08$, $P(\text{R}) = 0.06$, $P(\text{D}) = 0.04$, $P(\text{E}) = 0.05$
+- Outside loop: $P(\text{K}) = 0.04$, $P(\text{R}) = 0.03$, $P(\text{D}) = 0.08$, $P(\text{E}) = 0.09$
+
+## Signal Peptide Prediction
+
+Signal peptide prediction represents another important application where biological knowledge guides HMM design. Signal peptides are short amino acid sequences that direct newly synthesized proteins to specific cellular locations. They typically consist of three regions: a positively charged N-terminal region, a hydrophobic core region, and a polar C-terminal region containing the cleavage site.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> NTerminal
+    NTerminal --> HydrophobicCore
+    HydrophobicCore --> CTerminal
+    CTerminal --> CleavageSite
+    CleavageSite --> [*]
+    
+    note right of NTerminal
+        Positively charged
+        P(K,R) high
+        Length: 1-5 residues
+    end note
+    
+    note right of HydrophobicCore
+        Hydrophobic residues
+        P(L,I,V,F,A) high
+        Length: 7-15 residues
+    end note
+    
+    note right of CTerminal
+        Polar residues
+        Small, uncharged
+        Length: 3-7 residues
+    end note
+    
+    note right of CleavageSite
+        Specific cleavage rules
+        Small residues at -1,-3
+    end note
+```
+
+An HMM for signal peptide prediction might include states for each of these regions with appropriate emission probabilities and transition structures that model the sequential organization and typical length ranges of each region.
+
+# Advanced Extensions and Modern Applications
+
+Modern applications of HMMs in biology often involve extensions beyond the basic framework to address specific challenges in sequence analysis. These extensions demonstrate the flexibility of the HMM framework and its continued relevance for cutting-edge biological problems.
+
+## Profile HMMs for Protein Family Analysis
+
+Profile HMMs represent one of the most successful extensions of the basic HMM framework. They adapt the basic structure to model multiple sequence alignments, enabling sensitive detection of remote homology and accurate classification of protein sequences into functional families.
+
+```{mermaid}
+graph TD
+    subgraph "Profile HMM Structure"
+        M1[Match₁] --> M2[Match₂]
+        M1 --> I1[Insert₁]
+        M1 --> D2[Delete₂]
+        I1 --> M2
+        I1 --> I1
+        I1 --> D2
+        D2 --> M2
+        D2 --> D2
+        
+        M2 --> M3[Match₃]
+        M2 --> I2[Insert₂]
+        M2 --> D3[Delete₃]
+    end
+    
+    note right of M1
+        Emit according to
+        alignment column
+        conservation
+    end note
+    
+    note right of I1
+        Emit according to
+        background
+        frequencies
+    end note
+    
+    note right of D2
+        Silent state
+        No emission
+    end note
+    
+    style M1 fill:#e8f5e8
+    style I1 fill:#fff3e0
+    style D2 fill:#ffebee
+```
+
+In a profile HMM, we have three types of states at each alignment column that model different evolutionary events. Match states (M) emit amino acids according to the conservation pattern in that alignment column. For example, if an alignment column contains mostly hydrophobic amino acids, the corresponding match state would have high emission probabilities for L, I, V, F, and A. Insertion states (I) emit amino acids according to background frequencies, modeling insertions relative to the consensus sequence. Deletion states (D) emit no amino acids (silent states), modeling deletions relative to the consensus sequence.
+
+The transition probabilities between these states model the frequency of insertions and deletions in the protein family. For alignment column $i$, typical transitions include:
+
+- $M_{i-1} \to M_i$: normal progression through the alignment
+- $M_{i-1} \to I_{i-1}$: insertion after match state  
+- $M_{i-1} \to D_i$: deletion of alignment column $i$
+- $I_{i-1} \to M_i$: end of insertion, return to consensus
+- $I_{i-1} \to I_{i-1}$: extension of insertion
+- $D_{i-1} \to D_i$: extension of deletion
+
+This structure allows profile HMMs to identify sequences that match the overall pattern of a protein family even when they contain insertions, deletions, or substitutions relative to the consensus sequence.
+
+## Pair HMMs for Sequence Alignment
+
+Pair HMMs extend the framework to model the evolutionary relationship between two sequences simultaneously, finding applications in sequence alignment and comparative genomics. This is particularly useful for identifying conserved regions between species, which likely represent functionally important elements.
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> Match
+    Match --> Match
+    Match --> InsertX
+    Match --> InsertY
+    InsertX --> Match
+    InsertX --> InsertX
+    InsertY --> Match
+    InsertY --> InsertY
+    Match --> [*]
+    InsertX --> [*]
+    InsertY --> [*]
+    
+    note right of Match
+        Emit from both sequences
+        Models aligned positions
+        Substitution patterns
+    end note
+    
+    note right of InsertX
+        Emit from sequence X only
+        Gap in sequence Y
+        Insertion events
+    end note
+    
+    note right of InsertY
+        Emit from sequence Y only
+        Gap in sequence X
+        Deletion events
+    end note
+```
+
+The states in a pair HMM typically represent different types of evolutionary events:
+
+- Match state: emits aligned amino acids or nucleotides from both sequences
+- Insertion in sequence 1: emits from sequence 1 only (gap in sequence 2)
+- Insertion in sequence 2: emits from sequence 2 only (gap in sequence 1)
+
+The emission probabilities for the match state capture the substitution patterns between the two sequences:
+
+$$
+e_M(a,b) = P(\text{emitting amino acid } a \text{ from sequence 1 and amino acid } b \text{ from sequence 2})
+$$ {#eq-pair-emission}
+
+For closely related sequences, this probability would be high when $a = b$ (identical amino acids) and lower for substitutions. For distantly related sequences, the emission probabilities would reflect the amino acid substitution matrices derived from evolutionary studies.
+
+## Hidden Semi-Markov Models
+
+Hidden semi-Markov models (HSMMs) relax the geometric length distribution assumption of standard HMMs by explicitly modeling state durations. This extension is particularly valuable for biological applications where feature lengths follow non-geometric distributions, such as protein domains or gene exons.
+
+Instead of transition probabilities between individual positions, HSMMs use duration probabilities $P(d)$ for spending exactly $d$ time steps in a state, and transition probabilities between different state types. The forward algorithm becomes:
+
+$$
+f_l(i) = \sum_d \sum_k f_k(i-d) \times a_{kl} \times P(d) \times \prod_{j=i-d+1}^{i} e_l(x_j)
+$$ {#eq-hsmm-forward}
+
+This allows modeling of complex length distributions while maintaining computational tractability. For example, exon lengths in human genes could be modeled using empirical length distributions derived from known genes, rather than the geometric distributions implicit in standard HMMs.
+
+## Phylogenetic HMMs for Comparative Genomics
+
+Modern comparative genomics applications use sophisticated HMM variants to analyze multiple genome alignments simultaneously. These phylogenetic HMMs model the evolution of functional elements across multiple species, allowing identification of conserved regulatory elements, detection of positive selection, and reconstruction of ancestral genome organization.
+
+```{mermaid}
+graph TB
+    subgraph "Evolutionary States"
+        C1[Coding under purifying selection]
+        U1[UTR under moderate constraint]
+        R1[Regulatory under strong constraint]
+        N1[Neutral sequences]
+        P1[Positive selection]
+    end
+    
+    subgraph "Species Tree"
+        S1[Human] 
+        S2[Chimp]
+        S3[Mouse]
+        S4[Rat]
+    end
+    
+    C1 --> S1
+    C1 --> S2
+    C1 --> S3
+    C1 --> S4
+    
+    style C1 fill:#e8f5e8
+    style R1 fill:#e3f2fd
+    style N1 fill:#fff3e0
+```
+
+For example, a phylogenetic HMM for analyzing mammalian genome alignments might include states representing:
+
+- Coding sequences under purifying selection
+- Untranslated regions under moderate constraint  
+- Regulatory elements under strong constraint
+- Neutral sequences under no constraint
+- Regions under positive selection
+
+The emission probabilities at each state model the expected substitution patterns under different evolutionary pressures, while the transition probabilities model the spatial organization of functional elements along chromosomes.
+
+# Conclusion
+
+Hidden Markov Models provide a mathematically rigorous and computationally efficient framework for analyzing sequential biological data that has revolutionized computational biology. The three fundamental algorithms—Viterbi with complexity $O(LK^2)$, Forward with complexity $O(LK^2)$, and Baum-Welch with complexity $O(LK^2)$ per iteration—offer complementary perspectives on the same underlying probabilistic model, enabling optimal functional annotation, sequence classification, and parameter learning from biological data.
+
+The mathematical foundation rests on the Markov assumption and the factorization given in Equation @eq-joint-prob:
+
+$$
+P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
+$$
+
+This enables efficient dynamic programming solutions to inference and learning problems that arise throughout computational biology. The key insight is that the Markov property allows us to decompose complex global problems—such as finding optimal gene structures in entire genomes—into tractable local computations.
+
+The success of HMMs in biological applications stems from their ability to integrate biological knowledge through model structure while maintaining computational tractability. Whether modeling the complex exon-intron organization of eukaryotic genes, the hydrophobic patterns that define transmembrane protein topology, the CpG enrichment that marks regulatory islands, or the conservation patterns that reveal functional protein domains, HMMs provide a flexible framework for encoding biological insights into computational tools.
+
+The biological applications of HMMs continue to expand as our understanding of genome organization and protein structure becomes more sophisticated. Modern applications include comparative genomics, where HMMs help identify conserved regulatory elements across species; metagenomics, where they classify sequences from environmental samples; and personalized medicine, where they help interpret the functional consequences of genetic variants.
+
+As biological datasets continue to grow in size and complexity—from single-cell RNA sequencing experiments that profile thousands of genes in individual cells to population genomics studies that analyze genetic variation across millions of individuals—HMMs remain an essential tool in the computational biologist's toolkit. They often serve as building blocks for more sophisticated modeling approaches, providing the theoretical foundation for understanding how sequence patterns relate to biological function.
+
+For students of computational biology, mastering HMMs provides not just a powerful set of analysis tools, but also a conceptual framework for thinking about how to model biological processes mathematically and how to extract biological insights from sequence data. The principles underlying HMMs—dynamic programming, probabilistic inference, and parameter estimation—extend far beyond the specific algorithms discussed here, providing a foundation for understanding many other computational methods in biology and beyond.

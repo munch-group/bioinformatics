@@ -2,6 +2,7 @@
 # title-block-banner: images/banner3.png
 title-block-banner: "#003257"
 title-block-banner-color: "#FFFFFF"
+hide-hidden: true
 ---
 
 
@@ -40,6 +41,15 @@ title-block-banner-color: "#FFFFFF"
 **[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
  -->
 
+
+```{mermaid}
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+```
+
 # Welcome {.unnumbered}
 
 [brightspace_2024]: (https://brightspace.au.dk/d2l/home/145685)
@@ -68,7 +78,10 @@ nstrated. The participant will acquire and train basic programming skills during
 
 # Curriculum {.unnumbered}
 
-The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner).
+The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner). I will develop my own lecture notes and add them to this page as the course progress.
+
+<!-- THE REST IS HIDDEN -->
+::: {.content-hidden when-meta="hide-hidden"}
 
 Bioinformatics is a rapidly developing field, so textbooks often have parts that need updating. So, in this course, the curriculum for bioinformatics is put together from several sources. We use the best excerpts from the textbooks Understanding Bioinformatics by Jeremy Baum and Marketa J. Zvelebil, Biological Sequence Analysis by Richard Durbin et al., and Exploring Bioinformatics by Caroline St. Clair and Jonathan E. Visick. I have collected the sections from each textbook in separate compendia. You will also be reading short, up-to-date publications on selected topics in bioinformatics. 
 
@@ -93,7 +106,7 @@ Curriculum on webpages (not PDF format):
 
 [Using neural nets to recognize handwritten digits](https://neuralnetworksanddeeplearning.com/chap1.html) (if you have trouble accessing the page, download [this zip file](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=Neural+networks.zip) with the HTML content, unzip it, and view it locally).
 
-
+:::
 
 
 # Schedule {.unnumbered}
@@ -185,6 +198,12 @@ Only MO and Bio classes attend the exercises this week. MM classes do not. The e
 
 The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters @sec-objects, @sec-lists, @sec-dictionaries, and @sec-tuples. Do what you can at home and do the rest at the TA session.
 
+
+
+
+
+<!-- THE REST IS HIDDEN -->
+::: {.content-hidden when-meta="hide-hidden"}
 
 ### Week 5 {.unnumbered}
 
@@ -408,5 +427,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
+<!-- unplanned weeks hidden -->
+:::
 
+<!-- not in html -->
 :::

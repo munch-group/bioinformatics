@@ -44,6 +44,9 @@ jobs:
         run: |
           quarto install tinytex --no-prompt
 
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v2
+      
       - name: Render Quarto Project - default profile
         uses: quarto-dev/quarto-actions/render@v2
         env:
