@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Appendix: Conda environment for BSF – Bioinformatics and Programming</title>
+<title>3&nbsp; Appendix: PyMol for BSF – Bioinformatics and Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/preface.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/appendix_conda_and_pymol.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/preface.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/appendix_conda_and_pymol.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/python/appendix_conda_and_pymol.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -457,17 +457,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#creating-an-environment-for-bsf" id="toc-creating-an-environment-for-bsf" class="nav-link active" data-scroll-target="#creating-an-environment-for-bsf">Creating an environment for BSF</a></li>
-  <li><a href="#starting-pymol" id="toc-starting-pymol" class="nav-link" data-scroll-target="#starting-pymol">Starting PyMol</a></li>
+  <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python"><span class="header-section-number">3.1</span> Install Python</a></li>
+  <li><a href="#install-pymol" id="toc-install-pymol" class="nav-link" data-scroll-target="#install-pymol"><span class="header-section-number">3.2</span> Install PyMol</a></li>
+  <li><a href="#running-pymol" id="toc-running-pymol" class="nav-link" data-scroll-target="#running-pymol"><span class="header-section-number">3.3</span> Running pymol</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/preface.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/appendix_conda_and_pymol.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/python/preface.html">Learning Python</a></li><li class="breadcrumb-item"><a href="../../chapters/python/appendix_conda_and_pymol.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-bsf" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: Conda environment for BSF</span></span></h1>
+<h1 class="title"><span id="sec-bsf" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></span></h1>
 </div>
 
 
@@ -484,78 +485,127 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>This chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.</em></p>
-<p>In bioinformatics, we install packages and programs to use them in our analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small insulated world for each project, which then only contained the packages you needed for that particular project? If each project had its own isolated world, then there would be no such version conflicts. Fortunately, a tool lets you do just that, and its name is Conda.</p>
-<blockquote class="blockquote">
-<p>Conda is an open-source package management and environment management system for installing multiple versions of software packages and their dependencies and easily switching between them.</p>
-</blockquote>
-<p>The small worlds that Conda creates are called “environments.” You can create as many environments as you like and then use each for a separate bioinformatics project, a course, a bachelor project, or whatever you want to insulate from everything else. Conda also downloads and installs the packages for you, ensuring that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.</p>
-<section id="creating-an-environment-for-bsf" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="creating-an-environment-for-bsf">Creating an environment for BSF</h2>
-<p>When you install Anaconda, Conda makes a single base environment for you. It is called “base,” and this is why it says “(base)” on your terminal.</p>
-<p>Many of you take the “Biomolecular Structure and Function” (let us call that BSF) alongside this course. In BSF, you must install programs (e.g., PyMol) that may conflict with the packages you need for Bioinformatics and Programming. So, we will create isolated Conda environments for each course to avoid such conflicts. Conda is a program you run from the command line, like <code>python</code> or <code>cd</code>. So open your terminal (i.e., the “Terminal” program if you are on a Mac and the “Anaconda Powershell Prompt” program if you are on Windows). You need two different commands depending on your computer’s chipset.</p>
-<p><strong>If you have a Mac</strong>, create a conda environment for BSF by copying/pasting the command line below into the terminal. <em>Before</em> you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. <em>Now</em> press return.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
+<section id="install-python" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="install-python"><span class="header-section-number">3.1</span> Install Python</h2>
+<p>This installation procedure includes python and few other tools that you will also need later in the semester:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><i class="bi bi-apple"></i> Mac</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="bi bi-windows"></i> Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Open your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> http://munch-group.org/franklin/installers/install.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">--role</span> student <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Open your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm -useb  http://munch-group.org/franklin/installers/install.ps1"</span> <span class="op">&gt;</span> finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">&amp;&amp;</span>  powershell <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">-</span>Role student <span class="op">-</span>Yes <span class="op">;</span> <span class="fu">rm</span> <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>If you have a Windows computer</strong>, create a conda environment for BSF by copying/pasting the command line below into the terminal. <em>Before</em> you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. <em>Now</em> press return.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n BSF --platform win-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. It looks like nothing has changed, but now you have access to terminal commands that are not available in the base environment. You’ll be able to learn about these later. Try this command:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
-</div>
-<div class="sourceCode" id="cb3" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Notice how it again says “(base)” on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run <code>conda activate BSF</code> to activate the BSF environment and access Pymol. Try it out:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
-</div>
-<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conda activate BSF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from “(base)” to “(BSF)” to show that you are now in the BSF environment. To run the PyMol that you installed in this environment, just type</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
-</div>
-<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pymol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>and hit enter.</p>
-<p>Now try to close PyMol. Then go back to your terminal and type:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
-</div>
-<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Notice how it now again says “(base)” on your command prompt. That is because you are back in your base environment. Try to type <code>pymol</code> (and hit enter). Your terminal will tell you it could not find anything called <code>pymol</code>. This is the way it should be. That is because PyMols is installed in the BSF environment, <em>not</em> in the base environment. It illustrates how the base environment is entirely separate from the BSF environment you just made.</p>
+<p>If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <a href="mailto:kaspermunch@birc.au.dk" class="email">kaspermunch@birc.au.dk</a>.</p>
 </section>
-<section id="starting-pymol" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="starting-pymol">Starting PyMol</h2>
-<p>From now on, you can start PyMol by typing these commands into the terminal (Anaconda Powershell Prompt on Windows):</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
+<section id="install-pymol" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="install-pymol"><span class="header-section-number">3.2</span> Install PyMol</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><i class="bi bi-apple"></i> Mac</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><i class="bi bi-windows"></i> Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ol type="1">
+<li>Create a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.</li>
+<li>Open your Terminal application, and navigate to that folder using <code>cd</code> (something like <code>cd Documents</code> and then <code>cd BSF</code>).</li>
+<li>Once you are in the ‘BSF’ folder, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> init <span class="at">--platform</span> osx-64 <span class="at">-c</span> conda-forge <span class="at">-c</span> anaconda <span class="at">-c</span> schrodinger <span class="kw">&amp;&amp;</span> <span class="ex">pixi</span> config set <span class="at">--local</span> run-post-link-scripts insecure <span class="kw">&amp;&amp;</span> <span class="ex">pixi</span> add pyqt <span class="st">"pymol-bundle=3.1"</span> <span class="st">"vtk-m=1.8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>conda activate BSF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<ol type="1">
+<li>Create a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.</li>
+<li>Open your PowerShell application, and navigate to that folder using <code>cd</code> (something like <code>cd Documents</code> and then <code>cd BSF</code>).</li>
+<li>Once you are in the ‘BSF’ folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pixi init <span class="op">-</span>c conda-forge <span class="op">-</span>c anaconda <span class="op">-</span>c schrodinger <span class="op">&amp;&amp;</span> pixi config <span class="fu">set</span> <span class="op">--</span>local run-post-link-scripts insecure <span class="op">&amp;&amp;</span> pixi add pyqt <span class="st">"pymol-bundle=3.1"</span> <span class="st">"vtk-m=1.8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>(hit enter)</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pymol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>(hit enter)</p>
+</section>
+<section id="running-pymol" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="running-pymol"><span class="header-section-number">3.3</span> Running pymol</h2>
+<p>In your BSF folder, run:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run pymol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- 
+
+*This chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.*
+
+In bioinformatics, we install packages and programs to use them in our analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small insulated world for each project, which then only contained the packages you needed for that particular project? If each project had its own isolated world, then there would be no such version conflicts. Fortunately, a tool lets you do just that, and its name is Conda.
+
+> Conda is an open-source package management and environment management system for installing multiple versions of software packages and their dependencies and easily switching between them.
+
+The small worlds that Conda creates are called "environments." You can create as many environments as you like and then use each for a separate bioinformatics project, a course, a bachelor project, or whatever you want to insulate from everything else. Conda also downloads and installs the packages for you, ensuring that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.
+
+## Creating an environment for BSF {.unnumbered}
+
+When you install Anaconda, Conda makes a single base environment for you. It is called "base," and this is why it says "(base)" on your terminal.
+
+Many of you take the "Biomolecular Structure and Function" (let us call that BSF) alongside this course. In BSF, you must install programs (e.g., PyMol) that may conflict with the packages you need for Bioinformatics and Programming. So, we will create isolated Conda environments for each course to avoid such conflicts. Conda is a program you run from the command line, like `python` or `cd`. So open your terminal (i.e., the "Terminal" program if you are on a Mac and the "Anaconda Powershell Prompt" program if you are on Windows). You need two different commands depending on your computer's chipset.
+
+**If you have a Mac**, create a conda environment for BSF by copying/pasting the command line below into the terminal. *Before* you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. *Now* press return.
+
+```{.txt filename="Terminal"}
+conda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8
+
+```
+
+**If you have a Windows computer**, create a conda environment for BSF by copying/pasting the command line below into the terminal. *Before* you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. *Now* press return.
+
+```{.txt filename="Terminal"}
+conda create -y -n BSF --platform win-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8
+
+```
+
+
+Notice how the command prompt changed from "(base)" to "(bioprog)" to show that you are now in the bioprog environment. It looks like nothing has changed, but now you have access to terminal commands that are not available in the base environment. You'll be able to learn about these later. Try this command:
+
+```{.txt filename="Terminal"}
+conda deactivate
+```
+
+Notice how it again says "(base)" on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run `conda activate BSF` to activate the BSF environment and access Pymol. Try it out:
+
+```{.txt filename="Terminal"}
+conda activate BSF
+```
+
+and press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from "(base)" to "(BSF)" to show that you are now in the BSF environment. To run the PyMol that you installed in this environment, just type
+
+```{.txt filename="Terminal"}
+pymol
+```
+
+and hit enter.
+
+Now try to close PyMol. Then go back to your terminal and type:
+
+```{.txt filename="Terminal"}
+conda deactivate
+```
+
+Notice how it now again says "(base)" on your command prompt. That is because you are back in your base environment. Try to type `pymol` (and hit enter). Your terminal will tell you it could not find anything called `pymol`. This is the way it should be. That is because PyMols is installed in the BSF environment, *not* in the base environment. It illustrates how the base environment is entirely separate from the BSF environment you just made.
+
+## Starting PyMol {.unnumbered}
+
+From now on, you can start PyMol by typing these commands into the terminal (Anaconda Powershell Prompt on Windows):
+
+```{.txt filename="Terminal"}
+conda activate BSF
+```
+
+(hit enter)
+
+```{.txt filename="Terminal"}
+pymol
+```
+
+(hit enter)
+ -->
 
 
 </section>

@@ -54,7 +54,7 @@
     "href": "weekplan.html#week-1",
     "title": "Schedule",
     "section": "",
-    "text": "Reading:\n\nLecture notes: chapter 1  Preface\nLecture notes: chapter 2  Before you begin\nLecture notes: chapter 3  Appendix: Conda environment for BSF\nLecture notes: chapter 4  Writing a program\nLecture notes: chapter 5  Dealing with values\nLecture notes: chapter 6  The order of events\nLecture notes: chapter 7  Course tools\n\nMake sure you have installed Python and VScode for the first lecture.\n\n\nLectures:\n\nIn the first lecture, I will outline how the course is organized and how you will get the most out of your efforts in learning programming.\nIn the first lecture, I will also talk about how a Python program works and about values, math, and logic.\nIn the second lecture, I will talk about variables, operators, substitution, and reduction.\n\n\n\nExercises:\nIf you have yet to do so at home, you will install Python and the text editor. To do this, follow the instructions in 2  Before you begin. Then, start doing the exercises in chapter 4  Writing a program, chapter 5  Dealing with values, and chapter 6  The order of events. You will also have time to do these exercises in the TA session of week two, so go slow. It is important to properly absorb the basic concepts at the beginning of the course; otherwise, it will become too difficult later on. Have a look\nAnd make sure to familiarize yourself with the Myiagi game and the print-steps tool described in chapter 7  Course tools. These are useful companions in the course.",
+    "text": "Reading:\n\nLecture notes: chapter 1  Preface\nLecture notes: chapter 2  Before you begin\nLecture notes: chapter 3  Appendix: PyMol for BSF\nLecture notes: chapter 4  Writing a program\nLecture notes: chapter 5  Dealing with values\nLecture notes: chapter 6  The order of events\nLecture notes: chapter 7  Course tools\n\nMake sure you have installed Python and VScode for the first lecture.\n\n\nLectures:\n\nIn the first lecture, I will outline how the course is organized and how you will get the most out of your efforts in learning programming.\nIn the first lecture, I will also talk about how a Python program works and about values, math, and logic.\nIn the second lecture, I will talk about variables, operators, substitution, and reduction.\n\n\n\nExercises:\nIf you have yet to do so at home, you will install Python and the text editor. To do this, follow the instructions in 2  Before you begin. Then, start doing the exercises in chapter 4  Writing a program, chapter 5  Dealing with values, and chapter 6  The order of events. You will also have time to do these exercises in the TA session of week two, so go slow. It is important to properly absorb the basic concepts at the beginning of the course; otherwise, it will become too difficult later on. Have a look\nAnd make sure to familiarize yourself with the Myiagi game and the print-steps tool described in chapter 7  Course tools. These are useful companions in the course.",
     "crumbs": [
       "Schedule"
     ]
@@ -159,34 +159,45 @@
   {
     "objectID": "chapters/python/appendix_conda_and_pymol.html",
     "href": "chapters/python/appendix_conda_and_pymol.html",
-    "title": "3  Appendix: Conda environment for BSF",
+    "title": "3  Appendix: PyMol for BSF",
     "section": "",
-    "text": "Creating an environment for BSF\nThis chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.\nIn bioinformatics, we install packages and programs to use them in our analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small insulated world for each project, which then only contained the packages you needed for that particular project? If each project had its own isolated world, then there would be no such version conflicts. Fortunately, a tool lets you do just that, and its name is Conda.\nThe small worlds that Conda creates are called “environments.” You can create as many environments as you like and then use each for a separate bioinformatics project, a course, a bachelor project, or whatever you want to insulate from everything else. Conda also downloads and installs the packages for you, ensuring that the software packages you install in each environment are compatible. It even makes sure that packages needed by packages (dependencies) are also installed. Conda is truly awesome.\nWhen you install Anaconda, Conda makes a single base environment for you. It is called “base,” and this is why it says “(base)” on your terminal.\nMany of you take the “Biomolecular Structure and Function” (let us call that BSF) alongside this course. In BSF, you must install programs (e.g., PyMol) that may conflict with the packages you need for Bioinformatics and Programming. So, we will create isolated Conda environments for each course to avoid such conflicts. Conda is a program you run from the command line, like python or cd. So open your terminal (i.e., the “Terminal” program if you are on a Mac and the “Anaconda Powershell Prompt” program if you are on Windows). You need two different commands depending on your computer’s chipset.\nIf you have a Mac, create a conda environment for BSF by copying/pasting the command line below into the terminal. Before you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. Now press return.\nIf you have a Windows computer, create a conda environment for BSF by copying/pasting the command line below into the terminal. Before you press return (enter), check that the pasted command looks the same. Sometimes, a space between words needs to be included. Now press return.\nNotice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. It looks like nothing has changed, but now you have access to terminal commands that are not available in the base environment. You’ll be able to learn about these later. Try this command:\nNotice how it again says “(base)” on your command prompt. That is because you are back in your base environment. Every time you start a new terminal window, you will need to run conda activate BSF to activate the BSF environment and access Pymol. Try it out:\nand press enter. Voila, you are now back in the BSF environment. Notice how the command prompt changed from “(base)” to “(BSF)” to show that you are now in the BSF environment. To run the PyMol that you installed in this environment, just type\nand hit enter.\nNow try to close PyMol. Then go back to your terminal and type:\nNotice how it now again says “(base)” on your command prompt. That is because you are back in your base environment. Try to type pymol (and hit enter). Your terminal will tell you it could not find anything called pymol. This is the way it should be. That is because PyMols is installed in the BSF environment, not in the base environment. It illustrates how the base environment is entirely separate from the BSF environment you just made.",
+    "text": "3.1 Install Python\nThis installation procedure includes python and few other tools that you will also need later in the semester:\nIf you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to kaspermunch@birc.au.dk.",
     "crumbs": [
       "Learning Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: Conda environment for BSF</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
     ]
   },
   {
-    "objectID": "chapters/python/appendix_conda_and_pymol.html#creating-an-environment-for-bsf",
-    "href": "chapters/python/appendix_conda_and_pymol.html#creating-an-environment-for-bsf",
-    "title": "3  Appendix: Conda environment for BSF",
+    "objectID": "chapters/python/appendix_conda_and_pymol.html#install-python",
+    "href": "chapters/python/appendix_conda_and_pymol.html#install-python",
+    "title": "3  Appendix: PyMol for BSF",
     "section": "",
-    "text": "Terminal\n\nconda create -y -n BSF --platform osx-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8\n\n\n\n\nTerminal\n\nconda create -y -n BSF --platform win-64 -c conda-forge -c anaconda -c schrodinger pyqt pymol-bundle=3.1 python=3.12 vtk-m=1.8\n\n\n\n\nTerminal\n\nconda deactivate\n\n\n\n\nTerminal\n\nconda activate BSF\n\n\n\n\nTerminal\n\npymol\n\n\n\n\n\nTerminal\n\nconda deactivate",
+    "text": "Mac Windows\n\n\nOpen your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\ncurl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes\n\n\nOpen your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n powershell -ExecutionPolicy ByPass -c \"irm -useb  http://munch-group.org/franklin/installers/install.ps1\" &gt; finst.ps1 &&  powershell .\\finst.ps1 -Role student -Yes ; rm .\\finst.ps1",
     "crumbs": [
       "Learning Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: Conda environment for BSF</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
     ]
   },
   {
-    "objectID": "chapters/python/appendix_conda_and_pymol.html#starting-pymol",
-    "href": "chapters/python/appendix_conda_and_pymol.html#starting-pymol",
-    "title": "3  Appendix: Conda environment for BSF",
-    "section": "Starting PyMol",
-    "text": "Starting PyMol\nFrom now on, you can start PyMol by typing these commands into the terminal (Anaconda Powershell Prompt on Windows):\n\n\nTerminal\n\nconda activate BSF\n\n(hit enter)\n\n\nTerminal\n\npymol\n\n(hit enter)",
+    "objectID": "chapters/python/appendix_conda_and_pymol.html#install-pymol",
+    "href": "chapters/python/appendix_conda_and_pymol.html#install-pymol",
+    "title": "3  Appendix: PyMol for BSF",
+    "section": "3.2 Install PyMol",
+    "text": "3.2 Install PyMol\n\n Mac Windows\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your Terminal application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\n\npixi init --platform osx-64 -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your PowerShell application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n\npixi init -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"",
     "crumbs": [
       "Learning Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: Conda environment for BSF</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/python/appendix_conda_and_pymol.html#running-pymol",
+    "href": "chapters/python/appendix_conda_and_pymol.html#running-pymol",
+    "title": "3  Appendix: PyMol for BSF",
+    "section": "3.3 Running pymol",
+    "text": "3.3 Running pymol\nIn your BSF folder, run:\npixi run pymol",
+    "crumbs": [
+      "Learning Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
     ]
   },
   {
