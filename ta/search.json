@@ -95,7 +95,7 @@
     "href": "chapters/python/before_you_begin.html",
     "title": "2  Before you begin",
     "section": "",
-    "text": "Install Python\nThis chapter serves to get the practicalities out of the way so you can start programming. Read the whole chapter once carefully before you install anything\nIn this course, we use the Python programming language and you need to install the Python program to run the code we will write. I have automated the installation procedure, which include a few other tools that you will also need later in the course:\nNB: If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to kaspermunch@birc.au.dk.",
+    "text": "Install Python\nThis chapter serves to get the practicalities out of the way so you can start programming. Read the whole chapter once carefully before you install anything\nIn this course, we use the Python programming language and you need to install the Python program to run the code we will write. I have automated the installation procedure, which include a few other tools that you will also need later in the course:\nIf you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to kaspermunch@birc.au.dk.",
     "crumbs": [
       "Learning Python",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Before you begin</span>"
