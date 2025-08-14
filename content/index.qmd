@@ -42,14 +42,6 @@ hide-hidden: true
  -->
 
 
-```{mermaid}
-flowchart LR
-  A[Hard edge] --> B(Round edge)
-  B --> C{Decision}
-  C --> D[Result one]
-  C --> E[Result two]
-```
-
 # Welcome {.unnumbered}
 
 [brightspace_2024]: (https://brightspace.au.dk/d2l/home/145685)
