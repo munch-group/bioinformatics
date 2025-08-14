@@ -91,6 +91,9 @@ ul.task-list li input[type="checkbox"] {
 background: #003257;
       }
 </style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -439,16 +442,6 @@ background: #003257;
   <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a>
   <ul class="collapse">
   <li><a href="#week-4" id="toc-week-4" class="nav-link" data-scroll-target="#week-4">Week 4</a></li>
-  <li><a href="#week-5" id="toc-week-5" class="nav-link" data-scroll-target="#week-5">Week 5</a></li>
-  <li><a href="#week-6" id="toc-week-6" class="nav-link" data-scroll-target="#week-6">Week 6</a></li>
-  <li><a href="#week-7" id="toc-week-7" class="nav-link" data-scroll-target="#week-7">Week 7</a></li>
-  <li><a href="#week-8" id="toc-week-8" class="nav-link" data-scroll-target="#week-8">Week 8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10</a></li>
-  <li><a href="#week-11" id="toc-week-11" class="nav-link" data-scroll-target="#week-11">Week 11</a></li>
-  <li><a href="#week-12" id="toc-week-12" class="nav-link" data-scroll-target="#week-12">Week 12</a></li>
-  <li><a href="#week-13" id="toc-week-13" class="nav-link" data-scroll-target="#week-13">Week 13</a></li>
-  <li><a href="#week-14" id="toc-week-14" class="nav-link" data-scroll-target="#week-14">Week 14</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -492,6 +485,22 @@ background: #003257;
 
 **[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
  -->
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Hard edge] --&gt; B(Round edge)
+  B --&gt; C{Decision}
+  C --&gt; D[Result one]
+  C --&gt; E[Result two]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
 <p>This is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The <a href="" title="https://brightspace.au.dk/d2l/home/145685">Brightspace course page</a> is only used for communication, and assignments.</p>
@@ -515,26 +524,8 @@ background: #003257;
 </section>
 <section id="curriculum" class="level1 unnumbered">
 <h1 class="unnumbered">Curriculum</h1>
-<p>The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner).</p>
-<p>Bioinformatics is a rapidly developing field, so textbooks often have parts that need updating. So, in this course, the curriculum for bioinformatics is put together from several sources. We use the best excerpts from the textbooks Understanding Bioinformatics by Jeremy Baum and Marketa J. Zvelebil, Biological Sequence Analysis by Richard Durbin et al., and Exploring Bioinformatics by Caroline St.&nbsp;Clair and Jonathan E. Visick. I have collected the sections from each textbook in separate compendia. You will also be reading short, up-to-date publications on selected topics in bioinformatics.</p>
-<p>Below are links to material covering the bioinformatics topics we treat in the course. In the weekly notes, you can see what you need to read to prepare for each lecture. You can also find any curriculum related to the exercises in the weekly note.</p>
-<p>Compendia you can download here:</p>
-<ul>
-<li><a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=UnderstandingBioinformatics.pdf">Compendium of selections from Understanding Bioinformatics</a></li>
-<li><a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=BiologicalSequenceAnalysis.pdf">Compendium of selections from Biological Sequence Analysis</a></li>
-<li><a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=ExploringBioinformatics.pdf">Compendium of selections from Exploring Bioinformatics</a></li>
-</ul>
-<p>Links to material you need to download yourself (you may need to be on campus or use your student VPN to download from publisher websites):</p>
-<ul>
-<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822">Chapter 11: Genome-Wide Association Studies</a></li>
-<li><a href="https://www.nature.com/articles/s41576-019-0127-1">Benefits and limitations of genome-wide association studies</a></li>
-<li><a href="https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032">The Theory and Practice of Genome Sequence Assembly</a></li>
-<li><a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=AlignmentMethods.pdf">Alignment methods: strategies, challenges, benchmarking, and comparative overview</a></li>
-<li><a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=CLC_Bioinformatics_explained_BLAST.pdf">Bioinformatics explained: BLAST (CLCbio)</a></li>
-<li><a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263">Automatic generation of gene finders for Eukaryotic species</a></li>
-</ul>
-<p>Curriculum on webpages (not PDF format):</p>
-<p><a href="https://neuralnetworksanddeeplearning.com/chap1.html">Using neural nets to recognize handwritten digits</a> (if you have trouble accessing the page, download <a href="https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&amp;type=coursefile&amp;fileId=Neural+networks.zip">this zip file</a> with the HTML content, unzip it, and view it locally).</p>
+<p>The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner). I will develop my own lecture notes and add them to this page as the course progress.</p>
+<!-- THE REST IS HIDDEN -->
 </section>
 <section id="schedule" class="level1 unnumbered">
 <h1 class="unnumbered">Schedule</h1>
@@ -645,304 +636,8 @@ Note
 </div>
 </div>
 <p>The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters <a href="chapters/python/python_values_are_objects.html" class="quarto-xref"><span>9&nbsp; Values are objects</span></a>, <a href="chapters/python/lists.html" class="quarto-xref"><span>10&nbsp; Lists of things</span></a>, <a href="chapters/python/dictionaries.html" class="quarto-xref"><span>11&nbsp; Pairs of things</span></a>, and <a href="chapters/python/gluing_values_in_sequence.html" class="quarto-xref"><span>12&nbsp; Grouping values</span></a>. Do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-5" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-5">Week 5</h3>
-<section id="reading-4" class="level5">
-<h5 class="anchored" data-anchor-id="reading-4">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/python/data_structures.html" class="quarto-xref"><span>15&nbsp; Structuring data</span></a></li>
-<li>Lecture notes: chapter <a href="chapters/python/unleash_your_functions.html" class="quarto-xref"><span>16&nbsp; Recursion</span></a></li>
-<li>Lecture notes: chapter <a href="chapters/python/testing_your_code.html" class="quarto-xref"><span>17&nbsp; Testing your code</span></a></li>
-<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822">Chapter 11: Genomewide Association Studies</a></li>
-<li><a href="https://www.nature.com/articles/s41576-019-0127-1">Benefits and limitations of genomewide association studies</a></li>
-</ul>
-</section>
-<section id="lectures-4" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-4">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about databases, genotyping arrays, and genomewide association studies (GWAS).</li>
-<li>In the first lecture, I will also talk about building simple data strutures in Python.</li>
-<li>In the second lecture, I will talk about how to use recursion in Python.</li>
-</ul>
-</section>
-<section id="exercises-4" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-4">Exercises:</h5>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*.</p>
-</div>
-</div>
-<p>The topics for this week are iteration and data structures. You are meant to complete all the exercises in chapter <a href="chapters/python/iteration_over_values.html" class="quarto-xref"><span>13&nbsp; Iterating values</span></a> and chapter <a href="chapters/python/working_with_data_files.html" class="quarto-xref"><span>14&nbsp; Working with files</span></a>.</p>
-</section>
-</section>
-<section id="week-6" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-6">Week 6</h3>
-<section id="reading-5" class="level5">
-<h5 class="anchored" data-anchor-id="reading-5">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/translation_project/index.html" class="quarto-xref"><span>19&nbsp; Translating ORFs</span></a></li>
-<li>Understanding Bioinformatics 127-141</li>
-</ul>
-</section>
-<section id="lectures-5" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-5">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about global pairwise alignment In the first lecture</li>
-<li>In the first lecture, I will also talk about the weekly programming project.</li>
-<li>In the second lecture, I will talk about local pairwise alignment and more realistic gap scoring.</li>
-</ul>
-</section>
-<section id="exercises-5" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-5">Exercises:</h5>
-<ul>
-<li>The programming project described in chapter <a href="chapters/project/translation_project/index.html" class="quarto-xref"><span>19&nbsp; Translating ORFs</span></a>.</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for programming projects. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Chapter <a href="chapters/project/translation_project/index.html" class="quarto-xref"><span>19&nbsp; Translating ORFs</span></a> is a mandatory assignment. The deadline for handing it in (on Brightspace) is the night before your exercise class in week 41.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="week-7" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-7">Week 7</h3>
-<section id="reading-6" class="level5">
-<h5 class="anchored" data-anchor-id="reading-6">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/folding_project/index.html" class="quarto-xref"><span>20&nbsp; Primer analysis</span></a></li>
-<li>Understanding Bioinformatics: 117-127</li>
-<li>Alignment methods: strategies, challenges, benchmarking, and comparative overview (don’t do the exercises).</li>
-</ul>
-</section>
-<section id="lectures-6" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-6">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about protein substitution matrices and how to score protein alignments. - In the first lecture, I will also talk Python classes and the weekly programming project.</li>
-<li>In the second lecture, I will talk about multiple alignment.</li>
-</ul>
-</section>
-<section id="exercises-6" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-6">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/gwas_databases/index.html">GWAS candidates</a></li>
-<li>The programming project described in chapter <a href="chapters/project/folding_project/index.html" class="quarto-xref"><span>20&nbsp; Primer analysis</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-8" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-8">Week 8</h3>
-<section id="reading-7" class="level5">
-<h5 class="anchored" data-anchor-id="reading-7">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/alignment_project/index.html" class="quarto-xref"><span>21&nbsp; Pairwise alignment</span></a></li>
-<li>Bioinformatics Explained: BLAST</li>
-<li>Biological Sequence Analysis pp.&nbsp;192-197</li>
-</ul>
-</section>
-<section id="lectures-7" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-7">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about how to search for matches in a sequence database and how to asses alignment significance.</li>
-<li>In the first lecture, I will also talk about programming topics and the weekly programming project.</li>
-<li>In the second lecture, I will talk about models of DNA evolution and how to measure evolutionary distance between sequences.</li>
-</ul>
-</section>
-<section id="exercises-7" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-7">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/ccr5_pwalign/index.html">CCR5-delta32</a></li>
-<li>The programming project described in chapter <a href="chapters/project/alignment_project/index.html" class="quarto-xref"><span>21&nbsp; Pairwise alignment</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-9" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-9">Week 9</h3>
-<section id="reading-8" class="level5">
-<h5 class="anchored" data-anchor-id="reading-8">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/codonbias_project/index.html" class="quarto-xref"><span>22&nbsp; Codon usage</span></a></li>
-<li>Biological Sequence Analysis pp.&nbsp;165-179 <!-- UPGMA / NJ --></li>
-</ul>
-</section>
-<section id="lectures-8" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-8">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about methods for sequence clustering.</li>
-<li>In the first lecture, I will also talk about the programming project.</li>
-<li>In the second lecture, I will talk about bioinformatics code libraries for Python, such as BioPython, and the Master in Bioinformatics that we offer at the Bioinformatics Centre.</li>
-</ul>
-</section>
-<section id="exercises-8" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-8">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/mrsa_blast_multalign/index.html">MRSA</a></li>
-<li>The programming project described in chapter <a href="chapters/project/codonbias_project/index.html" class="quarto-xref"><span>22&nbsp; Codon usage</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-10" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-10">Week 10</h3>
-<section id="reading-9" class="level5">
-<h5 class="anchored" data-anchor-id="reading-9">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/hiv_project/index.html" class="quarto-xref"><span>23&nbsp; HIV sub-groups</span></a></li>
-<li>Biological Sequence Analysis pp.&nbsp;192-202 <!-- phylogeny / felsenstein --></li>
-</ul>
-</section>
-<section id="lectures-9" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-9">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about phylogenetic trees.</li>
-<li>In the first lecture, I will also talk about Python topics and the weekly programming project.</li>
-<li>In the second lecture, I will talk about gene prediction in prokaryotes.</li>
-</ul>
-</section>
-<section id="exercises-9" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-9">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/aardwark_seqdist/index.html">Aardvark?</a></li>
-<li>The programming project described in chapter <a href="chapters/project/hiv_project/index.html" class="quarto-xref"><span>23&nbsp; HIV sub-groups</span></a>.</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Chapter <a href="chapters/project/hiv_project/index.html" class="quarto-xref"><span>23&nbsp; HIV sub-groups</span></a> is a mandatory assignment. The deadline for handing it in is the night before your exercise class in week 46.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="week-11" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-11">Week 11</h3>
-<section id="reading-10" class="level5">
-<h5 class="anchored" data-anchor-id="reading-10">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/seqdist_project/index.html" class="quarto-xref"><span>24&nbsp; Sequence trees</span></a></li>
-<li>Biological Sequence Analysis pp.&nbsp;46-66 <!-- HMMs --></li>
-</ul>
-</section>
-<section id="lectures-10" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-10">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about hidden Markov models (HMMs).</li>
-<li>In the first lecture, I will also talk about python topics and the weekly programming project.</li>
-<li>In the second lecture, I will talk about more about HMMs</li>
-</ul>
-</section>
-<section id="exercises-10" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-10">Exercises:</h5>
-<ul>
-<li>The programming project described in chapter <a href="chapters/project/seqdist_project/index.html" class="quarto-xref"><span>24&nbsp; Sequence trees</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-12" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-12">Week 12</h3>
-<section id="reading-11" class="level5">
-<h5 class="anchored" data-anchor-id="reading-11">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/orf_project/index.html" class="quarto-xref"><span>25&nbsp; Finding genes</span></a></li>
-<li>Understanding Bioinformatics pp.&nbsp;438-448 <!--protein prediction --></li>
-<li><a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263">Automatic generation of gene finders for Eukaryotic species</a></li>
-<li><a href="https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032">The Theory and Practice of Genome Sequence Assembly</a> <!-- genome assembly --></li>
-</ul>
-</section>
-<section id="lectures-11" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-11">Lectures</h5>
-<ul>
-<li>In the first lecture, I will talk about applications of hidden Markov models gene finding and protein annotation.</li>
-<li>In the first lecture, I will also talk about Python topics and the weekly programming project.</li>
-<li>In the second lecture, I will talk genome assembly.</li>
-</ul>
-</section>
-<section id="exercises-11" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-11">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/orf_finding/index.html">Plasmid ORFs</a></li>
-<li>The programming project described in chapter <a href="chapters/project/orf_project/index.html" class="quarto-xref"><span>25&nbsp; Finding genes</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-13" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-13">Week 13</h3>
-<section id="reading-12" class="level5">
-<h5 class="anchored" data-anchor-id="reading-12">Reading:</h5>
-<ul>
-<li>Lecture notes: chapter <a href="chapters/project/assembly_project/index.html" class="quarto-xref"><span>26&nbsp; Genome assembly</span></a></li>
-<li>Understanding Bioinformatics pp.&nbsp;494-496 <!-- Neural networks --></li>
-<li><del>Exploring Bioinformatics pp.&nbsp;242-248</del> <!-- RNA structure --></li>
-</ul>
-</section>
-<section id="lectures-12" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-12">Lectures:</h5>
-<ul>
-<li>In the first lecture, I will talk about neural networks</li>
-<li>In the first lecture, I will also talk about the programming project.</li>
-<li>In the second lecture, I will talk about applications of HMMs <del>RNA secondary structure prediction</del>.</li>
-</ul>
-</section>
-<section id="exercises-12" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-12">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/long_reads/index.html">Read mapping</a></li>
-<li>The programming project described in chapter <a href="chapters/project/assembly_project/index.html" class="quarto-xref"><span>26&nbsp; Genome assembly</span></a> (not a mandatory assignment).</li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
-</section>
-</section>
-<section id="week-14" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="week-14">Week 14</h3>
-<section id="reading-13" class="level5">
-<h5 class="anchored" data-anchor-id="reading-13">Reading:</h5>
-<ul>
-<li>None this week.</li>
-</ul>
-</section>
-<section id="lectures-13" class="level5">
-<h5 class="anchored" data-anchor-id="lectures-13">Lectures:</h5>
-<!-- TODO: Add toic for lecture in week 14 -->
-<ul>
-<li>In the first lecture, I will talk about python and algorithms. You will also hear a guest talk by about bioinformatics outside the class room.</li>
-<li>In the last lecture, we will evaluate the course and review the exam’s practicalities.</li>
-</ul>
-</section>
-<section id="exercises-13" class="level5">
-<h5 class="anchored" data-anchor-id="exercises-13">Exercises:</h5>
-<ul>
-<li>The web exercise: <a href="./chapters/web/neural_networks/index.html">Neural networks</a></li>
-</ul>
-<p>From the <a href="./supplementary/project_files.html">project files</a> page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.</p>
+<!-- THE REST IS HIDDEN -->
+<!-- not in html -->
 
 
 </section>
