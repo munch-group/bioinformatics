@@ -14,6 +14,7 @@ book:
     title: "Content"
     collapse-level: 1
     background: "white"      
+  # downloads: [pdf]
   chapters:
     - index.qmd
     # - curriculum.qmd
@@ -122,7 +123,6 @@ book:
       - supplementary/bioinformatics_resources.qmd
     - assignments.qmd
     - exam.qmd
-  # downloads: [pdf]
 
 bibliography: references.bib
 
