@@ -179,3 +179,7 @@ content/project_solutions/*.py
 *bioinf_check/
 protocol*
 grades*
+
+# pixi environments
+.pixi
+*.egg-info

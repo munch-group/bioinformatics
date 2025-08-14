@@ -5,7 +5,32 @@
 
 ## Install Python {.unnumbered}
 
-In this course, we use the Python programming language and need the Python program to run the code we will  write. We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings.
+In this course, we use the Python programming language and you need to install the Python program to run the code we will write. I have automated the installation procedure, which include a few other tools that you will also need later in the course:
+
+
+::: {.panel-tabset }
+
+## <i class="bi bi-apple"></i> Mac  
+Open your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+
+```bash
+curl -fsSL https://tinyurl.com/franklin-mac-student-install | bash -s -- --role student --yes
+```
+
+## <i class="bi bi-windows"></i> Windows
+Open your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
+
+```powershell
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 &&  powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1A
+```
+
+:::
+
+**NB**: If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <kaspermunch@birc.au.dk>.
+
+<!-- 
+We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings. 
+-->
 
 ## The text editor {.unnumbered}
 
