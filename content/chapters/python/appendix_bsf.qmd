@@ -1,20 +1,25 @@
 # Appendix: PyMol for BSF {#sec-bsf}
 
-## Install Python
+## Install Python {.unnumbered}
 
 This installation procedure includes python and few other tools that you will also need later in the semester:
 
 ::: {.panel-tabset }
 
 ## <i class="bi bi-apple"></i> Mac  
-Open your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+2. Open your Terminal application. 
+3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
 
 ```bash
 curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
 ```
 
 ## <i class="bi bi-windows"></i> Windows
-Open your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
+
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+2. Open your PowerShell application.
+3. Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
 
 ```powershell
  powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 &&  powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1
@@ -22,7 +27,7 @@ Open your PowerShell application, paste the command into the PowerShell window a
 
 :::
 
-## Install PyMol
+## Install PyMol {.unnumbered}
 
 ::: {.panel-tabset }
 
@@ -48,7 +53,7 @@ pixi init -c conda-forge -c anaconda -c schrodinger && pixi config set --local r
 
 :::
 
-## Running pymol
+## Running PyMol {.unnumbered}
 
 In your BSF folder, run:
 
