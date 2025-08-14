@@ -22,6 +22,9 @@ book:
     #   - overview.qmd
     #   - weekplan.qmd
     # - weekplan.qmd
+    - supplementary/slides2024.qmd
+    - supplementary/recordings2024.qmd
+    - assignments.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/preface.qmd
@@ -88,14 +91,11 @@ book:
       - chapters/web/orf_finding/index.qmd
       - chapters/web/long_reads/index.qmd
       - chapters/web/neural_networks/index.qmd
-    - part: "Supplementary"
-      chapters: 
-      - supplementary/project_files.qmd
-      - supplementary/recordings2024.qmd
-      - supplementary/slides2024.qmd
-      - supplementary/bioinformatics_resources.qmd
-    - assignments.qmd
-    - exam.qmd
+    - supplementary/project_files.qmd
+    - supplementary/bioinformatics_resources.qmd
+    # - part: "Supplementary"
+    #   chapters: 
+#    - exam.qmd
   downloads: [pdf]
 
 bibliography: references.bib
