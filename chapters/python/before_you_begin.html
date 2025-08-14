@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-f1f3b3fd89b16212fde59a2af78f1759.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-49ef29405eae076ba539ad27c6a63fd8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-fc26c1e3d20f8e7e7f8eeed5a38c76e5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-fa0c3183fc4e561b5d7a899a43a38cdf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -484,7 +484,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>This chapter serves to get the practicalities out of the way so you can start programming. Read the whole chapter once carefully before you install anything</em></p>
 <section id="install-python" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="install-python">Install Python</h2>
-<p>In this course, we use the Python programming language and need the Python program to run the code we will write. We will use a Python distribution called <em>Anaconda</em>. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to <a href="https://www.anaconda.com/products/individual">this</a> site. Click “Download”. When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings.</p>
+<p>In this course, we use the Python programming language and you need to install the Python program to run the code we will write. I have automated the installation procedure, which include a few other tools that you will also need later in the course:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><i class="bi bi-apple"></i> Mac</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="bi bi-windows"></i> Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Open your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> http://munch-group.org/franklin/installers/install.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">--role</span> student <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Open your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm -useb  http://munch-group.org/franklin/installers/install.ps1"</span> <span class="op">&gt;</span> finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">&amp;&amp;</span>  powershell <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">-</span>Role student <span class="op">-</span>Yes <span class="op">;</span> <span class="fu">rm</span> <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><strong>NB</strong>: If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <a href="mailto:kaspermunch@birc.au.dk" class="email">kaspermunch@birc.au.dk</a>.</p>
+<!-- 
+We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings. 
+-->
 </section>
 <section id="the-text-editor" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-text-editor">The text editor</h2>
@@ -534,65 +551,65 @@ Figure&nbsp;2.3: Anaconda Powershell Prompt app on Windows
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If I had been on a Windows machine, it would have looked something like this:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb3" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>$ cd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>C:\Users\kasper\programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>$ cd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>C:\Users\kasper\programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So, right now, I am in the <code>programming</code> folder. <code>/Users/kasper/programming</code> is the folder’s path or “full address” with dashes (or backslashes on Windows) separating nested folders. So <code>programming</code> is a subfolder of <code>kasper</code>, a subfolder of <code>Users</code>. That way, you know which folder you are in and where that folder is. Let us see what is in this folder. You can use the <code>ls</code> command (l as in Lima and s as in Sierra). When I do that and press <code>Enter</code> I get the following:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>notes projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>notes projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There seem to be two other folders, one called <code>notes</code> and another called <code>projects</code>. If you are curious about what is inside the <code>notes</code> folder, you can “walk” into the folder with the <code>cd</code> command. To use this command, you must specify which folder you want to walk into (in this case, <code>notes</code>). We do this by typing <code>cd</code>, then a space, and then the folder’s name. When I press <code>Enter</code> I get the following:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>$ cd notes</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>$ cd notes</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It seems that nothing really happened, but if I run the <code>pwd</code> command now to see which folder I am in, I get the following:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming/notes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming/notes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Just to keep track of what is happening: before we ran the <code>cd</code> command, we were in the directory <code>/Users/kasper/programming</code> folder, and now we’re in <code>/Users/kasper/programming/notes</code>. This means that we can now use the <code>ls</code> command to see what is in the <code>notes</code> folder:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Again, it seems like nothing happened. Well, <code>ls</code> and <code>dir</code> do not show anything if the folder we are in is empty. So <code>notes</code> must be empty. Let us go back to where we came from. To walk “back” or “up” to <code>/Users/kasper/programming</code>, we again use the <code>cd</code> command, but we do not need to name a folder this time. Instead, we use the special name <code>..</code> to say that we wish to go to the parent folder called <code>programming</code>, i.e., the folder we just came from:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>$ cd ..</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>$ cd ..</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>$ pwd</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>/Users/kasper/programming</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When we run the <code>pwd</code> command, we see that we are back where we started. Let us see if the two folders are still there:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb9" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>notes projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>$ ls</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>notes projects</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>They are!</p>
 <p>Hopefully, you can now navigate your folders and see what is in them. You will need this later to access the folders with the code you write for the exercises and projects during the course.</p>
@@ -703,12 +720,12 @@ Hopefully, you are now able to navigate your folders and see what is in them. Yo
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb10" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n bioprog</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>conda activate bioprog</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels conda-forge</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels sepandhaghighi</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels kaspermunch</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>conda install -y 'python=3.9' pygments textual rich art bp-help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n bioprog</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>conda activate bioprog</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels conda-forge</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels sepandhaghighi</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>conda config --env --add channels kaspermunch</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>conda install -y 'python=3.9' pygments textual rich art bp-help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This command runs the Conda program and tells it to create a new environment named “bioprog” and install the packages we need in that environment. Once you hit enter on the last command, Conda works for some time and then writes a long list of packages in your terminal. These are all the packages and dependencies required in versions that fit together.</p>
 <p>Notice how the command prompt changed from “(base)” to “(bioprog)” to show that you are now in the bioprog environment. It looks like nothing has changed, but now you can access unavailable terminal commands in the base environment. You’ll be able to learn about these later. Try this command:</p>
