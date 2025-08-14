@@ -1,4 +1,66 @@
-# Appendix: Conda environment for BSF {#sec-bsf}
+# Appendix: PyMol for BSF {#sec-bsf}
+
+## Install Python
+
+This installation procedure includes python and few other tools that you will also need later in the semester:
+
+::: {.panel-tabset }
+
+## <i class="bi bi-apple"></i> Mac  
+Open your Terminal application, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+
+```bash
+curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
+```
+
+## <i class="bi bi-windows"></i> Windows
+Open your PowerShell application, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
+
+```powershell
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 &&  powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1
+```
+
+:::
+
+If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <kaspermunch@birc.au.dk>.
+
+
+## Install PyMol
+
+::: {.panel-tabset }
+
+## <i class="bi bi-apple"></i> Mac  
+
+1. Create a folder on your computer dedicated to the BSF course. Let's say you call it 'BSF' and put it in your 'Documents' folder.
+2. Open your Terminal application, and navigate to that folder using `cd` (something like `cd Documents` and then `cd BSF`).
+3. Once you are in the 'BSF' folder, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+
+```bash
+pixi init --platform osx-64 -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt "pymol-bundle=3.1" "vtk-m=1.8"
+```
+
+## <i class="bi bi-windows"></i> Windows
+
+1. Create a folder on your computer dedicated to the BSF course. Let's say you call it 'BSF' and put it in your 'Documents' folder.
+2. Open your PowerShell application, and navigate to that folder using `cd` (something like `cd Documents` and then `cd BSF`).
+3. Once you are in the 'BSF' folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
+
+```powershell
+pixi init -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt "pymol-bundle=3.1" "vtk-m=1.8"
+```
+
+:::
+
+## Running pymol
+
+In your BSF folder, run:
+
+```bash
+pixi run pymol
+```
+
+
+<!-- 
 
 *This chapter is only relevant to students following both Bioinformatics and Programming and Biomolekylær Struktur og Funktion.*
 
@@ -72,4 +134,4 @@ pymol
 ```
 
 (hit enter)
-
+ -->
