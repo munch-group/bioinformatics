@@ -9,7 +9,7 @@ Solutions to programming projects are encrypted like this:
 
 and can  be decrypted like this:
 
-    python ../scripts/encrypt.py -d <encryption key> alignmentproject_solution.py.encrypted
+    python ../scripts/encrypt.py --decrypt <encryption key> alignmentproject_solution.py.encrypted
 
 If you are a teacher you can email me for the encryption key.
 
