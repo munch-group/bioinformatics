@@ -25,7 +25,7 @@ Open your PowerShell application, paste the command into the PowerShell window a
 
 :::
 
-**NB**: If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <kaspermunch@birc.au.dk>.
+If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <kaspermunch@birc.au.dk>.
 
 <!-- 
 We will use a Python distribution called *Anaconda*. Anaconda is the easiest way to install Python on Windows, Mac OS (Mac), and Linux. To install Anaconda, head to [this](https://www.anaconda.com/products/individual) site. Click "Download". When the download has been completed, double-click the file you just downloaded and follow the instructions on the screen. You must accept all the suggested installation settings. 
