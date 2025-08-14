@@ -14,6 +14,7 @@ book:
     title: "Content"
     collapse-level: 1
     background: "white"      
+  # downloads: [pdf]
   chapters:
     - index.qmd
     # - curriculum.qmd
@@ -96,7 +97,6 @@ book:
     # - part: "Supplementary"
     #   chapters: 
 #    - exam.qmd
-  downloads: [pdf]
 
 bibliography: references.bib
 
