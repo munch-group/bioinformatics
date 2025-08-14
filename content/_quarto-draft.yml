@@ -16,12 +16,12 @@ book:
     background: "white"      
   chapters:
     - index.qmd
-    - curriculum.qmd
+    # - curriculum.qmd
     # - part: "Schedule"
     #   chapters:
     #   - overview.qmd
     #   - weekplan.qmd
-    - weekplan.qmd
+    # - weekplan.qmd
     - part: "Learning Python"
       chapters:
       - chapters/python/preface.qmd
