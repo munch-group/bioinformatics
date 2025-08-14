@@ -22,9 +22,6 @@ Open your PowerShell application, paste the command into the PowerShell window a
 
 :::
 
-If you see any red text during the installation, the installation was not succesful. In that case take a screenshot and send it to <kaspermunch@birc.au.dk>.
-
-
 ## Install PyMol
 
 ::: {.panel-tabset }
