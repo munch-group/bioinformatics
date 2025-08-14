@@ -31,10 +31,6 @@ jobs:
       #     # extra-packages: |
       #     #   any::downloadthis
 
-      - name: Install TinyTeX
-        run: |
-          quarto install tinytex --no-prompt
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         # with:
@@ -42,6 +38,10 @@ jobs:
         #   tinytex: true 
         #   # uncomment below and fill to pin a version
         #   # version: SPECIFIC-QUARTO-VERSION-HERE
+
+      - name: Install TinyTeX
+        run: |
+          quarto install tinytex --no-prompt
 
       - name: Render Quarto Project - default profile
         uses: quarto-dev/quarto-actions/render@v2
