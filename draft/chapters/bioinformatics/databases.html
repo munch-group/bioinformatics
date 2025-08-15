@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; Databases – Bioinformatics and Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/web/gwas_databases/index.html" rel="next">
+<link href="../../chapters/bioinformatics/gwas.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-49ef29405eae076ba539ad27c6a63fd8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a58caedd7710624ba8029c99cf6efb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/databases.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Databases</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Content</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Curriculum</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Learning Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/before_you_begin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Before you begin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/writing_a_program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing a program</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dealing_with_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dealing with values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/the_order_of_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The order of events</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/course_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Course tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/controlling_behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Controlling behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/organizing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Organizing code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/python_values_are_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Values are objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lists of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Pairs of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/gluing_values_in_sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grouping values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/iteration_over_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Iterating values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/working_with_data_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Structuring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/unleash_your_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Recursion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/testing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing your code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/your_own_types_of_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Your kind of thing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/using_code_from_other_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code in other files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/on_the_shoulders_of_giants.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Giant’s shoulders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/appendix_bsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bioinformatics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Genome-wide association studies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/databases.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/translation_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/hidden_markov_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/sequence_annnotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Sequence annotation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/new_hmm_exercise/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Membrane proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/orf_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Finding genes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/folding_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Primer analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/assembly_and_mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Genome assembly and read mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/assembly_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genome assembly</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/global_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/local_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/alignment_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/protein_substitution_matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Data base searching</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/hiv_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Multiple alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/seqdist_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/models_of_dna_evolution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Models of DNA evolution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/phylogenetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Phyogenetics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supplementary</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/project_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/recordings2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture recordings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/slides2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/bioinformatics_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam info</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#genbank" id="toc-genbank" class="nav-link active" data-scroll-target="#genbank">GenBank</a></li>
+  <li><a href="#uniprot" id="toc-uniprot" class="nav-link" data-scroll-target="#uniprot">UniProt</a></li>
+  <li><a href="#sequence-databases" id="toc-sequence-databases" class="nav-link" data-scroll-target="#sequence-databases">Sequence databases</a></li>
+  <li><a href="#genome-browsers" id="toc-genome-browsers" class="nav-link" data-scroll-target="#genome-browsers">Genome browsers</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/databases.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Databases</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Databases</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Bioinformatics databases are crucial resources that provide access to a vast array of biological data, ranging from genetic sequences and protein structures to functional annotations and disease-related information. These databases play a pivotal role in various research fields, aiding scientists in data analysis, hypothesis testing, and discovery. Here’s an overview of some of the most important bioinformatics databases and how to use them:</p>
+<section id="genbank" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="genbank">GenBank</h2>
+<p>GenBank is a comprehensive database maintained by the National Center for Biotechnology Information (NCBI) that contains DNA sequences submitted by researchers worldwide. It includes sequences from various organisms, along with associated metadata and annotations. Users can search for specific sequences, access genome assemblies, and retrieve information for various genomic regions.</p>
+<p>Key Features of GenBank:</p>
+<ul>
+<li>Sequence Collection: GenBank contains a vast collection of DNA, RNA, and protein sequences from diverse organisms, including viruses, bacteria, fungi, plants, animals, and more.</li>
+<li>Annotations: Sequences in GenBank are accompanied by annotations that provide valuable information about the sequence, such as gene names, protein products, functional regions, and other relevant data.</li>
+<li>Genomic Assemblies: GenBank hosts whole genome assemblies for many organisms, enabling researchers to access and analyze complete genomes.</li>
+<li>Versioning: Each sequence in GenBank is assigned a version number to track changes and updates. This allows researchers to access historical versions of sequences.</li>
+<li>Cross-References: GenBank cross-references other databases and resources, facilitating integration and collaboration among different data sources.</li>
+<li>BioProject and BioSample: GenBank integrates with BioProject and BioSample databases, providing additional context for submitted sequences, such as information about the source organism and experimental details.</li>
+<li>Search and Retrieval: The GenBank website offers a user-friendly interface for searching and retrieving sequences based on keywords, accession numbers, organisms, and more.</li>
+</ul>
+</section>
+<section id="uniprot" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="uniprot">UniProt</h2>
+<p>UniProt is a database that provides detailed information about protein sequences and their functional annotations. It integrates data from various resources, offering a centralized repository for protein-related information. Researchers can search for proteins by name, sequence, or keywords and access data such as protein function, structure, domains, and post-translational modifications.</p>
+<p>UniProt (Universal Protein Resource) is a comprehensive and widely used bioinformatics database that provides a centralized repository of protein sequences and functional information. Maintained collaboratively by the European Bioinformatics Institute (EBI), the Swiss Institute of Bioinformatics (SIB), and the Protein Information Resource (PIR), UniProt serves as a valuable resource for researchers, educators, and students in the fields of biology, genetics, and molecular biology.</p>
+<p>UniProt is divided into three main components:</p>
+<ul>
+<li>UniProtKB: This is the primary component, providing a comprehensive collection of protein sequences and annotations. UniProtKB is further subdivided into three subdatabases:</li>
+<li>UniProtKB/Swiss-Prot: Curated protein entries with high-quality annotations. UniProtKB/TrEMBL: Automatically annotated protein entries that have not yet been curated. UniRef: This component clusters closely related protein sequences into UniRef clusters, reducing redundancy and simplifying sequence analysis.</li>
+<li>UniParc: UniParc contains a unique and non-redundant collection of all publicly available protein sequences, regardless of their level of annotation.</li>
+</ul>
+<p>Key Features of UniProt:</p>
+<ul>
+<li>Protein Sequences: UniProt contains a vast collection of protein sequences from a wide range of organisms, including bacteria, archaea, fungi, plants, animals, and viruses.</li>
+<li>Functional Annotations: Each protein entry in UniProt is accompanied by extensive functional annotations, providing information about the protein’s biological role, structure, domains, post-translational modifications, interactions, subcellular localization, and more.</li>
+<li>Cross-References: UniProt integrates information from other databases and resources, offering cross-references to relevant data sources, such as gene databases, literature citations, and 3D protein structures.</li>
+<li>Isoforms and Variants: UniProt includes information about protein isoforms, splice variants, and natural variants that affect protein function.</li>
+<li>Taxonomic Information: Protein entries are categorized based on taxonomy, enabling users to explore protein diversity across different organisms.</li>
+<li>Sequence Alignments: UniProt provides sequence alignments for families of homologous proteins, aiding in understanding protein evolution and relationships.</li>
+<li>Disease Annotations: UniProt includes annotations linking proteins to various diseases, such as genetic disorders and cancers, based on experimental evidence.</li>
+<li>Literature Citations: Protein entries often include references to scientific literature, allowing users to access the original research articles related to specific proteins.</li>
+<li>Keywords and Annotations: UniProt uses controlled vocabularies to assign keywords and annotations to proteins, facilitating standardized and structured data representation.</li>
+</ul>
+<p>Usage of UniProt:</p>
+<ul>
+<li>Search: Enter protein names, identifiers, gene names, keywords, or organisms in the search bar.</li>
+<li>Browse: Explore protein entries by taxonomy, organism, keywords, and functional annotations.</li>
+<li>Retrieve Information: Access protein sequences, functional annotations, cross-references, and literature citations.</li>
+<li>Analyze: Utilize the provided data to understand protein function, structure, interactions, and disease associations.</li>
+<li>Integration: Integrate UniProt data with other bioinformatics tools and resources for comprehensive analyses.</li>
+<li>UniProt is an invaluable resource for researchers studying proteins, their functions, and their roles in various biological processes. Its user-friendly interface, extensive annotations, and cross-referencing capabilities make it a cornerstone tool in the field of molecular biology.</li>
+</ul>
+<p><strong>PubMed:</strong> PubMed is a database maintained by the National Library of Medicine, offering access to an extensive collection of biomedical literature. Researchers can search for articles related to specific topics, diseases, genes, or proteins. PubMed provides abstracts, full-text articles, and links to external resources, aiding literature review and research planning.</p>
+<p><strong>Ensembl:</strong> Ensembl is a genome browser and annotation database that provides genomic sequences, gene annotations, and functional information for a wide range of species. Users can explore gene structures, regulatory elements, genetic variations, and comparative genomics data. Ensembl’s browser interface allows for interactive exploration of genomic regions.</p>
+<p><strong>NCBI Gene:</strong> This database offers comprehensive information about genes, including functional annotations, expression data, gene-disease associations, and orthologous relationships. Researchers can search for specific genes, access genetic and protein sequences, and retrieve details about gene function and expression patterns.</p>
+<p>The NCBI Gene database, maintained by the National Center for Biotechnology Information (NCBI), is a comprehensive resource that provides information about genes from a wide range of organisms. It serves as a centralized repository for gene-related data, annotations, and functional information. The database plays a crucial role in molecular biology research, aiding scientists in understanding gene functions, interactions, and regulatory mechanisms.</p>
+<p>Key Features of the NCBI Gene Database:</p>
+<p>Gene Information: The NCBI Gene database contains detailed information about individual genes, including gene names, symbols, aliases, genomic locations, chromosomal coordinates, and orientations.</p>
+<p>Gene Function: Each gene entry is accompanied by functional annotations that describe the gene’s biological roles, molecular functions, and involvement in cellular processes.</p>
+<p>Transcripts and Isoforms: The database provides information about different transcript variants and isoforms associated with a gene. This includes details about alternative splicing, coding regions, and untranslated regions.</p>
+<p>Orthologs and Paralogs: NCBI Gene includes information about orthologous and paralogous genes across different species, aiding in understanding gene evolution and relationships.</p>
+<p>Homology and Alignment: Gene entries often include sequence alignments, similarity scores, and evolutionary relationships with related genes.</p>
+<p>Protein Products: NCBI Gene provides information about the protein products encoded by genes, including functional domains, post-translational modifications, and protein interactions.</p>
+<p>Gene Ontology (GO) Annotations: Many gene entries are associated with Gene Ontology terms that categorize gene functions, cellular components, and biological processes.</p>
+<p>Expression Data: The database offers data on gene expression patterns in various tissues, developmental stages, and conditions, aiding in understanding gene regulation.</p>
+<p>Genomic Context: Gene entries include information about neighboring genes, regulatory elements, and genetic variations in the genomic vicinity.</p>
+<p>Disease Associations: Gene entries may include annotations linking genes to specific diseases, based on experimental evidence.</p>
+<p>Usage of the NCBI Gene Database:</p>
+<p>To use the NCBI Gene database effectively:</p>
+<p>Search: Enter gene names, symbols, IDs, or keywords in the search bar. Browse: Explore gene entries by species, functional annotations, and genomic locations. Retrieve Information: Access gene details, functional annotations, orthologs, paralogs, and protein products. Analyze: Utilize the provided data to understand gene functions, expression patterns, and disease associations. Cross-Reference: NCBI Gene integrates with other NCBI databases, providing links to nucleotide sequences, protein sequences, PubMed articles, and more. The NCBI Gene database serves as a critical resource for researchers studying individual genes and their roles in various biological processes. Its comprehensive annotations, integration with other NCBI resources, and user-friendly interface make it an essential tool for molecular biologists, geneticists, and researchers across diverse fields.</p>
+<p><strong>dbSNP:</strong> The Single Nucleotide Polymorphism Database (dbSNP) is a repository of genetic variations, including SNPs and other types of variations. Researchers can search for specific variations, retrieve their annotations, and explore data related to population frequencies, diseases, and functional effects.</p>
+<p>The dbSNP (Single Nucleotide Polymorphism Database) is a comprehensive bioinformatics resource maintained by the National Center for Biotechnology Information (NCBI). It serves as a repository for genetic variations, including single nucleotide polymorphisms (SNPs), insertions, deletions, and other types of genetic variants. dbSNP plays a crucial role in cataloging and providing access to genetic variations across various species, aiding researchers in understanding the genetic basis of traits, diseases, and population diversity.</p>
+<p>Key Features of the dbSNP Database:</p>
+<p>Variation Catalog: dbSNP contains a wide variety of genetic variations, including SNPs, short insertions and deletions (indels), microsatellites, and larger structural variants.</p>
+<p>Variant Annotations: Each genetic variant is accompanied by annotations, such as genomic coordinates, alleles, frequencies in different populations, and clinical significance (if applicable).</p>
+<p>Population Data: dbSNP provides information about the frequency of genetic variants in different human populations, enabling researchers to study population genetics and diversity.</p>
+<p>Functional Annotations: Many genetic variants are annotated with potential functional consequences, such as effects on protein coding, splicing, or regulatory elements.</p>
+<p>Cross-References: dbSNP cross-references other databases, allowing users to access additional information about genes, proteins, and diseases associated with specific genetic variants.</p>
+<p>Genomic Context: The database includes information about the genomic context of variations, such as neighboring genes, regulatory elements, and conserved regions.</p>
+<p>ClinVar Integration: dbSNP integrates with the ClinVar database, providing information about the clinical significance of genetic variants and their associations with diseases.</p>
+<p>Genome Build Compatibility: dbSNP supports different genome builds, enabling users to map variations to specific versions of the genome.</p>
+<p>Usage of the dbSNP Database:</p>
+<p>To use the dbSNP database effectively:</p>
+<p>Search: Enter SNP IDs, genomic coordinates, gene names, or keywords in the search bar. Browse: Explore variants by chromosome, population, frequency, or functional annotations. Retrieve Information: Access variant details, genomic coordinates, allele frequencies, and clinical significance information. Analyze: Utilize variant annotations for studying disease associations, population genetics, and functional effects. Integration: Combine dbSNP data with other resources to enhance genetic and genomic analyses. dbSNP is a crucial resource for researchers investigating the genetic variations that contribute to phenotypic differences, diseases, and population diversity. Its extensive collection of annotated variants, integration with other databases, and user-friendly interface make it an indispensable tool for geneticists, epidemiologists, and researchers in related fields.</p>
+<p><strong>OMIM:</strong> Online Mendelian Inheritance in Man (OMIM) is a database that catalogs genetic mutations and their relationships to inherited diseases. Researchers can search for genes, phenotypes, and diseases to access information about genetic disorders, associated mutations, and relevant literature.</p>
+<p>The Online Mendelian Inheritance in Man (OMIM) database is a comprehensive and authoritative resource that catalogues information about genetic disorders, traits, and other phenotypic traits in humans. Maintained by the McKusick-Nathans Institute of Genetic Medicine at Johns Hopkins University, OMIM plays a pivotal role in bridging the gap between genetic research and clinical medicine, providing valuable insights into the genetic basis of various human conditions.</p>
+<p>Key Features of the OMIM Database:</p>
+<p>Genetic Disorders: OMIM contains detailed information about a wide range of genetic disorders, both rare and common, providing insights into the genetic mutations, inheritance patterns, clinical features, and molecular mechanisms underlying these conditions.</p>
+<p>Phenotypic Traits: In addition to genetic disorders, OMIM also catalogues information about various phenotypic traits, such as physical characteristics, susceptibility to diseases, and responses to treatments.</p>
+<p>Gene-Centric Information: OMIM provides gene-centric entries that include information about specific genes associated with genetic disorders. These entries detail gene functions, mutations, protein products, and any known associations with diseases or traits.</p>
+<p>Clinical Descriptions: Each entry includes detailed clinical descriptions of the disorders or traits, including symptoms, diagnostic criteria, and information about disease progression.</p>
+<p>Genetic Inheritance Patterns: OMIM categorizes disorders based on their inheritance patterns, such as autosomal dominant, autosomal recessive, X-linked, and mitochondrial.</p>
+<p>Gene and Locus References: OMIM cross-references genes and loci to other databases and resources, facilitating integration with genomic and functional data.</p>
+<p>Links to Literature: OMIM entries include references to scientific literature, providing access to primary research articles and reviews related to specific disorders and genes.</p>
+<p>Molecular Mechanisms: Many OMIM entries describe the molecular mechanisms underlying genetic disorders, providing insights into how mutations affect biological processes.</p>
+<p>Usage of the OMIM Database:</p>
+<p>To use the OMIM database effectively:</p>
+<p>Search: Enter disease names, gene names, phenotypic keywords, or gene identifiers in the search bar. Browse: Explore entries by disease categories, gene names, inheritance patterns, and other criteria. Retrieve Information: Access detailed information about genetic disorders, phenotypic traits, genes, clinical descriptions, and molecular mechanisms. Analyze: Utilize the provided data to understand the genetic basis of diseases, inheritance patterns, and potential therapeutic targets. Integration: Combine OMIM data with other genetic and genomic resources to enhance research and clinical applications. OMIM is widely used by geneticists, clinicians, researchers, and healthcare professionals to gain insights into the genetic underpinnings of diseases, guide clinical diagnoses, and inform therapeutic strategies. Its rich content, authoritative sources, and user-friendly interface make it an essential tool for anyone involved in genetics and genomics research.</p>
+<p><strong>STRING:</strong> The STRING database provides information about protein-protein interactions and functional associations. Users can search for a protein of interest to explore its interactions, view network maps, and analyze the potential functions of proteins within a network context.</p>
+<p>To use these databases effectively:</p>
+<p>Keyword Search: Start by entering relevant keywords, gene names, protein identifiers, or disease names in the search bar. Filters: Many databases offer filters to refine search results based on criteria such as species, data type, and publication date. Advanced Search: Use advanced search options to specify specific fields or search criteria to narrow down results. Data Retrieval: Once you find relevant information, you can often download sequences, annotations, and other data for further analysis. Citations: When using data from these databases in your research, make sure to provide proper citations to acknowledge the original sources. These databases are continuously updated and expanded, so it’s essential to explore their documentation and tutorials to stay informed about the latest features and search strategies.</p>
+<p>The STRING database (Search Tool for the Retrieval of Interacting Genes/Proteins) is a valuable bioinformatics resource that provides information about protein-protein interactions (PPIs) and functional associations. STRING helps researchers explore the relationships between proteins, gain insights into biological processes, and understand the complex networks that underlie various cellular functions. Maintained by a collaborative team of researchers, STRING is widely used in various fields, including molecular biology, systems biology, and drug discovery.</p>
+<p>Key Features of the STRING Database:</p>
+<p>Protein Interaction Data: STRING aggregates and integrates experimental and computational data on protein interactions from diverse sources, including high-throughput experiments, curated databases, and literature mining.</p>
+<p>Functional Associations: Beyond direct physical interactions, STRING provides information about functional associations between proteins, such as co-expression, shared domains, and similar annotations.</p>
+<p>Confidence Scores: STRING assigns confidence scores to interactions and associations based on the evidence supporting them. These scores help users assess the reliability of the reported interactions.</p>
+<p>Network Visualization: STRING generates interactive graphical representations of protein networks, allowing users to visualize and explore protein interactions and functional relationships in a visual format.</p>
+<p>Species Coverage: STRING supports a wide range of organisms, from model organisms to less-studied species, enabling researchers to investigate protein interactions in different biological contexts.</p>
+<p>Enrichment Analysis: STRING offers enrichment analysis tools that help users identify overrepresented functional categories, pathways, and Gene Ontology terms within a set of proteins of interest.</p>
+<p>Prediction Methods: STRING includes computational prediction methods that estimate potential interactions based on sequence similarities, domain architectures, and other features.</p>
+<p>Cross-References: STRING provides cross-references to external resources, allowing users to access additional information about interacting proteins, pathways, and diseases.</p>
+<p>Usage of the STRING Database:</p>
+<p>To use the STRING database effectively:</p>
+<p>Search: Enter protein names, identifiers, or keywords to find interactions and associations. Network Visualization: Explore and visualize protein interaction networks, adjusting confidence thresholds and interaction types. Retrieve Information: Access interaction scores, functional annotations, pathway information, and external references. Analyze: Utilize the provided data to understand protein functions, regulatory mechanisms, and disease associations. Enrichment Analysis: Perform enrichment analysis to identify functional themes within a set of proteins. Integration: Combine STRING data with other omics data to gain a holistic understanding of cellular processes. STRING is a versatile tool for researchers investigating protein interactions, cellular pathways, and systems-level biology. Its user-friendly interface, comprehensive data sources, and advanced analysis features make it an essential resource for studying the complex molecular networks that govern biological functions.</p>
+</section>
+<section id="sequence-databases" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sequence-databases">Sequence databases</h2>
+</section>
+<section id="genome-browsers" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="genome-browsers">Genome browsers</h2>
+<p>The UCSC Genome Browser is a widely used and comprehensive online tool for visualizing and exploring genomic information from a wide range of organisms. Developed and maintained by the University of California, Santa Cruz (UCSC), this browser offers a user-friendly interface to navigate and analyze genomes, gene structures, regulatory elements, genetic variations, and other genomic features. Here’s an overview of the UCSC Genome Browser and its key features:</p>
+<p>Features of the UCSC Genome Browser:</p>
+<p>Genome Selection: The UCSC Genome Browser supports a vast collection of genomes from various species, including humans, model organisms, and microbes. Users can select the genome of interest from a dropdown menu.</p>
+<p>Genome Views: The browser provides different views of the genome, including the standard linear view, a circular view (for some genomes), and a conservation view that highlights evolutionarily conserved regions.</p>
+<p>Navigation and Zoom: Users can easily navigate through genomic regions using navigation arrows and zoom controls. This allows detailed examination of specific regions.</p>
+<p>Annotation Tracks: One of the most powerful features of the UCSC Genome Browser is the ability to overlay various types of annotation tracks onto the genome view. These tracks include gene annotations, regulatory elements, genetic variations, and more. Users can customize which tracks are displayed and adjust their visibility and order.</p>
+<p>Gene Annotations: The browser displays gene structures, including exons, introns, coding sequences, and untranslated regions. It provides information about gene names, functions, and alternative splicing patterns.</p>
+<p>Regulatory Elements: Regulatory elements such as promoters, enhancers, and transcription factor binding sites can be visualized, aiding in understanding gene regulation.</p>
+<p>Genetic Variations: Genetic variations, including single nucleotide polymorphisms (SNPs), insertions, and deletions, can be displayed. Users can examine variations’ positions, alleles, frequencies, and potential functional consequences.</p>
+<p>Custom Tracks: Users can upload their own data, such as experimental results or custom annotations, to visualize alongside the provided tracks.</p>
+<p>Comparative Genomics: The browser offers tools to compare genomic sequences and annotations across multiple species. This aids in identifying conserved regions and evolutionary changes.</p>
+<p>Search and Highlight: Users can search for specific genes, regions, sequences, or annotations and highlight them in the genome view for detailed examination.</p>
+<p>Links to External Resources: The UCSC Genome Browser provides links to external databases and resources, enabling seamless access to additional information.</p>
+<p>Usage:</p>
+<p>To use the UCSC Genome Browser:</p>
+<p>Access the Browser: Go to the UCSC Genome Browser website (genome.ucsc.edu).</p>
+<p>Choose a Genome: Select the genome of interest from the dropdown menu.</p>
+<p>Navigate and Explore: Navigate to specific genomic regions using the search bar, navigation arrows, and zoom controls. Customize the displayed tracks to focus on relevant features.</p>
+<p>Analyze and Download: Analyze gene structures, regulatory elements, and genetic variations in the context of the genome. Download data and images for use in research or presentations.</p>
+<p>The UCSC Genome Browser serves as an invaluable resource for researchers, educators, and students seeking to understand and analyze genomic information across various organisms. Its intuitive interface, extensive collection of annotation tracks, and powerful visualization capabilities make it a cornerstone tool in the field of genomics.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/bioinformatics/gwas.html" class="pagination-link" aria-label="Genome-wide association studies">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Genome-wide association studies</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/web/gwas_databases/index.html" class="pagination-link" aria-label="GWAS candidates">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

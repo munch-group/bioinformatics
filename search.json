@@ -10,26 +10,6 @@
     ]
   },
   {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Bioinformatics and Programming",
-    "section": "Course description",
-    "text": "Course description\nAfter the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.\nThe participants must, at the end of the course, be able to:\n\nApply fundamental constructs of a programming language.\nAnalyse data and construct data structures for the representation of data.\nAnalyse simple computational problems and construct programs for their solution.\nDescribe and relate essential methods in bioinformatics analysis.\nApply bioinformatics software to biological data.\nJudge the reliability of results obtained using Bioinformatics software.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
-    "objectID": "index.html#course-contents",
-    "href": "index.html#course-contents",
-    "title": "Bioinformatics and Programming",
-    "section": "Course contents",
-    "text": "Course contents\nThe course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.",
-    "crumbs": [
-      "Welcome"
-    ]
-  },
-  {
     "objectID": "index.html#week-1",
     "href": "index.html#week-1",
     "title": "Bioinformatics and Programming",
@@ -57,6 +37,46 @@
     "text": "Week 3\n\nReading:\n\nLecture notes: chapter 9  Values are objects\nLecture notes: chapter 10  Lists of things\nLecture notes: chapter 11  Pairs of things\nLecture notes: chapter 12  Grouping values\n\n\n\nLectures:\n\nIn the first lecture, I will talk about objects and methods.\nIn the first lecture, I will also talk about lists.\nIn the second lecture, I will talk about dictionaries and a bit about tuples.\n\n\n\nExercises:\nThe topics for this week’s exercises are if, else, logic, and functions. You are meant to complete all the exercises in chapter 7  Controlling behavior and chapter 8  Organizing code. Do what you can at home and do the rest at the TA session.\n\n\nWeek 4\n\nReading:\n\nLecture notes: chapter 13  Iterating values\nLecture notes: chapter 14  Working with files\n\n\n\nLectures:\n\nIn the first lecture, I will talk about iteration and lists.\nIn the second lecture, I will talk about how your code can interact with files on your computer.\n\n\n\nExercises:\n\n\n\n\n\n\nNote\n\n\n\nOnly MO and Bio classes attend the exercises this week. MM classes do not. The exercise is repeated next week for the MM classes to attend*\n\n\nThe topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters 9  Values are objects, 10  Lists of things, 11  Pairs of things, and 12  Grouping values. Do what you can at home and do the rest at the TA session.",
     "crumbs": [
       "Welcome"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Course description\nAfter the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.\nThe participants must, at the end of the course, be able to:",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "about.html#course-description",
+    "href": "about.html#course-description",
+    "title": "About",
+    "section": "",
+    "text": "Apply fundamental constructs of a programming language.\nAnalyse data and construct data structures for the representation of data.\nAnalyse simple computational problems and construct programs for their solution.\nDescribe and relate essential methods in bioinformatics analysis.\nApply bioinformatics software to biological data.\nJudge the reliability of results obtained using Bioinformatics software.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "about.html#course-contents",
+    "href": "about.html#course-contents",
+    "title": "About",
+    "section": "Course contents",
+    "text": "Course contents\nThe course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "curriculum.html",
+    "href": "curriculum.html",
+    "title": "Curriculum",
+    "section": "",
+    "text": "The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner). I will develop my own lecture notes and add them to this page as the course progress.",
+    "crumbs": [
+      "Curriculum"
     ]
   },
   {

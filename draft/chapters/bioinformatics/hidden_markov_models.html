@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kasper Munch">
+
+<title>27&nbsp; Hidden Markov Models – Bioinformatics and Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/bioinformatics/sequence_annnotation.html" rel="next">
+<link href="../../chapters/project/translation_project/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-49ef29405eae076ba539ad27c6a63fd8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a58caedd7710624ba8029c99cf6efb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Content</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Curriculum</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Learning Python</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/before_you_begin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Before you begin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/writing_a_program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing a program</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dealing_with_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dealing with values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/the_order_of_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The order of events</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/course_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Course tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/controlling_behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Controlling behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/organizing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Organizing code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/python_values_are_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Values are objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lists of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Pairs of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/gluing_values_in_sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Grouping values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/iteration_over_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Iterating values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/working_with_data_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Working with files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Structuring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/unleash_your_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Recursion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/testing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing your code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/your_own_types_of_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Your kind of thing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/using_code_from_other_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code in other files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/on_the_shoulders_of_giants.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Giant’s shoulders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/appendix_bsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bioinformatics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/gwas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Genome-wide association studies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/translation_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/hidden_markov_models.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/sequence_annnotation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Sequence annotation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/new_hmm_exercise/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Membrane proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/orf_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Finding genes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/folding_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Primer analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/assembly_and_mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Genome assembly and read mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/assembly_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genome assembly</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/global_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/local_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/alignment_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/protein_substitution_matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Data base searching</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/hiv_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Multiple alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/seqdist_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/models_of_dna_evolution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Models of DNA evolution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/phylogenetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Phyogenetics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supplementary</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/project_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/recordings2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture recordings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/slides2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/bioinformatics_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam info</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-why-do-we-need-hidden-markov-models-in-biology" id="toc-introduction-why-do-we-need-hidden-markov-models-in-biology" class="nav-link active" data-scroll-target="#introduction-why-do-we-need-hidden-markov-models-in-biology"><span class="header-section-number">28</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</a></li>
+  <li><a href="#hidden-markov-models-and-the-structure-of-biological-sequences" id="toc-hidden-markov-models-and-the-structure-of-biological-sequences" class="nav-link" data-scroll-target="#hidden-markov-models-and-the-structure-of-biological-sequences"><span class="header-section-number">29</span> Hidden Markov Models and the Structure of Biological Sequences</a></li>
+  <li><a href="#the-viterbi-algorithm---finding-optimal-gene-structures" id="toc-the-viterbi-algorithm---finding-optimal-gene-structures" class="nav-link" data-scroll-target="#the-viterbi-algorithm---finding-optimal-gene-structures"><span class="header-section-number">30</span> The Viterbi Algorithm - Finding Optimal Gene Structures</a></li>
+  <li><a href="#the-forward-algorithm---evaluating-sequence-likelihood" id="toc-the-forward-algorithm---evaluating-sequence-likelihood" class="nav-link" data-scroll-target="#the-forward-algorithm---evaluating-sequence-likelihood"><span class="header-section-number">31</span> The Forward Algorithm - Evaluating Sequence Likelihood</a></li>
+  <li><a href="#the-backward-algorithm-and-confidence-in-biological-predictions" id="toc-the-backward-algorithm-and-confidence-in-biological-predictions" class="nav-link" data-scroll-target="#the-backward-algorithm-and-confidence-in-biological-predictions"><span class="header-section-number">32</span> The Backward Algorithm and Confidence in Biological Predictions</a></li>
+  <li><a href="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" id="toc-viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="nav-link" data-scroll-target="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis"><span class="header-section-number">33</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</a></li>
+  <li><a href="#training-hmms-from-biological-data" id="toc-training-hmms-from-biological-data" class="nav-link" data-scroll-target="#training-hmms-from-biological-data"><span class="header-section-number">34</span> Training HMMs from Biological Data</a></li>
+  <li><a href="#biological-applications-and-sophisticated-model-design" id="toc-biological-applications-and-sophisticated-model-design" class="nav-link" data-scroll-target="#biological-applications-and-sophisticated-model-design"><span class="header-section-number">35</span> Biological Applications and Sophisticated Model Design</a>
+  <ul class="collapse">
+  <li><a href="#gene-finding-in-eukaryotic-genomes" id="toc-gene-finding-in-eukaryotic-genomes" class="nav-link" data-scroll-target="#gene-finding-in-eukaryotic-genomes"><span class="header-section-number">35.1</span> Gene Finding in Eukaryotic Genomes</a></li>
+  <li><a href="#cpg-island-detection" id="toc-cpg-island-detection" class="nav-link" data-scroll-target="#cpg-island-detection"><span class="header-section-number">35.2</span> CpG Island Detection</a></li>
+  <li><a href="#transmembrane-protein-topology-prediction" id="toc-transmembrane-protein-topology-prediction" class="nav-link" data-scroll-target="#transmembrane-protein-topology-prediction"><span class="header-section-number">35.3</span> Transmembrane Protein Topology Prediction</a></li>
+  <li><a href="#signal-peptide-prediction" id="toc-signal-peptide-prediction" class="nav-link" data-scroll-target="#signal-peptide-prediction"><span class="header-section-number">35.4</span> Signal Peptide Prediction</a></li>
+  </ul></li>
+  <li><a href="#advanced-extensions-and-modern-applications" id="toc-advanced-extensions-and-modern-applications" class="nav-link" data-scroll-target="#advanced-extensions-and-modern-applications"><span class="header-section-number">36</span> Advanced Extensions and Modern Applications</a>
+  <ul class="collapse">
+  <li><a href="#profile-hmms-for-protein-family-analysis" id="toc-profile-hmms-for-protein-family-analysis" class="nav-link" data-scroll-target="#profile-hmms-for-protein-family-analysis"><span class="header-section-number">36.1</span> Profile HMMs for Protein Family Analysis</a></li>
+  <li><a href="#pair-hmms-for-sequence-alignment" id="toc-pair-hmms-for-sequence-alignment" class="nav-link" data-scroll-target="#pair-hmms-for-sequence-alignment"><span class="header-section-number">36.2</span> Pair HMMs for Sequence Alignment</a></li>
+  <li><a href="#hidden-semi-markov-models" id="toc-hidden-semi-markov-models" class="nav-link" data-scroll-target="#hidden-semi-markov-models"><span class="header-section-number">36.3</span> Hidden Semi-Markov Models</a></li>
+  <li><a href="#phylogenetic-hmms-for-comparative-genomics" id="toc-phylogenetic-hmms-for-comparative-genomics" class="nav-link" data-scroll-target="#phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">36.4</span> Phylogenetic HMMs for Comparative Genomics</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">37</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kasper Munch </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-why-do-we-need-hidden-markov-models-in-biology" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</h1>
+<p>When you look at a DNA sequence like <code>ATGCGTAACGTTTAAGGCCTAG</code>, what do you see? At first glance, it appears to be a random string of four letters. However, this sequence contains a wealth of biological information hidden beneath its surface. It might encode a protein-coding gene, contain regulatory elements that control gene expression, or include structural features that affect how the DNA is packaged in the cell. The challenge facing computational biologists is how to automatically detect and annotate these functional elements from raw sequence data.</p>
+<p>Consider the human genome, which contains over 3 billion base pairs of DNA. Within this vast sequence lie approximately 20,000 protein-coding genes, hundreds of thousands of regulatory elements, and numerous other functional features. Manual annotation of such sequences is impossible, yet accurate identification of these elements is crucial for understanding how genes are regulated, how proteins are made, and how genetic variations contribute to disease.</p>
+<p>Hidden Markov Models provide an elegant computational framework for solving these biological annotation problems. They excel at identifying patterns in sequences where the underlying biological function is not directly observable but must be inferred from the sequence content. For instance, when we see the sequence <code>ATGAAATTTGCCTAG</code>, we cannot directly observe whether each nucleotide is part of an exon, intron, or intergenic region. However, we can use the statistical properties of the sequence—such as codon usage patterns, presence of start and stop codons, and splice site signals—to infer the most likely functional annotation.</p>
+<pre class="mermaid"><code>graph LR
+    A[DNA Sequence&lt;br/&gt;ATGAAATTTGCCTAG] --&gt; B[Hidden States&lt;br/&gt;Start-Coding-Coding-Stop]
+    B --&gt; C[Functional Annotation&lt;br/&gt;Gene Structure]
+    
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e8</code></pre>
+<p>The power of HMMs lies in their ability to model sequential dependencies while handling uncertainty. Biological sequences exhibit complex patterns where the function of one region influences the likely function of neighboring regions. For example, in eukaryotic genes, exons are typically followed by introns, which are then followed by more exons. Promoter regions contain specific sequence motifs that tend to cluster together upstream of transcription start sites. CpG islands, regions with unusually high frequencies of cytosine-guanine dinucleotides, often mark the beginning of genes and play important roles in gene regulation.</p>
+<p>In protein analysis, HMMs help us understand the relationship between amino acid sequence and protein structure. The sequence <code>MKLILLFAIVSLVF</code> might not immediately reveal its function, but an HMM trained on transmembrane proteins would recognize this as a likely signal peptide based on its hydrophobic character and typical length. Similarly, the alternating pattern of hydrophobic and hydrophilic regions in a protein sequence can reveal the presence of membrane-spanning α-helices.</p>
+<p>HMMs address three fundamental questions that arise repeatedly in computational biology:</p>
+<ol type="1">
+<li><strong>Decoding Problem</strong>: Given a DNA or protein sequence, what is the most likely functional annotation?</li>
+<li><strong>Evaluation Problem</strong>: How well does a particular sequence fit a known biological pattern?<br>
+</li>
+<li><strong>Posterior Inference</strong>: How confident can we be in our predictions?</li>
+</ol>
+<p>These questions correspond to different biological applications: finding the most likely annotation of a sequence, evaluating how well a sequence fits a particular model, and determining the uncertainty in our predictions.</p>
+</section>
+<section id="hidden-markov-models-and-the-structure-of-biological-sequences" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> Hidden Markov Models and the Structure of Biological Sequences</h1>
+<p>Hidden Markov Models represent one of the most elegant and powerful frameworks in computational biology for modeling sequential data with underlying structure. The fundamental premise of an HMM is that we observe a sequence of DNA nucleotides or protein amino acids, but the biological function generating these observations follows an unobservable sequence of functional states. This hidden state sequence evolves according to the Markov property, which states that the probability of transitioning to any future functional state depends only on the current state, not on the entire history of previous states.</p>
+<pre class="mermaid"><code>graph TD
+    subgraph "Hidden States (Functional Annotation)"
+        H1[Intergenic] --&gt; H2[Start Codon]
+        H2 --&gt; H3[Coding Sequence]
+        H3 --&gt; H3
+        H3 --&gt; H4[Stop Codon]
+        H4 --&gt; H1
+    end
+    
+    subgraph "Observed Sequence"
+        O1[A] 
+        O2[T]
+        O3[G]
+        O4[A]
+        O5[A]
+        O6[A]
+        O7[T]
+        O8[A]
+        O9[G]
+    end
+    
+    H1 -.-&gt; O1
+    H2 -.-&gt; O2
+    H2 -.-&gt; O3
+    H2 -.-&gt; O4
+    H3 -.-&gt; O5
+    H3 -.-&gt; O6
+    H3 -.-&gt; O7
+    H4 -.-&gt; O8
+    H4 -.-&gt; O9
+    
+    style H1 fill:#ffebee
+    style H2 fill:#e8f5e8
+    style H3 fill:#e3f2fd
+    style H4 fill:#fff3e0</code></pre>
+<p>Consider a simple example of gene finding in a bacterial genome. When we examine the DNA sequence <code>ATGAAACGTTTTAATGCCTAG</code>, we observe nucleotides (A, T, G, C), but what we really want to know is the functional annotation: which nucleotides are part of the start codon, which are in the protein-coding region, and which represent the stop codon. The hidden states might represent “start codon,” “coding sequence,” and “stop codon,” while the observations are the actual nucleotides we can measure experimentally.</p>
+<p>In mathematical terms, an HMM is characterized by several key components that directly correspond to biological features. The hidden state sequence is denoted as <span class="math inline">\(\boldsymbol{\pi} = (\pi_1, \pi_2, \ldots, \pi_L)\)</span>, where each <span class="math inline">\(\pi_i\)</span> represents the functional state at position <span class="math inline">\(i\)</span> in a DNA or protein sequence of length <span class="math inline">\(L\)</span>. For example, in gene finding, <span class="math inline">\(\pi_i\)</span> might indicate whether position <span class="math inline">\(i\)</span> is in an exon, intron, or intergenic region. The observed sequence is represented as <span class="math inline">\(\mathbf{x} = (x_1, x_2, \ldots, x_L)\)</span>, where each <span class="math inline">\(x_i\)</span> is an observable nucleotide (A, T, G, C) or amino acid.</p>
+<p>The model parameters include transition probabilities <span class="math inline">\(a_{kl} = P(\pi_{i+1} = l \mid \pi_i = k)\)</span> representing the probability of moving from functional state <span class="math inline">\(k\)</span> to functional state <span class="math inline">\(l\)</span>. In gene finding, this might represent the probability of transitioning from an exon to an intron, which would be high near splice sites but low in the middle of exons. The emission probabilities <span class="math inline">\(e_k(b) = P(x_i = b \mid \pi_i = k)\)</span> represent the probability that functional state <span class="math inline">\(k\)</span> produces nucleotide or amino acid <span class="math inline">\(b\)</span>. For instance, start codon states would have high emission probabilities for ATG and low probabilities for other codons.</p>
+<p>The joint probability of observing both the hidden state sequence and the observed sequence captures the complete biological model:</p>
+<p><span id="eq-joint-prob"><span class="math display">\[
+P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
+\tag{29.1}\]</span></span></p>
+<p>where <span class="math inline">\(a_{0\pi_1}\)</span> represents the initial probability of starting in state <span class="math inline">\(\pi_1\)</span>. This factorization reflects biological reality: the likelihood of observing a particular DNA sequence depends on both the functional states that generated it and the transitions between those states.</p>
+<p>The theoretical foundation of HMMs addresses three fundamental computational problems that arise constantly in bioinformatics:</p>
+<ol type="1">
+<li><strong>Annotation Problem</strong>: Given a DNA sequence like <code>ATGCGTAACGTTTAAGGCCTAG</code>, what is the most likely sequence of functional states?</li>
+<li><strong>Evaluation Problem</strong>: How likely is it that a particular DNA sequence was generated by a specific biological process?</li>
+<li><strong>Learning Problem</strong>: Given many examples of DNA sequences with known annotations, how can we estimate model parameters?</li>
+</ol>
+</section>
+<section id="the-viterbi-algorithm---finding-optimal-gene-structures" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> The Viterbi Algorithm - Finding Optimal Gene Structures</h1>
+<p>The Viterbi algorithm solves the annotation problem by finding the single most probable sequence of functional states that could have generated the observed DNA or protein sequence. This algorithm is fundamental to many bioinformatics applications, from identifying exon-intron boundaries in genes to predicting the membrane topology of proteins.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "Dynamic Programming Table"
+        A[Position 1] --&gt; B[Position 2]
+        B --&gt; C[Position 3]
+        C --&gt; D["Position i"]
+        D --&gt; E["Position L"]
+    end
+    
+    subgraph "States at each position"
+        S1[State 1&lt;br/&gt;v₁(i)]
+        S2[State 2&lt;br/&gt;v₂(i)]
+        S3[State 3&lt;br/&gt;v₃(i)]
+        S4[State k&lt;br/&gt;vₖ(i)]
+    end
+    
+    subgraph "Traceback"
+        T1[Optimal Path] --&gt; T2[Best State Sequence]
+    end
+    
+    D --&gt; S1
+    D --&gt; S2  
+    D --&gt; S3
+    D --&gt; S4
+    
+    S1 --&gt; T1
+    
+    style S1 fill:#e8f5e8
+    style T1 fill:#fff3e0</code></pre>
+<p>Consider the problem of annotating a eukaryotic gene. When we see the DNA sequence <code>ATGAAACGTACGTAAG...TTTCCAGTAG</code>, we need to determine which regions correspond to exons (protein-coding sequences) and which correspond to introns (non-coding sequences that are spliced out). The Viterbi algorithm leverages the biological fact that gene structure follows predictable patterns: exons tend to maintain open reading frames, contain typical codon usage patterns, and are flanked by specific splice site sequences.</p>
+<p>The mathematical foundation of the Viterbi algorithm rests on dynamic programming principles that exploit the sequential nature of biological sequences. We define <span class="math inline">\(v_l(i)\)</span> as the joint probability of the most probable functional annotation ending in state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>, along with the nucleotide sequence up to position <span class="math inline">\(i\)</span>. For gene finding, this represents the probability of the best gene structure annotation ending in state <span class="math inline">\(l\)</span> (such as “exon” or “intron”) at nucleotide position <span class="math inline">\(i\)</span>.</p>
+<p>Formally: <span id="eq-viterbi-def"><span class="math display">\[
+v_l(i) = \max_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
+\tag{30.1}\]</span></span></p>
+<p>The recursive relationship that enables efficient computation captures the biological reality that optimal gene structures are built from optimal sub-structures:</p>
+<p><span id="eq-viterbi-recursion"><span class="math display">\[
+v_l(i) = e_l(x_i) \times \max_k(v_k(i-1) \times a_{kl})
+\tag{30.2}\]</span></span></p>
+<p>This equation integrates three types of biological information. The emission probability <span class="math inline">\(e_l(x_i)\)</span> represents how likely functional state <span class="math inline">\(l\)</span> is to produce nucleotide <span class="math inline">\(x_i\)</span>. For example, exon states might have high probabilities for nucleotides that maintain open reading frames and low probabilities for in-frame stop codons. The transition probability <span class="math inline">\(a_{kl}\)</span> captures biological constraints on gene structure, such as the fact that exons are typically followed by introns at splice sites. The optimal probability up to the previous position <span class="math inline">\(v_k(i-1)\)</span> ensures that we build upon the best possible gene structure annotation up to that point.</p>
+<p>In gene finding applications, the states might represent different functional regions. A simple bacterial gene finder might include states for “intergenic region,” “start codon,” “coding sequence,” and “stop codon.” The emission probabilities would reflect the different nucleotide composition patterns in these regions.</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Intergenic
+    Intergenic --&gt; StartCodon
+    StartCodon --&gt; CodingSequence
+    CodingSequence --&gt; CodingSequence
+    CodingSequence --&gt; StopCodon
+    StopCodon --&gt; Intergenic
+    Intergenic --&gt; [*]
+    
+    note right of StartCodon
+        High P(ATG)
+        Low P(other codons)
+    end note
+    
+    note right of CodingSequence
+        Triplet periodicity
+        Avoid stop codons
+        Codon usage bias
+    end note
+    
+    note right of StopCodon
+        High P(TAA,TAG,TGA)
+        Low P(other codons)
+    end note</code></pre>
+<p>For eukaryotic gene finding, the model becomes more complex, with states representing “5’ UTR,” “first exon,” “intron,” “internal exon,” “last exon,” and “3’ UTR.” The transition probabilities encode biological knowledge about gene structure. For instance, the probability of transitioning from “first exon” to “intron” would be high near GT dinucleotides (donor splice sites), while the probability of transitioning from “intron” to “internal exon” would be high near AG dinucleotides (acceptor splice sites).</p>
+<p>The algorithm proceeds by filling a dynamic programming table where rows represent functional states and columns represent positions in the DNA sequence. The base case initializes the algorithm:</p>
+<p><span id="eq-viterbi-base"><span class="math display">\[
+v_{\mathcal{B}}(0) = 1
+\tag{30.3}\]</span></span></p>
+<p>for the begin state <span class="math inline">\(\mathcal{B}\)</span>, representing the fact that we start with certainty in the begin state when no sequence has been processed.</p>
+<p>The traceback phase reconstructs the optimal gene annotation by following pointers backward from the functional state with the highest probability at the final position:</p>
+<p><span id="eq-viterbi-final"><span class="math display">\[
+\pi^*_L = \arg\max_l v_l(L)
+\tag{30.4}\]</span></span></p>
+<p>The complete optimal gene structure is then recovered by following the traceback pointers.</p>
+</section>
+<section id="the-forward-algorithm---evaluating-sequence-likelihood" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> The Forward Algorithm - Evaluating Sequence Likelihood</h1>
+<p>While the Viterbi algorithm finds the single best gene structure annotation, the Forward algorithm addresses a different biological question: how likely is it that a particular DNA or protein sequence was generated by a specific biological process? This question is crucial for sequence classification, model comparison, and quality assessment in bioinformatics applications.</p>
+<p>Consider the problem of determining whether a newly discovered DNA sequence represents a protein-coding gene or a pseudogene (a non-functional gene copy). Both might contain start codons, stop codons, and regions with codon-like triplet structure, but true genes maintain open reading frames and exhibit characteristic codon usage patterns throughout their length. The Forward algorithm calculates the total probability that the observed sequence could be generated by a “true gene” HMM versus a “pseudogene” HMM.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    subgraph "All Possible Paths"</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        P1[Path 1: States 1→2→1→3]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        P2[Path 2: States 1→1→2→3]  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        P3[Path 3: States 2→1→2→3]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        P4[Path n: States 2→2→1→3]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    subgraph "Forward Algorithm"</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        F[Sum all path probabilities&lt;br/&gt;P(sequence)]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    P1 --&gt; F</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    P2 --&gt; F</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    P3 --&gt; F</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    P4 --&gt; F</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    style F fill:#e3f2fd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    subgraph "All Possible Paths"
+        P1[Path 1: States 1→2→1→3]
+        P2[Path 2: States 1→1→2→3]  
+        P3[Path 3: States 2→1→2→3]
+        P4[Path n: States 2→2→1→3]
+    end
+    
+    subgraph "Forward Algorithm"
+        F[Sum all path probabilities&lt;br/&gt;P(sequence)]
+    end
+    
+    P1 --&gt; F
+    P2 --&gt; F
+    P3 --&gt; F
+    P4 --&gt; F
+    
+    style F fill:#e3f2fd
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The Forward algorithm follows a similar dynamic programming approach to Viterbi but replaces the maximization operation with summation, reflecting the biological reality that many different functional pathways could lead to the same observed sequence. We define <span class="math inline">\(f_l(i)\)</span> as the joint probability of all possible functional annotations ending in state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>, along with the nucleotide or amino acid sequence up to position <span class="math inline">\(i\)</span>.</p>
+<p>Mathematically: <span id="eq-forward-def"><span class="math display">\[
+f_l(i) = \sum_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
+\tag{31.1}\]</span></span></p>
+<p>The recursive relationship becomes:</p>
+<p><span id="eq-forward-recursion"><span class="math display">\[
+f_l(i) = e_l(x_i) \times \sum_k f_k(i-1) \times a_{kl}
+\tag{31.2}\]</span></span></p>
+<p>By summing over all possible previous functional states rather than taking the maximum, we accumulate probability mass from all possible biological explanations for the sequence data. This is particularly important in biological applications where multiple explanations might be plausible.</p>
+<p>For example, in CpG island detection, a particular DNA sequence might be generated by several different pathways through the “CpG island” states of an HMM. The sequence <code>GCGCGCGC</code> could arise from transitioning through CpG-rich states in various orders, and the Forward algorithm accounts for all these possibilities when calculating how likely the sequence is to come from a CpG island.</p>
+<p>The base case initializes with <span class="math inline">\(f_{\mathcal{B}}(0) = 1\)</span> for the begin state, similar to the Viterbi algorithm. The total probability of the sequence <span class="math inline">\(P(\mathbf{x})\)</span> is obtained by summing the forward probabilities of all functional states at the final position:</p>
+<p><span id="eq-sequence-prob"><span class="math display">\[
+P(\mathbf{x}) = \sum_l f_l(L)
+\tag{31.3}\]</span></span></p>
+<p>This probability has important biological interpretations. For gene finding, a high <span class="math inline">\(P(\mathbf{x})\)</span> under a gene model versus a non-gene model suggests that the sequence is likely to encode a functional protein. For protein structure prediction, a high <span class="math inline">\(P(\mathbf{x})\)</span> under a transmembrane protein model versus a soluble protein model indicates likely membrane association.</p>
+<p>Consider transmembrane protein prediction as a concrete example. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops that reside in the aqueous environment on either side of the membrane. An HMM for transmembrane proteins might include states for “outside loop,” “transmembrane helix,” and “inside loop,” with emission probabilities reflecting the amino acid preferences of these different structural environments.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; OutsideLoop</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    OutsideLoop --&gt; TransMembraneHelix</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    TransMembraneHelix --&gt; InsideLoop</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    InsideLoop --&gt; TransMembraneHelix</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    TransMembraneHelix --&gt; OutsideLoop</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    OutsideLoop --&gt; [*]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    InsideLoop --&gt; [*]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    note right of OutsideLoop</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        Hydrophilic amino acids</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        P(K,R,D,E) high</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    note right of TransMembraneHelix</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        Hydrophobic amino acids</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        P(L,I,V,F,A) high</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        Length: 20-25 residues</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    note right of InsideLoop</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        Positive-inside rule</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        P(K,R) &gt; P(D,E)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; OutsideLoop
+    OutsideLoop --&gt; TransMembraneHelix
+    TransMembraneHelix --&gt; InsideLoop
+    InsideLoop --&gt; TransMembraneHelix
+    TransMembraneHelix --&gt; OutsideLoop
+    OutsideLoop --&gt; [*]
+    InsideLoop --&gt; [*]
+    
+    note right of OutsideLoop
+        Hydrophilic amino acids
+        P(K,R,D,E) high
+    end note
+    
+    note right of TransMembraneHelix
+        Hydrophobic amino acids
+        P(L,I,V,F,A) high
+        Length: 20-25 residues
+    end note
+    
+    note right of InsideLoop
+        Positive-inside rule
+        P(K,R) &gt; P(D,E)
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The transmembrane helix states would have high emission probabilities for hydrophobic amino acids like leucine (L), isoleucine (I), valine (V), and phenylalanine (F), and low probabilities for charged amino acids like lysine (K) and aspartate (D). The outside and inside loop states would have complementary preferences, favoring hydrophilic amino acids. Additionally, the inside loop states might have elevated probabilities for positively charged amino acids (K, R) reflecting the “positive-inside rule” observed in transmembrane proteins.</p>
+<p>When we apply the Forward algorithm to a protein sequence like <code>MKLILLFAIVSLVFSSAYAFIRVLYSKVLHLLGLFGSAFIII...</code>, we can calculate <span class="math inline">\(P(\mathbf{x})\)</span> under both a transmembrane protein HMM and a soluble protein HMM. The sequence’s hydrophobic character would yield a much higher probability under the transmembrane model, indicating likely membrane association.</p>
+</section>
+<section id="the-backward-algorithm-and-confidence-in-biological-predictions" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> The Backward Algorithm and Confidence in Biological Predictions</h1>
+<p>The Backward algorithm complements the Forward algorithm by computing the probability of observing the remainder of a DNA or protein sequence starting from any given position and functional state. This enables us to answer a crucial biological question: how confident can we be that a particular nucleotide or amino acid is in a specific functional state, such as an exon, transmembrane helix, or CpG island?</p>
+<p>Consider the challenge of identifying CpG islands in mammalian genomes. CpG islands are regions of DNA with unusually high frequencies of cytosine-guanine dinucleotides that often mark gene promoters and play important roles in gene regulation. However, the boundaries of CpG islands are not sharply defined, and different regions within a potential CpG island may have varying degrees of CpG enrichment. The Backward algorithm helps us quantify our confidence that each nucleotide position is truly within a CpG island rather than in background genomic sequence.</p>
+<p>We define <span class="math inline">\(b_l(i)\)</span> as the probability of observing the remainder of the sequence from position <span class="math inline">\(i+1\)</span> to the end, given that we are in functional state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>:</p>
+<p><span id="eq-backward-def"><span class="math display">\[
+b_l(i) = \sum_{\pi_{i+1},\ldots,\pi_L} P(x_{i+1}, \ldots, x_L, \pi_{i+1}, \ldots, \pi_L \mid \pi_i = l)
+\tag{32.1}\]</span></span></p>
+<p>The Backward algorithm proceeds from the end of the sequence toward the beginning, using the recursive relationship:</p>
+<p><span id="eq-backward-recursion"><span class="math display">\[
+b_l(i) = \sum_k a_{lk} \times e_k(x_{i+1}) \times b_k(i+1)
+\tag{32.2}\]</span></span></p>
+<p>The base case sets all backward probabilities to 1 at the end of the sequence:</p>
+<p><span id="eq-backward-base"><span class="math display">\[
+b_l(L) = 1 \text{ for all states } l
+\tag{32.3}\]</span></span></p>
+<p>reflecting the fact that no additional nucleotides or amino acids need to be explained beyond the sequence end.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    subgraph "Forward Probabilities"</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        F1[f₁(i)] </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        F2[f₂(i)]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        F3[f₃(i)]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    subgraph "Backward Probabilities"  </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        B1[b₁(i)]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        B2[b₂(i)]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        B3[b₃(i)]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    subgraph "Posterior Probability"</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        P[P(πᵢ = k | x) = fₖ(i) × bₖ(i) / P(x)]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    F1 --&gt; P</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    F2 --&gt; P</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    F3 --&gt; P</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    B1 --&gt; P</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    B2 --&gt; P</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    B3 --&gt; P</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    style P fill:#e8f5e8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph "Forward Probabilities"
+        F1[f₁(i)] 
+        F2[f₂(i)]
+        F3[f₃(i)]
+    end
+    
+    subgraph "Backward Probabilities"  
+        B1[b₁(i)]
+        B2[b₂(i)]
+        B3[b₃(i)]
+    end
+    
+    subgraph "Posterior Probability"
+        P[P(πᵢ = k | x) = fₖ(i) × bₖ(i) / P(x)]
+    end
+    
+    F1 --&gt; P
+    F2 --&gt; P
+    F3 --&gt; P
+    B1 --&gt; P
+    B2 --&gt; P
+    B3 --&gt; P
+    
+    style P fill:#e8f5e8
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The combination of forward and backward probabilities enables the computation of posterior probabilities, which answer the question: given that we observed the entire DNA or protein sequence, what is the probability that we were in functional state <span class="math inline">\(k\)</span> at position <span class="math inline">\(i\)</span>? This posterior probability is computed using Bayes’ theorem:</p>
+<p><span id="eq-posterior-prob"><span class="math display">\[
+P(\pi_i = k \mid \mathbf{x}) = \frac{P(\pi_i = k, \mathbf{x})}{P(\mathbf{x})} = \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
+\tag{32.4}\]</span></span></p>
+<p>These posterior probabilities provide a measure of confidence in our functional annotations at each sequence position. For gene finding, they tell us how certain we can be that each nucleotide is in an exon versus an intron. For protein structure prediction, they indicate our confidence that each amino acid is in a transmembrane helix versus an aqueous loop.</p>
+<p>Consider a concrete example from eukaryotic gene finding. Suppose we have identified a potential exon-intron boundary in the sequence <code>...CAGGTAAGT...</code> where the GT dinucleotide represents a potential donor splice site. The posterior probabilities might show:</p>
+<ul>
+<li>Position of C: <span class="math inline">\(P(\text{exon}) = 0.95\)</span>, <span class="math inline">\(P(\text{intron}) = 0.05\)</span></li>
+<li>Position of A: <span class="math inline">\(P(\text{exon}) = 0.90\)</span>, <span class="math inline">\(P(\text{intron}) = 0.10\)</span><br>
+</li>
+<li>Position of G: <span class="math inline">\(P(\text{exon}) = 0.30\)</span>, <span class="math inline">\(P(\text{intron}) = 0.70\)</span></li>
+<li>Position of G: <span class="math inline">\(P(\text{exon}) = 0.05\)</span>, <span class="math inline">\(P(\text{intron}) = 0.95\)</span></li>
+<li>Position of T: <span class="math inline">\(P(\text{exon}) = 0.02\)</span>, <span class="math inline">\(P(\text{intron}) = 0.98\)</span></li>
+</ul>
+<p>This pattern clearly indicates the splice site boundary, with high confidence that nucleotides upstream of GT are in the exon and nucleotides downstream are in the intron. The intermediate probabilities at the GT dinucleotide itself reflect the transitional nature of the splice site.</p>
+<p>For any position <span class="math inline">\(i\)</span>, the posterior probabilities sum to 1:</p>
+<p><span id="eq-posterior-sum"><span class="math display">\[
+\sum_k P(\pi_i = k \mid \mathbf{x}) = 1
+\tag{32.5}\]</span></span></p>
+<p>ensuring that we have a complete probabilistic description of the functional state uncertainty at each position.</p>
+</section>
+<section id="viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</h1>
+<p>An important distinction exists between the optimal gene structure or protein annotation found by the Viterbi algorithm and the sequence of functional states with highest posterior probability at each position. This difference has significant implications for biological sequence analysis and reflects different approaches to handling uncertainty in computational predictions.</p>
+<p>The Viterbi algorithm finds the functional annotation <span class="math inline">\(\boldsymbol{\pi}^*\)</span> that maximizes:</p>
+<p><span id="eq-viterbi-optimal"><span class="math display">\[
+\boldsymbol{\pi}^* = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi} \mid \mathbf{x}) = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi}, \mathbf{x})
+\tag{33.1}\]</span></span></p>
+<p>This approach finds the single most probable complete gene structure or protein annotation. For example, in eukaryotic gene finding, Viterbi decoding might predict the gene structure: 5’UTR → first exon → intron → internal exon → intron → last exon → 3’UTR, ensuring that this complete structure represents a valid gene organization with proper splice sites and reading frame maintenance.</p>
+<p>In contrast, posterior decoding finds the functional state sequence <span class="math inline">\(\hat{\boldsymbol{\pi}}\)</span> where each position is chosen independently:</p>
+<p><span id="eq-posterior-decoding"><span class="math display">\[
+\hat{\pi}_i = \arg\max_k P(\pi_i = k \mid \mathbf{x}) = \arg\max_k \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
+\tag{33.2}\]</span></span></p>
+<p>Posterior decoding selects the most probable functional state at each sequence position without considering whether the resulting annotation represents a biologically valid structure.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>graph TB</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    subgraph "Viterbi Decoding"</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        V1[Finds globally optimal path]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        V2[Respects transition constraints]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        V3[Biologically valid structure]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        V1 --&gt; V2 --&gt; V3</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    subgraph "Posterior Decoding"  </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        P1[Finds locally optimal states]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        P2[May violate constraints]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        P3[Provides uncertainty information]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        P1 --&gt; P2 --&gt; P3</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    subgraph "Example: Splice Sites"</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        E1[Viterbi: Valid GT-AG pattern]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        E2[Posterior: May predict impossible transitions]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    V3 --&gt; E1</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    P3 --&gt; E2</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    style V3 fill:#e8f5e8</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    style P3 fill:#fff3e0</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    style E1 fill:#e8f5e8</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    style E2 fill:#ffebee</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "Viterbi Decoding"
+        V1[Finds globally optimal path]
+        V2[Respects transition constraints]
+        V3[Biologically valid structure]
+        V1 --&gt; V2 --&gt; V3
+    end
+    
+    subgraph "Posterior Decoding"  
+        P1[Finds locally optimal states]
+        P2[May violate constraints]
+        P3[Provides uncertainty information]
+        P1 --&gt; P2 --&gt; P3
+    end
+    
+    subgraph "Example: Splice Sites"
+        E1[Viterbi: Valid GT-AG pattern]
+        E2[Posterior: May predict impossible transitions]
+    end
+    
+    V3 --&gt; E1
+    P3 --&gt; E2
+    
+    style V3 fill:#e8f5e8
+    style P3 fill:#fff3e0
+    style E1 fill:#e8f5e8
+    style E2 fill:#ffebee
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This difference becomes critically important in biological applications with complex structural constraints. Consider splice site prediction in eukaryotic genes. Splicing must maintain the reading frame of the protein-coding sequence, which requires that the number of nucleotides in each intron be independent of the reading frame (since introns are completely removed). Additionally, canonical splice sites follow the GT-AG rule, where introns begin with GT and end with AG.</p>
+<p>Viterbi decoding respects these biological constraints. If an HMM includes states for donor splice sites (GT), intron sequences, and acceptor splice sites (AG), the Viterbi path will always predict biologically valid exon-intron structures. The algorithm would never predict an intron that begins with AT or ends with CC, because such transitions would have zero probability in a properly constructed HMM.</p>
+<p>Posterior decoding, however, might violate these constraints. At each position, it selects the functional state with highest posterior probability without considering the states at neighboring positions. In principle, posterior decoding might predict the sequence <code>...exon-exon-intron-intron-exon...</code> even though the transition from exon directly to exon without an intervening splice site is biologically impossible.</p>
+<p>The choice between these approaches depends on the specific biological application and the nature of the structural constraints. Posterior decoding maximizes the expected number of correctly predicted nucleotide or amino acid positions, making it optimal when local accuracy is most important. This approach is particularly valuable when sequence boundaries are genuinely ambiguous, as often occurs in CpG island detection or identification of low-complexity regions in proteins.</p>
+<p>Viterbi decoding maximizes the probability of predicting the entire gene structure or protein annotation correctly, making it preferable when global structural consistency is crucial. This approach is essential for applications like gene finding, where the predicted gene structure must be biologically valid for downstream analyses such as protein translation or regulatory element identification.</p>
+</section>
+<section id="training-hmms-from-biological-data" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> Training HMMs from Biological Data</h1>
+<p>The power of HMMs extends beyond sequence analysis to include learning the statistical patterns of biological sequences from experimental data. This learning process is essential because the parameters that govern biological processes—such as codon usage frequencies, splice site preferences, and amino acid propensities in different protein structural environments—vary between organisms and sequence types.</p>
+<p>When we have training sequences with known functional annotations, parameter estimation becomes straightforward through maximum likelihood estimation. For example, if we want to build an HMM for gene finding in a newly sequenced bacterial genome, we might start with a set of experimentally verified genes where the locations of start codons, coding sequences, and stop codons are known.</p>
+<p>For transition probabilities, we count transitions between functional states:</p>
+<p><span id="eq-transition-mle"><span class="math display">\[
+a_{kl} = \frac{A_{kl}}{\sum_{l'} A_{kl'}}
+\tag{34.1}\]</span></span></p>
+<p>where <span class="math inline">\(A_{kl}\)</span> represents the number of observed transitions from functional state <span class="math inline">\(k\)</span> to state <span class="math inline">\(l\)</span>. In gene finding, this might represent counting how often “coding sequence” states are followed by “stop codon” states at the ends of genes, or how often “intergenic” states are followed by “start codon” states at the beginnings of genes.</p>
+<p>Similarly, for emission probabilities:</p>
+<p><span id="eq-emission-mle"><span class="math display">\[
+e_k(b) = \frac{E_k(b)}{\sum_{b'} E_k(b')}
+\tag{34.2}\]</span></span></p>
+<p>where <span class="math inline">\(E_k(b)\)</span> is the number of times functional state <span class="math inline">\(k\)</span> produced nucleotide or amino acid <span class="math inline">\(b\)</span>. For example, to learn the codon usage pattern in coding sequences, we would count how often each codon appears in experimentally verified coding regions and normalize to obtain probability estimates.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    subgraph "Supervised Learning"</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        S1[Known annotations] --&gt; S2[Count transitions &amp; emissions]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        S2 --&gt; S3[Maximum likelihood estimates]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    subgraph "Unsupervised Learning (Baum-Welch)"</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        U1[Unknown annotations] --&gt; U2[E-step: Compute expectations]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        U2 --&gt; U3[M-step: Update parameters]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        U3 --&gt; U2</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        U3 --&gt; U4[Converged parameters]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    style S3 fill:#e8f5e8</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    style U4 fill:#e8f5e8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    subgraph "Supervised Learning"
+        S1[Known annotations] --&gt; S2[Count transitions &amp; emissions]
+        S2 --&gt; S3[Maximum likelihood estimates]
+    end
+    
+    subgraph "Unsupervised Learning (Baum-Welch)"
+        U1[Unknown annotations] --&gt; U2[E-step: Compute expectations]
+        U2 --&gt; U3[M-step: Update parameters]
+        U3 --&gt; U2
+        U3 --&gt; U4[Converged parameters]
+    end
+    
+    style S3 fill:#e8f5e8
+    style U4 fill:#e8f5e8
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>However, biological applications often involve situations where the true functional annotations are unknown or only partially known. For instance, we might have DNA sequences from a newly sequenced genome where some genes have been experimentally verified but most remain unannotated. The Baum-Welch algorithm, an instance of the Expectation-Maximization (EM) algorithm, addresses this challenge by iteratively improving parameter estimates based on all available sequence data.</p>
+<p>The Baum-Welch algorithm alternates between two steps. In the Expectation step, we compute the expected number of transitions and emissions using current parameter estimates. For transitions, we calculate:</p>
+<p><span id="eq-expected-transitions"><span class="math display">\[
+A_{kl} = \sum_n \sum_i P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}^n)
+\tag{34.3}\]</span></span></p>
+<p>where the sum is over all training sequences <span class="math inline">\(n\)</span> and positions <span class="math inline">\(i\)</span>. The probability of a specific transition is:</p>
+<p><span id="eq-transition-posterior"><span class="math display">\[
+P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}) = \frac{f_k(i) \times a_{kl} \times e_l(x_{i+1}) \times b_l(i+1)}{P(\mathbf{x})}
+\tag{34.4}\]</span></span></p>
+<p>This equation captures our uncertainty about functional annotations by weighting each possible transition by its probability given the observed sequence data.</p>
+<p>For emissions, we compute:</p>
+<p><span id="eq-expected-emissions"><span class="math display">\[
+E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x}^n)}
+\tag{34.5}\]</span></span></p>
+<p>where the inner sum is over all positions <span class="math inline">\(i\)</span> where the observed nucleotide or amino acid equals <span class="math inline">\(b\)</span>.</p>
+<p>In the Maximization step, we use these expected counts to update our parameter estimates using the same maximum likelihood formulas as in the supervised case. The algorithm iterates these steps until convergence, typically measured by the change in log-likelihood:</p>
+<p><span id="eq-log-likelihood"><span class="math display">\[
+\mathcal{L} = \sum_n \log P(\mathbf{x}^n)
+\tag{34.6}\]</span></span></p>
+<p>The mathematical foundation ensures that each iteration increases the likelihood of the observed sequence data: <span class="math inline">\(\mathcal{L}^{(t+1)} \geq \mathcal{L}^{(t)}\)</span>, guaranteeing convergence to at least a local optimum.</p>
+<p>A practical example involves training HMMs for transmembrane protein topology prediction. We might start with a database of proteins where membrane topology has been experimentally determined through biochemical methods. From these proteins, we can learn the amino acid preferences of transmembrane helices (enriched in hydrophobic residues), outside loops (enriched in hydrophilic residues), and inside loops (enriched in positively charged residues according to the positive-inside rule).</p>
+<p>However, many proteins in sequence databases lack experimental structural information. The Baum-Welch algorithm allows us to include these proteins in training by treating their membrane topology as unknown and iteratively refining our model parameters. Initially, the algorithm might make poor predictions about which regions are membrane-spanning, but as the parameters improve, the topology predictions become more accurate, which in turn leads to better parameter estimates.</p>
+</section>
+<section id="biological-applications-and-sophisticated-model-design" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> Biological Applications and Sophisticated Model Design</h1>
+<p>The design of effective HMMs for biological applications requires careful consideration of the underlying biological processes and the incorporation of domain-specific knowledge into model structure. This chapter explores several important applications that demonstrate how biological insight can be encoded into HMM architectures to solve complex sequence analysis problems.</p>
+<section id="gene-finding-in-eukaryotic-genomes" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="gene-finding-in-eukaryotic-genomes"><span class="header-section-number">35.1</span> Gene Finding in Eukaryotic Genomes</h2>
+<p>Gene finding in eukaryotic genomes represents one of the most sophisticated applications of HMMs in computational biology. Unlike bacterial genes, which consist of simple continuous coding sequences, eukaryotic genes have complex structures with multiple exons separated by introns, alternative splicing patterns, and regulatory elements.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; Intergenic</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    Intergenic --&gt; FiveUTR</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    FiveUTR --&gt; FirstExon</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    FirstExon --&gt; Intron</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    Intron --&gt; InternalExon</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    InternalExon --&gt; Intron</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    InternalExon --&gt; LastExon</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    LastExon --&gt; ThreeUTR</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    ThreeUTR --&gt; Intergenic</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    Intergenic --&gt; [*]</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    note right of FirstExon</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        Contains start codon</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        Maintains reading frame</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        Codon usage bias</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    note right of Intron</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        GT...AG splice sites</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        Branch point sequence</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        Variable length</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    note right of InternalExon</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        Maintains reading frame</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        No start/stop codons</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        Triplet periodicity</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; Intergenic
+    Intergenic --&gt; FiveUTR
+    FiveUTR --&gt; FirstExon
+    FirstExon --&gt; Intron
+    Intron --&gt; InternalExon
+    InternalExon --&gt; Intron
+    InternalExon --&gt; LastExon
+    LastExon --&gt; ThreeUTR
+    ThreeUTR --&gt; Intergenic
+    Intergenic --&gt; [*]
+    
+    note right of FirstExon
+        Contains start codon
+        Maintains reading frame
+        Codon usage bias
+    end note
+    
+    note right of Intron
+        GT...AG splice sites
+        Branch point sequence
+        Variable length
+    end note
+    
+    note right of InternalExon
+        Maintains reading frame
+        No start/stop codons
+        Triplet periodicity
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>A comprehensive gene finding HMM must model all these features while maintaining computational efficiency. A basic eukaryotic gene finding model includes states representing different functional regions: 5’ untranslated regions (5’ UTR), first exons, introns, internal exons, last exons, and 3’ untranslated regions (3’ UTR). The emission probabilities reflect the different sequence characteristics of these regions. Exon states avoid in-frame stop codons and exhibit the triplet periodicity characteristic of protein-coding sequences, while intron states have more uniform nucleotide composition and may contain repetitive elements.</p>
+<p>The transition probabilities encode biological knowledge about gene structure. The probability of transitioning from “first exon” to “intron” is high near GT dinucleotides (donor splice sites), while the probability of transitioning from “intron” to “internal exon” is high near AG dinucleotides (acceptor splice sites). These transition probabilities can be made position-specific to model the sequence conservation around splice sites more accurately.</p>
+<p>For example, the donor splice site model might include a series of states <span class="math inline">\(D_1, D_2, \ldots, D_9\)</span> that model the conserved sequence around the splice site:</p>
+<ul>
+<li><span class="math inline">\(e_{D_1}(\text{G}) \approx 0.95\)</span>, modeling the highly conserved G in the GT dinucleotide</li>
+<li><span class="math inline">\(e_{D_2}(\text{T}) \approx 0.95\)</span>, modeling the highly conserved T in the GT dinucleotide<br>
+</li>
+<li><span class="math inline">\(e_{D_3}\)</span> through <span class="math inline">\(e_{D_9}\)</span> model the less conserved but still biased positions</li>
+</ul>
+<p>This approach allows the HMM to recognize splice sites based on both the canonical GT-AG signals and the more subtle sequence preferences in the surrounding regions.</p>
+</section>
+<section id="cpg-island-detection" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="cpg-island-detection"><span class="header-section-number">35.2</span> CpG Island Detection</h2>
+<p>CpG island detection provides another excellent example of sophisticated HMM design. CpG islands are regions of genomic DNA with elevated frequencies of cytosine-guanine dinucleotides that often mark gene promoters and regulatory regions. The challenge is that CpG islands are not uniformly CpG-rich but contain regions of varying CpG density, and their boundaries are often gradual rather than sharp.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; Background</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    Background --&gt; LowCpG</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    LowCpG --&gt; MediumCpG</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    MediumCpG --&gt; HighCpG</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    HighCpG --&gt; MediumCpG</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    MediumCpG --&gt; LowCpG</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    LowCpG --&gt; Background</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    Background --&gt; [*]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    note right of Background</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        P(CG) = 0.01</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        Typical genomic frequency</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    note right of LowCpG</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        P(CG) = 0.04</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        CpG island periphery</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    note right of MediumCpG</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        P(CG) = 0.08</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        Intermediate regions</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    note right of HighCpG</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        P(CG) = 0.15</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        CpG island core</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; Background
+    Background --&gt; LowCpG
+    LowCpG --&gt; MediumCpG
+    MediumCpG --&gt; HighCpG
+    HighCpG --&gt; MediumCpG
+    MediumCpG --&gt; LowCpG
+    LowCpG --&gt; Background
+    Background --&gt; [*]
+    
+    note right of Background
+        P(CG) = 0.01
+        Typical genomic frequency
+    end note
+    
+    note right of LowCpG
+        P(CG) = 0.04
+        CpG island periphery
+    end note
+    
+    note right of MediumCpG
+        P(CG) = 0.08
+        Intermediate regions
+    end note
+    
+    note right of HighCpG
+        P(CG) = 0.15
+        CpG island core
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>A sophisticated model might include multiple CpG island states representing different levels of CpG enrichment:</p>
+<ul>
+<li>High CpG state: <span class="math inline">\(P(\text{CG}) = 0.15\)</span>, <span class="math inline">\(P(\text{other dinucleotides}) = 0.85/15\)</span></li>
+<li>Medium CpG state: <span class="math inline">\(P(\text{CG}) = 0.08\)</span>, <span class="math inline">\(P(\text{other dinucleotides}) = 0.92/15\)</span><br>
+</li>
+<li>Low CpG state: <span class="math inline">\(P(\text{CG}) = 0.04\)</span>, <span class="math inline">\(P(\text{other dinucleotides}) = 0.96/15\)</span></li>
+<li>Background state: <span class="math inline">\(P(\text{CG}) = 0.01\)</span>, <span class="math inline">\(P(\text{other dinucleotides}) = 0.99/15\)</span></li>
+</ul>
+<p>The transition structure allows gradual transitions between these states, modeling the fact that CpG islands often have cores of high CpG density surrounded by regions of intermediate CpG density.</p>
+</section>
+<section id="transmembrane-protein-topology-prediction" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="transmembrane-protein-topology-prediction"><span class="header-section-number">35.3</span> Transmembrane Protein Topology Prediction</h2>
+<p>Transmembrane protein topology prediction illustrates how biophysical knowledge can be incorporated into HMM design. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops in the aqueous environment.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; OutsideLoop</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    OutsideLoop --&gt; TMHelix</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    TMHelix --&gt; InsideLoop</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    InsideLoop --&gt; TMHelix</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    TMHelix --&gt; OutsideLoop</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    OutsideLoop --&gt; [*]</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    InsideLoop --&gt; [*]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    note right of OutsideLoop</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        Hydrophilic residues</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        P(K,R,D,E) high</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        Negative charge bias</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    note right of TMHelix</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        Hydrophobic residues</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        P(L,I,V,F,A) high</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        Length: 20-25 residues</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    note right of InsideLoop</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        Positive-inside rule</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        P(K,R) &gt; P(D,E)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        Cytoplasmic side</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; OutsideLoop
+    OutsideLoop --&gt; TMHelix
+    TMHelix --&gt; InsideLoop
+    InsideLoop --&gt; TMHelix
+    TMHelix --&gt; OutsideLoop
+    OutsideLoop --&gt; [*]
+    InsideLoop --&gt; [*]
+    
+    note right of OutsideLoop
+        Hydrophilic residues
+        P(K,R,D,E) high
+        Negative charge bias
+    end note
+    
+    note right of TMHelix
+        Hydrophobic residues
+        P(L,I,V,F,A) high
+        Length: 20-25 residues
+    end note
+    
+    note right of InsideLoop
+        Positive-inside rule
+        P(K,R) &gt; P(D,E)
+        Cytoplasmic side
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The design of an effective transmembrane protein HMM requires modeling several biological constraints. First, the hydrophobic nature of membrane-spanning regions must be captured through appropriate emission probabilities. Transmembrane helix states have high emission probabilities for hydrophobic amino acids (L, I, V, F, A) and low probabilities for charged amino acids (K, R, D, E).</p>
+<p>Second, the length constraints of transmembrane helices must be modeled. Membrane-spanning α-helices typically contain 20-25 amino acids, corresponding to the thickness of the lipid bilayer. This can be modeled using a series of transmembrane states or explicit length distributions.</p>
+<p>Third, the “positive-inside rule” must be incorporated. This rule states that the cytoplasmic side of transmembrane proteins contains more positively charged amino acids than the extracellular side. This can be modeled by having different inside and outside loop states with different emission probabilities for charged amino acids:</p>
+<ul>
+<li>Inside loop: <span class="math inline">\(P(\text{K}) = 0.08\)</span>, <span class="math inline">\(P(\text{R}) = 0.06\)</span>, <span class="math inline">\(P(\text{D}) = 0.04\)</span>, <span class="math inline">\(P(\text{E}) = 0.05\)</span></li>
+<li>Outside loop: <span class="math inline">\(P(\text{K}) = 0.04\)</span>, <span class="math inline">\(P(\text{R}) = 0.03\)</span>, <span class="math inline">\(P(\text{D}) = 0.08\)</span>, <span class="math inline">\(P(\text{E}) = 0.09\)</span></li>
+</ul>
+</section>
+<section id="signal-peptide-prediction" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="signal-peptide-prediction"><span class="header-section-number">35.4</span> Signal Peptide Prediction</h2>
+<p>Signal peptide prediction represents another important application where biological knowledge guides HMM design. Signal peptides are short amino acid sequences that direct newly synthesized proteins to specific cellular locations. They typically consist of three regions: a positively charged N-terminal region, a hydrophobic core region, and a polar C-terminal region containing the cleavage site.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; NTerminal</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    NTerminal --&gt; HydrophobicCore</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    HydrophobicCore --&gt; CTerminal</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    CTerminal --&gt; CleavageSite</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    CleavageSite --&gt; [*]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    note right of NTerminal</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        Positively charged</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        P(K,R) high</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        Length: 1-5 residues</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    note right of HydrophobicCore</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        Hydrophobic residues</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        P(L,I,V,F,A) high</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        Length: 7-15 residues</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    note right of CTerminal</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        Polar residues</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        Small, uncharged</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        Length: 3-7 residues</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    note right of CleavageSite</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        Specific cleavage rules</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        Small residues at -1,-3</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; NTerminal
+    NTerminal --&gt; HydrophobicCore
+    HydrophobicCore --&gt; CTerminal
+    CTerminal --&gt; CleavageSite
+    CleavageSite --&gt; [*]
+    
+    note right of NTerminal
+        Positively charged
+        P(K,R) high
+        Length: 1-5 residues
+    end note
+    
+    note right of HydrophobicCore
+        Hydrophobic residues
+        P(L,I,V,F,A) high
+        Length: 7-15 residues
+    end note
+    
+    note right of CTerminal
+        Polar residues
+        Small, uncharged
+        Length: 3-7 residues
+    end note
+    
+    note right of CleavageSite
+        Specific cleavage rules
+        Small residues at -1,-3
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>An HMM for signal peptide prediction might include states for each of these regions with appropriate emission probabilities and transition structures that model the sequential organization and typical length ranges of each region.</p>
+</section>
+</section>
+<section id="advanced-extensions-and-modern-applications" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Advanced Extensions and Modern Applications</h1>
+<p>Modern applications of HMMs in biology often involve extensions beyond the basic framework to address specific challenges in sequence analysis. These extensions demonstrate the flexibility of the HMM framework and its continued relevance for cutting-edge biological problems.</p>
+<section id="profile-hmms-for-protein-family-analysis" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="profile-hmms-for-protein-family-analysis"><span class="header-section-number">36.1</span> Profile HMMs for Protein Family Analysis</h2>
+<p>Profile HMMs represent one of the most successful extensions of the basic HMM framework. They adapt the basic structure to model multiple sequence alignments, enabling sensitive detection of remote homology and accurate classification of protein sequences into functional families.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    subgraph "Profile HMM Structure"</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        M1[Match₁] --&gt; M2[Match₂]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        M1 --&gt; I1[Insert₁]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        M1 --&gt; D2[Delete₂]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        I1 --&gt; M2</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        I1 --&gt; I1</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        I1 --&gt; D2</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        D2 --&gt; M2</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        D2 --&gt; D2</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        M2 --&gt; M3[Match₃]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        M2 --&gt; I2[Insert₂]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        M2 --&gt; D3[Delete₃]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    note right of M1</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        Emit according to</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        alignment column</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        conservation</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    note right of I1</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        Emit according to</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        background</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>        frequencies</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    note right of D2</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        Silent state</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>        No emission</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    style M1 fill:#e8f5e8</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    style I1 fill:#fff3e0</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    style D2 fill:#ffebee</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    subgraph "Profile HMM Structure"
+        M1[Match₁] --&gt; M2[Match₂]
+        M1 --&gt; I1[Insert₁]
+        M1 --&gt; D2[Delete₂]
+        I1 --&gt; M2
+        I1 --&gt; I1
+        I1 --&gt; D2
+        D2 --&gt; M2
+        D2 --&gt; D2
+        
+        M2 --&gt; M3[Match₃]
+        M2 --&gt; I2[Insert₂]
+        M2 --&gt; D3[Delete₃]
+    end
+    
+    note right of M1
+        Emit according to
+        alignment column
+        conservation
+    end note
+    
+    note right of I1
+        Emit according to
+        background
+        frequencies
+    end note
+    
+    note right of D2
+        Silent state
+        No emission
+    end note
+    
+    style M1 fill:#e8f5e8
+    style I1 fill:#fff3e0
+    style D2 fill:#ffebee
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>In a profile HMM, we have three types of states at each alignment column that model different evolutionary events. Match states (M) emit amino acids according to the conservation pattern in that alignment column. For example, if an alignment column contains mostly hydrophobic amino acids, the corresponding match state would have high emission probabilities for L, I, V, F, and A. Insertion states (I) emit amino acids according to background frequencies, modeling insertions relative to the consensus sequence. Deletion states (D) emit no amino acids (silent states), modeling deletions relative to the consensus sequence.</p>
+<p>The transition probabilities between these states model the frequency of insertions and deletions in the protein family. For alignment column <span class="math inline">\(i\)</span>, typical transitions include:</p>
+<ul>
+<li><span class="math inline">\(M_{i-1} \to M_i\)</span>: normal progression through the alignment</li>
+<li><span class="math inline">\(M_{i-1} \to I_{i-1}\)</span>: insertion after match state<br>
+</li>
+<li><span class="math inline">\(M_{i-1} \to D_i\)</span>: deletion of alignment column <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(I_{i-1} \to M_i\)</span>: end of insertion, return to consensus</li>
+<li><span class="math inline">\(I_{i-1} \to I_{i-1}\)</span>: extension of insertion</li>
+<li><span class="math inline">\(D_{i-1} \to D_i\)</span>: extension of deletion</li>
+</ul>
+<p>This structure allows profile HMMs to identify sequences that match the overall pattern of a protein family even when they contain insertions, deletions, or substitutions relative to the consensus sequence.</p>
+</section>
+<section id="pair-hmms-for-sequence-alignment" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="pair-hmms-for-sequence-alignment"><span class="header-section-number">36.2</span> Pair HMMs for Sequence Alignment</h2>
+<p>Pair HMMs extend the framework to model the evolutionary relationship between two sequences simultaneously, finding applications in sequence alignment and comparative genomics. This is particularly useful for identifying conserved regions between species, which likely represent functionally important elements.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    [*] --&gt; Match</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    Match --&gt; Match</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    Match --&gt; InsertX</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    Match --&gt; InsertY</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    InsertX --&gt; Match</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    InsertX --&gt; InsertX</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    InsertY --&gt; Match</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    InsertY --&gt; InsertY</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    Match --&gt; [*]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    InsertX --&gt; [*]</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    InsertY --&gt; [*]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    note right of Match</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        Emit from both sequences</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        Models aligned positions</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        Substitution patterns</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    note right of InsertX</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        Emit from sequence X only</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        Gap in sequence Y</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        Insertion events</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    end note</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    note right of InsertY</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        Emit from sequence Y only</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        Gap in sequence X</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        Deletion events</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    end note</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">stateDiagram-v2
+    [*] --&gt; Match
+    Match --&gt; Match
+    Match --&gt; InsertX
+    Match --&gt; InsertY
+    InsertX --&gt; Match
+    InsertX --&gt; InsertX
+    InsertY --&gt; Match
+    InsertY --&gt; InsertY
+    Match --&gt; [*]
+    InsertX --&gt; [*]
+    InsertY --&gt; [*]
+    
+    note right of Match
+        Emit from both sequences
+        Models aligned positions
+        Substitution patterns
+    end note
+    
+    note right of InsertX
+        Emit from sequence X only
+        Gap in sequence Y
+        Insertion events
+    end note
+    
+    note right of InsertY
+        Emit from sequence Y only
+        Gap in sequence X
+        Deletion events
+    end note
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The states in a pair HMM typically represent different types of evolutionary events:</p>
+<ul>
+<li>Match state: emits aligned amino acids or nucleotides from both sequences</li>
+<li>Insertion in sequence 1: emits from sequence 1 only (gap in sequence 2)</li>
+<li>Insertion in sequence 2: emits from sequence 2 only (gap in sequence 1)</li>
+</ul>
+<p>The emission probabilities for the match state capture the substitution patterns between the two sequences:</p>
+<p><span id="eq-pair-emission"><span class="math display">\[
+e_M(a,b) = P(\text{emitting amino acid } a \text{ from sequence 1 and amino acid } b \text{ from sequence 2})
+\tag{36.1}\]</span></span></p>
+<p>For closely related sequences, this probability would be high when <span class="math inline">\(a = b\)</span> (identical amino acids) and lower for substitutions. For distantly related sequences, the emission probabilities would reflect the amino acid substitution matrices derived from evolutionary studies.</p>
+</section>
+<section id="hidden-semi-markov-models" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="hidden-semi-markov-models"><span class="header-section-number">36.3</span> Hidden Semi-Markov Models</h2>
+<p>Hidden semi-Markov models (HSMMs) relax the geometric length distribution assumption of standard HMMs by explicitly modeling state durations. This extension is particularly valuable for biological applications where feature lengths follow non-geometric distributions, such as protein domains or gene exons.</p>
+<p>Instead of transition probabilities between individual positions, HSMMs use duration probabilities <span class="math inline">\(P(d)\)</span> for spending exactly <span class="math inline">\(d\)</span> time steps in a state, and transition probabilities between different state types. The forward algorithm becomes:</p>
+<p><span id="eq-hsmm-forward"><span class="math display">\[
+f_l(i) = \sum_d \sum_k f_k(i-d) \times a_{kl} \times P(d) \times \prod_{j=i-d+1}^{i} e_l(x_j)
+\tag{36.2}\]</span></span></p>
+<p>This allows modeling of complex length distributions while maintaining computational tractability. For example, exon lengths in human genes could be modeled using empirical length distributions derived from known genes, rather than the geometric distributions implicit in standard HMMs.</p>
+</section>
+<section id="phylogenetic-hmms-for-comparative-genomics" class="level2" data-number="36.4">
+<h2 data-number="36.4" class="anchored" data-anchor-id="phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">36.4</span> Phylogenetic HMMs for Comparative Genomics</h2>
+<p>Modern comparative genomics applications use sophisticated HMM variants to analyze multiple genome alignments simultaneously. These phylogenetic HMMs model the evolution of functional elements across multiple species, allowing identification of conserved regulatory elements, detection of positive selection, and reconstruction of ancestral genome organization.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>graph TB</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    subgraph "Evolutionary States"</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        C1[Coding under purifying selection]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        U1[UTR under moderate constraint]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        R1[Regulatory under strong constraint]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        N1[Neutral sequences]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        P1[Positive selection]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    subgraph "Species Tree"</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        S1[Human] </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        S2[Chimp]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        S3[Mouse]</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        S4[Rat]</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    C1 --&gt; S1</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    C1 --&gt; S2</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    C1 --&gt; S3</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    C1 --&gt; S4</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    style C1 fill:#e8f5e8</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    style R1 fill:#e3f2fd</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    style N1 fill:#fff3e0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "Evolutionary States"
+        C1[Coding under purifying selection]
+        U1[UTR under moderate constraint]
+        R1[Regulatory under strong constraint]
+        N1[Neutral sequences]
+        P1[Positive selection]
+    end
+    
+    subgraph "Species Tree"
+        S1[Human] 
+        S2[Chimp]
+        S3[Mouse]
+        S4[Rat]
+    end
+    
+    C1 --&gt; S1
+    C1 --&gt; S2
+    C1 --&gt; S3
+    C1 --&gt; S4
+    
+    style C1 fill:#e8f5e8
+    style R1 fill:#e3f2fd
+    style N1 fill:#fff3e0
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>For example, a phylogenetic HMM for analyzing mammalian genome alignments might include states representing:</p>
+<ul>
+<li>Coding sequences under purifying selection</li>
+<li>Untranslated regions under moderate constraint<br>
+</li>
+<li>Regulatory elements under strong constraint</li>
+<li>Neutral sequences under no constraint</li>
+<li>Regions under positive selection</li>
+</ul>
+<p>The emission probabilities at each state model the expected substitution patterns under different evolutionary pressures, while the transition probabilities model the spatial organization of functional elements along chromosomes.</p>
+</section>
+</section>
+<section id="conclusion" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Conclusion</h1>
+<p>Hidden Markov Models provide a mathematically rigorous and computationally efficient framework for analyzing sequential biological data that has revolutionized computational biology. The three fundamental algorithms—Viterbi with complexity <span class="math inline">\(O(LK^2)\)</span>, Forward with complexity <span class="math inline">\(O(LK^2)\)</span>, and Baum-Welch with complexity <span class="math inline">\(O(LK^2)\)</span> per iteration—offer complementary perspectives on the same underlying probabilistic model, enabling optimal functional annotation, sequence classification, and parameter learning from biological data.</p>
+<p>The mathematical foundation rests on the Markov assumption and the factorization given in Equation <a href="#eq-joint-prob" class="quarto-xref">Equation&nbsp;<span>29.1</span></a>:</p>
+<p><span class="math display">\[
+P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
+\]</span></p>
+<p>This enables efficient dynamic programming solutions to inference and learning problems that arise throughout computational biology. The key insight is that the Markov property allows us to decompose complex global problems—such as finding optimal gene structures in entire genomes—into tractable local computations.</p>
+<p>The success of HMMs in biological applications stems from their ability to integrate biological knowledge through model structure while maintaining computational tractability. Whether modeling the complex exon-intron organization of eukaryotic genes, the hydrophobic patterns that define transmembrane protein topology, the CpG enrichment that marks regulatory islands, or the conservation patterns that reveal functional protein domains, HMMs provide a flexible framework for encoding biological insights into computational tools.</p>
+<p>The biological applications of HMMs continue to expand as our understanding of genome organization and protein structure becomes more sophisticated. Modern applications include comparative genomics, where HMMs help identify conserved regulatory elements across species; metagenomics, where they classify sequences from environmental samples; and personalized medicine, where they help interpret the functional consequences of genetic variants.</p>
+<p>As biological datasets continue to grow in size and complexity—from single-cell RNA sequencing experiments that profile thousands of genes in individual cells to population genomics studies that analyze genetic variation across millions of individuals—HMMs remain an essential tool in the computational biologist’s toolkit. They often serve as building blocks for more sophisticated modeling approaches, providing the theoretical foundation for understanding how sequence patterns relate to biological function.</p>
+<p>For students of computational biology, mastering HMMs provides not just a powerful set of analysis tools, but also a conceptual framework for thinking about how to model biological processes mathematically and how to extract biological insights from sequence data. The principles underlying HMMs—dynamic programming, probabilistic inference, and parameter estimation—extend far beyond the specific algorithms discussed here, providing a foundation for understanding many other computational methods in biology and beyond.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/project/translation_project/index.html" class="pagination-link" aria-label="Translating ORFs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/bioinformatics/sequence_annnotation.html" class="pagination-link" aria-label="Sequence annotation">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Sequence annotation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
