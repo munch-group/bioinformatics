@@ -114,7 +114,7 @@ book:
 
 
 
-      - chapters/web/orf_finding.qmd # W
+      - chapters/web/orf_finding/index.qmd # W
 #      - chapters/web/long_reads.qmd # W
     - part: "Supplementary"
       chapters: 
