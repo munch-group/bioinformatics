@@ -1,8 +1,9 @@
 project:
   type: book
   output-dir: _book
-  # post-render: 
-  #   - quarto render --to html --profile ta  
+  post-render: 
+    - quarto render --to html --profile ta  
+    - quarto render --to html --profile draft  
 
 book:
   title: "Bioinformatics and Programming"
@@ -17,6 +18,7 @@ book:
   # downloads: [pdf]
   chapters:
     - index.qmd
+    - about.qmd
     - curriculum.qmd
     # - part: "Schedule"
     #   chapters:
