@@ -18,7 +18,7 @@ Consider the human genome, which contains over 3 billion base pairs of DNA. With
 
 Hidden Markov Models provide an elegant computational framework for solving these biological annotation problems. They excel at identifying patterns in sequences where the underlying biological function is not directly observable but must be inferred from the sequence content. For instance, when we see the sequence `ATGAAATTTGCCTAG`, we cannot directly observe whether each nucleotide is part of an exon, intron, or intergenic region. However, we can use the statistical properties of the sequence—such as codon usage patterns, presence of start and stop codons, and splice site signals—to infer the most likely functional annotation.
 
-```{.mermaid}
+```{mermaid}
 graph LR
     A[DNA Sequence<br/>ATGAAATTTGCCTAG] --> B[Hidden States<br/>Start-Coding-Coding-Stop]
     B --> C[Functional Annotation<br/>Gene Structure]
@@ -44,7 +44,7 @@ These questions correspond to different biological applications: finding the mos
 
 Hidden Markov Models represent one of the most elegant and powerful frameworks in computational biology for modeling sequential data with underlying structure. The fundamental premise of an HMM is that we observe a sequence of DNA nucleotides or protein amino acids, but the biological function generating these observations follows an unobservable sequence of functional states. This hidden state sequence evolves according to the Markov property, which states that the probability of transitioning to any future functional state depends only on the current state, not on the entire history of previous states.
 
-```{.mermaid}
+```{mermaid}
 graph TD
     subgraph "Hidden States (Functional Annotation)"
         H1[Intergenic] --> H2[Start Codon]
@@ -106,7 +106,7 @@ The theoretical foundation of HMMs addresses three fundamental computational pro
 
 The Viterbi algorithm solves the annotation problem by finding the single most probable sequence of functional states that could have generated the observed DNA or protein sequence. This algorithm is fundamental to many bioinformatics applications, from identifying exon-intron boundaries in genes to predicting the membrane topology of proteins.
 
-```{.mermaid}
+```{mermaid}
 graph LR
     subgraph "Dynamic Programming Table"
         A[Position 1] --> B[Position 2]
@@ -156,7 +156,7 @@ This equation integrates three types of biological information. The emission pro
 
 In gene finding applications, the states might represent different functional regions. A simple bacterial gene finder might include states for "intergenic region," "start codon," "coding sequence," and "stop codon." The emission probabilities would reflect the different nucleotide composition patterns in these regions.
 
-```{.mermaid}
+```{mermaid}
 stateDiagram-v2
     [*] --> Intergenic
     Intergenic --> StartCodon
