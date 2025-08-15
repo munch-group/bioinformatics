@@ -22,7 +22,7 @@ curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --
 3. Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
 
 ```powershell
- powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 &&  powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 ; powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1
 ```
 
 :::
