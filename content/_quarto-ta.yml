@@ -27,7 +27,8 @@ book:
   # downloads: [pdf]
   chapters:
     - index.qmd
-    # - curriculum.qmd
+    - about.qmd
+    - curriculum.qmd
     # - part: "Schedule"
     #   chapters:
     #   - overview.qmd

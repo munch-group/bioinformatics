@@ -48,57 +48,12 @@ hide-hidden: true
 
 This is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The [Brightspace course page][brightspace] is only used for communication, and assignments.
 
-## Course description {.unnumbered}
-After the course, the participants will have basic knowledge of computer methods and applications for analyzing biological sequence data and insight into principles and techniques for constructing simple programs. Participants will acquire practical experience with analyzing problems in bioinformatics and related fields and implementing programs to solve such problems using the Python programming language.
 
-The participants must, at the end of the course, be able to:
-
-* Apply fundamental constructs of a programming language.
-* Analyse data and construct data structures for the representation of data.
-* Analyse simple computational problems and construct programs for their solution.
-* Describe and relate essential methods in bioinformatics analysis.
-* Apply bioinformatics software to biological data.
-* Judge the reliability of results obtained using Bioinformatics software.
-
-## Course contents {.unnumbered}
-The course introduces programming and its practical applications in bioinformatics. The course also outlines and discusses bioinformatics algorithms, and the most common tools for bioinformatics analysis of sequence data are presented and demo
-nstrated. The participant will acquire and train basic programming skills during the first seven weeks. The last seven weeks introduce key topics in bioinformatics, focusing on applying bioinformatical software and developing programming skills. Subjects for lectures and exercises include bioinformatics databases, sequence alignment, genome annotation, sequence evolution, and phylogenetic analysis.
 
 
 ::: {.content-visible when-format="html"}
 
 
-# Curriculum {.unnumbered}
-
-The curriculum for programming is the lecture notes on these pages (a PDF version is available by clicking the PDF icon in the top left corner). I will develop my own lecture notes and add them to this page as the course progress.
-
-<!-- THE REST IS HIDDEN -->
-::: {.content-hidden when-meta="hide-hidden"}
-
-Bioinformatics is a rapidly developing field, so textbooks often have parts that need updating. So, in this course, the curriculum for bioinformatics is put together from several sources. We use the best excerpts from the textbooks Understanding Bioinformatics by Jeremy Baum and Marketa J. Zvelebil, Biological Sequence Analysis by Richard Durbin et al., and Exploring Bioinformatics by Caroline St. Clair and Jonathan E. Visick. I have collected the sections from each textbook in separate compendia. You will also be reading short, up-to-date publications on selected topics in bioinformatics. 
-
-Below are links to material covering the bioinformatics topics we treat in the course. In the weekly notes, you can see what you need to read to prepare for each lecture. You can also find any curriculum related to the exercises in the weekly note.
-
-Compendia you can download here:
-
-- [Compendium of selections from Understanding Bioinformatics](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=UnderstandingBioinformatics.pdf)
-- [Compendium of selections from Biological Sequence Analysis](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=BiologicalSequenceAnalysis.pdf)
-- [Compendium of selections from Exploring Bioinformatics](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=ExploringBioinformatics.pdf)
-
-Links to material you need to download yourself (you may need to be on campus or use your student VPN to download from publisher websites):
-
-- [Chapter 11: Genome-Wide Association Studies](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822)
-- [Benefits and limitations of genome-wide association studies](https://www.nature.com/articles/s41576-019-0127-1)
-- [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032)
-- [Alignment methods: strategies, challenges, benchmarking, and comparative overview](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=AlignmentMethods.pdf)
-- [Bioinformatics explained: BLAST (CLCbio)](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=CLC_Bioinformatics_explained_BLAST.pdf)
-- [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
-
-Curriculum on webpages (not PDF format):
-
-[Using neural nets to recognize handwritten digits](https://neuralnetworksanddeeplearning.com/chap1.html) (if you have trouble accessing the page, download [this zip file](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=Neural+networks.zip) with the HTML content, unzip it, and view it locally).
-
-:::
 
 
 # Schedule {.unnumbered}
