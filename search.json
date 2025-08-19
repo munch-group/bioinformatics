@@ -992,18 +992,18 @@
     "href": "chapters/python/appendix_bsf.html",
     "title": "18  Appendix: PyMol for BSF",
     "section": "",
-    "text": "Install Python\nThis installation procedure includes python and few other tools that you will also need later in the semester:",
+    "text": "Install Pixi",
     "crumbs": [
       "Learning Python",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
     ]
   },
   {
-    "objectID": "chapters/python/appendix_bsf.html#install-python",
-    "href": "chapters/python/appendix_bsf.html#install-python",
+    "objectID": "chapters/python/appendix_bsf.html#install-pixi",
+    "href": "chapters/python/appendix_bsf.html#install-pixi",
     "title": "18  Appendix: PyMol for BSF",
     "section": "",
-    "text": "Mac Windows\n\n\n\nClick the clipboard icon at the right end of the box below to copy the command to your clipboard.\nOpen your Terminal application.\nPaste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\n\ncurl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes\n\n\n\nClick the clipboard icon at the right end of the box below to copy the command to your clipboard.\nOpen your PowerShell application.\nPaste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n\n powershell -ExecutionPolicy ByPass -c \"irm -useb  http://munch-group.org/franklin/installers/install.ps1\" &gt; finst.ps1 ; powershell .\\finst.ps1 -Role student -Yes ; rm .\\finst.ps1",
+    "text": "Mac Windows\n\n\n\nClick the clipboard icon at the right end of the box below to copy the command to your clipboard.\nOpen your Terminal application.\nPaste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\n\ncurl -fsSL https://pixi.sh/install.sh | sh\n\n\n\nClick the clipboard icon at the right end of the box below to copy the command to your clipboard.\nOpen your PowerShell application.\nPaste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n\npowershell -ExecutionPolicy ByPass -c \"irm -useb https://pixi.sh/install.ps1 | iex\"\nIf that fails, you can download this interactive installer and run it.",
     "crumbs": [
       "Learning Python",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"
@@ -1014,7 +1014,7 @@
     "href": "chapters/python/appendix_bsf.html#install-pymol",
     "title": "18  Appendix: PyMol for BSF",
     "section": "Install PyMol",
-    "text": "Install PyMol\n\n Mac Windows\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your Terminal application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\n\npixi init --platform osx-64 -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your PowerShell application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n\npixi init -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"",
+    "text": "Install PyMol\n\n Mac Windows\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your Terminal application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.\n\npixi init --platform osx-64 -c conda-forge -c anaconda -c schrodinger && pixi config set --local run-post-link-scripts insecure && pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"\n\n\n\nCreate a folder on your computer dedicated to the BSF course. Let’s say you call it ‘BSF’ and put it in your ‘Documents’ folder.\nOpen your PowerShell application, and navigate to that folder using cd (something like cd Documents and then cd BSF).\nOnce you are in the ‘BSF’ folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.\n\npixi init -c conda-forge -c anaconda -c schrodinger ; pixi config set --local run-post-link-scripts insecure ; pixi add pyqt \"pymol-bundle=3.1\" \"vtk-m=1.8\"",
     "crumbs": [
       "Learning Python",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Appendix: PyMol for BSF</span>"

@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#install-python" id="toc-install-python" class="nav-link active" data-scroll-target="#install-python">Install Python</a></li>
+  <li><a href="#install-pixi" id="toc-install-pixi" class="nav-link active" data-scroll-target="#install-pixi">Install Pixi</a></li>
   <li><a href="#install-pymol" id="toc-install-pymol" class="nav-link" data-scroll-target="#install-pymol">Install PyMol</a></li>
   <li><a href="#running-pymol" id="toc-running-pymol" class="nav-link" data-scroll-target="#running-pymol">Running PyMol</a></li>
   </ul>
@@ -465,9 +465,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="install-python" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="install-python">Install Python</h2>
-<p>This installation procedure includes python and few other tools that you will also need later in the semester:</p>
+<!-- ## Install Python {.unnumbered}
+
+This installation procedure includes python and few other tools that you will also need later in the semester:
+
+::: {.panel-tabset }
+
+## <i class="bi bi-apple"></i> Mac  
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+2. Open your Terminal application. 
+3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+
+```bash
+curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
+```
+
+## <i class="bi bi-windows"></i> Windows
+
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+2. Open your PowerShell application.
+3. Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
+
+```powershell
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > finst.ps1 ; powershell .\finst.ps1 -Role student -Yes ; rm .\finst.ps1
+```
+
+::: -->
+<section id="install-pixi" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="install-pixi">Install Pixi</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><i class="bi bi-apple"></i> Mac</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="bi bi-windows"></i> Windows</a></li></ul>
 <div class="tab-content">
@@ -477,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open your Terminal application.</li>
 <li>Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> http://munch-group.org/franklin/installers/install.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">--role</span> student <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://pixi.sh/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <ol type="1">
@@ -485,7 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open your PowerShell application.</li>
 <li>Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm -useb  http://munch-group.org/franklin/installers/install.ps1"</span> <span class="op">&gt;</span> finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">;</span> powershell <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span> <span class="op">-</span>Role student <span class="op">-</span>Yes <span class="op">;</span> <span class="fu">rm</span> <span class="op">.</span>\finst<span class="op">.</span><span class="fu">ps1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm -useb https://pixi.sh/install.ps1 | iex"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If that fails, you can <a href="https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi">download this interactive installer</a> and run it.</p>
 </div>
 </div>
 </div>
@@ -509,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open your PowerShell application, and navigate to that folder using <code>cd</code> (something like <code>cd Documents</code> and then <code>cd BSF</code>).</li>
 <li>Once you are in the ‘BSF’ folder, paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pixi init <span class="op">-</span>c conda-forge <span class="op">-</span>c anaconda <span class="op">-</span>c schrodinger <span class="op">&amp;&amp;</span> pixi config <span class="fu">set</span> <span class="op">--</span>local run-post-link-scripts insecure <span class="op">&amp;&amp;</span> pixi add pyqt <span class="st">"pymol-bundle=3.1"</span> <span class="st">"vtk-m=1.8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pixi init <span class="op">-</span>c conda-forge <span class="op">-</span>c anaconda <span class="op">-</span>c schrodinger <span class="op">;</span> pixi config <span class="fu">set</span> <span class="op">--</span>local run-post-link-scripts insecure <span class="op">;</span> pixi add pyqt <span class="st">"pymol-bundle=3.1"</span> <span class="st">"vtk-m=1.8"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
