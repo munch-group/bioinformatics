@@ -23,9 +23,23 @@ curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --
 curl -fsSL https://pixi.sh/install.sh | sh
 ```
 
+Restart your Terminal app and run this command:
+
+```bash
+pixi global install python
+```
+
+
 ## <i class="bi bi-windows"></i> Windows
 
 Download [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi) and run it.
+
+Now open Windows Powershell and paste this command into the window and press enter.
+
+```bash
+pixi global install python
+```
+
 
 <!-- 1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
 1. Open your PowerShell application.
