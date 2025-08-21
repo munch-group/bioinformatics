@@ -32,9 +32,9 @@ pixi global install python
 
 ## <i class="bi bi-windows"></i> Windows
 
-Download [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi) and run it.
+Install Pixi by downloading and running [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi).
 
-Now open Windows Powershell and paste this command into the window and press enter.
+Once the Pixi installation has completed sucecssfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.
 
 ```bash
 pixi global install python
