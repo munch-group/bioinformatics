@@ -257,15 +257,21 @@ Notice how it again says "(base)" on your command prompt. That is because you ar
 
 ## You are all set {.unnumbered}
 
-Well done! You are all set to start the course. Have a cup of coffee, and look forward to your first program. While you sip your coffee, I need you to take an oath (one of three you will take during this course). Raise your right hand! (put the coffee on your left).
+Well done! You are all set to start the course. Have a cup of coffee, and look forward to your first program. While you sip your coffee, I need you to take an oath (one of three you will take during this course). Raise your right hand! (put your coffee down first).
 
-> **Oath 1:** I swear *never* to copy and paste code examples from this book into my text editor. I will always *read* the examples and then *type* them into my editor.
+::: {.callout-note }
+
+## **Oath number one** 
+
+I swear *never* to copy and paste code examples from this book into my text editor. I will always *read* the examples and then *type* them into my editor.
 
 This serves three purposes (as if one was not enough):
 
 1. You will be fully aware of every bit of each example.
 2. You will learn to write code correctly and without omissions and mistakes.
 3. You will get Python “into your fingers”. It sounds silly, but it *will* get into your fingers.
+
+:::
 
 
 
