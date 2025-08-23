@@ -498,7 +498,7 @@ x = x + 1
 print(x)
 ```
 
-Then, figure out what is printed and why (remember oath 2). What value does `x` represent at each occurrence in the code?
+Then, figure out what is printed and why (remember @important-oath2). What value does `x` represent at each occurrence in the code?
 
 #### Exercise
 Some comparison operators also work with strings. Consider this code:
