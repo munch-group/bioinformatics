@@ -589,7 +589,7 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="statements-and-expressions">Statements and Expressions</h2>
 <p>To talk concisely about programming (and to receive more useful help from your instructors), you need to have a bit of vocabulary. <em>Statements</em> and <em>expressions</em> are two words you need to know. Distinguishing between statements and expressions will help us discuss our code.</p>
 <ul>
-<li><p>A <strong>statement</strong> is a line of code that performs an action. Python evaluates each statement until it reaches the end of the file (remember oath 2?). <code>print(y * 7)</code> is a statement, and so is <code>x = 14</code>. They each represent a full line of code and perform an action.</p></li>
+<li><p>A <strong>statement</strong> is a line of code that performs an action. Python evaluates each statement until it reaches the end of the file (remember <span class="citation" data-cites="important-oath2">(<a href="#ref-important-oath2" role="doc-biblioref"><strong>important-oath2?</strong></a>)</span>?). <code>print(y * 7)</code> is a statement, and so is <code>x = 14</code>. They each represent a full line of code and perform an action.</p></li>
 <li><p>An <strong>expression</strong> is any code that reduces to one value. <code>y * 7</code> is an expression, and so are <code>y * 7 + 14 - x</code> and <code>4 &gt; 5</code>.</p></li>
 </ul>
 <p>We will talk more about how Python handles expressions in the next section, but right now, you must understand that statements <em>do something</em> while expressions are things that reduce to a value. Hopefully, this distinction will be more clear after completing the following exercises.</p>
@@ -624,9 +624,19 @@ window.Quarto = {
 <p>Here, <code>x</code> is <em>substituted</em> by the value <code>4</code>, and <code>y</code> is <em>substituted</em> by the value <code>3</code>. So now the expression after the equals sign reads <code>4 * 3 + 8</code>. Because we multiply before we add, <code>4 * 3</code> <em>reduces</em> to <code>12</code> so that the expression now reads <code>12 + 8</code>. Finally, this <em>reduces</em> to the value <code>20</code>. The very <em>last</em> thing that happens is that the variable <code>z</code> is assigned the value <code>20</code>.</p>
 <p>You should do these steps every time you see an expression. You may think this is overdoing things a bit, but it is <em>not</em>. This kind of explicit thinking is what programming is all about, and it will become increasingly important as the course progresses. So make sure you make it a habit while it still seems trivial. Then, over time, it will become second nature.</p>
 <p>Now raise your right hand and read the third and last oath out loud:</p>
-<blockquote class="blockquote">
-<p><strong>Oath 3:</strong> I now solemnly swear to consciously consider every single substitution and reduction in every Python expression that I read or write from this moment on.</p>
-</blockquote>
+<div id="important-oath3" class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Oath 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I swear to consciously consider every single substitution and reduction in every Python expression that I read or write from this moment on.</p>
+</div>
+</div>
 <p>This was the last of the three oaths, but it is <em>by far</em> the most important one. You can take your hand down now.</p>
 <p><strong>NB:</strong> You may not realize this at this point, but the last two subsections are the most important ones in the book. Go back and read them many times as you proceed through the course. If you explicitly think in terms of substitution and reduction, you will be fine. If you do not, you are entering a minefield with snowshoes on.</p>
 <section id="exercise-6" class="level4" data-number="5.0.0.7">
