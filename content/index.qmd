@@ -71,12 +71,7 @@ This is the homepage for the AU course Bioinformatics and programming (Bioinform
 
 **Reading:**  
 
-  - Lecture notes: chapter @sec-preface
-  - Lecture notes: chapter @sec-before_you_begin
-  - Lecture notes: chapter @sec-helloworld
-  - Lecture notes: chapter @sec-values
-  - Lecture notes: chapter @sec-precedence
-  - Lecture notes: chapter @sec-coursetools
+  - Lecture notes: @sec-preface, @sec-before_you_begin, @sec-helloworld, @sec-values, @sec-precedence, @sec-coursetools
 
 Make sure you have installed Python and VScode for the first lecture.
 
@@ -88,17 +83,16 @@ Make sure you have installed Python and VScode for the first lecture.
 
 **Exercises:** 
 
-If you have yet to do so at home, you will install Python and the text editor. To do this, follow the instructions in @sec-before_you_begin. Then, start doing the exercises in chapter @sec-helloworld, chapter @sec-values, and chapter @sec-precedence. You will also have time to do these exercises in the TA session of week two, so go slow. It is important to properly absorb the basic concepts at the beginning of the course; otherwise, it will become too difficult later on. Have a look 
+If you have yet to do so at home, you will install Python and the text editor. To do this, follow the instructions in @sec-before_you_begin. Then, start doing the exercises in @sec-helloworld, @sec-values, and @sec-precedence. You will also have time to do these exercises in the TA session of week two, so go slow. It is important to properly absorb the basic concepts at the beginning of the course; otherwise, it will become too difficult later on. Have a look 
 
-And make sure to familiarize yourself with the Myiagi game and the print-steps tool described in chapter @sec-coursetools. These are useful companions in the course.
+And make sure to familiarize yourself with the Myiagi game and the print-steps tool described in @sec-coursetools. These are useful companions in the course.
 
 
 ## Week 2 {.unnumbered}
 
 **Reading:**
 
-  - Lecture notes: chapter @sec-controlflow
-  - Lecture notes: chapter @sec-functions
+  - Lecture notes: @sec-controlflow, @sec-functions
   
 I will cover chapters 8-9 in the lecture notes.
 
@@ -110,17 +104,14 @@ I will cover chapters 8-9 in the lecture notes.
 
 **Exercises:**  
 
-The topics for this week's exercises are statements, variables, operators, expressions, substitution, reduction, and logic. You will work on the rest of the exercises in chapter @sec-helloworld, chapter @sec-values, chapter @sec-precedence, and chapter @sec-coursetools. Do what you can at home and do the rest at the TA session.
+The topics for this week's exercises are statements, variables, operators, expressions, substitution, reduction, and logic. You will work on the rest of the exercises in @sec-helloworld, @sec-values, @sec-precedence, and @sec-coursetools. Do what you can at home and do the rest at the TA session.
 
 
 ## Week 3 {.unnumbered}
 
 **Reading:**
 
-- Lecture notes: chapter @sec-objects
-- Lecture notes: chapter @sec-lists
-- Lecture notes: chapter @sec-dictionaries
-- Lecture notes: chapter @sec-tuples
+- Lecture notes: @sec-objects, @sec-lists, @sec-dictionaries, @sec-tuples
 
 **Lectures:**  
 
@@ -130,15 +121,14 @@ The topics for this week's exercises are statements, variables, operators, expre
 
 **Exercises:**  
 
-The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in chapter @sec-controlflow and chapter @sec-functions. Do what you can at home and do the rest at the TA session.
+The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in @sec-controlflow and @sec-functions. Do what you can at home and do the rest at the TA session.
 
 
 ### Week 4 {.unnumbered}
 
 **Reading:**
 
-- Lecture notes: chapter @sec-iteration
-- Lecture notes: chapter @sec-files
+- Lecture notes: @sec-iteration, @sec-files
 
 **Lectures:**  
 
@@ -158,9 +148,7 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 
 **Reading:**
 
-- Lecture notes: chapter @sec-datastructures
-- Lecture notes: chapter @sec-recursion
-- Lecture notes: chapter @sec-testing_your_code
+- Lecture notes: @sec-datastructures, @sec-recursion, @sec-testing_your_code
 - [Chapter 11: Genomewide Association Studies](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822)
 - [Benefits and limitations of genomewide association studies](https://www.nature.com/articles/s41576-019-0127-1)
 
@@ -176,14 +164,14 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*.
 :::
 
-The topics for this week are iteration and data structures. You are meant to complete all the exercises in chapter @sec-iteration and chapter @sec-files.
+The topics for this week are iteration and data structures. You are meant to complete all the exercises in @sec-iteration and @sec-files.
 
 
 ### Week 6 {.unnumbered}
 
 **Reading:**
 
-- Lecture notes: chapter @sec-translationproject
+- Lecture notes: @sec-translationproject
 - Understanding Bioinformatics 127-141
 
 **Lectures:**  
@@ -194,12 +182,12 @@ The topics for this week are iteration and data structures. You are meant to com
 
 **Exercises:**  
 
-- The programming project described in chapter @sec-translationproject.
+- The programming project described in @sec-translationproject.
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for programming projects. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 ::: {.callout-important}
-Chapter @sec-translationproject is a mandatory assignment. The deadline for handing it in (on Brightspace) is the night before your exercise class in week 41.
+@sec-translationproject is a mandatory assignment. The deadline for handing it in (on Brightspace) is the night before your exercise class in week 41.
 :::
 
 
@@ -207,7 +195,7 @@ Chapter @sec-translationproject is a mandatory assignment. The deadline for hand
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-foldingproject
+- Lecture notes: @sec-foldingproject
 - Understanding Bioinformatics: 117-127
 - Alignment methods: strategies, challenges, benchmarking, and comparative overview (don't do the exercises).
 
@@ -219,7 +207,7 @@ Chapter @sec-translationproject is a mandatory assignment. The deadline for hand
 **Exercises:**  
 
 - The web exercise: [GWAS candidates](chapters/web/gwas_databases/index.qmd)
-- The programming project described in chapter @sec-foldingproject (not a mandatory assignment).
+- The programming project described in @sec-foldingproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
@@ -235,7 +223,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-alignmentproject
+- Lecture notes: @sec-alignmentproject
 - Bioinformatics Explained: BLAST
 - Biological Sequence Analysis pp. 192-197
 
@@ -248,7 +236,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Exercises:**  
 
 - The web exercise: [CCR5-delta32](chapters/web/ccr5_pwalign/index.qmd)
-- The programming project described in chapter @sec-alignmentproject (not a mandatory assignment).
+- The programming project described in @sec-alignmentproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
@@ -257,7 +245,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-codonbiasproject
+- Lecture notes: @sec-codonbiasproject
 - Biological Sequence Analysis pp. 165-179  <!-- UPGMA / NJ -->
 
 **Lectures:**  
@@ -269,7 +257,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Exercises:**  
 
 - The web exercise: [MRSA](chapters/web/mrsa_blast_multalign/index.qmd)
-- The programming project described in chapter @sec-codonbiasproject (not a mandatory assignment).
+- The programming project described in @sec-codonbiasproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
@@ -278,7 +266,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-hivproject
+- Lecture notes: @sec-hivproject
 - Biological Sequence Analysis pp. 192-202 <!-- phylogeny / felsenstein -->
 
 **Lectures:**  
@@ -290,12 +278,12 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Exercises:**  
 
 - The web exercise: [Aardvark?](chapters/web/aardwark_seqdist/index.qmd)
-- The programming project described in chapter @sec-hivproject.
+- The programming project described in @sec-hivproject.
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 ::: {.callout-important}
-Chapter @sec-hivproject is a mandatory assignment. The deadline for handing it in is the night before your exercise class in week 46.
+@sec-hivproject is a mandatory assignment. The deadline for handing it in is the night before your exercise class in week 46.
 :::
 
 
@@ -303,7 +291,7 @@ Chapter @sec-hivproject is a mandatory assignment. The deadline for handing it i
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-seqdistproject
+- Lecture notes: @sec-seqdistproject
 - Biological Sequence Analysis pp. 46-66 <!-- HMMs -->
 
 **Lectures:**
@@ -314,7 +302,7 @@ Chapter @sec-hivproject is a mandatory assignment. The deadline for handing it i
 
 **Exercises:**  
 
-- The programming project described in chapter @sec-seqdistproject (not a mandatory assignment).
+- The programming project described in @sec-seqdistproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
@@ -323,7 +311,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-orfproject
+- Lecture notes: @sec-orfproject
 - Understanding Bioinformatics pp. 438-448 <!--protein prediction -->
 - [Automatic generation of gene finders for Eukaryotic species](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-263)
 - [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032) <!-- genome assembly -->
@@ -337,7 +325,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Exercises:**  
 
 - The web exercise: [Plasmid ORFs](chapters/web/orf_finding/index.qmd)
-- The programming project described in chapter @sec-orfproject (not a mandatory assignment).
+- The programming project described in @sec-orfproject (not a mandatory assignment).
 
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
@@ -347,7 +335,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Reading:**  
 
-- Lecture notes: chapter @sec-assemblyproject
+- Lecture notes: @sec-assemblyproject
 - Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
 - ~~Exploring Bioinformatics pp. 242-248~~  <!-- RNA structure -->
 
@@ -360,7 +348,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Exercises:**  
 
 - The web exercise: [Read mapping](chapters/web/long_reads/index.qmd)
-- The programming project described in chapter @sec-assemblyproject (not a mandatory assignment).
+- The programming project described in @sec-assemblyproject (not a mandatory assignment).
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
