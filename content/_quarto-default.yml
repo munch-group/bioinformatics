@@ -13,18 +13,13 @@ book:
   # author: "Kasper Munch"
   sidebar:
     title: "Content"
-    collapse-level: 1
+    collapse-level: 2
     background: "white"      
   # downloads: [pdf]
   chapters:
     - index.qmd
     - about.qmd
     - curriculum.qmd
-    # - part: "Schedule"
-    #   chapters:
-    #   - overview.qmd
-    #   - weekplan.qmd
-    # - weekplan.qmd
     - supplementary/slides2024.qmd
     - supplementary/recordings2024.qmd
     - assignments.qmd

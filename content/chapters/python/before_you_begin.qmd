@@ -255,7 +255,7 @@ conda deactivate
 Notice how it again says "(base)" on your command prompt. That is because you are back in your base environment. When you start a new terminal window, you must run `conda activate bioprog` to activate the environment and access the course tools.
  -->
 
-## You are all set {.unnumbered}
+## You are all set <i class="bi bi-hand-thumbs-up"></i> {.unnumbered}
 
 Well done! You are all set to start the course. Have a cup of coffee, and look forward to your first program. While you sip your coffee, I need you to take an oath (one of three you will take during this course). Raise your right hand! (put your coffee down first).
 
