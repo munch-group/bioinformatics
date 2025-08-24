@@ -37,7 +37,7 @@ hide-exam: true
  -->
 
 
-
+<!-- 
 ::: {.content-hidden when-meta="hide-exam"}
 
 # Exam information
@@ -47,7 +47,8 @@ hide-exam: true
 **[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
 
 
-:::
+::: 
+-->
 
 
 # Welcome {.unnumbered}
@@ -72,7 +73,6 @@ This is the homepage for the AU course Bioinformatics and programming (Bioinform
 
   - Lecture notes: chapter @sec-preface
   - Lecture notes: chapter @sec-before_you_begin
-  - Lecture notes: chapter @sec-bsf
   - Lecture notes: chapter @sec-helloworld
   - Lecture notes: chapter @sec-values
   - Lecture notes: chapter @sec-precedence
