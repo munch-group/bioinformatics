@@ -15,11 +15,11 @@ In this course, we use the Python programming language and you need to install t
 2. Open your Terminal application. 
 3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
 
-<!-- ```bash
-curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
-``` -->
-
 ```bash
+curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
+```
+
+<!-- ```bash
 curl -fsSL https://pixi.sh/install.sh | sh
 ```
 
@@ -28,27 +28,27 @@ Restart your Terminal app and run this command:
 ```bash
 pixi global install python
 ```
-
+ -->
 
 ## <i class="bi bi-windows"></i> Windows
 
-Install Pixi by downloading and running [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi).
+<!-- Install Pixi by downloading and running [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi).
 
 Once the Pixi installation has completed sucecssfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.
 
 ```bash
 pixi global install python
-```
+``` -->
 
 
-<!-- 1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
 1. Open your PowerShell application.
 2. Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
 
 
 ```powershell
  powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > franklin_installer.ps1 ; powershell -ExecutionPolicy ByPass -File "franklin_installer.ps1" -Role "student" -Yes
-``` -->
+```
 
 :::
 
