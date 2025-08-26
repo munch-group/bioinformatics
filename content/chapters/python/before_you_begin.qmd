@@ -15,22 +15,36 @@ In this course, we use the Python programming language and you need to install t
 2. Open your Terminal application. 
 3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
 
-```bash
-curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
-```
-
 <!-- ```bash
-curl -fsSL https://pixi.sh/install.sh | sh
+curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
+``` -->
+
+```bash
+curl -fsSL http://munch-group.org/franklin-cli/installers/scripts/install-pixi.sh | bash -s -- --force
 ```
 
-Restart your Terminal app and run this command:
+Restart your Terminal app and then run this command:
 
 ```bash
 pixi global install python
 ```
- -->
+
 
 ## <i class="bi bi-windows"></i> Windows
+
+Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+1. Open your Windows PowerShell application.
+2. Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.
+
+```powershell
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force
+```
+
+Once the Pixi installation has completed successfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.
+
+```bash
+pixi global install python
+```
 
 <!-- Install Pixi by downloading and running [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi).
 
@@ -41,14 +55,14 @@ pixi global install python
 ``` -->
 
 
-1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
+<!-- 1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
 1. Open your PowerShell application.
 2. Paste the command into the PowerShell window and press Enter. You will be prompted several times to allow the app to make changes to your computer.
 
 
 ```powershell
  powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > franklin_installer.ps1 ; powershell -ExecutionPolicy ByPass -File "franklin_installer.ps1" -Role "student" -Yes
-```
+``` -->
 
 :::
 
@@ -79,9 +93,9 @@ For more details, please visit https://support.apple.com/kb/HT208050.
 
 ![Windows Powershell app on Windows](./images/powershellprompt.png){#fig-anacondaprompt width=75%}
 
-Do __*not*__ update your account __*after*__ you install Anaconda (see below). If you do, *Terminal* will not be able to find the Anaconda Python (If you did so by mistake, you change back using this command: `chsh -s /bin/bash`.
+Do __*not*__ update your account. If you do, *Terminal* will not be able to find the Python you install (If you did so by mistake, you change back using this command: `chsh -s /bin/bash`).
 
-On Windows, the tool you need is called the Windows Powershell, which was installed along with Anaconda Python. You should be able to find it from the Start menu. Ensure you open *Windows Powershell* and **not** some other shell (The name should be exactly *Windows Powershell*). When you do, you should see something like @fig-anacondaprompt.
+On Windows, the tool you need is called the Windows Powershell. You should be able to find it from the Start menu. Ensure you open *Windows Powershell* and **not** some other shell (The name should be exactly *Windows Powershell*). When you do, you should see something like @fig-anacondaprompt.
 
 What is *Windows Powershell* and this *Terminal* thing? Both programs are what we call *terminal emulators*. They are used to run other programs, like  the ones you will write yourself. I will informally refer to both *Terminal* and *Windows Powershell* as "the terminal." So if I write something like "open the terminal," you should open *Windows Powershell* if you are running Windows and the *Terminal* application if you are running OS X.
 
