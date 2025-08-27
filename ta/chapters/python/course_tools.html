@@ -507,7 +507,7 @@ Figure&nbsp;7.1: Visual Studio Code (VScode)
 </section>
 <section id="a-helping-hand" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="a-helping-hand">A helping hand</h2>
-<p>Using the <code>myiagi</code>, you train your ability to read and understand Python expressions. Seeing a similar breakdown of a Python expression in your code may also be helpful. For that purpose, I have written another tool called <code>print-steps</code>. Say you have some code like the one below and need clarification on how the single value assigned to z is produced (here, you are probably not).</p>
+<p>Using the <code>myiagi</code>, you train your ability to read and understand Python expressions. Seeing a similar breakdown of a Python expression in your code may also be helpful. For that purpose, I have written another tool called <code>pysteps</code>. Say you have some code like the one below and need clarification on how the single value assigned to z is produced (here, you are probably not).</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">*</span> y <span class="op">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -522,12 +522,12 @@ Figure&nbsp;7.1: Visual Studio Code (VScode)
 </div>
 <div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>python myfile.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>But to see the breakdown of expressions marked by <code># PRINT STEPS</code>, you need to run your code with the <code>print-steps</code> program instead:</p>
+<p>But to see the breakdown of expressions marked by <code># PRINT STEPS</code>, you need to run your code with the <code>pysteps</code> program instead:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>print-steps myfile.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pysteps myfile.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The command prints the following in the terminal:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Line 4 in test_studentfile.py:</span>
@@ -536,7 +536,7 @@ Figure&nbsp;7.1: Visual Studio Code (VScode)
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Substitution:    z = 7 * 5 + 4</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Reduction:       z = 35 + 4</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Reduction:       z = 39</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can even mark more than one line like this and have <code>print-steps</code> break down all of them for you:</p>
+<p>You can even mark more than one line like this and have <code>pysteps</code> break down all of them for you:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">*</span> y <span class="op">+</span> <span class="dv">4</span> <span class="co"># PRINT STEPS</span></span>
