@@ -37,7 +37,7 @@ Click the clipboard icon at the right end of the box below to copy the command t
 2. Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.
 
 ```powershell
- powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force -Quiet
 ```
 
 Once the Pixi installation has completed successfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.
