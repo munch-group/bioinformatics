@@ -57,7 +57,7 @@ Now, you repeat this process until the order is correct (the program will let yo
 
 ## A helping hand {.unnumbered}
 
-Using the `myiagi`, you train your ability to read and understand Python expressions. Seeing a similar breakdown of a Python expression in your code may also be helpful. For that purpose, I have written another tool called `print-steps`. Say you have some code like the one below and need clarification on how the single value assigned to z is produced (here, you are probably not).
+Using the `myiagi`, you train your ability to read and understand Python expressions. Seeing a similar breakdown of a Python expression in your code may also be helpful. For that purpose, I have written another tool called `pysteps`. Say you have some code like the one below and need clarification on how the single value assigned to z is produced (here, you are probably not).
 
 ```python
 x = 7
@@ -80,10 +80,10 @@ Say your file is called `myfile.py`, you would normally run the code like this:
 python myfile.py
 ```
 
-But to see the breakdown of expressions marked by `# PRINT STEPS`, you need to run your code with the `print-steps` program instead:
+But to see the breakdown of expressions marked by `# PRINT STEPS`, you need to run your code with the `pysteps` program instead:
 
 ```{.txt filename="Terminal"}
-print-steps myfile.py
+pysteps myfile.py
 ```
 
 The command prints the following in the terminal:
@@ -97,7 +97,7 @@ Reduction:       z = 35 + 4
 Reduction:       z = 39
 ```
 
-You can even mark more than one line like this and have `print-steps` break down all of them for you:
+You can even mark more than one line like this and have `pysteps` break down all of them for you:
 
 ```python
 x = 7

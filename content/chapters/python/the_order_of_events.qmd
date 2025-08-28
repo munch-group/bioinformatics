@@ -72,7 +72,7 @@ Does this reduce to `True` or `False`?
 
 To talk concisely about programming (and to receive more useful help from your instructors), you need to have a bit of vocabulary. *Statements* and *expressions* are two words you need to know. Distinguishing between statements and expressions will help us discuss our code.
 
-- A **statement** is a line of code that performs an action. Python evaluates each statement until it reaches the end of the file (remember oath 2?). `print(y * 7)` is a statement, and so is `x = 14`. They each represent a full line of code and perform an action.
+- A **statement** is a line of code that performs an action. Python evaluates each statement until it reaches the end of the file (remember @important-oath2?). `print(y * 7)` is a statement, and so is `x = 14`. They each represent a full line of code and perform an action.
  
 - An **expression** is any code that reduces to one value. `y * 7` is an expression, and so are `y * 7 + 14 - x` and `4 > 5`.
 
@@ -126,7 +126,13 @@ You should do these steps every time you see an expression. You may think this i
 
 Now raise your right hand and read the third and last oath out loud: 
 
-> **Oath 3:** I now solemnly swear to consciously consider every single substitution and reduction in every Python expression that I read or write from this moment on.
+::: {#important-oath3 .callout-important }
+
+## Oath 3
+
+I swear to consciously consider every single substitution and reduction in every Python expression that I read or write from this moment on.
+
+:::
 
 This was the last of the three oaths, but it is *by far* the most important one. You can take your hand down now.
 

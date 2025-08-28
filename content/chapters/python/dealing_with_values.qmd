@@ -308,7 +308,7 @@ print(number_of_species)
 number_of_species = 8700000
 ```
 
-Explain to yourself what happens in each case. What kind of error do you get with version two, and why? Remember Oath 2!
+Explain to yourself what happens in each case. What kind of error do you get with version two, and why? Remember @important-oath2!
 
 #### Exercise
 Write the following code in a file, save it, and run it.
@@ -498,7 +498,7 @@ x = x + 1
 print(x)
 ```
 
-Then, figure out what is printed and why (remember oath 2). What value does `x` represent at each occurrence in the code?
+Then, figure out what is printed and why (remember @important-oath2). What value does `x` represent at each occurrence in the code?
 
 #### Exercise
 Some comparison operators also work with strings. Consider this code:
