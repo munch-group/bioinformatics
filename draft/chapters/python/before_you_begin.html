@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</li>
 </ol>
 <!-- ```bash
-curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes
+curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes --quiet
 ``` -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> http://munch-group.org/franklin-cli/installers/scripts/install-pixi.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">--force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Restart your Terminal app and then run this command:</p>
@@ -606,8 +606,7 @@ pixi global install python
 
 
 ```powershell
- powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin/installers/install.ps1" > franklin_installer.ps1 ; powershell -ExecutionPolicy ByPass -File "franklin_installer.ps1" -Role "student" -Yes
-``` -->
+powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; Unblock-File -Path "installer.ps1" ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force -Quiet``` -->
 </div>
 </div>
 </div>
