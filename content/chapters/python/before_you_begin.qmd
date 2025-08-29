@@ -12,8 +12,6 @@ In this course, we use the Python programming language and you need to install t
 ## <i class="bi bi-apple"></i> Mac  
 
 1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
-2. Open your Terminal application. 
-3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
 
 <!-- ```bash
 curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes --quiet
@@ -23,7 +21,9 @@ curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --
 curl -fsSL http://munch-group.org/franklin-cli/installers/scripts/install-pixi.sh | bash -s -- --force
 ```
 
-Restart your Terminal app and then run this command:
+2. Open your Terminal application. 
+3. Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.
+4. Restart your Terminal app and then run this command:
 
 ```bash
 pixi global install -c conda-forge -c munch-group -c sepandhaghighi python pythonsteps
@@ -32,15 +32,16 @@ pixi global install -c conda-forge -c munch-group -c sepandhaghighi python pytho
 
 ## <i class="bi bi-windows"></i> Windows
 
-Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
-1. Open your Windows PowerShell application.
-2. Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.
+1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
 
 ```powershell
  powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; dir "$env:USERPROFILE/Downloads/*.ps1" | Unblock ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force -Quiet
 ```
 
-Once the Pixi installation has completed successfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.
+2. Find Windows PowerShell and open it by right-clicking it and select "Run as administrator".
+3. Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.
+4. Once the Pixi installation has completed successfully, you need to restart the Windows Powershell application.
+5. You can install Python by opening Windows Powershell and paste the command below into the window and press enter.
 
 ```bash
 pixi global install -c conda-forge -c munch-group -c sepandhaghighi python pythonsteps
