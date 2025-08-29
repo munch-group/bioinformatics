@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-49ef29405eae076ba539ad27c6a63fd8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e78e88e00c4f3bfbc194be5827d51330.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-a58caedd7710624ba8029c99cf6efb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -476,20 +476,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ol type="1">
 <li>Click the clipboard icon at the right end of the box below to copy the command to your clipboard.</li>
-<li>Open your Terminal application.</li>
-<li>Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</li>
 </ol>
 <!-- ```bash
 curl -fsSL http://munch-group.org/franklin/installers/install.sh | bash -s -- --role student --yes --quiet
 ``` -->
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> http://munch-group.org/franklin-cli/installers/scripts/install-pixi.sh <span class="kw">|</span> <span class="fu">bash</span> <span class="at">-s</span> <span class="at">--</span> <span class="at">--force</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Restart your Terminal app and then run this command:</p>
+<ol start="2" type="1">
+<li>Open your Terminal application.</li>
+<li>Paste the command into the Terminal window and press Enter. You will be prompted several times for either your user password or permissions of the installed apps.</li>
+<li>Restart your Terminal app and then run this command:</li>
+</ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> global install <span class="at">-c</span> conda-forge <span class="at">-c</span> munch-group <span class="at">-c</span> sepandhaghighi python pythonsteps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Click the clipboard icon at the right end of the box below to copy the command to your clipboard. 1. Open your Windows PowerShell application. 2. Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.</p>
+<ol type="1">
+<li>Click the clipboard icon at the right end of the box below to copy the command to your clipboard.</li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>c <span class="st">"irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1"</span> <span class="op">&gt;</span> installer<span class="op">.</span><span class="fu">ps1</span> <span class="op">;</span> <span class="fu">dir</span> <span class="st">"</span><span class="va">$env</span><span class="op">:</span><span class="va">USERPROFILE</span><span class="st">/Downloads/*.ps1"</span> <span class="op">|</span> Unblock <span class="op">;</span> powershell <span class="op">-</span>ExecutionPolicy ByPass <span class="op">-</span>File <span class="st">"installer.ps1"</span> <span class="op">-</span>Force <span class="op">-</span>Quiet</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once the Pixi installation has completed successfully, you can install Python by opening Windows Powershell and paste this command into the window and press enter.</p>
+<ol start="2" type="1">
+<li>Find Windows PowerShell and open it by right-clicking it and select “Run as administrator”.</li>
+<li>Paste the command into the PowerShell window and press Enter. You may be prompted several times to allow the app to make changes to your computer.</li>
+<li>Once the Pixi installation has completed successfully, you need to restart the Windows Powershell application.</li>
+<li>You can install Python by opening Windows Powershell and paste the command below into the window and press enter.</li>
+</ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> global install <span class="at">-c</span> conda-forge <span class="at">-c</span> munch-group <span class="at">-c</span> sepandhaghighi python pythonsteps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- Install Pixi by downloading and running [this interactive installer](https://github.com/prefix-dev/pixi/releases/latest/download/pixi-x86_64-pc-windows-msvc.msi).
 
