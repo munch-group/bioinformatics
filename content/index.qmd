@@ -79,7 +79,10 @@ Make sure you have installed Python and VScode for the first lecture.
 
 - In the first lecture, I will outline how the course is organized and how you will get the most out of your efforts in learning programming.
 - In the first lecture, I will also talk about how a Python program works and about values, math, and logic.
-- In the second lecture, I will talk about variables, operators, substitution, and reduction.
+<!-- - In the second lecture, I will talk about variables, operators, substitution, and reduction. -->
+- The second lecture is replace by the video below:
+
+{{< video https://www.youtube.com/embed/0c65YSliuP0 >}}
 
 **Exercises:** 
 
