@@ -288,9 +288,3 @@ This serves three purposes (as if one was not enough):
 3. You will get Python “into your fingers”. It sounds silly, but it *will* get into your fingers.
 
 
-
-
-
-
-
-

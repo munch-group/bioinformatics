@@ -91,6 +91,7 @@ book:
       - chapters/web/neural_networks/index.qmd
     - supplementary/project_files.qmd
     - supplementary/bioinformatics_resources.qmd
+    - trouble_shooting.qmd
     # - part: "Supplementary"
     #   chapters: 
 #    - exam.qmd
