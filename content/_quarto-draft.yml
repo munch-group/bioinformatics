@@ -124,7 +124,7 @@ book:
       - supplementary/bioinformatics_resources.qmd
     - assignments.qmd
     - exam.qmd
-    - trouble_shooting.qmd
+    - chapters/trouble_shooting.qmd
 
 
 bibliography: references.bib
