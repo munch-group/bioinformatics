@@ -91,6 +91,10 @@ If you have yet to do so at home, you will install Python and the text editor. T
 And make sure to familiarize yourself with the Myiagi game and the pysteps tool described in @sec-coursetools. These are useful companions in the course.
 
 
+## Week 2 {.unnumbered}
+
+**Week 2 went up in flames**
+
 <!-- ## Week 2 {.unnumbered} -->
 ## Week 3 {.unnumbered}
 

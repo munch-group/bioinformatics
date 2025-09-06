@@ -1,0 +1,18 @@
+
+# Trouble shooting {.unnumbered}
+
+> Hej Kasper
+> 
+> Jeg følger bioinformatik og programmering og havde problemer med at kunne køre scripts i powershell.
+> 
+> Løsningen er at køre powershell som admin og tjekke execution policy:
+> 
+> Get-ExecutionPolicy
+> 
+> Og hvis den er restricted bruge
+> 
+> Set-ExecutionPolicy -Scope CurrentUser
+> 
+> Unrestricted
+> 
+> Og vælge Y - man er helt sikker på man godt tør.
