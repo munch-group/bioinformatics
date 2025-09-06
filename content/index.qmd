@@ -133,8 +133,8 @@ The topics for this week's exercises are statements, variables, operators, expre
 The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in @sec-controlflow and @sec-functions. Do what you can at home and do the rest at the TA session.
 
 
-<!-- ### Week 4 {.unnumbered} -->
-### Week 5 {.unnumbered}
+<!-- ## Week 4 {.unnumbered} -->
+## Week 5 {.unnumbered}
 
 **Reading:**
 
@@ -154,8 +154,8 @@ Only MO and Bio classes attend the exercises this week. MM classes do not. The e
 The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters @sec-objects, @sec-lists, @sec-dictionaries, and @sec-tuples. Do what you can at home and do the rest at the TA session.
 
 
-<!-- ### Week 5 {.unnumbered} -->
-### Week 6 {.unnumbered}
+<!-- ## Week 5 {.unnumbered} -->
+## Week 6 {.unnumbered}
 
 **Reading:**
 
@@ -178,8 +178,8 @@ Only MM classes attend the exercises this week. MO and Bio classes do not. The e
 The topics for this week are iteration and data structures. You are meant to complete all the exercises in @sec-iteration and @sec-files.
 
 
-<!-- ### Week 6 {.unnumbered} -->
-### Week 7 {.unnumbered}
+<!-- ## Week 6 {.unnumbered} -->
+## Week 7 {.unnumbered}
 
 **Reading:**
 
@@ -203,8 +203,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 :::
 
 
-<!-- ### Week 7 {.unnumbered} -->
-### Week 8 {.unnumbered}
+<!-- ## Week 7 {.unnumbered} -->
+## Week 8 {.unnumbered}
 
 **Reading:**  
 
@@ -232,8 +232,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ::: {.panel-tabset }
 
-<!-- ### Week 8 {.unnumbered} -->
-### Week 9 {.unnumbered}
+<!-- ## Week 8 {.unnumbered} -->
+## Week 9 {.unnumbered}
 
 **Reading:**  
 
@@ -255,8 +255,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
-<!-- ### Week 9 {.unnumbered} -->
-### Week 10 {.unnumbered}
+<!-- ## Week 9 {.unnumbered} -->
+## Week 10 {.unnumbered}
 
 **Reading:**  
 
@@ -277,8 +277,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
-<!-- ### Week 10 {.unnumbered} -->
-### Week 11 {.unnumbered}
+<!-- ## Week 10 {.unnumbered} -->
+## Week 11 {.unnumbered}
 
 **Reading:**  
 
@@ -303,8 +303,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 :::
 
 
-<!-- ### Week 11 {.unnumbered} -->
-### Week 12 {.unnumbered}
+<!-- ## Week 11 {.unnumbered} -->
+## Week 12 {.unnumbered}
 
 **Reading:**  
 
@@ -324,8 +324,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
-<!-- ### Week 12 {.unnumbered} -->
-### Week 13 {.unnumbered}
+<!-- ## Week 12 {.unnumbered} -->
+## Week 13 {.unnumbered}
 
 **Reading:**  
 
@@ -349,13 +349,13 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
-### Week 13 {.unnumbered}
+## Week 14 {.unnumbered}
 
 **Reading:**  
 
 - Lecture notes: @sec-assemblyproject
-- Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
-- ~~Exploring Bioinformatics pp. 242-248~~  <!-- RNA structure -->
+- Understanding Bioinformatics pp. 494-496 
+- ~~Exploring Bioinformatics pp. 242-248~~ 
 
 **Lectures:**
 
@@ -377,8 +377,8 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 **Reading:**  
 
 - Lecture notes: @sec-assemblyproject
-- Understanding Bioinformatics pp. 494-496  <!-- Neural networks -->
-- ~~Exploring Bioinformatics pp. 242-248~~  <!-- RNA structure -->
+- Understanding Bioinformatics pp. 494-496  
+- ~~Exploring Bioinformatics pp. 242-248~~  
 
 **Lectures:**
 
@@ -394,7 +394,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
 
-### Week 14 {.unnumbered}
+## Week 14 {.unnumbered}
 
 **Reading:**  
 
@@ -402,7 +402,6 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 **Lectures:**  
 
-<!-- TODO: Add toic for lecture in week 14 -->
 - In the first lecture, I will talk about python and algorithms. You will also hear a guest talk by about bioinformatics outside the class room.
 - In the last lecture, we will evaluate the course and review the exam's practicalities.
 
