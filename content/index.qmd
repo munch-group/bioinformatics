@@ -203,6 +203,13 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 :::
 
 
+::: 
+
+**Fall Vacation** 
+
+::: {.panel-tabset }
+
+
 <!-- ## Week 7 {.unnumbered} -->
 ## Week 8 {.unnumbered}
 
@@ -224,13 +231,6 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 From the [project files](supplementary/project_files.qmd) page, you can download the files you need for both programming projects and web exercises. There will be lots of work, so do what you can at home and do the rest at the TA session.
 
-::: 
-
-
-**Fall Vacation** 
-
-
-::: {.panel-tabset }
 
 <!-- ## Week 8 {.unnumbered} -->
 ## Week 9 {.unnumbered}
