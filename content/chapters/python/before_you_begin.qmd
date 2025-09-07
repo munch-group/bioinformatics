@@ -35,7 +35,7 @@ pixi global install -c conda-forge -c munch-group -c sepandhaghighi python pytho
 1. Click the clipboard icon at the right end of the box below to copy the command to your clipboard.
 
 ```powershell
- powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; dir "$env:USERPROFILE/Downloads/*.ps1" | Unblock ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force -Quiet
+ powershell -ExecutionPolicy ByPass -c "irm -useb  http://munch-group.org/franklin-cli/installers/scripts/Install-Pixi.ps1" > installer.ps1 ; dir "$env:USERPROFILE/Downloads/*.ps1" | Unblock-File ; powershell -ExecutionPolicy ByPass -File "installer.ps1" -Force -Quiet
 ```
 
 2. Find Windows PowerShell and open it by right-clicking it and select "Run as administrator".
