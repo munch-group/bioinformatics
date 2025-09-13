@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../chapters/project/alignment_project/index.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e78e88e00c4f3bfbc194be5827d51330.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7348364bef02e149b83741bff427fbde.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-a58caedd7710624ba8029c99cf6efb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-7265a01e67a7770ed9b564cd1d2c99b1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -130,7 +131,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../../../">Content</a> 
     </div>
@@ -473,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Codon usage bias refers to differences in the frequency of occurrence of synonymous codons in coding DNA. There are 64 different codons (61 codons encoding for amino acids plus 3 stop codons) but only 20 different translated amino acids. The overabundance in the number of codons allows many amino acids to be encoded by more than one codon. Because of such redundancy, it is said that the genetic code is degenerate. Different organisms often show particular preferences for one of the several codons that encode the same amino acid, that is, a greater frequency of one will be found than expected by chance. How such preferences arise is a much-debated area of molecular evolution.</p>
 <p>Given an open reading frame (ORF), you must compute the codon usage. Your goal is to create a data structure where you can look up an amino acid and the frequencies of codons in that encode that amino acid the ORF. Here is a made-up example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'A'</span>: {<span class="st">'GCA'</span>: <span class="fl">0.0</span>, <span class="st">'GCC'</span>: <span class="fl">0.0</span>, <span class="st">'GCT'</span>: <span class="fl">1.0</span>, <span class="st">'GCG'</span>: <span class="fl">0.0</span>}, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'A'</span>: {<span class="st">'GCA'</span>: <span class="fl">0.0</span>, <span class="st">'GCC'</span>: <span class="fl">0.0</span>, <span class="st">'GCT'</span>: <span class="fl">1.0</span>, <span class="st">'GCG'</span>: <span class="fl">0.0</span>}, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'C'</span>: {<span class="st">'TGC'</span>: <span class="fl">0.0</span>, <span class="st">'TGT'</span>: <span class="fl">1.0</span>}, </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'E'</span>: {<span class="st">'GAG'</span>: <span class="fl">0.2</span>, <span class="st">'GAA'</span>: <span class="fl">0.8</span>}, </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'D'</span>: {<span class="st">'GAT'</span>: <span class="fl">1.0</span>, <span class="st">'GAC'</span>: <span class="fl">0.0</span>}, </span>
@@ -492,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> <span class="st">'T'</span>: {<span class="st">'ACC'</span>: <span class="fl">0.0</span>, <span class="st">'ACA'</span>: <span class="fl">0.0</span>, <span class="st">'ACG'</span>: <span class="fl">0.0</span>, <span class="st">'ACT'</span>: <span class="fl">1.0</span>}, </span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a> <span class="st">'W'</span>: {<span class="st">'TGG'</span>: <span class="fl">1.0</span>}, </span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> <span class="st">'V'</span>: {<span class="st">'GTA'</span>: <span class="fl">0.6</span>, <span class="st">'GTC'</span>: <span class="fl">0.0</span>, <span class="st">'GTT'</span>: <span class="fl">0.2</span>, <span class="st">'GTG'</span>: <span class="fl">0.2</span>}, </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a> <span class="st">'Y'</span>: {<span class="st">'TAT'</span>: <span class="fl">1.0</span>, <span class="st">'TAC'</span>: <span class="fl">0.0</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a> <span class="st">'Y'</span>: {<span class="st">'TAT'</span>: <span class="fl">1.0</span>, <span class="st">'TAC'</span>: <span class="fl">0.0</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That data structure is a dictionary with keys corresponding to amino acids (i.e.&nbsp;single letter strings designating an amino acid such as <code>'R'</code> for arginine). The value associated with <em>each</em> amino acid key is also a dictionary, and the keys of <em>this</em> dictionary should be the different codons that encode the amino acid. The value associated with each codon key should be a number, representing the frequency with which that codon is used to encode that amino acid. The final data structure should only include amino acids that are found in the ORF.</p>
 <p>Download the files you need for this project:</p>
 <p> </p>
@@ -519,23 +522,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-orfs-from-a-file" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="read-orfs-from-a-file">Read ORFs from a file</h3>
 <p>You can use this code to read the ORFs into your script:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">'sample_orfs.txt'</span>, <span class="st">'r'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">'sample_orfs.txt'</span>, <span class="st">'r'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>orf_list <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> f:</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    seq <span class="op">=</span> line.strip()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    orf_list.append(seq)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Try to print the list to see it. Then pick out the first ORF in the list so you can use that to test your code:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_orf <span class="op">=</span> orf_list[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_orf <span class="op">=</span> orf_list[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="split-the-orf-into-codons" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="split-the-orf-into-codons">Split the ORF into codons</h3>
 <p>You need a function that splits the ORF into codons. This one you have already implemented in the exercise about translating DNA – and if, not here it is in my version to get you started.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_codons(orf):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_codons(orf):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    codon_list <span class="op">=</span> []</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(orf)<span class="op">-</span><span class="dv">2</span>, <span class="dv">3</span>):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        codon_list.append(orf[i:i<span class="op">+</span><span class="dv">3</span>])</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> codon_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> codon_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Before you go on, make sure you understand/remember how this function works and what it returns.</p>
 </section>
 <section id="count-codons-in-an-orf" class="level3 unnumbered">
@@ -550,9 +553,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A dictionary where keys are strings representing codons and associated values are integers representing the number of times each codon occurs in the ORF given as argument.</li>
 </ul>
 <p>Example usage:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>count_codons(<span class="st">"ATGTCATCATGA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>count_codons(<span class="st">"ATGTCATCATGA"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>should return:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'CTT'</span>: <span class="dv">0</span>, <span class="st">'ATG'</span>: <span class="dv">1</span>, <span class="st">'ACA'</span>: <span class="dv">0</span>, <span class="st">'ACG'</span>: <span class="dv">0</span>, <span class="st">'ATC'</span>: <span class="dv">0</span>, <span class="st">'AAC'</span>: <span class="dv">0</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'CTT'</span>: <span class="dv">0</span>, <span class="st">'ATG'</span>: <span class="dv">1</span>, <span class="st">'ACA'</span>: <span class="dv">0</span>, <span class="st">'ACG'</span>: <span class="dv">0</span>, <span class="st">'ATC'</span>: <span class="dv">0</span>, <span class="st">'AAC'</span>: <span class="dv">0</span>, </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'ATA'</span>: <span class="dv">0</span>, <span class="st">'AGG'</span>: <span class="dv">0</span>, <span class="st">'CCT'</span>: <span class="dv">0</span>, <span class="st">'ACT'</span>: <span class="dv">0</span>, <span class="st">'AGC'</span>: <span class="dv">0</span>, <span class="st">'AAG'</span>: <span class="dv">0</span>, </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'AGA'</span>: <span class="dv">0</span>, <span class="st">'CAT'</span>: <span class="dv">0</span>, <span class="st">'AAT'</span>: <span class="dv">0</span>, <span class="st">'ATT'</span>: <span class="dv">0</span>, <span class="st">'CTG'</span>: <span class="dv">0</span>, <span class="st">'CTA'</span>: <span class="dv">0</span>, </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'CTC'</span>: <span class="dv">0</span>, <span class="st">'CAC'</span>: <span class="dv">0</span>, <span class="st">'AAA'</span>: <span class="dv">0</span>, <span class="st">'CCG'</span>: <span class="dv">0</span>, <span class="st">'AGT'</span>: <span class="dv">0</span>, <span class="st">'CCA'</span>: <span class="dv">0</span>, </span>
@@ -562,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> <span class="st">'TTC'</span>: <span class="dv">0</span>, <span class="st">'TCG'</span>: <span class="dv">0</span>, <span class="st">'TTA'</span>: <span class="dv">0</span>, <span class="st">'TTG'</span>: <span class="dv">0</span>, <span class="st">'TCC'</span>: <span class="dv">0</span>, <span class="st">'ACC'</span>: <span class="dv">0</span>, </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> <span class="st">'TAA'</span>: <span class="dv">0</span>, <span class="st">'GCA'</span>: <span class="dv">0</span>, <span class="st">'GTA'</span>: <span class="dv">0</span>, <span class="st">'GCC'</span>: <span class="dv">0</span>, <span class="st">'GTC'</span>: <span class="dv">0</span>, <span class="st">'GCG'</span>: <span class="dv">0</span>, </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a> <span class="st">'GTG'</span>: <span class="dv">0</span>, <span class="st">'GAG'</span>: <span class="dv">0</span>, <span class="st">'GTT'</span>: <span class="dv">0</span>, <span class="st">'GCT'</span>: <span class="dv">0</span>, <span class="st">'TGA'</span>: <span class="dv">1</span>, <span class="st">'GAC'</span>: <span class="dv">0</span>, </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> <span class="st">'CGT'</span>: <span class="dv">0</span>, <span class="st">'GAA'</span>: <span class="dv">0</span>, <span class="st">'TCA'</span>: <span class="dv">2</span>, <span class="st">'CGC'</span>: <span class="dv">0</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> <span class="st">'CGT'</span>: <span class="dv">0</span>, <span class="st">'GAA'</span>: <span class="dv">0</span>, <span class="st">'TCA'</span>: <span class="dv">2</span>, <span class="st">'CGC'</span>: <span class="dv">0</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>– though not necessarily with key-value pairs in that order.</p>
 <p>In the function, you should use the <code>split_codons</code> function to split the ORF into a list of codons. Then create an empty dictionary that you can populate with counts. You want <em>all</em> the possible codons to be in your dictionary. That way, the codons you do <em>not</em> find in your ORF will have a count of <code>0</code>. In this case, such absence is also valuable information. To achieve this you must start by filling the dictionary with a key for each codon and give each a count of <code>0</code>. You can do that by iterating over the keys in the dictionary that maps codons to amino acids. Then you must iterate over all the codons in the list of codons produced by the <code>split_codons</code> function and add counts to the dictionary as you go.</p>
 </section>
@@ -579,9 +582,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A dictionary of dictionaries, which pairs each amino acid with a dictionary with counts of how many times each codon is used to encode that amino acid in the ORF.</li>
 </ul>
 <p>Example usage: Assuming <code>counts</code> is the dictionary returned by <code>count_codons</code> as in the previous example.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grouped_counts <span class="op">=</span> group_counts_by_amino_acid(counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grouped_counts <span class="op">=</span> group_counts_by_amino_acid(counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>then <code>group_counts_by_amino_acid</code> should return:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'A'</span>: {<span class="st">'GCA'</span>: <span class="dv">0</span>, <span class="st">'GCC'</span>: <span class="dv">0</span>, <span class="st">'GCT'</span>: <span class="dv">0</span>, <span class="st">'GCG'</span>: <span class="dv">0</span>}, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'A'</span>: {<span class="st">'GCA'</span>: <span class="dv">0</span>, <span class="st">'GCC'</span>: <span class="dv">0</span>, <span class="st">'GCT'</span>: <span class="dv">0</span>, <span class="st">'GCG'</span>: <span class="dv">0</span>}, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'C'</span>: {<span class="st">'TGC'</span>: <span class="dv">0</span>, <span class="st">'TGT'</span>: <span class="dv">0</span>}, </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'E'</span>: {<span class="st">'GAG'</span>: <span class="dv">0</span>, <span class="st">'GAA'</span>: <span class="dv">0</span>}, </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'D'</span>: {<span class="st">'GAT'</span>: <span class="dv">0</span>, <span class="st">'GAC'</span>: <span class="dv">0</span>}, </span>
@@ -601,12 +604,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a> <span class="st">'T'</span>: {<span class="st">'ACC'</span>: <span class="dv">0</span>, <span class="st">'ACA'</span>: <span class="dv">0</span>, <span class="st">'ACG'</span>: <span class="dv">0</span>, <span class="st">'ACT'</span>: <span class="dv">0</span>}, </span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a> <span class="st">'W'</span>: {<span class="st">'TGG'</span>: <span class="dv">0</span>}, </span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a> <span class="st">'V'</span>: {<span class="st">'GTA'</span>: <span class="dv">0</span>, <span class="st">'GTC'</span>: <span class="dv">0</span>, <span class="st">'GTT'</span>: <span class="dv">0</span>, <span class="st">'GTG'</span>: <span class="dv">0</span>}, </span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a> <span class="st">'Y'</span>: {<span class="st">'TAT'</span>: <span class="dv">0</span>, <span class="st">'TAC'</span>: <span class="dv">0</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a> <span class="st">'Y'</span>: {<span class="st">'TAT'</span>: <span class="dv">0</span>, <span class="st">'TAC'</span>: <span class="dv">0</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>– though not necessarily with key-value pairs in that order.</p>
 <p>So if we pretend the resulting dictionary of dictionaries is called <code>d</code>, then <code>d['S']</code> will be a dictionary where keys are codons encoding the ‘S’ amino acid and the values are the counts of those codons. That means that you can access a particular count like this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d[<span class="st">'S'</span>][<span class="st">'TCA'</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d[<span class="st">'S'</span>][<span class="st">'TCA'</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the above example, this count is <code>2</code>. So the task is really just to distribute counts given as the first argument into groups for each amino acid. Depending on what you call your variables it could look something like this:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grouped_counts[acid][codon] <span class="op">=</span> codon_counts[codon]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grouped_counts[acid][codon] <span class="op">=</span> codon_counts[codon]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Your function should begin by defining an empty dictionary to add to. Then use a for-loop to run through all codon/amino-acid pairs and populate your dictionary of dictionaries.</p>
 </section>
 <section id="turn-counts-into-frequencies" class="level2 unnumbered">
@@ -621,9 +624,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A dictionary, where keys are strings representing codons and values are floats representing the frequency at which each codon appear. That is, the count of that codon divided by the total of all codon counts in the dictionary. The frequencies for codons that encode the same amino acid must of sum to one. That means that in cases where the total count is zero, the function must return <code>None</code>.</li>
 </ul>
 <p>Example usage:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normalize_counts({<span class="st">'ATT'</span>: <span class="dv">8</span>, <span class="st">'ATC'</span>: <span class="dv">10</span>, <span class="st">'ATA'</span>: <span class="dv">2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normalize_counts({<span class="st">'ATT'</span>: <span class="dv">8</span>, <span class="st">'ATC'</span>: <span class="dv">10</span>, <span class="st">'ATA'</span>: <span class="dv">2</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>should return:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'ATC'</span>: <span class="fl">0.5</span>, <span class="st">'ATA'</span>: <span class="fl">0.1</span>, <span class="st">'ATT'</span>: <span class="fl">0.4</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'ATC'</span>: <span class="fl">0.5</span>, <span class="st">'ATA'</span>: <span class="fl">0.1</span>, <span class="st">'ATT'</span>: <span class="fl">0.4</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>– though not necessarily with key-value pairs in that order.</p>
 <p>Now you have solved part of the task, what remains is to now use that function to normalise the codon counts of <em>each</em> amino acid in your grouped counts:</p>
 <p><em>Write a function</em>, <code>normalize_grouped_counts</code>, which takes one argument:</p>
@@ -635,17 +638,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A new dictionary of dictionaries where the values of the inner dictionaries are frequencies instead of counts as in the example in the introduction. You should not include amino acids for which there are no counted codons.</li>
 </ul>
 <p>Example usage: Assuming <code>gr_counts</code> is the dictionary of dictionaries returned by <code>grouped_group_counts_by_amino_acid</code> in the example above.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>normalize_grouped_counts(gr_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>normalize_grouped_counts(gr_counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>should return:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'*'</span>: {<span class="st">'TAA'</span>: <span class="fl">0.0</span>, <span class="st">'TGA'</span>: <span class="fl">1.0</span>, <span class="st">'TAG'</span>: <span class="fl">0.0</span>}, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'*'</span>: {<span class="st">'TAA'</span>: <span class="fl">0.0</span>, <span class="st">'TGA'</span>: <span class="fl">1.0</span>, <span class="st">'TAG'</span>: <span class="fl">0.0</span>}, </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">'M'</span>: {<span class="st">'ATG'</span>: <span class="fl">1.0</span>}, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">'S'</span>: {<span class="st">'AGC'</span>: <span class="fl">0.0</span>, <span class="st">'TCG'</span>: <span class="fl">0.0</span>, <span class="st">'TCC'</span>: <span class="fl">0.0</span>, <span class="st">'TCT'</span>: <span class="fl">0.0</span>, <span class="st">'AGT'</span>: <span class="fl">0.0</span>, <span class="st">'TCA'</span>: <span class="fl">1.0</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">'S'</span>: {<span class="st">'AGC'</span>: <span class="fl">0.0</span>, <span class="st">'TCG'</span>: <span class="fl">0.0</span>, <span class="st">'TCC'</span>: <span class="fl">0.0</span>, <span class="st">'TCT'</span>: <span class="fl">0.0</span>, <span class="st">'AGT'</span>: <span class="fl">0.0</span>, <span class="st">'TCA'</span>: <span class="fl">1.0</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>– though not necessarily with key-value pairs in that order.</p>
 <p>Here is some help to get you started:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_grouped_counts(grouped_counts):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize_grouped_counts(grouped_counts):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    grouped_freqs <span class="op">=</span> {}</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> aa <span class="kw">in</span> grouped_counts:</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        counts <span class="op">=</span> grouped_counts[aa]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        counts <span class="op">=</span> grouped_counts[aa]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Amino acids with no codon counts should <em>not</em> be part of the data structure. Remember that in this case <code>normalize_counts</code> returns <code>None</code>, so you can simply test if the return value from <code>normalize_counts</code> is <code>None</code></p>
 </section>
 <section id="compute-the-codon-usage" class="level2 unnumbered">
@@ -715,13 +718,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

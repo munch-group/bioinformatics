@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../chapters/bioinformatics/local_alignment.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e78e88e00c4f3bfbc194be5827d51330.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7348364bef02e149b83741bff427fbde.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-a58caedd7710624ba8029c99cf6efb64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-7265a01e67a7770ed9b564cd1d2c99b1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,7 +120,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -159,7 +160,9 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../../../">Content</a> 
     </div>
@@ -644,9 +647,9 @@ window.Quarto = {
 <li>A list of lists. The number of sub-lists must be equal to the first integer argument. Each sublist must contain a number of <code>None</code> values equal to the second integer argument.</li>
 </ul>
 <p>Example usage:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>returns a list with <em>three</em> lists each of length <em>four</em>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[[<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[[<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Even though this is a list of lists, we can <em>think of it</em> as a three-by-four matrix:</p>
 <pre><code>[[None, None, None, None], 
  [None, None, None, None], 
@@ -657,13 +660,13 @@ window.Quarto = {
 A None None None None
 T None None None None</code></pre>
 <p><strong>Important:</strong> You can implement <code>empty_matrix</code> in a way that superficially looks ok but will cause you all kinds of grief when you start filling it in. When you create the list of lists (e.g., three as above), you must generate and add three <em>separate</em> lists. If you add the <em>same</em> list three times, you do not have three separate rows in your matrix. Instead, you have <em>three</em> references to the <em>same</em> row. You can test if you did it right this way – by changing the value of one cell to see what happens:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> empty_matrix(<span class="dv">3</span>, <span class="dv">4</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>empty[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">=</span> <span class="st">'Mogens'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If this only changed <em>one</em> value like below, you are ok:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[[<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[[<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If it changed the first value in <em>all</em> the lists, it means that all your lists are the same (which is not what you want).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>[[<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>[[<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="st">'Mogens'</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="fill-the-top-row-and-left-column" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-the-top-row-and-left-column">Fill the top row and left column</h3>
@@ -683,16 +686,16 @@ T   -4 None None None</code></pre>
 <li>A list of lists. The number of sub-lists must be equal to the first integer argument. The values in the first sub-list must be multiples of the gap score given as the third argument. The first elements of the remaining sub-lists must be multiples of the gap score. All remaining elements of sub-lists must be <code>None</code>.</li>
 </ul>
 <p>Example usage:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prepare_matrix(<span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prepare_matrix(<span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>must return:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="va">None</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Hint
+<span class="screen-reader-only">Note</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -708,10 +711,10 @@ Hint
 <h3 class="unnumbered anchored" data-anchor-id="fill-the-entire-matrix">Fill the entire matrix</h3>
 <p>Now that we can fill the top row and left column, we can start thinking about how to fill the whole matrix.</p>
 <p>For that, we need a score matrix of match scores. In Python, that is most easily represented as a dictionary of dictionaries like this:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>score_matrix <span class="op">=</span> {<span class="st">'A'</span>: {<span class="st">'A'</span>: <span class="dv">2</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>score_matrix <span class="op">=</span> {<span class="st">'A'</span>: {<span class="st">'A'</span>: <span class="dv">2</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">'T'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">2</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">'G'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">2</span>, <span class="st">'C'</span>: <span class="dv">0</span>},</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">'C'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">2</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">'C'</span>: {<span class="st">'A'</span>: <span class="dv">0</span>, <span class="st">'T'</span>: <span class="dv">0</span>, <span class="st">'G'</span>: <span class="dv">0</span>, <span class="st">'C'</span>: <span class="dv">2</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That lets you get the score for matching an <code>A</code> with a <code>T</code> like this: <code>score_matrix['A']['T']</code>. Note that the match scores are only for uppercase letters (<code>A</code>, <code>T</code>, <code>G</code>, <code>C</code>).</p>
 <p><em>Write a function</em>, <code>fill_matrix</code>, which takes four arguments:</p>
 <ol type="1">
@@ -725,35 +728,35 @@ Hint
 <li>A list of lists of integers, which represents a correctly filled dynamic programming matrix given the two sequences, the match scores, and the gap score.</li>
 </ul>
 <p>Example usage: If <code>score_matrix</code> is defined as above, then</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fill_matrix(<span class="st">'AT'</span>, <span class="st">'GAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fill_matrix(<span class="st">'AT'</span>, <span class="st">'GAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>must return:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">6</span>], [<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you print that matrix using <code>print_dp_matrix</code> it should look like this:</p>
 <pre><code>      G  A  T
    0 -2 -4 -6
 A -2  0  0 -2
 T -4 -2  0  2</code></pre>
 <div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Hint
+<span class="screen-reader-only">Note</span>Hint
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You should call <code>prepare_matrix</code> inside <code>fill_matrix</code> to get a matrix with the top row and left column filled. Assuming <code>seq1</code> is sequence one and <code>seq2</code> is sequence two, then you can do it like this:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> prepare_matrix(<span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>, <span class="bu">len</span>(seq2)<span class="op">+</span><span class="dv">1</span>, gap_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>matrix <span class="op">=</span> prepare_matrix(<span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>, <span class="bu">len</span>(seq2)<span class="op">+</span><span class="dv">1</span>, gap_score)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <p>Now, you only need to fill out the rest. You need two nested for-loops to produce the indexes of the elements in the list of lists that you need to assign values to.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(seq1)<span class="op">+</span><span class="dv">1</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(seq2)<span class="op">+</span><span class="dv">1</span>):</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i, j) <span class="co"># just to see what i and j are</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i, j) <span class="co"># just to see what i and j are</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Examine this code and make sure you understand why we give those arguments to <code>range</code>. Each combination of <code>i</code> and <code>j</code> lets you access an element <code>matrix[i][j]</code> in <code>matrix</code> (list of lists) that you can assign a value to. The value to assign to <code>matrix[i][j]</code> (green cell on the slides) is the maximum of three values (the yellow cells on the slide):</p>
 <ol type="1">
 <li>The value of the cell to the left (<code>matrix[i][j-1]</code>) plus the gap score.</li>
@@ -765,7 +768,7 @@ Hint
 <section id="reconstructing-the-optimal-alignment" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="reconstructing-the-optimal-alignment">Reconstructing the optimal alignment</h2>
 <p>This is the most challenging part, so I will hold your hand here. Below is first a function that identifies which of three cells (the yellow cells on the slides) some cell (green cell on the slides) is derived from. On the slides, this is the cell pointed to by the red arrow.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_traceback_arrow(matrix, row, col, match_score, gap_score):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_traceback_arrow(matrix, row, col, match_score, gap_score):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># yellow cells:</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    score_diagonal <span class="op">=</span> matrix[row<span class="op">-</span><span class="dv">1</span>][col<span class="op">-</span><span class="dv">1</span>]</span>
@@ -780,10 +783,10 @@ Hint
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score_current <span class="op">==</span> score_left <span class="op">+</span> gap_score:</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'left'</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> score_current <span class="op">==</span> score_up <span class="op">+</span> gap_score:</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'up'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'up'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Write (do not copy and paste) this into your file, and make sure that it works and that you understand exactly how it works before you proceed.</p>
 <p>Here is a function that uses <code>get_traceback_arrow</code> to do the traceback. It reconstructs the alignment starting from the last column, adding columns in front as the traceback proceeds. It is big, so it breaks across three pages.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace_back(seq1, seq2, matrix, score_matrix, gap_score):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trace_back(seq1, seq2, matrix, score_matrix, gap_score):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strings to store the growing alignment strings:</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    aligned1 <span class="op">=</span> <span class="st">''</span></span>
@@ -841,7 +844,7 @@ Hint
 <span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        aligned2 <span class="op">=</span> base2 <span class="op">+</span> aligned2</span>
 <span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>        col <span class="op">-=</span> <span class="dv">1</span></span>
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [aligned1, aligned2]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [aligned1, aligned2]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once you have <em>written</em> it into your file, make sure you understand the correspondence to the sequences of events on the lecture slides.</p>
 <p>Now you can write a function that performs the alignment. You get to do that yourself. It just calls <code>fill_matrix</code> and then <code>trace_back</code> to get the optimal alignment</p>
 <p><em>Write a function</em>, <code>align</code>, that takes four arguments:</p>
@@ -856,13 +859,13 @@ Hint
 <li>A list of length two. The first element of that list must be a string representing the aligned sequence one. The second element must be a string, representing the aligned sequence two.</li>
 </ul>
 <p>Example usage:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>must return:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'-AT-AT'</span>, <span class="st">'GATGAT'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'-AT-AT'</span>, <span class="st">'GATGAT'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once you have written that function, you can print your alignment like this:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alignment <span class="op">=</span> align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alignment <span class="op">=</span> align(<span class="st">'ATAT'</span>, <span class="st">'GATGAT'</span>, score_matrix, <span class="op">-</span><span class="dv">2</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> alignment:</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(s)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -919,13 +922,14 @@ Hint
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
