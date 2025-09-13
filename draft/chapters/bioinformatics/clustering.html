@@ -547,17 +547,20 @@ window.Quarto = {
   <li><a href="#which-pair-to-cluster-next" id="toc-which-pair-to-cluster-next" class="nav-link" data-scroll-target="#which-pair-to-cluster-next"><span class="header-section-number">47.1</span> Which pair to cluster next</a></li>
   <li><a href="#how-to-computes-distances-from-the-new-cluster" id="toc-how-to-computes-distances-from-the-new-cluster" class="nav-link" data-scroll-target="#how-to-computes-distances-from-the-new-cluster"><span class="header-section-number">47.2</span> How to computes distances from the new cluster</a></li>
   </ul></li>
-  <li><a href="#molecular-clock" id="toc-molecular-clock" class="nav-link" data-scroll-target="#molecular-clock"><span class="header-section-number">48</span> Molecular clock</a>
+  <li><a href="#sec-molecularclock" id="toc-sec-molecularclock" class="nav-link" data-scroll-target="#sec-molecularclock"><span class="header-section-number">48</span> Molecular clock</a>
   <ul class="collapse">
   <li><a href="#example-of-wrong-tree-produced-in-absence-of-molecular-clock" id="toc-example-of-wrong-tree-produced-in-absence-of-molecular-clock" class="nav-link" data-scroll-target="#example-of-wrong-tree-produced-in-absence-of-molecular-clock"><span class="header-section-number">48.1</span> Example of wrong tree produced in absence of molecular clock</a></li>
-  <li><a href="#upgma" id="toc-upgma" class="nav-link" data-scroll-target="#upgma">UPGMA</a></li>
-  <li><a href="#neighbor-joining" id="toc-neighbor-joining" class="nav-link" data-scroll-target="#neighbor-joining">Neighbor-joining</a>
+  <li><a href="#sec-upgma" id="toc-sec-upgma" class="nav-link" data-scroll-target="#sec-upgma"><span class="header-section-number">48.2</span> UPGMA</a>
   <ul class="collapse">
-  <li><a href="#additive-distances-non-recombining-sequence-ancestry" id="toc-additive-distances-non-recombining-sequence-ancestry" class="nav-link" data-scroll-target="#additive-distances-non-recombining-sequence-ancestry"><span class="header-section-number">48.1.1</span> Additive distances / Non-recombining sequence ancestry</a></li>
-  <li><a href="#minimal-evolution-principle" id="toc-minimal-evolution-principle" class="nav-link" data-scroll-target="#minimal-evolution-principle"><span class="header-section-number">48.1.2</span> Minimal evolution principle</a></li>
+  <li><a href="#worked-example-of-upgma-clustering" id="toc-worked-example-of-upgma-clustering" class="nav-link" data-scroll-target="#worked-example-of-upgma-clustering"><span class="header-section-number">48.2.1</span> Worked Example of UPGMA Clustering</a></li>
+  </ul></li>
+  <li><a href="#sec-upgma" id="toc-sec-upgma" class="nav-link" data-scroll-target="#sec-upgma"><span class="header-section-number">48.3</span> Neighbor-joining</a>
+  <ul class="collapse">
+  <li><a href="#additive-distances-non-recombining-sequence-ancestry" id="toc-additive-distances-non-recombining-sequence-ancestry" class="nav-link" data-scroll-target="#additive-distances-non-recombining-sequence-ancestry"><span class="header-section-number">48.3.1</span> Additive distances / Non-recombining sequence ancestry</a></li>
+  <li><a href="#minimal-evolution-principle" id="toc-minimal-evolution-principle" class="nav-link" data-scroll-target="#minimal-evolution-principle"><span class="header-section-number">48.3.2</span> Minimal evolution principle</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#bootstrap-analysis-in-phylogenetic-reconstruction" id="toc-bootstrap-analysis-in-phylogenetic-reconstruction" class="nav-link" data-scroll-target="#bootstrap-analysis-in-phylogenetic-reconstruction"><span class="header-section-number">49</span> Bootstrap Analysis in Phylogenetic Reconstruction</a>
+  <li><a href="#sec-bootstrap" id="toc-sec-bootstrap" class="nav-link" data-scroll-target="#sec-bootstrap"><span class="header-section-number">49</span> Bootstrap Analysis in Phylogenetic Reconstruction</a>
   <ul class="collapse">
   <li><a href="#statistical-principles-of-bootstrapping" id="toc-statistical-principles-of-bootstrapping" class="nav-link" data-scroll-target="#statistical-principles-of-bootstrapping"><span class="header-section-number">49.1</span> Statistical Principles of Bootstrapping</a></li>
   <li><a href="#bootstrap-assumptions-and-requirements" id="toc-bootstrap-assumptions-and-requirements" class="nav-link" data-scroll-target="#bootstrap-assumptions-and-requirements"><span class="header-section-number">49.2</span> Bootstrap Assumptions and Requirements</a></li>
@@ -576,7 +579,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/clustering.html"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></h1>
+<h1 class="title"><span id="sec-clustering" class="quarto-section-identifier"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></h1>
 </div>
 
 
@@ -632,7 +635,7 @@ window.Quarto = {
 <p>The Lance-Williams formula provides a general framework for updating distances in hierarchical clustering. This formula expresses the distance from a new cluster to any other cluster as a linear combination of the distances from the constituent clusters, with coefficients that depend on the specific linkage criterion. Understanding this formula helps in implementing efficient clustering algorithms and in developing new linkage criteria tailored to specific biological questions.</p>
 </section>
 </section>
-<section id="molecular-clock" class="level1" data-number="48">
+<section id="sec-molecularclock" class="level1" data-number="48">
 <h1 data-number="48"><span class="header-section-number">48</span> Molecular clock</h1>
 <p>The molecular clock hypothesis, proposed by Emile Zuckerkandl and Linus Pauling in the 1960s, suggests that genetic mutations accumulate at a roughly constant rate over evolutionary time. This concept has profound implications for sequence clustering and phylogenetic reconstruction, as it allows us to not only determine relationships between sequences but also estimate the timing of evolutionary events.</p>
 <p>The molecular clock hypothesis is based on the observation that many mutations are selectively neutral – they neither benefit nor harm the organism. These neutral mutations accumulate randomly over time, and if the mutation rate is constant, the number of differences between two sequences should be proportional to the time since they diverged from a common ancestor. This principle allows us to use sequence differences as a “molecular chronometer” to date evolutionary events.</p>
@@ -691,8 +694,8 @@ window.Quarto = {
 <p>This example illustrates a general principle: when evolutionary rates vary significantly among lineages, methods that assume a molecular clock will tend to group slowly-evolving lineages together, regardless of their true evolutionary relationships. This can lead to systematic biases in phylogenetic reconstruction, particularly when studying groups that have experienced different selective pressures or have different biological characteristics affecting their mutation rates.</p>
 <p>Real-world examples of molecular clock violations abound. The evolution of HIV shows extreme rate variation, with some lineages evolving orders of magnitude faster than others due to differences in immune pressure and transmission dynamics. In mammals, the lineage leading to modern rodents shows accelerated evolution compared to primates, affecting everything from phylogenetic reconstruction to estimates of divergence times. Understanding these violations is crucial for choosing appropriate clustering methods and interpreting their results correctly.</p>
 </section>
-<section id="upgma" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="upgma">UPGMA</h2>
+<section id="sec-upgma" class="level2" data-number="48.2">
+<h2 data-number="48.2" class="anchored" data-anchor-id="sec-upgma"><span class="header-section-number">48.2</span> UPGMA</h2>
 <p>UPGMA (Unweighted Pair Group Method with Arithmetic Mean) is one of the oldest and simplest hierarchical clustering methods used in bioinformatics. Despite its limitations, particularly the assumption of a molecular clock, UPGMA remains widely used due to its simplicity, computational efficiency, and ease of interpretation. Understanding UPGMA provides a foundation for appreciating more sophisticated clustering methods.</p>
 <p>The UPGMA algorithm begins with each sequence as its own cluster and a matrix of pairwise distances between all sequences. At each iteration, it identifies the pair of clusters with the smallest distance and merges them into a new cluster. The height of the merge in the dendrogram is set to half the distance between the merged clusters, reflecting the assumption that both lineages have evolved for equal time from their common ancestor. Distances from the new cluster to all other clusters are computed as the arithmetic mean of the constituent distances, and the process repeats until all sequences are in a single cluster.</p>
 <p>The mathematical formulation of UPGMA distance updates is straightforward. If clusters <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are merged to form cluster <span class="math inline">\(k\)</span>, and we need to compute the distance from <span class="math inline">\(k\)</span> to another cluster <span class="math inline">\(l\)</span>, we use:</p>
@@ -702,9 +705,113 @@ window.Quarto = {
 <p>UPGMA’s assumption of a molecular clock leads to ultrametric trees, where the distance from the root to any leaf is constant. This property can be tested in real data; if the distances satisfy the ultrametric inequality (for any three sequences, the two largest distances are equal), then UPGMA will correctly recover the tree topology. However, real biological data rarely satisfies this condition perfectly, and the degree of deviation from ultrametricity indicates how poorly the molecular clock assumption fits the data.</p>
 <p>The computational efficiency of UPGMA makes it attractive for large-scale analyses. With appropriate data structures, UPGMA can be implemented to run in O(n²) time for n sequences, compared to O(n³) for naive implementations. This efficiency, combined with its deterministic nature (always producing the same tree for given data), makes UPGMA useful for initial explorations of large sequence datasets, even when its assumptions are not perfectly met.</p>
 <p>Despite its limitations, UPGMA has practical applications where its assumptions are reasonable. For closely related sequences that have diverged recently, rate variation may be minimal, making UPGMA appropriate. In studies of viral quasispecies within a single host, where all sequences have evolved for approximately the same time, UPGMA can provide meaningful clusters. The method is also useful as a starting point for more sophisticated analyses, providing an initial tree that can be refined using methods that relax the molecular clock assumption.</p>
+<section id="worked-example-of-upgma-clustering" class="level3" data-number="48.2.1">
+<h3 data-number="48.2.1" class="anchored" data-anchor-id="worked-example-of-upgma-clustering"><span class="header-section-number">48.2.1</span> Worked Example of UPGMA Clustering</h3>
+<p>To illustrate the UPGMA algorithm in action, let’s work through a complete example with six sequences (A, B, C, D, E, F) and their pairwise distances. This example demonstrates how the distance matrix is progressively reduced and how the dendrogram is built step by step.</p>
+<div id="fig-upgma-example" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-upgma-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/upgma-template-figure.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-upgma-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;48.1: Step-by-step UPGMA clustering process. The figure shows the progressive reduction of the distance matrix and simultaneous construction of the dendrogram through five steps (panels A-E). In each panel, the left side shows the current distance matrix with the minimum distance highlighted in red, newly formed clusters labeled with letters (V, W, X, Y, Z), and previously merged elements shown with colored backgrounds. The right side shows the growing dendrogram with height scale from 0 to 4, where merge heights equal half the distance between clusters being joined. Panel (A) shows the initial 6×6 distance matrix with d(A,D)=1 as the minimum. Panel (B) shows the 5×5 matrix after merging A and D into cluster V. Panel (C) shows the 4×4 matrix after merging V and E into cluster W. Panel (D) shows the 3×3 matrix after merging B and F into cluster X. Panel (E) shows the final 2×2 matrix and complete dendrogram after all sequences have been clustered. The final tree topology is (((A,D),E),(B,F),C) with C as the outgroup joining at the highest level.
+</figcaption>
+</figure>
+</div>
+<p><strong>Step 1: Initial Distance Matrix</strong> We begin with the complete distance matrix shown in panel (A) of <a href="#fig-upgma-example" class="quarto-xref">Figure&nbsp;<span>48.1</span></a>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>-</td>
+<td>6</td>
+<td>8</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td></td>
+<td>-</td>
+<td>8</td>
+<td>6</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td></td>
+<td></td>
+<td>-</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td>-</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>-</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>The smallest distance is <span class="math inline">\(d(A,D) = 1\)</span>. Therefore, we cluster A and D together to form a new cluster V = (A,D). The height of this merge in the dendrogram is <span class="math inline">\(1/2 = 0.5\)</span>.</p>
+<p><strong>Step 2: Computing Distances to Cluster V</strong> Panel (B) of <a href="#fig-upgma-example" class="quarto-xref">Figure&nbsp;<span>48.1</span></a> shows the reduced matrix after clustering A and D. We need to compute distances from the new cluster V to all remaining sequences using the UPGMA formula. Since both A and D are single sequences, <span class="math inline">\(n_A = n_D = 1\)</span>:</p>
+<p><span class="math display">\[d(V,B) = \frac{1 \times d(A,B) + 1 \times d(D,B)}{1 + 1} = \frac{6 + 6}{2} = 6\]</span></p>
+<p><span class="math display">\[d(V,C) = \frac{1 \times d(A,C) + 1 \times d(D,C)}{1 + 1} = \frac{8 + 8}{2} = 8\]</span></p>
+<p><span class="math display">\[d(V,E) = \frac{1 \times d(A,E) + 1 \times d(D,E)}{1 + 1} = \frac{2 + 2}{2} = 2\]</span></p>
+<p><span class="math display">\[d(V,F) = \frac{1 \times d(A,F) + 1 \times d(D,F)}{1 + 1} = \frac{6 + 6}{2} = 6\]</span></p>
+<p>The smallest distance in the new matrix is <span class="math inline">\(d(V,E) = 2\)</span>. We cluster V and E to form W = ((A,D),E) at height <span class="math inline">\(2/2 = 1\)</span>.</p>
+<p><strong>Step 3: Computing Distances to Cluster W</strong> Panel (C) of <a href="#fig-upgma-example" class="quarto-xref">Figure&nbsp;<span>48.1</span></a> shows the matrix after forming cluster W = ((A,D),E). Since cluster V contained 2 sequences (A and D) and E is a single sequence, we use <span class="math inline">\(n_V = 2\)</span> and <span class="math inline">\(n_E = 1\)</span> in our calculations:</p>
+<p><span class="math display">\[d(W,B) = \frac{2 \times d(V,B) + 1 \times d(E,B)}{2 + 1} = \frac{2 \times 6 + 1 \times 6}{3} = \frac{18}{3} = 6\]</span></p>
+<p><span class="math display">\[d(W,C) = \frac{2 \times d(V,C) + 1 \times d(E,C)}{2 + 1} = \frac{2 \times 8 + 1 \times 8}{3} = \frac{24}{3} = 8\]</span></p>
+<p><span class="math display">\[d(W,F) = \frac{2 \times d(V,F) + 1 \times d(E,F)}{2 + 1} = \frac{2 \times 6 + 1 \times 6}{3} = \frac{18}{3} = 6\]</span></p>
+<p>The smallest distance is <span class="math inline">\(d(B,F) = 4\)</span>. We cluster B and F to form X = (B,F) at height <span class="math inline">\(4/2 = 2\)</span>.</p>
+<p><strong>Step 4: Computing Distances Between Three Clusters</strong> Panel (D) of <a href="#fig-upgma-example" class="quarto-xref">Figure&nbsp;<span>48.1</span></a> shows the matrix with three clusters: W (containing A, D, E), X (containing B, F), and C. We compute the distance between W and X using the fact that B and F were both single sequences when merged:</p>
+<p><span class="math display">\[d(W,X) = \frac{1 \times d(W,B) + 1 \times d(W,F)}{1 + 1} = \frac{6 + 6}{2} = 6\]</span></p>
+<p>Similarly, for the distance between C and X:</p>
+<p><span class="math display">\[d(C,X) = \frac{1 \times d(C,B) + 1 \times d(C,F)}{1 + 1} = \frac{8 + 8}{2} = 8\]</span></p>
+<p>The smallest distance is <span class="math inline">\(d(W,X) = 6\)</span>. We cluster W and X to form Y = (((A,D),E),(B,F)) at height <span class="math inline">\(6/2 = 3\)</span>.</p>
+<p><strong>Step 5: Final Clustering</strong> Panel (E) of <a href="#fig-upgma-example" class="quarto-xref">Figure&nbsp;<span>48.1</span></a> shows the final step with only two clusters remaining: Y and C. The distance between them is 8, so they merge at height <span class="math inline">\(8/2 = 4\)</span>.</p>
+<p>The complete UPGMA tree shows the hierarchical clustering with merge heights: - A and D merge at height 0.5 - (A,D) and E merge at height 1 - B and F merge at height 2 - ((A,D),E) and (B,F) merge at height 3 - (((A,D),E),(B,F)) and C merge at height 4</p>
+<p>This example illustrates several key features of UPGMA: the algorithm always selects the minimum distance at each step, the merge height equals half the distance (assuming a molecular clock), and the distance calculations use weighted averages based on cluster sizes to maintain the unweighted nature of the method.</p>
 </section>
-<section id="neighbor-joining" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="neighbor-joining">Neighbor-joining</h2>
+</section>
+<section id="sec-upgma" class="level2" data-number="48.3">
+<h2 data-number="48.3" class="anchored" data-anchor-id="sec-upgma"><span class="header-section-number">48.3</span> Neighbor-joining</h2>
 <p>Neighbor-joining (NJ), developed by Naruya Saitou and Masatoshi Nei in 1987, represents a major advance in phylogenetic reconstruction methods. Unlike UPGMA, neighbor-joining does not assume a molecular clock, making it more robust to rate variation among lineages. The method is based on the principle of minimum evolution, seeking the tree topology that minimizes the total branch length.</p>
 <p>The neighbor-joining algorithm operates on a matrix of pairwise distances but uses a modified distance measure that accounts for the average divergence of each sequence from all others. For each pair of sequences <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, it computes a corrected distance:</p>
 <p><span class="math display">\[Q(i,j) = (n-2) \times d(i,j) - R_i - R_j\]</span></p>
@@ -722,8 +829,8 @@ window.Quarto = {
 <p>The neighbor-joining algorithm has several desirable theoretical properties. It is consistent, meaning that given sufficient data from a tree-like evolutionary process, it will recover the correct tree topology. It is also relatively robust to modest violations of its assumptions, such as mild deviations from additivity in the distance matrix. These properties, combined with its computational efficiency (O(n³) but with a small constant factor), have made neighbor-joining one of the most widely used methods in molecular phylogenetics.</p>
 <p>However, neighbor-joining also has limitations. It assumes that the distance matrix is additive or nearly additive, meaning that distances can be perfectly represented as the sum of branch lengths on a tree. When this assumption is violated, such as in the presence of homoplasy or horizontal gene transfer, NJ can produce incorrect topologies. Additionally, NJ produces a single point estimate of the tree without measures of uncertainty, though bootstrap resampling can be used to assess the reliability of different parts of the tree.</p>
 <p>The implementation of neighbor-joining requires careful attention to numerical precision, particularly when dealing with very similar or very divergent sequences. Round-off errors can accumulate during the iterative process, potentially affecting the final tree topology. Various optimizations have been developed to improve both the speed and accuracy of NJ implementations, including fast neighbor-joining algorithms that reduce the computational complexity for large datasets.</p>
-<section id="additive-distances-non-recombining-sequence-ancestry" class="level3" data-number="48.1.1">
-<h3 data-number="48.1.1" class="anchored" data-anchor-id="additive-distances-non-recombining-sequence-ancestry"><span class="header-section-number">48.1.1</span> Additive distances / Non-recombining sequence ancestry</h3>
+<section id="additive-distances-non-recombining-sequence-ancestry" class="level3" data-number="48.3.1">
+<h3 data-number="48.3.1" class="anchored" data-anchor-id="additive-distances-non-recombining-sequence-ancestry"><span class="header-section-number">48.3.1</span> Additive distances / Non-recombining sequence ancestry</h3>
 <p>The concept of additive distances is fundamental to understanding when distance-based clustering methods will accurately recover evolutionary relationships. A distance matrix is additive if the distances can be exactly represented as path lengths on a tree with non-negative branch lengths. In other words, for any four sequences, the distances satisfy the four-point condition:</p>
 <p>For any four taxa <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>, <span class="math inline">\(k\)</span>, and <span class="math inline">\(l\)</span>, we compute three sums: - <span class="math inline">\(S_1 = d(i,j) + d(k,l)\)</span> - <span class="math inline">\(S_2 = d(i,k) + d(j,l)\)</span> - <span class="math inline">\(S_3 = d(i,l) + d(j,k)\)</span></p>
 <p>The four-point condition states that the two largest of these three sums must be equal. Mathematically:</p>
@@ -742,8 +849,8 @@ window.Quarto = {
 <p>Testing for additivity involves checking whether the four-point condition holds for all quartets of sequences. In practice, perfect additivity is rare, and methods have been developed to measure the degree of deviation from additivity. The delta score quantifies how well a distance matrix fits a tree topology, with lower scores indicating better fit. Statistical tests can assess whether observed deviations from additivity are greater than expected from sampling error alone.</p>
 <p>When distances are approximately additive, methods like neighbor-joining can still recover the correct tree topology with high probability. The robustness of these methods to mild violations of additivity is one reason for their continued popularity. However, when additivity is strongly violated, alternative approaches may be needed, such as network-based methods that can represent conflicting signals in the data or methods that explicitly model recombination and horizontal gene transfer.</p>
 </section>
-<section id="minimal-evolution-principle" class="level3" data-number="48.1.2">
-<h3 data-number="48.1.2" class="anchored" data-anchor-id="minimal-evolution-principle"><span class="header-section-number">48.1.2</span> Minimal evolution principle</h3>
+<section id="minimal-evolution-principle" class="level3" data-number="48.3.2">
+<h3 data-number="48.3.2" class="anchored" data-anchor-id="minimal-evolution-principle"><span class="header-section-number">48.3.2</span> Minimal evolution principle</h3>
 <p>The principle of minimum evolution, also known as the principle of parsimony at the level of tree length, suggests that among all possible tree topologies, the one requiring the least total amount of evolutionary change is most likely to be correct. This principle underlies many phylogenetic methods, including neighbor-joining, and provides a criterion for choosing among alternative evolutionary hypotheses.</p>
 <p>The minimum evolution principle can be justified on both philosophical and statistical grounds. Philosophically, it embodies Occam’s razor – the simplest explanation consistent with the data is preferred. Statistically, under certain models of evolution, the tree with minimum length is the maximum likelihood estimate of the true tree. The principle is particularly compelling when evolutionary changes are rare relative to the time scales being considered, as unnecessary postulation of extra changes reduces the probability of the observed data.</p>
 <p>In the context of distance-based clustering, minimum evolution seeks the tree topology and branch lengths that minimize the sum of all branch lengths while fitting the observed distances as closely as possible. This is typically formulated as a least-squares problem: find the tree T and branch lengths that minimize the sum of squared differences between observed distances and path lengths on the tree. Neighbor-joining can be viewed as a greedy heuristic for this optimization problem, making locally optimal choices that often lead to the globally optimal or near-optimal tree.</p>
@@ -752,12 +859,16 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="bootstrap-analysis-in-phylogenetic-reconstruction" class="level1" data-number="49">
+<section id="sec-bootstrap" class="level1" data-number="49">
 <h1 data-number="49"><span class="header-section-number">49</span> Bootstrap Analysis in Phylogenetic Reconstruction</h1>
 <p>Bootstrap analysis has become an indispensable tool in phylogenetic reconstruction and sequence clustering, providing a statistical framework for assessing the reliability and robustness of inferred evolutionary relationships. Introduced to phylogenetics by Joseph Felsenstein in 1985, the bootstrap method addresses a fundamental challenge in evolutionary biology: how can we quantify our confidence in a particular tree topology when we have only a single dataset representing millions of years of evolution? This section explores the statistical principles underlying bootstrap analysis, its assumptions and limitations, what it actually quantifies, when its application is appropriate, and the computational methods used to implement it.</p>
 <section id="statistical-principles-of-bootstrapping" class="level2" data-number="49.1">
 <h2 data-number="49.1" class="anchored" data-anchor-id="statistical-principles-of-bootstrapping"><span class="header-section-number">49.1</span> Statistical Principles of Bootstrapping</h2>
 <p>The bootstrap is a resampling technique that estimates the sampling distribution of a statistic by repeatedly resampling with replacement from the original data. In the context of phylogenetic analysis, the “data” consists of aligned sequence positions (sites or columns in the alignment), and the “statistic” is typically the tree topology or specific clades within the tree. The fundamental principle is that if our inference method is robust, it should produce similar results when applied to slightly different datasets that could plausibly have been observed.</p>
+<p>To understand why bootstrap analysis works, it’s essential to grasp how phylogenetic information is encoded in sequence alignments. Each column in an alignment represents a site that has evolved along the tree, and the pattern of nucleotides or amino acids at that site carries information about the evolutionary history. Consider a simple case with four sequences where a site shows the pattern AAGA. This pattern, where sequences 1, 2, and 4 share state A while sequence 3 has G, provides evidence for grouping sequences 1, 2, and 4 together, separated from sequence 3. The strength of this evidence depends on how many sites show consistent patterns supporting the same grouping.</p>
+<p>Different site patterns provide evidence for different branches in the tree. Sites that change along deep branches in the tree create patterns that support the major divisions among sequences, while sites that change along recent branches support the grouping of closely related sequences. The frequency of each site pattern in the alignment directly relates to the length of the corresponding branch in the true tree—longer branches accumulate more changes and thus generate more sites with patterns supporting those branches. This is why phylogenetic methods can estimate both tree topology and branch lengths from the distribution of site patterns.</p>
+<p>When an alignment contains many informative sites with strong, consistent signals, resampling these sites will likely reproduce similar site pattern frequencies in each bootstrap replicate. Even though each bootstrap sample contains a different mix of the original sites (with some appearing multiple times and others not at all), the overall distribution of site patterns remains relatively stable. Consequently, the same tree topology will be recovered from most bootstrap replicates, resulting in high bootstrap support values. For instance, if 100 sites strongly support grouping sequences A and B together, and only 10 sites weakly suggest alternative groupings, then most bootstrap replicates will still contain enough A-B supporting sites to recover that clade, even with the random variation introduced by resampling.</p>
+<p>Conversely, when an alignment is short or contains few informative sites, the phylogenetic signal is weaker and more susceptible to sampling variation. If only 5 sites support grouping A with B while 3 sites support grouping A with C, bootstrap resampling can easily shift this delicate balance. Some bootstrap replicates might sample more A-B supporting sites, while others might happen to include multiple copies of the A-C supporting sites. This sampling variation leads to different trees being recovered from different bootstrap replicates, resulting in low bootstrap support values. This explains why short sequences or rapidly evolving regions with high noise-to-signal ratios tend to produce low bootstrap values—not necessarily because the relationships are wrong, but because the data provide insufficient evidence to overcome sampling variation.</p>
 <p>Mathematically, let <span class="math inline">\(X = \{x_1, x_2, ..., x_n\}\)</span> represent our original alignment with <span class="math inline">\(n\)</span> sites. A bootstrap replicate <span class="math inline">\(X^*_b\)</span> is created by randomly sampling <span class="math inline">\(n\)</span> sites from <span class="math inline">\(X\)</span> with replacement:</p>
 <p><span class="math display">\[X^*_b = \{x^*_{b,1}, x^*_{b,2}, ..., x^*_{b,n}\}\]</span></p>
 <p>where each <span class="math inline">\(x^*_{b,i}\)</span> is randomly drawn from <span class="math inline">\(\{x_1, x_2, ..., x_n\}\)</span> with probability <span class="math inline">\(1/n\)</span>.</p>
@@ -783,13 +894,7 @@ window.Quarto = {
 <h2 data-number="49.2" class="anchored" data-anchor-id="bootstrap-assumptions-and-requirements"><span class="header-section-number">49.2</span> Bootstrap Assumptions and Requirements</h2>
 <p>The validity of bootstrap analysis in phylogenetics rests on several critical assumptions that must be carefully considered when interpreting results. The most fundamental assumption is that sequence sites evolve independently and identically distributed (i.i.d.). This means each site evolves according to the same stochastic process, independent of other sites. Mathematically, if <span class="math inline">\(L(D|T,\theta)\)</span> is the likelihood of data <span class="math inline">\(D\)</span> given tree <span class="math inline">\(T\)</span> and model parameters <span class="math inline">\(\theta\)</span>:</p>
 <p><span class="math display">\[L(D|T,\theta) = \prod_{i=1}^{n} L(x_i|T,\theta)\]</span></p>
-<p>This multiplicative decomposition is only valid under the i.i.d. assumption. In reality, this assumption is often violated by:</p>
-<ol type="1">
-<li><strong>Linkage and recombination</strong>: Physically linked sites may share evolutionary histories</li>
-<li><strong>Structural constraints</strong>: In proteins and RNA, sites interact to maintain structure</li>
-<li><strong>Covarion evolution</strong>: Evolutionary rates at sites may depend on states at other sites</li>
-<li><strong>Heterotachy</strong>: Evolutionary rates may vary across the tree at the same site</li>
-</ol>
+<p>This multiplicative decomposition is only valid under the i.i.d. assumption. In reality, this assumption is often violated in several important ways. Linkage and recombination create dependencies where physically linked sites share evolutionary histories rather than evolving independently. Structural constraints in proteins and RNA molecules mean that sites must co-evolve to maintain three-dimensional structure and function, creating strong correlations between positions. The phenomenon of covarion evolution, where the evolutionary rate at one site depends on the states at other sites, further violates independence. Additionally, heterotachy, the variation in evolutionary rates across the tree at the same site, violates the identically distributed assumption.</p>
 <p>When these assumptions are violated, bootstrap values may be misleading. For instance, if sites are positively correlated due to structural constraints, bootstrap resampling may underestimate the true variance, leading to inflated bootstrap values.</p>
 <p>Another crucial assumption is that the alignment is correct and fixed. Bootstrap analysis does not account for alignment uncertainty. If the alignment contains errors, these errors are propagated through all bootstrap replicates, potentially giving high support to incorrect relationships. This is particularly problematic for divergent sequences where alignment ambiguity is high.</p>
 <p>The bootstrap also assumes that the phylogenetic reconstruction method is consistent—that is, it converges to the true tree given infinite data. If the method is statistically inconsistent due to model misspecification, high bootstrap values may support incorrect clades. This phenomenon, known as “high support for the wrong tree,” can occur under conditions like long-branch attraction with parsimony methods.</p>
@@ -799,37 +904,14 @@ window.Quarto = {
 <p>A common misconception is that bootstrap values represent the probability that a clade is true. However, bootstrap values actually quantify something more subtle: the repeatability or stability of the inference given data resampling. Specifically, a bootstrap value estimates:</p>
 <p><span class="math display">\[BS(clade) \approx P(clade \in \hat{T}^* | D)\]</span></p>
 <p>where <span class="math inline">\(\hat{T}^*\)</span> is the estimated tree from a hypothetical replicate dataset drawn from the same underlying distribution as the original data.</p>
-<p>To understand what this means, consider the relationship between bootstrap values and actual accuracy. Simulation studies have shown that the relationship is complex and depends on multiple factors:</p>
-<ol type="1">
-<li><strong>For well-supported clades</strong>: Bootstrap values tend to be conservative (underestimate accuracy)</li>
-<li><strong>For weakly-supported clades</strong>: Bootstrap values may overestimate or underestimate accuracy</li>
-<li><strong>The relationship is non-linear</strong>: 70% bootstrap doesn’t mean 70% probability of being correct</li>
-</ol>
-<p>Hillis and Bull (1993) found through simulations that bootstrap proportions ≥70% usually correspond to ≥95% probability of true clades, suggesting bootstrap values are generally conservative. However, this relationship varies with:</p>
-<ul>
-<li>Sequence length: Longer sequences generally yield more reliable bootstrap estimates</li>
-<li>Substitution rate heterogeneity: Greater heterogeneity can distort bootstrap values</li>
-<li>Tree reconstruction method: Different methods show different bootstrap behaviors</li>
-<li>True tree topology: Balanced vs.&nbsp;imbalanced trees show different patterns</li>
-</ul>
+<p>To understand what this means, consider the relationship between bootstrap values and actual accuracy. Simulation studies have shown that the relationship is complex and depends on multiple factors. For well-supported clades, bootstrap values tend to be conservative, underestimating the actual accuracy of the inference. In contrast, for weakly-supported clades, bootstrap values may either overestimate or underestimate accuracy depending on the specific conditions. Most importantly, the relationship is non-linear—a 70% bootstrap value doesn’t translate directly to a 70% probability of the clade being correct.</p>
+<p>Hillis and Bull (1993) found through simulations that bootstrap proportions of 70% or higher usually correspond to a 95% or greater probability of recovering true clades, suggesting bootstrap values are generally conservative. However, this relationship varies considerably with several factors. Sequence length plays a crucial role, with longer sequences generally yielding more reliable bootstrap estimates because they contain more information to overcome sampling variation. Substitution rate heterogeneity can distort bootstrap values, as greater heterogeneity violates model assumptions and may lead to systematic biases. The tree reconstruction method also matters significantly, with different methods showing different bootstrap behaviors—maximum likelihood methods often produce higher bootstrap values than parsimony for the same data. Finally, the true tree topology itself affects bootstrap performance, with balanced trees typically showing different patterns than highly imbalanced trees.</p>
 <p>The bootstrap can be interpreted from a frequentist perspective as assessing sampling variance. If we could repeatedly sample sequences from the same evolutionary process, how often would we recover the same clade? This interpretation makes clear that bootstrap values reflect both the strength of phylogenetic signal and the sensitivity of our inference method to sampling variation.</p>
 </section>
 <section id="when-bootstrap-analysis-is-appropriate" class="level2" data-number="49.4">
 <h2 data-number="49.4" class="anchored" data-anchor-id="when-bootstrap-analysis-is-appropriate"><span class="header-section-number">49.4</span> When Bootstrap Analysis is Appropriate</h2>
-<p>Bootstrap analysis is most appropriate when:</p>
-<ol type="1">
-<li><strong>Sufficient data exists</strong>: With very short sequences (&lt;100 sites), bootstrap values are often uninformatively low</li>
-<li><strong>Sites can be considered approximately independent</strong>: For single genes or carefully selected multi-gene datasets</li>
-<li><strong>The goal is to assess topological uncertainty</strong>: Rather than branch length uncertainty</li>
-<li><strong>Comparing support across different nodes</strong>: Within the same analysis</li>
-</ol>
-<p>Bootstrap analysis may be less appropriate or require modification when:</p>
-<ol type="1">
-<li><strong>Analyzing genome-scale data</strong>: The i.i.d. assumption is strongly violated</li>
-<li><strong>Sites show strong correlation</strong>: Such as paired sites in RNA structures</li>
-<li><strong>Alignment uncertainty is high</strong>: Bootstrap doesn’t account for alignment errors</li>
-<li><strong>Comparing across different studies</strong>: Bootstrap values aren’t directly comparable</li>
-</ol>
+<p>Bootstrap analysis is most appropriate when several key conditions are met. First and foremost, sufficient data must exist for meaningful resampling—with very short sequences containing fewer than 100 sites, bootstrap values are often uninformatively low because the limited data cannot support stable inference under resampling variation. The method works best when sites can be considered approximately independent, which is typically the case for single genes or carefully selected multi-gene datasets where linkage effects are minimal. Bootstrap is particularly valuable when the primary goal is to assess topological uncertainty rather than uncertainty in branch lengths, as branch length estimates are more sensitive to model assumptions. The technique also excels at comparing support across different nodes within the same analysis, providing a consistent framework for evaluating which relationships are well-supported versus questionable.</p>
+<p>Bootstrap analysis may be less appropriate or require modification under certain circumstances. When analyzing genome-scale data, the independence assumption is strongly violated because genes on the same chromosome share evolutionary histories through linkage, and different genomic regions may have experienced different selective pressures or recombination events. Sites showing strong correlation, such as paired sites in RNA secondary structures that must co-evolve to maintain base-pairing, violate the independence assumption in ways that standard bootstrap cannot accommodate. High alignment uncertainty presents another challenge, as bootstrap doesn’t account for alignment errors, which become fixed across all bootstrap replicates and can lead to false confidence in incorrect relationships. Finally, bootstrap values aren’t directly comparable across different studies because they depend heavily on the specific dataset characteristics, reconstruction method, and model assumptions used in each analysis.</p>
 <p>For genome-scale data, alternatives like the multi-scale bootstrap or site-pattern bootstrap may be more appropriate. These methods adjust for the fact that phylogenomic datasets violate traditional bootstrap assumptions.</p>
 </section>
 <section id="computational-implementation" class="level2" data-number="49.5">
@@ -852,32 +934,13 @@ Output: Original tree T with bootstrap support values
 8. For each clade in T:
 9.     support[clade] ← (clade_counts[clade] / B) × 100
 10. Return T with support values</code></pre>
-<p>Efficient implementation requires careful optimization:</p>
-<ol type="1">
-<li><strong>Parallel processing</strong>: Bootstrap replicates are independent, enabling parallelization</li>
-<li><strong>Rapid bootstrapping</strong>: Approximate methods like RAxML’s rapid bootstrap</li>
-<li><strong>Transfer bootstrap</strong>: Uses transfer distance instead of clade presence/absence</li>
-<li><strong>UFBoot</strong>: Ultrafast bootstrap approximation with correction for bias</li>
-</ol>
-<p>The rapid bootstrap algorithm in RAxML combines a fast hill-climbing search with a more thorough optimization, reducing computation time by an order of magnitude while maintaining accuracy.</p>
+<p>Efficient implementation requires careful optimization through several strategies. Parallel processing is particularly effective because bootstrap replicates are completely independent, allowing different replicates to be computed simultaneously on different processors without any communication overhead. Rapid bootstrapping methods, such as RAxML’s rapid bootstrap algorithm, combine fast hill-climbing searches with selective thorough optimization to reduce computation time by an order of magnitude while maintaining accuracy. The transfer bootstrap approach modifies the support calculation by using transfer distance instead of simple clade presence/absence, providing more nuanced support values that better reflect topological similarity. UFBoot (Ultrafast bootstrap) implements an approximation algorithm with statistical correction for bias, enabling bootstrap analysis of very large datasets that would be computationally prohibitive with standard methods.</p>
 </section>
 <section id="interpreting-bootstrap-results" class="level2" data-number="49.6">
 <h2 data-number="49.6" class="anchored" data-anchor-id="interpreting-bootstrap-results"><span class="header-section-number">49.6</span> Interpreting Bootstrap Results</h2>
-<p>Bootstrap values should be interpreted carefully in biological context. General guidelines include:</p>
-<ul>
-<li><strong>&gt;95%</strong>: Very strong support, clade highly reliable</li>
-<li><strong>70-95%</strong>: Moderate to strong support, clade likely correct</li>
-<li><strong>50-70%</strong>: Weak support, clade uncertain</li>
-<li><strong>&lt;50%</strong>: No support, clade unreliable</li>
-</ul>
-<p>However, these thresholds are somewhat arbitrary and depend on the specific analysis. Factors affecting interpretation include:</p>
-<ol type="1">
-<li><strong>Dataset size</strong>: Larger datasets generally yield higher bootstrap values</li>
-<li><strong>Evolutionary rate</strong>: Rapidly evolving sequences may show lower bootstrap support</li>
-<li><strong>Taxonomic scope</strong>: Broader taxonomic sampling may reduce bootstrap values</li>
-<li><strong>Method used</strong>: Maximum likelihood often gives higher values than parsimony</li>
-</ol>
-<p>Bootstrap values can also identify problematic regions of the tree. Consistently low values may indicate: - Rapid radiation with short internal branches - Conflicting phylogenetic signals - Insufficient data to resolve relationships - Long-branch attraction or other systematic biases</p>
+<p>Bootstrap values should be interpreted carefully in biological context. General guidelines suggest that values above 95% indicate very strong support where the clade is highly reliable and unlikely to change with additional data. Values between 70% and 95% represent moderate to strong support, suggesting the clade is likely correct though some uncertainty remains. Bootstrap values from 50% to 70% indicate weak support where the clade is uncertain and should be treated with caution. Values below 50% provide no meaningful support, and such clades should be considered unreliable for biological inference.</p>
+<p>However, these thresholds are somewhat arbitrary and depend heavily on the specific analysis context. Several factors profoundly affect the interpretation of bootstrap values. Dataset size plays a major role, as larger datasets generally yield higher bootstrap values simply because more data provides more consistent signal that survives resampling. The evolutionary rate of the sequences matters significantly—rapidly evolving sequences often show lower bootstrap support because they accumulate more homoplasy and conflicting signals. Taxonomic scope influences values as well, with broader taxonomic sampling potentially reducing bootstrap values by introducing more variation and potential for conflicting signals. The reconstruction method used also affects absolute values, with maximum likelihood methods often producing higher bootstrap values than parsimony for the same dataset due to their more sophisticated modeling of the evolutionary process.</p>
+<p>Bootstrap values can also serve as diagnostic tools to identify problematic regions of the tree. Consistently low values across multiple nodes may indicate rapid radiation events where multiple lineages diverged in quick succession, leaving insufficient time for synapomorphies to accumulate along internal branches. Such low values might also reveal conflicting phylogenetic signals arising from processes like incomplete lineage sorting or horizontal gene transfer. In some cases, low bootstrap support simply reflects insufficient data to confidently resolve relationships, suggesting that longer sequences or more genes are needed. Persistent patterns of low support in specific parts of the tree can also indicate systematic biases such as long-branch attraction, where the reconstruction method is being misled by convergent evolution or model misspecification.</p>
 </section>
 <section id="advanced-bootstrap-methods" class="level2" data-number="49.7">
 <h2 data-number="49.7" class="anchored" data-anchor-id="advanced-bootstrap-methods"><span class="header-section-number">49.7</span> Advanced Bootstrap Methods</h2>
