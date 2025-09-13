@@ -1,4 +1,4 @@
-# Clustering of sequences
+# Clustering of sequences {#sec-clustering}
 
 In the realm of bioinformatics, clustering represents one of the most fundamental approaches to understanding the evolutionary relationships and functional similarities between biological sequences. Whether we are examining DNA sequences that encode the blueprints of life or protein sequences that carry out cellular functions, the ability to group related sequences together provides invaluable insights into evolution, function, and biological organization. This lecture note explores the comprehensive landscape of sequence clustering, from its theoretical foundations to practical applications in modern genomics and proteomics.
 
@@ -71,7 +71,7 @@ The computational efficiency of distance updates is crucial for practical applic
 
 The Lance-Williams formula provides a general framework for updating distances in hierarchical clustering. This formula expresses the distance from a new cluster to any other cluster as a linear combination of the distances from the constituent clusters, with coefficients that depend on the specific linkage criterion. Understanding this formula helps in implementing efficient clustering algorithms and in developing new linkage criteria tailored to specific biological questions.
 
-# Molecular clock
+# Molecular clock {#sec-molecularclock}
 
 The molecular clock hypothesis, proposed by Emile Zuckerkandl and Linus Pauling in the 1960s, suggests that genetic mutations accumulate at a roughly constant rate over evolutionary time. This concept has profound implications for sequence clustering and phylogenetic reconstruction, as it allows us to not only determine relationships between sequences but also estimate the timing of evolutionary events.
 
@@ -134,7 +134,7 @@ This example illustrates a general principle: when evolutionary rates vary signi
 
 Real-world examples of molecular clock violations abound. The evolution of HIV shows extreme rate variation, with some lineages evolving orders of magnitude faster than others due to differences in immune pressure and transmission dynamics. In mammals, the lineage leading to modern rodents shows accelerated evolution compared to primates, affecting everything from phylogenetic reconstruction to estimates of divergence times. Understanding these violations is crucial for choosing appropriate clustering methods and interpreting their results correctly.
 
-## UPGMA {-}
+## UPGMA {#sec-upgma}
 
 UPGMA (Unweighted Pair Group Method with Arithmetic Mean) is one of the oldest and simplest hierarchical clustering methods used in bioinformatics. Despite its limitations, particularly the assumption of a molecular clock, UPGMA remains widely used due to its simplicity, computational efficiency, and ease of interpretation. Understanding UPGMA provides a foundation for appreciating more sophisticated clustering methods.
 
@@ -158,7 +158,74 @@ The computational efficiency of UPGMA makes it attractive for large-scale analys
 
 Despite its limitations, UPGMA has practical applications where its assumptions are reasonable. For closely related sequences that have diverged recently, rate variation may be minimal, making UPGMA appropriate. In studies of viral quasispecies within a single host, where all sequences have evolved for approximately the same time, UPGMA can provide meaningful clusters. The method is also useful as a starting point for more sophisticated analyses, providing an initial tree that can be refined using methods that relax the molecular clock assumption.
 
-## Neighbor-joining {-}
+### Worked Example of UPGMA Clustering
+
+To illustrate the UPGMA algorithm in action, let's work through a complete example with six sequences (A, B, C, D, E, F) and their pairwise distances. This example demonstrates how the distance matrix is progressively reduced and how the dendrogram is built step by step.
+
+![Step-by-step UPGMA clustering process. The figure shows the progressive reduction of the distance matrix and simultaneous construction of the dendrogram through five steps (panels A-E). In each panel, the left side shows the current distance matrix with the minimum distance highlighted in red, newly formed clusters labeled with letters (V, W, X, Y, Z), and previously merged elements shown with colored backgrounds. The right side shows the growing dendrogram with height scale from 0 to 4, where merge heights equal half the distance between clusters being joined. Panel (A) shows the initial 6×6 distance matrix with d(A,D)=1 as the minimum. Panel (B) shows the 5×5 matrix after merging A and D into cluster V. Panel (C) shows the 4×4 matrix after merging V and E into cluster W. Panel (D) shows the 3×3 matrix after merging B and F into cluster X. Panel (E) shows the final 2×2 matrix and complete dendrogram after all sequences have been clustered. The final tree topology is (((A,D),E),(B,F),C) with C as the outgroup joining at the highest level.](images/upgma-template-figure.png){#fig-upgma-example}
+
+**Step 1: Initial Distance Matrix**
+We begin with the complete distance matrix shown in panel (A) of @fig-upgma-example:
+
+| | A | B | C | D | E | F |
+|---|---|---|---|---|---|---|
+| A | - | 6 | 8 | 1 | 2 | 6 |
+| B | | - | 8 | 6 | 6 | 4 |
+| C | | | - | 8 | 8 | 8 |
+| D | | | | - | 2 | 6 |
+| E | | | | | - | 6 |
+| F | | | | | | - |
+
+The smallest distance is $d(A,D) = 1$. Therefore, we cluster A and D together to form a new cluster V = (A,D). The height of this merge in the dendrogram is $1/2 = 0.5$.
+
+**Step 2: Computing Distances to Cluster V**
+Panel (B) of @fig-upgma-example shows the reduced matrix after clustering A and D. We need to compute distances from the new cluster V to all remaining sequences using the UPGMA formula. Since both A and D are single sequences, $n_A = n_D = 1$:
+
+$$d(V,B) = \frac{1 \times d(A,B) + 1 \times d(D,B)}{1 + 1} = \frac{6 + 6}{2} = 6$$
+
+$$d(V,C) = \frac{1 \times d(A,C) + 1 \times d(D,C)}{1 + 1} = \frac{8 + 8}{2} = 8$$
+
+$$d(V,E) = \frac{1 \times d(A,E) + 1 \times d(D,E)}{1 + 1} = \frac{2 + 2}{2} = 2$$
+
+$$d(V,F) = \frac{1 \times d(A,F) + 1 \times d(D,F)}{1 + 1} = \frac{6 + 6}{2} = 6$$
+
+The smallest distance in the new matrix is $d(V,E) = 2$. We cluster V and E to form W = ((A,D),E) at height $2/2 = 1$.
+
+**Step 3: Computing Distances to Cluster W**
+Panel (C) of @fig-upgma-example shows the matrix after forming cluster W = ((A,D),E). Since cluster V contained 2 sequences (A and D) and E is a single sequence, we use $n_V = 2$ and $n_E = 1$ in our calculations:
+
+$$d(W,B) = \frac{2 \times d(V,B) + 1 \times d(E,B)}{2 + 1} = \frac{2 \times 6 + 1 \times 6}{3} = \frac{18}{3} = 6$$
+
+$$d(W,C) = \frac{2 \times d(V,C) + 1 \times d(E,C)}{2 + 1} = \frac{2 \times 8 + 1 \times 8}{3} = \frac{24}{3} = 8$$
+
+$$d(W,F) = \frac{2 \times d(V,F) + 1 \times d(E,F)}{2 + 1} = \frac{2 \times 6 + 1 \times 6}{3} = \frac{18}{3} = 6$$
+
+The smallest distance is $d(B,F) = 4$. We cluster B and F to form X = (B,F) at height $4/2 = 2$.
+
+**Step 4: Computing Distances Between Three Clusters**
+Panel (D) of @fig-upgma-example shows the matrix with three clusters: W (containing A, D, E), X (containing B, F), and C. We compute the distance between W and X using the fact that B and F were both single sequences when merged:
+
+$$d(W,X) = \frac{1 \times d(W,B) + 1 \times d(W,F)}{1 + 1} = \frac{6 + 6}{2} = 6$$
+
+Similarly, for the distance between C and X:
+
+$$d(C,X) = \frac{1 \times d(C,B) + 1 \times d(C,F)}{1 + 1} = \frac{8 + 8}{2} = 8$$
+
+The smallest distance is $d(W,X) = 6$. We cluster W and X to form Y = (((A,D),E),(B,F)) at height $6/2 = 3$.
+
+**Step 5: Final Clustering**
+Panel (E) of @fig-upgma-example shows the final step with only two clusters remaining: Y and C. The distance between them is 8, so they merge at height $8/2 = 4$.
+
+The complete UPGMA tree shows the hierarchical clustering with merge heights:
+- A and D merge at height 0.5
+- (A,D) and E merge at height 1
+- B and F merge at height 2
+- ((A,D),E) and (B,F) merge at height 3
+- (((A,D),E),(B,F)) and C merge at height 4
+
+This example illustrates several key features of UPGMA: the algorithm always selects the minimum distance at each step, the merge height equals half the distance (assuming a molecular clock), and the distance calculations use weighted averages based on cluster sizes to maintain the unweighted nature of the method.
+
+## Neighbor-joining {#sec-upgma}
 
 Neighbor-joining (NJ), developed by Naruya Saitou and Masatoshi Nei in 1987, represents a major advance in phylogenetic reconstruction methods. Unlike UPGMA, neighbor-joining does not assume a molecular clock, making it more robust to rate variation among lineages. The method is based on the principle of minimum evolution, seeking the tree topology that minimizes the total branch length.
 
@@ -261,13 +328,21 @@ The minimum evolution criterion can be applied more generally through methods li
 
 It's important to note that minimum evolution, like all optimality criteria, can be misled by certain patterns in the data. Long-branch attraction, where rapidly evolving lineages are incorrectly grouped together, can cause minimum evolution methods to prefer incorrect trees. Model misspecification, such as failing to account for rate variation among sites, can also lead to systematic biases. These limitations highlight the importance of using multiple methods and carefully considering the assumptions underlying each approach.
 
-# Bootstrap Analysis in Phylogenetic Reconstruction
+# Bootstrap Analysis in Phylogenetic Reconstruction  {#sec-bootstrap}
 
 Bootstrap analysis has become an indispensable tool in phylogenetic reconstruction and sequence clustering, providing a statistical framework for assessing the reliability and robustness of inferred evolutionary relationships. Introduced to phylogenetics by Joseph Felsenstein in 1985, the bootstrap method addresses a fundamental challenge in evolutionary biology: how can we quantify our confidence in a particular tree topology when we have only a single dataset representing millions of years of evolution? This section explores the statistical principles underlying bootstrap analysis, its assumptions and limitations, what it actually quantifies, when its application is appropriate, and the computational methods used to implement it.
 
 ## Statistical Principles of Bootstrapping
 
 The bootstrap is a resampling technique that estimates the sampling distribution of a statistic by repeatedly resampling with replacement from the original data. In the context of phylogenetic analysis, the "data" consists of aligned sequence positions (sites or columns in the alignment), and the "statistic" is typically the tree topology or specific clades within the tree. The fundamental principle is that if our inference method is robust, it should produce similar results when applied to slightly different datasets that could plausibly have been observed.
+
+To understand why bootstrap analysis works, it's essential to grasp how phylogenetic information is encoded in sequence alignments. Each column in an alignment represents a site that has evolved along the tree, and the pattern of nucleotides or amino acids at that site carries information about the evolutionary history. Consider a simple case with four sequences where a site shows the pattern AAGA. This pattern, where sequences 1, 2, and 4 share state A while sequence 3 has G, provides evidence for grouping sequences 1, 2, and 4 together, separated from sequence 3. The strength of this evidence depends on how many sites show consistent patterns supporting the same grouping.
+
+Different site patterns provide evidence for different branches in the tree. Sites that change along deep branches in the tree create patterns that support the major divisions among sequences, while sites that change along recent branches support the grouping of closely related sequences. The frequency of each site pattern in the alignment directly relates to the length of the corresponding branch in the true tree—longer branches accumulate more changes and thus generate more sites with patterns supporting those branches. This is why phylogenetic methods can estimate both tree topology and branch lengths from the distribution of site patterns.
+
+When an alignment contains many informative sites with strong, consistent signals, resampling these sites will likely reproduce similar site pattern frequencies in each bootstrap replicate. Even though each bootstrap sample contains a different mix of the original sites (with some appearing multiple times and others not at all), the overall distribution of site patterns remains relatively stable. Consequently, the same tree topology will be recovered from most bootstrap replicates, resulting in high bootstrap support values. For instance, if 100 sites strongly support grouping sequences A and B together, and only 10 sites weakly suggest alternative groupings, then most bootstrap replicates will still contain enough A-B supporting sites to recover that clade, even with the random variation introduced by resampling.
+
+Conversely, when an alignment is short or contains few informative sites, the phylogenetic signal is weaker and more susceptible to sampling variation. If only 5 sites support grouping A with B while 3 sites support grouping A with C, bootstrap resampling can easily shift this delicate balance. Some bootstrap replicates might sample more A-B supporting sites, while others might happen to include multiple copies of the A-C supporting sites. This sampling variation leads to different trees being recovered from different bootstrap replicates, resulting in low bootstrap support values. This explains why short sequences or rapidly evolving regions with high noise-to-signal ratios tend to produce low bootstrap values—not necessarily because the relationships are wrong, but because the data provide insufficient evidence to overcome sampling variation.
 
 Mathematically, let $X = \{x_1, x_2, ..., x_n\}$ represent our original alignment with $n$ sites. A bootstrap replicate $X^*_b$ is created by randomly sampling $n$ sites from $X$ with replacement:
 
@@ -303,12 +378,7 @@ The validity of bootstrap analysis in phylogenetics rests on several critical as
 
 $$L(D|T,\theta) = \prod_{i=1}^{n} L(x_i|T,\theta)$$
 
-This multiplicative decomposition is only valid under the i.i.d. assumption. In reality, this assumption is often violated by:
-
-1. **Linkage and recombination**: Physically linked sites may share evolutionary histories
-2. **Structural constraints**: In proteins and RNA, sites interact to maintain structure
-3. **Covarion evolution**: Evolutionary rates at sites may depend on states at other sites
-4. **Heterotachy**: Evolutionary rates may vary across the tree at the same site
+This multiplicative decomposition is only valid under the i.i.d. assumption. In reality, this assumption is often violated in several important ways. Linkage and recombination create dependencies where physically linked sites share evolutionary histories rather than evolving independently. Structural constraints in proteins and RNA molecules mean that sites must co-evolve to maintain three-dimensional structure and function, creating strong correlations between positions. The phenomenon of covarion evolution, where the evolutionary rate at one site depends on the states at other sites, further violates independence. Additionally, heterotachy, the variation in evolutionary rates across the tree at the same site, violates the identically distributed assumption.
 
 When these assumptions are violated, bootstrap values may be misleading. For instance, if sites are positively correlated due to structural constraints, bootstrap resampling may underestimate the true variance, leading to inflated bootstrap values.
 
@@ -324,36 +394,17 @@ $$BS(clade) \approx P(clade \in \hat{T}^* | D)$$
 
 where $\hat{T}^*$ is the estimated tree from a hypothetical replicate dataset drawn from the same underlying distribution as the original data.
 
-To understand what this means, consider the relationship between bootstrap values and actual accuracy. Simulation studies have shown that the relationship is complex and depends on multiple factors:
+To understand what this means, consider the relationship between bootstrap values and actual accuracy. Simulation studies have shown that the relationship is complex and depends on multiple factors. For well-supported clades, bootstrap values tend to be conservative, underestimating the actual accuracy of the inference. In contrast, for weakly-supported clades, bootstrap values may either overestimate or underestimate accuracy depending on the specific conditions. Most importantly, the relationship is non-linear—a 70% bootstrap value doesn't translate directly to a 70% probability of the clade being correct.
 
-1. **For well-supported clades**: Bootstrap values tend to be conservative (underestimate accuracy)
-2. **For weakly-supported clades**: Bootstrap values may overestimate or underestimate accuracy
-3. **The relationship is non-linear**: 70% bootstrap doesn't mean 70% probability of being correct
-
-Hillis and Bull (1993) found through simulations that bootstrap proportions ≥70% usually correspond to ≥95% probability of true clades, suggesting bootstrap values are generally conservative. However, this relationship varies with:
-
-- Sequence length: Longer sequences generally yield more reliable bootstrap estimates
-- Substitution rate heterogeneity: Greater heterogeneity can distort bootstrap values
-- Tree reconstruction method: Different methods show different bootstrap behaviors
-- True tree topology: Balanced vs. imbalanced trees show different patterns
+Hillis and Bull (1993) found through simulations that bootstrap proportions of 70% or higher usually correspond to a 95% or greater probability of recovering true clades, suggesting bootstrap values are generally conservative. However, this relationship varies considerably with several factors. Sequence length plays a crucial role, with longer sequences generally yielding more reliable bootstrap estimates because they contain more information to overcome sampling variation. Substitution rate heterogeneity can distort bootstrap values, as greater heterogeneity violates model assumptions and may lead to systematic biases. The tree reconstruction method also matters significantly, with different methods showing different bootstrap behaviors—maximum likelihood methods often produce higher bootstrap values than parsimony for the same data. Finally, the true tree topology itself affects bootstrap performance, with balanced trees typically showing different patterns than highly imbalanced trees.
 
 The bootstrap can be interpreted from a frequentist perspective as assessing sampling variance. If we could repeatedly sample sequences from the same evolutionary process, how often would we recover the same clade? This interpretation makes clear that bootstrap values reflect both the strength of phylogenetic signal and the sensitivity of our inference method to sampling variation.
 
 ## When Bootstrap Analysis is Appropriate
 
-Bootstrap analysis is most appropriate when:
+Bootstrap analysis is most appropriate when several key conditions are met. First and foremost, sufficient data must exist for meaningful resampling—with very short sequences containing fewer than 100 sites, bootstrap values are often uninformatively low because the limited data cannot support stable inference under resampling variation. The method works best when sites can be considered approximately independent, which is typically the case for single genes or carefully selected multi-gene datasets where linkage effects are minimal. Bootstrap is particularly valuable when the primary goal is to assess topological uncertainty rather than uncertainty in branch lengths, as branch length estimates are more sensitive to model assumptions. The technique also excels at comparing support across different nodes within the same analysis, providing a consistent framework for evaluating which relationships are well-supported versus questionable.
 
-1. **Sufficient data exists**: With very short sequences (<100 sites), bootstrap values are often uninformatively low
-2. **Sites can be considered approximately independent**: For single genes or carefully selected multi-gene datasets
-3. **The goal is to assess topological uncertainty**: Rather than branch length uncertainty
-4. **Comparing support across different nodes**: Within the same analysis
-
-Bootstrap analysis may be less appropriate or require modification when:
-
-1. **Analyzing genome-scale data**: The i.i.d. assumption is strongly violated
-2. **Sites show strong correlation**: Such as paired sites in RNA structures
-3. **Alignment uncertainty is high**: Bootstrap doesn't account for alignment errors
-4. **Comparing across different studies**: Bootstrap values aren't directly comparable
+Bootstrap analysis may be less appropriate or require modification under certain circumstances. When analyzing genome-scale data, the independence assumption is strongly violated because genes on the same chromosome share evolutionary histories through linkage, and different genomic regions may have experienced different selective pressures or recombination events. Sites showing strong correlation, such as paired sites in RNA secondary structures that must co-evolve to maintain base-pairing, violate the independence assumption in ways that standard bootstrap cannot accommodate. High alignment uncertainty presents another challenge, as bootstrap doesn't account for alignment errors, which become fixed across all bootstrap replicates and can lead to false confidence in incorrect relationships. Finally, bootstrap values aren't directly comparable across different studies because they depend heavily on the specific dataset characteristics, reconstruction method, and model assumptions used in each analysis.
 
 For genome-scale data, alternatives like the multi-scale bootstrap or site-pattern bootstrap may be more appropriate. These methods adjust for the fact that phylogenomic datasets violate traditional bootstrap assumptions.
 
@@ -384,36 +435,15 @@ Output: Original tree T with bootstrap support values
 10. Return T with support values
 ```
 
-Efficient implementation requires careful optimization:
-
-1. **Parallel processing**: Bootstrap replicates are independent, enabling parallelization
-2. **Rapid bootstrapping**: Approximate methods like RAxML's rapid bootstrap
-3. **Transfer bootstrap**: Uses transfer distance instead of clade presence/absence
-4. **UFBoot**: Ultrafast bootstrap approximation with correction for bias
-
-The rapid bootstrap algorithm in RAxML combines a fast hill-climbing search with a more thorough optimization, reducing computation time by an order of magnitude while maintaining accuracy.
+Efficient implementation requires careful optimization through several strategies. Parallel processing is particularly effective because bootstrap replicates are completely independent, allowing different replicates to be computed simultaneously on different processors without any communication overhead. Rapid bootstrapping methods, such as RAxML's rapid bootstrap algorithm, combine fast hill-climbing searches with selective thorough optimization to reduce computation time by an order of magnitude while maintaining accuracy. The transfer bootstrap approach modifies the support calculation by using transfer distance instead of simple clade presence/absence, providing more nuanced support values that better reflect topological similarity. UFBoot (Ultrafast bootstrap) implements an approximation algorithm with statistical correction for bias, enabling bootstrap analysis of very large datasets that would be computationally prohibitive with standard methods.
 
 ## Interpreting Bootstrap Results
 
-Bootstrap values should be interpreted carefully in biological context. General guidelines include:
+Bootstrap values should be interpreted carefully in biological context. General guidelines suggest that values above 95% indicate very strong support where the clade is highly reliable and unlikely to change with additional data. Values between 70% and 95% represent moderate to strong support, suggesting the clade is likely correct though some uncertainty remains. Bootstrap values from 50% to 70% indicate weak support where the clade is uncertain and should be treated with caution. Values below 50% provide no meaningful support, and such clades should be considered unreliable for biological inference.
 
-- **>95%**: Very strong support, clade highly reliable
-- **70-95%**: Moderate to strong support, clade likely correct
-- **50-70%**: Weak support, clade uncertain
-- **<50%**: No support, clade unreliable
+However, these thresholds are somewhat arbitrary and depend heavily on the specific analysis context. Several factors profoundly affect the interpretation of bootstrap values. Dataset size plays a major role, as larger datasets generally yield higher bootstrap values simply because more data provides more consistent signal that survives resampling. The evolutionary rate of the sequences matters significantly—rapidly evolving sequences often show lower bootstrap support because they accumulate more homoplasy and conflicting signals. Taxonomic scope influences values as well, with broader taxonomic sampling potentially reducing bootstrap values by introducing more variation and potential for conflicting signals. The reconstruction method used also affects absolute values, with maximum likelihood methods often producing higher bootstrap values than parsimony for the same dataset due to their more sophisticated modeling of the evolutionary process.
 
-However, these thresholds are somewhat arbitrary and depend on the specific analysis. Factors affecting interpretation include:
-
-1. **Dataset size**: Larger datasets generally yield higher bootstrap values
-2. **Evolutionary rate**: Rapidly evolving sequences may show lower bootstrap support
-3. **Taxonomic scope**: Broader taxonomic sampling may reduce bootstrap values
-4. **Method used**: Maximum likelihood often gives higher values than parsimony
-
-Bootstrap values can also identify problematic regions of the tree. Consistently low values may indicate:
-- Rapid radiation with short internal branches
-- Conflicting phylogenetic signals
-- Insufficient data to resolve relationships
-- Long-branch attraction or other systematic biases
+Bootstrap values can also serve as diagnostic tools to identify problematic regions of the tree. Consistently low values across multiple nodes may indicate rapid radiation events where multiple lineages diverged in quick succession, leaving insufficient time for synapomorphies to accumulate along internal branches. Such low values might also reveal conflicting phylogenetic signals arising from processes like incomplete lineage sorting or horizontal gene transfer. In some cases, low bootstrap support simply reflects insufficient data to confidently resolve relationships, suggesting that longer sequences or more genes are needed. Persistent patterns of low support in specific parts of the tree can also indicate systematic biases such as long-branch attraction, where the reconstruction method is being misled by convergent evolution or model misspecification.
 
 ## Advanced Bootstrap Methods
 
