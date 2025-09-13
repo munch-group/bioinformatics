@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>41&nbsp; Protein substitution matrices – Bioinformatics and Programming</title>
+<title>41&nbsp; Protein Substitution Matrices – Bioinformatics and Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/protein_substitution_matrices.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/protein_substitution_matrices.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -385,7 +449,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/protein_substitution_matrices.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -427,13 +491,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/models_of_dna_evolution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Models of DNA evolution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Models of DNA Evolution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/phylogenetics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Phyogenetics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Phylogenetics: Tree-Based Analysis of Evolutionary Relationships</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -513,19 +577,63 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#scoring-protein-alignments" id="toc-scoring-protein-alignments" class="nav-link active" data-scroll-target="#scoring-protein-alignments">Scoring protein alignments</a></li>
-  <li><a href="#pam-matrices" id="toc-pam-matrices" class="nav-link" data-scroll-target="#pam-matrices">PAM matrices</a></li>
-  <li><a href="#blosum-matrices" id="toc-blosum-matrices" class="nav-link" data-scroll-target="#blosum-matrices">BLOSUM matrices</a></li>
-  <li><a href="#pam-vs-blosum" id="toc-pam-vs-blosum" class="nav-link" data-scroll-target="#pam-vs-blosum"><span class="header-section-number">41.1</span> PAM vs BLOSUM</a></li>
+  <li><a href="#introduction-to-protein-sequence-scoring" id="toc-introduction-to-protein-sequence-scoring" class="nav-link active" data-scroll-target="#introduction-to-protein-sequence-scoring"><span class="header-section-number">41.1</span> Introduction to Protein Sequence Scoring</a>
+  <ul class="collapse">
+  <li><a href="#evolution-as-natures-experiment-in-protein-engineering" id="toc-evolution-as-natures-experiment-in-protein-engineering" class="nav-link" data-scroll-target="#evolution-as-natures-experiment-in-protein-engineering"><span class="header-section-number">41.1.1</span> Evolution as Nature’s Experiment in Protein Engineering</a></li>
+  <li><a href="#quantifying-substitution-patterns" id="toc-quantifying-substitution-patterns" class="nav-link" data-scroll-target="#quantifying-substitution-patterns"><span class="header-section-number">41.1.2</span> Quantifying Substitution Patterns</a></li>
+  <li><a href="#the-need-for-multiple-scoring-matrices" id="toc-the-need-for-multiple-scoring-matrices" class="nav-link" data-scroll-target="#the-need-for-multiple-scoring-matrices"><span class="header-section-number">41.1.3</span> The Need for Multiple Scoring Matrices</a></li>
+  </ul></li>
+  <li><a href="#pam-matrices-modeling-evolution-through-time" id="toc-pam-matrices-modeling-evolution-through-time" class="nav-link" data-scroll-target="#pam-matrices-modeling-evolution-through-time"><span class="header-section-number">41.2</span> PAM Matrices: Modeling Evolution Through Time</a>
+  <ul class="collapse">
+  <li><a href="#the-evolutionary-model-behind-pam" id="toc-the-evolutionary-model-behind-pam" class="nav-link" data-scroll-target="#the-evolutionary-model-behind-pam"><span class="header-section-number">41.2.1</span> The Evolutionary Model Behind PAM</a></li>
+  <li><a href="#constructing-pam-matrices-from-data" id="toc-constructing-pam-matrices-from-data" class="nav-link" data-scroll-target="#constructing-pam-matrices-from-data"><span class="header-section-number">41.2.2</span> Constructing PAM Matrices from Data</a></li>
+  <li><a href="#extrapolating-to-higher-pam-distances" id="toc-extrapolating-to-higher-pam-distances" class="nav-link" data-scroll-target="#extrapolating-to-higher-pam-distances"><span class="header-section-number">41.2.3</span> Extrapolating to Higher PAM Distances</a></li>
+  <li><a href="#worked-example-constructing-a-pam1-matrix" id="toc-worked-example-constructing-a-pam1-matrix" class="nav-link" data-scroll-target="#worked-example-constructing-a-pam1-matrix"><span class="header-section-number">41.2.4</span> Worked Example: Constructing a PAM1 Matrix</a></li>
+  <li><a href="#python-implementation-pam-matrix-from-pairwise-alignment" id="toc-python-implementation-pam-matrix-from-pairwise-alignment" class="nav-link" data-scroll-target="#python-implementation-pam-matrix-from-pairwise-alignment"><span class="header-section-number">41.2.5</span> Python Implementation: PAM Matrix from Pairwise Alignment</a></li>
+  <li><a href="#limitations-and-assumptions-of-pam-matrices" id="toc-limitations-and-assumptions-of-pam-matrices" class="nav-link" data-scroll-target="#limitations-and-assumptions-of-pam-matrices"><span class="header-section-number">41.2.6</span> Limitations and Assumptions of PAM Matrices</a></li>
+  </ul></li>
+  <li><a href="#blosum-matrices-an-empirical-approach" id="toc-blosum-matrices-an-empirical-approach" class="nav-link" data-scroll-target="#blosum-matrices-an-empirical-approach"><span class="header-section-number">41.3</span> BLOSUM Matrices: An Empirical Approach</a>
+  <ul class="collapse">
+  <li><a href="#the-blocks-database-foundation" id="toc-the-blocks-database-foundation" class="nav-link" data-scroll-target="#the-blocks-database-foundation"><span class="header-section-number">41.3.1</span> The BLOCKS Database Foundation</a></li>
+  <li><a href="#computing-blosum-matrices" id="toc-computing-blosum-matrices" class="nav-link" data-scroll-target="#computing-blosum-matrices"><span class="header-section-number">41.3.2</span> Computing BLOSUM Matrices</a></li>
+  <li><a href="#the-log-odds-scoring-system" id="toc-the-log-odds-scoring-system" class="nav-link" data-scroll-target="#the-log-odds-scoring-system"><span class="header-section-number">41.3.3</span> The Log-Odds Scoring System</a></li>
+  <li><a href="#the-blosum-series-and-clustering-thresholds" id="toc-the-blosum-series-and-clustering-thresholds" class="nav-link" data-scroll-target="#the-blosum-series-and-clustering-thresholds"><span class="header-section-number">41.3.4</span> The BLOSUM Series and Clustering Thresholds</a></li>
+  <li><a href="#worked-example-constructing-a-blosum-matrix" id="toc-worked-example-constructing-a-blosum-matrix" class="nav-link" data-scroll-target="#worked-example-constructing-a-blosum-matrix"><span class="header-section-number">41.3.5</span> Worked Example: Constructing a BLOSUM Matrix</a></li>
+  </ul></li>
+  <li><a href="#comparative-analysis-of-pam-and-blosum" id="toc-comparative-analysis-of-pam-and-blosum" class="nav-link" data-scroll-target="#comparative-analysis-of-pam-and-blosum"><span class="header-section-number">41.4</span> Comparative Analysis of PAM and BLOSUM</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-versus-empirical-approaches" id="toc-theoretical-versus-empirical-approaches" class="nav-link" data-scroll-target="#theoretical-versus-empirical-approaches"><span class="header-section-number">41.4.1</span> Theoretical Versus Empirical Approaches</a></li>
+  <li><a href="#information-content-and-entropy-considerations" id="toc-information-content-and-entropy-considerations" class="nav-link" data-scroll-target="#information-content-and-entropy-considerations"><span class="header-section-number">41.4.2</span> Information Content and Entropy Considerations</a></li>
+  <li><a href="#statistical-significance-and-e-values" id="toc-statistical-significance-and-e-values" class="nav-link" data-scroll-target="#statistical-significance-and-e-values"><span class="header-section-number">41.4.3</span> Statistical Significance and E-values</a></li>
+  </ul></li>
+  <li><a href="#specialized-matrices-and-modern-developments" id="toc-specialized-matrices-and-modern-developments" class="nav-link" data-scroll-target="#specialized-matrices-and-modern-developments"><span class="header-section-number">41.5</span> Specialized Matrices and Modern Developments</a>
+  <ul class="collapse">
+  <li><a href="#position-specific-scoring-matrices-pssms" id="toc-position-specific-scoring-matrices-pssms" class="nav-link" data-scroll-target="#position-specific-scoring-matrices-pssms"><span class="header-section-number">41.5.1</span> Position-Specific Scoring Matrices (PSSMs)</a></li>
+  <li><a href="#structure-based-substitution-matrices" id="toc-structure-based-substitution-matrices" class="nav-link" data-scroll-target="#structure-based-substitution-matrices"><span class="header-section-number">41.5.2</span> Structure-Based Substitution Matrices</a></li>
+  <li><a href="#compositionally-adjusted-matrices" id="toc-compositionally-adjusted-matrices" class="nav-link" data-scroll-target="#compositionally-adjusted-matrices"><span class="header-section-number">41.5.3</span> Compositionally Adjusted Matrices</a></li>
+  </ul></li>
+  <li><a href="#practical-considerations-in-matrix-selection" id="toc-practical-considerations-in-matrix-selection" class="nav-link" data-scroll-target="#practical-considerations-in-matrix-selection"><span class="header-section-number">41.6</span> Practical Considerations in Matrix Selection</a>
+  <ul class="collapse">
+  <li><a href="#choosing-matrices-for-specific-applications" id="toc-choosing-matrices-for-specific-applications" class="nav-link" data-scroll-target="#choosing-matrices-for-specific-applications"><span class="header-section-number">41.6.1</span> Choosing Matrices for Specific Applications</a></li>
+  <li><a href="#gap-penalties-and-matrix-scaling" id="toc-gap-penalties-and-matrix-scaling" class="nav-link" data-scroll-target="#gap-penalties-and-matrix-scaling"><span class="header-section-number">41.6.2</span> Gap Penalties and Matrix Scaling</a></li>
+  <li><a href="#performance-evaluation-and-benchmarking" id="toc-performance-evaluation-and-benchmarking" class="nav-link" data-scroll-target="#performance-evaluation-and-benchmarking"><span class="header-section-number">41.6.3</span> Performance Evaluation and Benchmarking</a></li>
+  </ul></li>
+  <li><a href="#future-directions-and-emerging-approaches" id="toc-future-directions-and-emerging-approaches" class="nav-link" data-scroll-target="#future-directions-and-emerging-approaches"><span class="header-section-number">41.7</span> Future Directions and Emerging Approaches</a>
+  <ul class="collapse">
+  <li><a href="#machine-learning-and-deep-learning-approaches" id="toc-machine-learning-and-deep-learning-approaches" class="nav-link" data-scroll-target="#machine-learning-and-deep-learning-approaches"><span class="header-section-number">41.7.1</span> Machine Learning and Deep Learning Approaches</a></li>
+  <li><a href="#integration-with-structural-prediction" id="toc-integration-with-structural-prediction" class="nav-link" data-scroll-target="#integration-with-structural-prediction"><span class="header-section-number">41.7.2</span> Integration with Structural Prediction</a></li>
+  <li><a href="#phylogenetic-context-and-lineage-specific-matrices" id="toc-phylogenetic-context-and-lineage-specific-matrices" class="nav-link" data-scroll-target="#phylogenetic-context-and-lineage-specific-matrices"><span class="header-section-number">41.7.3</span> Phylogenetic Context and Lineage-Specific Matrices</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">41.8</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/protein_substitution_matrices.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/protein_substitution_matrices.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein substitution matrices</span></h1>
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></h1>
 </div>
 
 
@@ -542,50 +650,530 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- ★ -->
-<section id="scoring-protein-alignments" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="scoring-protein-alignments">Scoring protein alignments</h2>
+<section id="introduction-to-protein-sequence-scoring" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="introduction-to-protein-sequence-scoring"><span class="header-section-number">41.1</span> Introduction to Protein Sequence Scoring</h2>
+<p>Protein sequence comparison lies at the heart of computational biology, enabling researchers to identify homologous proteins, predict function, and understand evolutionary relationships. Unlike DNA sequences with their four-letter alphabet, proteins utilize a twenty-letter alphabet of amino acids, each with distinct chemical properties that influence their substitution patterns during evolution. The complexity of protein evolution necessitates sophisticated scoring schemes that capture the subtle patterns of amino acid replacement over evolutionary time.</p>
+<section id="evolution-as-natures-experiment-in-protein-engineering" class="level3" data-number="41.1.1">
+<h3 data-number="41.1.1" class="anchored" data-anchor-id="evolution-as-natures-experiment-in-protein-engineering"><span class="header-section-number">41.1.1</span> Evolution as Nature’s Experiment in Protein Engineering</h3>
+<p>Evolution provides a natural experiment that reveals which amino acid substitutions preserve protein function and which destroy it. Through billions of years of trial and error, natural selection has filtered mutations, accepting those that maintain or improve protein function while eliminating deleterious changes. This evolutionary process creates a rich historical record encoded in the sequences of contemporary proteins. By comparing homologous proteins across species, we can observe which substitutions have been tolerated by natural selection and which have been rejected.</p>
+<p>The pattern of accepted substitutions reveals fundamental principles about protein structure and function. Conservative substitutions—those between amino acids with similar physicochemical properties—occur frequently because they minimally disrupt protein folding and activity. For example, substitutions between hydrophobic residues (leucine to valine) or between small polar residues (serine to threonine) rarely compromise protein function. In contrast, radical substitutions between dissimilar amino acids (tryptophan to aspartate) occur rarely because they often disrupt critical interactions or destabilize the protein fold. Natural selection thus acts as a filter that preferentially preserves functionally neutral or beneficial substitutions while eliminating harmful ones.</p>
+<p>The fundamental challenge in protein sequence alignment is determining which amino acid substitutions are more likely to occur during evolution. Not all substitutions are equally probable; for instance, the replacement of leucine with isoleucine (both hydrophobic amino acids with similar properties) occurs far more frequently than the substitution of tryptophan with aspartic acid (aromatic versus acidic residues). This biological reality demands scoring matrices that reflect the actual substitution patterns observed in nature.</p>
 </section>
-<section id="pam-matrices" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="pam-matrices">PAM matrices</h2>
-<p>The PAM (Point Accepted Mutation) matrices are a family of substitution matrices used in bioinformatics for comparing protein sequences. PAM matrices are derived from an evolutionary model that assumes a specific rate of amino acid substitution over time. The number in the PAM matrix represents the fraction of accepted mutations (amino acid substitutions) at a specific position over a certain evolutionary distance. Here’s how to compute a PAM120 substitution matrix:</p>
-<p>Collect a Set of Homologous Sequences: Gather a set of protein sequences that are believed to be homologous or evolutionarily related. This set of sequences will serve as the input for constructing the substitution matrix.</p>
-<p>Calculate Pairwise Alignments: Align all pairs of sequences in the collected set using a suitable pairwise sequence alignment algorithm, such as Needleman-Wunsch or Smith-Waterman. This generates an alignment for each sequence pair, which helps identify positions where substitutions have occurred.</p>
-<p>Calculate Mutation Frequencies: Count the number of times each pair of amino acids has been substituted for each other across all the alignments. This provides the raw data for calculating the substitution probabilities.</p>
-<p>Calculate Fraction of Accepted Mutations (PAM1): For each amino acid pair, calculate the fraction of accepted mutations, which is the number of observed substitutions divided by the total number of aligned positions. PAM1 is the initial estimate of substitution probabilities.</p>
-<p>Estimate PAM Matrix for a Specific Evolutionary Distance: The PAM120 matrix represents amino acid substitutions over an estimated evolutionary distance of approximately 120 PAM units (PAM120). To compute this matrix, you need to perform a series of calculations using the PAM1 matrix.</p>
-<p>Iterative Calculation: PAM matrices are constructed through iterations. The general idea is to extrapolate from PAM1 to PAM120 through a series of transformations. Each PAM matrix is derived from the previous one using a formula that relates the substitution probability in the current matrix to the substitution probabilities in the previous matrix.</p>
-<p>Adjust for Total Probability: In each iteration, the substitution probabilities are adjusted to ensure that the total probability of amino acid substitution remains constant. This helps maintain the expected properties of a substitution matrix.</p>
-<p>Normalization and Scaling: Normalize the calculated substitution probabilities to ensure they sum up to a certain value (often 1). Scale the probabilities by factors that depend on the number of substitutions and the evolutionary distance.</p>
-<p>Rounding and Scaling for Matrix Values: Round the calculated probabilities to integers, ensuring that they fit into the matrix’s integer-based format. Scale the values by a constant factor to control the scoring range.</p>
-<p>Matrix Format: Present the calculated values in a matrix format, where rows and columns correspond to the 20 standard amino acids. The values in the matrix indicate the substitution scores between the respective amino acids.</p>
-<p>It’s important to note that computing PAM matrices requires a deep understanding of evolutionary models, bioinformatics algorithms, and statistical concepts. PAM matrices are typically provided as precomputed matrices for various evolutionary distances, and their calculation involves complex mathematics. Therefore, most bioinformatics applications use precomputed PAM matrices rather than attempting to compute them from scratch.</p>
+<section id="quantifying-substitution-patterns" class="level3" data-number="41.1.2">
+<h3 data-number="41.1.2" class="anchored" data-anchor-id="quantifying-substitution-patterns"><span class="header-section-number">41.1.2</span> Quantifying Substitution Patterns</h3>
+<p>The task of creating substitution matrices involves transforming evolutionary observations into quantitative scoring schemes. This quantification process must address several challenges. First, we must distinguish substitutions that reflect common ancestry from those arising by chance. Second, we must account for the background frequencies of different amino acids—rare amino acids like tryptophan naturally align less frequently than common ones like leucine, independent of evolutionary relationships. Third, we must correct for multiple substitutions at the same position, which become increasingly likely as evolutionary distance increases.</p>
+<p>The quantification process begins with collecting aligned sequences of homologous proteins and counting observed substitutions. These raw counts must then be converted into substitution rates that account for amino acid frequencies and evolutionary time. The rates are subsequently transformed into scores suitable for sequence alignment algorithms. This transformation typically employs log-odds ratios that compare the observed substitution frequency to that expected by chance:</p>
+<p><span class="math display">\[S(a,b) = \log\left(\frac{q_{ab}}{p_a \cdot p_b}\right)\]</span></p>
+<p>where <span class="math inline">\(q_{ab}\)</span> represents the observed frequency of amino acids <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> being aligned in homologous sequences, while <span class="math inline">\(p_a\)</span> and <span class="math inline">\(p_b\)</span> represent the background frequencies of amino acids <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> respectively. This formulation captures the essential insight that meaningful substitutions should occur more frequently in related sequences than would be expected from random associations.</p>
 </section>
-<section id="blosum-matrices" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="blosum-matrices">BLOSUM matrices</h2>
-<p>The BLOSUM (BLOcks SUbstitution Matrix) series of substitution matrices are widely used in bioinformatics for comparing protein sequences. BLOSUM matrices are derived from a set of aligned protein sequences and provide substitution scores that reflect the observed frequencies of substitutions between different amino acids. Here’s how to compute a BLOSUM62 substitution matrix:</p>
-<p>Collect a Sequence Database: Gather a diverse and representative set of protein sequences that are homologous or related to each other. This database will be used to calculate the substitution scores.</p>
-<p>Create Sequence Pairs: Generate pairs of sequences from the collected database. These sequence pairs should be aligned to each other to identify the positions where substitutions occur.</p>
-<p>Calculate Substitution Frequencies: Count the number of times each pair of amino acids is observed to be substituted for each other in the aligned sequences. This forms the basis for calculating substitution probabilities.</p>
-<p>Calculate Substitution Probabilities: For each pair of amino acids, calculate the probability of substitution by dividing the observed substitution frequency by the total number of aligned pairs. This gives an idea of how likely one amino acid is to be substituted for another.</p>
-<p>Calculate Log-Odds Ratios: Convert the substitution probabilities into log-odds ratios by taking the logarithm (usually base 2) of the probability of substitution divided by the background frequency of observing those amino acids independently.</p>
-<p>Normalization: Normalize the log-odds ratios to ensure that the values are centered around zero and suitable for scoring alignments. This normalization step helps in preventing very high or very low scores.</p>
-<p>Adjustment for Diagonal Elements: The diagonal elements of the matrix (representing substitution of an amino acid with itself) are usually set to a fixed value, typically a negative value, to discourage mismatches.</p>
-<p>Rounding and Scaling: Round the log-odds ratios to integers and scale them by a constant factor to ensure that the substitution scores are suitable for the scoring range desired.</p>
-<p>Matrix Format: Present the computed values in a matrix format, where rows and columns correspond to the 20 standard amino acids. The values in the matrix indicate the substitution scores between the respective amino acids.</p>
-<p>BLOSUM62 is specifically derived from a sequence identity of around 62% and is suited for comparing protein sequences that share this level of identity. It is widely used for aligning moderately divergent protein sequences. Different BLOSUM matrices with different sequence identity cutoffs (e.g., BLOSUM45, BLOSUM80) are available to accommodate sequences with varying degrees of similarity.</p>
-<p>It’s important to note that BLOSUM matrices are typically precomputed and provided as standard matrices for various sequence comparison tools. If you’re looking to generate a BLOSUM matrix from scratch, it involves significant computational and statistical analysis, and specialized software tools are often used for this purpose.</p>
+<section id="the-need-for-multiple-scoring-matrices" class="level3" data-number="41.1.3">
+<h3 data-number="41.1.3" class="anchored" data-anchor-id="the-need-for-multiple-scoring-matrices"><span class="header-section-number">41.1.3</span> The Need for Multiple Scoring Matrices</h3>
+<p>A critical insight in sequence comparison is that no single scoring matrix optimally aligns sequences at all evolutionary distances. The pattern of substitutions observed between closely related proteins differs markedly from that seen between distantly related ones. In recently diverged sequences, we observe primarily the substitutions that occur most readily—those between chemically similar amino acids. As evolutionary distance increases, even unfavorable substitutions accumulate, and multiple substitutions at the same position obscure the evolutionary signal.</p>
+<p>This time-dependency of substitution patterns necessitates different matrices for different evolutionary distances. Matrices optimized for closely related sequences (such as BLOSUM80 or PAM40) strongly penalize most substitutions, rewarding only highly conservative changes. These matrices excel at distinguishing orthologs from paralogs in recently diverged species. Conversely, matrices designed for distantly related sequences (such as BLOSUM45 or PAM250) are more permissive, accepting a broader range of substitutions. These matrices can detect remote homologs that have diverged beyond obvious sequence similarity.</p>
+<p>The choice of appropriate matrix thus depends on the evolutionary distance between sequences being compared. Using a matrix optimized for distant relationships to align closely related sequences yields suboptimal alignments with unnecessary substitutions. Conversely, using a matrix designed for close relationships fails to detect legitimate but distant homologs. This fundamental trade-off between sensitivity and specificity drives the development of multiple matrices, each optimized for specific evolutionary distances.</p>
+<p>Substitution matrices transform the abstract problem of sequence comparison into a quantitative framework. Each matrix element <span class="math inline">\(S(a,b)\)</span> represents the score for aligning amino acid <span class="math inline">\(a\)</span> with amino acid <span class="math inline">\(b\)</span>, where positive scores indicate substitutions more frequent than expected by chance, and negative scores indicate rare substitutions. The development of these matrices represents a synthesis of evolutionary biology, statistics, and computational methods, providing the foundation for modern sequence analysis.</p>
 </section>
-<section id="pam-vs-blosum" class="level2" data-number="41.1">
-<h2 data-number="41.1" class="anchored" data-anchor-id="pam-vs-blosum"><span class="header-section-number">41.1</span> PAM vs BLOSUM</h2>
-<p>BLOSUM (BLOcks SUbstitution Matrix) and PAM (Point Accepted Mutation) are both families of substitution matrices used in bioinformatics for comparing protein sequences. They are designed to quantify the likelihood of amino acid substitutions between sequences and are fundamental components in sequence alignment algorithms. Each family has its own advantages and limitations. Here’s a comparison of the pros and cons of BLOSUM and PAM matrices:</p>
-<p>BLOSUM (BLOcks SUbstitution Matrix):</p>
-<p>Pros:</p>
-<p>Empirical Nature: BLOSUM matrices are derived from a specific set of aligned protein sequences, often representing more recent evolutionary events. As a result, they capture more recent divergence and are suited for comparing moderately similar sequences. Variability: Different BLOSUM matrices are available (e.g., BLOSUM30, BLOSUM62, BLOSUM80), catering to varying degrees of sequence identity. This allows users to choose the matrix that best fits the similarity level of their sequences. Specificity: BLOSUM matrices can be used for aligning sequences with a wide range of similarity levels, making them versatile for various types of sequence comparisons. Scoring Range: BLOSUM matrices often result in a wider scoring range, providing more detailed information about sequence similarities and differences. Cons:</p>
-<p>Limited Evolutionary Distance: BLOSUM matrices are less suitable for highly divergent sequences or sequences separated by long evolutionary distances. Pre-computed Nature: BLOSUM matrices are precomputed and can’t be easily recalculated with custom data. This limits their adaptability to specific datasets. Homologous Sequences Required: The quality of BLOSUM matrices depends on the quality and diversity of the input sequences used to derive them. Alignment Quality Sensitivity: BLOSUM matrices are sensitive to the quality of the initial sequence alignment used to derive them. PAM (Point Accepted Mutation):</p>
-<p>Pros:</p>
-<p>Evolutionary Model: PAM matrices are derived from an evolutionary model, which attempts to capture long-term evolutionary processes. They can be used for comparing sequences with a broader range of evolutionary distances. Flexibility: PAM matrices can be theoretically recalculated for custom datasets, although it requires significant computational effort and expertise. Range of Matrices: Like BLOSUM, different PAM matrices (e.g., PAM30, PAM120, PAM250) are available for varying degrees of sequence divergence. Long-Distance Comparisons: PAM matrices are more suitable for comparing highly divergent sequences due to their focus on longer-term evolutionary events. Cons:</p>
-<p>Dependence on Model Assumptions: PAM matrices rely on the assumption of a specific evolutionary model, which may not perfectly represent all evolutionary processes. Complexity: Constructing and recalculating PAM matrices require significant computational resources and expertise. Sensitivity to Input Sequences: Like BLOSUM matrices, the quality of PAM matrices depends on the quality and diversity of the input sequences. Non-Contemporary Alignments: PAM matrices are designed to capture historical substitutions, which can be a limitation when comparing sequences with recent divergence. In summary, both BLOSUM and PAM matrices offer valuable tools for comparing protein sequences. The choice between them depends on the specific characteristics of the sequences being aligned, the desired degree of sensitivity, and the computational resources available. BLOSUM matrices are preferred for more recent evolutionary events and moderately similar sequences, while PAM matrices are better suited for longer-term evolutionary processes and highly divergent sequences.</p>
+</section>
+<section id="pam-matrices-modeling-evolution-through-time" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="pam-matrices-modeling-evolution-through-time"><span class="header-section-number">41.2</span> PAM Matrices: Modeling Evolution Through Time</h2>
+<section id="the-evolutionary-model-behind-pam" class="level3" data-number="41.2.1">
+<h3 data-number="41.2.1" class="anchored" data-anchor-id="the-evolutionary-model-behind-pam"><span class="header-section-number">41.2.1</span> The Evolutionary Model Behind PAM</h3>
+<p>The Point Accepted Mutation (PAM) matrices, pioneered by Margaret Dayhoff in the 1970s, represent one of the earliest systematic approaches to quantifying amino acid substitutions. Margaret Dayhoff, often regarded as the founding mother of bioinformatics, revolutionized the field through her visionary work in computational molecular biology. Her development of PAM matrices exemplified her broader contributions, which included creating the first comprehensive protein sequence database (Atlas of Protein Sequence and Structure) and establishing fundamental methods for sequence comparison that remain influential today. Dayhoff’s insight that evolutionary information could be captured mathematically and used to improve sequence analysis laid the groundwork for modern bioinformatics.</p>
+<p>The PAM model builds upon a fundamental assumption: protein evolution proceeds through the accumulation of point mutations that are “accepted” by natural selection. The term “accepted” is crucial here, as it distinguishes mutations that persist in populations from those eliminated by selection.</p>
+<p>The PAM unit serves as the fundamental measure of evolutionary distance in this framework. One PAM unit corresponds to an evolutionary distance where, on average, one accepted point mutation occurs per 100 amino acid positions. This definition immediately reveals an important characteristic: PAM units measure evolutionary time in terms of observed changes rather than absolute time. Two sequences separated by 1 PAM unit have diverged sufficiently for 1% of positions to have undergone accepted mutations.</p>
+<p>The mathematical framework underlying PAM matrices begins with the construction of a mutation probability matrix <span class="math inline">\(M\)</span>. Each element <span class="math inline">\(M_{ij}\)</span> represents the probability that amino acid <span class="math inline">\(i\)</span> mutates to amino acid <span class="math inline">\(j\)</span> over one PAM unit of evolutionary time. The diagonal elements <span class="math inline">\(M_{ii}\)</span> represent the probability of no change, while off-diagonal elements capture substitution probabilities. The constraint that probabilities sum to unity gives us:</p>
+<p><span class="math display">\[\sum_{j=1}^{20} M_{ij} = 1\]</span></p>
+<p>for each amino acid <span class="math inline">\(i\)</span>. This stochastic matrix encodes the fundamental evolutionary process at the heart of the PAM model.</p>
+</section>
+<section id="constructing-pam-matrices-from-data" class="level3" data-number="41.2.2">
+<h3 data-number="41.2.2" class="anchored" data-anchor-id="constructing-pam-matrices-from-data"><span class="header-section-number">41.2.2</span> Constructing PAM Matrices from Data</h3>
+<p>The construction of PAM matrices begins with the careful curation of closely related protein sequences. Dayhoff and her colleagues undertook the monumental task of manually collecting and aligning protein sequences in an era before automated sequencing and computational tools. Working with punch cards and early computers, Dayhoff’s team selected protein families where sequence identity exceeded 85%, ensuring that observed differences represented single substitution events rather than multiple substitutions at the same position. This high similarity threshold is critical for accurately estimating the initial substitution rates. Dayhoff’s meticulous approach to data collection and her insistence on biological accuracy over computational convenience established standards for rigor that continue to guide bioinformatics research.</p>
+<p>From these aligned sequences, researchers count the observed substitutions between each pair of amino acids. Let <span class="math inline">\(A_{ij}\)</span> represent the number of times amino acid <span class="math inline">\(i\)</span> is observed to mutate to amino acid <span class="math inline">\(j\)</span> in the dataset. The relative mutability of amino acid <span class="math inline">\(i\)</span> is then calculated as:</p>
+<p><span class="math display">\[m_i = \frac{\sum_{j \neq i} A_{ij}}{n_i \cdot c}\]</span></p>
+<p>where <span class="math inline">\(n_i\)</span> is the total occurrence of amino acid <span class="math inline">\(i\)</span> in the dataset, and <span class="math inline">\(c\)</span> is a scaling constant chosen such that the total probability of mutation equals 0.01 (corresponding to 1 PAM unit). This formulation captures the inherent tendency of each amino acid to undergo substitution.</p>
+<p>The mutation probability matrix for 1 PAM unit is then constructed as:</p>
+<p><span class="math display">\[M_{ij} = \begin{cases}
+\frac{A_{ij}}{\sum_{k} A_{ik}} \cdot m_i &amp; \text{if } i \neq j \\
+1 - m_i &amp; \text{if } i = j
+\end{cases}\]</span></p>
+<p>This matrix represents the evolutionary process over a very short time scale. To model evolution over longer periods, we exploit the Markov property of the substitution process.</p>
+</section>
+<section id="extrapolating-to-higher-pam-distances" class="level3" data-number="41.2.3">
+<h3 data-number="41.2.3" class="anchored" data-anchor-id="extrapolating-to-higher-pam-distances"><span class="header-section-number">41.2.3</span> Extrapolating to Higher PAM Distances</h3>
+<p>The power of the PAM framework lies in its ability to extrapolate from observed short-term changes to predict patterns over longer evolutionary distances. For <span class="math inline">\(n\)</span> PAM units of evolution, the mutation probability matrix becomes:</p>
+<p><span class="math display">\[M^{(n)} = M^n\]</span></p>
+<p>This matrix multiplication elegantly captures the accumulation of substitutions over time. For instance, PAM250 represents 250 PAM units of evolution, corresponding to sequences where approximately 80% of positions have undergone at least one accepted mutation.</p>
+<p>The scoring matrix is derived from the mutation probability matrix through the log-odds formulation:</p>
+<p><span class="math display">\[S^{(n)}_{ij} = 10 \cdot \log_{10}\left(\frac{M^{(n)}_{ij}}{f_j}\right)\]</span></p>
+<p>where <span class="math inline">\(f_j\)</span> represents the background frequency of amino acid <span class="math inline">\(j\)</span>. The factor of 10 and the use of base-10 logarithms are historical conventions that yield integer scores convenient for manual calculations in the pre-computer era.</p>
+<p>The relationship between PAM distance and sequence identity follows an exponential decay:</p>
+<p><span class="math display">\[\text{Identity} = \sum_{i=1}^{20} f_i \cdot M^{(n)}_{ii}\]</span></p>
+<p>This equation shows that as PAM distance increases, the expected sequence identity decreases exponentially, reaching approximately 20% identity at PAM250, close to the twilight zone of sequence comparison.</p>
+</section>
+<section id="worked-example-constructing-a-pam1-matrix" class="level3" data-number="41.2.4">
+<h3 data-number="41.2.4" class="anchored" data-anchor-id="worked-example-constructing-a-pam1-matrix"><span class="header-section-number">41.2.4</span> Worked Example: Constructing a PAM1 Matrix</h3>
+<p>To illustrate the construction of PAM matrices, let’s work through a simplified example using a subset of amino acids. Consider a dataset of closely related sequences (&gt;85% identity) where we observe the following substitution counts between four amino acids (A, G, V, L):</p>
+<p><strong>Step 1: Count observed substitutions</strong></p>
+<p>From our aligned sequences, we observe: - A → G: 30 substitutions - A → V: 10 substitutions - A → L: 5 substitutions - G → V: 8 substitutions - G → L: 4 substitutions - V → L: 25 substitutions</p>
+<p>Total occurrences in dataset: - A: 1000 positions - G: 800 positions - V: 600 positions - L: 900 positions</p>
+<p><strong>Step 2: Calculate relative mutabilities</strong></p>
+<p>The relative mutability <span class="math inline">\(m_i\)</span> for each amino acid represents its propensity to mutate:</p>
+<p><span class="math display">\[m_A = \frac{30 + 10 + 5}{1000 \cdot c} = \frac{45}{1000c}\]</span></p>
+<p><span class="math display">\[m_G = \frac{30 + 8 + 4}{800 \cdot c} = \frac{42}{800c}\]</span></p>
+<p><span class="math display">\[m_V = \frac{10 + 8 + 25}{600 \cdot c} = \frac{43}{600c}\]</span></p>
+<p><span class="math display">\[m_L = \frac{5 + 4 + 25}{900 \cdot c} = \frac{34}{900c}\]</span></p>
+<p>We choose <span class="math inline">\(c\)</span> such that the average mutability equals 0.01 (1 PAM unit). The average mutability weighted by amino acid frequency is:</p>
+<p><span class="math display">\[\bar{m} = \frac{1000 \cdot m_A + 800 \cdot m_G + 600 \cdot m_V + 900 \cdot m_L}{3300} = 0.01\]</span></p>
+<p>Solving for <span class="math inline">\(c\)</span>: <span class="math inline">\(c = 4.8\)</span></p>
+<p>This gives us: - <span class="math inline">\(m_A = 0.0094\)</span> - <span class="math inline">\(m_G = 0.0109\)</span> - <span class="math inline">\(m_V = 0.0149\)</span> - <span class="math inline">\(m_L = 0.0079\)</span></p>
+<p><strong>Step 3: Construct the PAM1 mutation probability matrix</strong></p>
+<p>The mutation probability matrix <span class="math inline">\(M\)</span> has diagonal elements representing no change and off-diagonal elements representing substitutions:</p>
+<p><span class="math display">\[M_{AA} = 1 - m_A = 0.9906\]</span> <span class="math display">\[M_{AG} = \frac{30}{45} \cdot m_A = 0.0063\]</span> <span class="math display">\[M_{AV} = \frac{10}{45} \cdot m_A = 0.0021\]</span> <span class="math display">\[M_{AL} = \frac{5}{45} \cdot m_A = 0.0010\]</span></p>
+<p>Following this pattern for all amino acids:</p>
+<p><span class="math display">\[M = \begin{pmatrix}
+0.9906 &amp; 0.0063 &amp; 0.0021 &amp; 0.0010 \\
+0.0078 &amp; 0.9891 &amp; 0.0021 &amp; 0.0010 \\
+0.0029 &amp; 0.0031 &amp; 0.9851 &amp; 0.0089 \\
+0.0013 &amp; 0.0011 &amp; 0.0070 &amp; 0.9921
+\end{pmatrix}\]</span></p>
+<p><strong>Step 4: Calculate PAM250 by matrix exponentiation</strong></p>
+<p>To obtain PAM250, we calculate <span class="math inline">\(M^{250}\)</span>:</p>
+<p><span class="math display">\[M^{250} = \begin{pmatrix}
+0.189 &amp; 0.174 &amp; 0.275 &amp; 0.362 \\
+0.217 &amp; 0.221 &amp; 0.269 &amp; 0.293 \\
+0.297 &amp; 0.242 &amp; 0.224 &amp; 0.237 \\
+0.323 &amp; 0.211 &amp; 0.199 &amp; 0.267
+\end{pmatrix}\]</span></p>
+<p><strong>Step 5: Convert to log-odds scoring matrix</strong></p>
+<p>Using background frequencies <span class="math inline">\(f_A = 0.303\)</span>, <span class="math inline">\(f_G = 0.242\)</span>, <span class="math inline">\(f_V = 0.182\)</span>, <span class="math inline">\(f_L = 0.273\)</span>:</p>
+<p><span class="math display">\[S_{AA} = 10 \log_{10}\left(\frac{0.189}{0.303}\right) = -2.0\]</span> <span class="math display">\[S_{AG} = 10 \log_{10}\left(\frac{0.174}{0.242}\right) = -1.4\]</span> <span class="math display">\[S_{AV} = 10 \log_{10}\left(\frac{0.275}{0.182}\right) = 1.8\]</span> <span class="math display">\[S_{AL} = 10 \log_{10}\left(\frac{0.362}{0.273}\right) = 1.2\]</span></p>
+<p>The complete PAM250 scoring matrix for our simplified example:</p>
+<p><span class="math display">\[S^{(250)} = \begin{pmatrix}
+-2 &amp; -1 &amp; 2 &amp; 1 \\
+-1 &amp; -1 &amp; 2 &amp; 0 \\
+2 &amp; 1 &amp; 1 &amp; -1 \\
+1 &amp; -1 &amp; -1 &amp; 0
+\end{pmatrix}\]</span></p>
+<p>This simplified example demonstrates how evolutionary observations are transformed into practical scoring matrices. The positive scores (e.g., A-V: 2) indicate substitutions occurring more frequently than expected by chance, while negative scores indicate rare substitutions.</p>
+</section>
+<section id="python-implementation-pam-matrix-from-pairwise-alignment" class="level3" data-number="41.2.5">
+<h3 data-number="41.2.5" class="anchored" data-anchor-id="python-implementation-pam-matrix-from-pairwise-alignment"><span class="header-section-number">41.2.5</span> Python Implementation: PAM Matrix from Pairwise Alignment</h3>
+<p>To make the PAM construction process more concrete, let’s implement it in Python using a single long pairwise alignment. This example shows how to extract substitution counts from an alignment and construct a PAM1 matrix.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter, defaultdict</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_substitutions(seq1, seq2):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Extract substitution counts from a pairwise alignment.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Assumes sequences are aligned and of equal length.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    substitutions <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    aa_counts <span class="op">=</span> Counter()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> a1, a2 <span class="kw">in</span> <span class="bu">zip</span>(seq1, seq2):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a1 <span class="op">!=</span> <span class="st">'-'</span> <span class="kw">and</span> a2 <span class="op">!=</span> <span class="st">'-'</span>:  <span class="co"># Skip gap positions</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            aa_counts[a1] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> a1 <span class="op">!=</span> a2:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Store substitutions symmetrically</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                pair <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">sorted</span>([a1, a2]))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                substitutions[pair] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> substitutions, aa_counts</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_pam1_matrix(seq1, seq2):</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">    Compute a PAM1 scoring matrix from a pairwise alignment.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Example sequences (representing &gt;85% identity alignment)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># In practice, you would use multiple alignments</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract substitutions and counts</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    substitutions, aa_counts <span class="op">=</span> extract_substitutions(seq1, seq2)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get unique amino acids</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    amino_acids <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>(aa_counts.keys()))</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    n_aa <span class="op">=</span> <span class="bu">len</span>(amino_acids)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    aa_to_idx <span class="op">=</span> {aa: i <span class="cf">for</span> i, aa <span class="kw">in</span> <span class="bu">enumerate</span>(amino_acids)}</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate total positions and substitution matrix A</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.zeros((n_aa, n_aa))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (aa1, aa2), count <span class="kw">in</span> substitutions.items():</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        i, j <span class="op">=</span> aa_to_idx[aa1], aa_to_idx[aa2]</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        A[i, j] <span class="op">=</span> count <span class="op">/</span> <span class="dv">2</span>  <span class="co"># Divide by 2 because we count each pair once</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        A[j, i] <span class="op">=</span> count <span class="op">/</span> <span class="dv">2</span>  <span class="co"># Make symmetric</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate relative mutabilities</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    total_positions <span class="op">=</span> <span class="bu">sum</span>(aa_counts.values())</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    mutabilities <span class="op">=</span> np.zeros(n_aa)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, aa <span class="kw">in</span> <span class="bu">enumerate</span>(amino_acids):</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> aa_counts[aa] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>            mutabilities[i] <span class="op">=</span> np.<span class="bu">sum</span>(A[i, :]) <span class="op">/</span> aa_counts[aa]</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scale to 1 PAM unit (1% accepted mutations)</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    scaling_factor <span class="op">=</span> <span class="fl">0.01</span> <span class="op">/</span> np.mean(mutabilities[mutabilities <span class="op">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    mutabilities <span class="op">*=</span> scaling_factor</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Construct mutation probability matrix M</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> np.zeros((n_aa, n_aa))</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> mutabilities[i] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Off-diagonal elements: mutation probabilities</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> i <span class="op">!=</span> j <span class="kw">and</span> np.<span class="bu">sum</span>(A[i, :]) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>                    M[i, j] <span class="op">=</span> (A[i, j] <span class="op">/</span> np.<span class="bu">sum</span>(A[i, :])) <span class="op">*</span> mutabilities[i]</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Diagonal element: probability of no change</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>            M[i, i] <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mutabilities[i]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>            M[i, i] <span class="op">=</span> <span class="fl">1.0</span>  <span class="co"># No mutations observed</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate background frequencies</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    total_aa <span class="op">=</span> <span class="bu">sum</span>(aa_counts.values())</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    frequencies <span class="op">=</span> np.array([aa_counts[aa] <span class="op">/</span> total_aa <span class="cf">for</span> aa <span class="kw">in</span> amino_acids])</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to log-odds scoring matrix</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Using PAM convention: S = 10 * log10(M[i,j] / f[j])</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.zeros((n_aa, n_aa))</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> M[i, j] <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> frequencies[j] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>                S[i, j] <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> np.log10(M[i, j] <span class="op">/</span> frequencies[j])</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>                S[i, j] <span class="op">=</span> <span class="op">-</span><span class="dv">10</span>  <span class="co"># Large negative score for impossible substitutions</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Round to integers</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.<span class="bu">round</span>(S).astype(<span class="bu">int</span>)</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S, amino_acids, M, frequencies</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage with a long pairwise alignment</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> <span class="st">"ARNDCQEGHILKMFPSTWYVARCDEGHKLMNPQRSTVWYARNDCEGHILKMFPSTWYV"</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>seq2 <span class="op">=</span> <span class="st">"AKNDCQEGHVLKMFPSTWYVARCDEGHRLMNPQRSTVWYAKNDCEGHILKMFASTWYV"</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co">#       *R-&gt;K     *I-&gt;V           *K-&gt;R     *R-&gt;K       *P-&gt;A</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute PAM1 matrix</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>S_pam1, amino_acids, M_prob, freqs <span class="op">=</span> compute_pam1_matrix(seq1, seq2)</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scoring matrix</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PAM1 Scoring Matrix (subset):"</span>)</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   "</span>, <span class="st">"  "</span>.join(<span class="ss">f"</span><span class="sc">{</span>aa<span class="sc">:&gt;3}</span><span class="ss">"</span> <span class="cf">for</span> aa <span class="kw">in</span> amino_acids[:<span class="dv">8</span>]))</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">8</span>, <span class="bu">len</span>(amino_acids))):</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>S_pam1[i,j]<span class="sc">:3d}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">8</span>, <span class="bu">len</span>(amino_acids)))]</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>amino_acids[i]<span class="sc">:&gt;3}</span><span class="ss">"</span>, <span class="st">" "</span>.join(row))</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Show mutation probability matrix for verification</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Mutation Probability Matrix M (first 4x4):"</span>)</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">4</span>, <span class="bu">len</span>(amino_acids))):</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>M_prob[i,j]<span class="sc">:.4f}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">4</span>, <span class="bu">len</span>(amino_acids)))]</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>amino_acids[i]<span class="sc">:&gt;3}</span><span class="ss">"</span>, <span class="st">" "</span>.join(row))</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate PAM250 by matrix exponentiation</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_pam_n(M, n, frequencies):</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute PAM-n matrix by raising M to the nth power"""</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    M_n <span class="op">=</span> np.linalg.matrix_power(M, n)</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to scoring matrix</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    n_aa <span class="op">=</span> <span class="bu">len</span>(M)</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    S_n <span class="op">=</span> np.zeros((n_aa, n_aa))</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n_aa):</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> M_n[i, j] <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> frequencies[j] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>                S_n[i, j] <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> np.log10(M_n[i, j] <span class="op">/</span> frequencies[j])</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>                S_n[i, j] <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">round</span>(S_n).astype(<span class="bu">int</span>)</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute PAM250</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>S_pam250 <span class="op">=</span> compute_pam_n(M_prob, <span class="dv">250</span>, freqs)</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">PAM250 Scoring Matrix (subset):"</span>)</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   "</span>, <span class="st">"  "</span>.join(<span class="ss">f"</span><span class="sc">{</span>aa<span class="sc">:&gt;3}</span><span class="ss">"</span> <span class="cf">for</span> aa <span class="kw">in</span> amino_acids[:<span class="dv">8</span>]))</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">8</span>, <span class="bu">len</span>(amino_acids))):</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>S_pam250[i,j]<span class="sc">:3d}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">8</span>, <span class="bu">len</span>(amino_acids)))]</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>amino_acids[i]<span class="sc">:&gt;3}</span><span class="ss">"</span>, <span class="st">" "</span>.join(row))</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Analyze substitution patterns</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Observed substitutions in alignment:"</span>)</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>subs, _ <span class="op">=</span> extract_substitutions(seq1, seq2)</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (aa1, aa2), count <span class="kw">in</span> <span class="bu">sorted</span>(subs.items(), key<span class="op">=</span><span class="kw">lambda</span> x: <span class="op">-</span>x[<span class="dv">1</span>])[:<span class="dv">5</span>]:</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>aa1<span class="sc">}</span><span class="ss"> &lt;-&gt; </span><span class="sc">{</span>aa2<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> times"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This implementation demonstrates several key concepts:</p>
+<ol type="1">
+<li><p><strong>Extracting substitutions from alignments</strong>: The code counts how often each amino acid pair is observed in aligned positions, which forms the empirical basis for the PAM matrix.</p></li>
+<li><p><strong>Calculating relative mutabilities</strong>: Each amino acid’s tendency to mutate is computed from the observed substitution frequencies, then scaled to represent 1 PAM unit (1% accepted mutations).</p></li>
+<li><p><strong>Building the mutation probability matrix</strong>: The matrix M encodes the probability of each amino acid mutating to every other amino acid over one PAM unit of evolutionary time.</p></li>
+<li><p><strong>Converting to log-odds scores</strong>: The mutation probabilities are transformed into scores suitable for sequence alignment using the log-odds ratio formula.</p></li>
+<li><p><strong>Extrapolating to longer evolutionary distances</strong>: Matrix exponentiation (M^n) models the accumulation of mutations over n PAM units, allowing construction of PAM250 and other matrices.</p></li>
+</ol>
+<p>The example alignment shows typical patterns: conservative substitutions (R→K, both basic amino acids) occur more frequently than radical changes. The resulting PAM1 matrix will assign positive scores to these common substitutions and negative scores to rare ones.</p>
+</section>
+<section id="limitations-and-assumptions-of-pam-matrices" class="level3" data-number="41.2.6">
+<h3 data-number="41.2.6" class="anchored" data-anchor-id="limitations-and-assumptions-of-pam-matrices"><span class="header-section-number">41.2.6</span> Limitations and Assumptions of PAM Matrices</h3>
+<p>The PAM model makes several critical assumptions that limit its applicability. First, it assumes that substitution rates remain constant over evolutionary time, ignoring the reality that selection pressures vary across geological epochs. Second, it assumes that all positions in a protein evolve at the same rate, contradicting our understanding that active sites and structural motifs evolve more slowly than surface loops.</p>
+<p>The model also assumes that amino acid substitutions at different positions are independent, neglecting the correlated mutations that maintain protein structure and function. Furthermore, the reversibility assumption implicit in the PAM model—that the probability of substituting amino acid <span class="math inline">\(a\)</span> with <span class="math inline">\(b\)</span> equals the probability of the reverse substitution when weighted by amino acid frequencies—may not hold for all evolutionary scenarios.</p>
+</section>
+</section>
+<section id="blosum-matrices-an-empirical-approach" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="blosum-matrices-an-empirical-approach"><span class="header-section-number">41.3</span> BLOSUM Matrices: An Empirical Approach</h2>
+<section id="the-blocks-database-foundation" class="level3" data-number="41.3.1">
+<h3 data-number="41.3.1" class="anchored" data-anchor-id="the-blocks-database-foundation"><span class="header-section-number">41.3.1</span> The BLOCKS Database Foundation</h3>
+<p>The BLOSUM (BLOcks SUbstitution Matrix) matrices, developed by Henikoff and Henikoff in the 1990s, represent a fundamentally different approach to capturing substitution patterns. Rather than extrapolating from closely related sequences, BLOSUM matrices derive directly from observed substitutions in conserved protein regions called blocks. These blocks represent ungapped local alignments of distantly related proteins, capturing the substitution patterns that have actually survived evolutionary selection.</p>
+<p>The BLOCKS database consists of multiply aligned ungapped segments from protein families. Each block represents a conserved region where gaps are not permitted, simplifying the statistical analysis. The key innovation of BLOSUM lies in its clustering approach to handle the redundancy in sequence databases. Sequences within a block that exceed a specified percentage identity threshold are clustered together and treated as a single representative sequence, preventing closely related sequences from dominating the substitution statistics.</p>
+</section>
+<section id="computing-blosum-matrices" class="level3" data-number="41.3.2">
+<h3 data-number="41.3.2" class="anchored" data-anchor-id="computing-blosum-matrices"><span class="header-section-number">41.3.2</span> Computing BLOSUM Matrices</h3>
+<p>The construction of a BLOSUM matrix begins with the extraction of column pairs from aligned blocks. For a block containing <span class="math inline">\(n\)</span> sequences, each column yields <span class="math inline">\(\binom{n}{2} = \frac{n(n-1)}{2}\)</span> amino acid pairs. However, when sequences are clustered, the contribution of each pair is weighted by the inverse of the cluster sizes.</p>
+<p>Let <span class="math inline">\(c_i\)</span> represent the size of the cluster containing sequence <span class="math inline">\(i\)</span>. The weight of a pair between sequences <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> is:</p>
+<p><span class="math display">\[w_{ij} = \frac{1}{c_i \cdot c_j}\]</span></p>
+<p>This weighting scheme ensures that closely related sequences contribute less to the final statistics, reducing the bias toward specific evolutionary lineages.</p>
+<p>The frequency of observing amino acid pair <span class="math inline">\((a,b)\)</span> is calculated as:</p>
+<p><span class="math display">\[q_{ab} = \frac{\sum_{\text{pairs}} w_{ij} \cdot \delta_{ab}(i,j)}{\sum_{\text{all pairs}} w_{ij}}\]</span></p>
+<p>where <span class="math inline">\(\delta_{ab}(i,j)\)</span> equals 1 if sequence <span class="math inline">\(i\)</span> has amino acid <span class="math inline">\(a\)</span> and sequence <span class="math inline">\(j\)</span> has amino acid <span class="math inline">\(b\)</span> at the position being considered (or vice versa for <span class="math inline">\(a \neq b\)</span>), and 0 otherwise.</p>
+<p>The expected frequency under the null hypothesis of independence is:</p>
+<p><span class="math display">\[e_{ab} = \begin{cases}
+p_a \cdot p_b \cdot 2 &amp; \text{if } a \neq b \\
+p_a^2 &amp; \text{if } a = b
+\end{cases}\]</span></p>
+<p>where <span class="math inline">\(p_a = q_{aa} + \frac{1}{2}\sum_{b \neq a} q_{ab}\)</span> represents the marginal frequency of amino acid <span class="math inline">\(a\)</span>.</p>
+</section>
+<section id="the-log-odds-scoring-system" class="level3" data-number="41.3.3">
+<h3 data-number="41.3.3" class="anchored" data-anchor-id="the-log-odds-scoring-system"><span class="header-section-number">41.3.3</span> The Log-Odds Scoring System</h3>
+<p>The BLOSUM score for aligning amino acids <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is computed as:</p>
+<p><span class="math display">\[S_{ab} = \lambda \cdot \log_2\left(\frac{q_{ab}}{e_{ab}}\right)\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is a scaling factor typically chosen to yield integer scores. The use of base-2 logarithms means that a score of +1 indicates a substitution twice as likely as expected by chance, while a score of -1 indicates a substitution half as likely as expected.</p>
+<p>The information content of a BLOSUM matrix can be quantified using relative entropy:</p>
+<p><span class="math display">\[H = \sum_{a,b} q_{ab} \cdot \log_2\left(\frac{q_{ab}}{e_{ab}}\right)\]</span></p>
+<p>This measure, expressed in bits, quantifies how much the observed substitution patterns deviate from random expectation. Higher entropy indicates more specific substitution patterns and generally correlates with matrices derived from more similar sequences.</p>
+</section>
+<section id="the-blosum-series-and-clustering-thresholds" class="level3" data-number="41.3.4">
+<h3 data-number="41.3.4" class="anchored" data-anchor-id="the-blosum-series-and-clustering-thresholds"><span class="header-section-number">41.3.4</span> The BLOSUM Series and Clustering Thresholds</h3>
+<p>The number in a BLOSUM matrix name (e.g., BLOSUM62) indicates the clustering threshold used during construction. BLOSUM62 clusters sequences sharing ≥62% identity, while BLOSUM80 uses an 80% threshold. Lower numbers yield matrices suitable for comparing more divergent sequences, as they incorporate substitution patterns from more distantly related proteins.</p>
+<p>The relationship between clustering threshold and matrix properties follows predictable patterns. Matrices with lower clustering thresholds (like BLOSUM45) have lower relative entropy and are more permissive of substitutions, making them suitable for detecting remote homologs. Conversely, matrices with higher thresholds (like BLOSUM80) have higher relative entropy and are more stringent, making them appropriate for comparing closely related sequences.</p>
+<p>The target frequencies implicit in each BLOSUM matrix can be recovered through:</p>
+<p><span class="math display">\[q_{ab} = p_a \cdot p_b \cdot e^{\lambda S_{ab}}\]</span></p>
+<p>This relationship reveals that BLOSUM matrices implicitly assume an exponential distribution of evolutionary distances in the sequences used for their construction.</p>
+</section>
+<section id="worked-example-constructing-a-blosum-matrix" class="level3" data-number="41.3.5">
+<h3 data-number="41.3.5" class="anchored" data-anchor-id="worked-example-constructing-a-blosum-matrix"><span class="header-section-number">41.3.5</span> Worked Example: Constructing a BLOSUM Matrix</h3>
+<p>Let’s construct a simplified BLOSUM matrix from a small block of aligned sequences. Consider the following ungapped alignment block containing five sequences:</p>
+<pre><code>Sequence 1: A V L G
+Sequence 2: A V M G
+Sequence 3: G I L A
+Sequence 4: G V L A
+Sequence 5: A I M G</code></pre>
+<p><strong>Step 1: Apply clustering threshold</strong></p>
+<p>Suppose we use a 60% identity threshold (similar to BLOSUM62). Comparing sequences pairwise: - Sequences 1 and 2: 75% identity (3/4 matches) → cluster together - Sequences 3 and 4: 50% identity (2/4 matches) → remain separate - Sequence 5: &lt;60% identity with all others → remains separate</p>
+<p>This gives us 4 clusters: - Cluster 1: {Seq1, Seq2} with size <span class="math inline">\(c_1 = 2\)</span> - Cluster 2: {Seq3} with size <span class="math inline">\(c_2 = 1\)</span> - Cluster 3: {Seq4} with size <span class="math inline">\(c_3 = 1\)</span> - Cluster 4: {Seq5} with size <span class="math inline">\(c_4 = 1\)</span></p>
+<p><strong>Step 2: Calculate weighted pair frequencies</strong></p>
+<p>For each column, we count amino acid pairs with weights. For column 1: - A-A pairs: (1,2) with weight <span class="math inline">\(\frac{1}{2 \times 2} = 0.25\)</span>; (1,5) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span>; (2,5) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span> - A-G pairs: (1,3) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span>; (1,4) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span>; (2,3) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span>; (2,4) with weight <span class="math inline">\(\frac{1}{2 \times 1} = 0.5\)</span> - G-G pairs: (3,4) with weight <span class="math inline">\(\frac{1}{1 \times 1} = 1.0\)</span></p>
+<p>Total weight for column 1: <span class="math inline">\(0.25 + 0.5 + 0.5 + 0.5 + 0.5 + 0.5 + 0.5 + 1.0 = 4.25\)</span></p>
+<p>Continuing for all columns and summing:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+<th>Column 4</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A-A</td>
+<td>1.25</td>
+<td>0</td>
+<td>0</td>
+<td>1.0</td>
+<td>2.25</td>
+</tr>
+<tr class="even">
+<td>A-G</td>
+<td>2.0</td>
+<td>0</td>
+<td>0</td>
+<td>2.0</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td>G-G</td>
+<td>1.0</td>
+<td>0</td>
+<td>0</td>
+<td>1.25</td>
+<td>2.25</td>
+</tr>
+<tr class="even">
+<td>V-V</td>
+<td>0</td>
+<td>1.25</td>
+<td>0</td>
+<td>0</td>
+<td>1.25</td>
+</tr>
+<tr class="odd">
+<td>V-I</td>
+<td>0</td>
+<td>2.0</td>
+<td>0</td>
+<td>0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td>I-I</td>
+<td>0</td>
+<td>1.0</td>
+<td>0</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td>L-L</td>
+<td>0</td>
+<td>0</td>
+<td>2.25</td>
+<td>0</td>
+<td>2.25</td>
+</tr>
+<tr class="even">
+<td>L-M</td>
+<td>0</td>
+<td>0</td>
+<td>2.0</td>
+<td>0</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<td>M-M</td>
+<td>0</td>
+<td>0</td>
+<td>1.0</td>
+<td>0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Total weight across all pairs: 18.0</p>
+<p><strong>Step 3: Calculate observed frequencies</strong></p>
+<p><span class="math display">\[q_{AA} = \frac{2.25}{18.0} = 0.125\]</span> <span class="math display">\[q_{AG} = \frac{4.0}{18.0} = 0.222\]</span> <span class="math display">\[q_{GG} = \frac{2.25}{18.0} = 0.125\]</span></p>
+<p>And similarly for other pairs.</p>
+<p><strong>Step 4: Calculate marginal frequencies</strong></p>
+<p><span class="math display">\[p_A = q_{AA} + \frac{1}{2}(q_{AG} + q_{AL} + q_{AM} + ...) = 0.278\]</span> <span class="math display">\[p_G = q_{GG} + \frac{1}{2}(q_{AG} + q_{GL} + q_{GM} + ...) = 0.222\]</span> <span class="math display">\[p_V = 0.181\]</span> <span class="math display">\[p_I = 0.139\]</span> <span class="math display">\[p_L = 0.125\]</span> <span class="math display">\[p_M = 0.055\]</span></p>
+<p><strong>Step 5: Calculate expected frequencies and log-odds scores</strong></p>
+<p>For A-A: <span class="math display">\[e_{AA} = p_A^2 = 0.278^2 = 0.077\]</span> <span class="math display">\[S_{AA} = 2 \times \log_2\left(\frac{0.125}{0.077}\right) = 2 \times 0.70 = 1.4 \approx 1\]</span></p>
+<p>For A-G: <span class="math display">\[e_{AG} = 2 \times p_A \times p_G = 2 \times 0.278 \times 0.222 = 0.123\]</span> <span class="math display">\[S_{AG} = 2 \times \log_2\left(\frac{0.222}{0.123}\right) = 2 \times 0.85 = 1.7 \approx 2\]</span></p>
+<p>For L-M: <span class="math display">\[e_{LM} = 2 \times p_L \times p_M = 2 \times 0.125 \times 0.055 = 0.014\]</span> <span class="math display">\[S_{LM} = 2 \times \log_2\left(\frac{0.111}{0.014}\right) = 2 \times 3.0 = 6\]</span></p>
+<p><strong>Step 6: Construct the final BLOSUM matrix</strong></p>
+<p>After calculating all scores and rounding to integers:</p>
+<p><span class="math display">\[\text{BLOSUM} = \begin{array}{c|cccccc}
+  &amp; A &amp; G &amp; V &amp; I &amp; L &amp; M \\
+\hline
+A &amp; 1 &amp; 2 &amp; -2 &amp; -2 &amp; -1 &amp; -2 \\
+G &amp; 2 &amp; 1 &amp; -3 &amp; -3 &amp; -2 &amp; -3 \\
+V &amp; -2 &amp; -3 &amp; 2 &amp; 3 &amp; 1 &amp; 1 \\
+I &amp; -2 &amp; -3 &amp; 3 &amp; 2 &amp; 1 &amp; 1 \\
+L &amp; -1 &amp; -2 &amp; 1 &amp; 1 &amp; 2 &amp; 6 \\
+M &amp; -2 &amp; -3 &amp; 1 &amp; 1 &amp; 6 &amp; 3 \\
+\end{array}\]</span></p>
+<p>This example demonstrates how BLOSUM matrices capture actual substitution patterns observed in conserved regions. The high score for L-M (6) reflects the frequent substitution between these hydrophobic residues in our block, while negative scores indicate rare substitutions.</p>
+</section>
+</section>
+<section id="comparative-analysis-of-pam-and-blosum" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="comparative-analysis-of-pam-and-blosum"><span class="header-section-number">41.4</span> Comparative Analysis of PAM and BLOSUM</h2>
+<section id="theoretical-versus-empirical-approaches" class="level3" data-number="41.4.1">
+<h3 data-number="41.4.1" class="anchored" data-anchor-id="theoretical-versus-empirical-approaches"><span class="header-section-number">41.4.1</span> Theoretical Versus Empirical Approaches</h3>
+<p>The fundamental distinction between PAM and BLOSUM matrices lies in their underlying philosophy. PAM matrices embody a theoretical model of evolution, starting from observed substitutions in closely related sequences and extrapolating to longer evolutionary distances through matrix multiplication. This approach provides a coherent mathematical framework but relies heavily on the validity of its evolutionary assumptions.</p>
+<p>BLOSUM matrices, conversely, take a purely empirical approach, directly tabulating substitutions observed in conserved regions across various evolutionary distances. This method avoids explicit evolutionary modeling but sacrifices the theoretical elegance and interpretability of the PAM approach.</p>
+<p>The practical implications of these different approaches become apparent in their performance characteristics. PAM matrices excel at comparing sequences at specific evolutionary distances matching their PAM number. PAM250 performs optimally for sequences sharing approximately 20% identity, while PAM120 works best around 40% identity. This specificity stems from the explicit evolutionary model underlying PAM construction.</p>
+<p>BLOSUM matrices exhibit broader applicability across a range of evolutionary distances. BLOSUM62, the most widely used substitution matrix, performs well for sequences sharing 30-70% identity, making it a robust default choice for many applications. This versatility reflects the diverse evolutionary distances represented in the blocks used for BLOSUM construction.</p>
+</section>
+<section id="information-content-and-entropy-considerations" class="level3" data-number="41.4.2">
+<h3 data-number="41.4.2" class="anchored" data-anchor-id="information-content-and-entropy-considerations"><span class="header-section-number">41.4.2</span> Information Content and Entropy Considerations</h3>
+<p>The information content of substitution matrices provides insights into their discriminatory power. PAM matrices at different evolutionary distances have predictable information content relationships:</p>
+<p><span class="math display">\[H_{\text{PAM}n} \approx H_{\text{PAM}1} \cdot \left(1 - e^{-\alpha n}\right)\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is a decay constant. This relationship shows that information content initially increases with PAM distance as substitution patterns become more specific, then plateaus as saturation occurs.</p>
+<p>BLOSUM matrices exhibit a different pattern, with information content inversely related to the clustering threshold. Lower clustering thresholds incorporate more diverse sequences, reducing the specificity of substitution patterns and lowering information content. This trade-off between sensitivity and specificity fundamentally shapes the choice of matrix for specific applications.</p>
+</section>
+<section id="statistical-significance-and-e-values" class="level3" data-number="41.4.3">
+<h3 data-number="41.4.3" class="anchored" data-anchor-id="statistical-significance-and-e-values"><span class="header-section-number">41.4.3</span> Statistical Significance and E-values</h3>
+<p>The choice of substitution matrix profoundly impacts the statistical significance of alignment scores. The extreme value distribution parameters for ungapped alignments depend on both the substitution matrix and amino acid composition:</p>
+<p><span class="math display">\[P(S \geq x) \approx 1 - e^{-Kmn e^{-\lambda x}}\]</span></p>
+<p>where <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are sequence lengths, and <span class="math inline">\(K\)</span> and <span class="math inline">\(\lambda\)</span> are matrix-specific parameters. Different matrices yield different values of <span class="math inline">\(K\)</span> and <span class="math inline">\(\lambda\)</span>, affecting E-value calculations and consequently the detection of homologous sequences.</p>
+<p>The relationship between raw scores and bit scores provides a matrix-independent measure:</p>
+<p><span class="math display">\[S' = \frac{\lambda S - \ln K}{\ln 2}\]</span></p>
+<p>This normalization allows meaningful comparison of alignment scores obtained with different substitution matrices, facilitating the selection of optimal matrices for specific sequence pairs.</p>
+</section>
+</section>
+<section id="specialized-matrices-and-modern-developments" class="level2" data-number="41.5">
+<h2 data-number="41.5" class="anchored" data-anchor-id="specialized-matrices-and-modern-developments"><span class="header-section-number">41.5</span> Specialized Matrices and Modern Developments</h2>
+<section id="position-specific-scoring-matrices-pssms" class="level3" data-number="41.5.1">
+<h3 data-number="41.5.1" class="anchored" data-anchor-id="position-specific-scoring-matrices-pssms"><span class="header-section-number">41.5.1</span> Position-Specific Scoring Matrices (PSSMs)</h3>
+<p>While general substitution matrices treat all positions equally, position-specific scoring matrices capture the unique evolutionary constraints at each position in a protein family. PSSMs are constructed from multiple sequence alignments, with each column yielding a position-specific substitution profile:</p>
+<p><span class="math display">\[M_{i,a} = \log\left(\frac{f_{i,a} + \beta p_a}{(1 + \beta)p_a}\right)\]</span></p>
+<p>where <span class="math inline">\(f_{i,a}\)</span> is the observed frequency of amino acid <span class="math inline">\(a\)</span> at position <span class="math inline">\(i\)</span>, and <span class="math inline">\(\beta\)</span> is a pseudocount parameter preventing zero frequencies. This formulation smoothly interpolates between observed frequencies and background frequencies based on the amount of available data.</p>
+<p>The construction of PSSMs through iterative search (PSI-BLAST) has revolutionized remote homology detection. Starting with a general substitution matrix, the initial search identifies homologs, which are aligned to build a PSSM. Subsequent iterations use this PSSM to identify increasingly remote homologs, progressively refining the position-specific substitution patterns.</p>
+</section>
+<section id="structure-based-substitution-matrices" class="level3" data-number="41.5.2">
+<h3 data-number="41.5.2" class="anchored" data-anchor-id="structure-based-substitution-matrices"><span class="header-section-number">41.5.2</span> Structure-Based Substitution Matrices</h3>
+<p>The incorporation of structural information has led to specialized matrices that capture environment-specific substitution patterns. Amino acids in different structural contexts (alpha-helices, beta-sheets, loops) exhibit distinct substitution patterns reflecting the specific constraints of each environment.</p>
+<p>Structure-based matrices partition substitutions by structural context:</p>
+<p><span class="math display">\[S_{ab}^{(e)} = \log\left(\frac{q_{ab}^{(e)}}{p_a^{(e)} \cdot p_b^{(e)}}\right)\]</span></p>
+<p>where superscript <span class="math inline">\((e)\)</span> denotes a specific structural environment. These matrices reveal that buried positions tolerate different substitutions than exposed positions, and that secondary structure elements impose specific substitution constraints.</p>
+</section>
+<section id="compositionally-adjusted-matrices" class="level3" data-number="41.5.3">
+<h3 data-number="41.5.3" class="anchored" data-anchor-id="compositionally-adjusted-matrices"><span class="header-section-number">41.5.3</span> Compositionally Adjusted Matrices</h3>
+<p>Proteins with biased amino acid compositions, such as transmembrane proteins rich in hydrophobic residues, require specialized treatment. Compositional adjustment modifies standard matrices based on the observed composition of the sequences being compared:</p>
+<p><span class="math display">\[S'_{ab} = S_{ab} + \lambda \log\left(\frac{p'_a p'_b}{p_a p_b}\right)\]</span></p>
+<p>where <span class="math inline">\(p'_a\)</span> and <span class="math inline">\(p'_b\)</span> represent the observed frequencies in the specific sequences being aligned. This adjustment maintains the relative substitution preferences while accounting for the altered background frequencies.</p>
+</section>
+</section>
+<section id="practical-considerations-in-matrix-selection" class="level2" data-number="41.6">
+<h2 data-number="41.6" class="anchored" data-anchor-id="practical-considerations-in-matrix-selection"><span class="header-section-number">41.6</span> Practical Considerations in Matrix Selection</h2>
+<section id="choosing-matrices-for-specific-applications" class="level3" data-number="41.6.1">
+<h3 data-number="41.6.1" class="anchored" data-anchor-id="choosing-matrices-for-specific-applications"><span class="header-section-number">41.6.1</span> Choosing Matrices for Specific Applications</h3>
+<p>The selection of appropriate substitution matrices depends critically on the biological question and the characteristics of the sequences being analyzed. For identifying orthologs between closely related species, matrices like BLOSUM80 or PAM120 provide the specificity needed to distinguish true orthologs from paralogs. These matrices penalize most substitutions strongly, ensuring that high-scoring alignments represent genuine evolutionary relationships rather than chance similarities.</p>
+<p>Database searching for remote homologs requires more permissive matrices like BLOSUM45 or PAM250. These matrices assign less negative scores to chemically dissimilar substitutions, allowing the detection of sequences that have diverged substantially while maintaining functional or structural similarity. The trade-off is an increased false positive rate, necessitating careful statistical analysis of search results.</p>
+<p>Multiple sequence alignment programs often employ different matrices at different stages. Initial pairwise alignments might use sensitive matrices like BLOSUM45 to detect all potential homologs, while the refinement phase might switch to BLOSUM62 for more accurate alignment of identified homologs. This staged approach balances sensitivity and specificity throughout the alignment process.</p>
+</section>
+<section id="gap-penalties-and-matrix-scaling" class="level3" data-number="41.6.2">
+<h3 data-number="41.6.2" class="anchored" data-anchor-id="gap-penalties-and-matrix-scaling"><span class="header-section-number">41.6.2</span> Gap Penalties and Matrix Scaling</h3>
+<p>Substitution matrices work in concert with gap penalties to define the full scoring scheme for sequence alignment. The relative scaling between substitution scores and gap penalties critically affects alignment behavior. If gap penalties are too low relative to mismatch penalties, alignments become fragmented with excessive gaps. Conversely, excessive gap penalties force mismatches even when insertions or deletions better explain sequence differences.</p>
+<p>The optimal gap penalties depend on the substitution matrix used. Empirical studies have established recommended gap penalty values for common matrices. For BLOSUM62, gap opening penalties of 10-12 and extension penalties of 1-2 work well for most applications. These values maintain a balance where gaps are introduced when they significantly improve alignment quality without creating unnecessary fragmentation.</p>
+<p>Matrix scaling affects the dynamic range of alignment scores and consequently the statistical significance calculations. While the relative scores within a matrix remain constant under linear scaling, the absolute values impact the numerical precision of alignment algorithms and the interpretation of score thresholds. Modern implementations often use scaled integer matrices for computational efficiency while maintaining the mathematical relationships of the original log-odds scores.</p>
+</section>
+<section id="performance-evaluation-and-benchmarking" class="level3" data-number="41.6.3">
+<h3 data-number="41.6.3" class="anchored" data-anchor-id="performance-evaluation-and-benchmarking"><span class="header-section-number">41.6.3</span> Performance Evaluation and Benchmarking</h3>
+<p>The evaluation of substitution matrix performance requires carefully curated benchmark datasets with known evolutionary relationships. Databases like HOMSTRAD (Homologous Structure Alignment Database) provide structurally aligned protein families for assessing alignment accuracy. Performance metrics include sensitivity (ability to detect true homologs), specificity (ability to reject non-homologs), and alignment accuracy (correctness of residue pairings).</p>
+<p>Receiver Operating Characteristic (ROC) curves quantify the trade-off between sensitivity and specificity across different score thresholds. The area under the ROC curve provides a single measure of matrix performance, with values near 1.0 indicating excellent discrimination between homologs and non-homologs. Comparative studies using these metrics have validated the broad applicability of BLOSUM62 while identifying specific scenarios where alternative matrices excel.</p>
+<p>The concept of “coverage versus errors per query” provides another evaluation framework particularly relevant for database searching. This metric plots the number of true homologs detected against false positives as the score threshold varies. Optimal matrices maximize coverage while minimizing false positives, with the specific balance depending on the application requirements.</p>
+</section>
+</section>
+<section id="future-directions-and-emerging-approaches" class="level2" data-number="41.7">
+<h2 data-number="41.7" class="anchored" data-anchor-id="future-directions-and-emerging-approaches"><span class="header-section-number">41.7</span> Future Directions and Emerging Approaches</h2>
+<section id="machine-learning-and-deep-learning-approaches" class="level3" data-number="41.7.1">
+<h3 data-number="41.7.1" class="anchored" data-anchor-id="machine-learning-and-deep-learning-approaches"><span class="header-section-number">41.7.1</span> Machine Learning and Deep Learning Approaches</h3>
+<p>Recent advances in machine learning have opened new avenues for developing substitution scoring schemes. Deep learning models trained on large sequence databases can learn complex substitution patterns that escape traditional statistical approaches. These models capture higher-order dependencies between positions and can adapt to specific protein families or functional classes.</p>
+<p>Neural network architectures like transformers, which have revolutionized natural language processing, show promise for learning context-dependent substitution patterns. These models can potentially capture long-range interactions and correlated mutations that traditional position-independent matrices miss. The challenge lies in interpreting these complex models and extracting biological insights from their learned representations.</p>
+</section>
+<section id="integration-with-structural-prediction" class="level3" data-number="41.7.2">
+<h3 data-number="41.7.2" class="anchored" data-anchor-id="integration-with-structural-prediction"><span class="header-section-number">41.7.2</span> Integration with Structural Prediction</h3>
+<p>The recent breakthrough in protein structure prediction by AlphaFold and similar systems creates opportunities for structure-informed substitution matrices. As structural data becomes available for most proteins, substitution patterns can be analyzed in their full three-dimensional context. This integration promises matrices that capture the subtle interplay between sequence and structure evolution.</p>
+<p>Contact-dependent substitution matrices represent one promising direction, where substitution scores depend not just on the amino acids being compared but also on their structural neighbors. Such matrices could capture the compensatory mutations that maintain protein stability and the correlated changes that preserve protein-protein interfaces.</p>
+</section>
+<section id="phylogenetic-context-and-lineage-specific-matrices" class="level3" data-number="41.7.3">
+<h3 data-number="41.7.3" class="anchored" data-anchor-id="phylogenetic-context-and-lineage-specific-matrices"><span class="header-section-number">41.7.3</span> Phylogenetic Context and Lineage-Specific Matrices</h3>
+<p>The recognition that substitution patterns vary across evolutionary lineages motivates the development of clade-specific matrices. Matrices optimized for vertebrate proteins may not perform optimally for bacterial sequences, reflecting different evolutionary pressures and constraints. The construction of taxonomically focused matrices requires balancing specificity gains against reduced training data.</p>
+<p>Time-heterogeneous models that allow substitution patterns to vary across evolutionary time represent another frontier. These models could capture the acceleration of evolution following gene duplication or the different selective pressures operating at different evolutionary epochs. The mathematical and computational challenges of such models are substantial, but they promise more accurate evolutionary inference.</p>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="41.8">
+<h2 data-number="41.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">41.8</span> Conclusion</h2>
+<p>Protein substitution matrices stand as one of the foundational achievements in computational biology, transforming qualitative notions of sequence similarity into quantitative frameworks amenable to rigorous analysis. From the theoretical elegance of PAM matrices to the empirical robustness of BLOSUM matrices, these tools have enabled countless discoveries in molecular evolution, structural biology, and functional genomics.</p>
+<p>The evolution of substitution matrices mirrors the broader development of bioinformatics, progressing from simple statistical models to sophisticated machine learning approaches. Each advance builds upon previous insights while addressing limitations, creating an increasingly nuanced understanding of protein evolution. The integration of structural information, phylogenetic context, and machine learning promises continued refinement of these essential tools.</p>
+<p>As we enter an era of massive sequence databases and routine structure prediction, substitution matrices remain relevant but must evolve to meet new challenges. The principles underlying their construction—capturing evolutionary signals, distinguishing homology from chance similarity, and quantifying sequence relationships—will continue to guide the development of next-generation approaches. Whether through deep learning models or physics-based simulations, future methods will build upon the foundation established by PAM and BLOSUM matrices.</p>
+<p>The practical impact of substitution matrices extends far beyond sequence alignment. They inform protein engineering efforts, guide drug design strategies, and underpin phylogenetic reconstruction. Understanding their theoretical basis, construction methods, and appropriate application remains essential for anyone working with protein sequences. As our knowledge of protein evolution deepens and computational methods advance, substitution matrices will continue evolving, maintaining their position as indispensable tools in the computational biologist’s arsenal.</p>
 
 
 </section>
