@@ -12,7 +12,7 @@ book:
   # author: "Kasper Munch"
   sidebar:
     title: "Content"
-    collapse-level: 1
+    collapse-level: 0
     background: "white"      
   # downloads: [pdf]
   chapters:
