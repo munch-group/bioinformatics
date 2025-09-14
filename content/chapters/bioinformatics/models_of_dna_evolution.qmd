@@ -16,6 +16,47 @@ To illustrate this concept, imagine tracking a single nucleotide position over e
 
 The mathematical framework for handling multiple substitutions involves continuous-time Markov chains. These models treat nucleotide substitution as a stochastic process where the probability of change depends only on the current state, not on the sequence's history. The Markov property—memorylessness—simplifies the mathematics while capturing the essential features of the substitution process. The models specify instantaneous rates of change between nucleotides, from which we can derive the probabilities of observing particular nucleotide pairs after any amount of evolutionary time.
 
+## A model of DNA evolution
+
+We need a model that decribes the evolution of DNA. If the base at some position in a DNA sequence is $y \in {A, T, C, G}$, we would like to know the probability that it is $x \in {A, T, C, G}$ after some time bas passed. This is a complicated task, so let's break it into simpler steps.
+
+To model how the base at some DNA position changes over time, we need a way to represent the probability that the base is either a $A$, $T$, $G$, or $C$ at some point in time $t$. We write those four probabilities as $p_A(t)$, $p_T(t)$, $p_G(t)$, and $p_C(t)$. We also need the probabilities that one base changes into another in a tiny span of time $\Delta t$. We call these substitution rates and write the rate of change from base $x$ into base $y$ as $\mu_{xy}$.
+
+Let's for the sake of argument pretend that we know those probabilities. Then the model DNA evolution we need is one that uses those probabilities to compute, say, $p_A(t+\Delta t)$, the probability that our base is $A$ after some tiny bit of extra time $\Delta t$:
+
+$$
+p_A(t+\Delta t) = p_A(t) - p_A(t)\, \mu_{\bullet A} \Delta t + \sum_{x \neq A} p_x(t) \, \mu_{xA} \Delta t
+$$
+
+where $\mu_{\bullet A} = \sum_{x \neq A} \mu_{Ax}$ is the total probability that a $T$, $G$, $C$ mutates into an $A$.
+
+The formula has three terms:
+
+1.  The probability that the base was $A$ at time $t$: $p_A(t)$
+2.  The probability that the base was $A$ at time $t$, but changed into *another* base after $\Delta t$: $p_A(t)\, \mu_{\bullet A} \Delta t$
+3.  The probability that the base was *not* $A$ but changed *into* $A$ after $\sum_{x \neq A} p_x(t) \, \mu_{xA} \Delta t$
+
+We can write this equation for each base and merge them into a single equation:
+$$
+\mathbf{p}(t + \Delta t) = \mathbf{p}(t) + \mathbf{p}(t)Q\Delta t 
+$$
+
+where 
+$$
+\mathbf{p}(t) = (p_A(t),\ p_C(t),\ p_G(t),\ p_T(t))
+$$
+is a vector of the four probabilities and $Q$ is a matrix of all the substitution rates:
+
+$$
+Q = \begin{pmatrix}
+-\mu_{\bullet A} & \mu_{AG} & \mu_{AC} & \mu_{AT} \\
+\mu_{GA} & -\mu_{\bullet G} & \mu_{GC} & \mu_{GT} \\
+\mu_{CA} & \mu_{CG} & -\mu_{\bullet C} &\mu_{CT} \\
+\mu_{TA} & \mu_{TG} & \mu_{TC} & -\mu_{\bullet T}
+\end{pmatrix}
+$$
+
+
 ## The Jukes-Cantor Model: Simplicity and Symmetry
 
 The Jukes-Cantor (JC69) model, proposed in 1969, represents the simplest mathematical description of DNA evolution. This model assumes that all substitutions occur at the same rate and that all nucleotides have equal equilibrium frequencies. Despite its simplicity, or perhaps because of it, the JC69 model provides fundamental insights into the relationship between observed differences and actual evolutionary distances.
@@ -29,14 +70,86 @@ The JC69 model makes several simplifying assumptions:
 4. Sites evolve independently
 5. The substitution rate is constant over time (molecular clock)
 
-Under the JC69 model, each nucleotide has an equal probability of mutating to any of the three other nucleotides. If we denote the substitution rate as α, then the rate matrix Q describing instantaneous rates of change is:
+Under the JC69 model, each nucleotide has an equal probability of mutating to any of the three other nucleotides. 
 
-$$Q = \begin{pmatrix}
+---
+
+$$
+\alpha = \frac{1}{4} \times \mu
+$$
+
+$$
+Q = \begin{pmatrix}
+-3\alpha & \alpha & \alpha & \alpha \\
+  \alpha & -3\alpha & \alpha & \alpha \\
+  \alpha & \alpha & -3\alpha & \alpha \\
+  \alpha & \alpha & \alpha & -3\alpha 
+\end{pmatrix}
+$$
+
+$$
+Q = \begin{pmatrix}
+-\frac{3\mu}{4} & \frac{\mu}{4} & \frac{\mu}{4} & \frac{\mu}{4} \\
+\frac{\mu}{4} & -\frac{3\mu}{4} & \frac{\mu}{4} & \frac{\mu}{4} \\
+\frac{\mu}{4} & \frac{\mu}{4} & -\frac{3\mu}{4} & \frac{\mu}{4} \\
+\frac{\mu}{4} & \frac{\mu}{4} & \frac{\mu}{4} & -\frac{3\mu}{4} \\
+\end{pmatrix}
+$$
+
+$$
+P(t) = \exp(tQ)
+$$
+
+$$
+P = \begin{pmatrix}
+\frac{1}{4}+\frac{3}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} \\
+\frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}+\frac{3}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} \\
+\frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}+\frac{3}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} \\
+\frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \frac{1}{4}+\frac{3}{4}e^{-\mu t} \\
+\end{pmatrix}
+$$
+
+$$
+\nu = \bigg(\frac{\mu}{4} + \frac{\mu}{4} + \frac{\mu}{4}\bigg)t \implies t\mu = \frac{4}{3}\nu
+$$
+
+Measuing time in actual mutations, $\nu$, we get
+
+$$
+P_{ij} = \begin{cases} 
+    \frac{1}{4}+\frac{3}{4}e^{-\mu t} & \text{if} & i = j \\
+    \frac{1}{4}-\frac{1}{4}e^{-\mu t} & \text{if} & i \neq j
+\end{cases}
+$$
+
+We can estimate the total observed substitution rate, $p$, as the fraction of base positions that mutated between two sequences:
+
+
+$$
+p = 3\times \bigg(\frac{1}{4} - \frac{1}{4} e^{-4\nu/3} \bigg)= \frac{3}{4} - \frac{3}{4} e^{-4\nu/3}
+$$
+---
+
+Now, if we isolate $\nu$, we get the formula for the Jukes-Cantor correction:
+
+$$
+\nu = -\frac{3}{4} \ln(1-\frac{4}{3}p)
+$$
+
+
+
+
+
+If we denote the substitution rate as α, then the rate matrix Q describing instantaneous rates of change is:
+
+$$
+Q = \begin{pmatrix}
 -3\alpha & \alpha & \alpha & \alpha \\
 \alpha & -3\alpha & \alpha & \alpha \\
 \alpha & \alpha & -3\alpha & \alpha \\
 \alpha & \alpha & \alpha & -3\alpha
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 The diagonal elements ensure that each row sums to zero, maintaining the property of a rate matrix. The negative diagonal elements represent the rate of leaving each state, while off-diagonal elements represent rates of transition to other states.
 
@@ -44,16 +157,20 @@ The diagonal elements ensure that each row sums to zero, maintaining the propert
 
 The transition probability matrix P(t), giving the probability that nucleotide i changes to nucleotide j over time t, can be derived by exponentiating the rate matrix:
 
-$$P(t) = e^{Qt}$$
+$$
+P(t) = e^{Qt}
+$$
 
 To solve this, we use the eigenvalue decomposition of Q. The rate matrix Q can be written as:
 
-$$Q = \alpha \begin{pmatrix}
+$$
+Q = \alpha \begin{pmatrix}
 -3 & 1 & 1 & 1 \\
 1 & -3 & 1 & 1 \\
 1 & 1 & -3 & 1 \\
 1 & 1 & 1 & -3
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 This matrix has two distinct eigenvalues:
 - λ₁ = 0 (with multiplicity 1)
@@ -178,32 +295,83 @@ These properties make the JC69 model a valuable baseline for understanding molec
 
 ## The Kimura Two-Parameter Model: Transitions and Transversions
 
+---
+
+![Mutation diagram](images/mutation_diagram.png)
+
+$$
+Q = \begin{pmatrix}
+-2\beta-\alpha & \beta & \alpha & \beta \\
+  \beta & -2\beta-\alpha & \beta & \alpha \\
+  \alpha & \beta & -2\beta-\alpha & \beta \\
+  \beta & \alpha & \beta & -2\beta-\alpha
+\end{pmatrix}
+$$
+
+$\alpha$: transition rate. $\beta$: transversion rate. 
+
+$$
+d_{K2P} = - \frac{1}{2} \ln \big( 1 - 2P - Q\big) - \frac{1}{4} \ln \big( 2Q\big)
+$$
+
+$P$ is the fraction of transitions and $Q$ is the fraction of transversions.
+
+---
+
+
 Empirical observations reveal that not all substitutions occur with equal frequency. Transitions (purine to purine or pyrimidine to pyrimidine changes) typically occur more frequently than transversions (purine to pyrimidine or vice versa). The Kimura two-parameter (K80) model, introduced in 1980, incorporates this biological reality while maintaining mathematical tractability.
 
 The K80 model distinguishes between transition rate α and transversion rate β, typically with α > β. The rate matrix becomes:
 
-$$Q = \begin{pmatrix}
+$$
+Q = \begin{pmatrix}
 -(\alpha + 2\beta) & \beta & \alpha & \beta \\
 \beta & -(\alpha + 2\beta) & \beta & \alpha \\
 \alpha & \beta & -(\alpha + 2\beta) & \beta \\
 \beta & \alpha & \beta & -(\alpha + 2\beta)
-\end{pmatrix}$$
+\end{pmatrix}
+$$
 
 This structure reflects the chemical basis of mutations. Transitions involve substitutions between chemically similar bases and often result from spontaneous deamination or tautomeric shifts. Transversions require more dramatic chemical changes and occur less frequently. The transition/transversion ratio (κ = α/β) typically ranges from 2 to 10 in nuclear DNA, though it can be higher in mitochondrial sequences.
 
 The transition probability functions for the K80 model are:
 
-$$P_{ii}(t) = \frac{1}{4} + \frac{1}{4}e^{-4\beta t} + \frac{1}{2}e^{-2(\alpha + \beta)t}$$
-$$P_{ij}^{ts}(t) = \frac{1}{4} + \frac{1}{4}e^{-4\beta t} - \frac{1}{2}e^{-2(\alpha + \beta)t}$$ (transitions)
-$$P_{ij}^{tv}(t) = \frac{1}{4} - \frac{1}{4}e^{-4\beta t}$$ (transversions)
+$$
+P_{ii}(t) = \frac{1}{4} + \frac{1}{4}e^{-4\beta t} + \frac{1}{2}e^{-2(\alpha + \beta)t}
+$$
+
+$$
+_{ij}^{ts}(t) = \frac{1}{4} + \frac{1}{4}e^{-4\beta t} - \frac{1}{2}e^{-2(\alpha + \beta)t}
+$$ 
+
+(transitions)
+
+$$
+P_{ij}^{tv}(t) = \frac{1}{4} - \frac{1}{4}e^{-4\beta t}
+$$
+
+(transversions)
 
 These equations reveal how the model captures both fast (transitions) and slow (transversions) evolutionary processes. The presence of two exponential terms reflects the two-parameter nature of the model, with different decay rates for different types of substitutions.
 
 To estimate evolutionary distances under the K80 model, we need to observe both the proportion of transitional differences (S) and transversional differences (V):
 
-$$d = -\frac{1}{2}\ln(1 - 2S - V) - \frac{1}{4}\ln(1 - 2V)$$
+$$
+d = -\frac{1}{2}\ln(1 - 2S - V) - \frac{1}{4}\ln(1 - 2V)
+$$
 
 This formula shows how the model uses additional information about substitution types to provide more accurate distance estimates than the JC69 model.
+
+
+# Tamuras tre-parameter model
+
+$$
+K_{ab} = -C\ln \bigg(1-\frac{S}{C}-V\bigg) - \frac{1}{2}\bigg(1-C\bigg) \ln \bigg(1-2V\bigg) 
+$$
+
+$$
+C = \text{GC}_{s1} + \text{GC}_{s2} - 2 \times \text{GC}_{s1} \times \text{GC}_{s2}
+$$
 
 ## The Felsenstein 81 Model: Unequal Base Frequencies
 
