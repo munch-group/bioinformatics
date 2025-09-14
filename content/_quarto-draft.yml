@@ -62,7 +62,9 @@ book:
       # problem: GWAS candidates
       - chapters/bioinformatics/gwas.qmd # serves only as extended exercise introduction
       - chapters/bioinformatics/databases.qmd
+      - chapters/bioinformatics/database_searching.qmd
       - chapters/web/gwas_databases/index.qmd # W
+      - chapters/web/gwas.qmd # W
       - chapters/project/translation_project/index.qmd # P
 
       # HMM
@@ -85,8 +87,11 @@ book:
 
       # alignment
       # problem: ccr5     
+      - chapters/bioinformatics/pairwise_global_alignment.qmd
       - chapters/bioinformatics/global_alignment.qmd
       - chapters/bioinformatics/local_alignment.qmd
+
+      - chapters/bioinformatics/multiple_alignment.qmd
       - chapters/project/alignment_project/index.qmd # P
       - chapters/web/ccr5_pwalign/index.qmd # W
 
