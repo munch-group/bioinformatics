@@ -1,31 +1,41 @@
-# Your kind of thing {#sec-classes}
+# Your Own Types of Objects: Python Classes {#sec-classes}
 
-*Do you know what type you are? Python objects do, and this chapter is about how they know.*
+*Do you know what type you are? Python objects do, and this chapter is about how they know and how you can create your own types.*
 
-## What defines the type of an object? {.unnumbered}
+## Introduction: Objects and Types
 
-By now, you know that Python values are objects and that there are different *types* of objects. Strings have the type `str,` integers have the type `int`, and lists have the type `list,` to mention a few of the ones we know. Remember that you can use the built-in `type` function to find out what type an object is. Try this:
+By now, you know that Python values are objects and that there are different *types* of objects. Strings have the type `str`, integers have the type `int`, and lists have the type `list`, to mention a few of the ones we know. Remember that you can use the built-in `type` function to find out what type an object is. Try this:
 
 ```python
-print( type('banana') )
-print( type(4) )
-print( type([]) )
+print(type('banana'))  # <class 'str'>
+print(type(4))         # <class 'int'>
+print(type([]))        # <class 'list'>
 ```
 
-As you already know, objects are "data with associated functionality." Some of this functionality is available as methods: for example, the `upper` and `split` methods of string objects or the `append` and `extend` methods of lists. 
+As you already know, objects are "data with associated functionality." Some of this functionality is available as methods: for example, the `upper` and `split` methods of string objects or the `append` and `extend` methods of lists.
 
-Objects also behave sensibly in different contexts: When if you sum two integers (`4 + 6`), you get their sum `6`, but if you sum two strings (`'ban' + 'ana'`), you get a concatenation of the two strings `'banana'`. The two different types of objects each know how to act with the `+` operator. Another example is iteration: If you iterate over a string, you get one character at a time in order, but if you iterate over a dictionary, you get the keys in the dictionary (in random order). This super convenient context-aware behavior is, in fact, also defined as methods, but more about that below.
+Objects also behave sensibly in different contexts: When you sum two integers (`4 + 6`), you get their sum `10`, but if you sum two strings (`'ban' + 'ana'`), you get a concatenation of the two strings `'banana'`. The two different types of objects each know how to act with the `+` operator. Another example is iteration: If you iterate over a string, you get one character at a time in order, but if you iterate over a dictionary, you get the keys in the dictionary. This super convenient context-aware behavior is, in fact, also defined as methods, but more about that below.
 
-Each object carries its own data: different numbers, different stings, etc., but their *functionality* is shared by all objects of the same type. So all string objects refer to the same definition of the `upper` and `split` methods in the string *type* as graphically illustrated in figure @fig-objects_and_type.
+Each object carries its own data: different numbers, different strings, etc., but their *functionality* is shared by all objects of the same type. So all string objects refer to the same definition of the `upper` and `split` methods in the string *type* as graphically illustrated in figure @fig-objects_and_type.
 
 ![Objects and type. Each object carries its own data, but refers to the type for a definition of its methods.](./images/objects_and_type.png){#fig-objects_and_type width=50%}
 
+## Why Create Your Own Classes?
 
-## Making your own objects {.unnumbered}
+In bioinformatics and computational biology, we often work with complex data structures that represent biological entities. While Python's built-in types are powerful, they may not perfectly capture the essence of domain-specific concepts. For instance, a DNA sequence is more than just a string—it has specific properties and behaviors unique to biological sequences. A phylogenetic tree is more than nested lists—it represents evolutionary relationships with specific traversal and analysis methods.
 
-Imagine creating your own types of objects carrying a particular kind of data and functionality. "Data" can be anything. In bioinformatics, it could be an open reading frame, a patient profile, or a tree. Fortunately, Python lets us do this using something called *classes*. Classes define new kinds of objects and the functionality they provide. So, by defining a new class, you define a new type of object, and the methods you define in that class are available to objects of the type that particular kind (type). 
+Creating custom classes allows us to:
+1. **Encapsulate related data and functionality** in a single, coherent unit
+2. **Model real-world entities** more naturally in our code
+3. **Reuse code** through well-defined interfaces
+4. **Maintain code** more easily through clear organization
+5. **Extend functionality** through inheritance and composition
 
-Let's define a new class, `Point,` that represents a point in a two-dimensional coordinate system. As shown in @fig-points, each such point has an x-value and a y-value, so we need our new point object to hold two numbers representing those values.
+## Basic Class Definition
+
+Imagine creating your own types of objects carrying a particular kind of data and functionality. "Data" can be anything. In bioinformatics, it could be an open reading frame, a patient profile, or a phylogenetic tree. Fortunately, Python lets us do this using something called *classes*. Classes define new kinds of objects and the functionality they provide. So, by defining a new class, you define a new type of object, and the methods you define in that class are available to objects of that particular type.
+
+Let's define a new class, `Point`, that represents a point in a two-dimensional coordinate system. As shown in @fig-points, each such point has an x-value and a y-value, so we need our new point object to hold two numbers representing those values.
 
 ![Points](./images/points.png){#fig-points width=60%}
 
@@ -33,17 +43,888 @@ Here is how we define the `Point` class:
 
 ```python
 class Point:
-
     def __init__(self, x, y):
         self.x = x
         self.y = y
 ```
 
-Let us break it down: We use the keyword `class` followed by the name of the class we define. Nested under that statement, we can put a 
+Let us break it down: We use the keyword `class` followed by the name of the class we define. By convention, class names in Python use CamelCase (also called PascalCase), where each word starts with a capital letter. Nested under that statement, we define methods that will be available to all instances of this class.
 
+### The Constructor: `__init__`
 
+The `__init__` method is special—it's called a constructor. This method is automatically called when we create a new instance of the class. The parameters it accepts (besides `self`) determine what arguments we need to provide when creating an object:
 
-<!-- TODO: Finish chapter about classes -->
+```python
+# Creating instances of the Point class
+p1 = Point(3, 4)
+p2 = Point(-1, 2)
+p3 = Point(0, 0)
 
+# Accessing attributes
+print(f"Point 1: ({p1.x}, {p1.y})")  # Point 1: (3, 4)
+print(f"Point 2: ({p2.x}, {p2.y})")  # Point 2: (-1, 2)
+```
 
+The mysterious `self` parameter deserves special attention. It represents the instance being created or operated on. When Python calls `__init__`, it automatically passes the newly created object as the first argument. Inside `__init__`, we use `self` to store data in the object by creating attributes: `self.x = x` creates an attribute named `x` and stores the value of the parameter `x` in it.
 
+## Instance Methods
+
+Methods are functions defined inside a class. They automatically receive the instance as their first parameter (conventionally named `self`). Let's add some methods to our `Point` class:
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def distance_from_origin(self):
+        """Calculate the distance from this point to the origin."""
+        return (self.x ** 2 + self.y ** 2) ** 0.5
+
+    def distance_to(self, other):
+        """Calculate the distance from this point to another point."""
+        dx = self.x - other.x
+        dy = self.y - other.y
+        return (dx ** 2 + dy ** 2) ** 0.5
+
+    def move(self, dx, dy):
+        """Move the point by dx and dy."""
+        self.x += dx
+        self.y += dy
+
+    def __str__(self):
+        """Return a string representation of the point."""
+        return f"Point({self.x}, {self.y})"
+```
+
+Now we can use these methods:
+
+```python
+p1 = Point(3, 4)
+p2 = Point(0, 0)
+
+print(p1.distance_from_origin())  # 5.0
+print(p1.distance_to(p2))         # 5.0
+
+p1.move(1, 1)
+print(p1)  # Point(4, 5)
+```
+
+## Special Methods: The Magic Behind Python's Elegance
+
+Python classes can define special methods (also called magic methods or dunder methods) that enable objects to work with built-in Python operations. These methods have names surrounded by double underscores.
+
+### String Representation Methods
+
+The `__str__` method we saw above defines how an object is converted to a string for display. There's also `__repr__`, which provides a more detailed representation:
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        """Human-readable string representation."""
+        return f"({self.x}, {self.y})"
+
+    def __repr__(self):
+        """Developer-friendly representation."""
+        return f"Point(x={self.x}, y={self.y})"
+
+p = Point(3, 4)
+print(str(p))   # (3, 4)
+print(repr(p))  # Point(x=3, y=4)
+```
+
+### Arithmetic Operations
+
+We can define how objects behave with mathematical operators:
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        """Define addition for points."""
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        """Define subtraction for points."""
+        return Point(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, scalar):
+        """Define scalar multiplication."""
+        return Point(self.x * scalar, self.y * scalar)
+
+    def __eq__(self, other):
+        """Define equality comparison."""
+        return self.x == other.x and self.y == other.y
+
+# Using the operators
+p1 = Point(3, 4)
+p2 = Point(1, 2)
+
+p3 = p1 + p2  # Point(4, 6)
+p4 = p1 - p2  # Point(2, 2)
+p5 = p1 * 2   # Point(6, 8)
+
+print(p1 == Point(3, 4))  # True
+```
+
+### Container-like Behavior
+
+Classes can behave like containers (lists, dictionaries) by implementing appropriate methods:
+
+```python
+class DNASequence:
+    def __init__(self, sequence):
+        self.sequence = sequence.upper()
+
+    def __len__(self):
+        """Return the length of the sequence."""
+        return len(self.sequence)
+
+    def __getitem__(self, index):
+        """Allow indexing and slicing."""
+        return self.sequence[index]
+
+    def __contains__(self, subsequence):
+        """Allow 'in' operator."""
+        return subsequence in self.sequence
+
+    def __iter__(self):
+        """Make the object iterable."""
+        return iter(self.sequence)
+
+# Using the DNA sequence
+dna = DNASequence("ATGCGATCG")
+
+print(len(dna))           # 9
+print(dna[0])             # A
+print(dna[2:5])           # GCG
+print("GAT" in dna)       # True
+
+for base in dna:
+    print(base, end=" ")  # A T G C G A T C G
+```
+
+## Class Variables vs Instance Variables
+
+So far, we've seen instance variables (attributes specific to each object). Classes can also have class variables shared by all instances:
+
+```python
+class Atom:
+    # Class variable - shared by all instances
+    element_symbols = {
+        1: "H", 2: "He", 3: "Li", 4: "Be", 5: "B",
+        6: "C", 7: "N", 8: "O", 9: "F", 10: "Ne"
+    }
+
+    def __init__(self, atomic_number, x, y, z):
+        # Instance variables - unique to each instance
+        self.atomic_number = atomic_number
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def get_element(self):
+        """Return the element symbol for this atom."""
+        return self.element_symbols.get(self.atomic_number, "Unknown")
+
+    @classmethod
+    def add_element(cls, atomic_number, symbol):
+        """Add a new element to the periodic table."""
+        cls.element_symbols[atomic_number] = symbol
+
+# All atoms share the same element_symbols dictionary
+atom1 = Atom(6, 0, 0, 0)
+atom2 = Atom(8, 1, 0, 0)
+
+print(atom1.get_element())  # C
+print(atom2.get_element())  # O
+
+# Adding a new element affects all instances
+Atom.add_element(11, "Na")
+atom3 = Atom(11, 2, 0, 0)
+print(atom3.get_element())  # Na
+```
+
+## Inheritance: Building on Existing Classes
+
+One of the most powerful features of object-oriented programming is inheritance, which allows us to create new classes based on existing ones. The new class (child or subclass) inherits attributes and methods from the parent class (superclass) and can add or modify functionality.
+
+```python
+class Sequence:
+    """Base class for biological sequences."""
+
+    def __init__(self, sequence, name=""):
+        self.sequence = sequence.upper()
+        self.name = name
+
+    def __len__(self):
+        return len(self.sequence)
+
+    def __str__(self):
+        return f"{self.name}: {self.sequence}" if self.name else self.sequence
+
+    def count(self, subsequence):
+        """Count occurrences of a subsequence."""
+        return self.sequence.count(subsequence)
+
+class DNASequence(Sequence):
+    """DNA sequence with additional DNA-specific methods."""
+
+    def __init__(self, sequence, name=""):
+        # Validate DNA sequence
+        valid_bases = set("ATGCN")
+        if not all(base in valid_bases for base in sequence.upper()):
+            raise ValueError("Invalid DNA sequence")
+        super().__init__(sequence, name)
+
+    def transcribe(self):
+        """Convert DNA to RNA."""
+        return RNASequence(self.sequence.replace('T', 'U'),
+                          f"{self.name}_RNA" if self.name else "")
+
+    def gc_content(self):
+        """Calculate GC content percentage."""
+        gc_count = self.sequence.count('G') + self.sequence.count('C')
+        return (gc_count / len(self.sequence)) * 100 if len(self.sequence) > 0 else 0
+
+    def reverse_complement(self):
+        """Return the reverse complement of the DNA sequence."""
+        complement = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G', 'N': 'N'}
+        rev_comp = ''.join(complement[base] for base in self.sequence[::-1])
+        return DNASequence(rev_comp, f"{self.name}_RC" if self.name else "")
+
+class RNASequence(Sequence):
+    """RNA sequence with RNA-specific methods."""
+
+    def __init__(self, sequence, name=""):
+        # Validate RNA sequence
+        valid_bases = set("AUGCN")
+        if not all(base in valid_bases for base in sequence.upper()):
+            raise ValueError("Invalid RNA sequence")
+        super().__init__(sequence, name)
+
+    def translate(self):
+        """Translate RNA to protein."""
+        codon_table = {
+            'UUU': 'F', 'UUC': 'F', 'UUA': 'L', 'UUG': 'L',
+            'UCU': 'S', 'UCC': 'S', 'UCA': 'S', 'UCG': 'S',
+            'UAU': 'Y', 'UAC': 'Y', 'UAA': '*', 'UAG': '*',
+            'UGU': 'C', 'UGC': 'C', 'UGA': '*', 'UGG': 'W',
+            # ... (abbreviated for space)
+        }
+
+        protein = []
+        for i in range(0, len(self.sequence) - 2, 3):
+            codon = self.sequence[i:i+3]
+            amino_acid = codon_table.get(codon, 'X')
+            if amino_acid == '*':
+                break
+            protein.append(amino_acid)
+
+        return ProteinSequence(''.join(protein),
+                               f"{self.name}_protein" if self.name else "")
+
+class ProteinSequence(Sequence):
+    """Protein sequence with protein-specific methods."""
+
+    def molecular_weight(self):
+        """Calculate approximate molecular weight."""
+        weights = {
+            'A': 89, 'R': 174, 'N': 132, 'D': 133, 'C': 121,
+            'E': 147, 'Q': 146, 'G': 75, 'H': 155, 'I': 131,
+            'L': 131, 'K': 146, 'M': 149, 'F': 165, 'P': 115,
+            'S': 105, 'T': 119, 'W': 204, 'Y': 181, 'V': 117
+        }
+        return sum(weights.get(aa, 0) for aa in self.sequence)
+
+# Using inheritance
+dna = DNASequence("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG", "gene1")
+print(f"DNA length: {len(dna)}")
+print(f"GC content: {dna.gc_content():.1f}%")
+
+rna = dna.transcribe()
+print(f"RNA: {rna.sequence[:20]}...")
+
+protein = rna.translate()
+print(f"Protein: {protein.sequence}")
+```
+
+## Composition: Objects Containing Objects
+
+Sometimes, rather than inheritance, it's better to use composition—having objects contain other objects:
+
+```python
+class Gene:
+    """A gene with regulatory and coding regions."""
+
+    def __init__(self, name, chromosome, start, end):
+        self.name = name
+        self.chromosome = chromosome
+        self.start = start
+        self.end = end
+        self.exons = []
+        self.promoter = None
+
+    def add_exon(self, start, end, sequence):
+        """Add an exon to the gene."""
+        exon = Exon(start, end, sequence)
+        self.exons.append(exon)
+        self.exons.sort(key=lambda e: e.start)
+
+    def set_promoter(self, sequence, position):
+        """Set the gene's promoter."""
+        self.promoter = Promoter(sequence, position)
+
+    def get_coding_sequence(self):
+        """Concatenate all exon sequences."""
+        return ''.join(exon.sequence for exon in self.exons)
+
+    def get_length(self):
+        """Calculate total gene length."""
+        return self.end - self.start + 1
+
+    def __str__(self):
+        return f"Gene: {self.name} ({self.chromosome}:{self.start}-{self.end})"
+
+class Exon:
+    """An exon within a gene."""
+
+    def __init__(self, start, end, sequence):
+        self.start = start
+        self.end = end
+        self.sequence = sequence
+
+    def __len__(self):
+        return self.end - self.start + 1
+
+class Promoter:
+    """A promoter region."""
+
+    def __init__(self, sequence, position):
+        self.sequence = sequence
+        self.position = position
+
+    def find_tata_box(self):
+        """Find TATA box in promoter."""
+        tata_variants = ['TATAAA', 'TATAWAW', 'TATAWAR']
+        for variant in tata_variants:
+            if variant in self.sequence:
+                return self.sequence.index(variant)
+        return -1
+
+# Using composition
+brca1 = Gene("BRCA1", "chr17", 43044295, 43125483)
+brca1.set_promoter("AGCTATAAAAGCGCGC", 43044200)
+brca1.add_exon(43044295, 43044400, "ATGGATTTATCTGCTCTTCGC")
+brca1.add_exon(43045800, 43045950, "GTGAAGCAGCATCTGGGTGT")
+
+print(brca1)
+print(f"Gene length: {brca1.get_length()} bp")
+print(f"Number of exons: {len(brca1.exons)}")
+```
+
+## Properties: Controlled Access to Attributes
+
+Python provides properties as a way to control access to attributes, allowing validation and computed attributes:
+
+```python
+class Organism:
+    """Represents a biological organism."""
+
+    def __init__(self, scientific_name, common_name=""):
+        self.scientific_name = scientific_name
+        self.common_name = common_name
+        self._genome_size = 0  # Private attribute (convention)
+
+    @property
+    def genome_size(self):
+        """Get genome size in base pairs."""
+        return self._genome_size
+
+    @genome_size.setter
+    def genome_size(self, value):
+        """Set genome size with validation."""
+        if value < 0:
+            raise ValueError("Genome size cannot be negative")
+        self._genome_size = value
+
+    @property
+    def genome_size_mb(self):
+        """Get genome size in megabases (computed property)."""
+        return self._genome_size / 1_000_000
+
+    @property
+    def genus(self):
+        """Extract genus from scientific name."""
+        return self.scientific_name.split()[0] if self.scientific_name else ""
+
+    @property
+    def species(self):
+        """Extract species from scientific name."""
+        parts = self.scientific_name.split()
+        return parts[1] if len(parts) > 1 else ""
+
+# Using properties
+human = Organism("Homo sapiens", "Human")
+human.genome_size = 3_200_000_000
+
+print(f"Organism: {human.scientific_name}")
+print(f"Genus: {human.genus}")
+print(f"Species: {human.species}")
+print(f"Genome size: {human.genome_size_mb:.1f} Mb")
+
+# This would raise an error:
+# human.genome_size = -100  # ValueError: Genome size cannot be negative
+```
+
+## Static Methods and Class Methods
+
+Besides instance methods, classes can have static methods (not bound to instances) and class methods (bound to the class):
+
+```python
+class SequenceAnalyzer:
+    """Utility class for sequence analysis."""
+
+    nucleotide_weights = {
+        'A': 331.2, 'T': 322.2, 'U': 308.2,
+        'G': 347.2, 'C': 307.2
+    }
+
+    @staticmethod
+    def is_palindrome(sequence):
+        """Check if a sequence is a palindrome (static method)."""
+        sequence = sequence.upper()
+        return sequence == sequence[::-1]
+
+    @staticmethod
+    def hamming_distance(seq1, seq2):
+        """Calculate Hamming distance between two sequences."""
+        if len(seq1) != len(seq2):
+            raise ValueError("Sequences must have equal length")
+        return sum(c1 != c2 for c1, c2 in zip(seq1, seq2))
+
+    @classmethod
+    def molecular_weight_dna(cls, sequence):
+        """Calculate molecular weight of DNA (class method)."""
+        weight = sum(cls.nucleotide_weights.get(base, 0)
+                    for base in sequence.upper())
+        # Subtract water molecules for phosphodiester bonds
+        return weight - 18.0 * (len(sequence) - 1)
+
+    @classmethod
+    def gc_skew(cls, sequence, window_size=100):
+        """Calculate GC skew in sliding windows."""
+        sequence = sequence.upper()
+        skews = []
+
+        for i in range(0, len(sequence) - window_size + 1):
+            window = sequence[i:i + window_size]
+            g_count = window.count('G')
+            c_count = window.count('C')
+
+            if g_count + c_count > 0:
+                skew = (g_count - c_count) / (g_count + c_count)
+            else:
+                skew = 0
+
+            skews.append(skew)
+
+        return skews
+
+# Using static and class methods
+print(SequenceAnalyzer.is_palindrome("ATCGCGAT"))  # False
+print(SequenceAnalyzer.is_palindrome("ATCGCTA"))   # False
+print(SequenceAnalyzer.hamming_distance("ATCG", "ATTG"))  # 1
+
+dna_weight = SequenceAnalyzer.molecular_weight_dna("ATCG")
+print(f"Molecular weight: {dna_weight:.1f} Da")
+```
+
+## Advanced Topics: Multiple Inheritance and Mixins
+
+Python supports multiple inheritance, where a class can inherit from multiple parent classes. This can be used to create mixins—classes that provide specific functionality to be mixed into other classes:
+
+```python
+class Serializable:
+    """Mixin for JSON serialization."""
+
+    def to_json(self):
+        """Convert object to JSON."""
+        import json
+        return json.dumps(self.__dict__)
+
+    @classmethod
+    def from_json(cls, json_str):
+        """Create object from JSON."""
+        import json
+        data = json.loads(json_str)
+        return cls(**data)
+
+class Comparable:
+    """Mixin for comparison operations."""
+
+    def __lt__(self, other):
+        return self.compare_key() < other.compare_key()
+
+    def __le__(self, other):
+        return self.compare_key() <= other.compare_key()
+
+    def __gt__(self, other):
+        return self.compare_key() > other.compare_key()
+
+    def __ge__(self, other):
+        return self.compare_key() >= other.compare_key()
+
+    def compare_key(self):
+        """Override this method to define comparison behavior."""
+        raise NotImplementedError
+
+class Mutation(Serializable, Comparable):
+    """A genetic mutation with serialization and comparison."""
+
+    def __init__(self, chromosome, position, ref, alt, gene=""):
+        self.chromosome = chromosome
+        self.position = position
+        self.ref = ref
+        self.alt = alt
+        self.gene = gene
+
+    def compare_key(self):
+        """Define comparison based on genomic position."""
+        # Convert chromosome to number for comparison
+        chr_num = self.chromosome.replace("chr", "")
+        chr_num = 23 if chr_num == "X" else 24 if chr_num == "Y" else int(chr_num)
+        return (chr_num, self.position)
+
+    def __str__(self):
+        return f"{self.chromosome}:{self.position} {self.ref}>{self.alt}"
+
+# Using multiple inheritance
+mut1 = Mutation("chr7", 140453136, "A", "T", "BRAF")
+mut2 = Mutation("chr3", 178936091, "G", "A", "PIK3CA")
+
+# Comparison (from Comparable)
+print(mut1 < mut2)  # False (chr7 comes after chr3)
+
+# Serialization (from Serializable)
+json_str = mut1.to_json()
+print(json_str)
+
+# Reconstruction from JSON
+mut3 = Mutation.from_json(json_str)
+print(mut3)
+```
+
+## Best Practices in Class Design
+
+When designing classes, follow these principles for maintainable and robust code:
+
+### 1. Single Responsibility Principle
+Each class should have one primary purpose. Don't create "god classes" that do everything:
+
+```python
+# Good: Separate concerns
+class SequenceReader:
+    """Handles reading sequences from files."""
+    def read_fasta(self, filename):
+        pass
+
+class SequenceAligner:
+    """Handles sequence alignment."""
+    def align(self, seq1, seq2):
+        pass
+
+# Bad: Too many responsibilities
+class SequenceDoEverything:
+    def read_fasta(self, filename):
+        pass
+    def align(self, seq1, seq2):
+        pass
+    def translate(self):
+        pass
+    def find_orfs(self):
+        pass
+```
+
+### 2. Encapsulation
+Hide internal implementation details and provide clean interfaces:
+
+```python
+class Phylogeny:
+    """A phylogenetic tree."""
+
+    def __init__(self):
+        self._nodes = []  # Private (by convention)
+        self._root = None
+
+    def add_node(self, node):
+        """Public interface for adding nodes."""
+        self._validate_node(node)
+        self._nodes.append(node)
+
+    def _validate_node(self, node):
+        """Private helper method."""
+        if not isinstance(node, TreeNode):
+            raise TypeError("Must be a TreeNode instance")
+```
+
+### 3. Documentation
+Always document your classes and methods:
+
+```python
+class AlignmentScore:
+    """
+    Represents an alignment score with associated metadata.
+
+    This class encapsulates alignment scoring information including
+    the raw score, normalized score, and statistical significance.
+
+    Attributes:
+        raw_score (float): The raw alignment score
+        length (int): Length of the alignment
+        method (str): Scoring method used
+
+    Example:
+        >>> score = AlignmentScore(150.5, 250, "BLOSUM62")
+        >>> print(score.normalized_score())
+        0.602
+    """
+
+    def __init__(self, raw_score, length, method="BLOSUM62"):
+        """
+        Initialize an AlignmentScore.
+
+        Args:
+            raw_score: The raw alignment score
+            length: Length of the alignment
+            method: Scoring matrix used (default: BLOSUM62)
+        """
+        self.raw_score = raw_score
+        self.length = length
+        self.method = method
+
+    def normalized_score(self):
+        """
+        Calculate normalized score (score per position).
+
+        Returns:
+            float: The normalized score
+        """
+        return self.raw_score / self.length if self.length > 0 else 0
+```
+
+## Real-World Example: A Complete Bioinformatics Class
+
+Let's create a comprehensive class for handling biological sequences with practical features:
+
+```python
+class BioSequence:
+    """
+    A comprehensive biological sequence class.
+
+    Handles DNA, RNA, and protein sequences with validation,
+    analysis methods, and file I/O capabilities.
+    """
+
+    SEQUENCE_TYPES = {'DNA', 'RNA', 'PROTEIN'}
+
+    DNA_BASES = set('ATGCN')
+    RNA_BASES = set('AUGCN')
+    AMINO_ACIDS = set('ACDEFGHIKLMNPQRSTVWY*X')
+
+    def __init__(self, sequence, seq_type, seq_id="", description=""):
+        """Initialize a biological sequence."""
+        self.seq_type = seq_type.upper()
+        if self.seq_type not in self.SEQUENCE_TYPES:
+            raise ValueError(f"Invalid sequence type: {seq_type}")
+
+        self.sequence = sequence.upper()
+        self._validate_sequence()
+
+        self.seq_id = seq_id
+        self.description = description
+        self.annotations = {}
+
+    def _validate_sequence(self):
+        """Validate sequence based on type."""
+        if self.seq_type == 'DNA':
+            valid = self.DNA_BASES
+        elif self.seq_type == 'RNA':
+            valid = self.RNA_BASES
+        else:  # PROTEIN
+            valid = self.AMINO_ACIDS
+
+        invalid_chars = set(self.sequence) - valid
+        if invalid_chars:
+            raise ValueError(f"Invalid characters for {self.seq_type}: {invalid_chars}")
+
+    def __len__(self):
+        """Return sequence length."""
+        return len(self.sequence)
+
+    def __str__(self):
+        """String representation."""
+        if self.seq_id:
+            return f">{self.seq_id} {self.description}\n{self.sequence[:60]}..."
+        return self.sequence[:60] + "..." if len(self.sequence) > 60 else self.sequence
+
+    def __repr__(self):
+        """Developer representation."""
+        return f"BioSequence(type={self.seq_type}, length={len(self)}, id={self.seq_id})"
+
+    def __getitem__(self, index):
+        """Enable slicing and indexing."""
+        if isinstance(index, slice):
+            return BioSequence(
+                self.sequence[index],
+                self.seq_type,
+                f"{self.seq_id}_slice",
+                f"Slice of {self.description}"
+            )
+        return self.sequence[index]
+
+    def __eq__(self, other):
+        """Check sequence equality."""
+        if not isinstance(other, BioSequence):
+            return False
+        return self.sequence == other.sequence and self.seq_type == other.seq_type
+
+    def composition(self):
+        """Calculate composition of sequence elements."""
+        from collections import Counter
+        return dict(Counter(self.sequence))
+
+    def gc_content(self):
+        """Calculate GC content for nucleotide sequences."""
+        if self.seq_type not in ['DNA', 'RNA']:
+            raise ValueError("GC content only applicable to nucleotide sequences")
+
+        gc_count = self.sequence.count('G') + self.sequence.count('C')
+        return (gc_count / len(self)) * 100 if len(self) > 0 else 0
+
+    def find_motif(self, motif):
+        """Find all occurrences of a motif."""
+        positions = []
+        motif = motif.upper()
+        start = 0
+
+        while True:
+            pos = self.sequence.find(motif, start)
+            if pos == -1:
+                break
+            positions.append(pos)
+            start = pos + 1
+
+        return positions
+
+    def to_fasta(self):
+        """Convert to FASTA format."""
+        header = f">{self.seq_id}"
+        if self.description:
+            header += f" {self.description}"
+
+        # Format sequence in 60-character lines
+        lines = [header]
+        for i in range(0, len(self.sequence), 60):
+            lines.append(self.sequence[i:i+60])
+
+        return '\n'.join(lines)
+
+    @classmethod
+    def from_fasta(cls, fasta_string):
+        """Create BioSequence from FASTA string."""
+        lines = fasta_string.strip().split('\n')
+        if not lines or not lines[0].startswith('>'):
+            raise ValueError("Invalid FASTA format")
+
+        header = lines[0][1:]  # Remove '>'
+        parts = header.split(None, 1)
+        seq_id = parts[0] if parts else ""
+        description = parts[1] if len(parts) > 1 else ""
+
+        sequence = ''.join(lines[1:])
+
+        # Guess sequence type
+        seq_upper = sequence.upper()
+        if all(c in 'ATGCN' for c in seq_upper):
+            seq_type = 'DNA'
+        elif all(c in 'AUGCN' for c in seq_upper):
+            seq_type = 'RNA'
+        else:
+            seq_type = 'PROTEIN'
+
+        return cls(sequence, seq_type, seq_id, description)
+
+    def annotate(self, feature, start, end, notes=""):
+        """Add annotation to sequence."""
+        if feature not in self.annotations:
+            self.annotations[feature] = []
+
+        self.annotations[feature].append({
+            'start': start,
+            'end': end,
+            'notes': notes
+        })
+
+    def get_features(self, feature_type=None):
+        """Get annotated features."""
+        if feature_type:
+            return self.annotations.get(feature_type, [])
+        return self.annotations
+
+# Using the comprehensive BioSequence class
+seq = BioSequence(
+    "ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG",
+    "DNA",
+    "BRCA1_exon1",
+    "Breast cancer gene 1, exon 1"
+)
+
+print(seq)
+print(f"Length: {len(seq)}")
+print(f"GC content: {seq.gc_content():.1f}%")
+print(f"Composition: {seq.composition()}")
+
+# Add annotations
+seq.annotate("start_codon", 0, 3, "ATG start codon")
+seq.annotate("stop_codon", 37, 40, "TAG stop codon")
+
+# Find motifs
+cg_positions = seq.find_motif("CG")
+print(f"CG dinucleotide positions: {cg_positions}")
+
+# Convert to FASTA
+print("\nFASTA format:")
+print(seq.to_fasta())
+
+# Slicing
+subseq = seq[10:20]
+print(f"\nSubsequence: {subseq.sequence}")
+```
+
+## Conclusion
+
+Python classes provide a powerful mechanism for creating custom data types that model real-world entities and concepts. In bioinformatics, classes allow us to create abstractions that closely match biological entities—sequences, genes, proteins, mutations, and phylogenetic trees—making our code more intuitive and maintainable.
+
+Key takeaways from this comprehensive exploration of Python classes:
+
+1. **Classes define new types** of objects with their own data and methods
+2. **The `__init__` constructor** initializes new instances with specific data
+3. **Instance methods** operate on individual objects using `self`
+4. **Special methods** enable natural Python syntax (operators, iteration, etc.)
+5. **Inheritance** allows building specialized classes from general ones
+6. **Composition** enables complex objects built from simpler ones
+7. **Properties** provide controlled access to attributes
+8. **Class and static methods** offer functionality not tied to instances
+9. **Good design principles** lead to maintainable, reusable code
+
+By mastering classes, you gain the ability to write more organized, reusable, and expressive code. Whether you're analyzing genomic sequences, modeling protein structures, or building phylogenetic trees, classes provide the foundation for robust bioinformatics software.
+
+The journey from simple classes to complex inheritance hierarchies mirrors the journey from basic programming to software engineering. As you develop more sophisticated bioinformatics applications, you'll find that well-designed classes make your code not just functional, but elegant and maintainable. The investment in learning object-oriented programming pays dividends in code quality, reusability, and your ability to tackle complex biological problems with computational solutions.
