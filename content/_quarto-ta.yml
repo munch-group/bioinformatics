@@ -35,7 +35,7 @@ book:
     #   - weekplan.qmd
     # - weekplan.qmd
     - supplementary/slides2024.qmd
-    - supplementary/recordings2024.qmd
+    - supplementary/recordings2025.qmd
     - assignments.qmd
     - part: "Learning Python"
       chapters:

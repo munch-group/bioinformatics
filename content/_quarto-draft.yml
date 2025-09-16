@@ -124,7 +124,7 @@ book:
     - part: "Supplementary"
       chapters: 
       - supplementary/project_files.qmd
-      - supplementary/recordings2024.qmd
+      - supplementary/recordings2025.qmd
       - supplementary/slides2024.qmd
       - supplementary/bioinformatics_resources.qmd
     - assignments.qmd

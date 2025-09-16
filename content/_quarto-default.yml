@@ -20,7 +20,7 @@ book:
     - index.qmd
     - about.qmd
     - curriculum.qmd
-    - supplementary/slides2024.qmd
+    - supplementary/slides2025.qmd
     - supplementary/recordings2024.qmd
     - assignments.qmd
     - part: "Learning Python"
