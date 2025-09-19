@@ -130,6 +130,10 @@ The topics for this week's exercises are statements, variables, operators, expre
 
 **Exercises:**  
 
+::: {.callout-note}
+Only MO and Bio classes attend the exercises this week. MM classes do not. The exercise is repeated next week for the MM classes to attend*
+:::
+
 The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in @sec-controlflow and @sec-functions. Do what you can at home and do the rest at the TA session.
 
 
@@ -148,7 +152,7 @@ The topics for this week's exercises are if, else, logic, and functions. You are
 **Exercises:**  
 
 ::: {.callout-note}
-Only MO and Bio classes attend the exercises this week. MM classes do not. The exercise is repeated next week for the MM classes to attend*
+Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*.
 :::
 
 The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters @sec-objects, @sec-lists, @sec-dictionaries, and @sec-tuples. Do what you can at home and do the rest at the TA session.
@@ -171,9 +175,7 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 
 **Exercises:**  
 
-::: {.callout-note}
-Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*.
-:::
+
 
 The topics for this week are iteration and data structures. You are meant to complete all the exercises in @sec-iteration and @sec-files.
 
