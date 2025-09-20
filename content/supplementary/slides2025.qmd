@@ -1,0 +1,67 @@
+
+# Lecture slides {.unnumbered}
+
+**NB:** You need to be logged into Brightspace to download the slides.
+
+<!-- Upload slides to Brightspace using this link: -->
+<!-- https://brightspace.au.dk/d2l/lp/manageFiles/main.d2l?ou=185077 -->
+
+- Week 1
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWsxX01vbmRheS5wZGY/BP2024_week1_Monday.pdf?ou=145685)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWsxX1dlZG5lc2RheS5wZGY/BP2024_week1_Wednesday.pdf?ou=145685)
+
+- Week 3
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWsyX01vbmRheS5wZGY/BP2024_week2_Monday.pdf?ou=145685)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWsyX1dlZG5lc2RheS5wZGY/BP2024_week2_Wednesday.pdf?ou=145685)
+
+- Week 4
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWszX01vbmRheS5wZGY/BP2024_week3_Monday.pdf?ou=145685)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWszX1dlZG5lc2RheS5wZGY/BP2024_week3_Wednesday.pdf?ou=145685)
+
+- Week 5
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs0X01vbmRheS5wZGY/BP2024_week4_Monday.pdf?ou=145685)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs0X1dlZG5lc2RheS5wZGY/BP2024_week4_Wednesday.pdf?ou=145685)
+
+<!--
+
+- Week 6
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 7
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 8
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 9
+    - [Monday]()
+   - The Wednesday lecture was canceled.
+
+- Week 10
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 11
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 12
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 13
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 14
+    - [Monday]()
+    - [Wednesday]()
+
+- Week 15
+    - [Monday]()
+    - [Wednesday]()
+
+-->
