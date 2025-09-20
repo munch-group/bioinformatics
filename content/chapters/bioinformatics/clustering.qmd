@@ -22,7 +22,7 @@ The concept of homology plays a central role in sequence clustering. Homologous 
 
 Alignment quality significantly affects clustering results. Before sequences can be clustered, they must be aligned to identify corresponding positions. For closely related sequences, this alignment is straightforward, but for distantly related sequences, alignment becomes challenging and uncertain. Multiple sequence alignment algorithms must balance biological accuracy with computational efficiency, particularly when dealing with large datasets. Progressive alignment methods, which align sequences in the order determined by a guide tree, are commonly used but can propagate early errors throughout the alignment. Iterative refinement methods can improve alignment quality but at increased computational cost.
 
-## Which pair to cluster next
+## Which pair to cluster next  {.unnumbered}
 
 The decision of which sequences or clusters to merge at each step is crucial in hierarchical clustering algorithms. This decision is based on a linkage criterion that defines the distance between clusters based on the distances between their constituent sequences. The choice of linkage criterion can dramatically affect the resulting cluster structure and its biological interpretation.
 
@@ -36,7 +36,7 @@ Ward's method, another popular linkage criterion, minimizes the within-cluster v
 
 The choice of linkage criterion should be guided by both the biological question and the characteristics of the data. For evolutionary studies, methods that respect the tree-like nature of descent with modification are preferred. For functional classification, methods that produce compact, well-separated clusters might be more appropriate. It's often valuable to try multiple linkage criteria and compare the results, as consistent patterns across methods provide stronger evidence for genuine biological relationships.
 
-## How to computes distances from the new cluster
+## How to computes distances from the new cluster  {.unnumbered}
 
 Once two sequences or clusters have been merged, we need a method to compute distances from this new cluster to all remaining sequences and clusters. This computation must be efficient, as it will be performed many times during the clustering process, and it should preserve the biological meaning of the distances.
 
@@ -85,7 +85,7 @@ Testing for the presence of a molecular clock involves statistical approaches th
 
 When a strict molecular clock is rejected, several alternatives can be considered. Local molecular clocks allow different rates in different parts of the tree while maintaining constant rates within specific clades. Relaxed molecular clocks allow rates to vary continuously across the tree according to some statistical distribution, such as a lognormal or gamma distribution. These models can be incorporated into Bayesian phylogenetic methods that simultaneously estimate tree topology, branch lengths, and rate variation.
 
-## Example of wrong tree produced in absence of molecular clock
+## Example of wrong tree produced in absence of molecular clock  {.unnumbered}
 
 To understand how violation of the molecular clock assumption can lead to incorrect phylogenetic trees, consider a scenario with four species: A, B, C, and D. Suppose the true evolutionary history is ((A,B),(C,D)), meaning A and B share a more recent common ancestor with each other than with C or D, and likewise for C and D. However, imagine that after the split between the (A,B) and (C,D) lineages, species C experienced a dramatically increased rate of evolution, perhaps due to a change in DNA repair mechanisms or intense selective pressure.
 
@@ -134,7 +134,7 @@ This example illustrates a general principle: when evolutionary rates vary signi
 
 Real-world examples of molecular clock violations abound. The evolution of HIV shows extreme rate variation, with some lineages evolving orders of magnitude faster than others due to differences in immune pressure and transmission dynamics. In mammals, the lineage leading to modern rodents shows accelerated evolution compared to primates, affecting everything from phylogenetic reconstruction to estimates of divergence times. Understanding these violations is crucial for choosing appropriate clustering methods and interpreting their results correctly.
 
-## UPGMA {#sec-upgma}
+## UPGMA {#sec-upgma .unnumbered}
 
 UPGMA (Unweighted Pair Group Method with Arithmetic Mean) is one of the oldest and simplest hierarchical clustering methods used in bioinformatics. Despite its limitations, particularly the assumption of a molecular clock, UPGMA remains widely used due to its simplicity, computational efficiency, and ease of interpretation. Understanding UPGMA provides a foundation for appreciating more sophisticated clustering methods.
 
@@ -158,7 +158,7 @@ The computational efficiency of UPGMA makes it attractive for large-scale analys
 
 Despite its limitations, UPGMA has practical applications where its assumptions are reasonable. For closely related sequences that have diverged recently, rate variation may be minimal, making UPGMA appropriate. In studies of viral quasispecies within a single host, where all sequences have evolved for approximately the same time, UPGMA can provide meaningful clusters. The method is also useful as a starting point for more sophisticated analyses, providing an initial tree that can be refined using methods that relax the molecular clock assumption.
 
-### Worked Example of UPGMA Clustering
+### Worked Example of UPGMA Clustering  {.unnumbered}
 
 To illustrate the UPGMA algorithm in action, let's work through a complete example with six sequences (A, B, C, D, E, F) and their pairwise distances. This example demonstrates how the distance matrix is progressively reduced and how the dendrogram is built step by step.
 
@@ -225,7 +225,7 @@ The complete UPGMA tree shows the hierarchical clustering with merge heights:
 
 This example illustrates several key features of UPGMA: the algorithm always selects the minimum distance at each step, the merge height equals half the distance (assuming a molecular clock), and the distance calculations use weighted averages based on cluster sizes to maintain the unweighted nature of the method.
 
-## Neighbor-joining {#sec-upgma}
+## Neighbor-joining {#sec-upgma .unnumbered}
 
 Neighbor-joining (NJ), developed by Naruya Saitou and Masatoshi Nei in 1987, represents a major advance in phylogenetic reconstruction methods. Unlike UPGMA, neighbor-joining does not assume a molecular clock, making it more robust to rate variation among lineages. The method is based on the principle of minimum evolution, seeking the tree topology that minimizes the total branch length.
 
@@ -277,7 +277,7 @@ However, neighbor-joining also has limitations. It assumes that the distance mat
 
 The implementation of neighbor-joining requires careful attention to numerical precision, particularly when dealing with very similar or very divergent sequences. Round-off errors can accumulate during the iterative process, potentially affecting the final tree topology. Various optimizations have been developed to improve both the speed and accuracy of NJ implementations, including fast neighbor-joining algorithms that reduce the computational complexity for large datasets.
 
-### Additive distances / Non-recombining sequence ancestry
+### Additive distances / Non-recombining sequence ancestry  {.unnumbered}
 
 The concept of additive distances is fundamental to understanding when distance-based clustering methods will accurately recover evolutionary relationships. A distance matrix is additive if the distances can be exactly represented as path lengths on a tree with non-negative branch lengths. In other words, for any four sequences, the distances satisfy the four-point condition:
 
@@ -316,7 +316,7 @@ Testing for additivity involves checking whether the four-point condition holds 
 
 When distances are approximately additive, methods like neighbor-joining can still recover the correct tree topology with high probability. The robustness of these methods to mild violations of additivity is one reason for their continued popularity. However, when additivity is strongly violated, alternative approaches may be needed, such as network-based methods that can represent conflicting signals in the data or methods that explicitly model recombination and horizontal gene transfer.
 
-### Minimal evolution principle
+### Minimal evolution principle  {.unnumbered}
 
 The principle of minimum evolution, also known as the principle of parsimony at the level of tree length, suggests that among all possible tree topologies, the one requiring the least total amount of evolutionary change is most likely to be correct. This principle underlies many phylogenetic methods, including neighbor-joining, and provides a criterion for choosing among alternative evolutionary hypotheses.
 
@@ -332,7 +332,7 @@ It's important to note that minimum evolution, like all optimality criteria, can
 
 Bootstrap analysis has become an indispensable tool in phylogenetic reconstruction and sequence clustering, providing a statistical framework for assessing the reliability and robustness of inferred evolutionary relationships. Introduced to phylogenetics by Joseph Felsenstein in 1985, the bootstrap method addresses a fundamental challenge in evolutionary biology: how can we quantify our confidence in a particular tree topology when we have only a single dataset representing millions of years of evolution? This section explores the statistical principles underlying bootstrap analysis, its assumptions and limitations, what it actually quantifies, when its application is appropriate, and the computational methods used to implement it.
 
-## Statistical Principles of Bootstrapping
+## Statistical Principles of Bootstrapping  {.unnumbered}
 
 The bootstrap is a resampling technique that estimates the sampling distribution of a statistic by repeatedly resampling with replacement from the original data. In the context of phylogenetic analysis, the "data" consists of aligned sequence positions (sites or columns in the alignment), and the "statistic" is typically the tree topology or specific clades within the tree. The fundamental principle is that if our inference method is robust, it should produce similar results when applied to slightly different datasets that could plausibly have been observed.
 
@@ -372,7 +372,7 @@ $$BS(clade) = \frac{\#\{T^*_b : clade \in T^*_b\}}{B} \times 100\%$$
 
 The bootstrap support value represents the percentage of bootstrap trees containing the specific clade. For example, if a clade appears in 850 out of 1000 bootstrap trees, it has 85% bootstrap support.
 
-## Bootstrap Assumptions and Requirements
+## Bootstrap Assumptions and Requirements  {.unnumbered}
 
 The validity of bootstrap analysis in phylogenetics rests on several critical assumptions that must be carefully considered when interpreting results. The most fundamental assumption is that sequence sites evolve independently and identically distributed (i.i.d.). This means each site evolves according to the same stochastic process, independent of other sites. Mathematically, if $L(D|T,\theta)$ is the likelihood of data $D$ given tree $T$ and model parameters $\theta$:
 
@@ -386,7 +386,7 @@ Another crucial assumption is that the alignment is correct and fixed. Bootstrap
 
 The bootstrap also assumes that the phylogenetic reconstruction method is consistent—that is, it converges to the true tree given infinite data. If the method is statistically inconsistent due to model misspecification, high bootstrap values may support incorrect clades. This phenomenon, known as "high support for the wrong tree," can occur under conditions like long-branch attraction with parsimony methods.
 
-## What Bootstrap Values Quantify
+## What Bootstrap Values Quantify  {.unnumbered}
 
 A common misconception is that bootstrap values represent the probability that a clade is true. However, bootstrap values actually quantify something more subtle: the repeatability or stability of the inference given data resampling. Specifically, a bootstrap value estimates:
 
@@ -400,7 +400,7 @@ Hillis and Bull (1993) found through simulations that bootstrap proportions of 7
 
 The bootstrap can be interpreted from a frequentist perspective as assessing sampling variance. If we could repeatedly sample sequences from the same evolutionary process, how often would we recover the same clade? This interpretation makes clear that bootstrap values reflect both the strength of phylogenetic signal and the sensitivity of our inference method to sampling variation.
 
-## When Bootstrap Analysis is Appropriate
+## When Bootstrap Analysis is Appropriate  {.unnumbered}
 
 Bootstrap analysis is most appropriate when several key conditions are met. First and foremost, sufficient data must exist for meaningful resampling—with very short sequences containing fewer than 100 sites, bootstrap values are often uninformatively low because the limited data cannot support stable inference under resampling variation. The method works best when sites can be considered approximately independent, which is typically the case for single genes or carefully selected multi-gene datasets where linkage effects are minimal. Bootstrap is particularly valuable when the primary goal is to assess topological uncertainty rather than uncertainty in branch lengths, as branch length estimates are more sensitive to model assumptions. The technique also excels at comparing support across different nodes within the same analysis, providing a consistent framework for evaluating which relationships are well-supported versus questionable.
 
@@ -408,7 +408,7 @@ Bootstrap analysis may be less appropriate or require modification under certain
 
 For genome-scale data, alternatives like the multi-scale bootstrap or site-pattern bootstrap may be more appropriate. These methods adjust for the fact that phylogenomic datasets violate traditional bootstrap assumptions.
 
-## Computational Implementation
+## Computational Implementation  {.unnumbered}
 
 The computational cost of bootstrap analysis can be substantial, as it requires reconstructing many trees. The total computational complexity is:
 
@@ -437,7 +437,7 @@ Output: Original tree T with bootstrap support values
 
 Efficient implementation requires careful optimization through several strategies. Parallel processing is particularly effective because bootstrap replicates are completely independent, allowing different replicates to be computed simultaneously on different processors without any communication overhead. Rapid bootstrapping methods, such as RAxML's rapid bootstrap algorithm, combine fast hill-climbing searches with selective thorough optimization to reduce computation time by an order of magnitude while maintaining accuracy. The transfer bootstrap approach modifies the support calculation by using transfer distance instead of simple clade presence/absence, providing more nuanced support values that better reflect topological similarity. UFBoot (Ultrafast bootstrap) implements an approximation algorithm with statistical correction for bias, enabling bootstrap analysis of very large datasets that would be computationally prohibitive with standard methods.
 
-## Interpreting Bootstrap Results
+## Interpreting Bootstrap Results  {.unnumbered}
 
 Bootstrap values should be interpreted carefully in biological context. General guidelines suggest that values above 95% indicate very strong support where the clade is highly reliable and unlikely to change with additional data. Values between 70% and 95% represent moderate to strong support, suggesting the clade is likely correct though some uncertainty remains. Bootstrap values from 50% to 70% indicate weak support where the clade is uncertain and should be treated with caution. Values below 50% provide no meaningful support, and such clades should be considered unreliable for biological inference.
 
@@ -445,7 +445,7 @@ However, these thresholds are somewhat arbitrary and depend heavily on the speci
 
 Bootstrap values can also serve as diagnostic tools to identify problematic regions of the tree. Consistently low values across multiple nodes may indicate rapid radiation events where multiple lineages diverged in quick succession, leaving insufficient time for synapomorphies to accumulate along internal branches. Such low values might also reveal conflicting phylogenetic signals arising from processes like incomplete lineage sorting or horizontal gene transfer. In some cases, low bootstrap support simply reflects insufficient data to confidently resolve relationships, suggesting that longer sequences or more genes are needed. Persistent patterns of low support in specific parts of the tree can also indicate systematic biases such as long-branch attraction, where the reconstruction method is being misled by convergent evolution or model misspecification.
 
-## Advanced Bootstrap Methods
+## Advanced Bootstrap Methods  {.unnumbered}
 
 Several variations and improvements to the standard bootstrap have been developed:
 

@@ -506,7 +506,7 @@ However, many proteins in sequence databases lack experimental structural inform
 
 The design of effective HMMs for biological applications requires careful consideration of the underlying biological processes and the incorporation of domain-specific knowledge into model structure. This chapter explores several important applications that demonstrate how biological insight can be encoded into HMM architectures to solve complex sequence analysis problems.
 
-## Gene Finding in Eukaryotic Genomes
+## Gene Finding in Eukaryotic Genomes  {.unnumbered}
 
 Gene finding in eukaryotic genomes represents one of the most sophisticated applications of HMMs in computational biology. Unlike bacterial genes, which consist of simple continuous coding sequences, eukaryotic genes have complex structures with multiple exons separated by introns, alternative splicing patterns, and regulatory elements.
 
@@ -554,7 +554,7 @@ For example, the donor splice site model might include a series of states $D_1, 
 
 This approach allows the HMM to recognize splice sites based on both the canonical GT-AG signals and the more subtle sequence preferences in the surrounding regions.
 
-## CpG Island Detection
+## CpG Island Detection  {.unnumbered}
 
 CpG island detection provides another excellent example of sophisticated HMM design. CpG islands are regions of genomic DNA with elevated frequencies of cytosine-guanine dinucleotides that often mark gene promoters and regulatory regions. The challenge is that CpG islands are not uniformly CpG-rich but contain regions of varying CpG density, and their boundaries are often gradual rather than sharp.
 
@@ -599,7 +599,7 @@ A sophisticated model might include multiple CpG island states representing diff
 
 The transition structure allows gradual transitions between these states, modeling the fact that CpG islands often have cores of high CpG density surrounded by regions of intermediate CpG density.
 
-## Transmembrane Protein Topology Prediction
+## Transmembrane Protein Topology Prediction  {.unnumbered}
 
 Transmembrane protein topology prediction illustrates how biophysical knowledge can be incorporated into HMM design. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops in the aqueous environment.
 
@@ -641,7 +641,7 @@ Third, the "positive-inside rule" must be incorporated. This rule states that th
 - Inside loop: $P(\text{K}) = 0.08$, $P(\text{R}) = 0.06$, $P(\text{D}) = 0.04$, $P(\text{E}) = 0.05$
 - Outside loop: $P(\text{K}) = 0.04$, $P(\text{R}) = 0.03$, $P(\text{D}) = 0.08$, $P(\text{E}) = 0.09$
 
-## Signal Peptide Prediction
+## Signal Peptide Prediction  {.unnumbered}
 
 Signal peptide prediction represents another important application where biological knowledge guides HMM design. Signal peptides are short amino acid sequences that direct newly synthesized proteins to specific cellular locations. They typically consist of three regions: a positively charged N-terminal region, a hydrophobic core region, and a polar C-terminal region containing the cleavage site.
 
@@ -683,7 +683,7 @@ An HMM for signal peptide prediction might include states for each of these regi
 
 Modern applications of HMMs in biology often involve extensions beyond the basic framework to address specific challenges in sequence analysis. These extensions demonstrate the flexibility of the HMM framework and its continued relevance for cutting-edge biological problems.
 
-## Profile HMMs for Protein Family Analysis
+## Profile HMMs for Protein Family Analysis  {.unnumbered}
 
 Profile HMMs represent one of the most successful extensions of the basic HMM framework. They adapt the basic structure to model multiple sequence alignments, enabling sensitive detection of remote homology and accurate classification of protein sequences into functional families.
 
@@ -739,7 +739,7 @@ The transition probabilities between these states model the frequency of inserti
 
 This structure allows profile HMMs to identify sequences that match the overall pattern of a protein family even when they contain insertions, deletions, or substitutions relative to the consensus sequence.
 
-## Pair HMMs for Sequence Alignment
+## Pair HMMs for Sequence Alignment  {.unnumbered}
 
 Pair HMMs extend the framework to model the evolutionary relationship between two sequences simultaneously, finding applications in sequence alignment and comparative genomics. This is particularly useful for identifying conserved regions between species, which likely represent functionally important elements.
 
@@ -790,7 +790,7 @@ $$ {#eq-pair-emission}
 
 For closely related sequences, this probability would be high when $a = b$ (identical amino acids) and lower for substitutions. For distantly related sequences, the emission probabilities would reflect the amino acid substitution matrices derived from evolutionary studies.
 
-## Hidden Semi-Markov Models
+## Hidden Semi-Markov Models  {.unnumbered}
 
 Hidden semi-Markov models (HSMMs) relax the geometric length distribution assumption of standard HMMs by explicitly modeling state durations. This extension is particularly valuable for biological applications where feature lengths follow non-geometric distributions, such as protein domains or gene exons.
 
@@ -802,7 +802,7 @@ $$ {#eq-hsmm-forward}
 
 This allows modeling of complex length distributions while maintaining computational tractability. For example, exon lengths in human genes could be modeled using empirical length distributions derived from known genes, rather than the geometric distributions implicit in standard HMMs.
 
-## Phylogenetic HMMs for Comparative Genomics
+## Phylogenetic HMMs for Comparative Genomics  {.unnumbered}
 
 Modern comparative genomics applications use sophisticated HMM variants to analyze multiple genome alignments simultaneously. These phylogenetic HMMs model the evolution of functional elements across multiple species, allowing identification of conserved regulatory elements, detection of positive selection, and reconstruction of ancestral genome organization.
 

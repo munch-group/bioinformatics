@@ -1,6 +1,6 @@
 # Chapter 6
 
-## Genome assembly
+## Genome assembly  {.unnumbered}
 
 In genome assembly many short sequences (reads) from a sequencing machine are assembled into long sequences - ultimately chromosomes. This is done by ordering overlapping reads so that they together represent genomic sequences. For example given these three reads: AGGTCGTAG, CGTAGAGCTGGGAG, GGGAGGTTGAAA ordering them based on their overlap like this
 
@@ -50,9 +50,9 @@ Each line represents a read. The first field on each line is the name of the rea
 
 This is a tricky project. Make sure you read the entire exercise and understand what you are supposed to do before you begin!
 
-## Part 1: Get the sequencing data
+## Part 1: Get the sequencing data  {.unnumbered}
 
-### Read the sequence reads into a dictionary
+### Read the sequence reads into a dictionary  {.unnumbered}
 
 The first task is to read and parse the input data. 
 
@@ -94,7 +94,7 @@ def read_data(file_name):
     input_file.close()        
 ```
 
-### Compute mean length of sequence reads
+### Compute mean length of sequence reads  {.unnumbered}
 
 Often there are too many reads to look at them manually. To know what we are working with we want to know what the mean length of the reads is.
 
@@ -107,9 +107,9 @@ The function must return
 * A float, which is the average length of the sequence reads.
 
 
-## Part 2: Compute the overlaps between reads.
+## Part 2: Compute the overlaps between reads.  {.unnumbered}
 
-### Compute the overlap between two reads
+### Compute the overlap between two reads  {.unnumbered}
 
 Next thing is to figure out which reads overlap each other. To do that we need a function that takes two read sequences and computes their overlap. Remember that in the input data none of the reads are completely nested in another read.
 
@@ -150,7 +150,7 @@ should return the string
 
 From these two examples it seems that `s1` and `s2` overlap and that `s1` is the left one and `s2` is the right one. Treating `s2` as the left one and `s1` as the right one only gives an overlap of one base (we expect a few bases of overlap even for unrelated sequences).
 
-### Compute all overlaps
+### Compute all overlaps  {.unnumbered}
 
 Now that we can evaluate the overlap between two reads in some orientation we can compute overlaps between all pairs of reads in both left-right and right-left orientations.
 
@@ -185,7 +185,7 @@ should return a the following dictionary of dictionaries (but not necessarily wi
 
 Hint: To generate all combinations of reads you need two for-loops. One looping over reads in left positions and another (inside the first one) looping over reads in right position. Remember that we do *not* want the overlap of a read to itself.
 
-### Print all overlaps nicely
+### Print all overlaps nicely  {.unnumbered}
 
 The dictionary returned by `get_all_overlaps` is a little messy to look at. We want to print it in a nice matrix-like format so we can better see which pairs overlap in what orientations.
 
@@ -225,11 +225,11 @@ print(s, end='')
 
 Notice that the overlaps are not either zero or a large number. A lot of the overlaps are `1` or `2`. This is because you often find a few bases of overlap just by chance between any two reads. So in the following we must distinguish true (significant) overlaps from random ones. For this purpose we simply decide that true overlaps are the ones with an overlap larger than two (>2).
 
-## Part 3: Find the right order of reads
+## Part 3: Find the right order of reads  {.unnumbered}
 
 Now that we know how the reads overlap we can chain them together pair by pair from left to right to get the order in which they represent the genomic sequence. To do this we take the first (left-most) read and identify which read has the largest overlap to its right end. Then we take that read and find the read with the largest overlap to the right end of that - and so on until we reach the rightmost (last) read.
 
-### Find the first read
+### Find the first read  {.unnumbered}
 
 The first thing you need to do is to identify the first (leftmost) read so we know where to start. This read is identified as the one that only has a significant (>2) overlap to its right end (it only has a good overlap when positioned to the left of other reads). In the example output from `pretty_print` above the first read would be read `'Read4'` because the `'Read4'` column has no significant overlaps (no one larger than two).
 
@@ -253,7 +253,7 @@ should return
 'Read4'
 ```
 
-### Find the order of reads
+### Find the order of reads  {.unnumbered}
 
 Now that we have the first read we can find the correct ordering of reads. We want a list with the read names in the right order.
 
@@ -292,9 +292,9 @@ should return:
 
 Make sure you understand why this is the right list of read names before you try to implement the function.
 
-## Part 4: Reconstruct the genomic sequence
+## Part 4: Reconstruct the genomic sequence  {.unnumbered}
 
-### Reconstruct the genomic sequence from the reads
+### Reconstruct the genomic sequence from the reads  {.unnumbered}
 
 Now that you have the number of overlapping bases between reads and the correct order of the reads you can reconstruct the genomic sequence.
 
@@ -324,7 +324,7 @@ CGTCTTCAGTAGAAAATTGTTTTTTTCTTCCAAGAGGTCGGAGTCGTGAACACATCAGT
 
 Hint: iterate over the reads in order and use the overlap information to extract and join the appropriate parts of the reads.
 
-### Putting the whole thing together
+### Putting the whole thing together  {.unnumbered}
 
 Now that you have written functions to take care of each step you can write one last function that uses them to do the entire assembly.
 

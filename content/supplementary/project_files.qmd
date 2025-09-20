@@ -70,30 +70,30 @@ In each sections below, you will find download links to the files you need for e
 
 In each sections below, you will find download links to the files you need for each web exercise.
 
-### GWAS
+### GWAS  {.unnumbered}
 
 None
 
-### CCR5
+### CCR5  {.unnumbered}
 
 {{< downloadthis ../web_files/ccr5_pwalign/CCR5_CDS.fa dname="CCR5_CDS" label="CCR5_CDS.fa" type="light" >}}
 {{< downloadthis ../web_files/ccr5_pwalign/CCR5_CDS_delta32.fa dname="CCR5_CDS_delta32" label="CCR5_CDS_delta32.fa" type="light" >}}
 {{< downloadthis ../web_files/ccr5_pwalign/CCR5_mRNA.fa dname="CCR5_mRNA" label="CCR5_mRNA.fa" type="light" >}}
 {{< downloadthis ../web_files/ccr5_pwalign/CCR5_mRNA_delta32.fa dname="CCR5_mRNA_delta32" label="CCR5_mRNA_delta32.fa" type="light" >}}
 
-### MRSA
+### MRSA  {.unnumbered}
 
 None
 
-### Aardwark
+### Aardwark  {.unnumbered}
 
 {{< downloadthis ../web_files/aardvarg_seqdist/animals.fasta dname="animals" label="animals.fasta" type="light" >}}
 
-### ORF finding
+### ORF finding  {.unnumbered}
 
 {{< downloadthis ../web_files/orf_finding/Enterococcusfaeciumresistanceplasmidsequence.fa dname="Enterococcusfaeciumresistanceplasmidsequence" label="Enterococcusfaeciumresistanceplasmidsequence.fa" type="light" >}}
 
-### Long reads
+### Long reads  {.unnumbered}
 
 <!-- {{< downloadthis ../web_files/long_reads/contig_1.bam dname="contig_1" label="contig_1.bam" type="light" >}}
 
@@ -118,6 +118,6 @@ None
 
 
 
-### Neural networks
+### Neural networks  {.unnumbered}
 
 None

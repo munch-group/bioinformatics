@@ -1,7 +1,7 @@
 
 # Exam info {.unnumbered #sec-exam}
 
-## Download the course homepage and Python documentation
+## Download the course homepage and Python documentation  {.unnumbered}
 
 **[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=course_page_html.zip) (unzip once downloaded and double-click index.html).**
 
@@ -16,7 +16,7 @@ There is no test script for this assignment. You need a data file for this assig
 
 {{< downloadthis ../exam/old_exam_example/EksamensOpgaveAP2014_input.txt dname="EksamensOpgaveAP2014_input" label="EksamensOpgaveAP2014_input.txt" type="light" >}}
   
-## About the written exam
+## About the written exam  {.unnumbered}
 
 > Informationen på denne side fremgår også af eksamensopgaven.
 
@@ -25,7 +25,7 @@ Eksamensopgave består af to dele, som vægtes lige i bedømmelsen:
 1. Et sæt programmeringsopgaver.
 2. Et sæt bioinformatikopgaver.
 
-## Filer til brug ved eksamen
+## Filer til brug ved eksamen  {.unnumbered}
 
 Udover denne PDF-fil som indeholder eksamensopgaverne, har du også downloaded tre andre filer fra eksamenssystemet, som du skal bruge til at løse eksamensopgaven:
 
@@ -33,7 +33,7 @@ Udover denne PDF-fil som indeholder eksamensopgaverne, har du også downloaded t
 - `test_progexam.py`: Det er denne fil, du kan bruge til at teste de funktioner du skriver i `progexam.py`.
 - `bioinfexam.py`: Det er i denne fil, du skriver svarene på eksamensopgavens bioinformatik-del.
 
-## Sådan løser du programmeringsopgaverne
+## Sådan løser du programmeringsopgaverne  {.unnumbered}
 
 Start med at åbne din terminal og naviger ind i den folder, som eksamenssystemet har lavet på din computer. Der er muligt at folderens navn indeholder mellemrum. For at navigere ind i en folder der indeholder et mellemrum vha. terminalen, kan man skrive starten af folder-navnet og så trykke på Tab. Så fuldendes navnet automatisk. F.eks.: Hvis folderen hedder “Eksamen Bioinf”, kan man skrive: “cd Eksamen og så trykke Tab. Så fuldendes navnet og man kan trykke Enter.
 
@@ -61,7 +61,7 @@ Følgende er *afgørende* for at din eksamensbesvarelse kan evalueres korrekt:
 
 **Allervigtigst:** Funktioner der ikke fuldstænding opfylder opgavens beskrivelse regnes som ikke besvarede. Så sørg for at lave dine funktioner færdige, så de klarer *alle* tests. Hvis ingen af dine funktioner er *helt rigtigt besvaret* får du *ingen point*.
 
-## Sådan løser du bioinformatikopgaverne
+## Sådan løser du bioinformatikopgaverne  {.unnumbered}
 
 Bioinformatikdelen af eksamensopgaven består af et sæt af  opgaver, der hver dækker et emne. Hver opgave indeholder flere delopgaver. Der er tre typer delopgaver:
 
@@ -86,7 +86,7 @@ Følgende er *afgørende* for at din eksamensbesvarelse kan evalueres korrekt: D
 
 I nogle af opgaveemnerne refererer statements til en vist illustration. Alt efter størrelsen på din skærm kan du være nødt til at "zoome ind" på illustrationerne i det program du bruger til at vise denne PDF, ellers kan der være detaljer du ikke kan se.
 
-## Sådan afleverer du din eksamensopgave i Wiseflow
+## Sådan afleverer du din eksamensopgave i Wiseflow  {.unnumbered}
 
 Inden du afleverer, skal du tjekke at `progexam.py` kun indeholder definitioner af de funktioner der er beskrevet i eksamensopgaven. Hvis du har skrevet yderligere kode for at teste dine funktioner, skal du slette den inden du oplader din fil.
 

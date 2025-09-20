@@ -1,8 +1,8 @@
-# Sequence Database Searching and BLAST
+# Database Searching
 
 > BLAST is the 12th most cited scientific paper - not just in bioinformatics but in all of science!
 
-## Introduction: The Need for Database Searching
+## Introduction: The Need for Database Searching  {.unnumbered}
 
 The exponential growth of biological sequence databases has fundamentally transformed how we approach biological research. As of 2024, GenBank contains over 250 million sequences comprising more than 3 trillion nucleotides, with the database doubling approximately every 18 months. This vast repository of genetic information represents an invaluable resource for understanding biology, but it also presents a formidable computational challenge: how can we efficiently search through billions of sequences to find those related to our query of interest?
 
@@ -10,9 +10,9 @@ Sequence database searching addresses a fundamental question in biology: given a
 
 The challenge of sequence database searching extends beyond mere computational efficiency. Biological sequences evolve through mutation, insertion, and deletion events, meaning that related sequences may share only limited similarity. Moreover, this similarity may be obscured by random matches that occur by chance alone. Distinguishing biologically meaningful similarities from spurious matches requires sophisticated algorithms that combine speed with statistical rigor. The development of such algorithms, particularly the Basic Local Alignment Search Tool (BLAST), has been one of the great success stories of bioinformatics, enabling discoveries across all areas of biological research.
 
-## The Computational Challenge
+## The Computational Challenge  {.unnumbered}
 
-### Scale and Complexity
+### Scale and Complexity  {.unnumbered}
 
 The fundamental challenge of database searching can be stated simply: given a query sequence Q of length m, find all sequences in a database D containing n sequences with total length L that are similar to Q. A naive approach using dynamic programming would require O(mL) time, which becomes prohibitively expensive for large databases. For a typical protein query of 300 amino acids searched against a database containing 100 million proteins with average length 400, this would require approximately 10^13 operations—far too slow for routine use.
 
@@ -20,7 +20,7 @@ The problem is further complicated by the need to detect different types of simi
 
 The statistical challenge is equally daunting. In a large database, we expect to find many alignments with reasonable scores simply by chance. A scoring system must distinguish these random alignments from those reflecting true biological relationships. This requires not just a scoring scheme but also a statistical framework for assessing the significance of observed scores. The larger the database, the more likely we are to observe high-scoring alignments by chance, necessitating adjustment of significance thresholds based on database size.
 
-### Evolution and Sequence Similarity
+### Evolution and Sequence Similarity  {.unnumbered}
 
 Biological sequences evolve through a process of mutation and selection, creating a complex landscape of sequence relationships. Homologous sequences—those descended from a common ancestor—may have diverged to the point where their similarity is barely detectable above background noise. The "twilight zone" of sequence similarity, typically below 20-25% identity for proteins, represents a region where homology cannot be reliably inferred from sequence similarity alone.
 
@@ -28,15 +28,15 @@ Different types of mutations occur at different rates and have different impacts
 
 The rate of evolution varies dramatically across sequences and even within different regions of the same sequence. Functionally important regions evolve slowly due to purifying selection, while less constrained regions may diverge rapidly. This heterogeneity means that related sequences may show a patchwork of strongly conserved and highly divergent regions, requiring algorithms capable of identifying local similarities even when embedded in otherwise dissimilar sequences.
 
-## BLAST: The Basic Local Alignment Search Tool
+## BLAST: The Basic Local Alignment Search Tool  {.unnumbered}
 
-### Historical Development and Impact
+### Historical Development and Impact  {.unnumbered}
 
 BLAST, developed by Altschul, Gish, Miller, Myers, and Lipman in 1990, revolutionized sequence database searching by providing a method that was both fast and statistically rigorous. The original paper has become one of the most cited scientific papers of all time, reflecting BLAST's fundamental importance to biological research. The algorithm's success stems from its elegant solution to the speed-sensitivity trade-off: by using a heuristic approach that sacrifices guaranteed optimal solutions for dramatic speed improvements, BLAST made large-scale database searching practical while maintaining sufficient sensitivity for most biological applications.
 
 The key insight behind BLAST was that homologous sequences, even those that have diverged substantially, typically contain short regions of high similarity. Rather than comparing entire sequences, BLAST first identifies these short, high-scoring segments (seeds) and then extends them to find longer alignments. This seed-and-extend strategy reduces the search space dramatically while maintaining high sensitivity for biologically relevant matches.
 
-### The Original BLAST Algorithm
+### The Original BLAST Algorithm  {.unnumbered}
 
 The original BLAST algorithm operates in three main phases: seeding, extension, and evaluation. Each phase involves critical parameters and design decisions that affect both speed and sensitivity.
 
@@ -48,7 +48,7 @@ The algorithm then scans the database for exact matches to any word in these nei
 
 **Evaluation Phase**: HSPs exceeding a score threshold S are reported to the user. The significance of each HSP is evaluated using the Karlin-Altschul statistics, which provide a theoretical framework for calculating E-values (expected values) that indicate how many alignments of similar or better score would be expected by chance in a database of the given size.
 
-### Scoring Local Alignments
+### Scoring Local Alignments  {.unnumbered}
 
 The scoring of alignments between query and database sequences is fundamental to BLAST's ability to identify biologically meaningful matches. The scoring system must balance multiple considerations: rewarding matches between similar residues, penalizing mismatches based on their likelihood, and accounting for insertions and deletions. The choice of scoring parameters profoundly affects both the sensitivity and specificity of database searches.
 
@@ -80,7 +80,7 @@ $$S' = \frac{\lambda S - \ln K}{\ln 2}$$
 
 This normalization allows scores from different searches, different databases, and different scoring matrices to be compared directly. A bit score of 50 means the alignment is 2^50 times more likely under the homology model than the random model.
 
-### Mathematical Foundation: Karlin-Altschul Statistics
+### Mathematical Foundation: Karlin-Altschul Statistics  {.unnumbered}
 
 The statistical theory underlying BLAST, developed by Karlin and Altschul, provides a rigorous framework for assessing the significance of local alignments. This theory shows that the distribution of optimal local alignment scores between random sequences follows an extreme value distribution (EVD), specifically the Gumbel distribution.
 
@@ -108,9 +108,9 @@ $$S' = \frac{\lambda S - \ln K}{\ln 2}$$
 
 This normalization allows scores from different searches to be compared directly, regardless of the scoring system or database size used.
 
-## BLAST Parameters and Their Effects
+## BLAST Parameters and Their Effects  {.unnumbered}
 
-### Word Size (W)
+### Word Size (W)  {.unnumbered}
 
 The word size parameter W has a profound impact on both the speed and sensitivity of BLAST searches. For protein searches (BLASTP), the default word size is 3, meaning the algorithm looks for exact matches of 3-amino acid segments. For nucleotide searches (BLASTN), the default is typically 11, though this can vary with the task.
 
@@ -118,13 +118,13 @@ Increasing word size accelerates the search by reducing the number of seeds that
 
 The choice of word size represents a fundamental trade-off. For closely related sequences (>50% identity), larger word sizes (W=4 or 5 for proteins) can be used without significant loss of sensitivity. For detecting distant homologs, smaller word sizes are essential. Some BLAST variants use multiple word sizes simultaneously or use reduced alphabet representations to maintain sensitivity while increasing effective word size.
 
-### Threshold Score (T)
+### Threshold Score (T)  {.unnumbered}
 
 The neighborhood word score threshold T determines which similar words are included in the search. Lower T values increase sensitivity by allowing more divergent words to serve as seeds, but this comes at a computational cost as more potential matches must be evaluated. The default T value for BLASTP is typically 11-13 when using BLOSUM62 scoring.
 
 The interaction between W and T is critical for BLAST's performance. The two-hit algorithm, introduced in BLAST2, modified this relationship by requiring two non-overlapping word pairs on the same diagonal within a distance A before triggering extension. This allowed the use of lower T values (increasing sensitivity) without proportionally increasing computation time, as single random hits are ignored.
 
-### Substitution Matrices
+### Substitution Matrices  {.unnumbered}
 
 The choice of substitution matrix fundamentally affects BLAST's ability to detect homologs at different evolutionary distances. BLAST commonly uses the BLOSUM (BLOcks SUbstitution Matrix) or PAM (Point Accepted Mutation) series of matrices, each optimized for different levels of sequence divergence.
 
@@ -132,15 +132,15 @@ BLOSUM62, the default for most BLAST searches, was derived from sequences with a
 
 The substitution matrix affects not only which alignments are found but also their statistical significance. The Karlin-Altschul parameters K and λ must be recalculated for each matrix, and some matrices may not satisfy the theoretical requirements for the statistics to be valid (e.g., all scores must have an expected value less than zero for random alignments).
 
-### Gap Penalties
+### Gap Penalties  {.unnumbered}
 
 While the original BLAST only provided ungapped alignments, modern versions incorporate gaps with associated opening and extension penalties. The gap opening penalty (typically 10-12 for proteins) is charged for introducing a gap, while the gap extension penalty (typically 1-2) is charged for each additional position in the gap.
 
 Gap penalties must be balanced with the substitution matrix. If gap penalties are too high relative to mismatch scores, the algorithm will force misalignments rather than introduce necessary gaps. If too low, excessive gaps may be introduced, leading to spurious alignments. The optimal gap penalties depend on the evolutionary distance between sequences and the specific biological context.
 
-## E-values and Statistical Significance
+## E-values and Statistical Significance  {.unnumbered}
 
-### Understanding E-values
+### Understanding E-values  {.unnumbered}
 
 The E-value is arguably the most important statistic provided by BLAST, yet it is often misunderstood. The E-value is not a probability but rather an expected count—it tells us how many alignments with a score at least as good as the observed score we would expect to find by chance in a database of the size being searched.
 
@@ -148,7 +148,7 @@ The relationship between E-value and database size is linear: searching a databa
 
 For multiple HSPs from the same database sequence, BLAST calculates a combined E-value that considers the probability of observing multiple high-scoring alignments by chance. This is particularly important for multi-domain proteins or sequences with repeated elements.
 
-### Query Length Effects
+### Query Length Effects  {.unnumbered}
 
 Query length affects E-values in a more complex manner than database size. Longer queries have more opportunities to achieve high-scoring alignments by chance, increasing the expected number of random matches. However, the relationship is not strictly linear because the probability of achieving very high scores increases more slowly than query length.
 
@@ -159,21 +159,21 @@ $$n' = n - N \cdot l \cdot H / \lambda$$
 
 where l is the typical alignment length, H is the relative entropy of the scoring system, and N is the number of sequences in the database.
 
-### Significance Thresholds
+### Significance Thresholds  {.unnumbered}
 
 Determining appropriate significance thresholds requires consideration of both the biological question and the multiple testing problem. For a single pairwise comparison, an E-value of 0.01 indicates a 1% chance of seeing such a score by chance. However, when searching large databases, multiple testing corrections become important.
 
 The Bonferroni correction would suggest dividing the significance threshold by the number of sequences in the database, but this is overly conservative because BLAST E-values already account for database size. Instead, researchers typically use empirical thresholds based on experience: E < 10^-5 for strong matches, E < 10^-3 for probable homologs, and E < 1 for possible relationships worth investigating further.
 
-### Composition-Based Statistics
+### Composition-Based Statistics  {.unnumbered}
 
 Sequence composition can significantly affect the statistics of local alignments. Sequences with biased amino acid composition (e.g., transmembrane proteins rich in hydrophobic residues) can produce artificially high scores when aligned with similarly biased sequences, even in the absence of homology.
 
 Composition-based statistics adjust for these biases by recalculating the statistical parameters for each sequence pair based on their specific amino acid compositions. This adjustment can dramatically affect E-values, sometimes changing them by several orders of magnitude. While more accurate, composition-based statistics are computationally intensive and may reduce sensitivity for some true homologs.
 
-## BLAST Variants and Improvements
+## BLAST Variants and Improvements  {.unnumbered}
 
-### BLAST2 and the Two-Hit Algorithm
+### BLAST2 and the Two-Hit Algorithm  {.unnumbered}
 
 BLAST2, introduced in 1997, implemented several crucial improvements that increased both speed and sensitivity. The centerpiece was the two-hit algorithm, which requires two non-overlapping word pairs on the same diagonal within a distance A (typically 40 amino acids) before triggering the computationally expensive extension phase.
 
@@ -181,13 +181,13 @@ This seemingly simple modification had profound effects. By requiring two hits, 
 
 The two-hit algorithm also enabled efficient gapped extensions. When two hits trigger an extension, BLAST2 performs a gapped alignment using dynamic programming, but only in the region around the hits. This limited dynamic programming is much faster than full sequence alignment while capturing most biologically relevant alignments.
 
-### Gapped BLAST
+### Gapped BLAST  {.unnumbered}
 
 The introduction of gapped alignments addressed a major limitation of the original BLAST. Many homologous sequences, particularly those separated by long evolutionary distances, contain insertions and deletions that prevent long ungapped alignments. Gapped BLAST uses a seed-and-extend strategy similar to ungapped BLAST but performs dynamic programming in the extension phase.
 
 The gapped extension algorithm uses a banded dynamic programming approach, limiting the search to a region around the diagonal defined by the initial seeds. The bandwidth is adjusted dynamically based on the score decay, allowing the algorithm to follow the optimal path while avoiding unnecessary computation. This approach typically achieves speeds within a factor of 3-4 of ungapped BLAST while providing much greater sensitivity.
 
-### PSI-BLAST: Position-Specific Iterated BLAST
+### PSI-BLAST: Position-Specific Iterated BLAST  {.unnumbered}
 
 PSI-BLAST represents one of the most important advances in sequence database searching, enabling detection of remote homologs that share less than 15% sequence identity. The key innovation is the construction of a position-specific scoring matrix (PSSM) that captures patterns of conservation specific to a protein family.
 
@@ -203,13 +203,13 @@ The PSSM captures evolutionary information more effectively than generic substit
 
 However, PSI-BLAST requires careful use to avoid profile corruption. Including false positives in the profile can lead to profile drift, where the search progressively moves away from the original query family. Setting appropriate inclusion thresholds (typically E < 0.001-0.005) and manually inspecting results between iterations helps prevent this problem.
 
-### PHI-BLAST: Pattern-Hit Initiated BLAST
+### PHI-BLAST: Pattern-Hit Initiated BLAST  {.unnumbered}
 
 PHI-BLAST combines pattern matching with local alignment to find sequences containing a specific motif or pattern. The user provides both a query sequence and a pattern (using PROSITE syntax or regular expressions), and PHI-BLAST only reports alignments that include the pattern.
 
 This approach is particularly useful when searching for specific functional motifs or domains. By requiring the presence of a pattern, PHI-BLAST can eliminate many false positives and focus on functionally relevant matches. The pattern serves as an anchor for the alignment, ensuring that functionally important regions are properly aligned even if surrounding regions have diverged substantially.
 
-### DELTA-BLAST: Domain Enhanced Lookup Time Accelerated BLAST
+### DELTA-BLAST: Domain Enhanced Lookup Time Accelerated BLAST  {.unnumbered}
 
 DELTA-BLAST improves upon PSI-BLAST by using a database of pre-constructed PSSMs from conserved domains. Instead of building a profile from scratch, DELTA-BLAST first searches a database of domain profiles (like CDD - Conserved Domain Database) to find relevant PSSMs, then uses these for searching.
 
@@ -219,9 +219,9 @@ This approach provides several advantages:
 - Better detection of remote homologs that share only domain-level similarity
 - More consistent results across different searches
 
-## Specialized BLAST Programs
+## Specialized BLAST Programs  {.unnumbered}
 
-### BLASTN: Nucleotide-Nucleotide Searches
+### BLASTN: Nucleotide-Nucleotide Searches  {.unnumbered}
 
 BLASTN faces unique challenges compared to protein searches. The smaller alphabet size (4 bases vs. 20 amino acids) means that random matches are more common, requiring longer word sizes and different statistical treatments. BLASTN typically uses word sizes of 11-28 nucleotides and employs a simpler scoring scheme (+1 for matches, -3 for mismatches by default).
 
@@ -230,7 +230,7 @@ Recent versions include task-specific optimizations:
 - **Discontiguous Megablast**: Uses non-contiguous word templates for increased sensitivity while maintaining speed
 - **BLASTN-short**: Optimized for short queries (<30 nucleotides) with adjusted parameters
 
-### BLASTX and TBLASTN: Translated Searches
+### BLASTX and TBLASTN: Translated Searches  {.unnumbered}
 
 BLASTX translates a nucleotide query in all six reading frames and searches a protein database, while TBLASTN searches a translated nucleotide database with a protein query. These programs are essential for:
 - Identifying protein-coding regions in genomic sequences
@@ -239,22 +239,22 @@ BLASTX translates a nucleotide query in all six reading frames and searches a pr
 
 The translation step adds computational overhead but provides much greater sensitivity than nucleotide-nucleotide comparisons for protein-coding sequences. The statistical framework must account for the effective increase in search space due to multiple reading frames.
 
-### TBLASTX: Six-Frame Translation
+### TBLASTX: Six-Frame Translation  {.unnumbered}
 
 TBLASTX translates both query and database in all reading frames, performing protein-level comparisons of nucleotide sequences. While computationally intensive (36 times more comparisons than standard BLAST), TBLASTX can detect very distant coding sequence relationships and is particularly useful for:
 - Comparing EST databases
 - Finding novel genes in genomic sequences
 - Detecting pseudogenes and processed genes
 
-## Advanced Applications and Considerations
+## Advanced Applications and Considerations  {.unnumbered}
 
-### Database Contamination and Quality
+### Database Contamination and Quality  {.unnumbered}
 
 Database contamination poses a significant challenge for BLAST searches. Vector sequences, adapters, contaminants from other organisms, and low-quality regions can all lead to spurious matches. BLAST databases often include filters for common contaminants, but researchers must remain vigilant.
 
 Low-complexity regions (e.g., poly-A tails, simple repeats, coiled-coils) can produce statistically significant but biologically meaningless matches. BLAST incorporates filters like SEG for proteins and DUST for nucleotides that mask low-complexity regions before searching. While these filters reduce false positives, they can occasionally mask biologically important regions, so results should be interpreted accordingly.
 
-### Taxonomic Restrictions and Organism-Specific Searches
+### Taxonomic Restrictions and Organism-Specific Searches  {.unnumbered}
 
 BLAST allows taxonomic restrictions to focus searches on specific organisms or groups. This is valuable for:
 - Finding orthologs in specific lineages
@@ -264,7 +264,7 @@ BLAST allows taxonomic restrictions to focus searches on specific organisms or g
 
 The Entrez query system allows complex taxonomic queries, combining organism names, taxonomic IDs, and Boolean operators to precisely define the search space.
 
-### Batch Searches and Automation
+### Batch Searches and Automation  {.unnumbered}
 
 Large-scale projects often require searching thousands or millions of sequences. BLAST+ command-line tools support batch processing with customizable output formats suitable for downstream analysis. Key considerations for batch searches include:
 - Managing computational resources and parallelization
@@ -273,7 +273,7 @@ Large-scale projects often require searching thousands or millions of sequences.
 - Implementing quality control and error handling
 - Avoiding redundant searches through careful database design
 
-### Cloud and Web Services
+### Cloud and Web Services  {.unnumbered}
 
 Cloud-based BLAST services provide scalable infrastructure for large-scale searches. The NCBI BLAST web service handles millions of searches daily, while cloud platforms like AWS and Google Cloud offer BLAST as part of their bioinformatics toolkits. These services provide:
 - Automatic updates of databases
@@ -282,9 +282,9 @@ Cloud-based BLAST services provide scalable infrastructure for large-scale searc
 - Integration with other bioinformatics tools
 - Cost-effective solutions for occasional users
 
-## Limitations and Alternatives
+## Limitations and Alternatives  {.unnumbered}
 
-### Limitations of BLAST
+### Limitations of BLAST  {.unnumbered}
 
 Despite its success, BLAST has inherent limitations that researchers must understand:
 
@@ -296,7 +296,7 @@ Despite its success, BLAST has inherent limitations that researchers must unders
 
 **Statistical Assumptions**: The Karlin-Altschul statistics assume that sequences are random and that letter compositions match the background frequencies. Violations of these assumptions can lead to incorrect E-values.
 
-### Alternative Approaches
+### Alternative Approaches  {.unnumbered}
 
 Several alternatives to BLAST address specific limitations:
 
@@ -308,9 +308,9 @@ Several alternatives to BLAST address specific limitations:
 
 **LAST**: Incorporates adaptive seeds and probabilistic alignments, providing better handling of repeats and more accurate E-values for certain types of sequences.
 
-## Best Practices and Interpretation
+## Best Practices and Interpretation  {.unnumbered}
 
-### Choosing Appropriate Parameters
+### Choosing Appropriate Parameters  {.unnumbered}
 
 Selecting optimal BLAST parameters requires understanding both the biological question and the nature of the sequences being searched:
 
@@ -333,7 +333,7 @@ Selecting optimal BLAST parameters requires understanding both the biological qu
 - Consider composition-based statistics
 - Reduce word size or use ungapped alignments
 
-### Interpreting Results
+### Interpreting Results  {.unnumbered}
 
 Proper interpretation of BLAST results requires considering multiple factors beyond E-values:
 
@@ -354,7 +354,7 @@ Proper interpretation of BLAST results requires considering multiple factors bey
 
 **Reciprocal Searches**: For ortholog identification, perform reciprocal BLAST searches. True orthologs should be mutual best hits between genomes.
 
-### Common Pitfalls
+### Common Pitfalls  {.unnumbered}
 
 Several common mistakes can lead to incorrect interpretations:
 
@@ -366,9 +366,9 @@ Several common mistakes can lead to incorrect interpretations:
 
 **Misunderstanding Coverage**: High-scoring alignments covering only small portions of sequences may not indicate overall homology. Consider both local and global similarity.
 
-## Future Directions
+## Future Directions  {.unnumbered}
 
-### Integration with Structure Prediction
+### Integration with Structure Prediction  {.unnumbered}
 
 The revolution in protein structure prediction, exemplified by AlphaFold, is beginning to influence sequence searching strategies. Structure-aware sequence searching can:
 - Use predicted structures to identify remote homologs missed by sequence methods
@@ -376,7 +376,7 @@ The revolution in protein structure prediction, exemplified by AlphaFold, is beg
 - Enable functional annotation based on structural similarity
 - Guide the design of more sensitive sequence search strategies
 
-### Machine Learning Approaches
+### Machine Learning Approaches  {.unnumbered}
 
 Deep learning methods are being applied to sequence similarity detection:
 - Learned embeddings that capture evolutionary relationships
@@ -386,7 +386,7 @@ Deep learning methods are being applied to sequence similarity detection:
 
 These approaches show promise for detecting extremely remote homologies and understanding the full spectrum of sequence relationships.
 
-### Scaling to Massive Databases
+### Scaling to Massive Databases  {.unnumbered}
 
 As sequencing costs continue to plummet, sequence databases are growing exponentially. Future developments must address:
 - Efficient indexing strategies for databases with trillions of sequences
@@ -395,7 +395,7 @@ As sequencing costs continue to plummet, sequence databases are growing exponent
 - Hierarchical search strategies that quickly eliminate irrelevant portions of the database
 - Real-time updating of search indices as new sequences are added
 
-### Metagenomics and Environmental Sequencing
+### Metagenomics and Environmental Sequencing  {.unnumbered}
 
 The explosion of metagenomic and environmental sequencing data presents unique challenges:
 - Searching against millions of incomplete and fragmented sequences
@@ -404,7 +404,7 @@ The explosion of metagenomic and environmental sequencing data presents unique c
 - Handling the enormous scale of environmental sequence databases
 - Developing statistical frameworks for searches against highly redundant databases
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 BLAST and sequence database searching have fundamentally transformed biological research, enabling researchers to leverage the collective knowledge encoded in sequence databases. From its inception as a heuristic algorithm trading perfect accuracy for practical speed, BLAST has evolved into a sophisticated family of tools capable of detecting subtle evolutionary relationships across the tree of life.
 

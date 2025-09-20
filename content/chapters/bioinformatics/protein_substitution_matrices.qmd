@@ -1,10 +1,10 @@
-# Protein Substitution Matrices
+# Scoring Matrices
 
-## Introduction to Protein Sequence Scoring
+## Introduction to Protein Sequence Scoring  {.unnumbered}
 
 Protein sequence comparison lies at the heart of computational biology, enabling researchers to identify homologous proteins, predict function, and understand evolutionary relationships. Unlike DNA sequences with their four-letter alphabet, proteins utilize a twenty-letter alphabet of amino acids, each with distinct chemical properties that influence their substitution patterns during evolution. The complexity of protein evolution necessitates sophisticated scoring schemes that capture the subtle patterns of amino acid replacement over evolutionary time.
 
-### Evolution as Nature's Experiment in Protein Engineering
+### Evolution as Nature's Experiment in Protein Engineering  {.unnumbered}
 
 Evolution provides a natural experiment that reveals which amino acid substitutions preserve protein function and which destroy it. Through billions of years of trial and error, natural selection has filtered mutations, accepting those that maintain or improve protein function while eliminating deleterious changes. This evolutionary process creates a rich historical record encoded in the sequences of contemporary proteins. By comparing homologous proteins across species, we can observe which substitutions have been tolerated by natural selection and which have been rejected.
 
@@ -12,7 +12,7 @@ The pattern of accepted substitutions reveals fundamental principles about prote
 
 The fundamental challenge in protein sequence alignment is determining which amino acid substitutions are more likely to occur during evolution. Not all substitutions are equally probable; for instance, the replacement of leucine with isoleucine (both hydrophobic amino acids with similar properties) occurs far more frequently than the substitution of tryptophan with aspartic acid (aromatic versus acidic residues). This biological reality demands scoring matrices that reflect the actual substitution patterns observed in nature.
 
-### Quantifying Substitution Patterns
+### Quantifying Substitution Patterns  {.unnumbered}
 
 The task of creating substitution matrices involves transforming evolutionary observations into quantitative scoring schemes. This quantification process must address several challenges. First, we must distinguish substitutions that reflect common ancestry from those arising by chance. Second, we must account for the background frequencies of different amino acids—rare amino acids like tryptophan naturally align less frequently than common ones like leucine, independent of evolutionary relationships. Third, we must correct for multiple substitutions at the same position, which become increasingly likely as evolutionary distance increases.
 
@@ -22,7 +22,7 @@ $$S(a,b) = \log\left(\frac{q_{ab}}{p_a \cdot p_b}\right)$$
 
 where $q_{ab}$ represents the observed frequency of amino acids $a$ and $b$ being aligned in homologous sequences, while $p_a$ and $p_b$ represent the background frequencies of amino acids $a$ and $b$ respectively. This formulation captures the essential insight that meaningful substitutions should occur more frequently in related sequences than would be expected from random associations.
 
-### The Need for Multiple Scoring Matrices
+### The Need for Multiple Scoring Matrices  {.unnumbered}
 
 A critical insight in sequence comparison is that no single scoring matrix optimally aligns sequences at all evolutionary distances. The pattern of substitutions observed between closely related proteins differs markedly from that seen between distantly related ones. In recently diverged sequences, we observe primarily the substitutions that occur most readily—those between chemically similar amino acids. As evolutionary distance increases, even unfavorable substitutions accumulate, and multiple substitutions at the same position obscure the evolutionary signal.
 
@@ -32,9 +32,9 @@ The choice of appropriate matrix thus depends on the evolutionary distance betwe
 
 Substitution matrices transform the abstract problem of sequence comparison into a quantitative framework. Each matrix element $S(a,b)$ represents the score for aligning amino acid $a$ with amino acid $b$, where positive scores indicate substitutions more frequent than expected by chance, and negative scores indicate rare substitutions. The development of these matrices represents a synthesis of evolutionary biology, statistics, and computational methods, providing the foundation for modern sequence analysis.
 
-## PAM Matrices: Modeling Evolution Through Time
+## PAM Matrices: Modeling Evolution Through Time  {.unnumbered}
 
-### The Evolutionary Model Behind PAM
+### The Evolutionary Model Behind PAM  {.unnumbered}
 
 The Point Accepted Mutation (PAM) matrices, pioneered by Margaret Dayhoff in the 1970s, represent one of the earliest systematic approaches to quantifying amino acid substitutions. Margaret Dayhoff, often regarded as the founding mother of bioinformatics, revolutionized the field through her visionary work in computational molecular biology. Her development of PAM matrices exemplified her broader contributions, which included creating the first comprehensive protein sequence database (Atlas of Protein Sequence and Structure) and establishing fundamental methods for sequence comparison that remain influential today. Dayhoff's insight that evolutionary information could be captured mathematically and used to improve sequence analysis laid the groundwork for modern bioinformatics.
 
@@ -48,7 +48,7 @@ $$\sum_{j=1}^{20} M_{ij} = 1$$
 
 for each amino acid $i$. This stochastic matrix encodes the fundamental evolutionary process at the heart of the PAM model.
 
-### Constructing PAM Matrices from Data
+### Constructing PAM Matrices from Data  {.unnumbered}
 
 The construction of PAM matrices begins with the careful curation of closely related protein sequences. Dayhoff and her colleagues undertook the monumental task of manually collecting and aligning protein sequences in an era before automated sequencing and computational tools. Working with punch cards and early computers, Dayhoff's team selected protein families where sequence identity exceeded 85%, ensuring that observed differences represented single substitution events rather than multiple substitutions at the same position. This high similarity threshold is critical for accurately estimating the initial substitution rates. Dayhoff's meticulous approach to data collection and her insistence on biological accuracy over computational convenience established standards for rigor that continue to guide bioinformatics research.
 
@@ -67,7 +67,7 @@ $$M_{ij} = \begin{cases}
 
 This matrix represents the evolutionary process over a very short time scale. To model evolution over longer periods, we exploit the Markov property of the substitution process.
 
-### Extrapolating to Higher PAM Distances
+### Extrapolating to Higher PAM Distances  {.unnumbered}
 
 The power of the PAM framework lies in its ability to extrapolate from observed short-term changes to predict patterns over longer evolutionary distances. For $n$ PAM units of evolution, the mutation probability matrix becomes:
 
@@ -87,7 +87,7 @@ $$\text{Identity} = \sum_{i=1}^{20} f_i \cdot M^{(n)}_{ii}$$
 
 This equation shows that as PAM distance increases, the expected sequence identity decreases exponentially, reaching approximately 20% identity at PAM250, close to the twilight zone of sequence comparison.
 
-### Worked Example: Constructing a PAM1 Matrix
+### Worked Example: Constructing a PAM1 Matrix  {.unnumbered}
 
 To illustrate the construction of PAM matrices, let's work through a simplified example using a subset of amino acids. Consider a dataset of closely related sequences (>85% identity) where we observe the following substitution counts between four amino acids (A, G, V, L):
 
@@ -180,7 +180,7 @@ $$S^{(250)} = \begin{pmatrix}
 
 This simplified example demonstrates how evolutionary observations are transformed into practical scoring matrices. The positive scores (e.g., A-V: 2) indicate substitutions occurring more frequently than expected by chance, while negative scores indicate rare substitutions.
 
-### Python Implementation: PAM Matrix from Pairwise Alignment
+### Python Implementation: PAM Matrix from Pairwise Alignment  {.unnumbered}
 
 To make the PAM construction process more concrete, let's implement it in Python using a single long pairwise alignment. This example shows how to extract substitution counts from an alignment and construct a PAM1 matrix.
 
@@ -340,21 +340,21 @@ This implementation demonstrates several key concepts:
 
 The example alignment shows typical patterns: conservative substitutions (R→K, both basic amino acids) occur more frequently than radical changes. The resulting PAM1 matrix will assign positive scores to these common substitutions and negative scores to rare ones.
 
-### Limitations and Assumptions of PAM Matrices
+### Limitations and Assumptions of PAM Matrices  {.unnumbered}
 
 The PAM model makes several critical assumptions that limit its applicability. First, it assumes that substitution rates remain constant over evolutionary time, ignoring the reality that selection pressures vary across geological epochs. Second, it assumes that all positions in a protein evolve at the same rate, contradicting our understanding that active sites and structural motifs evolve more slowly than surface loops.
 
 The model also assumes that amino acid substitutions at different positions are independent, neglecting the correlated mutations that maintain protein structure and function. Furthermore, the reversibility assumption implicit in the PAM model—that the probability of substituting amino acid $a$ with $b$ equals the probability of the reverse substitution when weighted by amino acid frequencies—may not hold for all evolutionary scenarios.
 
-## BLOSUM Matrices: An Empirical Approach
+## BLOSUM Matrices: An Empirical Approach  {.unnumbered}
 
-### The BLOCKS Database Foundation
+### The BLOCKS Database Foundation  {.unnumbered}
 
 The BLOSUM (BLOcks SUbstitution Matrix) matrices, developed by Henikoff and Henikoff in the 1990s, represent a fundamentally different approach to capturing substitution patterns. Rather than extrapolating from closely related sequences, BLOSUM matrices derive directly from observed substitutions in conserved protein regions called blocks. These blocks represent ungapped local alignments of distantly related proteins, capturing the substitution patterns that have actually survived evolutionary selection.
 
 The BLOCKS database consists of multiply aligned ungapped segments from protein families. Each block represents a conserved region where gaps are not permitted, simplifying the statistical analysis. The key innovation of BLOSUM lies in its clustering approach to handle the redundancy in sequence databases. Sequences within a block that exceed a specified percentage identity threshold are clustered together and treated as a single representative sequence, preventing closely related sequences from dominating the substitution statistics.
 
-### Computing BLOSUM Matrices
+### Computing BLOSUM Matrices  {.unnumbered}
 
 The construction of a BLOSUM matrix begins with the extraction of column pairs from aligned blocks. For a block containing $n$ sequences, each column yields $\binom{n}{2} = \frac{n(n-1)}{2}$ amino acid pairs. However, when sequences are clustered, the contribution of each pair is weighted by the inverse of the cluster sizes.
 
@@ -379,7 +379,7 @@ p_a^2 & \text{if } a = b
 
 where $p_a = q_{aa} + \frac{1}{2}\sum_{b \neq a} q_{ab}$ represents the marginal frequency of amino acid $a$.
 
-### The Log-Odds Scoring System
+### The Log-Odds Scoring System  {.unnumbered}
 
 The BLOSUM score for aligning amino acids $a$ and $b$ is computed as:
 
@@ -393,7 +393,7 @@ $$H = \sum_{a,b} q_{ab} \cdot \log_2\left(\frac{q_{ab}}{e_{ab}}\right)$$
 
 This measure, expressed in bits, quantifies how much the observed substitution patterns deviate from random expectation. Higher entropy indicates more specific substitution patterns and generally correlates with matrices derived from more similar sequences.
 
-### The BLOSUM Series and Clustering Thresholds
+### The BLOSUM Series and Clustering Thresholds  {.unnumbered}
 
 The number in a BLOSUM matrix name (e.g., BLOSUM62) indicates the clustering threshold used during construction. BLOSUM62 clusters sequences sharing ≥62% identity, while BLOSUM80 uses an 80% threshold. Lower numbers yield matrices suitable for comparing more divergent sequences, as they incorporate substitution patterns from more distantly related proteins.
 
@@ -405,7 +405,7 @@ $$q_{ab} = p_a \cdot p_b \cdot e^{\lambda S_{ab}}$$
 
 This relationship reveals that BLOSUM matrices implicitly assume an exponential distribution of evolutionary distances in the sequences used for their construction.
 
-### Worked Example: Constructing a BLOSUM Matrix
+### Worked Example: Constructing a BLOSUM Matrix  {.unnumbered}
 
 Let's construct a simplified BLOSUM matrix from a small block of aligned sequences. Consider the following ungapped alignment block containing five sequences:
 
@@ -503,9 +503,9 @@ M & -2 & -3 & 1 & 1 & 6 & 3 \\
 
 This example demonstrates how BLOSUM matrices capture actual substitution patterns observed in conserved regions. The high score for L-M (6) reflects the frequent substitution between these hydrophobic residues in our block, while negative scores indicate rare substitutions.
 
-## Comparative Analysis of PAM and BLOSUM
+## Comparative Analysis of PAM and BLOSUM  {.unnumbered}
 
-### Theoretical Versus Empirical Approaches
+### Theoretical Versus Empirical Approaches  {.unnumbered}
 
 The fundamental distinction between PAM and BLOSUM matrices lies in their underlying philosophy. PAM matrices embody a theoretical model of evolution, starting from observed substitutions in closely related sequences and extrapolating to longer evolutionary distances through matrix multiplication. This approach provides a coherent mathematical framework but relies heavily on the validity of its evolutionary assumptions.
 
@@ -515,7 +515,7 @@ The practical implications of these different approaches become apparent in thei
 
 BLOSUM matrices exhibit broader applicability across a range of evolutionary distances. BLOSUM62, the most widely used substitution matrix, performs well for sequences sharing 30-70% identity, making it a robust default choice for many applications. This versatility reflects the diverse evolutionary distances represented in the blocks used for BLOSUM construction.
 
-### Information Content and Entropy Considerations
+### Information Content and Entropy Considerations  {.unnumbered}
 
 The information content of substitution matrices provides insights into their discriminatory power. PAM matrices at different evolutionary distances have predictable information content relationships:
 
@@ -525,7 +525,7 @@ where $\alpha$ is a decay constant. This relationship shows that information con
 
 BLOSUM matrices exhibit a different pattern, with information content inversely related to the clustering threshold. Lower clustering thresholds incorporate more diverse sequences, reducing the specificity of substitution patterns and lowering information content. This trade-off between sensitivity and specificity fundamentally shapes the choice of matrix for specific applications.
 
-### Statistical Significance and E-values
+### Statistical Significance and E-values  {.unnumbered}
 
 The choice of substitution matrix profoundly impacts the statistical significance of alignment scores. The extreme value distribution parameters for ungapped alignments depend on both the substitution matrix and amino acid composition:
 
@@ -539,9 +539,9 @@ $$S' = \frac{\lambda S - \ln K}{\ln 2}$$
 
 This normalization allows meaningful comparison of alignment scores obtained with different substitution matrices, facilitating the selection of optimal matrices for specific sequence pairs.
 
-## Specialized Matrices and Modern Developments
+## Specialized Matrices and Modern Developments  {.unnumbered}
 
-### Position-Specific Scoring Matrices (PSSMs)
+### Position-Specific Scoring Matrices (PSSMs)  {.unnumbered}
 
 While general substitution matrices treat all positions equally, position-specific scoring matrices capture the unique evolutionary constraints at each position in a protein family. PSSMs are constructed from multiple sequence alignments, with each column yielding a position-specific substitution profile:
 
@@ -551,7 +551,7 @@ where $f_{i,a}$ is the observed frequency of amino acid $a$ at position $i$, and
 
 The construction of PSSMs through iterative search (PSI-BLAST) has revolutionized remote homology detection. Starting with a general substitution matrix, the initial search identifies homologs, which are aligned to build a PSSM. Subsequent iterations use this PSSM to identify increasingly remote homologs, progressively refining the position-specific substitution patterns.
 
-### Structure-Based Substitution Matrices
+### Structure-Based Substitution Matrices  {.unnumbered}
 
 The incorporation of structural information has led to specialized matrices that capture environment-specific substitution patterns. Amino acids in different structural contexts (alpha-helices, beta-sheets, loops) exhibit distinct substitution patterns reflecting the specific constraints of each environment.
 
@@ -561,7 +561,7 @@ $$S_{ab}^{(e)} = \log\left(\frac{q_{ab}^{(e)}}{p_a^{(e)} \cdot p_b^{(e)}}\right)
 
 where superscript $(e)$ denotes a specific structural environment. These matrices reveal that buried positions tolerate different substitutions than exposed positions, and that secondary structure elements impose specific substitution constraints.
 
-### Compositionally Adjusted Matrices
+### Compositionally Adjusted Matrices  {.unnumbered}
 
 Proteins with biased amino acid compositions, such as transmembrane proteins rich in hydrophobic residues, require specialized treatment. Compositional adjustment modifies standard matrices based on the observed composition of the sequences being compared:
 
@@ -569,9 +569,9 @@ $$S'_{ab} = S_{ab} + \lambda \log\left(\frac{p'_a p'_b}{p_a p_b}\right)$$
 
 where $p'_a$ and $p'_b$ represent the observed frequencies in the specific sequences being aligned. This adjustment maintains the relative substitution preferences while accounting for the altered background frequencies.
 
-## Practical Considerations in Matrix Selection
+## Practical Considerations in Matrix Selection  {.unnumbered}
 
-### Choosing Matrices for Specific Applications
+### Choosing Matrices for Specific Applications  {.unnumbered}
 
 The selection of appropriate substitution matrices depends critically on the biological question and the characteristics of the sequences being analyzed. For identifying orthologs between closely related species, matrices like BLOSUM80 or PAM120 provide the specificity needed to distinguish true orthologs from paralogs. These matrices penalize most substitutions strongly, ensuring that high-scoring alignments represent genuine evolutionary relationships rather than chance similarities.
 
@@ -579,7 +579,7 @@ Database searching for remote homologs requires more permissive matrices like BL
 
 Multiple sequence alignment programs often employ different matrices at different stages. Initial pairwise alignments might use sensitive matrices like BLOSUM45 to detect all potential homologs, while the refinement phase might switch to BLOSUM62 for more accurate alignment of identified homologs. This staged approach balances sensitivity and specificity throughout the alignment process.
 
-### Gap Penalties and Matrix Scaling
+### Gap Penalties and Matrix Scaling  {.unnumbered}
 
 Substitution matrices work in concert with gap penalties to define the full scoring scheme for sequence alignment. The relative scaling between substitution scores and gap penalties critically affects alignment behavior. If gap penalties are too low relative to mismatch penalties, alignments become fragmented with excessive gaps. Conversely, excessive gap penalties force mismatches even when insertions or deletions better explain sequence differences.
 
@@ -587,7 +587,7 @@ The optimal gap penalties depend on the substitution matrix used. Empirical stud
 
 Matrix scaling affects the dynamic range of alignment scores and consequently the statistical significance calculations. While the relative scores within a matrix remain constant under linear scaling, the absolute values impact the numerical precision of alignment algorithms and the interpretation of score thresholds. Modern implementations often use scaled integer matrices for computational efficiency while maintaining the mathematical relationships of the original log-odds scores.
 
-### Performance Evaluation and Benchmarking
+### Performance Evaluation and Benchmarking  {.unnumbered}
 
 The evaluation of substitution matrix performance requires carefully curated benchmark datasets with known evolutionary relationships. Databases like HOMSTRAD (Homologous Structure Alignment Database) provide structurally aligned protein families for assessing alignment accuracy. Performance metrics include sensitivity (ability to detect true homologs), specificity (ability to reject non-homologs), and alignment accuracy (correctness of residue pairings).
 
@@ -595,27 +595,27 @@ Receiver Operating Characteristic (ROC) curves quantify the trade-off between se
 
 The concept of "coverage versus errors per query" provides another evaluation framework particularly relevant for database searching. This metric plots the number of true homologs detected against false positives as the score threshold varies. Optimal matrices maximize coverage while minimizing false positives, with the specific balance depending on the application requirements.
 
-## Future Directions and Emerging Approaches
+## Future Directions and Emerging Approaches  {.unnumbered}
 
-### Machine Learning and Deep Learning Approaches
+### Machine Learning and Deep Learning Approaches  {.unnumbered}
 
 Recent advances in machine learning have opened new avenues for developing substitution scoring schemes. Deep learning models trained on large sequence databases can learn complex substitution patterns that escape traditional statistical approaches. These models capture higher-order dependencies between positions and can adapt to specific protein families or functional classes.
 
 Neural network architectures like transformers, which have revolutionized natural language processing, show promise for learning context-dependent substitution patterns. These models can potentially capture long-range interactions and correlated mutations that traditional position-independent matrices miss. The challenge lies in interpreting these complex models and extracting biological insights from their learned representations.
 
-### Integration with Structural Prediction
+### Integration with Structural Prediction  {.unnumbered}
 
 The recent breakthrough in protein structure prediction by AlphaFold and similar systems creates opportunities for structure-informed substitution matrices. As structural data becomes available for most proteins, substitution patterns can be analyzed in their full three-dimensional context. This integration promises matrices that capture the subtle interplay between sequence and structure evolution.
 
 Contact-dependent substitution matrices represent one promising direction, where substitution scores depend not just on the amino acids being compared but also on their structural neighbors. Such matrices could capture the compensatory mutations that maintain protein stability and the correlated changes that preserve protein-protein interfaces.
 
-### Phylogenetic Context and Lineage-Specific Matrices
+### Phylogenetic Context and Lineage-Specific Matrices  {.unnumbered}
 
 The recognition that substitution patterns vary across evolutionary lineages motivates the development of clade-specific matrices. Matrices optimized for vertebrate proteins may not perform optimally for bacterial sequences, reflecting different evolutionary pressures and constraints. The construction of taxonomically focused matrices requires balancing specificity gains against reduced training data.
 
 Time-heterogeneous models that allow substitution patterns to vary across evolutionary time represent another frontier. These models could capture the acceleration of evolution following gene duplication or the different selective pressures operating at different evolutionary epochs. The mathematical and computational challenges of such models are substantial, but they promise more accurate evolutionary inference.
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 Protein substitution matrices stand as one of the foundational achievements in computational biology, transforming qualitative notions of sequence similarity into quantitative frameworks amenable to rigorous analysis. From the theoretical elegance of PAM matrices to the empirical robustness of BLOSUM matrices, these tools have enabled countless discoveries in molecular evolution, structural biology, and functional genomics.
 

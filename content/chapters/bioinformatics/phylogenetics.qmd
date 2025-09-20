@@ -1,5 +1,7 @@
 
-# Phylogenetics: Tree-Based Analysis of Evolutionary Relationships
+# Phylogenetics
+
+> Tree-Based Analysis of Evolutionary Relationships
 
 Phylogenetics represents one of the most fundamental disciplines in modern biology, providing the mathematical and computational framework for understanding the evolutionary relationships among organisms. At its core, phylogenetics seeks to reconstruct the tree of life—the branching pattern of descent that connects all living things through their shared evolutionary history. This field combines elements from evolutionary biology, mathematics, statistics, and computer science to infer these relationships from molecular and morphological data. The importance of phylogenetic analysis extends far beyond academic curiosity; it plays crucial roles in understanding disease evolution, tracking pandemic spread, conservation biology, drug discovery, and our fundamental understanding of life's diversity.
 
@@ -13,7 +15,7 @@ This lecture note explores two fundamental aspects of computational phylogenetic
 
 # Part I: Recursion and Tree Algorithms in Phylogenetics
 
-## The Principle of Recursion
+## The Principle of Recursion  {.unnumbered}
 
 Recursion is a programming paradigm where a function calls itself to solve smaller instances of the same problem. This approach is particularly elegant for problems that exhibit self-similar structure, where the solution to a larger problem can be expressed in terms of solutions to smaller, similar subproblems. In phylogenetics, trees are inherently recursive structures—each subtree is itself a complete tree with the same structural properties as the whole. This makes recursion the natural choice for implementing tree algorithms.
 
@@ -39,7 +41,7 @@ def recursive_function(input):
 
 This pattern appears repeatedly in phylogenetic algorithms. Trees naturally decompose into subtrees rooted at child nodes, making recursive algorithms both intuitive and efficient for tree-based computations.
 
-## Tree Representation in Python
+## Tree Representation in Python  {.unnumbered}
 
 Before implementing recursive algorithms on phylogenetic trees, we need a suitable data structure to represent trees in Python. A simple yet effective approach uses nested dictionaries or custom classes. Here's a basic tree node class that supports phylogenetic computations:
 
@@ -82,7 +84,7 @@ left_child.add_child(leaf_a)
 left_child.add_child(leaf_b)
 ```
 
-## Counting Leaves: A Simple Recursive Algorithm
+## Counting Leaves: A Simple Recursive Algorithm  {.unnumbered}
 
 One of the simplest recursive algorithms on trees counts the number of leaves (terminal nodes). This algorithm demonstrates the elegance of recursive thinking for tree problems:
 
@@ -121,7 +123,7 @@ def count_leaves_compact(node):
     return sum(count_leaves_compact(child) for child in node.children)
 ```
 
-## Calculating Tree Height
+## Calculating Tree Height  {.unnumbered}
 
 Another fundamental recursive algorithm calculates the height (or depth) of a tree—the maximum distance from the root to any leaf:
 
@@ -147,7 +149,7 @@ def tree_height(node):
 
 This algorithm demonstrates how recursion naturally handles the branching structure of trees. Each recursive call explores one branch, and the max function ensures we find the longest path from root to leaf.
 
-## Collecting Species Names
+## Collecting Species Names  {.unnumbered}
 
 In phylogenetic analysis, we often need to collect all species names (leaf labels) in a tree. This is another natural application of recursion:
 
@@ -174,11 +176,11 @@ def get_species_names(node):
     return all_names
 ```
 
-## Tree Traversal Strategies
+## Tree Traversal Strategies  {.unnumbered}
 
 Tree traversal—visiting all nodes in a tree systematically—is fundamental to many phylogenetic algorithms. There are several traversal strategies, each suited to different tasks:
 
-### Pre-order Traversal
+### Pre-order Traversal  {.unnumbered}
 
 In pre-order traversal, we visit the current node before visiting its children:
 
@@ -201,7 +203,7 @@ def preorder_traversal(node, visit_function):
 
 Pre-order traversal is useful when we need to process parent nodes before their children, such as when propagating information down the tree.
 
-### Post-order Traversal
+### Post-order Traversal  {.unnumbered}
 
 In post-order traversal, we visit children before the parent:
 
@@ -224,7 +226,7 @@ def postorder_traversal(node, visit_function):
 
 Post-order traversal is crucial for algorithms that need to process children before parents, such as the Felsenstein pruning algorithm we'll discuss later.
 
-## Calculating Total Branch Length
+## Calculating Total Branch Length  {.unnumbered}
 
 The total branch length of a tree is the sum of all branch lengths, often used as a measure of the amount of evolution:
 
@@ -251,7 +253,7 @@ def total_branch_length(node):
 
 # Part II: The Felsenstein Pruning Algorithm
 
-## Introduction to Likelihood-Based Phylogenetics
+## Introduction to Likelihood-Based Phylogenetics  {.unnumbered}
 
 The Felsenstein pruning algorithm, introduced by Joseph Felsenstein in 1981, revolutionized phylogenetic inference by providing an efficient method to calculate the likelihood of observed sequence data given a phylogenetic tree and an evolutionary model. This algorithm forms the foundation of maximum likelihood and Bayesian approaches to phylogenetic inference, which are now the gold standard methods in the field.
 
@@ -259,7 +261,7 @@ The fundamental question addressed by the Felsenstein algorithm is: given a set 
 
 The key insight of Felsenstein's algorithm is that the likelihood calculation, which would be computationally intractable if done naively, can be performed efficiently using dynamic programming on the tree structure. The algorithm exploits the Markov property of evolutionary models—the idea that evolution along different branches is independent given the ancestral states—to break down the calculation into manageable pieces.
 
-## Mathematical Foundation
+## Mathematical Foundation  {.unnumbered}
 
 Consider a phylogenetic tree $T$ with $n$ leaves (observed sequences) and a set of aligned sequences at a single site. Let the observed nucleotides at this site be denoted as $D = \{d_1, d_2, ..., d_n\}$, where each $d_i \in \{A, C, G, T\}$ for DNA sequences.
 
@@ -274,7 +276,7 @@ where:
 
 The challenge is computing $P(D|r, T, \theta)$ efficiently. This requires summing over all possible internal node states, which grows exponentially with the number of internal nodes.
 
-## The Substitution Model
+## The Substitution Model  {.unnumbered}
 
 The Felsenstein algorithm requires a model of sequence evolution. The simplest model is the Jukes-Cantor (JC69) model, which assumes:
 - Equal base frequencies: $\pi_A = \pi_C = \pi_G = \pi_T = 0.25$
@@ -291,7 +293,7 @@ where $\mu$ is the substitution rate.
 
 More complex models like the General Time Reversible (GTR) model allow for different substitution rates and base frequencies, but the principle remains the same.
 
-## The Pruning Algorithm
+## The Pruning Algorithm  {.unnumbered}
 
 The Felsenstein pruning algorithm uses post-order traversal to compute partial likelihoods from the leaves up to the root. For each node and each possible state, it computes the likelihood of the subtree below that node.
 
@@ -308,7 +310,7 @@ $$L_k(i) = \left(\sum_{j} P_{ij}(t_m) L_m(j)\right) \times \left(\sum_{j} P_{ij}
 
 where $t_m$ and $t_n$ are the branch lengths leading to children $m$ and $n$, respectively.
 
-## Python Implementation
+## Python Implementation  {.unnumbered}
 
 Here's a complete implementation of the Felsenstein pruning algorithm:
 
@@ -469,11 +471,11 @@ class FelsensteinCalculator:
         return total_log_likelihood
 ```
 
-## Handling Numerical Underflow
+## Handling Numerical Underflow  {.unnumbered}
 
 One practical challenge in implementing the Felsenstein algorithm is numerical underflow. As we multiply many small probabilities together, the values can become too small to represent in floating-point arithmetic. There are several strategies to address this:
 
-### Scaling Method
+### Scaling Method  {.unnumbered}
 
 The scaling method maintains the relative proportions of partial likelihoods while keeping values in a reasonable range:
 
@@ -503,7 +505,7 @@ def calculate_internal_likelihood_scaled(self, node, child_likelihoods):
     return node_likelihood
 ```
 
-### Log-Likelihood Method
+### Log-Likelihood Method  {.unnumbered}
 
 An alternative is to work entirely in log space:
 
@@ -543,7 +545,7 @@ def log_sum_exp(self, log_values):
     return max_val + np.log(sum(exp(val - max_val) for val in log_values))
 ```
 
-## Practical Example: Analyzing a Small Alignment
+## Practical Example: Analyzing a Small Alignment  {.unnumbered}
 
 Let's work through a complete example of using the Felsenstein algorithm on a small dataset:
 
@@ -603,7 +605,7 @@ def example_analysis():
 tree, align, log_like = example_analysis()
 ```
 
-## Optimizing Branch Lengths
+## Optimizing Branch Lengths  {.unnumbered}
 
 The Felsenstein algorithm is often used within an optimization framework to find the branch lengths that maximize the likelihood:
 
@@ -662,23 +664,23 @@ def optimize_branch_lengths(tree_root, alignment, initial_lengths=None):
     return result.x, -result.fun
 ```
 
-## Applications and Extensions
+## Applications and Extensions  {.unnumbered}
 
 The Felsenstein algorithm has numerous applications and extensions in modern phylogenetics:
 
-### Rate Heterogeneity
+### Rate Heterogeneity  {.unnumbered}
 
 Real sequences evolve at different rates at different sites. The gamma distribution is commonly used to model rate heterogeneity across sites, allowing some positions to evolve faster or slower than others. This is implemented by calculating the likelihood under different rate categories and averaging them according to the gamma distribution.
 
-### Ancestral State Reconstruction
+### Ancestral State Reconstruction  {.unnumbered}
 
 The partial likelihoods computed during the Felsenstein algorithm can be used to reconstruct the most likely ancestral sequences at internal nodes of the tree. This involves a second pass through the tree, using the partial likelihoods to compute posterior probabilities of each state at each internal node.
 
-### Model Selection
+### Model Selection  {.unnumbered}
 
 The Felsenstein algorithm enables comparison of different substitution models through likelihood ratio tests or information criteria like AIC and BIC. By calculating likelihoods under different models, we can determine which model best explains the observed data while accounting for model complexity.
 
-## Computational Complexity and Performance
+## Computational Complexity and Performance  {.unnumbered}
 
 The time complexity of the Felsenstein algorithm is $O(n \times m \times s^2)$, where:
 - $n$ is the number of nodes in the tree
@@ -693,7 +695,7 @@ For large-scale analyses, several optimizations are crucial:
 - **Vectorization**: Modern CPUs can process multiple likelihood calculations simultaneously using SIMD instructions
 - **GPU acceleration**: The matrix operations in the Felsenstein algorithm are well-suited for GPU computation
 
-## Integration with Tree Search
+## Integration with Tree Search  {.unnumbered}
 
 The Felsenstein algorithm is typically embedded within tree search algorithms that explore the space of possible topologies:
 
@@ -730,7 +732,7 @@ def hill_climbing_tree_search(alignment, starting_tree):
     return current_tree, current_likelihood
 ```
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 The combination of recursive algorithms and the Felsenstein pruning algorithm provides a powerful framework for phylogenetic analysis. Recursion naturally captures the hierarchical structure of evolutionary trees, enabling elegant and efficient implementations of tree algorithms. The Felsenstein algorithm, by efficiently calculating likelihoods through dynamic programming on trees, makes statistical phylogenetic inference computationally feasible even for large datasets.
 

@@ -9,7 +9,7 @@ Presentation: https://docs.google.com/presentation/d/1jBpBfO7_RGzxD1iHuN0LW8NIQq
 
 Presentation: https://docs.google.com/presentation/d/1u6hFulg0Jk5Lrrx28qhOJX1ZJ4eaT8l17LBIHs6MwWI/edit#slide=id.g298136c1e23_0_0
 
-### Alignment exercises:
+### Alignment exercises:  {.unnumbered}
 
 1.1 Affine gaps are used, Score matrix is DNAfull, end gaps are used.
 
@@ -19,7 +19,7 @@ Presentation: https://docs.google.com/presentation/d/1u6hFulg0Jk5Lrrx28qhOJX1ZJ4
 
 1.4: Gap open is 10, gap extend is 0.5. If we set them to 100 and 10, nothing happens. The alignment is the same.
 
-### Translation exercises:
+### Translation exercises:  {.unnumbered}
 
 2.1: 5’-3’ means forwards, 3’-5’ means backwards, and 1, 2, and 3 means from the start, frameshifted 1 forwards, or 2 forwards, respectively.
 
@@ -29,7 +29,7 @@ Presentation: https://docs.google.com/presentation/d/1u6hFulg0Jk5Lrrx28qhOJX1ZJ4
 
 2.4: the first segment aligns, but afterwards almost nothing aligns.
 
-### Blast exercises:
+### Blast exercises:  {.unnumbered}
 
 3.1: Blastn uses shorter kmers and lower thresholds to be able to find more distant matches.
 
@@ -471,7 +471,7 @@ Notes for your fellow TAs (answers to questions etc)
 - The trefoil is mostly represented as a line or figure of eight, both of which are bad representations.
 - It does. Adjusting min_dist is not needed, but does change how squiggly the lines are, but not that much else.
 
-### Exercise text
+### Exercise text  {.unnumbered}
 
 Introduction: Unsupervised Learning
 
@@ -589,7 +589,7 @@ The other features help a bit more, but all of these improvements are quite marg
 
 Presentation: https://docs.google.com/presentation/d/1amhu1Wrjg_wBtKpSc6C7KZh1dqCUjwDnJlm7dVzpAhA/edit#slide=id.p
 
-### Part 1, ORF Finder
+### Part 1, ORF Finder  {.unnumbered}
 
 Preamble: In general, ORFs can be found to be arbitrarily small. However, the larger the ORF is, the more strongly it indicates a true gene and significant function for it. We can use the standard genetic code, and it should work well since it is from a plasmid and therefore does not have the advanced eukaryotic features.
 

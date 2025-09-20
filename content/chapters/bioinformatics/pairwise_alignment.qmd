@@ -1,6 +1,6 @@
-# Pairwise Global Sequence Alignment
+# Pairwise Alignment
 
-## Introduction: The Fundamental Problem of Sequence Comparison
+## Introduction: The Fundamental Problem of Sequence Comparison  {.unnumbered}
 
 Sequence alignment represents one of the most fundamental operations in computational biology, serving as the foundation for understanding evolutionary relationships, predicting protein function, and identifying conserved regions across genomes. At its core, pairwise global sequence alignment addresses a deceptively simple question: given two biological sequences, what is the best way to align them from beginning to end to reveal their similarities and differences? This question, while straightforward in its formulation, encompasses profound computational and biological challenges that have shaped the development of bioinformatics as a discipline.
 
@@ -10,9 +10,9 @@ Global alignment, as distinguished from local alignment, seeks to align entire s
 
 The development of efficient algorithms for global sequence alignment represents one of the early triumphs of computational biology. The application of dynamic programming to this problem, first introduced by Needleman and Wunsch in 1970, provided an elegant solution that guarantees finding the optimal alignment while avoiding the astronomical number of possible alignments that would need to be considered by a brute-force approach. This algorithmic innovation not only solved a practical problem but also established a computational paradigm that has been applied to numerous other problems in bioinformatics and beyond.
 
-## The Complexity of Sequence Alignment
+## The Complexity of Sequence Alignment  {.unnumbered}
 
-### Combinatorial Explosion
+### Combinatorial Explosion  {.unnumbered}
 
 The complexity of sequence alignment becomes apparent when we consider the number of possible ways to align two sequences. For two sequences of lengths m and n, the number of possible alignments grows exponentially with sequence length, making exhaustive enumeration computationally infeasible for all but the shortest sequences.
 
@@ -24,7 +24,7 @@ $$N(m,n) = \sum_{k=0}^{\min(m,n)} \binom{m}{k} \binom{n}{k} \cdot 2^k \cdot \bin
 
 This formula, while mathematically precise, understates the practical complexity of the problem. Even for relatively short sequences of 100 residues each, the number of possible alignments exceeds 10^60—far more than the number of atoms in the observable universe. This combinatorial explosion means that any algorithm that attempts to enumerate and evaluate all possible alignments will fail for sequences of biologically relevant length.
 
-### The Alignment Space
+### The Alignment Space  {.unnumbered}
 
 The space of all possible alignments can be visualized as a directed graph where each path from the starting point to the ending point represents a valid alignment. In this representation, moving diagonally represents aligning two residues, moving horizontally represents inserting a gap in the vertical sequence, and moving vertically represents inserting a gap in the horizontal sequence.
 
@@ -32,7 +32,7 @@ This graph representation reveals the structured nature of the alignment problem
 
 The concept of alignment space helps us understand why certain algorithmic approaches succeed where brute force fails. Dynamic programming works by systematically exploring this space in a way that guarantees finding the optimal path without explicitly enumerating all paths. This is possible because of a key property of optimal alignments: the principle of optimality.
 
-### Computational Complexity Classes
+### Computational Complexity Classes  {.unnumbered}
 
 From a theoretical computer science perspective, the sequence alignment problem belongs to a well-studied class of optimization problems. The global alignment problem, when solved using dynamic programming, has a time complexity of O(mn) and space complexity of O(mn) for two sequences of lengths m and n. This quadratic complexity, while much better than the exponential complexity of exhaustive search, still presents challenges when aligning very long sequences or when performing many alignments.
 
@@ -40,9 +40,9 @@ The quadratic nature of the algorithm means that doubling the length of both seq
 
 It's worth noting that the sequence alignment problem, in its general form with arbitrary scoring schemes, has been proven to be NP-hard when extended to multiple sequences. This theoretical result underscores the fundamental difficulty of the alignment problem and explains why multiple sequence alignment remains an active area of algorithm development.
 
-## The Number of Possible Alignments
+## The Number of Possible Alignments  {.unnumbered}
 
-### Mathematical Framework
+### Mathematical Framework  {.unnumbered}
 
 To fully appreciate the efficiency of dynamic programming, we must understand the precise number of alignments that would need to be considered by a naive algorithm. The number of global alignments between two sequences of lengths m and n can be calculated using the concept of lattice paths.
 
@@ -60,7 +60,7 @@ These numbers grow extremely rapidly. For example:
 - D(50,50) ≈ 5.7 × 10^35
 - D(100,100) ≈ 9.0 × 10^73
 
-### Asymptotic Growth
+### Asymptotic Growth  {.unnumbered}
 
 The asymptotic behavior of the number of alignments can be approximated using Stirling's formula. For two sequences of equal length n, the number of alignments grows approximately as:
 
@@ -70,15 +70,15 @@ This shows that the number of alignments grows exponentially with sequence lengt
 
 The situation becomes even more complex when we consider that each alignment must be scored to determine which is optimal. If scoring an alignment takes O(m+n) time (proportional to the alignment length), then exhaustively searching all alignments would require O((m+n) × D(m,n)) time—a complexity that quickly becomes intractable.
 
-### Implications for Algorithm Design
+### Implications for Algorithm Design  {.unnumbered}
 
 The enormous number of possible alignments has profound implications for algorithm design in bioinformatics. It necessitates the development of clever algorithms that can find optimal solutions without explicit enumeration. This is where the principle of optimality and dynamic programming become crucial.
 
 The key insight is that while there are exponentially many alignments, there are only polynomially many distinct sub-problems that need to be solved. Specifically, there are only (m+1) × (n+1) possible sub-problems, corresponding to aligning all possible prefixes of the two sequences. This observation forms the basis of the dynamic programming approach.
 
-## The Concept of an Optimal Alignment
+## The Concept of an Optimal Alignment  {.unnumbered}
 
-### Defining Optimality
+### Defining Optimality  {.unnumbered}
 
 The concept of an optimal alignment requires a precise mathematical definition. An alignment is considered optimal if it achieves the highest possible score among all valid alignments, where the score is calculated according to a predetermined scoring scheme. This scoring scheme must capture biological reality—rewarding true homology while penalizing random similarity.
 
@@ -90,21 +90,21 @@ $$a^* = \argmax_{a \in A} \text{Score}(a)$$
 
 This definition assumes we are maximizing similarity; alternatively, we could minimize distance, in which case we would seek the minimum score.
 
-### Biological Significance
+### Biological Significance  {.unnumbered}
 
 The optimal alignment represents our best hypothesis about how the sequences are related evolutionarily. Each column in the alignment represents a hypothesis about homology—either the residues in that column descended from a common ancestral residue (in the case of matches and mismatches) or an insertion/deletion event occurred (in the case of gaps).
 
 However, it's crucial to understand that the "optimal" alignment is only optimal with respect to the chosen scoring scheme. Different scoring schemes can produce different optimal alignments for the same pair of sequences. This sensitivity to the scoring scheme reflects the fact that different evolutionary scenarios (recent divergence vs. ancient divergence, functional constraint vs. neutral evolution) are best modeled by different scoring parameters.
 
-### Uniqueness and Multiple Optimal Alignments
+### Uniqueness and Multiple Optimal Alignments  {.unnumbered}
 
 An important consideration is that the optimal alignment may not be unique. Multiple different alignments may achieve the same optimal score, particularly for sequences with repetitive regions or low complexity regions. This non-uniqueness can be biologically meaningful—it may reflect genuine uncertainty about the evolutionary relationship between sequences.
 
 When multiple optimal alignments exist, algorithms typically report one alignment (often the one encountered first during the search), but sophisticated implementations can enumerate all optimal alignments or sample from the set of near-optimal alignments. The existence of multiple optimal alignments also raises important questions about the reliability of specific features of any single optimal alignment.
 
-## Scoring Matrices
+## Scoring Matrices  {.unnumbered}
 
-### The Role of Substitution Matrices
+### The Role of Substitution Matrices  {.unnumbered}
 
 Scoring matrices are fundamental to sequence alignment, providing the quantitative framework for evaluating the similarity between sequences. A substitution matrix assigns a score to each possible pair of residues, reflecting the likelihood or acceptability of one residue being substituted for another during evolution.
 
@@ -116,13 +116,13 @@ $$S(a,b) = \log \frac{P(a,b|\text{homology})}{P(a)P(b)}$$
 
 where P(a,b|homology) is the probability of observing residues a and b aligned in homologous sequences, and P(a)P(b) is the probability of observing them by chance.
 
-### Properties of Scoring Matrices
+### Properties of Scoring Matrices  {.unnumbered}
 
 Effective scoring matrices share several important properties. They are typically symmetric (S(a,b) = S(b,a)), reflecting the fact that evolution is reversible at the level of pairwise comparison. The diagonal elements (S(a,a)) are positive, rewarding matches, while off-diagonal elements may be positive (for similar residues) or negative (for dissimilar residues).
 
 The choice of scoring matrix has a profound effect on the resulting alignment. Matrices derived from closely related sequences (like BLOSUM80) have high scores for identities and severe penalties for mismatches, making them suitable for detecting recent homologs. Matrices derived from more divergent sequences (like BLOSUM45) are more permissive of substitutions and better suited for detecting remote homologs.
 
-### Target Frequencies and Evolutionary Models
+### Target Frequencies and Evolutionary Models  {.unnumbered}
 
 The construction of scoring matrices relies on the concept of target frequencies—the expected frequency of observing each pair of residues in alignments of homologous sequences at a particular evolutionary distance. These target frequencies can be derived from:
 
@@ -132,9 +132,9 @@ The construction of scoring matrices relies on the concept of target frequencies
 
 The relationship between scoring matrices and evolutionary models provides a theoretical foundation for alignment. Under certain assumptions, finding the optimal alignment with respect to a given scoring matrix is equivalent to finding the most likely evolutionary scenario relating the two sequences.
 
-## Linear Gap Costs
+## Linear Gap Costs  {.unnumbered}
 
-### The Simplest Gap Model
+### The Simplest Gap Model  {.unnumbered}
 
 Linear gap costs represent the simplest model for penalizing insertions and deletions in sequence alignments. Under this model, the cost of a gap of length k is simply k × d, where d is the gap penalty (a positive number in similarity-based scoring or negative in distance-based scoring).
 
@@ -146,13 +146,13 @@ $$\text{Score} = \sum_{\text{aligned pairs}} S(a_i, b_j) - d \times (\text{numbe
 
 where S(a_i, b_j) is the substitution score for aligned residues a_i and b_j.
 
-### Biological Limitations
+### Biological Limitations  {.unnumbered}
 
 The linear gap model has significant biological limitations. In reality, the evolutionary cost of introducing a gap (opening a gap) is typically higher than the cost of extending an existing gap. This is because gaps often result from single mutational events that insert or delete multiple residues, rather than from multiple independent single-residue events.
 
 Despite these limitations, linear gap costs remain useful for certain applications and serve as an important pedagogical tool for understanding alignment algorithms. They also provide a baseline for comparing more sophisticated gap models.
 
-### Implementation Considerations
+### Implementation Considerations  {.unnumbered}
 
 In the dynamic programming framework, linear gap costs lead to a particularly simple recurrence relation. The score for aligning prefixes of length i and j can be computed from three possibilities:
 1. Aligning residues i and j (diagonal move)
@@ -161,9 +161,9 @@ In the dynamic programming framework, linear gap costs lead to a particularly si
 
 Each possibility can be evaluated in constant time, leading to the overall O(mn) complexity of the algorithm.
 
-## The Principle of Optimality in Sequence Alignment
+## The Principle of Optimality in Sequence Alignment  {.unnumbered}
 
-### Optimal Substructure Property
+### Optimal Substructure Property  {.unnumbered}
 
 The principle of optimality, a cornerstone of dynamic programming, states that an optimal solution to a problem contains optimal solutions to its subproblems. In the context of sequence alignment, this principle manifests in a particularly elegant way: any substring of an optimal alignment must itself be an optimal alignment of the corresponding subsequences.
 
@@ -171,7 +171,7 @@ To understand this principle concretely, consider an optimal alignment of sequen
 
 This property can be formally stated as follows: Let A* be an optimal alignment of sequences S₁ and S₂. For any positions 1 ≤ i ≤ j ≤ m in S₁ and 1 ≤ k ≤ l ≤ n in S₂ where the alignment A* aligns S₁[i..j] with S₂[k..l], the restricted alignment A*[i..j, k..l] must be an optimal alignment of the subsequences S₁[i..j] and S₂[k..l].
 
-### Mathematical Proof
+### Mathematical Proof  {.unnumbered}
 
 The proof of the optimality principle for sequence alignment proceeds by contradiction. Suppose we have an optimal alignment A* of sequences S₁[1..m] and S₂[1..n] with score Score(A*), and consider a portion of this alignment from positions (i₁,j₁) to (i₂,j₂).
 
@@ -183,15 +183,15 @@ $$\text{Score}(A') = \text{Score}(A^*) - \text{Score}(A^*[i_1..i_2, j_1..j_2]) +
 
 Since Score(B) > Score(A*[i₁..i₂, j₁..j₂]), we have Score(A') > Score(A*), contradicting the optimality of A*. Therefore, every portion of an optimal alignment must itself be optimal.
 
-### Implications for Algorithm Design
+### Implications for Algorithm Design  {.unnumbered}
 
 The principle of optimality has profound implications for algorithm design. It tells us that we can build up an optimal alignment by combining optimal alignments of smaller subsequences. This observation leads directly to the dynamic programming approach: we can find the optimal alignment of two sequences by systematically computing optimal alignments of all possible pairs of prefixes.
 
 This principle transforms an apparently intractable problem—finding the best among an exponential number of possible alignments—into a polynomial-time problem. Instead of considering all possible alignments explicitly, we only need to solve (m+1) × (n+1) subproblems, where each subproblem involves finding the optimal alignment of a prefix of the first sequence with a prefix of the second sequence.
 
-## Recursive Structure of Optimal Alignments
+## Recursive Structure of Optimal Alignments  {.unnumbered}
 
-### The Fundamental Recurrence
+### The Fundamental Recurrence  {.unnumbered}
 
 The principle of optimality leads naturally to a recursive formulation of the alignment problem. Let F(i,j) denote the score of an optimal alignment of the prefixes S₁[1..i] and S₂[1..j]. The optimal alignment ending at position (i,j) must have one of three possible last operations:
 
@@ -209,7 +209,7 @@ F(i,j-1) - d & \text{(insertion)}
 
 where S(a,b) is the substitution score for residues a and b, and d is the gap penalty.
 
-### Base Cases
+### Base Cases  {.unnumbered}
 
 The recursive formulation requires appropriate base cases to ensure well-defined computation. The base cases correspond to aligning a sequence with an empty sequence:
 
@@ -219,7 +219,7 @@ $$F(0,j) = -j \times d \quad \text{for } j > 0$$
 
 The first base case states that aligning two empty sequences has a score of zero. The other base cases state that aligning a sequence of length k with an empty sequence requires k gaps, incurring a penalty of k × d.
 
-### The Recursion Tree
+### The Recursion Tree  {.unnumbered}
 
 The recursive structure can be visualized as a recursion tree, where each node represents a subproblem F(i,j), and edges represent the dependencies between subproblems. Without memoization, this recursive approach would lead to exponential time complexity because the same subproblems appear multiple times in the recursion tree.
 
@@ -230,15 +230,15 @@ For example, F(i-1,j-1) can be reached through three different paths:
 
 This overlap in subproblems is precisely what makes dynamic programming effective—by solving each subproblem only once and storing its result, we avoid redundant computation.
 
-### Optimal Alignment Recovery
+### Optimal Alignment Recovery  {.unnumbered}
 
 While the recurrence relation allows us to compute the score of the optimal alignment, recovering the alignment itself requires additional bookkeeping. During the forward computation, we must record which of the three options (match/mismatch, insertion, or deletion) yielded the maximum score at each position.
 
 This information can be stored in a traceback matrix, where each entry indicates the operation that led to the optimal score at that position. The alignment is then recovered by following these traceback pointers from position (m,n) back to (0,0).
 
-## Dynamic Programming Solution
+## Dynamic Programming Solution  {.unnumbered}
 
-### The Needleman-Wunsch Algorithm
+### The Needleman-Wunsch Algorithm  {.unnumbered}
 
 The Needleman-Wunsch algorithm, published in 1970, was the first application of dynamic programming to biological sequence alignment. The algorithm systematically fills a two-dimensional table where entry (i,j) contains the score of the optimal alignment of S₁[1..i] and S₂[1..j].
 
@@ -274,7 +274,7 @@ While not at F(0,0):
         Move to F(i,j-1)
 ```
 
-### Computational Complexity
+### Computational Complexity  {.unnumbered}
 
 The Needleman-Wunsch algorithm has well-defined complexity bounds:
 
@@ -282,7 +282,7 @@ The Needleman-Wunsch algorithm has well-defined complexity bounds:
 
 **Space Complexity**: O(mn) for the standard implementation that stores the entire scoring matrix and traceback information. This space requirement can become prohibitive for very long sequences.
 
-### Space-Efficient Variants
+### Space-Efficient Variants  {.unnumbered}
 
 While the standard Needleman-Wunsch algorithm requires O(mn) space, variants have been developed that reduce space complexity:
 
@@ -290,7 +290,7 @@ While the standard Needleman-Wunsch algorithm requires O(mn) space, variants hav
 
 **Hirschberg's Algorithm**: This divide-and-conquer approach computes the actual alignment in O(mn) time but only O(m+n) space. The algorithm works by finding the midpoint of the optimal alignment and recursively aligning the sequences before and after this midpoint.
 
-### Implementation Considerations
+### Implementation Considerations  {.unnumbered}
 
 Practical implementations of the Needleman-Wunsch algorithm must address several considerations:
 
@@ -299,15 +299,15 @@ Practical implementations of the Needleman-Wunsch algorithm must address several
 3. **Memory Management**: For large sequences, efficient memory allocation and access patterns are crucial for performance
 4. **Parallelization**: The anti-diagonal elements of the matrix can be computed in parallel, enabling acceleration on multi-core systems
 
-## How Dynamic Programming Stores Sub-alignment Scores
+## How Dynamic Programming Stores Sub-alignment Scores  {.unnumbered}
 
-### The Principle of Memoization
+### The Principle of Memoization  {.unnumbered}
 
 Dynamic programming's efficiency comes from its systematic approach to storing and reusing solutions to subproblems. In the context of sequence alignment, each subproblem corresponds to aligning a prefix of one sequence with a prefix of the other sequence. The key insight is that once we've computed the optimal score for aligning S₁[1..i] with S₂[1..j], we can store this value and reuse it whenever this subproblem appears again in our computation.
 
 The storage mechanism is typically a two-dimensional array F, where F[i][j] stores the score of the optimal alignment of S₁[1..i] with S₂[1..j]. This array serves as a memoization table, transforming what would be an exponential-time recursive algorithm into a polynomial-time iterative algorithm.
 
-### Building Up from Smaller Problems
+### Building Up from Smaller Problems  {.unnumbered}
 
 The dynamic programming approach builds solutions to larger problems from solutions to smaller problems in a systematic way. The computation proceeds in a specific order that ensures all required values are available when needed. Typically, this means filling the matrix row by row or column by column, though any order that respects the dependencies between cells is valid.
 
@@ -318,7 +318,7 @@ For each cell F[i][j], the algorithm needs only three previously computed values
 
 This local dependency structure is what makes the algorithm efficient—each cell's value depends only on its immediate neighbors, not on the entire matrix.
 
-### The Information Content of the DP Matrix
+### The Information Content of the DP Matrix  {.unnumbered}
 
 The completed dynamic programming matrix contains rich information about the relationship between the sequences. Beyond just the optimal alignment score in F[m][n], the matrix encodes:
 
@@ -326,7 +326,7 @@ The completed dynamic programming matrix contains rich information about the rel
 2. **Alignment landscape**: The pattern of values in the matrix reveals regions of high and low similarity
 3. **Alternative alignments**: By examining near-optimal paths through the matrix, we can identify alternative alignments that score nearly as well as the optimal one
 
-### Traceback Information Storage
+### Traceback Information Storage  {.unnumbered}
 
 To reconstruct the actual alignment (not just its score), we need to store additional information during the forward pass. This traceback information records which of the three possible predecessors (diagonal, vertical, or horizontal) yielded the maximum score for each cell.
 
@@ -338,9 +338,9 @@ The traceback information can be stored in several ways:
 
 Each approach has trade-offs in terms of space usage, code complexity, and cache efficiency.
 
-## Variations and Extensions
+## Variations and Extensions  {.unnumbered}
 
-### Affine Gap Penalties
+### Affine Gap Penalties  {.unnumbered}
 
 While linear gap costs provide a simple model, affine gap penalties offer a more biologically realistic representation of insertion and deletion events. Under the affine gap model, the cost of a gap of length k is:
 
@@ -355,7 +355,7 @@ Implementing affine gap penalties requires a modified dynamic programming approa
 
 The recurrence relations become more complex but maintain the same O(mn) time complexity.
 
-### Local Alignment
+### Local Alignment  {.unnumbered}
 
 While global alignment aligns entire sequences, local alignment (Smith-Waterman algorithm) finds the best-matching subsequences within two sequences. This is achieved through two key modifications:
 
@@ -371,7 +371,7 @@ F(i-1,j) - d \\
 F(i,j-1) - d
 \end{cases}$$
 
-### Semi-Global Alignment
+### Semi-Global Alignment  {.unnumbered}
 
 Semi-global alignment, also called end-gap free alignment, is useful when one sequence is expected to be contained within the other, such as when aligning a gene to a chromosome. In this variant, gaps at the beginning or end of one or both sequences are not penalized.
 
@@ -379,39 +379,39 @@ This is implemented by:
 1. Initializing the first row and column to 0 (no penalty for initial gaps)
 2. Finding the maximum score in the last row or column (no penalty for terminal gaps)
 
-### Bounded Dynamic Programming
+### Bounded Dynamic Programming  {.unnumbered}
 
 For sequences known to be highly similar, bounded dynamic programming can reduce computation time by only filling cells within a diagonal band of the matrix. If the sequences are known to differ by at most k edit operations, only cells within distance k of the main diagonal need to be computed, reducing complexity to O(kn) where k << n.
 
-## Applications and Biological Significance
+## Applications and Biological Significance  {.unnumbered}
 
-### Evolutionary Analysis
+### Evolutionary Analysis  {.unnumbered}
 
 Global sequence alignment is fundamental to evolutionary biology, providing quantitative measures of sequence similarity that can be used to infer phylogenetic relationships. The alignment score, when properly normalized, can serve as a measure of evolutionary distance between sequences.
 
 The assumption underlying this application is that sequence similarity reflects evolutionary relatedness—sequences that are more similar share a more recent common ancestor. By aligning sequences from different species, we can identify conserved regions that have been maintained by natural selection and variable regions that have accumulated neutral or adaptive mutations.
 
-### Functional Annotation
+### Functional Annotation  {.unnumbered}
 
 One of the most common applications of sequence alignment is functional annotation—inferring the function of an uncharacterized sequence based on its similarity to sequences of known function. Global alignment is particularly appropriate when comparing complete protein sequences or entire genes.
 
 The logic of functional annotation through alignment rests on the principle that sequence similarity often implies functional similarity. Proteins with similar sequences typically fold into similar structures and perform similar biochemical functions. However, this inference must be made carefully, as there are notable exceptions where similar sequences have divergent functions or different sequences converge on similar functions.
 
-### Comparative Genomics
+### Comparative Genomics  {.unnumbered}
 
 In the era of whole-genome sequencing, global alignment algorithms have been adapted for comparing entire genomes or large genomic regions. While the basic algorithmic principles remain the same, the scale requires sophisticated implementations and often heuristic approaches.
 
 Genome alignment reveals patterns of synteny (conserved gene order), identifies orthologous genes, and highlights genomic rearrangements. These comparisons provide insights into genome evolution, including the rates and patterns of different types of mutations across genomic regions.
 
-### Medical Genetics
+### Medical Genetics  {.unnumbered}
 
 Global sequence alignment plays a crucial role in medical genetics, particularly in identifying disease-causing mutations. By aligning a patient's gene sequence with a reference sequence, clinicians can identify variations that may be pathogenic.
 
 The interpretation of these alignments requires careful consideration of the biological context. Not all sequence differences are pathogenic; distinguishing benign polymorphisms from disease-causing mutations requires integration of alignment results with functional predictions, population frequency data, and clinical information.
 
-## Modern Developments and Future Directions
+## Modern Developments and Future Directions  {.unnumbered}
 
-### Alignment in the Age of Big Data
+### Alignment in the Age of Big Data  {.unnumbered}
 
 The exponential growth of sequence databases presents both opportunities and challenges for sequence alignment. Modern sequencing technologies can generate billions of reads in a single run, requiring alignment algorithms that can scale to massive datasets.
 
@@ -421,7 +421,7 @@ Recent developments include:
 - **Cloud-based solutions**: Distributing alignment computations across multiple machines
 - **GPU acceleration**: Leveraging graphics processors for parallel computation
 
-### Machine Learning and Alignment
+### Machine Learning and Alignment  {.unnumbered}
 
 Machine learning approaches are increasingly being applied to sequence alignment problems. Neural networks can learn scoring parameters from large datasets of known alignments, potentially capturing complex patterns that are difficult to model with traditional scoring matrices.
 
@@ -431,13 +431,13 @@ Deep learning models have shown promise in:
 - Identifying remote homologs that traditional alignment methods miss
 - Integrating structural information with sequence alignment
 
-### Beyond Pairwise Alignment
+### Beyond Pairwise Alignment  {.unnumbered}
 
 While pairwise alignment remains fundamental, many biological questions require comparing multiple sequences simultaneously. The challenge of multiple sequence alignment is computationally more complex—it is NP-complete for most reasonable scoring schemes—but provides richer information about sequence families and evolutionary patterns.
 
 Progressive alignment methods build multiple alignments by repeatedly applying pairwise alignment, while iterative methods refine initial alignments through repeated rounds of optimization. Recent developments include methods that explicitly model the evolutionary tree relating the sequences and use this information to improve alignment accuracy.
 
-### Integration with Structural Biology
+### Integration with Structural Biology  {.unnumbered}
 
 The relationship between sequence and structure provides additional constraints that can improve alignment accuracy. As protein structure prediction becomes more accurate and accessible, we can expect increased integration of structural information into sequence alignment algorithms.
 
@@ -447,7 +447,7 @@ Structure-aware alignment methods can:
 - Weight alignment scores based on structural importance
 - Identify remote homologs through structural similarity
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 Pairwise global sequence alignment represents a fundamental operation in computational biology, providing the foundation for understanding evolutionary relationships, predicting function, and identifying important biological features. The application of dynamic programming to this problem, first demonstrated by Needleman and Wunsch, transformed an exponentially complex problem into one solvable in polynomial time, enabling the analysis of biological sequences at scale.
 

@@ -1,7 +1,7 @@
 
 # Paper title
 
-## Results
+## Results  {.unnumbered}
 
 laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f
 laksjdf laksjdf laksjf laksjdf laksj flakjsd flkajs dflkajs dflkajs dflakjs flkjs f

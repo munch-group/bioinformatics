@@ -89,8 +89,7 @@ book:
 
       # alignment
       # problem: ccr5     
-      - chapters/bioinformatics/pairwise_global_alignment.qmd
-      - chapters/bioinformatics/pairwise_local_alignment.qmd
+      - chapters/bioinformatics/pairwise_alignment.qmd
 
       - chapters/bioinformatics/multiple_alignment.qmd
       - chapters/project/alignment_project/index.qmd # P
@@ -112,12 +111,6 @@ book:
       - chapters/bioinformatics/models_of_dna_evolution.qmd
       - chapters/bioinformatics/phylogenetics.qmd
       - chapters/web/aardwark_seqdist/index.qmd # W
-
-
-
-
-
-
 
 
       - chapters/web/orf_finding/index.qmd # W

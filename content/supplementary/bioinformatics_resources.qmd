@@ -54,8 +54,8 @@
 
 
 
-## Knowledege data bases {-}
+## Knowledege data bases  {.unnumbered}
 
-## Do it yourself:  {-}
+## Do it yourself:   {.unnumbered}
 
 

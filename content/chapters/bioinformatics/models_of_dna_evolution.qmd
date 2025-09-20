@@ -1,6 +1,6 @@
 # Models of DNA Evolution
 
-## Introduction: Why Model DNA Evolution?
+## Introduction: Why Model DNA Evolution?  {.unnumbered}
 
 The study of molecular evolution requires mathematical frameworks to understand how DNA sequences change over time. When we observe two DNA sequences from different species, we see differences that have accumulated through evolutionary history. However, the observed differences represent only the net result of a complex process involving multiple substitutions, back-mutations, and parallel changes occurring over millions of years. Models of DNA evolution provide the mathematical machinery to infer evolutionary relationships, estimate divergence times, and understand the mechanisms driving genetic change.
 
@@ -8,7 +8,7 @@ Consider two homologous DNA sequences that diverged from a common ancestor. The 
 
 The importance of evolutionary models extends far beyond theoretical interest. These models form the foundation for phylogenetic reconstruction, enabling us to infer the tree of life from molecular data. They allow us to date evolutionary events, identify sites under selection, and understand patterns of molecular evolution across genomes. In practical applications, evolutionary models help track viral evolution, predict drug resistance mutations, and identify functionally important genomic regions through comparative analysis.
 
-## The Fundamental Challenge: Multiple Substitutions
+## The Fundamental Challenge: Multiple Substitutions  {.unnumbered}
 
 The central challenge in modeling DNA evolution lies in accounting for multiple substitutions at the same site. When sequences diverge over long evolutionary periods, the probability increases that any given position experiences more than one substitution. This phenomenon, known as multiple hits or homoplasy, causes the observed sequence divergence to plateau even as evolutionary time continues to increase.
 
@@ -16,7 +16,7 @@ To illustrate this concept, imagine tracking a single nucleotide position over e
 
 The mathematical framework for handling multiple substitutions involves continuous-time Markov chains. These models treat nucleotide substitution as a stochastic process where the probability of change depends only on the current state, not on the sequence's history. The Markov property—memorylessness—simplifies the mathematics while capturing the essential features of the substitution process. The models specify instantaneous rates of change between nucleotides, from which we can derive the probabilities of observing particular nucleotide pairs after any amount of evolutionary time.
 
-## A model of DNA evolution
+## A model of DNA evolution  {.unnumbered}
 
 We need a model that decribes the evolution of DNA. If the base at some position in a DNA sequence is $y \in {A, T, C, G}$, we would like to know the probability that it is $x \in {A, T, C, G}$ after some time bas passed. This is a complicated task, so let's break it into simpler steps.
 
@@ -57,11 +57,11 @@ Q = \begin{pmatrix}
 $$
 
 
-## The Jukes-Cantor Model: Simplicity and Symmetry
+## The Jukes-Cantor Model: Simplicity and Symmetry  {.unnumbered}
 
 The Jukes-Cantor (JC69) model, proposed in 1969, represents the simplest mathematical description of DNA evolution. This model assumes that all substitutions occur at the same rate and that all nucleotides have equal equilibrium frequencies. Despite its simplicity, or perhaps because of it, the JC69 model provides fundamental insights into the relationship between observed differences and actual evolutionary distances.
 
-### Model Assumptions and Structure
+### Model Assumptions and Structure  {.unnumbered}
 
 The JC69 model makes several simplifying assumptions:
 1. All nucleotides (A, C, G, T) have equal equilibrium frequencies (πA = πC = πG = πT = 0.25)
@@ -153,7 +153,7 @@ $$
 
 The diagonal elements ensure that each row sums to zero, maintaining the property of a rate matrix. The negative diagonal elements represent the rate of leaving each state, while off-diagonal elements represent rates of transition to other states.
 
-### Deriving Transition Probabilities
+### Deriving Transition Probabilities  {.unnumbered}
 
 The transition probability matrix P(t), giving the probability that nucleotide i changes to nucleotide j over time t, can be derived by exponentiating the rate matrix:
 
@@ -187,7 +187,7 @@ where 𝟙 is a column vector of ones and I is the identity matrix. This yields 
 $$P_{ii}(t) = \frac{1}{4} + \frac{3}{4}e^{-4\alpha t}$$
 $$P_{ij}(t) = \frac{1}{4} - \frac{1}{4}e^{-4\alpha t} \text{ for } i \neq j$$
 
-### Worked Example: Computing Transition Probabilities
+### Worked Example: Computing Transition Probabilities  {.unnumbered}
 
 Let's work through a concrete example. Suppose α = 0.01 substitutions per site per million years, and we want to know the probabilities after t = 10 million years.
 
@@ -208,7 +208,7 @@ $$P_{ii} + 3 \times P_{ij} = 0.7527 + 3 \times 0.0824 = 0.7527 + 0.2472 \approx 
 
 This means that after 10 million years, there's approximately a 75% chance a nucleotide remains unchanged and about 8% chance it changes to any specific other nucleotide.
 
-### Two-Sequence Divergence
+### Two-Sequence Divergence  {.unnumbered}
 
 When comparing two sequences that diverged from a common ancestor, we need to consider evolution along both branches. If each branch has evolved for time t, the total evolutionary time is 2t.
 
@@ -232,7 +232,7 @@ Therefore, the probability that sites differ is:
 
 $$p = 1 - P_{same} = \frac{3}{4}(1 - e^{-8\alpha t})$$
 
-### Distance Correction Formula
+### Distance Correction Formula  {.unnumbered}
 
 The observed proportion of differences p underestimates the actual number of substitutions due to multiple hits. To correct for this, we solve for the evolutionary distance d = 2αt:
 
@@ -249,7 +249,7 @@ $$d = -\frac{3}{4}\ln\left(1 - \frac{4p}{3}\right)$$
 
 This is the Jukes-Cantor distance correction formula, which estimates the expected number of substitutions per site from the observed proportion of differences.
 
-### Numerical Example: Distance Correction
+### Numerical Example: Distance Correction  {.unnumbered}
 
 Consider two sequences with the following alignment:
 
@@ -269,7 +269,7 @@ $$d = -\frac{3}{4} \times (-0.5108) = 0.3831$$
 
 So while we observe 30% differences, the estimated number of substitutions per site is 0.383, or 38.3%. This 28% increase (from 0.30 to 0.383) accounts for multiple substitutions at the same sites.
 
-### Saturation and Model Limitations
+### Saturation and Model Limitations  {.unnumbered}
 
 As sequences diverge, the observed differences plateau while actual substitutions continue to accumulate. The JC69 model predicts:
 
@@ -281,7 +281,7 @@ As sequences diverge, the observed differences plateau while actual substitution
 
 The correction formula becomes undefined when p ≥ 0.75, as ln(1 - 4p/3) is undefined for p ≥ 0.75. This represents complete saturation—sequences are no more similar than random.
 
-### Properties and Insights
+### Properties and Insights  {.unnumbered}
 
 The JC69 model reveals several fundamental properties of neutral evolution:
 
@@ -293,7 +293,7 @@ The JC69 model reveals several fundamental properties of neutral evolution:
 
 These properties make the JC69 model a valuable baseline for understanding molecular evolution, even though its assumptions are oversimplified for real sequences.
 
-## The Kimura Two-Parameter Model: Transitions and Transversions
+## The Kimura Two-Parameter Model: Transitions and Transversions  {.unnumbered}
 
 ---
 
@@ -373,7 +373,7 @@ $$
 C = \text{GC}_{s1} + \text{GC}_{s2} - 2 \times \text{GC}_{s1} \times \text{GC}_{s2}
 $$
 
-## The Felsenstein 81 Model: Unequal Base Frequencies
+## The Felsenstein 81 Model: Unequal Base Frequencies  {.unnumbered}
 
 Real DNA sequences rarely exhibit equal frequencies of all four nucleotides. The Felsenstein 81 (F81) model addresses this limitation by allowing unequal equilibrium base frequencies while maintaining equal rates for all substitution types. This model recognizes that compositional biases—such as high GC content in certain genomes—affect substitution patterns.
 
@@ -398,7 +398,7 @@ where δᵢⱼ is the Kronecker delta (1 if i=j, 0 otherwise). These equations s
 
 The F81 model provides insights into how compositional constraints shape molecular evolution. In GC-rich genomes, for example, AT→GC substitutions occur more frequently than GC→AT substitutions, maintaining the compositional bias. This model forms the basis for more complex models that combine unequal base frequencies with other biological features.
 
-## The HKY85 Model: Combining Biological Realism
+## The HKY85 Model: Combining Biological Realism  {.unnumbered}
 
 The Hasegawa-Kishino-Yano (HKY85) model represents a synthesis of the K80 and F81 models, incorporating both transition/transversion bias and unequal base frequencies. This model, proposed in 1985, strikes a balance between biological realism and computational tractability, making it one of the most widely used models in phylogenetic analysis.
 
@@ -418,7 +418,7 @@ Distance estimation under HKY85 requires numerical methods rather than analytica
 
 The HKY85 model's success stems from its ability to capture essential features of molecular evolution without excessive parameterization. It accounts for approximately 85% of the variation in substitution patterns observed in real sequences while remaining computationally feasible for large datasets.
 
-## The General Time Reversible Model: Maximum Flexibility
+## The General Time Reversible Model: Maximum Flexibility  {.unnumbered}
 
 The General Time Reversible (GTR) model represents the most general neutral model of DNA evolution with time reversibility. This model allows all six pairs of nucleotide substitutions to have different rates while maintaining the mathematical property of time reversibility—essential for most phylogenetic methods.
 
@@ -445,7 +445,7 @@ The GTR model encompasses all previously discussed models as special cases:
 
 This hierarchy of models allows researchers to select appropriate complexity levels through statistical model selection procedures. The Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC) can identify whether additional parameters significantly improve model fit.
 
-## Rate Heterogeneity: The Gamma Distribution
+## Rate Heterogeneity: The Gamma Distribution  {.unnumbered}
 
 Real sequences exhibit substantial variation in substitution rates across sites. Some positions evolve rapidly due to weak functional constraints, while others remain nearly invariant due to strong purifying selection. Ignoring rate heterogeneity leads to underestimation of evolutionary distances and incorrect phylogenetic inference.
 
@@ -467,7 +467,7 @@ $$L = \prod_{i=1}^n \sum_{j=1}^k \frac{1}{k} P(D_i | r_j)$$
 
 where Dᵢ represents the data at site i and rⱼ is the rate for category j.
 
-## Invariant Sites: Accounting for Functional Constraints
+## Invariant Sites: Accounting for Functional Constraints  {.unnumbered}
 
 Some positions in functional sequences cannot tolerate any substitutions without losing essential function. These invariant sites violate the assumptions of standard models, which predict that all sites should eventually vary given sufficient time. The proportion of invariant sites (pᵢₙᵥ) can be substantial in coding sequences, particularly at first and second codon positions.
 
@@ -479,7 +479,7 @@ where Lᵢₙᵥ is the likelihood of observing no change and L_Γ is the likeli
 
 Parameter estimation in I+G models requires care to avoid identifiability problems. As the gamma shape parameter approaches zero, the gamma distribution places increasing weight on slowly evolving sites, potentially confounding with truly invariant sites. Maximum likelihood estimation must navigate this parameter correlation carefully.
 
-## Codon Models: The Genetic Code's Influence
+## Codon Models: The Genetic Code's Influence  {.unnumbered}
 
 When analyzing protein-coding sequences, nucleotide substitution models ignore the genetic code's structure. Codon models explicitly incorporate the relationship between DNA changes and amino acid replacements, providing more biologically realistic descriptions of coding sequence evolution.
 
@@ -502,7 +502,7 @@ where ω = dN/dS represents the ratio of non-synonymous to synonymous substituti
 
 Codon models can detect positive selection even when it affects only a small proportion of sites, making them powerful tools for identifying functionally important regions and adaptive evolution.
 
-## Context-Dependent Evolution: Beyond Independence
+## Context-Dependent Evolution: Beyond Independence  {.unnumbered}
 
 Standard models assume that sites evolve independently, but real sequences exhibit context-dependent substitution patterns. The most striking example is the CpG dinucleotide in vertebrate genomes. Methylated cytosines in CpG contexts spontaneously deaminate to thymine at elevated rates, causing CpG depletion except in unmethylated CpG islands.
 
@@ -518,7 +518,7 @@ These models can capture:
 
 While context-dependent models provide more realistic descriptions of sequence evolution, they require substantially more parameters and computational resources. The trade-off between model realism and practical applicability remains an active area of research.
 
-## Model Selection: Choosing Appropriate Complexity
+## Model Selection: Choosing Appropriate Complexity  {.unnumbered}
 
 With numerous models available, selecting appropriate complexity for specific datasets becomes crucial. Overly simple models miss important evolutionary features, while overly complex models overfit data and provide unreliable estimates.
 
@@ -545,7 +545,7 @@ Hierarchical likelihood ratio tests can systematically evaluate model features:
 
 This systematic approach identifies necessary model features while avoiding unnecessary complexity.
 
-## Practical Applications: From Theory to Practice
+## Practical Applications: From Theory to Practice  {.unnumbered}
 
 Evolutionary models enable diverse applications in biology and medicine:
 
@@ -559,7 +559,7 @@ Evolutionary models enable diverse applications in biology and medicine:
 
 **Epidemiological Tracking:** Fast-evolving viruses like influenza and HIV require sophisticated models accounting for rapid evolution and strong selection. Real-time phylogenetics tracks viral spread, identifies transmission chains, and predicts future evolution. Model-based analyses inform public health decisions and vaccine design.
 
-## Limitations and Future Directions
+## Limitations and Future Directions  {.unnumbered}
 
 Despite their utility, current models have important limitations:
 
@@ -578,7 +578,7 @@ Future developments will likely focus on:
 - Models tailored to specific biological questions
 - Real-time phylogenetics for pathogen surveillance
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 Models of DNA evolution provide the mathematical foundation for understanding how genetic sequences change over time. From the simple elegance of the Jukes-Cantor model to the biological realism of context-dependent models, this framework enables us to extract evolutionary information from sequence data.
 

@@ -1,8 +1,8 @@
-# Your Own Types of Objects: Python Classes {#sec-classes}
+# Your Own Objects {#sec-classes}
 
 *Do you know what type you are? Python objects do, and this chapter is about how they know and how you can create your own types.*
 
-## Introduction: Objects and Types
+## Introduction: Objects and Types  {.unnumbered}
 
 By now, you know that Python values are objects and that there are different *types* of objects. Strings have the type `str`, integers have the type `int`, and lists have the type `list`, to mention a few of the ones we know. Remember that you can use the built-in `type` function to find out what type an object is. Try this:
 
@@ -20,7 +20,7 @@ Each object carries its own data: different numbers, different strings, etc., bu
 
 ![Objects and type. Each object carries its own data, but refers to the type for a definition of its methods.](./images/objects_and_type.png){#fig-objects_and_type width=50%}
 
-## Why Create Your Own Classes?
+## Why Create Your Own Classes?  {.unnumbered}
 
 In bioinformatics and computational biology, we often work with complex data structures that represent biological entities. While Python's built-in types are powerful, they may not perfectly capture the essence of domain-specific concepts. For instance, a DNA sequence is more than just a string—it has specific properties and behaviors unique to biological sequences. A phylogenetic tree is more than nested lists—it represents evolutionary relationships with specific traversal and analysis methods.
 
@@ -31,7 +31,7 @@ Creating custom classes allows us to:
 4. **Maintain code** more easily through clear organization
 5. **Extend functionality** through inheritance and composition
 
-## Basic Class Definition
+## Basic Class Definition  {.unnumbered}
 
 Imagine creating your own types of objects carrying a particular kind of data and functionality. "Data" can be anything. In bioinformatics, it could be an open reading frame, a patient profile, or a phylogenetic tree. Fortunately, Python lets us do this using something called *classes*. Classes define new kinds of objects and the functionality they provide. So, by defining a new class, you define a new type of object, and the methods you define in that class are available to objects of that particular type.
 
@@ -50,7 +50,7 @@ class Point:
 
 Let us break it down: We use the keyword `class` followed by the name of the class we define. By convention, class names in Python use CamelCase (also called PascalCase), where each word starts with a capital letter. Nested under that statement, we define methods that will be available to all instances of this class.
 
-### The Constructor: `__init__`
+### The Constructor: `__init__`  {.unnumbered}
 
 The `__init__` method is special—it's called a constructor. This method is automatically called when we create a new instance of the class. The parameters it accepts (besides `self`) determine what arguments we need to provide when creating an object:
 
@@ -67,7 +67,7 @@ print(f"Point 2: ({p2.x}, {p2.y})")  # Point 2: (-1, 2)
 
 The mysterious `self` parameter deserves special attention. It represents the instance being created or operated on. When Python calls `__init__`, it automatically passes the newly created object as the first argument. Inside `__init__`, we use `self` to store data in the object by creating attributes: `self.x = x` creates an attribute named `x` and stores the value of the parameter `x` in it.
 
-## Instance Methods
+## Instance Methods  {.unnumbered}
 
 Methods are functions defined inside a class. They automatically receive the instance as their first parameter (conventionally named `self`). Let's add some methods to our `Point` class:
 
@@ -110,11 +110,11 @@ p1.move(1, 1)
 print(p1)  # Point(4, 5)
 ```
 
-## Special Methods: The Magic Behind Python's Elegance
+## Special Methods: The Magic Behind Python's Elegance  {.unnumbered}
 
 Python classes can define special methods (also called magic methods or dunder methods) that enable objects to work with built-in Python operations. These methods have names surrounded by double underscores.
 
-### String Representation Methods
+### String Representation Methods  {.unnumbered}
 
 The `__str__` method we saw above defines how an object is converted to a string for display. There's also `__repr__`, which provides a more detailed representation:
 
@@ -137,7 +137,7 @@ print(str(p))   # (3, 4)
 print(repr(p))  # Point(x=3, y=4)
 ```
 
-### Arithmetic Operations
+### Arithmetic Operations  {.unnumbered}
 
 We can define how objects behave with mathematical operators:
 
@@ -174,7 +174,7 @@ p5 = p1 * 2   # Point(6, 8)
 print(p1 == Point(3, 4))  # True
 ```
 
-### Container-like Behavior
+### Container-like Behavior  {.unnumbered}
 
 Classes can behave like containers (lists, dictionaries) by implementing appropriate methods:
 
@@ -211,7 +211,7 @@ for base in dna:
     print(base, end=" ")  # A T G C G A T C G
 ```
 
-## Class Variables vs Instance Variables
+## Class Variables vs Instance Variables  {.unnumbered}
 
 So far, we've seen instance variables (attributes specific to each object). Classes can also have class variables shared by all instances:
 
@@ -252,7 +252,7 @@ atom3 = Atom(11, 2, 0, 0)
 print(atom3.get_element())  # Na
 ```
 
-## Inheritance: Building on Existing Classes
+## Inheritance: Building on Existing Classes  {.unnumbered}
 
 One of the most powerful features of object-oriented programming is inheritance, which allows us to create new classes based on existing ones. The new class (child or subclass) inherits attributes and methods from the parent class (superclass) and can add or modify functionality.
 
@@ -356,7 +356,7 @@ protein = rna.translate()
 print(f"Protein: {protein.sequence}")
 ```
 
-## Composition: Objects Containing Objects
+## Composition: Objects Containing Objects  {.unnumbered}
 
 Sometimes, rather than inheritance, it's better to use composition—having objects contain other objects:
 
@@ -430,7 +430,7 @@ print(f"Gene length: {brca1.get_length()} bp")
 print(f"Number of exons: {len(brca1.exons)}")
 ```
 
-## Properties: Controlled Access to Attributes
+## Properties: Controlled Access to Attributes  {.unnumbered}
 
 Python provides properties as a way to control access to attributes, allowing validation and computed attributes:
 
@@ -484,7 +484,7 @@ print(f"Genome size: {human.genome_size_mb:.1f} Mb")
 # human.genome_size = -100  # ValueError: Genome size cannot be negative
 ```
 
-## Static Methods and Class Methods
+## Static Methods and Class Methods  {.unnumbered}
 
 Besides instance methods, classes can have static methods (not bound to instances) and class methods (bound to the class):
 
@@ -547,7 +547,7 @@ dna_weight = SequenceAnalyzer.molecular_weight_dna("ATCG")
 print(f"Molecular weight: {dna_weight:.1f} Da")
 ```
 
-## Advanced Topics: Multiple Inheritance and Mixins
+## Advanced Topics: Multiple Inheritance and Mixins  {.unnumbered}
 
 Python supports multiple inheritance, where a class can inherit from multiple parent classes. This can be used to create mixins—classes that provide specific functionality to be mixed into other classes:
 
@@ -622,11 +622,11 @@ mut3 = Mutation.from_json(json_str)
 print(mut3)
 ```
 
-## Best Practices in Class Design
+## Best Practices in Class Design  {.unnumbered}
 
 When designing classes, follow these principles for maintainable and robust code:
 
-### 1. Single Responsibility Principle
+### 1. Single Responsibility Principle  {.unnumbered}
 Each class should have one primary purpose. Don't create "god classes" that do everything:
 
 ```python
@@ -653,7 +653,7 @@ class SequenceDoEverything:
         pass
 ```
 
-### 2. Encapsulation
+### 2. Encapsulation  {.unnumbered}
 Hide internal implementation details and provide clean interfaces:
 
 ```python
@@ -675,7 +675,7 @@ class Phylogeny:
             raise TypeError("Must be a TreeNode instance")
 ```
 
-### 3. Documentation
+### 3. Documentation  {.unnumbered}
 Always document your classes and methods:
 
 ```python
@@ -720,7 +720,7 @@ class AlignmentScore:
         return self.raw_score / self.length if self.length > 0 else 0
 ```
 
-## Real-World Example: A Complete Bioinformatics Class
+## Real-World Example: A Complete Bioinformatics Class  {.unnumbered}
 
 Let's create a comprehensive class for handling biological sequences with practical features:
 
@@ -909,7 +909,7 @@ subseq = seq[10:20]
 print(f"\nSubsequence: {subseq.sequence}")
 ```
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 Python classes provide a powerful mechanism for creating custom data types that model real-world entities and concepts. In bioinformatics, classes allow us to create abstractions that closely match biological entities—sequences, genes, proteins, mutations, and phylogenetic trees—making our code more intuitive and maintainable.
 

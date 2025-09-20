@@ -1,8 +1,8 @@
-# Multiple Sequence Alignment
+# Multiple Alignment
 
 > ClustalW is the 10th most cited scientific paper - not just in bioinformatics but in all of science!
 
-## Introduction: The Fundamental Challenge
+## Introduction: The Fundamental Challenge  {.unnumbered}
 
 Multiple sequence alignment (MSA) represents one of the most fundamental and challenging problems in computational biology. While aligning two sequences is computationally tractable, the extension to multiple sequences introduces profound computational and biological complexities that have engaged researchers for decades. The importance of MSA cannot be overstated: it forms the foundation for phylogenetic analysis, protein structure prediction, identification of conserved regions, and understanding evolutionary relationships among organisms.
 
@@ -12,9 +12,9 @@ Consider the challenge: given a set of DNA or protein sequences that share evolu
 
 The computational complexity of this problem escalates dramatically with the number of sequences. While dynamic programming provides an exact solution for pairwise alignment in O(n²) time for sequences of length n, the extension to k sequences requires O(nᵏ) time and space—quickly becoming intractable even for modest numbers of sequences. This exponential growth has driven the development of numerous heuristic approaches that trade optimality guarantees for computational feasibility, each with its own strengths, weaknesses, and underlying assumptions about sequence evolution.
 
-## The Computational Complexity Problem
+## The Computational Complexity Problem  {.unnumbered}
 
-### Theoretical Foundations
+### Theoretical Foundations  {.unnumbered}
 
 The multiple sequence alignment problem can be formally defined as follows: given k sequences S₁, S₂, ..., Sₖ over an alphabet Σ (typically 4 nucleotides or 20 amino acids), find an alignment that maximizes a scoring function. An alignment extends each sequence by inserting gaps (-) such that all resulting sequences have the same length, and the score is typically the sum of all pairwise scores (sum-of-pairs) or the score relative to a consensus sequence.
 
@@ -28,7 +28,7 @@ $$S(n,k) = O(n^k)$$
 
 For just 10 sequences of length 100, this would require 10²⁰ cells—far beyond the capacity of any conceivable computer. Even with optimizations like linear space algorithms that reduce space complexity to O(kn²), the time complexity remains exponential in the number of sequences.
 
-### NP-Completeness
+### NP-Completeness  {.unnumbered}
 
 Wang and Jiang proved in 1994 that multiple sequence alignment under the sum-of-pairs (SP) scoring scheme is NP-complete. This means that unless P = NP, no polynomial-time algorithm exists for finding optimal multiple alignments. The proof involves a reduction from the shortest common supersequence problem, itself known to be NP-complete.
 
@@ -36,7 +36,7 @@ The NP-completeness of MSA has profound implications. It means that as we add mo
 
 Even seemingly simple variations of the problem remain computationally hard. The star alignment problem (aligning all sequences to a central sequence), the tree alignment problem (aligning sequences according to a phylogenetic tree), and the consensus alignment problem all belong to the class of NP-hard problems. This universality of computational difficulty suggests that the complexity is inherent to the biological problem itself, not merely an artifact of our mathematical formulation.
 
-### Scoring Functions and Objective Complexity
+### Scoring Functions and Objective Complexity  {.unnumbered}
 
 The choice of scoring function adds another layer of complexity to the MSA problem. The most common approaches include:
 
@@ -50,9 +50,9 @@ The choice of scoring function adds another layer of complexity to the MSA probl
 
 Each scoring scheme embodies different assumptions about sequence evolution and conservation, and no single approach is optimal for all situations. This multiplicity of objective functions further complicates the already challenging optimization problem.
 
-## Progressive Alignment: The Dominant Paradigm
+## Progressive Alignment: The Dominant Paradigm  {.unnumbered}
 
-### The Progressive Strategy
+### The Progressive Strategy  {.unnumbered}
 
 Progressive alignment, introduced by Feng and Doolittle in 1987 and popularized by programs like ClustalW, has become the dominant approach for multiple sequence alignment due to its reasonable balance between speed and accuracy. The strategy builds a multiple alignment incrementally by first aligning the most similar sequences and progressively adding more distant sequences or groups of sequences.
 
@@ -66,7 +66,7 @@ The progressive approach typically follows these steps:
 
 The key insight is that closely related sequences are easier to align accurately, and these initial alignments can guide the incorporation of more distant sequences. By following the evolutionary hierarchy, progressive alignment attempts to preserve the most reliable homology relationships first.
 
-### Mathematical Framework
+### Mathematical Framework  {.unnumbered}
 
 The progressive alignment score can be formulated recursively. Let A(X) represent an alignment of sequence set X, and S(A₁, A₂) represent the score of aligning two alignments. For a tree T with children nodes c₁ and c₂ of node v:
 
@@ -82,7 +82,7 @@ $$S(P_1[i], P_2[j]) = \sum_{a \in \Sigma} \sum_{b \in \Sigma} P_1[i][a] \cdot P_
 
 where s(a,b) is the substitution score between residues a and b.
 
-### Advantages of Progressive Alignment
+### Advantages of Progressive Alignment  {.unnumbered}
 
 Progressive alignment offers several compelling advantages that explain its widespread adoption:
 
@@ -94,15 +94,15 @@ Progressive alignment offers several compelling advantages that explain its wide
 
 **Flexibility**: The framework accommodates various scoring schemes, gap penalties, and substitution matrices. It can be adapted for DNA, protein, or even RNA structural alignments.
 
-## The Greedy Nature and Its Shortcomings
+## The Greedy Nature and Its Shortcomings  {.unnumbered}
 
-### The Fundamental Limitation
+### The Fundamental Limitation  {.unnumbered}
 
 Progressive alignment is inherently a greedy algorithm—it makes locally optimal choices at each step without the ability to reconsider previous decisions. Once two sequences or groups are aligned, their relative positioning is fixed for all subsequent steps. This "once a gap, always a gap" principle means that errors introduced early in the process propagate and potentially amplify as more sequences are added.
 
 Consider a simple example: suppose sequences A and B are aligned first, introducing a gap in sequence A at position 10. When sequence C is added later, it might align better if the gap in A were at position 11, but this adjustment is impossible within the progressive framework. The alignment of A and B is frozen, forcing C to accommodate their potentially suboptimal arrangement.
 
-### Error Propagation
+### Error Propagation  {.unnumbered}
 
 The progressive strategy's greatest weakness is its susceptibility to error propagation. Mistakes made in early alignment stages cannot be corrected later, and these errors tend to accumulate and magnify as the alignment grows. Several factors contribute to this problem:
 
@@ -112,7 +112,7 @@ The progressive strategy's greatest weakness is its susceptibility to error prop
 
 **Distance Effects**: Sequences added later in the progressive process must align to increasingly large and rigid profiles. Distant sequences, added near the root of the tree, have the least flexibility in their placement, even though these are precisely the sequences where alignment uncertainty is highest.
 
-### The Indel Problem
+### The Indel Problem  {.unnumbered}
 
 One of the most serious issues with progressive alignment is its tendency to accumulate and retain insertions and deletions (indels). This problem manifests in several ways:
 
@@ -124,7 +124,7 @@ One of the most serious issues with progressive alignment is its tendency to acc
 
 **Terminal Gap Ambiguity**: Progressive methods often struggle with terminal gaps (gaps at sequence ends). Different treatment of terminal gaps during pairwise alignment versus profile alignment can create inconsistent gap patterns that don't reflect biological reality.
 
-### Mathematical Analysis of Error Accumulation
+### Mathematical Analysis of Error Accumulation  {.unnumbered}
 
 The error accumulation in progressive alignment can be modeled mathematically. Let ε be the probability of making an alignment error at each node of the guide tree. For a balanced binary tree with k sequences, the tree height is log₂(k). The probability of at least one error in the path from leaf to root is:
 
@@ -140,9 +140,9 @@ $$P(error) \approx 1 - e^{-\varepsilon \cdot \alpha^{\log_2(k)}}$$
 
 This shows potential for rapid error accumulation, especially when aligning divergent sequences where ε is substantial.
 
-## Popular Heuristic Multiple Alignment Tools
+## Popular Heuristic Multiple Alignment Tools  {.unnumbered}
 
-### ClustalW and Clustal Omega
+### ClustalW and Clustal Omega  {.unnumbered}
 
 ClustalW, published by Thompson, Higgins, and Gibson in 1994, became the most widely used multiple alignment program in bioinformatics history. Its success stems from several key innovations:
 
@@ -162,7 +162,7 @@ where n_j is the number of branches at node j.
 
 Clustal Omega, released in 2011, represents a complete reimplementation designed for the genomic era. It replaces the O(k²) guide tree construction with an O(k log k) algorithm using mBed embeddings, enabling alignment of hundreds of thousands of sequences. The program also uses HMM-based profile-profile alignment for improved accuracy.
 
-### MUSCLE
+### MUSCLE  {.unnumbered}
 
 MUSCLE (Multiple Sequence Comparison by Log-Expectation), developed by Robert Edgar in 2004, introduced an iterative refinement approach that addresses some limitations of purely progressive methods:
 
@@ -183,7 +183,7 @@ $$LE = log(\sum_{a,b} p_a \cdot p_b \cdot e^{s(a,b)/\lambda})$$
 
 This scoring better handles distantly related sequences compared to traditional sum-of-pairs scores.
 
-### MAFFT
+### MAFFT  {.unnumbered}
 
 MAFFT (Multiple Alignment using Fast Fourier Transform) by Katoh et al. (2002) offers multiple alignment strategies with different speed-accuracy trade-offs:
 
@@ -201,7 +201,7 @@ where P denotes alignment probability.
 
 **Structural Information Integration**: MAFFT can incorporate structural alignments when available, using them to anchor the sequence alignment and improve accuracy in structurally conserved regions.
 
-### T-Coffee and Consistency-Based Methods
+### T-Coffee and Consistency-Based Methods  {.unnumbered}
 
 T-Coffee (Tree-based Consistency Objective Function for alignment Evaluation) by Notredame et al. (2000) pioneered the consistency-based approach to multiple alignment:
 
@@ -217,7 +217,7 @@ This triplet approach ensures that alignments consistent across multiple sequenc
 
 **Progressive Alignment with Extended Library**: The final alignment uses progressive alignment but scores positions using the extended library weights rather than a substitution matrix.
 
-### PRANK and Phylogeny-Aware Methods
+### PRANK and Phylogeny-Aware Methods  {.unnumbered}
 
 PRANK (Probabilistic Alignment Kit) by Löytynoja and Goldman (2005) explicitly models insertions and deletions in an evolutionary framework:
 
@@ -229,9 +229,9 @@ $$P(gap\_pattern | tree) = \prod_{branches} P(indel\_events\_on\_branch)$$
 
 **Character Distinction**: The algorithm treats insertions and deletions as distinct evolutionary events, not just generic gaps. This distinction is crucial for accurate phylogenetic inference and evolutionary rate estimation.
 
-## Advanced Methodologies and Algorithmic Innovations
+## Advanced Methodologies and Algorithmic Innovations  {.unnumbered}
 
-### Iterative Refinement Strategies
+### Iterative Refinement Strategies  {.unnumbered}
 
 Iterative refinement attempts to escape the local minima inherent to progressive alignment. These methods repeatedly modify an existing alignment to improve its score:
 
@@ -252,7 +252,7 @@ $$P(accept) = e^{-\Delta Score / T}$$
 
 where T is a temperature parameter that decreases over time. Early iterations explore broadly, while later iterations converge to a local optimum.
 
-### Hidden Markov Models and Statistical Approaches
+### Hidden Markov Models and Statistical Approaches  {.unnumbered}
 
 Profile Hidden Markov Models (HMMs) provide a probabilistic framework for multiple alignment:
 
@@ -271,7 +271,7 @@ $$\pi^* = \arg\max_\pi P(\pi | seq, \theta)$$
 
 HMM-based methods like HMMER naturally handle position-specific scoring and provide probabilistic measures of alignment confidence.
 
-### Consensus and Meta-Methods
+### Consensus and Meta-Methods  {.unnumbered}
 
 Meta-methods combine multiple alignments to leverage the strengths of different approaches:
 
@@ -289,7 +289,7 @@ $$Confidence(column_i) = \frac{|\{alignments\_with\_same\_column\}|}{total\_alig
 
 Only high-confidence columns are retained in the consensus.
 
-### Structure-Based and Domain-Aware Alignment
+### Structure-Based and Domain-Aware Alignment  {.unnumbered}
 
 When structural information is available, it can dramatically improve alignment accuracy:
 
@@ -306,9 +306,9 @@ where β reflects confidence in structural alignment.
 
 This approach prevents incorrect alignment across domain boundaries, a common source of errors in traditional methods.
 
-## Computational Optimizations and Scalability
+## Computational Optimizations and Scalability  {.unnumbered}
 
-### Algorithmic Improvements
+### Algorithmic Improvements  {.unnumbered}
 
 Modern alignment programs employ numerous optimizations to handle large-scale data:
 
@@ -327,7 +327,7 @@ This divide-and-conquer approach significantly reduces computation for long sequ
 
 **Sparse Dynamic Programming**: Store only cells that might contribute to the optimal path, reducing memory from O(n²) to O(n) in favorable cases.
 
-### Parallelization Strategies
+### Parallelization Strategies  {.unnumbered}
 
 Multiple alignment is amenable to various parallelization approaches:
 
@@ -353,7 +353,7 @@ $$cell[i][j] = f(cell[i-1][j], cell[i][j-1], cell[i-1][j-1])$$
 
 Modern tools like Clustal Omega and MAFFT exploit multi-core architectures and SIMD instructions for substantial speedups.
 
-### Memory-Efficient Implementations
+### Memory-Efficient Implementations  {.unnumbered}
 
 Large-scale alignments require careful memory management:
 
@@ -371,9 +371,9 @@ $$P_{compressed}[i] = cluster(P_{original}[i])$$
 - Memory-mapped files for profiles
 - Compressed sequence representation
 
-## Validation, Quality Assessment, and Best Practices
+## Validation, Quality Assessment, and Best Practices  {.unnumbered}
 
-### Alignment Quality Metrics
+### Alignment Quality Metrics  {.unnumbered}
 
 Assessing alignment quality without knowing the true alignment is challenging but crucial:
 
@@ -397,7 +397,7 @@ High information content indicates strong conservation.
 
 $$ND = \frac{|observed - expected|}{expected}$$
 
-### Benchmark Datasets and Validation
+### Benchmark Datasets and Validation  {.unnumbered}
 
 Several benchmark databases enable objective comparison of alignment methods:
 
@@ -418,7 +418,7 @@ Performance metrics include:
 - Column score (CS): Fraction of correctly aligned columns
 - Total column score (TCS): Considers partial column correctness
 
-### Best Practices and Recommendations
+### Best Practices and Recommendations  {.unnumbered}
 
 **Sequence Selection**:
 - Remove redundant sequences (>90% identity) to avoid bias
@@ -446,9 +446,9 @@ Performance metrics include:
 - Use consistency-based confidence scores
 - Validate against structural data when available
 
-## Future Directions and Emerging Challenges
+## Future Directions and Emerging Challenges  {.unnumbered}
 
-### Machine Learning and Deep Learning Approaches
+### Machine Learning and Deep Learning Approaches  {.unnumbered}
 
 Recent advances in deep learning are beginning to impact multiple sequence alignment:
 
@@ -470,7 +470,7 @@ $$\pi^*(s) = \arg\max_a Q^*(s,a)$$
 
 where states represent partial alignments and actions are alignment operations.
 
-### Integration with Structural Prediction
+### Integration with Structural Prediction  {.unnumbered}
 
 The AlphaFold revolution in protein structure prediction creates new opportunities:
 
@@ -485,7 +485,7 @@ $$MI(i,j) = \sum_{a,b} P(a_i, b_j) \log\frac{P(a_i, b_j)}{P(a_i)P(b_j)}$$
 
 These signals can both improve alignment and predict structure.
 
-### Handling Big Data and Genomic Scales
+### Handling Big Data and Genomic Scales  {.unnumbered}
 
 The explosion of sequencing data presents new challenges:
 
@@ -507,7 +507,7 @@ for each new_sequence:
 - Distributed graph algorithms for guide tree construction
 - Federated learning for privacy-preserving alignment
 
-### Specialized Applications
+### Specialized Applications  {.unnumbered}
 
 Multiple alignment continues to evolve for specific biological problems:
 
@@ -531,7 +531,7 @@ Multiple alignment continues to evolve for specific biological problems:
 - Covariation analysis for structure prediction
 - Pseudoknot-aware alignment
 
-## Conclusion
+## Conclusion  {.unnumbered}
 
 Multiple sequence alignment remains a central challenge in computational biology, embodying the tension between biological complexity and computational tractability. The NP-completeness of the problem ensures that exact solutions remain out of reach for all but the smallest datasets, making heuristic approaches not just practical alternatives but essential tools.
 
