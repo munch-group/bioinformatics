@@ -60,17 +60,19 @@ book:
 
       # finding information
       # problem: GWAS candidates
-      - chapters/bioinformatics/gwas.qmd # serves only as extended exercise introduction
+      - chapters/bioinformatics/association.qmd
+      - chapters/web/gwas_databases/index.qmd # W
+
+      # Databases / BLAST
       - chapters/bioinformatics/databases.qmd
       - chapters/bioinformatics/database_searching.qmd
-      - chapters/web/gwas_databases/index.qmd # W
-      - chapters/web/gwas.qmd # W
+      
       - chapters/project/translation_project/index.qmd # P
 
       # HMM
       # problem: finding genes
       - chapters/bioinformatics/hidden_markov_models.qmd
-      - chapters/bioinformatics/sequence_annnotation.qmd
+
       - chapters/web/new_hmm_exercise/index.qmd # web exercise using hmm # W
       - chapters/project/orf_project/index.qmd # P
 
@@ -88,8 +90,7 @@ book:
       # alignment
       # problem: ccr5     
       - chapters/bioinformatics/pairwise_global_alignment.qmd
-      - chapters/bioinformatics/global_alignment.qmd
-      - chapters/bioinformatics/local_alignment.qmd
+      - chapters/bioinformatics/pairwise_local_alignment.qmd
 
       - chapters/bioinformatics/multiple_alignment.qmd
       - chapters/project/alignment_project/index.qmd # P
