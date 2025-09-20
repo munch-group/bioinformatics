@@ -8,7 +8,7 @@
 
 <meta name="author" content="Kasper Munch">
 
-<title>28&nbsp; Hidden Markov Models – Bioinformatics and Programming</title>
+<title>29&nbsp; Hidden Markov Models – Bioinformatics and Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/bioinformatics/sequence_annnotation.html" rel="next">
+<link href="../../chapters/web/new_hmm_exercise/index.html" rel="next">
 <link href="../../chapters/project/translation_project/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -350,38 +350,38 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/bioinformatics/gwas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-wide association studies</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/bioinformatics/databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  <a href="../../chapters/bioinformatics/association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/web/gwas_databases/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Sequence Database Searching and BLAST</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/project/translation_project/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/hidden_markov_models.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/bioinformatics/sequence_annnotation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Sequence annotation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -428,92 +428,98 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/bioinformatics/global_alignment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  <a href="../../chapters/bioinformatics/pairwise_global_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Global Sequence Alignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/bioinformatics/local_alignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/bioinformatics/pairwise_local_alignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multiple Sequence Alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../chapters/project/alignment_project/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/web/ccr5_pwalign/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/protein_substitution_matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Sequence Database Searching and BLAST</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Sequence Database Searching and BLAST</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/web/mrsa_blast_multalign/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/project/hiv_project/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Multiple Sequence Alignment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multiple Sequence Alignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/project/seqdist_project/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/models_of_dna_evolution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Models of DNA Evolution</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Models of DNA Evolution</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/phylogenetics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Phylogenetics: Tree-Based Analysis of Evolutionary Relationships</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Phylogenetics: Tree-Based Analysis of Evolutionary Relationships</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/web/aardwark_seqdist/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/web/orf_finding/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
   </div>
 </li>
       </ul>
@@ -535,7 +541,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../supplementary/recordings2024.html" class="sidebar-item-text sidebar-link">
+  <a href="../../supplementary/recordings2025.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture recordings</span></a>
   </div>
 </li>
@@ -581,37 +587,37 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-why-do-we-need-hidden-markov-models-in-biology" id="toc-introduction-why-do-we-need-hidden-markov-models-in-biology" class="nav-link active" data-scroll-target="#introduction-why-do-we-need-hidden-markov-models-in-biology"><span class="header-section-number">29</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</a></li>
-  <li><a href="#hidden-markov-models-and-the-structure-of-biological-sequences" id="toc-hidden-markov-models-and-the-structure-of-biological-sequences" class="nav-link" data-scroll-target="#hidden-markov-models-and-the-structure-of-biological-sequences"><span class="header-section-number">30</span> Hidden Markov Models and the Structure of Biological Sequences</a></li>
-  <li><a href="#the-viterbi-algorithm---finding-optimal-gene-structures" id="toc-the-viterbi-algorithm---finding-optimal-gene-structures" class="nav-link" data-scroll-target="#the-viterbi-algorithm---finding-optimal-gene-structures"><span class="header-section-number">31</span> The Viterbi Algorithm - Finding Optimal Gene Structures</a></li>
-  <li><a href="#the-forward-algorithm---evaluating-sequence-likelihood" id="toc-the-forward-algorithm---evaluating-sequence-likelihood" class="nav-link" data-scroll-target="#the-forward-algorithm---evaluating-sequence-likelihood"><span class="header-section-number">32</span> The Forward Algorithm - Evaluating Sequence Likelihood</a></li>
-  <li><a href="#the-backward-algorithm-and-confidence-in-biological-predictions" id="toc-the-backward-algorithm-and-confidence-in-biological-predictions" class="nav-link" data-scroll-target="#the-backward-algorithm-and-confidence-in-biological-predictions"><span class="header-section-number">33</span> The Backward Algorithm and Confidence in Biological Predictions</a></li>
-  <li><a href="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" id="toc-viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="nav-link" data-scroll-target="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis"><span class="header-section-number">34</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</a></li>
-  <li><a href="#training-hmms-from-biological-data" id="toc-training-hmms-from-biological-data" class="nav-link" data-scroll-target="#training-hmms-from-biological-data"><span class="header-section-number">35</span> Training HMMs from Biological Data</a></li>
-  <li><a href="#biological-applications-and-sophisticated-model-design" id="toc-biological-applications-and-sophisticated-model-design" class="nav-link" data-scroll-target="#biological-applications-and-sophisticated-model-design"><span class="header-section-number">36</span> Biological Applications and Sophisticated Model Design</a>
+  <li><a href="#introduction-why-do-we-need-hidden-markov-models-in-biology" id="toc-introduction-why-do-we-need-hidden-markov-models-in-biology" class="nav-link active" data-scroll-target="#introduction-why-do-we-need-hidden-markov-models-in-biology"><span class="header-section-number">30</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</a></li>
+  <li><a href="#hidden-markov-models-and-the-structure-of-biological-sequences" id="toc-hidden-markov-models-and-the-structure-of-biological-sequences" class="nav-link" data-scroll-target="#hidden-markov-models-and-the-structure-of-biological-sequences"><span class="header-section-number">31</span> Hidden Markov Models and the Structure of Biological Sequences</a></li>
+  <li><a href="#the-viterbi-algorithm---finding-optimal-gene-structures" id="toc-the-viterbi-algorithm---finding-optimal-gene-structures" class="nav-link" data-scroll-target="#the-viterbi-algorithm---finding-optimal-gene-structures"><span class="header-section-number">32</span> The Viterbi Algorithm - Finding Optimal Gene Structures</a></li>
+  <li><a href="#the-forward-algorithm---evaluating-sequence-likelihood" id="toc-the-forward-algorithm---evaluating-sequence-likelihood" class="nav-link" data-scroll-target="#the-forward-algorithm---evaluating-sequence-likelihood"><span class="header-section-number">33</span> The Forward Algorithm - Evaluating Sequence Likelihood</a></li>
+  <li><a href="#the-backward-algorithm-and-confidence-in-biological-predictions" id="toc-the-backward-algorithm-and-confidence-in-biological-predictions" class="nav-link" data-scroll-target="#the-backward-algorithm-and-confidence-in-biological-predictions"><span class="header-section-number">34</span> The Backward Algorithm and Confidence in Biological Predictions</a></li>
+  <li><a href="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" id="toc-viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="nav-link" data-scroll-target="#viterbi-vs.-posterior-decoding-in-biological-sequence-analysis"><span class="header-section-number">35</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</a></li>
+  <li><a href="#training-hmms-from-biological-data" id="toc-training-hmms-from-biological-data" class="nav-link" data-scroll-target="#training-hmms-from-biological-data"><span class="header-section-number">36</span> Training HMMs from Biological Data</a></li>
+  <li><a href="#biological-applications-and-sophisticated-model-design" id="toc-biological-applications-and-sophisticated-model-design" class="nav-link" data-scroll-target="#biological-applications-and-sophisticated-model-design"><span class="header-section-number">37</span> Biological Applications and Sophisticated Model Design</a>
   <ul class="collapse">
-  <li><a href="#gene-finding-in-eukaryotic-genomes" id="toc-gene-finding-in-eukaryotic-genomes" class="nav-link" data-scroll-target="#gene-finding-in-eukaryotic-genomes"><span class="header-section-number">36.1</span> Gene Finding in Eukaryotic Genomes</a></li>
-  <li><a href="#cpg-island-detection" id="toc-cpg-island-detection" class="nav-link" data-scroll-target="#cpg-island-detection"><span class="header-section-number">36.2</span> CpG Island Detection</a></li>
-  <li><a href="#transmembrane-protein-topology-prediction" id="toc-transmembrane-protein-topology-prediction" class="nav-link" data-scroll-target="#transmembrane-protein-topology-prediction"><span class="header-section-number">36.3</span> Transmembrane Protein Topology Prediction</a></li>
-  <li><a href="#signal-peptide-prediction" id="toc-signal-peptide-prediction" class="nav-link" data-scroll-target="#signal-peptide-prediction"><span class="header-section-number">36.4</span> Signal Peptide Prediction</a></li>
+  <li><a href="#gene-finding-in-eukaryotic-genomes" id="toc-gene-finding-in-eukaryotic-genomes" class="nav-link" data-scroll-target="#gene-finding-in-eukaryotic-genomes"><span class="header-section-number">37.1</span> Gene Finding in Eukaryotic Genomes</a></li>
+  <li><a href="#cpg-island-detection" id="toc-cpg-island-detection" class="nav-link" data-scroll-target="#cpg-island-detection"><span class="header-section-number">37.2</span> CpG Island Detection</a></li>
+  <li><a href="#transmembrane-protein-topology-prediction" id="toc-transmembrane-protein-topology-prediction" class="nav-link" data-scroll-target="#transmembrane-protein-topology-prediction"><span class="header-section-number">37.3</span> Transmembrane Protein Topology Prediction</a></li>
+  <li><a href="#signal-peptide-prediction" id="toc-signal-peptide-prediction" class="nav-link" data-scroll-target="#signal-peptide-prediction"><span class="header-section-number">37.4</span> Signal Peptide Prediction</a></li>
   </ul></li>
-  <li><a href="#advanced-extensions-and-modern-applications" id="toc-advanced-extensions-and-modern-applications" class="nav-link" data-scroll-target="#advanced-extensions-and-modern-applications"><span class="header-section-number">37</span> Advanced Extensions and Modern Applications</a>
+  <li><a href="#advanced-extensions-and-modern-applications" id="toc-advanced-extensions-and-modern-applications" class="nav-link" data-scroll-target="#advanced-extensions-and-modern-applications"><span class="header-section-number">38</span> Advanced Extensions and Modern Applications</a>
   <ul class="collapse">
-  <li><a href="#profile-hmms-for-protein-family-analysis" id="toc-profile-hmms-for-protein-family-analysis" class="nav-link" data-scroll-target="#profile-hmms-for-protein-family-analysis"><span class="header-section-number">37.1</span> Profile HMMs for Protein Family Analysis</a></li>
-  <li><a href="#pair-hmms-for-sequence-alignment" id="toc-pair-hmms-for-sequence-alignment" class="nav-link" data-scroll-target="#pair-hmms-for-sequence-alignment"><span class="header-section-number">37.2</span> Pair HMMs for Sequence Alignment</a></li>
-  <li><a href="#hidden-semi-markov-models" id="toc-hidden-semi-markov-models" class="nav-link" data-scroll-target="#hidden-semi-markov-models"><span class="header-section-number">37.3</span> Hidden Semi-Markov Models</a></li>
-  <li><a href="#phylogenetic-hmms-for-comparative-genomics" id="toc-phylogenetic-hmms-for-comparative-genomics" class="nav-link" data-scroll-target="#phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">37.4</span> Phylogenetic HMMs for Comparative Genomics</a></li>
+  <li><a href="#profile-hmms-for-protein-family-analysis" id="toc-profile-hmms-for-protein-family-analysis" class="nav-link" data-scroll-target="#profile-hmms-for-protein-family-analysis"><span class="header-section-number">38.1</span> Profile HMMs for Protein Family Analysis</a></li>
+  <li><a href="#pair-hmms-for-sequence-alignment" id="toc-pair-hmms-for-sequence-alignment" class="nav-link" data-scroll-target="#pair-hmms-for-sequence-alignment"><span class="header-section-number">38.2</span> Pair HMMs for Sequence Alignment</a></li>
+  <li><a href="#hidden-semi-markov-models" id="toc-hidden-semi-markov-models" class="nav-link" data-scroll-target="#hidden-semi-markov-models"><span class="header-section-number">38.3</span> Hidden Semi-Markov Models</a></li>
+  <li><a href="#phylogenetic-hmms-for-comparative-genomics" id="toc-phylogenetic-hmms-for-comparative-genomics" class="nav-link" data-scroll-target="#phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">38.4</span> Phylogenetic HMMs for Comparative Genomics</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">38</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">39</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/hidden_markov_models.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></h1>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></h1>
 </div>
 
 
@@ -634,8 +640,8 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction-why-do-we-need-hidden-markov-models-in-biology" class="level1" data-number="29">
-<h1 data-number="29"><span class="header-section-number">29</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</h1>
+<section id="introduction-why-do-we-need-hidden-markov-models-in-biology" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> Introduction: Why Do We Need Hidden Markov Models in Biology?</h1>
 <p>When you look at a DNA sequence like <code>ATGCGTAACGTTTAAGGCCTAG</code>, what do you see? At first glance, it appears to be a random string of four letters. However, this sequence contains a wealth of biological information hidden beneath its surface. It might encode a protein-coding gene, contain regulatory elements that control gene expression, or include structural features that affect how the DNA is packaged in the cell. The challenge facing computational biologists is how to automatically detect and annotate these functional elements from raw sequence data.</p>
 <p>Consider the human genome, which contains over 3 billion base pairs of DNA. Within this vast sequence lie approximately 20,000 protein-coding genes, hundreds of thousands of regulatory elements, and numerous other functional features. Manual annotation of such sequences is impossible, yet accurate identification of these elements is crucial for understanding how genes are regulated, how proteins are made, and how genetic variations contribute to disease.</p>
 <p>Hidden Markov Models provide an elegant computational framework for solving these biological annotation problems. They excel at identifying patterns in sequences where the underlying biological function is not directly observable but must be inferred from the sequence content. For instance, when we see the sequence <code>ATGAAATTTGCCTAG</code>, we cannot directly observe whether each nucleotide is part of an exon, intron, or intergenic region. However, we can use the statistical properties of the sequence—such as codon usage patterns, presence of start and stop codons, and splice site signals—to infer the most likely functional annotation.</p>
@@ -675,8 +681,8 @@ window.Quarto = {
 </ol>
 <p>These questions correspond to different biological applications: finding the most likely annotation of a sequence, evaluating how well a sequence fits a particular model, and determining the uncertainty in our predictions.</p>
 </section>
-<section id="hidden-markov-models-and-the-structure-of-biological-sequences" class="level1" data-number="30">
-<h1 data-number="30"><span class="header-section-number">30</span> Hidden Markov Models and the Structure of Biological Sequences</h1>
+<section id="hidden-markov-models-and-the-structure-of-biological-sequences" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> Hidden Markov Models and the Structure of Biological Sequences</h1>
 <p>Hidden Markov Models represent one of the most elegant and powerful frameworks in computational biology for modeling sequential data with underlying structure. The fundamental premise of an HMM is that we observe a sequence of DNA nucleotides or protein amino acids, but the biological function generating these observations follows an unobservable sequence of functional states. This hidden state sequence evolves according to the Markov property, which states that the probability of transitioning to any future functional state depends only on the current state, not on the entire history of previous states.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
@@ -765,7 +771,7 @@ window.Quarto = {
 <p>The joint probability of observing both the hidden state sequence and the observed sequence captures the complete biological model:</p>
 <p><span id="eq-joint-prob"><span class="math display">\[
 P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
-\tag{30.1}\]</span></span></p>
+\tag{31.1}\]</span></span></p>
 <p>where <span class="math inline">\(a_{0\pi_1}\)</span> represents the initial probability of starting in state <span class="math inline">\(\pi_1\)</span>. This factorization reflects biological reality: the likelihood of observing a particular DNA sequence depends on both the functional states that generated it and the transitions between those states.</p>
 <p>The theoretical foundation of HMMs addresses three fundamental computational problems that arise constantly in bioinformatics:</p>
 <ol type="1">
@@ -774,8 +780,8 @@ P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\
 <li><strong>Learning Problem</strong>: Given many examples of DNA sequences with known annotations, how can we estimate model parameters?</li>
 </ol>
 </section>
-<section id="the-viterbi-algorithm---finding-optimal-gene-structures" class="level1" data-number="31">
-<h1 data-number="31"><span class="header-section-number">31</span> The Viterbi Algorithm - Finding Optimal Gene Structures</h1>
+<section id="the-viterbi-algorithm---finding-optimal-gene-structures" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> The Viterbi Algorithm - Finding Optimal Gene Structures</h1>
 <p>The Viterbi algorithm solves the annotation problem by finding the single most probable sequence of functional states that could have generated the observed DNA or protein sequence. This algorithm is fundamental to many bioinformatics applications, from identifying exon-intron boundaries in genes to predicting the membrane topology of proteins.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
@@ -848,11 +854,11 @@ P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\
 <p>The mathematical foundation of the Viterbi algorithm rests on dynamic programming principles that exploit the sequential nature of biological sequences. We define <span class="math inline">\(v_l(i)\)</span> as the joint probability of the most probable functional annotation ending in state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>, along with the nucleotide sequence up to position <span class="math inline">\(i\)</span>. For gene finding, this represents the probability of the best gene structure annotation ending in state <span class="math inline">\(l\)</span> (such as “exon” or “intron”) at nucleotide position <span class="math inline">\(i\)</span>.</p>
 <p>Formally: <span id="eq-viterbi-def"><span class="math display">\[
 v_l(i) = \max_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
-\tag{31.1}\]</span></span></p>
+\tag{32.1}\]</span></span></p>
 <p>The recursive relationship that enables efficient computation captures the biological reality that optimal gene structures are built from optimal sub-structures:</p>
 <p><span id="eq-viterbi-recursion"><span class="math display">\[
 v_l(i) = e_l(x_i) \times \max_k(v_k(i-1) \times a_{kl})
-\tag{31.2}\]</span></span></p>
+\tag{32.2}\]</span></span></p>
 <p>This equation integrates three types of biological information. The emission probability <span class="math inline">\(e_l(x_i)\)</span> represents how likely functional state <span class="math inline">\(l\)</span> is to produce nucleotide <span class="math inline">\(x_i\)</span>. For example, exon states might have high probabilities for nucleotides that maintain open reading frames and low probabilities for in-frame stop codons. The transition probability <span class="math inline">\(a_{kl}\)</span> captures biological constraints on gene structure, such as the fact that exons are typically followed by introns at splice sites. The optimal probability up to the previous position <span class="math inline">\(v_k(i-1)\)</span> ensures that we build upon the best possible gene structure annotation up to that point.</p>
 <p>In gene finding applications, the states might represent different functional regions. A simple bacterial gene finder might include states for “intergenic region,” “start codon,” “coding sequence,” and “stop codon.” The emission probabilities would reflect the different nucleotide composition patterns in these regions.</p>
 <div class="cell" data-layout-align="default">
@@ -918,16 +924,16 @@ v_l(i) = e_l(x_i) \times \max_k(v_k(i-1) \times a_{kl})
 <p>The algorithm proceeds by filling a dynamic programming table where rows represent functional states and columns represent positions in the DNA sequence. The base case initializes the algorithm:</p>
 <p><span id="eq-viterbi-base"><span class="math display">\[
 v_{\mathcal{B}}(0) = 1
-\tag{31.3}\]</span></span></p>
+\tag{32.3}\]</span></span></p>
 <p>for the begin state <span class="math inline">\(\mathcal{B}\)</span>, representing the fact that we start with certainty in the begin state when no sequence has been processed.</p>
 <p>The traceback phase reconstructs the optimal gene annotation by following pointers backward from the functional state with the highest probability at the final position:</p>
 <p><span id="eq-viterbi-final"><span class="math display">\[
 \pi^*_L = \arg\max_l v_l(L)
-\tag{31.4}\]</span></span></p>
+\tag{32.4}\]</span></span></p>
 <p>The complete optimal gene structure is then recovered by following the traceback pointers.</p>
 </section>
-<section id="the-forward-algorithm---evaluating-sequence-likelihood" class="level1" data-number="32">
-<h1 data-number="32"><span class="header-section-number">32</span> The Forward Algorithm - Evaluating Sequence Likelihood</h1>
+<section id="the-forward-algorithm---evaluating-sequence-likelihood" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> The Forward Algorithm - Evaluating Sequence Likelihood</h1>
 <p>While the Viterbi algorithm finds the single best gene structure annotation, the Forward algorithm addresses a different biological question: how likely is it that a particular DNA or protein sequence was generated by a specific biological process? This question is crucial for sequence classification, model comparison, and quality assessment in bioinformatics applications.</p>
 <p>Consider the problem of determining whether a newly discovered DNA sequence represents a protein-coding gene or a pseudogene (a non-functional gene copy). Both might contain start codons, stop codons, and regions with codon-like triplet structure, but true genes maintain open reading frames and exhibit characteristic codon usage patterns throughout their length. The Forward algorithm calculates the total probability that the observed sequence could be generated by a “true gene” HMM versus a “pseudogene” HMM.</p>
 <div class="cell" data-layout-align="default">
@@ -980,17 +986,17 @@ v_{\mathcal{B}}(0) = 1
 <p>The Forward algorithm follows a similar dynamic programming approach to Viterbi but replaces the maximization operation with summation, reflecting the biological reality that many different functional pathways could lead to the same observed sequence. We define <span class="math inline">\(f_l(i)\)</span> as the joint probability of all possible functional annotations ending in state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>, along with the nucleotide or amino acid sequence up to position <span class="math inline">\(i\)</span>.</p>
 <p>Mathematically: <span id="eq-forward-def"><span class="math display">\[
 f_l(i) = \sum_{\pi_1,\ldots,\pi_{i-1}} P(\pi_1, \pi_2, \ldots, \pi_{i-1}, \pi_i = l, x_1, x_2, \ldots, x_i)
-\tag{32.1}\]</span></span></p>
+\tag{33.1}\]</span></span></p>
 <p>The recursive relationship becomes:</p>
 <p><span id="eq-forward-recursion"><span class="math display">\[
 f_l(i) = e_l(x_i) \times \sum_k f_k(i-1) \times a_{kl}
-\tag{32.2}\]</span></span></p>
+\tag{33.2}\]</span></span></p>
 <p>By summing over all possible previous functional states rather than taking the maximum, we accumulate probability mass from all possible biological explanations for the sequence data. This is particularly important in biological applications where multiple explanations might be plausible.</p>
 <p>For example, in CpG island detection, a particular DNA sequence might be generated by several different pathways through the “CpG island” states of an HMM. The sequence <code>GCGCGCGC</code> could arise from transitioning through CpG-rich states in various orders, and the Forward algorithm accounts for all these possibilities when calculating how likely the sequence is to come from a CpG island.</p>
 <p>The base case initializes with <span class="math inline">\(f_{\mathcal{B}}(0) = 1\)</span> for the begin state, similar to the Viterbi algorithm. The total probability of the sequence <span class="math inline">\(P(\mathbf{x})\)</span> is obtained by summing the forward probabilities of all functional states at the final position:</p>
 <p><span id="eq-sequence-prob"><span class="math display">\[
 P(\mathbf{x}) = \sum_l f_l(L)
-\tag{32.3}\]</span></span></p>
+\tag{33.3}\]</span></span></p>
 <p>This probability has important biological interpretations. For gene finding, a high <span class="math inline">\(P(\mathbf{x})\)</span> under a gene model versus a non-gene model suggests that the sequence is likely to encode a functional protein. For protein structure prediction, a high <span class="math inline">\(P(\mathbf{x})\)</span> under a transmembrane protein model versus a soluble protein model indicates likely membrane association.</p>
 <p>Consider transmembrane protein prediction as a concrete example. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops that reside in the aqueous environment on either side of the membrane. An HMM for transmembrane proteins might include states for “outside loop,” “transmembrane helix,” and “inside loop,” with emission probabilities reflecting the amino acid preferences of these different structural environments.</p>
 <div class="cell" data-layout-align="default">
@@ -1055,22 +1061,22 @@ P(\mathbf{x}) = \sum_l f_l(L)
 <p>The transmembrane helix states would have high emission probabilities for hydrophobic amino acids like leucine (L), isoleucine (I), valine (V), and phenylalanine (F), and low probabilities for charged amino acids like lysine (K) and aspartate (D). The outside and inside loop states would have complementary preferences, favoring hydrophilic amino acids. Additionally, the inside loop states might have elevated probabilities for positively charged amino acids (K, R) reflecting the “positive-inside rule” observed in transmembrane proteins.</p>
 <p>When we apply the Forward algorithm to a protein sequence like <code>MKLILLFAIVSLVFSSAYAFIRVLYSKVLHLLGLFGSAFIII...</code>, we can calculate <span class="math inline">\(P(\mathbf{x})\)</span> under both a transmembrane protein HMM and a soluble protein HMM. The sequence’s hydrophobic character would yield a much higher probability under the transmembrane model, indicating likely membrane association.</p>
 </section>
-<section id="the-backward-algorithm-and-confidence-in-biological-predictions" class="level1" data-number="33">
-<h1 data-number="33"><span class="header-section-number">33</span> The Backward Algorithm and Confidence in Biological Predictions</h1>
+<section id="the-backward-algorithm-and-confidence-in-biological-predictions" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> The Backward Algorithm and Confidence in Biological Predictions</h1>
 <p>The Backward algorithm complements the Forward algorithm by computing the probability of observing the remainder of a DNA or protein sequence starting from any given position and functional state. This enables us to answer a crucial biological question: how confident can we be that a particular nucleotide or amino acid is in a specific functional state, such as an exon, transmembrane helix, or CpG island?</p>
 <p>Consider the challenge of identifying CpG islands in mammalian genomes. CpG islands are regions of DNA with unusually high frequencies of cytosine-guanine dinucleotides that often mark gene promoters and play important roles in gene regulation. However, the boundaries of CpG islands are not sharply defined, and different regions within a potential CpG island may have varying degrees of CpG enrichment. The Backward algorithm helps us quantify our confidence that each nucleotide position is truly within a CpG island rather than in background genomic sequence.</p>
 <p>We define <span class="math inline">\(b_l(i)\)</span> as the probability of observing the remainder of the sequence from position <span class="math inline">\(i+1\)</span> to the end, given that we are in functional state <span class="math inline">\(l\)</span> at position <span class="math inline">\(i\)</span>:</p>
 <p><span id="eq-backward-def"><span class="math display">\[
 b_l(i) = \sum_{\pi_{i+1},\ldots,\pi_L} P(x_{i+1}, \ldots, x_L, \pi_{i+1}, \ldots, \pi_L \mid \pi_i = l)
-\tag{33.1}\]</span></span></p>
+\tag{34.1}\]</span></span></p>
 <p>The Backward algorithm proceeds from the end of the sequence toward the beginning, using the recursive relationship:</p>
 <p><span id="eq-backward-recursion"><span class="math display">\[
 b_l(i) = \sum_k a_{lk} \times e_k(x_{i+1}) \times b_k(i+1)
-\tag{33.2}\]</span></span></p>
+\tag{34.2}\]</span></span></p>
 <p>The base case sets all backward probabilities to 1 at the end of the sequence:</p>
 <p><span id="eq-backward-base"><span class="math display">\[
 b_l(L) = 1 \text{ for all states } l
-\tag{33.3}\]</span></span></p>
+\tag{34.3}\]</span></span></p>
 <p>reflecting the fact that no additional nucleotides or amino acids need to be explained beyond the sequence end.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>graph LR</span>
@@ -1136,7 +1142,7 @@ b_l(L) = 1 \text{ for all states } l
 <p>The combination of forward and backward probabilities enables the computation of posterior probabilities, which answer the question: given that we observed the entire DNA or protein sequence, what is the probability that we were in functional state <span class="math inline">\(k\)</span> at position <span class="math inline">\(i\)</span>? This posterior probability is computed using Bayes’ theorem:</p>
 <p><span id="eq-posterior-prob"><span class="math display">\[
 P(\pi_i = k \mid \mathbf{x}) = \frac{P(\pi_i = k, \mathbf{x})}{P(\mathbf{x})} = \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
-\tag{33.4}\]</span></span></p>
+\tag{34.4}\]</span></span></p>
 <p>These posterior probabilities provide a measure of confidence in our functional annotations at each sequence position. For gene finding, they tell us how certain we can be that each nucleotide is in an exon versus an intron. For protein structure prediction, they indicate our confidence that each amino acid is in a transmembrane helix versus an aqueous loop.</p>
 <p>Consider a concrete example from eukaryotic gene finding. Suppose we have identified a potential exon-intron boundary in the sequence <code>...CAGGTAAGT...</code> where the GT dinucleotide represents a potential donor splice site. The posterior probabilities might show:</p>
 <ul>
@@ -1151,21 +1157,21 @@ P(\pi_i = k \mid \mathbf{x}) = \frac{P(\pi_i = k, \mathbf{x})}{P(\mathbf{x})} = 
 <p>For any position <span class="math inline">\(i\)</span>, the posterior probabilities sum to 1:</p>
 <p><span id="eq-posterior-sum"><span class="math display">\[
 \sum_k P(\pi_i = k \mid \mathbf{x}) = 1
-\tag{33.5}\]</span></span></p>
+\tag{34.5}\]</span></span></p>
 <p>ensuring that we have a complete probabilistic description of the functional state uncertainty at each position.</p>
 </section>
-<section id="viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="level1" data-number="34">
-<h1 data-number="34"><span class="header-section-number">34</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</h1>
+<section id="viterbi-vs.-posterior-decoding-in-biological-sequence-analysis" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> Viterbi vs.&nbsp;Posterior Decoding in Biological Sequence Analysis</h1>
 <p>An important distinction exists between the optimal gene structure or protein annotation found by the Viterbi algorithm and the sequence of functional states with highest posterior probability at each position. This difference has significant implications for biological sequence analysis and reflects different approaches to handling uncertainty in computational predictions.</p>
 <p>The Viterbi algorithm finds the functional annotation <span class="math inline">\(\boldsymbol{\pi}^*\)</span> that maximizes:</p>
 <p><span id="eq-viterbi-optimal"><span class="math display">\[
 \boldsymbol{\pi}^* = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi} \mid \mathbf{x}) = \arg\max_{\boldsymbol{\pi}} P(\boldsymbol{\pi}, \mathbf{x})
-\tag{34.1}\]</span></span></p>
+\tag{35.1}\]</span></span></p>
 <p>This approach finds the single most probable complete gene structure or protein annotation. For example, in eukaryotic gene finding, Viterbi decoding might predict the gene structure: 5’UTR → first exon → intron → internal exon → intron → last exon → 3’UTR, ensuring that this complete structure represents a valid gene organization with proper splice sites and reading frame maintenance.</p>
 <p>In contrast, posterior decoding finds the functional state sequence <span class="math inline">\(\hat{\boldsymbol{\pi}}\)</span> where each position is chosen independently:</p>
 <p><span id="eq-posterior-decoding"><span class="math display">\[
 \hat{\pi}_i = \arg\max_k P(\pi_i = k \mid \mathbf{x}) = \arg\max_k \frac{f_k(i) \times b_k(i)}{P(\mathbf{x})}
-\tag{34.2}\]</span></span></p>
+\tag{35.2}\]</span></span></p>
 <p>Posterior decoding selects the most probable functional state at each sequence position without considering whether the resulting annotation represents a biologically valid structure.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>graph TB</span>
@@ -1238,19 +1244,19 @@ P(\pi_i = k \mid \mathbf{x}) = \frac{P(\pi_i = k, \mathbf{x})}{P(\mathbf{x})} = 
 <p>The choice between these approaches depends on the specific biological application and the nature of the structural constraints. Posterior decoding maximizes the expected number of correctly predicted nucleotide or amino acid positions, making it optimal when local accuracy is most important. This approach is particularly valuable when sequence boundaries are genuinely ambiguous, as often occurs in CpG island detection or identification of low-complexity regions in proteins.</p>
 <p>Viterbi decoding maximizes the probability of predicting the entire gene structure or protein annotation correctly, making it preferable when global structural consistency is crucial. This approach is essential for applications like gene finding, where the predicted gene structure must be biologically valid for downstream analyses such as protein translation or regulatory element identification.</p>
 </section>
-<section id="training-hmms-from-biological-data" class="level1" data-number="35">
-<h1 data-number="35"><span class="header-section-number">35</span> Training HMMs from Biological Data</h1>
+<section id="training-hmms-from-biological-data" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Training HMMs from Biological Data</h1>
 <p>The power of HMMs extends beyond sequence analysis to include learning the statistical patterns of biological sequences from experimental data. This learning process is essential because the parameters that govern biological processes—such as codon usage frequencies, splice site preferences, and amino acid propensities in different protein structural environments—vary between organisms and sequence types.</p>
 <p>When we have training sequences with known functional annotations, parameter estimation becomes straightforward through maximum likelihood estimation. For example, if we want to build an HMM for gene finding in a newly sequenced bacterial genome, we might start with a set of experimentally verified genes where the locations of start codons, coding sequences, and stop codons are known.</p>
 <p>For transition probabilities, we count transitions between functional states:</p>
 <p><span id="eq-transition-mle"><span class="math display">\[
 a_{kl} = \frac{A_{kl}}{\sum_{l'} A_{kl'}}
-\tag{35.1}\]</span></span></p>
+\tag{36.1}\]</span></span></p>
 <p>where <span class="math inline">\(A_{kl}\)</span> represents the number of observed transitions from functional state <span class="math inline">\(k\)</span> to state <span class="math inline">\(l\)</span>. In gene finding, this might represent counting how often “coding sequence” states are followed by “stop codon” states at the ends of genes, or how often “intergenic” states are followed by “start codon” states at the beginnings of genes.</p>
 <p>Similarly, for emission probabilities:</p>
 <p><span id="eq-emission-mle"><span class="math display">\[
 e_k(b) = \frac{E_k(b)}{\sum_{b'} E_k(b')}
-\tag{35.2}\]</span></span></p>
+\tag{36.2}\]</span></span></p>
 <p>where <span class="math inline">\(E_k(b)\)</span> is the number of times functional state <span class="math inline">\(k\)</span> produced nucleotide or amino acid <span class="math inline">\(b\)</span>. For example, to learn the codon usage pattern in coding sequences, we would count how often each codon appears in experimentally verified coding regions and normalize to obtain probability estimates.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
@@ -1297,30 +1303,30 @@ e_k(b) = \frac{E_k(b)}{\sum_{b'} E_k(b')}
 <p>The Baum-Welch algorithm alternates between two steps. In the Expectation step, we compute the expected number of transitions and emissions using current parameter estimates. For transitions, we calculate:</p>
 <p><span id="eq-expected-transitions"><span class="math display">\[
 A_{kl} = \sum_n \sum_i P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}^n)
-\tag{35.3}\]</span></span></p>
+\tag{36.3}\]</span></span></p>
 <p>where the sum is over all training sequences <span class="math inline">\(n\)</span> and positions <span class="math inline">\(i\)</span>. The probability of a specific transition is:</p>
 <p><span id="eq-transition-posterior"><span class="math display">\[
 P(\pi_i = k, \pi_{i+1} = l \mid \mathbf{x}) = \frac{f_k(i) \times a_{kl} \times e_l(x_{i+1}) \times b_l(i+1)}{P(\mathbf{x})}
-\tag{35.4}\]</span></span></p>
+\tag{36.4}\]</span></span></p>
 <p>This equation captures our uncertainty about functional annotations by weighting each possible transition by its probability given the observed sequence data.</p>
 <p>For emissions, we compute:</p>
 <p><span id="eq-expected-emissions"><span class="math display">\[
 E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x}^n)}
-\tag{35.5}\]</span></span></p>
+\tag{36.5}\]</span></span></p>
 <p>where the inner sum is over all positions <span class="math inline">\(i\)</span> where the observed nucleotide or amino acid equals <span class="math inline">\(b\)</span>.</p>
 <p>In the Maximization step, we use these expected counts to update our parameter estimates using the same maximum likelihood formulas as in the supervised case. The algorithm iterates these steps until convergence, typically measured by the change in log-likelihood:</p>
 <p><span id="eq-log-likelihood"><span class="math display">\[
 \mathcal{L} = \sum_n \log P(\mathbf{x}^n)
-\tag{35.6}\]</span></span></p>
+\tag{36.6}\]</span></span></p>
 <p>The mathematical foundation ensures that each iteration increases the likelihood of the observed sequence data: <span class="math inline">\(\mathcal{L}^{(t+1)} \geq \mathcal{L}^{(t)}\)</span>, guaranteeing convergence to at least a local optimum.</p>
 <p>A practical example involves training HMMs for transmembrane protein topology prediction. We might start with a database of proteins where membrane topology has been experimentally determined through biochemical methods. From these proteins, we can learn the amino acid preferences of transmembrane helices (enriched in hydrophobic residues), outside loops (enriched in hydrophilic residues), and inside loops (enriched in positively charged residues according to the positive-inside rule).</p>
 <p>However, many proteins in sequence databases lack experimental structural information. The Baum-Welch algorithm allows us to include these proteins in training by treating their membrane topology as unknown and iteratively refining our model parameters. Initially, the algorithm might make poor predictions about which regions are membrane-spanning, but as the parameters improve, the topology predictions become more accurate, which in turn leads to better parameter estimates.</p>
 </section>
-<section id="biological-applications-and-sophisticated-model-design" class="level1" data-number="36">
-<h1 data-number="36"><span class="header-section-number">36</span> Biological Applications and Sophisticated Model Design</h1>
+<section id="biological-applications-and-sophisticated-model-design" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Biological Applications and Sophisticated Model Design</h1>
 <p>The design of effective HMMs for biological applications requires careful consideration of the underlying biological processes and the incorporation of domain-specific knowledge into model structure. This chapter explores several important applications that demonstrate how biological insight can be encoded into HMM architectures to solve complex sequence analysis problems.</p>
-<section id="gene-finding-in-eukaryotic-genomes" class="level2" data-number="36.1">
-<h2 data-number="36.1" class="anchored" data-anchor-id="gene-finding-in-eukaryotic-genomes"><span class="header-section-number">36.1</span> Gene Finding in Eukaryotic Genomes</h2>
+<section id="gene-finding-in-eukaryotic-genomes" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="gene-finding-in-eukaryotic-genomes"><span class="header-section-number">37.1</span> Gene Finding in Eukaryotic Genomes</h2>
 <p>Gene finding in eukaryotic genomes represents one of the most sophisticated applications of HMMs in computational biology. Unlike bacterial genes, which consist of simple continuous coding sequences, eukaryotic genes have complex structures with multiple exons separated by introns, alternative splicing patterns, and regulatory elements.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
@@ -1402,8 +1408,8 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 </ul>
 <p>This approach allows the HMM to recognize splice sites based on both the canonical GT-AG signals and the more subtle sequence preferences in the surrounding regions.</p>
 </section>
-<section id="cpg-island-detection" class="level2" data-number="36.2">
-<h2 data-number="36.2" class="anchored" data-anchor-id="cpg-island-detection"><span class="header-section-number">36.2</span> CpG Island Detection</h2>
+<section id="cpg-island-detection" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="cpg-island-detection"><span class="header-section-number">37.2</span> CpG Island Detection</h2>
 <p>CpG island detection provides another excellent example of sophisticated HMM design. CpG islands are regions of genomic DNA with elevated frequencies of cytosine-guanine dinucleotides that often mark gene promoters and regulatory regions. The challenge is that CpG islands are not uniformly CpG-rich but contain regions of varying CpG density, and their boundaries are often gradual rather than sharp.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
@@ -1484,8 +1490,8 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 </ul>
 <p>The transition structure allows gradual transitions between these states, modeling the fact that CpG islands often have cores of high CpG density surrounded by regions of intermediate CpG density.</p>
 </section>
-<section id="transmembrane-protein-topology-prediction" class="level2" data-number="36.3">
-<h2 data-number="36.3" class="anchored" data-anchor-id="transmembrane-protein-topology-prediction"><span class="header-section-number">36.3</span> Transmembrane Protein Topology Prediction</h2>
+<section id="transmembrane-protein-topology-prediction" class="level2" data-number="37.3">
+<h2 data-number="37.3" class="anchored" data-anchor-id="transmembrane-protein-topology-prediction"><span class="header-section-number">37.3</span> Transmembrane Protein Topology Prediction</h2>
 <p>Transmembrane protein topology prediction illustrates how biophysical knowledge can be incorporated into HMM design. Transmembrane proteins contain hydrophobic α-helical segments that span cell membranes, separated by hydrophilic loops in the aqueous environment.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
@@ -1558,8 +1564,8 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 <li>Outside loop: <span class="math inline">\(P(\text{K}) = 0.04\)</span>, <span class="math inline">\(P(\text{R}) = 0.03\)</span>, <span class="math inline">\(P(\text{D}) = 0.08\)</span>, <span class="math inline">\(P(\text{E}) = 0.09\)</span></li>
 </ul>
 </section>
-<section id="signal-peptide-prediction" class="level2" data-number="36.4">
-<h2 data-number="36.4" class="anchored" data-anchor-id="signal-peptide-prediction"><span class="header-section-number">36.4</span> Signal Peptide Prediction</h2>
+<section id="signal-peptide-prediction" class="level2" data-number="37.4">
+<h2 data-number="37.4" class="anchored" data-anchor-id="signal-peptide-prediction"><span class="header-section-number">37.4</span> Signal Peptide Prediction</h2>
 <p>Signal peptide prediction represents another important application where biological knowledge guides HMM design. Signal peptides are short amino acid sequences that direct newly synthesized proteins to specific cellular locations. They typically consist of three regions: a positively charged N-terminal region, a hydrophobic core region, and a polar C-terminal region containing the cleavage site.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
@@ -1633,11 +1639,11 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 <p>An HMM for signal peptide prediction might include states for each of these regions with appropriate emission probabilities and transition structures that model the sequential organization and typical length ranges of each region.</p>
 </section>
 </section>
-<section id="advanced-extensions-and-modern-applications" class="level1" data-number="37">
-<h1 data-number="37"><span class="header-section-number">37</span> Advanced Extensions and Modern Applications</h1>
+<section id="advanced-extensions-and-modern-applications" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> Advanced Extensions and Modern Applications</h1>
 <p>Modern applications of HMMs in biology often involve extensions beyond the basic framework to address specific challenges in sequence analysis. These extensions demonstrate the flexibility of the HMM framework and its continued relevance for cutting-edge biological problems.</p>
-<section id="profile-hmms-for-protein-family-analysis" class="level2" data-number="37.1">
-<h2 data-number="37.1" class="anchored" data-anchor-id="profile-hmms-for-protein-family-analysis"><span class="header-section-number">37.1</span> Profile HMMs for Protein Family Analysis</h2>
+<section id="profile-hmms-for-protein-family-analysis" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="profile-hmms-for-protein-family-analysis"><span class="header-section-number">38.1</span> Profile HMMs for Protein Family Analysis</h2>
 <p>Profile HMMs represent one of the most successful extensions of the basic HMM framework. They adapt the basic structure to model multiple sequence alignments, enabling sensitive detection of remote homology and accurate classification of protein sequences into functional families.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>graph TD</span>
@@ -1735,8 +1741,8 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 </ul>
 <p>This structure allows profile HMMs to identify sequences that match the overall pattern of a protein family even when they contain insertions, deletions, or substitutions relative to the consensus sequence.</p>
 </section>
-<section id="pair-hmms-for-sequence-alignment" class="level2" data-number="37.2">
-<h2 data-number="37.2" class="anchored" data-anchor-id="pair-hmms-for-sequence-alignment"><span class="header-section-number">37.2</span> Pair HMMs for Sequence Alignment</h2>
+<section id="pair-hmms-for-sequence-alignment" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="pair-hmms-for-sequence-alignment"><span class="header-section-number">38.2</span> Pair HMMs for Sequence Alignment</h2>
 <p>Pair HMMs extend the framework to model the evolutionary relationship between two sequences simultaneously, finding applications in sequence alignment and comparative genomics. This is particularly useful for identifying conserved regions between species, which likely represent functionally important elements.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>stateDiagram-v2</span>
@@ -1818,20 +1824,20 @@ E_k(b) = \sum_n \sum_{\{i|x_i^n=b\}} \frac{f_k^n(i) \times b_k^n(i)}{P(\mathbf{x
 <p>The emission probabilities for the match state capture the substitution patterns between the two sequences:</p>
 <p><span id="eq-pair-emission"><span class="math display">\[
 e_M(a,b) = P(\text{emitting amino acid } a \text{ from sequence 1 and amino acid } b \text{ from sequence 2})
-\tag{37.1}\]</span></span></p>
+\tag{38.1}\]</span></span></p>
 <p>For closely related sequences, this probability would be high when <span class="math inline">\(a = b\)</span> (identical amino acids) and lower for substitutions. For distantly related sequences, the emission probabilities would reflect the amino acid substitution matrices derived from evolutionary studies.</p>
 </section>
-<section id="hidden-semi-markov-models" class="level2" data-number="37.3">
-<h2 data-number="37.3" class="anchored" data-anchor-id="hidden-semi-markov-models"><span class="header-section-number">37.3</span> Hidden Semi-Markov Models</h2>
+<section id="hidden-semi-markov-models" class="level2" data-number="38.3">
+<h2 data-number="38.3" class="anchored" data-anchor-id="hidden-semi-markov-models"><span class="header-section-number">38.3</span> Hidden Semi-Markov Models</h2>
 <p>Hidden semi-Markov models (HSMMs) relax the geometric length distribution assumption of standard HMMs by explicitly modeling state durations. This extension is particularly valuable for biological applications where feature lengths follow non-geometric distributions, such as protein domains or gene exons.</p>
 <p>Instead of transition probabilities between individual positions, HSMMs use duration probabilities <span class="math inline">\(P(d)\)</span> for spending exactly <span class="math inline">\(d\)</span> time steps in a state, and transition probabilities between different state types. The forward algorithm becomes:</p>
 <p><span id="eq-hsmm-forward"><span class="math display">\[
 f_l(i) = \sum_d \sum_k f_k(i-d) \times a_{kl} \times P(d) \times \prod_{j=i-d+1}^{i} e_l(x_j)
-\tag{37.2}\]</span></span></p>
+\tag{38.2}\]</span></span></p>
 <p>This allows modeling of complex length distributions while maintaining computational tractability. For example, exon lengths in human genes could be modeled using empirical length distributions derived from known genes, rather than the geometric distributions implicit in standard HMMs.</p>
 </section>
-<section id="phylogenetic-hmms-for-comparative-genomics" class="level2" data-number="37.4">
-<h2 data-number="37.4" class="anchored" data-anchor-id="phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">37.4</span> Phylogenetic HMMs for Comparative Genomics</h2>
+<section id="phylogenetic-hmms-for-comparative-genomics" class="level2" data-number="38.4">
+<h2 data-number="38.4" class="anchored" data-anchor-id="phylogenetic-hmms-for-comparative-genomics"><span class="header-section-number">38.4</span> Phylogenetic HMMs for Comparative Genomics</h2>
 <p>Modern comparative genomics applications use sophisticated HMM variants to analyze multiple genome alignments simultaneously. These phylogenetic HMMs model the evolution of functional elements across multiple species, allowing identification of conserved regulatory elements, detection of positive selection, and reconstruction of ancestral genome organization.</p>
 <div class="cell" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>graph TB</span>
@@ -1904,10 +1910,10 @@ f_l(i) = \sum_d \sum_k f_k(i-d) \times a_{kl} \times P(d) \times \prod_{j=i-d+1}
 <p>The emission probabilities at each state model the expected substitution patterns under different evolutionary pressures, while the transition probabilities model the spatial organization of functional elements along chromosomes.</p>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="38">
-<h1 data-number="38"><span class="header-section-number">38</span> Conclusion</h1>
+<section id="conclusion" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> Conclusion</h1>
 <p>Hidden Markov Models provide a mathematically rigorous and computationally efficient framework for analyzing sequential biological data that has revolutionized computational biology. The three fundamental algorithms—Viterbi with complexity <span class="math inline">\(O(LK^2)\)</span>, Forward with complexity <span class="math inline">\(O(LK^2)\)</span>, and Baum-Welch with complexity <span class="math inline">\(O(LK^2)\)</span> per iteration—offer complementary perspectives on the same underlying probabilistic model, enabling optimal functional annotation, sequence classification, and parameter learning from biological data.</p>
-<p>The mathematical foundation rests on the Markov assumption and the factorization given in Equation <a href="#eq-joint-prob" class="quarto-xref">Equation&nbsp;<span>30.1</span></a>:</p>
+<p>The mathematical foundation rests on the Markov assumption and the factorization given in Equation <a href="#eq-joint-prob" class="quarto-xref">Equation&nbsp;<span>31.1</span></a>:</p>
 <p><span class="math display">\[
 P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\pi_i \pi_{i+1}}
 \]</span></p>
@@ -2324,12 +2330,12 @@ P(\mathbf{x}, \boldsymbol{\pi}) = a_{0\pi_1} \prod_{i=1}^{L} e_{\pi_i}(x_i) a_{\
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../chapters/project/translation_project/index.html" class="pagination-link" aria-label="Translating ORFs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/bioinformatics/sequence_annnotation.html" class="pagination-link" aria-label="Sequence annotation">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Sequence annotation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/web/new_hmm_exercise/index.html" class="pagination-link" aria-label="Membrane proteins">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Membrane proteins</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

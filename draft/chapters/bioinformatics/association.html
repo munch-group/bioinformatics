@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications – Bioinformatics and Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/web/gwas_databases/index.html" rel="next">
+<link href="../../chapters/bioinformatics/preface.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7348364bef02e149b83741bff427fbde.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7265a01e67a7770ed9b564cd1d2c99b1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/association.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Content</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Exam information</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../curriculum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Curriculum</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Learning Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/before_you_begin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Before you begin</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/writing_a_program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing a program</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dealing_with_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dealing with values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/the_order_of_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The order of events</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/course_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Course tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/controlling_behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Controlling behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/organizing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Organizing code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/python_values_are_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Values are objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lists of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Pairs of things</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/gluing_values_in_sequence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grouping values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/iteration_over_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iterating values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/working_with_data_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Working with files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Structuring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/unleash_your_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Recursion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/testing_your_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Testing your code</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/your_own_types_of_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Your Own Types of Objects: Python Classes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/using_code_from_other_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Code in other files</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/on_the_shoulders_of_giants.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Giant’s shoulders</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/python/appendix_bsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Appendix: PyMol for BSF</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bioinformatics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/association.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/gwas_databases/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Sequence Database Searching and BLAST</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/translation_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Translating ORFs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/hidden_markov_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Hidden Markov Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/new_hmm_exercise/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Membrane proteins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/orf_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Finding genes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/neural_networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/neural_networks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Neural networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/folding_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Primer analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/assembly_and_mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Genome Sequencing, Assembly, and Read Mapping</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/assembly_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Genome assembly</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/pairwise_global_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Global Sequence Alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/pairwise_local_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Pairwise global alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multiple Sequence Alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/alignment_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Pairwise alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/ccr5_pwalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">CCR5-delta32</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/protein_substitution_matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Protein Substitution Matrices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/database_searching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Sequence Database Searching and BLAST</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/mrsa_blast_multalign/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">MRSA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/hiv_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">HIV sub-groups</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/multiple_alignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Multiple Sequence Alignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Clustering of sequences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/project/seqdist_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Sequence trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/models_of_dna_evolution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Models of DNA Evolution</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/bioinformatics/phylogenetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Phylogenetics: Tree-Based Analysis of Evolutionary Relationships</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/aardwark_seqdist/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Aardvark?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/web/orf_finding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Plasmid ORFs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Supplementary</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/project_files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/recordings2025.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture recordings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/slides2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../supplementary/bioinformatics_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exam info</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/trouble_shooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trouble shooting</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-the-promise-of-genetic-association" id="toc-introduction-the-promise-of-genetic-association" class="nav-link active" data-scroll-target="#introduction-the-promise-of-genetic-association"><span class="header-section-number">24.1</span> Introduction: The Promise of Genetic Association</a></li>
+  <li><a href="#statistical-foundations-of-association-testing" id="toc-statistical-foundations-of-association-testing" class="nav-link" data-scroll-target="#statistical-foundations-of-association-testing"><span class="header-section-number">24.2</span> Statistical Foundations of Association Testing</a>
+  <ul class="collapse">
+  <li><a href="#the-basic-association-test" id="toc-the-basic-association-test" class="nav-link" data-scroll-target="#the-basic-association-test"><span class="header-section-number">24.2.1</span> The Basic Association Test</a></li>
+  <li><a href="#power-and-sample-size-considerations" id="toc-power-and-sample-size-considerations" class="nav-link" data-scroll-target="#power-and-sample-size-considerations"><span class="header-section-number">24.2.2</span> Power and Sample Size Considerations</a></li>
+  <li><a href="#multiple-testing-correction" id="toc-multiple-testing-correction" class="nav-link" data-scroll-target="#multiple-testing-correction"><span class="header-section-number">24.2.3</span> Multiple Testing Correction</a></li>
+  </ul></li>
+  <li><a href="#population-structure-and-stratification" id="toc-population-structure-and-stratification" class="nav-link" data-scroll-target="#population-structure-and-stratification"><span class="header-section-number">24.3</span> Population Structure and Stratification</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-of-population-stratification" id="toc-the-problem-of-population-stratification" class="nav-link" data-scroll-target="#the-problem-of-population-stratification"><span class="header-section-number">24.3.1</span> The Problem of Population Stratification</a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis"><span class="header-section-number">24.3.2</span> Principal Component Analysis</a></li>
+  <li><a href="#mixed-models-and-relatedness" id="toc-mixed-models-and-relatedness" class="nav-link" data-scroll-target="#mixed-models-and-relatedness"><span class="header-section-number">24.3.3</span> Mixed Models and Relatedness</a></li>
+  </ul></li>
+  <li><a href="#linkage-disequilibrium-and-fine-mapping" id="toc-linkage-disequilibrium-and-fine-mapping" class="nav-link" data-scroll-target="#linkage-disequilibrium-and-fine-mapping"><span class="header-section-number">24.4</span> Linkage Disequilibrium and Fine-Mapping</a>
+  <ul class="collapse">
+  <li><a href="#understanding-linkage-disequilibrium" id="toc-understanding-linkage-disequilibrium" class="nav-link" data-scroll-target="#understanding-linkage-disequilibrium"><span class="header-section-number">24.4.1</span> Understanding Linkage Disequilibrium</a></li>
+  <li><a href="#statistical-fine-mapping" id="toc-statistical-fine-mapping" class="nav-link" data-scroll-target="#statistical-fine-mapping"><span class="header-section-number">24.4.2</span> Statistical Fine-Mapping</a></li>
+  <li><a href="#conditional-analysis-and-multiple-signals" id="toc-conditional-analysis-and-multiple-signals" class="nav-link" data-scroll-target="#conditional-analysis-and-multiple-signals"><span class="header-section-number">24.4.3</span> Conditional Analysis and Multiple Signals</a></li>
+  </ul></li>
+  <li><a href="#meta-analysis-and-large-scale-consortia" id="toc-meta-analysis-and-large-scale-consortia" class="nav-link" data-scroll-target="#meta-analysis-and-large-scale-consortia"><span class="header-section-number">24.5</span> Meta-Analysis and Large-Scale Consortia</a>
+  <ul class="collapse">
+  <li><a href="#the-power-of-meta-analysis" id="toc-the-power-of-meta-analysis" class="nav-link" data-scroll-target="#the-power-of-meta-analysis"><span class="header-section-number">24.5.1</span> The Power of Meta-Analysis</a></li>
+  <li><a href="#heterogeneity-assessment" id="toc-heterogeneity-assessment" class="nav-link" data-scroll-target="#heterogeneity-assessment"><span class="header-section-number">24.5.2</span> Heterogeneity Assessment</a></li>
+  <li><a href="#trans-ancestry-meta-analysis" id="toc-trans-ancestry-meta-analysis" class="nav-link" data-scroll-target="#trans-ancestry-meta-analysis"><span class="header-section-number">24.5.3</span> Trans-Ancestry Meta-Analysis</a></li>
+  </ul></li>
+  <li><a href="#functional-interpretation-and-biological-insights" id="toc-functional-interpretation-and-biological-insights" class="nav-link" data-scroll-target="#functional-interpretation-and-biological-insights"><span class="header-section-number">24.6</span> Functional Interpretation and Biological Insights</a>
+  <ul class="collapse">
+  <li><a href="#from-association-to-function" id="toc-from-association-to-function" class="nav-link" data-scroll-target="#from-association-to-function"><span class="header-section-number">24.6.1</span> From Association to Function</a></li>
+  <li><a href="#enrichment-analysis-and-pathway-discovery" id="toc-enrichment-analysis-and-pathway-discovery" class="nav-link" data-scroll-target="#enrichment-analysis-and-pathway-discovery"><span class="header-section-number">24.6.2</span> Enrichment Analysis and Pathway Discovery</a></li>
+  <li><a href="#polygenic-risk-scores" id="toc-polygenic-risk-scores" class="nav-link" data-scroll-target="#polygenic-risk-scores"><span class="header-section-number">24.6.3</span> Polygenic Risk Scores</a></li>
+  </ul></li>
+  <li><a href="#complex-trait-architecture" id="toc-complex-trait-architecture" class="nav-link" data-scroll-target="#complex-trait-architecture"><span class="header-section-number">24.7</span> Complex Trait Architecture</a>
+  <ul class="collapse">
+  <li><a href="#the-omnigenic-model" id="toc-the-omnigenic-model" class="nav-link" data-scroll-target="#the-omnigenic-model"><span class="header-section-number">24.7.1</span> The Omnigenic Model</a></li>
+  <li><a href="#missing-heritability" id="toc-missing-heritability" class="nav-link" data-scroll-target="#missing-heritability"><span class="header-section-number">24.7.2</span> Missing Heritability</a></li>
+  <li><a href="#gene-environment-interactions" id="toc-gene-environment-interactions" class="nav-link" data-scroll-target="#gene-environment-interactions"><span class="header-section-number">24.7.3</span> Gene-Environment Interactions</a></li>
+  </ul></li>
+  <li><a href="#clinical-translation-and-precision-medicine" id="toc-clinical-translation-and-precision-medicine" class="nav-link" data-scroll-target="#clinical-translation-and-precision-medicine"><span class="header-section-number">24.8</span> Clinical Translation and Precision Medicine</a>
+  <ul class="collapse">
+  <li><a href="#risk-prediction-and-stratification" id="toc-risk-prediction-and-stratification" class="nav-link" data-scroll-target="#risk-prediction-and-stratification"><span class="header-section-number">24.8.1</span> Risk Prediction and Stratification</a></li>
+  <li><a href="#therapeutic-target-discovery" id="toc-therapeutic-target-discovery" class="nav-link" data-scroll-target="#therapeutic-target-discovery"><span class="header-section-number">24.8.2</span> Therapeutic Target Discovery</a></li>
+  <li><a href="#pharmacogenomics" id="toc-pharmacogenomics" class="nav-link" data-scroll-target="#pharmacogenomics"><span class="header-section-number">24.8.3</span> Pharmacogenomics</a></li>
+  </ul></li>
+  <li><a href="#future-directions-and-emerging-methods" id="toc-future-directions-and-emerging-methods" class="nav-link" data-scroll-target="#future-directions-and-emerging-methods"><span class="header-section-number">24.9</span> Future Directions and Emerging Methods</a>
+  <ul class="collapse">
+  <li><a href="#whole-genome-sequencing-studies" id="toc-whole-genome-sequencing-studies" class="nav-link" data-scroll-target="#whole-genome-sequencing-studies"><span class="header-section-number">24.9.1</span> Whole-Genome Sequencing Studies</a></li>
+  <li><a href="#machine-learning-integration" id="toc-machine-learning-integration" class="nav-link" data-scroll-target="#machine-learning-integration"><span class="header-section-number">24.9.2</span> Machine Learning Integration</a></li>
+  <li><a href="#single-cell-genomics-integration" id="toc-single-cell-genomics-integration" class="nav-link" data-scroll-target="#single-cell-genomics-integration"><span class="header-section-number">24.9.3</span> Single-Cell Genomics Integration</a></li>
+  <li><a href="#global-diversity-and-health-equity" id="toc-global-diversity-and-health-equity" class="nav-link" data-scroll-target="#global-diversity-and-health-equity"><span class="header-section-number">24.9.4</span> Global Diversity and Health Equity</a></li>
+  </ul></li>
+  <li><a href="#conclusion-achievements-and-challenges" id="toc-conclusion-achievements-and-challenges" class="nav-link" data-scroll-target="#conclusion-achievements-and-challenges"><span class="header-section-number">24.10</span> Conclusion: Achievements and Challenges</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/association.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Genome-Wide Association Studies: From Statistical Foundations to Clinical Applications</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-the-promise-of-genetic-association" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="introduction-the-promise-of-genetic-association"><span class="header-section-number">24.1</span> Introduction: The Promise of Genetic Association</h2>
+<p>The completion of the Human Genome Project in 2003 marked a pivotal moment in biomedical research, providing the reference sequence that would enable systematic investigation of how genetic variation influences human health and disease. This monumental achievement, combined with dramatic reductions in sequencing costs and advances in high-throughput genotyping technologies, has transformed our ability to identify genetic factors underlying complex diseases. Genome-wide association studies (GWAS) have emerged as the primary tool for discovering these genetic influences, fundamentally changing our understanding of disease architecture and opening new avenues for precision medicine.</p>
+<p>The central premise of association studies is elegantly simple: by comparing genetic variants between individuals with a disease (cases) and those without (controls), we can identify genomic regions that contribute to disease susceptibility. However, this conceptual simplicity belies the enormous statistical, computational, and biological complexities involved in conducting and interpreting these studies. Modern GWAS routinely test millions of genetic variants across thousands or even hundreds of thousands of individuals, requiring sophisticated statistical methods to distinguish true associations from the noise of multiple testing while accounting for population structure, environmental factors, and the complex genetic architecture of human traits.</p>
+<p>The impact of GWAS on biomedical research has been profound. Since the first successful GWAS identified a variant in the complement factor H gene associated with age-related macular degeneration in 2005, thousands of studies have identified tens of thousands of genetic associations for hundreds of complex traits and diseases. These discoveries have revealed unexpected biological pathways, identified new drug targets, enabled better disease risk prediction, and provided insights into human evolution and population history. Yet, despite these successes, significant challenges remain in translating GWAS findings into clinical applications and understanding the biological mechanisms through which genetic variants influence disease.</p>
+</section>
+<section id="statistical-foundations-of-association-testing" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="statistical-foundations-of-association-testing"><span class="header-section-number">24.2</span> Statistical Foundations of Association Testing</h2>
+<section id="the-basic-association-test" class="level3" data-number="24.2.1">
+<h3 data-number="24.2.1" class="anchored" data-anchor-id="the-basic-association-test"><span class="header-section-number">24.2.1</span> The Basic Association Test</h3>
+<p>At its core, genetic association testing examines whether the frequency of a genetic variant differs between individuals with and without a particular trait or disease. For a single nucleotide polymorphism (SNP) with two alleles (A and a), we can construct a 2×2 contingency table comparing allele frequencies between cases and controls. The null hypothesis states that the variant is not associated with the disease, meaning allele frequencies should be similar in both groups.</p>
+<p>The most fundamental test for association is the chi-square test of independence. For a SNP with minor allele frequency (MAF) p in controls and q in cases, with n₀ controls and n₁ cases, the test statistic is:</p>
+<p><span class="math display">\[\chi^2 = \frac{2n_0n_1(p-q)^2}{(n_0+n_1)p(1-p)}\]</span></p>
+<p>Under the null hypothesis of no association, this statistic follows a chi-square distribution with one degree of freedom. The beauty of this test lies in its simplicity and its direct connection to the effect size: larger differences in allele frequency between cases and controls yield larger test statistics and more significant p-values.</p>
+<p>However, real genetic data presents numerous complications. Genotype data comes in three forms for a biallelic SNP (AA, Aa, aa), requiring decisions about the genetic model. The additive model, which assumes each copy of the risk allele contributes equally to disease risk, has become standard due to its robustness and statistical power across a range of true genetic architectures. Under this model, we can perform linear regression for quantitative traits or logistic regression for binary outcomes:</p>
+<p><span class="math display">\[\text{logit}(P(Y=1)) = \beta_0 + \beta_1 \cdot G + \beta_2 \cdot X\]</span></p>
+<p>where Y is the disease status, G is the genotype coded as 0, 1, or 2 copies of the minor allele, and X represents covariates.</p>
+</section>
+<section id="power-and-sample-size-considerations" class="level3" data-number="24.2.2">
+<h3 data-number="24.2.2" class="anchored" data-anchor-id="power-and-sample-size-considerations"><span class="header-section-number">24.2.2</span> Power and Sample Size Considerations</h3>
+<p>Statistical power in GWAS depends on multiple factors: sample size, effect size, allele frequency, disease prevalence, and the significance threshold. The relationship between these factors is captured by the non-centrality parameter (NCP) of the chi-square distribution:</p>
+<p><span class="math display">\[\text{NCP} = n \cdot 2p(1-p) \cdot \left(\frac{r^2}{1-K^2 \cdot r^2}\right)\]</span></p>
+<p>where n is the total sample size, p is the MAF, r is the genotype relative risk, and K is the disease prevalence. This formula reveals several crucial insights. Power increases with sample size and is maximized for common variants (MAF ≈ 0.5). For rare variants, much larger sample sizes are needed to achieve comparable power. The effect size enters quadratically, meaning that detecting variants with small effects requires dramatically larger samples.</p>
+<p>The power calculation must also account for the multiple testing burden. With one million independent tests and a genome-wide significance threshold of 5×10⁻⁸, detecting a variant with MAF = 0.2 and odds ratio = 1.2 requires approximately 10,000 cases and 10,000 controls for 80% power. This explains why successful GWAS have required ever-larger sample sizes as the field has progressed from detecting large-effect variants to uncovering the many small-effect variants that contribute to complex trait architecture.</p>
+</section>
+<section id="multiple-testing-correction" class="level3" data-number="24.2.3">
+<h3 data-number="24.2.3" class="anchored" data-anchor-id="multiple-testing-correction"><span class="header-section-number">24.2.3</span> Multiple Testing Correction</h3>
+<p>The massive multiple testing problem in GWAS—testing millions of SNPs simultaneously—necessitates stringent correction procedures to control false positive rates. The Bonferroni correction, which divides the nominal significance level by the number of tests, provides a conservative bound but assumes all tests are independent. In reality, SNPs in linkage disequilibrium (LD) are correlated, making Bonferroni overly conservative.</p>
+<p>The field has converged on a genome-wide significance threshold of p &lt; 5×10⁻⁸, which roughly corresponds to Bonferroni correction for one million independent tests—the approximate number of independent common variant haplotypes in the European population. This threshold maintains the family-wise error rate at 5% across all tests. However, this one-size-fits-all threshold has limitations: different populations have different LD structures and thus different numbers of independent tests, and the threshold doesn’t account for prior biological knowledge that might make some associations more plausible than others.</p>
+<p>Alternative approaches to multiple testing include the false discovery rate (FDR), which controls the expected proportion of false positives among all discoveries. For a set of p-values p₁, …, pₘ ordered from smallest to largest, the Benjamini-Hochberg procedure declares significant all tests with:</p>
+<p><span class="math display">\[p_i \leq \frac{i}{m} \cdot \alpha\]</span></p>
+<p>where α is the desired FDR level. While FDR provides greater power than family-wise error rate control, it has been less widely adopted in GWAS, partly due to the community’s emphasis on minimizing false positives.</p>
+</section>
+</section>
+<section id="population-structure-and-stratification" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="population-structure-and-stratification"><span class="header-section-number">24.3</span> Population Structure and Stratification</h2>
+<section id="the-problem-of-population-stratification" class="level3" data-number="24.3.1">
+<h3 data-number="24.3.1" class="anchored" data-anchor-id="the-problem-of-population-stratification"><span class="header-section-number">24.3.1</span> The Problem of Population Stratification</h3>
+<p>Population stratification represents one of the most serious confounding factors in genetic association studies. When cases and controls differ in their ancestral backgrounds, any genetic variant whose frequency varies across populations will show apparent association with the disease, even if it has no causal relationship. This phenomenon can generate thousands of false positive associations and has historically plagued genetic association studies.</p>
+<p>Consider a simple example: suppose we conduct a GWAS of chopstick usage in a sample combining individuals of European and East Asian ancestry. Any variant that differs in frequency between these populations—which includes millions of SNPs—will appear associated with chopstick use, not because of any biological relationship but simply because chopstick use correlates with ancestry. While this example is obvious, subtler forms of stratification can arise from cryptic relatedness, regional population differences, or socioeconomic factors that correlate with both ancestry and disease risk.</p>
+<p>The genomic control method provides a simple diagnostic and correction for stratification. Under the null hypothesis of no association and no stratification, the median chi-square statistic should equal 0.456. The genomic inflation factor λ is defined as:</p>
+<p><span class="math display">\[\lambda = \frac{\text{median}(\chi^2_{\text{observed}})}{0.456}\]</span></p>
+<p>Values of λ &gt; 1 indicate inflation due to stratification or other confounders. The method corrects all test statistics by dividing by λ, though this assumes uniform inflation across the genome, which may not hold for complex stratification patterns.</p>
+</section>
+<section id="principal-component-analysis" class="level3" data-number="24.3.2">
+<h3 data-number="24.3.2" class="anchored" data-anchor-id="principal-component-analysis"><span class="header-section-number">24.3.2</span> Principal Component Analysis</h3>
+<p>Principal component analysis (PCA) has become the standard method for detecting and correcting population stratification. PCA identifies the major axes of genetic variation in the sample by eigendecomposition of the genotype correlation matrix. The top principal components (PCs) typically capture population structure, with each PC representing a continuous axis of ancestry.</p>
+<p>The mathematical foundation of PCA begins with the centered genotype matrix X, where each element xᵢⱼ represents the minor allele count for individual i at SNP j, centered by subtracting the mean. The genetic relationship matrix (GRM) is:</p>
+<p><span class="math display">\[\text{GRM} = \frac{1}{m}XX^T\]</span></p>
+<p>where m is the number of SNPs. The eigenvectors of the GRM are the principal components, and the eigenvalues indicate the amount of variance explained by each component. Typically, the top 10-20 PCs are included as covariates in association testing:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_g \cdot G + \sum_{k=1}^{K} \beta_k \cdot PC_k + \epsilon\]</span></p>
+<p>This adjustment removes confounding due to population structure while preserving true associations.</p>
+</section>
+<section id="mixed-models-and-relatedness" class="level3" data-number="24.3.3">
+<h3 data-number="24.3.3" class="anchored" data-anchor-id="mixed-models-and-relatedness"><span class="header-section-number">24.3.3</span> Mixed Models and Relatedness</h3>
+<p>Linear mixed models (LMMs) provide a unified framework for handling both population structure and cryptic relatedness. The model includes both fixed effects (the SNP being tested and covariates) and random effects that model the polygenic background:</p>
+<p><span class="math display">\[Y = X\beta + g + \epsilon\]</span></p>
+<p>where g ~ N(0, σ²ₐK) with K being the kinship matrix estimated from genome-wide SNPs. The kinship matrix captures all pairwise relationships in the sample, from close relatives to distant population-level relationships.</p>
+<p>The key insight is that the random effect g captures the polygenic contribution to the trait from all SNPs not being directly tested. This accounts for confounding due to relatedness at all levels, from siblings to subtle population structure. The computational challenge lies in fitting this model millions of times (once for each SNP), which has motivated efficient algorithms like BOLT-LMM and fastGWA that achieve nearly linear time complexity through various approximations.</p>
+</section>
+</section>
+<section id="linkage-disequilibrium-and-fine-mapping" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="linkage-disequilibrium-and-fine-mapping"><span class="header-section-number">24.4</span> Linkage Disequilibrium and Fine-Mapping</h2>
+<section id="understanding-linkage-disequilibrium" class="level3" data-number="24.4.1">
+<h3 data-number="24.4.1" class="anchored" data-anchor-id="understanding-linkage-disequilibrium"><span class="header-section-number">24.4.1</span> Understanding Linkage Disequilibrium</h3>
+<p>Linkage disequilibrium (LD), the non-random association of alleles at different loci, is both a blessing and a curse for GWAS. It enables the detection of causal variants through their correlation with genotyped SNPs, allowing GWAS to survey the genome with a finite number of markers. However, LD also complicates the interpretation of associations, as significant SNPs may merely tag the true causal variants rather than being causal themselves.</p>
+<p>The classical measure of LD is r², the squared correlation coefficient between two SNPs:</p>
+<p><span class="math display">\[r^2 = \frac{(p_{AB} - p_A p_B)^2}{p_A(1-p_A)p_B(1-p_B)}\]</span></p>
+<p>where pₐ and p_B are the allele frequencies and p_AB is the haplotype frequency. The value r² represents the proportion of variance at one SNP explained by the other. For association mapping, if a causal variant with effect size β is in LD with a genotyped SNP with r², the expected effect size at the genotyped SNP is r²β, and the power to detect association is reduced by a factor of r².</p>
+<p>LD patterns vary dramatically across the genome and between populations. In European populations, LD typically extends over tens to hundreds of kilobases, structured in discrete blocks separated by recombination hotspots. African populations show shorter-range LD due to their longer evolutionary history and larger historical effective population size. These population differences have important implications: while European populations require fewer SNPs for genome-wide coverage, African populations provide better resolution for fine-mapping causal variants.</p>
+</section>
+<section id="statistical-fine-mapping" class="level3" data-number="24.4.2">
+<h3 data-number="24.4.2" class="anchored" data-anchor-id="statistical-fine-mapping"><span class="header-section-number">24.4.2</span> Statistical Fine-Mapping</h3>
+<p>Fine-mapping aims to identify the causal variant(s) within a region of association. The challenge is that many variants in LD with the causal variant will show significant association, creating a “forest” of significant p-values around each true signal. Statistical fine-mapping uses the pattern of associations and LD structure to prioritize likely causal variants.</p>
+<p>Bayesian fine-mapping methods calculate the posterior probability of causality for each variant. Assuming a single causal variant in the region, the posterior probability for variant j is:</p>
+<p><span class="math display">\[\text{PP}_j = \frac{\text{BF}_j \cdot \pi_j}{\sum_k \text{BF}_k \cdot \pi_k}\]</span></p>
+<p>where BF_j is the Bayes factor comparing the model with variant j as causal versus the null model, and π_j is the prior probability. The Bayes factor can be approximated from summary statistics:</p>
+<p><span class="math display">\[\text{BF}_j \approx \sqrt{\frac{V}{V + \omega}} \cdot \exp\left(\frac{\omega \cdot z_j^2}{2(V + \omega)}\right)\]</span></p>
+<p>where z_j is the z-score, V is the prior variance of effect sizes, and ω is typically set to 1/5000 for common variants.</p>
+</section>
+<section id="conditional-analysis-and-multiple-signals" class="level3" data-number="24.4.3">
+<h3 data-number="24.4.3" class="anchored" data-anchor-id="conditional-analysis-and-multiple-signals"><span class="header-section-number">24.4.3</span> Conditional Analysis and Multiple Signals</h3>
+<p>Many loci harbor multiple independent association signals, requiring conditional analysis to dissect their contributions. The stepwise conditional approach iteratively identifies independent signals by conditioning on previously identified variants:</p>
+<ol type="1">
+<li>Identify the most significant SNP in the region</li>
+<li>Condition on this SNP and retest all others: Y = β₀ + β₁G₁ + β₂G₂ + ε</li>
+<li>If any SNP remains significant, add it to the model</li>
+<li>Repeat until no significant associations remain</li>
+</ol>
+<p>This approach can distinguish multiple causal variants from the shadow of LD but requires individual-level genotype data. Approximate conditional analysis using summary statistics has been developed:</p>
+<p><span class="math display">\[\beta_{\text{cond}} = \beta_{\text{marginal}} - R \cdot \beta_{\text{condition}}\]</span></p>
+<p>where R is the LD matrix between the tested SNP and conditioning SNPs. This enables conditional analysis in meta-analyses where individual data cannot be shared.</p>
+</section>
+</section>
+<section id="meta-analysis-and-large-scale-consortia" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="meta-analysis-and-large-scale-consortia"><span class="header-section-number">24.5</span> Meta-Analysis and Large-Scale Consortia</h2>
+<section id="the-power-of-meta-analysis" class="level3" data-number="24.5.1">
+<h3 data-number="24.5.1" class="anchored" data-anchor-id="the-power-of-meta-analysis"><span class="header-section-number">24.5.1</span> The Power of Meta-Analysis</h3>
+<p>Meta-analysis has become essential in GWAS, enabling the combination of results from multiple studies to achieve sample sizes impossible for any single study. By aggregating evidence across studies, meta-analysis increases power to detect associations, improves effect size estimates, and allows examination of heterogeneity across populations and study designs.</p>
+<p>The fixed-effects meta-analysis model assumes all studies estimate the same underlying effect:</p>
+<p><span class="math display">\[\hat{\beta}_{\text{meta}} = \frac{\sum_i w_i \hat{\beta}_i}{\sum_i w_i}\]</span></p>
+<p>where w_i = 1/SE²_i is the inverse-variance weight for study i. The standard error of the combined estimate is:</p>
+<p><span class="math display">\[\text{SE}_{\text{meta}} = \frac{1}{\sqrt{\sum_i w_i}}\]</span></p>
+<p>This weighting scheme is optimal when all studies measure the same effect, giving more weight to precise estimates from larger studies.</p>
+</section>
+<section id="heterogeneity-assessment" class="level3" data-number="24.5.2">
+<h3 data-number="24.5.2" class="anchored" data-anchor-id="heterogeneity-assessment"><span class="header-section-number">24.5.2</span> Heterogeneity Assessment</h3>
+<p>Heterogeneity between studies can arise from differences in population ancestry, phenotype definition, environmental factors, or gene-environment interactions. Cochran’s Q statistic tests for heterogeneity:</p>
+<p><span class="math display">\[Q = \sum_i w_i(\hat{\beta}_i - \hat{\beta}_{\text{meta}})^2\]</span></p>
+<p>which follows a chi-square distribution with k-1 degrees of freedom under the null hypothesis of no heterogeneity. The I² statistic quantifies the proportion of variance due to heterogeneity:</p>
+<p><span class="math display">\[I^2 = \frac{Q - (k-1)}{Q} \times 100\%\]</span></p>
+<p>Values of I² &gt; 50% suggest substantial heterogeneity that should be investigated.</p>
+<p>Random-effects meta-analysis accommodates heterogeneity by assuming study-specific effects are drawn from a distribution:</p>
+<p><span class="math display">\[\hat{\beta}_{\text{RE}} = \frac{\sum_i w_i^* \hat{\beta}_i}{\sum_i w_i^*}\]</span></p>
+<p>where <span class="math inline">\(w_i^* = 1/(\text{SE}_i^2 + \tau^2)\)</span> and τ² is the between-study variance estimated from the data. This approach yields wider confidence intervals when heterogeneity is present, appropriately reflecting uncertainty about the true effect.</p>
+</section>
+<section id="trans-ancestry-meta-analysis" class="level3" data-number="24.5.3">
+<h3 data-number="24.5.3" class="anchored" data-anchor-id="trans-ancestry-meta-analysis"><span class="header-section-number">24.5.3</span> Trans-Ancestry Meta-Analysis</h3>
+<p>Combining GWAS across diverse ancestries presents both opportunities and challenges. The opportunities include improved fine-mapping resolution due to different LD patterns, increased sample size and power, and the ability to assess the transferability of genetic effects across populations. However, differences in allele frequencies, LD structure, and potentially in genetic architecture complicate the analysis.</p>
+<p>Trans-ancestry meta-analysis methods must account for these differences. The MANTRA approach models relatedness between populations using a Bayesian partition model, allowing effects to be more similar between related populations. MR-MEGA explicitly models heterogeneity due to ancestry by including axes of genetic variation as covariates in the meta-regression:</p>
+<p><span class="math display">\[\beta_i = \beta_0 + \sum_j \gamma_j \cdot PC_{ij} + \epsilon_i\]</span></p>
+<p>where PC_ij represents the jth principal component of population structure for study i. This identifies variants with consistent effects across ancestries versus those with population-specific effects.</p>
+</section>
+</section>
+<section id="functional-interpretation-and-biological-insights" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="functional-interpretation-and-biological-insights"><span class="header-section-number">24.6</span> Functional Interpretation and Biological Insights</h2>
+<section id="from-association-to-function" class="level3" data-number="24.6.1">
+<h3 data-number="24.6.1" class="anchored" data-anchor-id="from-association-to-function"><span class="header-section-number">24.6.1</span> From Association to Function</h3>
+<p>The vast majority of GWAS associations fall in non-coding regions of the genome, presenting a major challenge for functional interpretation. Unlike coding variants where the consequence on protein structure can be predicted, non-coding variants likely affect gene regulation through mechanisms that remain poorly understood. This “missing function” problem has motivated extensive efforts to annotate the non-coding genome and predict variant effects.</p>
+<p>Expression quantitative trait loci (eQTL) analysis links genetic variants to gene expression levels, providing a molecular phenotype intermediate between genotype and disease. The basic eQTL model tests association between each SNP and the expression of nearby genes:</p>
+<p><span class="math display">\[E_g = \alpha + \beta \cdot G_{\text{SNP}} + \epsilon\]</span></p>
+<p>where E_g is the expression level of gene g. Variants associated with both disease and gene expression (colocalization) suggest a mechanism where the variant influences disease risk through effects on gene expression.</p>
+<p>The challenge lies in determining whether the same variant drives both the GWAS and eQTL signals. Colocalization analysis calculates the posterior probability that the two traits share a causal variant:</p>
+<p><span class="math display">\[\text{PP}_{H4} = \frac{P(D|H_4)}{P(D|H_0) + P(D|H_1) + P(D|H_2) + P(D|H_3) + P(D|H_4)}\]</span></p>
+<p>where H₄ represents the hypothesis of a shared causal variant, and the other hypotheses represent no association (H₀), association with one trait only (H₁, H₂), or different causal variants (H₃).</p>
+</section>
+<section id="enrichment-analysis-and-pathway-discovery" class="level3" data-number="24.6.2">
+<h3 data-number="24.6.2" class="anchored" data-anchor-id="enrichment-analysis-and-pathway-discovery"><span class="header-section-number">24.6.2</span> Enrichment Analysis and Pathway Discovery</h3>
+<p>Pathway and gene set enrichment analyses aggregate evidence across multiple variants to identify biological processes underlying disease. These methods test whether genes in specific pathways show more association signal than expected by chance. The gene set enrichment score can be calculated as:</p>
+<p><span class="math display">\[\text{ES} = \max_{1 \leq j \leq p} \left| \sum_{i=1}^j \frac{r_i \cdot I(g_i \in S)}{N_R} - \frac{I(g_i \notin S)}{N - N_S} \right|\]</span></p>
+<p>where genes are ranked by association strength r_i, S is the gene set, N_S is its size, and N_R is the sum of ranks in S.</p>
+<p>MAGMA (Multi-marker Analysis of GenoMic Annotation) provides a flexible framework for gene and gene-set analysis. It first aggregates SNP-level associations to gene-level statistics accounting for LD:</p>
+<p><span class="math display">\[T_g = Z_g^T V_g^{-1} Z_g\]</span></p>
+<p>where Z_g contains the z-scores for SNPs in gene g and V_g is their correlation matrix. Gene-level statistics are then tested for enrichment in gene sets while accounting for gene-gene correlations.</p>
+</section>
+<section id="polygenic-risk-scores" class="level3" data-number="24.6.3">
+<h3 data-number="24.6.3" class="anchored" data-anchor-id="polygenic-risk-scores"><span class="header-section-number">24.6.3</span> Polygenic Risk Scores</h3>
+<p>Polygenic risk scores (PRS) aggregate the effects of many genetic variants into a single measure of genetic liability. The simplest PRS sums risk alleles weighted by their effect sizes:</p>
+<p><span class="math display">\[\text{PRS}_i = \sum_{j=1}^m \hat{\beta}_j \cdot G_{ij}\]</span></p>
+<p>where G_ij is the genotype of individual i at SNP j. The challenge lies in selecting which SNPs to include and estimating their weights.</p>
+<p>Traditional approaches use GWAS summary statistics, including either genome-wide significant SNPs (most specific but missing heritability) or all SNPs below a p-value threshold (more inclusive but including noise). LD clumping removes redundant SNPs in high LD to avoid double-counting signal. However, these simple approaches capture only a fraction of trait heritability.</p>
+<p>Modern PRS methods use Bayesian approaches to model the entire genome simultaneously. LDpred models the effect sizes as drawn from a mixture distribution:</p>
+<p><span class="math display">\[\beta_j \sim \begin{cases} N(0, \frac{h^2}{mp}) &amp; \text{with probability } p \\ 0 &amp; \text{with probability } 1-p \end{cases}\]</span></p>
+<p>where h² is the heritability, m is the number of SNPs, and p is the proportion of causal SNPs. The posterior effect sizes integrate over uncertainty in which SNPs are causal:</p>
+<p><span class="math display">\[\hat{\beta}_j^{\text{posterior}} = \frac{p \cdot \hat{\beta}_j^{\text{inf}}}{1 + p(\chi_j^2 - 1)}\]</span></p>
+<p>where <span class="math inline">\(\hat{\beta}_j^{\text{inf}}\)</span> is the infinitesimal effect accounting for LD.</p>
+</section>
+</section>
+<section id="complex-trait-architecture" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="complex-trait-architecture"><span class="header-section-number">24.7</span> Complex Trait Architecture</h2>
+<section id="the-omnigenic-model" class="level3" data-number="24.7.1">
+<h3 data-number="24.7.1" class="anchored" data-anchor-id="the-omnigenic-model"><span class="header-section-number">24.7.1</span> The Omnigenic Model</h3>
+<p>Recent insights from GWAS have led to new models of complex trait architecture. The omnigenic model proposes that gene regulatory networks are so interconnected that all genes expressed in disease-relevant cells can affect the functions of core disease genes. This model distinguishes between core genes with direct effects on disease and peripheral genes with indirect effects mediated through the regulatory network.</p>
+<p>The model explains several puzzling observations from GWAS: why trait heritability is spread across the entire genome rather than concentrated near relevant genes, why most traits are highly polygenic with thousands of associated variants, and why associated variants are enriched in regulatory elements active in disease-relevant cell types but not necessarily near obvious candidate genes.</p>
+<p>Mathematically, if trait values depend on the expression of core genes C, and peripheral gene expression P affects core genes through the regulatory network with effect matrix A:</p>
+<p><span class="math display">\[Y = \beta_C^T C + \epsilon = \beta_C^T(AC \cdot P + C_0) + \epsilon\]</span></p>
+<p>where C₀ represents core gene expression independent of peripheral genes. This shows how variants affecting peripheral genes anywhere in the genome can influence the trait through network propagation.</p>
+</section>
+<section id="missing-heritability" class="level3" data-number="24.7.2">
+<h3 data-number="24.7.2" class="anchored" data-anchor-id="missing-heritability"><span class="header-section-number">24.7.2</span> Missing Heritability</h3>
+<p>The “missing heritability” problem refers to the gap between heritability estimated from family studies and the proportion of variance explained by GWAS-identified variants. For many traits, GWAS variants explain only 10-30% of the heritability estimated from twin studies. Several factors contribute to this gap:</p>
+<p>Incomplete coverage of rare variants is a major factor. The contribution of variants to heritability depends on their frequency and effect size:</p>
+<p><span class="math display">\[h^2 = \sum_j 2p_j(1-p_j)\beta_j^2\]</span></p>
+<p>Rare variants (MAF &lt; 0.01) are poorly captured by current GWAS arrays and require very large sample sizes for detection. If genetic architecture follows the neutral model, the contribution to heritability at each frequency should be constant, suggesting substantial heritability from rare variants.</p>
+<p>SNP heritability estimation using all common SNPs simultaneously provides an upper bound on what GWAS can detect. The GREML approach estimates heritability from the genetic relationship matrix:</p>
+<p><span class="math display">\[Y = g + \epsilon, \quad g \sim N(0, \sigma_g^2 K)\]</span></p>
+<p>where K is constructed from all SNPs. SNP heritability typically captures 50-80% of family-based heritability, suggesting that much missing heritability is due to incomplete LD between causal variants and genotyped SNPs.</p>
+</section>
+<section id="gene-environment-interactions" class="level3" data-number="24.7.3">
+<h3 data-number="24.7.3" class="anchored" data-anchor-id="gene-environment-interactions"><span class="header-section-number">24.7.3</span> Gene-Environment Interactions</h3>
+<p>Gene-environment interactions (GxE) occur when genetic effects on a trait depend on environmental exposures. These interactions can explain additional trait variance and missing heritability, reveal biological mechanisms, and identify individuals who might benefit most from interventions. The basic GxE model includes an interaction term:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_G \cdot G + \beta_E \cdot E + \beta_{GxE} \cdot G \times E + \epsilon\]</span></p>
+<p>The power to detect interactions is substantially lower than for main effects, requiring sample sizes roughly four times larger for comparable power. This has limited GxE discoveries despite their likely importance.</p>
+<p>Large-scale biobanks with extensive phenotyping enable systematic GxE screening. The UK Biobank’s collection of genetic data with thousands of environmental variables allows testing millions of GxE pairs. However, the multiple testing burden is even more severe than standard GWAS, requiring careful consideration of which interactions to test based on biological plausibility.</p>
+</section>
+</section>
+<section id="clinical-translation-and-precision-medicine" class="level2" data-number="24.8">
+<h2 data-number="24.8" class="anchored" data-anchor-id="clinical-translation-and-precision-medicine"><span class="header-section-number">24.8</span> Clinical Translation and Precision Medicine</h2>
+<section id="risk-prediction-and-stratification" class="level3" data-number="24.8.1">
+<h3 data-number="24.8.1" class="anchored" data-anchor-id="risk-prediction-and-stratification"><span class="header-section-number">24.8.1</span> Risk Prediction and Stratification</h3>
+<p>The ultimate goal of many GWAS is to improve disease prediction and enable preventive interventions. Polygenic risk scores are beginning to show clinical utility for some conditions. For coronary artery disease, individuals in the top 5% of PRS distribution have three-fold increased risk, comparable to monogenic mutations. This level of risk may warrant enhanced screening or preventive treatments.</p>
+<p>The predictive performance of a PRS is typically evaluated using the area under the receiver operating characteristic curve (AUC) for binary traits or the proportion of variance explained (R²) for quantitative traits. The theoretical maximum R² for a PRS equals the SNP heritability, which for most complex diseases is 20-50%. Current PRS achieve 5-15% R² for well-studied traits with large GWAS, suggesting room for improvement.</p>
+<p>Integration of PRS with clinical risk factors often provides better prediction than either alone. For example, combining a PRS with traditional cardiovascular risk factors (age, sex, cholesterol, blood pressure, smoking) improves the AUC from 0.75 to 0.80. The net reclassification improvement (NRI) quantifies how many individuals are correctly reclassified into different risk categories:</p>
+<p><span class="math display">\[\text{NRI} = P(\text{up}|\text{event}) - P(\text{up}|\text{non-event}) + P(\text{down}|\text{non-event}) - P(\text{down}|\text{event})\]</span></p>
+</section>
+<section id="therapeutic-target-discovery" class="level3" data-number="24.8.2">
+<h3 data-number="24.8.2" class="anchored" data-anchor-id="therapeutic-target-discovery"><span class="header-section-number">24.8.2</span> Therapeutic Target Discovery</h3>
+<p>GWAS have identified numerous new drug targets, with genetic evidence substantially increasing the probability of drug development success. Variants that mimic the effects of pharmacological intervention provide human validation for targets. For example, PCSK9 loss-of-function variants reduce LDL cholesterol and cardiovascular disease risk, validating PCSK9 as a therapeutic target and leading to approved drugs.</p>
+<p>Mendelian randomization (MR) uses genetic variants as instrumental variables to assess causal relationships between risk factors and disease. If genetic variants (G) affect disease (Y) only through a risk factor (X), the causal effect can be estimated:</p>
+<p><span class="math display">\[\hat{\beta}_{XY} = \frac{\hat{\beta}_{GY}}{\hat{\beta}_{GX}}\]</span></p>
+<p>where β_GY is the variant-disease association and β_GX is the variant-risk factor association. This approach has confirmed causal roles for many risk factors and identified new intervention targets.</p>
+</section>
+<section id="pharmacogenomics" class="level3" data-number="24.8.3">
+<h3 data-number="24.8.3" class="anchored" data-anchor-id="pharmacogenomics"><span class="header-section-number">24.8.3</span> Pharmacogenomics</h3>
+<p>Pharmacogenomics uses genetic information to guide drug selection and dosing. While most pharmacogenomic variants were discovered through candidate gene studies rather than GWAS, the approach illustrates the clinical implementation of genetic testing. Classic examples include HLA-B*5701 screening before abacavir treatment to prevent hypersensitivity reactions and TPMT genotyping before thiopurine therapy to prevent toxicity.</p>
+<p>GWAS are beginning to identify pharmacogenomic variants, particularly for drug response rather than toxicity. The challenge is that pharmacogenomic GWAS require large cohorts of patients treated with specific drugs and with standardized outcome measures. Electronic health records linked to biobanks may enable such studies, though confounding by indication and treatment selection bias complicate the analysis.</p>
+</section>
+</section>
+<section id="future-directions-and-emerging-methods" class="level2" data-number="24.9">
+<h2 data-number="24.9" class="anchored" data-anchor-id="future-directions-and-emerging-methods"><span class="header-section-number">24.9</span> Future Directions and Emerging Methods</h2>
+<section id="whole-genome-sequencing-studies" class="level3" data-number="24.9.1">
+<h3 data-number="24.9.1" class="anchored" data-anchor-id="whole-genome-sequencing-studies"><span class="header-section-number">24.9.1</span> Whole-Genome Sequencing Studies</h3>
+<p>As sequencing costs continue to decline, whole-genome sequencing (WGS) association studies are becoming feasible. WGS captures all genetic variation, including rare variants, structural variants, and variants in regions poorly covered by genotyping arrays. The UK Biobank’s plan to sequence 500,000 genomes will enable comprehensive investigation of the full frequency spectrum of genetic variation.</p>
+<p>The statistical challenges of WGS association studies are substantial. With 100 million variants to test, the multiple testing burden is severe. Rare variant association tests aggregate signals across multiple variants, such as burden tests that sum rare allele counts:</p>
+<p><span class="math display">\[\text{Burden} = \sum_{j \in \text{gene}} w_j \cdot I(\text{MAF}_j &lt; 0.01) \cdot G_{ij}\]</span></p>
+<p>where w_j weights variants by predicted deleteriousness. SKAT (Sequence Kernel Association Test) allows for different effect directions:</p>
+<p><span class="math display">\[Q = (Y - \hat{Y})^T K (Y - \hat{Y})\]</span></p>
+<p>where K is a kernel matrix capturing genetic similarity at rare variants.</p>
+</section>
+<section id="machine-learning-integration" class="level3" data-number="24.9.2">
+<h3 data-number="24.9.2" class="anchored" data-anchor-id="machine-learning-integration"><span class="header-section-number">24.9.2</span> Machine Learning Integration</h3>
+<p>Machine learning methods are increasingly being applied to GWAS data to capture non-additive effects and improve prediction. Deep learning models can learn complex patterns in genetic data:</p>
+<p><span class="math display">\[h^{(l+1)} = \sigma(W^{(l)} h^{(l)} + b^{(l)})\]</span></p>
+<p>where h^(l) represents the hidden layer activations. These models can capture epistatic interactions and non-linear effects that traditional methods miss.</p>
+<p>However, the interpretability of machine learning models remains a challenge. Methods like SHAP (SHapley Additive exPlanations) values can identify which variants contribute most to predictions, but understanding the biological basis of learned patterns is difficult. The integration of biological knowledge into neural network architectures, such as using gene regulatory networks to define connections, may improve both performance and interpretability.</p>
+</section>
+<section id="single-cell-genomics-integration" class="level3" data-number="24.9.3">
+<h3 data-number="24.9.3" class="anchored" data-anchor-id="single-cell-genomics-integration"><span class="header-section-number">24.9.3</span> Single-Cell Genomics Integration</h3>
+<p>Single-cell technologies provide unprecedented resolution of cellular heterogeneity and gene regulation. Integration with GWAS can identify the specific cell types and states where disease-associated variants act. The challenge is linking population-level GWAS signals to cell-level molecular phenotypes.</p>
+<p>Methods like LDSC-SEG (LD Score regression applied to specifically expressed genes) test whether GWAS signals are enriched in genes specifically expressed in certain cell types:</p>
+<p><span class="math display">\[\chi^2_j = N \cdot h^2 \sum_C \tau_C \cdot l_{j,C} + N \cdot a + 1\]</span></p>
+<p>where l_{j,C} is the LD score for SNP j restricted to genes in cell type category C, and τ_C represents the per-SNP heritability enrichment.</p>
+</section>
+<section id="global-diversity-and-health-equity" class="level3" data-number="24.9.4">
+<h3 data-number="24.9.4" class="anchored" data-anchor-id="global-diversity-and-health-equity"><span class="header-section-number">24.9.4</span> Global Diversity and Health Equity</h3>
+<p>The lack of diversity in GWAS participants—over 80% are of European ancestry—limits the global applicability of findings and exacerbates health disparities. Polygenic risk scores show reduced predictive accuracy when applied across populations:</p>
+<p><span class="math display">\[R^2_{\text{target}} = R^2_{\text{discovery}} \cdot \rho_g^2 \cdot \frac{h^2_{\text{target}}}{h^2_{\text{discovery}}}\]</span></p>
+<p>where ρ_g is the genetic correlation between populations. This reduction arises from differences in LD patterns, allele frequencies, and potentially in causal variants or effect sizes.</p>
+<p>Large-scale efforts to increase diversity include the All of Us Research Program, H3Africa, and GenomeAsia 100K. These studies will improve fine-mapping through trans-ancestry meta-analysis, enable discovery of population-specific variants, and ensure that precision medicine benefits all populations. Methods development focuses on improving trans-ancestry PRS through approaches like PRS-CSx that model population-specific LD patterns while borrowing strength across populations.</p>
+</section>
+</section>
+<section id="conclusion-achievements-and-challenges" class="level2" data-number="24.10">
+<h2 data-number="24.10" class="anchored" data-anchor-id="conclusion-achievements-and-challenges"><span class="header-section-number">24.10</span> Conclusion: Achievements and Challenges</h2>
+<p>Genome-wide association studies have transformed our understanding of the genetic basis of complex traits and diseases. From a handful of robustly associated variants in 2005, we now have catalogs of tens of thousands of associations providing insights into disease biology, evolution, and potential therapeutic targets. The field has developed sophisticated statistical methods to handle massive datasets, control for confounding, and extract biological meaning from genetic associations.</p>
+<p>The achievements of GWAS are remarkable. We have learned that most complex traits are highly polygenic, with hundreds to thousands of variants contributing small effects. We have discovered that disease-associated variants are enriched in regulatory elements active in disease-relevant cell types, pointing to gene regulation as a key mechanism. We have identified new drug targets and begun to implement polygenic risk prediction in clinical settings. Perhaps most importantly, GWAS have revealed how much we still don’t understand about the relationship between genotype and phenotype.</p>
+<p>Significant challenges remain. The functional interpretation of non-coding variants remains difficult, limiting our ability to translate associations into biological mechanisms. The lack of diversity in GWAS cohorts threatens to exacerbate health disparities as genetic findings are translated to clinical applications. The missing heritability problem suggests that our models of genetic architecture are incomplete. The integration of GWAS findings with other omics data and biological knowledge remains a major computational and conceptual challenge.</p>
+<p>Looking forward, the field is poised for continued transformation. Whole-genome sequencing will provide complete catalogs of genetic variation. Single-cell technologies will reveal the cellular contexts where variants act. Machine learning may capture complex genetic effects that current methods miss. Most importantly, increasing diversity and sample sizes will ensure that the benefits of genomic medicine are available to all.</p>
+<p>The journey from the first GWAS to precision medicine has been remarkable but incomplete. As we enter the next phase of genetic discovery, the challenge shifts from finding associations to understanding their biological basis and translating findings to improve human health. This will require continued innovation in statistical methods, deeper integration of biological knowledge, and a commitment to ensuring that genomic medicine reduces rather than exacerbates health disparities. The promise of GWAS—to understand how genetic variation influences human health and to use this knowledge to prevent and treat disease—remains as compelling as ever.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/bioinformatics/preface.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Preface</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/web/gwas_databases/index.html" class="pagination-link" aria-label="GWAS candidates">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">GWAS candidates</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
