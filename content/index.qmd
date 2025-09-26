@@ -137,7 +137,7 @@ The topics for this week's exercises are statements, variables, operators, expre
 Only MO and Bio classes attend the exercises this week. MM classes do not. The exercise is repeated next week for the MM classes to attend
 :::
 
-The topics for this week's exercises are if, else, logic, and functions. You are meant to complete all the exercises in @sec-controlflow and @sec-functions. Do what you can at home and do the rest at the TA session.
+You are meant to work on the exercises in @sec-controlflow, @sec-functions, @sec-objects, @sec-lists, @sec-dictionaries, and @sec-tuples.  Do what you can at home and do the rest at the TA session.
 
 
 <!-- ## Week 4 {.unnumbered} -->
@@ -161,9 +161,6 @@ The topics for this week's exercises are if, else, logic, and functions. You are
 Only MM classes attend the exercises this week. MO and Bio classes do not. The exercise is repeated from last week*
 :::
 
-The topics for this week are objects, methods, strings, lists, tuples, and dictionaries. You are meant to complete all the exercises in chapters @sec-objects, @sec-lists, @sec-dictionaries, and @sec-tuples. Do what you can at home and do the rest at the TA session.
-
-
 <!-- ## Week 5 {.unnumbered} -->
 ## Week 6 {.unnumbered}
 
@@ -180,8 +177,6 @@ The topics for this week are objects, methods, strings, lists, tuples, and dicti
 - In the second lecture, I will talk about how to use recursion in Python.
 
 **Exercises:**  
-
-
 
 The topics for this week are iteration and data structures. You are meant to complete all the exercises in @sec-iteration and @sec-files.
 
