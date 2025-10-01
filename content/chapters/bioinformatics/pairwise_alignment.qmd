@@ -409,6 +409,7 @@ The first base case says that aligning two empty sequences has a score of zero�
 #| fig-cap: "A complete dynamic programming matrix for aligning 'AGC' with 'ATC' using match=+1, mismatch=-1, gap=-2. The matrix is filled row by row using the recurrence relation. Each cell shows the optimal score for aligning the corresponding prefixes. Arrows indicate which predecessor contributed the maximum score: ↖ = diagonal (match/mismatch), ↑ = up (deletion), ← = left (insertion)."
 
 import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 import numpy as np
 
 # Sequences
@@ -479,8 +480,13 @@ ax.set_ylabel('Sequence 1 (AGC)', fontsize=13)
 # ax.set_title('Dynamic Programming Matrix\nScores with Traceback Arrows',
 #             fontsize=14, fontweight='bold')
 
-# Add colorbar
-cbar = plt.colorbar(im, ax=ax)
+# # Add colorbar
+# cbar = plt.colorbar(im, ax=ax)
+# cbar.set_label('Alignment Score', fontsize=11)
+
+divider = make_axes_locatable(ax)
+cax = divider.append_axes("right", size="5%", pad=0.15)
+cbar = plt.colorbar(im, cax=cax)
 cbar.set_label('Alignment Score', fontsize=11)
 
 # Add legend for arrows

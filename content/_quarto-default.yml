@@ -77,6 +77,10 @@ book:
     #   - chapters/bioinformatics/references.qmd
     #   - chapters/bioinformatics/rna_structure.qmd
     #   - chapters/bioinformatics/sequence_annnotation.qmd
+    - part: "Bioinformatics"
+      chapters: 
+      - chapters/bioinformatics/pairwise_alignment.qmd
+
     - part: "Web exercises"
       chapters: 
       # - chapters/bioinf/tester.ipynb
