@@ -1,11 +1,3 @@
----
-title: "My Document"
-format: 
-  html:
-    fig-width: 7
-    fig-height: 5
----
-
 # Pairwise Alignment { #sec-pairwisealignment}
 
 *This chapter is about finding the best way to line up two biological sequences to reveal their similarities and differences. Alignment is fundamental to understanding how sequences are related evolutionarily and what functions they might perform.*
