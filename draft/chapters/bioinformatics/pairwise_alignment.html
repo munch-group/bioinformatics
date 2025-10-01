@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>37&nbsp; My Document – Bioinformatics and Programming</title>
+<title>37&nbsp; Pairwise Alignment – Bioinformatics and Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/pairwise_alignment.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">My Document</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/pairwise_alignment.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Alignment</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -428,7 +428,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/bioinformatics/pairwise_alignment.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">My Document</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Alignment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -580,9 +580,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-pairwisealignment" id="toc-sec-pairwisealignment" class="nav-link active" data-scroll-target="#sec-pairwisealignment"><span class="header-section-number">38</span> Pairwise Alignment</a>
-  <ul class="collapse">
-  <li><a href="#the-alignment-problem" id="toc-the-alignment-problem" class="nav-link" data-scroll-target="#the-alignment-problem">The alignment problem</a></li>
+  <li><a href="#the-alignment-problem" id="toc-the-alignment-problem" class="nav-link active" data-scroll-target="#the-alignment-problem">The alignment problem</a></li>
   <li><a href="#why-alignment-is-computationally-hard" id="toc-why-alignment-is-computationally-hard" class="nav-link" data-scroll-target="#why-alignment-is-computationally-hard">Why alignment is computationally hard</a>
   <ul class="collapse">
   <li><a href="#visualizing-the-alignment-space" id="toc-visualizing-the-alignment-space" class="nav-link" data-scroll-target="#visualizing-the-alignment-space">Visualizing the alignment space</a></li>
@@ -602,16 +600,15 @@ window.Quarto = {
   <li><a href="#local-alignment" id="toc-local-alignment" class="nav-link" data-scroll-target="#local-alignment">Local Alignment</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/pairwise_alignment.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">My Document</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/pairwise_alignment.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Alignment</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">My Document</span></h1>
+<h1 class="title"><span id="sec-pairwisealignment" class="quarto-section-identifier"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Pairwise Alignment</span></span></h1>
 </div>
 
 
@@ -628,8 +625,6 @@ window.Quarto = {
 </header>
 
 
-<section id="sec-pairwisealignment" class="level1" data-number="38">
-<h1 data-number="38"><span class="header-section-number">38</span> Pairwise Alignment</h1>
 <p><em>This chapter is about finding the best way to line up two biological sequences to reveal their similarities and differences. Alignment is fundamental to understanding how sequences are related evolutionarily and what functions they might perform.</em></p>
 <section id="the-alignment-problem" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-alignment-problem">The alignment problem</h2>
@@ -646,7 +641,7 @@ Matches: 7, Mismatches: 2, Gaps: 2</code></pre>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-alignment-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.1
+Figure&nbsp;37.1
 </figcaption>
 </figure>
 </div>
@@ -668,10 +663,10 @@ Figure&nbsp;38.1
 <div id="fig-alignment-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-alignment-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-alignment-graph-output-1.png" width="593" height="470" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-alignment-graph-output-1.png" width="496" height="471" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alignment-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.2: The alignment graph for aligning sequences ‘ATC’ and ‘AGC’. Each path from (0,0) to (3,3) represents a possible alignment. Diagonal moves align characters (match/mismatch), horizontal moves insert a gap in the vertical sequence, and vertical moves insert a gap in the horizontal sequence. Two example paths are shown in different colors.
+Figure&nbsp;37.2: The alignment graph for aligning sequences ‘ATC’ and ‘AGC’. Each path from (0,0) to (3,3) represents a possible alignment. Diagonal moves align characters (match/mismatch), horizontal moves insert a gap in the vertical sequence, and vertical moves insert a gap in the horizontal sequence. Two example paths are shown in different colors.
 </figcaption>
 </figure>
 </div>
@@ -690,7 +685,7 @@ Figure&nbsp;38.2: The alignment graph for aligning sequences ‘ATC’ and ‘AG
 <img src="pairwise_alignment_files/figure-html/fig-complexity-comparison-output-1.png" width="656" height="469" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-complexity-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.3: Comparison of exponential (exhaustive search) versus quadratic (dynamic programming) time complexity for sequence alignment. The number of operations required for exhaustive search grows astronomically with sequence length, while the O(mn) dynamic programming approach remains practical even for moderately long sequences. The shaded region indicates the practical range for typical computers.
+Figure&nbsp;37.3: Comparison of exponential (exhaustive search) versus quadratic (dynamic programming) time complexity for sequence alignment. The number of operations required for exhaustive search grows astronomically with sequence length, while the O(mn) dynamic programming approach remains practical even for moderately long sequences. The shaded region indicates the practical range for typical computers.
 </figcaption>
 </figure>
 </div>
@@ -721,10 +716,10 @@ Figure&nbsp;38.3: Comparison of exponential (exhaustive search) versus quadratic
 <div id="fig-blosum-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-blosum-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-blosum-matrix-output-1.png" width="559" height="568" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-blosum-matrix-output-1.png" width="557" height="471" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blosum-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.4: Partial BLOSUM62 substitution matrix showing scores for a subset of amino acids. Positive scores (green) indicate that observing this pair is evidence for homology, while negative scores (red) suggest the pair is more likely due to chance. The diagonal elements (self-matches) have the highest scores. Notice that chemically similar amino acids (like I and L, both hydrophobic) have positive off-diagonal scores.
+Figure&nbsp;37.4: Partial BLOSUM62 substitution matrix showing scores for a subset of amino acids. Positive scores (green) indicate that observing this pair is evidence for homology, while negative scores (red) suggest the pair is more likely due to chance. The diagonal elements (self-matches) have the highest scores. Notice that chemically similar amino acids (like I and L, both hydrophobic) have positive off-diagonal scores.
 </figcaption>
 </figure>
 </div>
@@ -774,7 +769,7 @@ Alignment 2 (one three-base gap):
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-gap-penalty-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.5
+Figure&nbsp;37.5
 </figcaption>
 </figure>
 </div>
@@ -830,7 +825,7 @@ F(i,j-1) - d &amp; \text{(insertion)}
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dp-dependencies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.6: Computing F(i,j) requires only three previously computed values: F(i-1,j-1) from the diagonal, F(i-1,j) from above, and F(i,j-1) from the left. This local dependency structure is what makes dynamic programming efficient—each cell depends only on its immediate neighbors, not on the entire matrix.
+Figure&nbsp;37.6: Computing F(i,j) requires only three previously computed values: F(i-1,j-1) from the diagonal, F(i-1,j) from above, and F(i,j-1) from the left. This local dependency structure is what makes dynamic programming efficient—each cell depends only on its immediate neighbors, not on the entire matrix.
 </figcaption>
 </figure>
 </div>
@@ -852,10 +847,10 @@ F(0,j) = -j \times d \quad \text{for } j &gt; 0
 <div id="fig-dp-matrix-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dp-matrix-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-dp-matrix-example-output-1.png" width="564" height="488" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-dp-matrix-example-output-1.png" width="442" height="372" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dp-matrix-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.7: A complete dynamic programming matrix for aligning ‘AGC’ with ‘ATC’ using match=+1, mismatch=-1, gap=-2. The matrix is filled row by row using the recurrence relation. Each cell shows the optimal score for aligning the corresponding prefixes. Arrows indicate which predecessor contributed the maximum score: ↖ = diagonal (match/mismatch), ↑ = up (deletion), ← = left (insertion).
+Figure&nbsp;37.7: A complete dynamic programming matrix for aligning ‘AGC’ with ‘ATC’ using match=+1, mismatch=-1, gap=-2. The matrix is filled row by row using the recurrence relation. Each cell shows the optimal score for aligning the corresponding prefixes. Arrows indicate which predecessor contributed the maximum score: ↖ = diagonal (match/mismatch), ↑ = up (deletion), ← = left (insertion).
 </figcaption>
 </figure>
 </div>
@@ -871,7 +866,7 @@ Figure&nbsp;38.7: A complete dynamic programming matrix for aligning ‘AGC’ w
 <img src="pairwise_alignment_files/figure-html/fig-traceback-path-output-1.png" width="663" height="382" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traceback-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.8: Traceback visualization showing the optimal path (in bold red) through the DP matrix from (3,3) back to (0,0). Following this path backwards reconstructs the alignment: A-GC vs ATC-, with score -1. The path interpretation: 1. Start at (3,3), 2. ↖ diagonal: C ↔︎ C (match), 3. ↖ diagonal: G ↔︎ T (mismatch), 4. ↑ up: A ↔︎ - (gap in seq2), 5. ↖ diagonal: A ↔︎ A (match)
+Figure&nbsp;37.8: Traceback visualization showing the optimal path (in bold red) through the DP matrix from (3,3) back to (0,0). Following this path backwards reconstructs the alignment: A-GC vs ATC-, with score -1. The path interpretation: 1. Start at (3,3), 2. ↖ diagonal: C ↔︎ C (match), 3. ↖ diagonal: G ↔︎ T (mismatch), 4. ↑ up: A ↔︎ - (gap in seq2), 5. ↖ diagonal: A ↔︎ A (match)
 </figcaption>
 </figure>
 </div>
@@ -915,7 +910,7 @@ for i = 1 to m:
 <img src="pairwise_alignment_files/figure-html/fig-algorithm-stages-output-1.png" width="554" height="565" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-algorithm-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;38.9: Progressive stages of the Needleman-Wunsch algorithm. (a) Empty matrix, (b) Base cases initialized, (c) After first row computed, (d) Complete matrix with all cells filled. The matrix is filled systematically row by row, with each cell depending only on previously computed neighbors.
+Figure&nbsp;37.9: Progressive stages of the Needleman-Wunsch algorithm. (a) Empty matrix, (b) Base cases initialized, (c) After first row computed, (d) Complete matrix with all cells filled. The matrix is filled systematically row by row, with each cell depending only on previously computed neighbors.
 </figcaption>
 </figure>
 </div>
@@ -1085,7 +1080,6 @@ F(i,j-1) - d
 <p>The story of pairwise global sequence alignment is thus not just a tale of algorithmic elegance but a testament to the power of computational thinking in biology. By formulating biological questions in precise mathematical terms and developing efficient algorithms to answer them, we gain not just practical tools but deeper understanding of the principles governing molecular evolution. As sequencing technologies continue to advance and our databases continue to grow, the methods and insights derived from the study of sequence alignment will remain central to our efforts to decode the information written in the language of DNA and proteins.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
