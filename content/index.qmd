@@ -188,6 +188,7 @@ The topics for this week are iteration and data structures. You are meant to com
 
 - Lecture notes: @sec-translationproject
 - Understanding Bioinformatics 127-141
+- Lecture notes: @sec-pairwisealignment
 
 **Lectures:**  
 
