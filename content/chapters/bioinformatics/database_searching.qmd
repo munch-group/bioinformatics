@@ -4,11 +4,7 @@
 
 ## Introduction: The Need for Database Searching  {.unnumbered}
 
-The exponential growth of biological sequence databases has fundamentally transformed how we approach biological research. As of 2024, GenBank contains over 250 million sequences comprising more than 3 trillion nucleotides, with the database doubling approximately every 18 months. This vast repository of genetic information represents an invaluable resource for understanding biology, but it also presents a formidable computational challenge: how can we efficiently search through billions of sequences to find those related to our query of interest?
-
-Sequence database searching addresses a fundamental question in biology: given a newly determined sequence, can we identify similar sequences that might provide clues about its function, structure, or evolutionary history? This question arises in countless contexts: identifying the function of a newly sequenced gene, finding homologs across species, detecting contamination in sequencing projects, or discovering novel members of protein families. The ability to rapidly and accurately search sequence databases has become as essential to modern biology as the microscope was to earlier generations of biologists.
-
-The challenge of sequence database searching extends beyond mere computational efficiency. Biological sequences evolve through mutation, insertion, and deletion events, meaning that related sequences may share only limited similarity. Moreover, this similarity may be obscured by random matches that occur by chance alone. Distinguishing biologically meaningful similarities from spurious matches requires sophisticated algorithms that combine speed with statistical rigor. The development of such algorithms, particularly the Basic Local Alignment Search Tool (BLAST), has been one of the great success stories of bioinformatics, enabling discoveries across all areas of biological research.
+Here's a staggering fact to put things in perspective: as of 2024, GenBank contains over 250 million sequences comprising more than 3 trillion nucleotides, and the database doubles approximately every 18 months. That's exponential growth in the truest sense—if you wait a year and a half, there's twice as much data to sift through. This vast, ever-expanding repository of genetic information is simultaneously one of the most valuable resources in modern biology and one of the most daunting computational challenges. The fundamental problem is straightforward: you've got a newly determined sequence—maybe a gene you just cloned, a protein you purified, or a mysterious open reading frame from a genome project—and you want to know: what is this thing related to? What does it do? Where did it come from? To answer these questions, you need to search through billions of sequences to find the ones that matter. But here's the catch: you can't just do brute-force comparisons because even with modern computers, comparing your query to every sequence in the database using optimal alignment algorithms would take forever. You need algorithms that are both fast enough to be practical and sensitive enough to detect biologically meaningful relationships even when sequence similarity is weak. This is the core challenge of sequence database searching, and solving it has been one of the great success stories of bioinformatics. The ability to rapidly and accurately search sequence databases has become as fundamental to modern biology as the microscope was to earlier generations—it's how we identify the function of newly sequenced genes, find homologs across species, detect contamination in sequencing projects, and discover novel members of protein families. Every time you sequence something, the first question is always: what does BLAST say? That ubiquity speaks to how thoroughly database searching has permeated biological research. The challenge goes deeper than just computational speed, though. Biological sequences evolve through mutations, insertions, and deletions, so related sequences don't look identical—they might share only limited similarity, and that similarity might be partially obscured by random noise. You have to distinguish genuine evolutionary relationships from chance matches that happen to look similar by accident. This requires sophisticated statistical frameworks that can tell you not just "these sequences align with this score," but "this alignment is statistically significant and unlikely to occur by random chance." BLAST elegantly combines both requirements: heuristic algorithms for speed and rigorous statistics for confidence.
 
 ## The Computational Challenge  {.unnumbered}
 
@@ -40,7 +36,103 @@ The key insight behind BLAST was that homologous sequences, even those that have
 
 The original BLAST algorithm operates in three main phases: seeding, extension, and evaluation. Each phase involves critical parameters and design decisions that affect both speed and sensitivity.
 
-**Seeding Phase**: BLAST begins by decomposing the query sequence into overlapping words of length W (typically W=3 for proteins, W=11 for nucleotides). For each word, BLAST generates a neighborhood of similar words that would score at least T when aligned with the query word using a substitution matrix. For example, with the protein query word "WFY" and using the BLOSUM62 matrix, the neighborhood might include "WFY" itself (score 20), "WYY" (score 17), and "WFF" (score 18), assuming these exceed the threshold T.
+```{python}
+#| echo: false
+#| label: fig-blast-workflow
+#| fig-cap: "BLAST algorithm workflow showing the three main phases: seeding (word matching), extension (ungapped then gapped), and evaluation (statistical significance). The seed-and-extend strategy dramatically reduces search space while maintaining sensitivity."
+#| fig-width: 7
+#| fig-format: svg
+#| classes: styled-output
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+
+fig, ax = plt.subplots(figsize=(7, 9))
+
+# Define box positions and styles
+boxes = {
+    'query': {'pos': (0.5, 0.95), 'text': 'Query\nSequence', 'color': '#e1f5ff'},
+    'word': {'pos': (0.5, 0.85), 'text': 'Generate word\nneighborhood\n(length W, threshold T)', 'color': '#fff8e1'},
+    'scan': {'pos': (0.5, 0.72), 'text': 'Scan database for\nexact word matches\n(finite state machine)', 'color': '#fff8e1'},
+    'match': {'pos': (0.5, 0.59), 'text': 'Word match\nfound?', 'color': '#ffe1e1', 'shape': 'diamond'},
+    'ungapped': {'pos': (0.5, 0.46), 'text': 'Ungapped extension\n(dropout parameter X)', 'color': '#fff8e1'},
+    'score': {'pos': (0.5, 0.33), 'text': 'Score > S\nthreshold?', 'color': '#ffe1e1', 'shape': 'diamond'},
+    'gapped': {'pos': (0.5, 0.20), 'text': 'Gapped extension\n(dynamic programming)', 'color': '#fff8e1'},
+    'eval': {'pos': (0.5, 0.10), 'text': 'Calculate E-value\n(Karlin-Altschul)', 'color': '#fff8e1'},
+    'evalue': {'pos': (0.85, 0.10), 'text': 'E-value <\ncutoff?', 'color': '#ffe1e1', 'shape': 'diamond'},
+    'report': {'pos': (0.85, 0.20), 'text': 'Report HSP', 'color': '#e1ffe1'},
+}
+
+# Draw boxes
+for key, box in boxes.items():
+    x, y = box['pos']
+    if box.get('shape') == 'diamond':
+        # Draw diamond for decision nodes
+        diamond = mpatches.Polygon([
+            [x, y + 0.04], [x + 0.08, y], [x, y - 0.04], [x - 0.08, y]
+        ], closed=True, facecolor=box['color'], edgecolor='black', linewidth=2)
+        ax.add_patch(diamond)
+    else:
+        # Draw rectangle for process nodes
+        rect = FancyBboxPatch((x - 0.09, y - 0.04), 0.18, 0.08,
+                              boxstyle="round,pad=0.01",
+                              facecolor=box['color'], edgecolor='black', linewidth=2)
+        ax.add_patch(rect)
+    ax.text(x, y, box['text'], ha='center', va='center', fontsize=9, weight='bold')
+
+# Draw arrows
+arrows = [
+    ((0.5, 0.91), (0.5, 0.89)),  # query -> word
+    ((0.5, 0.81), (0.5, 0.76)),  # word -> scan
+    ((0.5, 0.68), (0.5, 0.63)),  # scan -> match
+    ((0.5, 0.55), (0.5, 0.50)),  # match Yes -> ungapped
+    ((0.5, 0.42), (0.5, 0.37)),  # ungapped -> score
+    ((0.5, 0.29), (0.5, 0.24)),  # score Yes -> gapped
+    ((0.5, 0.16), (0.5, 0.14)),  # gapped -> eval
+    ((0.68, 0.10), (0.77, 0.10)),  # eval -> evalue
+    ((0.85, 0.16), (0.85, 0.14)),  # evalue Yes -> report
+    # No loops
+    ((0.42, 0.59), (0.15, 0.59), (0.15, 0.72), (0.41, 0.72)),  # match No -> scan
+    ((0.42, 0.33), (0.25, 0.33), (0.25, 0.72), (0.41, 0.72)),  # score No -> scan
+    ((0.93, 0.10), (0.99, 0.10), (0.99, 0.72), (0.59, 0.72)),  # evalue No -> scan
+]
+
+for arrow in arrows[:9]:  # Straight arrows
+    ax.annotate('', xy=arrow[1], xytext=arrow[0],
+               arrowprops=dict(arrowstyle='->', lw=2, color='black'))
+
+# Draw curved "No" arrows
+for i, coords in enumerate([arrows[9], arrows[10], arrows[11]]):
+    path = mpatches.FancyBboxPatch((0, 0), 1, 1)
+    if len(coords) == 4:
+        # Multi-segment path
+        for j in range(len(coords) - 1):
+            ax.plot([coords[j][0], coords[j+1][0]], [coords[j][1], coords[j+1][1]],
+                   'k-', lw=2)
+        ax.annotate('', xy=coords[-1], xytext=(coords[-2][0], coords[-2][1]),
+                   arrowprops=dict(arrowstyle='->', lw=2, color='black'))
+        # Add "No" label
+        if i == 0:
+            ax.text(0.20, 0.65, 'No', fontsize=8, style='italic', color='red')
+        elif i == 1:
+            ax.text(0.30, 0.50, 'No', fontsize=8, style='italic', color='red')
+        elif i == 2:
+            ax.text(0.95, 0.40, 'No', fontsize=8, style='italic', color='red')
+
+# Add "Yes" labels
+ax.text(0.52, 0.52, 'Yes', fontsize=8, style='italic', color='green')
+ax.text(0.52, 0.26, 'Yes', fontsize=8, style='italic', color='green')
+ax.text(0.87, 0.13, 'Yes', fontsize=8, style='italic', color='green')
+
+ax.set_xlim(0, 1.05)
+ax.set_ylim(0, 1)
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+**Seeding Phase**: BLAST begins by decomposing the query sequence into overlapping words of length $W$ (typically $W=3$ for proteins, $W=11$ for nucleotides). For each word, BLAST generates a neighborhood of similar words that would score at least T when aligned with the query word using a substitution matrix. For example, with the protein query word "WFY" and using the BLOSUM62 matrix, the neighborhood might include "WFY" itself (score 20), "WYY" (score 17), and "WFF" (score 18), assuming these exceed the threshold T.
 
 The algorithm then scans the database for exact matches to any word in these neighborhoods. This is accomplished using a finite state machine or hash table that allows rapid identification of word matches. The word size W and threshold T are critical parameters: larger W and higher T increase speed but reduce sensitivity, as more distant homologs may not contain any words scoring above the threshold.
 
