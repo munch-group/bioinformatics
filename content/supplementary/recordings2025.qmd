@@ -44,38 +44,31 @@ Unfortunately, the Monday recording failed :/
 
 ### Wednesday {.unnumbered}
 
-The sound is missing from most of this one. The mic battery ran out...
+{{< video https://youtu.be/9cw6QtTXyT0 >}} 
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+
 ## Week 5 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-No recording.
+{{< video https://youtu.be/jCySnQpO3tU >}}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/BfLqtls4Acs >}}
 
 ### Wednesday {.unnumbered}
 
-<!-- 
 {{< video https://youtu.be/ >}}
- -->
+
 ## Week 6 {.unnumbered}
 
 ### Monday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/A7Q-_3VvAV4 >}}
+
 ### Wednesday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/tJ0E1R22ubU >}}
+
 
 ## Week 7 {.unnumbered}
 

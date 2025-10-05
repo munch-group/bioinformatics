@@ -22,11 +22,11 @@
     - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs0X01vbmRheS5wZGY/BP2024_week4_Monday.pdf?ou=145685)
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTQ1Njg1LUxSMzQ2NDkvQlAyMDI0X3dlZWs0X1dlZG5lc2RheS5wZGY/BP2024_week4_Wednesday.pdf?ou=145685)
 
-<!--
 
 - Week 6
-    - [Monday]()
-    - [Wednesday]()
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvV3JpdGluZ19jb2RlX2FuZF9kYXRhX3N0cnVjdHVyZXMucGRm/Writing_code_and_data_structures.pdf?ou=185077)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvUmVjdXJzaW9uLnBkZg/Recursion.pdf?ou=185077)
+
 
 - Week 7
     - [Monday]()
