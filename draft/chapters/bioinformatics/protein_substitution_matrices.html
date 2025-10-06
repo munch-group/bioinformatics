@@ -138,7 +138,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-sidebar floating slimcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -629,7 +629,7 @@ window.Quarto = {
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/preface.html">Bioinformatics</a></li><li class="breadcrumb-item"><a href="../../chapters/bioinformatics/protein_substitution_matrices.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Scoring Matrices</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -650,23 +650,236 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction-to-protein-sequence-scoring" class="level2 unnumbered page-columns page-full">
+<!-- 
+digraph so 
+{
+    node[ shape = square ];
+    { rank = same; 1 2 3 }
+    { rank = same; 6 5 4 }
+    { rank = same; 7 8 }
+
+    1 -> 2 -> 3;
+    3 -> 4;
+    6 -> 5 -> 4 [ dir = back ];
+    6 -> 7;
+    7 -> 8;
+} 
+-->
+<section id="introduction-to-protein-sequence-scoring" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="introduction-to-protein-sequence-scoring">Introduction to Protein Sequence Scoring</h2>
 <p>Here’s the thing about protein sequence comparison—it’s vastly more complex than DNA alignment, and that complexity is actually what makes it interesting. When you’re comparing DNA sequences, you’re working with just four nucleotides: <span class="math inline">\(A\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(G\)</span>, and <span class="math inline">\(T\)</span>. Pretty straightforward, right? But proteins? They’re built from twenty different amino acids, and here’s where it gets fascinating: each of those amino acids has its own unique chemical personality.</p>
-<div id="cell-fig-amino-acid-groups" class="cell styled-output page-columns page-full" data-fig-format="svg" data-fig-width="4" data-execution_count="1">
-
-<div class="no-row-height column-margin column-container"><div class="cell-output cell-output-display">
+<div class="cell styled-output" data-fig-width="7" data-fig-height="3" data-fig-format="svg" data-layout-align="default">
+<div class="cell-output-display">
 <div id="fig-amino-acid-groups" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-amino-acid-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="protein_substitution_matrices_files/figure-html/fig-amino-acid-groups-output-1.png" width="365" height="278" class="figure-img">
+<div>
+<svg width="672" height="288" viewbox="0.00 0.00 780.25 276.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 272)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-272 776.25,-272 776.25,4 -4,4"></polygon>
+<!-- Hydrophobic -->
+<g id="node1" class="node">
+<title>Hydrophobic</title>
+<text text-anchor="start" x="33.24" y="-245" font-family="Times,serif" font-size="20.00"> </text>
+<text text-anchor="start" x="38.24" y="-245" font-family="Times,serif" font-weight="bold" font-size="20.00">Hydrophobic:</text>
+<text text-anchor="start" x="158.26" y="-245" font-family="Times,serif" font-size="20.00"> </text>
+</g>
+<!-- Polar uncharged -->
+<g id="node2" class="node">
+<title>Polar uncharged</title>
+<text text-anchor="start" x="18.54" y="-187" font-family="Times,serif" font-size="20.00"> </text>
+<text text-anchor="start" x="23.54" y="-187" font-family="Times,serif" font-weight="bold" font-size="20.00">Polar uncharged:</text>
+<text text-anchor="start" x="172.97" y="-187" font-family="Times,serif" font-size="20.00"> </text>
+</g>
+<!-- Hydrophobic&#45;&gt;Polar uncharged -->
+<!-- Ala -->
+<g id="node6" class="node">
+<title>Ala</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="268.25,-268 214.25,-268 214.25,-232 268.25,-232 268.25,-268"></polygon>
+<text text-anchor="middle" x="241.25" y="-244" font-family="Times,serif" font-size="20.00">Ala</text>
+</g>
+<!-- Hydrophobic&#45;&gt;Ala -->
+<!-- Positively charged -->
+<g id="node3" class="node">
+<title>Positively charged</title>
+<text text-anchor="start" x="11.88" y="-129" font-family="Times,serif" font-size="20.00"> </text>
+<text text-anchor="start" x="16.88" y="-129" font-family="Times,serif" font-weight="bold" font-size="20.00">Positively charged:</text>
+<text text-anchor="start" x="179.63" y="-129" font-family="Times,serif" font-size="20.00"> </text>
+</g>
+<!-- Polar uncharged&#45;&gt;Positively charged -->
+<!-- Ser -->
+<g id="node14" class="node">
+<title>Ser</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="268.25,-210 214.25,-210 214.25,-174 268.25,-174 268.25,-210"></polygon>
+<text text-anchor="middle" x="241.25" y="-186" font-family="Times,serif" font-size="20.00">Ser</text>
+</g>
+<!-- Polar uncharged&#45;&gt;Ser -->
+<!-- Negatively charged -->
+<g id="node4" class="node">
+<title>Negatively charged</title>
+<text text-anchor="start" x="8" y="-71" font-family="Times,serif" font-size="20.00"> </text>
+<text text-anchor="start" x="13" y="-71" font-family="Times,serif" font-weight="bold" font-size="20.00">Negatively charged:</text>
+<text text-anchor="start" x="183.51" y="-71" font-family="Times,serif" font-size="20.00"> </text>
+</g>
+<!-- Positively charged&#45;&gt;Negatively charged -->
+<!-- Lys -->
+<g id="node20" class="node">
+<title>Lys</title>
+<polygon fill="#ffb4b4" stroke="#ffb4b4" points="268.25,-152 214.25,-152 214.25,-116 268.25,-116 268.25,-152"></polygon>
+<text text-anchor="middle" x="241.25" y="-128" font-family="Times,serif" font-size="20.00">Lys</text>
+</g>
+<!-- Positively charged&#45;&gt;Lys -->
+<!-- Special -->
+<g id="node5" class="node">
+<title>Special</title>
+<text text-anchor="start" x="59.37" y="-13" font-family="Times,serif" font-size="20.00"> </text>
+<text text-anchor="start" x="64.37" y="-13" font-family="Times,serif" font-weight="bold" font-size="20.00">Special:</text>
+<text text-anchor="start" x="132.14" y="-13" font-family="Times,serif" font-size="20.00"> </text>
+</g>
+<!-- Negatively charged&#45;&gt;Special -->
+<!-- Asp -->
+<g id="node23" class="node">
+<title>Asp</title>
+<polygon fill="#b4ffb4" stroke="#b4ffb4" points="268.25,-94 214.25,-94 214.25,-58 268.25,-58 268.25,-94"></polygon>
+<text text-anchor="middle" x="241.25" y="-70" font-family="Times,serif" font-size="20.00">Asp</text>
+</g>
+<!-- Negatively charged&#45;&gt;Asp -->
+<!-- Gly -->
+<g id="node25" class="node">
+<title>Gly</title>
+<polygon fill="#e0e0e0" stroke="#e0e0e0" points="268.25,-36 214.25,-36 214.25,0 268.25,0 268.25,-36"></polygon>
+<text text-anchor="middle" x="241.25" y="-12" font-family="Times,serif" font-size="20.00">Gly</text>
+</g>
+<!-- Special&#45;&gt;Gly -->
+<!-- Val -->
+<g id="node7" class="node">
+<title>Val</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="340.25,-268 286.25,-268 286.25,-232 340.25,-232 340.25,-268"></polygon>
+<text text-anchor="middle" x="313.25" y="-244" font-family="Times,serif" font-size="20.00">Val</text>
+</g>
+<!-- Ala&#45;&gt;Val -->
+<!-- Ala&#45;&gt;Ser -->
+<!-- Ile -->
+<g id="node8" class="node">
+<title>Ile</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="412.25,-268 358.25,-268 358.25,-232 412.25,-232 412.25,-268"></polygon>
+<text text-anchor="middle" x="385.25" y="-244" font-family="Times,serif" font-size="20.00">Ile</text>
+</g>
+<!-- Val&#45;&gt;Ile -->
+<!-- Thr -->
+<g id="node15" class="node">
+<title>Thr</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="340.25,-210 286.25,-210 286.25,-174 340.25,-174 340.25,-210"></polygon>
+<text text-anchor="middle" x="313.25" y="-186" font-family="Times,serif" font-size="20.00">Thr</text>
+</g>
+<!-- Val&#45;&gt;Thr -->
+<!-- Leu -->
+<g id="node9" class="node">
+<title>Leu</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="484.25,-268 430.25,-268 430.25,-232 484.25,-232 484.25,-268"></polygon>
+<text text-anchor="middle" x="457.25" y="-244" font-family="Times,serif" font-size="20.00">Leu</text>
+</g>
+<!-- Ile&#45;&gt;Leu -->
+<!-- Cys -->
+<g id="node16" class="node">
+<title>Cys</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="412.25,-210 358.25,-210 358.25,-174 412.25,-174 412.25,-210"></polygon>
+<text text-anchor="middle" x="385.25" y="-186" font-family="Times,serif" font-size="20.00">Cys</text>
+</g>
+<!-- Ile&#45;&gt;Cys -->
+<!-- Met -->
+<g id="node10" class="node">
+<title>Met</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="556.25,-268 502.25,-268 502.25,-232 556.25,-232 556.25,-268"></polygon>
+<text text-anchor="middle" x="529.25" y="-244" font-family="Times,serif" font-size="20.00">Met</text>
+</g>
+<!-- Leu&#45;&gt;Met -->
+<!-- Asn -->
+<g id="node17" class="node">
+<title>Asn</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="484.25,-210 430.25,-210 430.25,-174 484.25,-174 484.25,-210"></polygon>
+<text text-anchor="middle" x="457.25" y="-186" font-family="Times,serif" font-size="20.00">Asn</text>
+</g>
+<!-- Leu&#45;&gt;Asn -->
+<!-- Phe -->
+<g id="node11" class="node">
+<title>Phe</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="628.25,-268 574.25,-268 574.25,-232 628.25,-232 628.25,-268"></polygon>
+<text text-anchor="middle" x="601.25" y="-244" font-family="Times,serif" font-size="20.00">Phe</text>
+</g>
+<!-- Met&#45;&gt;Phe -->
+<!-- Gln -->
+<g id="node18" class="node">
+<title>Gln</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="556.25,-210 502.25,-210 502.25,-174 556.25,-174 556.25,-210"></polygon>
+<text text-anchor="middle" x="529.25" y="-186" font-family="Times,serif" font-size="20.00">Gln</text>
+</g>
+<!-- Met&#45;&gt;Gln -->
+<!-- Trp -->
+<g id="node12" class="node">
+<title>Trp</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="700.25,-268 646.25,-268 646.25,-232 700.25,-232 700.25,-268"></polygon>
+<text text-anchor="middle" x="673.25" y="-244" font-family="Times,serif" font-size="20.00">Trp</text>
+</g>
+<!-- Phe&#45;&gt;Trp -->
+<!-- Tyr -->
+<g id="node19" class="node">
+<title>Tyr</title>
+<polygon fill="#b4d7ff" stroke="#b4d7ff" points="628.25,-210 574.25,-210 574.25,-174 628.25,-174 628.25,-210"></polygon>
+<text text-anchor="middle" x="601.25" y="-186" font-family="Times,serif" font-size="20.00">Tyr</text>
+</g>
+<!-- Phe&#45;&gt;Tyr -->
+<!-- Pro -->
+<g id="node13" class="node">
+<title>Pro</title>
+<polygon fill="#ffe5b4" stroke="#ffe5b4" points="772.25,-268 718.25,-268 718.25,-232 772.25,-232 772.25,-268"></polygon>
+<text text-anchor="middle" x="745.25" y="-244" font-family="Times,serif" font-size="20.00">Pro</text>
+</g>
+<!-- Trp&#45;&gt;Pro -->
+<!-- Ser&#45;&gt;Thr -->
+<!-- Ser&#45;&gt;Lys -->
+<!-- Thr&#45;&gt;Cys -->
+<!-- Arg -->
+<g id="node21" class="node">
+<title>Arg</title>
+<polygon fill="#ffb4b4" stroke="#ffb4b4" points="340.25,-152 286.25,-152 286.25,-116 340.25,-116 340.25,-152"></polygon>
+<text text-anchor="middle" x="313.25" y="-128" font-family="Times,serif" font-size="20.00">Arg</text>
+</g>
+<!-- Thr&#45;&gt;Arg -->
+<!-- Cys&#45;&gt;Asn -->
+<!-- His -->
+<g id="node22" class="node">
+<title>His</title>
+<polygon fill="#ffb4b4" stroke="#ffb4b4" points="412.25,-152 358.25,-152 358.25,-116 412.25,-116 412.25,-152"></polygon>
+<text text-anchor="middle" x="385.25" y="-128" font-family="Times,serif" font-size="20.00">His</text>
+</g>
+<!-- Cys&#45;&gt;His -->
+<!-- Asn&#45;&gt;Gln -->
+<!-- Gln&#45;&gt;Tyr -->
+<!-- Lys&#45;&gt;Arg -->
+<!-- Lys&#45;&gt;Asp -->
+<!-- Arg&#45;&gt;His -->
+<!-- Glu -->
+<g id="node24" class="node">
+<title>Glu</title>
+<polygon fill="#b4ffb4" stroke="#b4ffb4" points="340.25,-94 286.25,-94 286.25,-58 340.25,-58 340.25,-94"></polygon>
+<text text-anchor="middle" x="313.25" y="-70" font-family="Times,serif" font-size="20.00">Glu</text>
+</g>
+<!-- Arg&#45;&gt;Glu -->
+<!-- Asp&#45;&gt;Glu -->
+<!-- Asp&#45;&gt;Gly -->
+</g>
+</svg>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amino-acid-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;41.1: Chemical groupings of the 20 standard amino acids. Amino acids with similar chemical properties tend to substitute for each other more readily during evolution.
 </figcaption>
 </figure>
 </div>
-</div></div></div>
+</div>
+</div>
 <p>Some are hydrophobic and want to hide from water, some are charged and love interacting with their surroundings, some are tiny and flexible, others are bulky and rigid. These chemical properties aren’t just biochemical trivia—they fundamentally shape how proteins evolve. When a mutation changes one amino acid to another during evolution, whether that change gets accepted or rejected depends heavily on whether the new amino acid can do the same job as the old one. A mutation that swaps one hydrophobic amino acid for another similar hydrophobic amino acid? Usually fine. A mutation that puts a charged amino acid where a hydrophobic one used to be? That’s probably going to break something. This is why comparing protein sequences requires sophisticated scoring schemes that capture these subtle patterns of amino acid replacement. We can’t just score all matches the same and all mismatches the same—we need scoring systems that understand that leucine to isoleucine is a much more reasonable substitution than tryptophan to aspartic acid. The whole challenge of protein sequence alignment boils down to quantifying these substitution patterns in a way that reflects what actually happens during evolution.</p>
 <section id="evolution-as-natures-experiment-in-protein-engineering" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="evolution-as-natures-experiment-in-protein-engineering">Evolution as Nature’s Experiment in Protein Engineering</h3>
@@ -706,7 +919,129 @@ M_{ij} = \begin{cases}
 \end{cases}
 \]</span></p>
 <p>The off-diagonal elements tell you: given that amino acid <span class="math inline">\(i\)</span> is going to mutate, what’s the probability it mutates to <span class="math inline">\(j\)</span> specifically? The diagonal elements tell you the probability of no change. This <span class="math inline">\(M\)</span> matrix represents evolution over a tiny time step—just one PAM unit. To model longer evolutionary distances, we’ll use a clever mathematical trick based on the Markov property.</p>
-<div id="cell-fig-pam-construction" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="2">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="480" height="288" viewbox="0.00 0.00 307.53 209.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 205)">
+<title>so</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-205 303.53,-205 303.53,4 -4,4"></polygon>
+<!-- 1 -->
+<g id="node1" class="node">
+<title>1</title>
+<polygon fill="none" stroke="black" points="86.53,-201 0.99,-201 0.99,-158 86.53,-158 86.53,-201"></polygon>
+<text text-anchor="middle" x="43.76" y="-186.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="43.76" y="-177.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="43.76" y="-167.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 2 -->
+<g id="node2" class="node">
+<title>2</title>
+<polygon fill="none" stroke="black" points="192.53,-201 106.99,-201 106.99,-158 192.53,-158 192.53,-201"></polygon>
+<text text-anchor="middle" x="149.76" y="-186.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="149.76" y="-177.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="149.76" y="-167.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g id="edge1" class="edge">
+<title>1-&gt;2</title>
+<path fill="none" stroke="black" d="M86.83,-179.5C90,-179.5 93.18,-179.5 96.35,-179.5"></path>
+<polygon fill="black" stroke="black" points="96.49,-183 106.49,-179.5 96.49,-176 96.49,-183"></polygon>
+</g>
+<!-- 3 -->
+<g id="node3" class="node">
+<title>3</title>
+<polygon fill="none" stroke="black" points="298.53,-201 212.99,-201 212.99,-158 298.53,-158 298.53,-201"></polygon>
+<text text-anchor="middle" x="255.76" y="-186.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="255.76" y="-177.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="255.76" y="-167.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge2" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="black" d="M192.83,-179.5C196,-179.5 199.18,-179.5 202.35,-179.5"></path>
+<polygon fill="black" stroke="black" points="202.49,-183 212.49,-179.5 202.49,-176 202.49,-183"></polygon>
+</g>
+<!-- 4 -->
+<g id="node4" class="node">
+<title>4</title>
+<polygon fill="none" stroke="black" points="298.53,-122 212.99,-122 212.99,-79 298.53,-79 298.53,-122"></polygon>
+<text text-anchor="middle" x="255.76" y="-107.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="255.76" y="-98.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="255.76" y="-88.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 3&#45;&gt;4 -->
+<g id="edge3" class="edge">
+<title>3-&gt;4</title>
+<path fill="none" stroke="black" d="M255.76,-157.87C255.76,-150.01 255.76,-140.88 255.76,-132.29"></path>
+<polygon fill="black" stroke="black" points="259.26,-132.19 255.76,-122.19 252.26,-132.19 259.26,-132.19"></polygon>
+</g>
+<!-- 5 -->
+<g id="node5" class="node">
+<title>5</title>
+<polygon fill="none" stroke="black" points="192.53,-122 106.99,-122 106.99,-79 192.53,-79 192.53,-122"></polygon>
+<text text-anchor="middle" x="149.76" y="-107.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="149.76" y="-98.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="149.76" y="-88.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 5&#45;&gt;4 -->
+<g id="edge5" class="edge">
+<title>5-&gt;4</title>
+<path fill="none" stroke="black" d="M202.97,-100.5C206.14,-100.5 209.32,-100.5 212.49,-100.5"></path>
+<polygon fill="black" stroke="black" points="202.83,-97 192.83,-100.5 202.83,-104 202.83,-97"></polygon>
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<polygon fill="none" stroke="black" points="86.53,-122 0.99,-122 0.99,-79 86.53,-79 86.53,-122"></polygon>
+<text text-anchor="middle" x="43.76" y="-107.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="43.76" y="-98.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="43.76" y="-88.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 6&#45;&gt;5 -->
+<g id="edge4" class="edge">
+<title>6-&gt;5</title>
+<path fill="none" stroke="black" d="M96.97,-100.5C100.14,-100.5 103.32,-100.5 106.49,-100.5"></path>
+<polygon fill="black" stroke="black" points="96.83,-97 86.83,-100.5 96.83,-104 96.83,-97"></polygon>
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<polygon fill="none" stroke="black" points="86.53,-43 0.99,-43 0.99,0 86.53,0 86.53,-43"></polygon>
+<text text-anchor="middle" x="43.76" y="-28.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="43.76" y="-19.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="43.76" y="-9.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 6&#45;&gt;7 -->
+<g id="edge6" class="edge">
+<title>6-&gt;7</title>
+<path fill="none" stroke="black" d="M43.76,-78.87C43.76,-71.01 43.76,-61.88 43.76,-53.29"></path>
+<polygon fill="black" stroke="black" points="47.26,-53.19 43.76,-43.19 40.26,-53.19 47.26,-53.19"></polygon>
+</g>
+<!-- 8 -->
+<g id="node8" class="node">
+<title>8</title>
+<polygon fill="none" stroke="black" points="192.53,-43 106.99,-43 106.99,0 192.53,0 192.53,-43"></polygon>
+<text text-anchor="middle" x="149.76" y="-28.7" font-family="Times,serif" font-size="8.00">Collect closely related</text>
+<text text-anchor="middle" x="149.76" y="-19.1" font-family="Times,serif" font-size="8.00">protein sequences</text>
+<text text-anchor="middle" x="149.76" y="-9.5" font-family="Times,serif" font-size="8.00">(&gt;85% identity)</text>
+</g>
+<!-- 7&#45;&gt;8 -->
+<g id="edge7" class="edge">
+<title>7-&gt;8</title>
+<path fill="none" stroke="black" d="M86.83,-21.5C90,-21.5 93.18,-21.5 96.35,-21.5"></path>
+<polygon fill="black" stroke="black" points="96.49,-25 106.49,-21.5 96.49,-18 96.49,-25"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div id="cell-fig-pam-construction" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div id="fig-pam-construction" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -736,7 +1071,7 @@ S^{(n)}_{ij} = 10 \cdot \log_{10}\left(\frac{M^{(n)}_{ij}}{f_j}\right)
 \text{Identity} = \sum_{i=1}^{20} f_i \cdot M^{(n)}_{ii}
 \]</span></p>
 <p>The diagonal elements <span class="math inline">\(M^{(n)}_{ii}\)</span> represent the probability that amino acid <span class="math inline">\(i\)</span> is still <span class="math inline">\(i\)</span> after <span class="math inline">\(n\)</span> PAM units, weighted by how common that amino acid is. As <span class="math inline">\(n\)</span> increases, these probabilities decrease, and sequence identity drops. At PAM250, you’re down to about <span class="math inline">\(20\%\)</span> identity—close to what we call the “twilight zone” of sequence comparison, where it becomes very hard to distinguish real homology from random similarity.</p>
-<div id="cell-fig-pam-identity-decay" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="3">
+<div id="cell-fig-pam-identity-decay" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-pam-identity-decay" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -997,7 +1332,7 @@ S^{(250)} = \begin{pmatrix}
 <section id="the-blocks-database-foundation" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="the-blocks-database-foundation">The BLOCKS Database Foundation</h3>
 <p>In the 1990s, Steven and Jorja Henikoff developed BLOSUM (BLOcks SUbstitution Matrix) matrices using a fundamentally different philosophy from PAM. Instead of building a model from closely related sequences and extrapolating, they asked: why not just directly observe substitution patterns at the evolutionary distance you care about? BLOSUM matrices are built from the BLOCKS database, which contains multiply aligned conserved regions from protein families. Think of these “blocks” as the parts of proteins that are so functionally important that they stay recognizable even across huge evolutionary distances. These are your active sites, your binding pockets, your critical structural motifs—the regions where evolution is conservative because mutations tend to break things. Each block is an ungapped local alignment, meaning there are no insertions or deletions within the block, just substitutions. This simplifies the statistics considerably because you don’t have to worry about gap penalties or how to count gaps in your substitution frequencies. The brilliant innovation in BLOSUM was the clustering approach. Here’s the problem they solved: sequence databases are biased. If you have 100 sequences in a protein family, but 95 of them are from closely related bacterial species and only 5 are from diverse organisms, your substitution statistics will be dominated by those nearly-identical bacterial sequences. You’ll essentially be counting the same substitutions over and over, which gives you a skewed view of substitution patterns. The Henikoffs’ solution: cluster sequences within each block based on percent identity, then weight each cluster’s contribution to avoid over-representing closely related sequences. If sequences share more than a specified threshold of identity (say, <span class="math inline">\(62\%\)</span> for BLOSUM62), they get clustered together and treated as a single representative sequence. This prevents any particular evolutionary lineage from dominating the statistics and gives you a more balanced view of substitution patterns across diverse proteins.</p>
-<div id="cell-fig-blosum-clustering" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="4">
+<div id="cell-fig-blosum-clustering" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-blosum-clustering" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1170,7 +1505,7 @@ M &amp; -2 &amp; -3 &amp; 1 &amp; 1 &amp; 6 &amp; 3 \\
 <section id="theoretical-versus-empirical-approaches" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="theoretical-versus-empirical-approaches">Theoretical Versus Empirical Approaches</h3>
 <p>PAM and BLOSUM represent two fundamentally different philosophies for tackling the same problem, and understanding the contrast helps you appreciate the strengths and limitations of each. PAM matrices are model-driven. They start with a theoretical model of how evolution works—mutations accumulate over time following a Markov process—and they build substitution matrices by estimating the model parameters from closely related sequences, then extrapolating to longer time scales through matrix exponentiation. This gives you a coherent mathematical framework with clear interpretability: PAM250 means 250 point accepted mutations per 100 positions. The downside? The whole approach rests on assumptions—constant substitution rates over time, position independence, reversibility—and if those assumptions don’t hold for your sequences, the extrapolation might go wrong. BLOSUM matrices, in contrast, are data-driven and empirical. They skip the modeling step entirely and just directly observe substitution patterns at whatever evolutionary distance is represented in the BLOCKS database. No extrapolation, no evolutionary model, just “here’s what we actually see in real conserved protein regions.” This avoids the assumptions inherent in PAM’s model, but it also means you lose the theoretical elegance and the direct interpretability—BLOSUM62 doesn’t have the same clear evolutionary time interpretation that PAM250 does. In practice, these philosophical differences lead to different performance characteristics. PAM matrices tend to excel when you’re comparing sequences at specific evolutionary distances that match their PAM number. Use PAM250 for sequences around <span class="math inline">\(20\%\)</span> identity, PAM120 for sequences around <span class="math inline">\(40\%\)</span> identity, and so on. They’re tuned for particular distances because of the explicit evolutionary model. BLOSUM matrices are more versatile across a range of distances. BLOSUM62 works well for sequences anywhere from <span class="math inline">\(30\%\)</span> to <span class="math inline">\(70\%\)</span> identity, which is why it’s become the default choice in most sequence alignment tools—you don’t have to know the evolutionary distance in advance to get reasonable results. This broader applicability comes from the diversity of evolutionary distances already present in the blocks used for construction.</p>
-<div id="cell-fig-pam-blosum-comparison" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="5">
+<div id="cell-fig-pam-blosum-comparison" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-pam-blosum-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1226,7 +1561,7 @@ Figure&nbsp;41.5: Comparison of PAM250 and BLOSUM62 substitution matrices for a 
 <section id="choosing-matrices-for-specific-applications" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="choosing-matrices-for-specific-applications">Choosing Matrices for Specific Applications</h3>
 <p>Choosing the right substitution matrix isn’t just an academic exercise—it can make the difference between finding what you’re looking for and missing it entirely. The choice depends on your biological question and what you know about your sequences. If you’re identifying orthologs between closely related species—say, comparing mouse and rat proteins—you want high specificity. Use stringent matrices like BLOSUM80 or PAM120 that penalize most substitutions heavily. These matrices help you distinguish true orthologs (same gene in different species) from paralogs (different genes from an ancient duplication) by demanding high sequence similarity. False positives are costly here because you might mis-assign function, so you’re willing to be picky. On the other hand, if you’re searching databases for remote homologs—trying to find a distant evolutionary relative of your query protein that might share function or structure despite low sequence identity—you need sensitivity. Use permissive matrices like BLOSUM45 or PAM250 that are more forgiving of substitutions. These matrices won’t penalize chemically dissimilar amino acids as harshly, which lets you detect relationships that have diverged substantially over evolutionary time. The trade-off? More false positives, which means you need to carefully evaluate your hits with statistical tests (E-values) and look for corroborating evidence. A clever strategy employed by some alignment programs is to use different matrices at different stages. During initial pairwise comparisons when you’re casting a wide net, use a sensitive matrix like BLOSUM45 to avoid missing potential homologs. Then during refinement, when you’re trying to get the best possible alignment of sequences you’ve already identified as related, switch to BLOSUM62 or BLOSUM80 for more accurate positioning. This staged approach balances the competing demands of sensitivity and accuracy.</p>
-<div id="cell-fig-matrix-performance" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="6">
+<div id="cell-fig-matrix-performance" class="cell styled-output" data-fig-format="svg" data-fig-width="7" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-matrix-performance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
