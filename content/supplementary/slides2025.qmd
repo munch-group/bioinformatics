@@ -29,7 +29,7 @@
 
 
 - Week 7
-    - [Monday]()
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvcGFpcndpc2VfYWxpZ25tZW50LnBkZg/pairwise_alignment.pdf?ou=185077)
     - [Wednesday]()
 
 - Week 8

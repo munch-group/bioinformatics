@@ -1,72 +1,112 @@
 # Scoring Matrices
 
+<!-- 
+digraph so 
+{
+    node[ shape = square ];
+    { rank = same; 1 2 3 }
+    { rank = same; 6 5 4 }
+    { rank = same; 7 8 }
+
+    1 -> 2 -> 3;
+    3 -> 4;
+    6 -> 5 -> 4 [ dir = back ];
+    6 -> 7;
+    7 -> 8;
+} 
+-->
+
+
+
 ## Introduction to Protein Sequence Scoring  {.unnumbered}
 
 Here's the thing about protein sequence comparison—it's vastly more complex than DNA alignment, and that complexity is actually what makes it interesting. When you're comparing DNA sequences, you're working with just four nucleotides: $A$, $C$, $G$, and $T$. Pretty straightforward, right? But proteins? They're built from twenty different amino acids, and here's where it gets fascinating: each of those amino acids has its own unique chemical personality.
 
-```{python}
-#| echo: false
-#| label: fig-amino-acid-groups
-#| fig-cap: "Chemical groupings of the 20 standard amino acids. Amino acids with similar chemical properties tend to substitute for each other more readily during evolution."
-#| column: margin
-#| fig-width: 4
-#| fig-format: svg
-#| classes: styled-output
+```{dot}
+//| echo: false
+//| label: fig-amino-acid-groups
+//| fig-cap: "Chemical groupings of the 20 standard amino acids. Amino acids with similar chemical properties tend to substitute for each other more readily during evolution."
+//| fig-width: 7
+//| fig-height: 3
+//| fig-format: svg
+//| classes: styled-output
+digraph G {                                                                     
+  compound=true;
+  ranksep=0.3;
+  edge [style="invis"]
+  subgraph rows {
+    edge [constraint=false];
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.patches import Rectangle
+    node [shape=plaintext] 
+    "Hydrophobic" [fontsize="20pt" label=< <B>Hydrophobic:</B> >]
+    "Polar uncharged" [fontsize="20pt" label=< <B>Polar uncharged:</B> >]
+    "Positively charged" [fontsize="20pt" label=< <B>Positively charged:</B> >]
+    "Negatively charged" [fontsize="20pt" label=< <B>Negatively charged:</B> >]
+    "Special" [fontsize="20pt" label=< <B>Special:</B> >]
 
-fig, ax = plt.subplots(figsize=(4, 3))
+    node [shape=box fontsize="20pt" style=filled color="#FFE5B4"]
+    "Hydrophobic" -> Ala;
+    Ala -> Val;
+    Val -> Ile;
+    Ile -> Leu;
+    Leu -> Met;
+    Met -> Phe;
+    Phe -> Trp;
+    Trp -> Pro;    
 
-# Define amino acid groups
-groups = {
-    'Hydrophobic': ['A', 'V', 'I', 'L', 'M', 'F', 'W', 'P'],
-    'Polar uncharged': ['S', 'T', 'C', 'N', 'Q', 'Y'],
-    'Positively charged': ['K', 'R', 'H'],
-    'Negatively charged': ['D', 'E'],
-    'Special': ['G']
+    node [shape=box fontsize="20pt" style=filled color="#B4D7FF"]
+    "Polar uncharged" -> Ser;
+    Ser -> Thr;
+    Thr -> Cys;
+    Cys -> Asn;
+    Asn -> Gln;
+    Gln -> Tyr;
+
+    node [shape=box fontsize="20pt" style=filled color="#FFB4B4"]
+    "Positively charged" -> Lys;
+    Lys -> Arg;
+    Arg -> His;
+
+    node [shape=box fontsize="20pt" style=filled color="#B4FFB4"]
+    "Negatively charged" -> Asp;
+    Asp -> Glu;
+
+    node [shape=box fontsize="20pt" style=filled color="#E0E0E0"]
+    "Special" -> Gly
+  }  
+  subgraph columns {
+
+    "Hydrophobic" -> "Polar uncharged";
+    "Polar uncharged" -> "Positively charged";
+    "Positively charged" -> "Negatively charged" ;
+    "Negatively charged"  -> "Special";
+
+    Ala -> Ser;
+    Ser -> Lys;
+    Lys -> Asp
+
+    Val -> Thr;
+    Thr -> Arg;
+    Arg -> Glu;
+
+    Ile -> Cys;
+    Cys -> His;
+
+    Leu -> Asn;
+
+    Met -> Gln;
+
+    Phe -> Tyr;
+
+    Asp -> Gly;
+
+  }
+
 }
 
-colors = {
-    'Hydrophobic': '#FFE5B4',
-    'Polar uncharged': '#B4D7FF',
-    'Positively charged': '#FFB4B4',
-    'Negatively charged': '#B4FFB4',
-    'Special': '#E0E0E0'
-}
-
-# Position amino acids in grid
-y_pos = 0.9
-x_start = 0.1
-x_spacing = 0.11
-
-for group, aas in groups.items():
-    ax.text(0.05, y_pos, group + ':', fontsize=12, weight='bold', va='center')
-
-    x_pos = x_start
-    for aa in aas:
-        rect = Rectangle((x_pos, y_pos - 0.03), 0.08, 0.06,
-                         facecolor=colors[group], edgecolor='black', linewidth=1.5)
-        ax.add_patch(rect)
-        ax.text(x_pos + 0.04, y_pos, aa, fontsize=14, weight='bold',
-               ha='center', va='center', family='monospace')
-        x_pos += x_spacing
-
-    y_pos -= 0.15
-
-# Add explanatory text
-ax.text(0.5, 0.12, 'Conservative substitutions occur within groups',
-       fontsize=11, ha='center', style='italic')
-ax.text(0.5, 0.05, 'Radical substitutions occur between groups',
-       fontsize=11, ha='center', style='italic')
-
-ax.set_xlim(0, 1)
-ax.set_ylim(0, 1)
-ax.axis('off')
-plt.tight_layout()
-plt.show()
 ```
+
+
  Some are hydrophobic and want to hide from water, some are charged and love interacting with their surroundings, some are tiny and flexible, others are bulky and rigid. These chemical properties aren't just biochemical trivia—they fundamentally shape how proteins evolve. When a mutation changes one amino acid to another during evolution, whether that change gets accepted or rejected depends heavily on whether the new amino acid can do the same job as the old one. A mutation that swaps one hydrophobic amino acid for another similar hydrophobic amino acid? Usually fine. A mutation that puts a charged amino acid where a hydrophobic one used to be? That's probably going to break something. This is why comparing protein sequences requires sophisticated scoring schemes that capture these subtle patterns of amino acid replacement. We can't just score all matches the same and all mismatches the same—we need scoring systems that understand that leucine to isoleucine is a much more reasonable substitution than tryptophan to aspartic acid. The whole challenge of protein sequence alignment boils down to quantifying these substitution patterns in a way that reflects what actually happens during evolution.
 
 ### Evolution as Nature's Experiment in Protein Engineering  {.unnumbered}
@@ -115,6 +155,39 @@ M_{ij} = \begin{cases}
 $$
 
 The off-diagonal elements tell you: given that amino acid $i$ is going to mutate, what's the probability it mutates to $j$ specifically? The diagonal elements tell you the probability of no change. This $M$ matrix represents evolution over a tiny time step—just one PAM unit. To model longer evolutionary distances, we'll use a clever mathematical trick based on the Markov property.
+
+```{dot}
+//| echo: false
+//} label: fig-pam-construction
+//| fig-cap: "PAM matrix construction workflow. Starting from closely related sequences (>85% identity), substitution counts are collected and normalized to build the PAM1 mutation probability matrix. Matrix exponentiation extrapolates to longer evolutionary distances."
+//| fig-width: 7
+//| fig-format: svg
+//| classes: styled-output
+digraph so 
+{
+    node[ shape = box fontsize="8pt" ];
+
+    1 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    2 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    3 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    4 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    5 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    6 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    7 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    8 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+
+    { rank = same; 1 2 3 }
+    { rank = same; 6 5 4 }
+    { rank = same; 7 8 }
+
+    1 -> 2 -> 3;
+    3 -> 4;
+    6 -> 5 -> 4 [ dir = back ];
+    6 -> 7;
+    7 -> 8;
+}
+```
+
 
 ```{python}
 #| echo: false
