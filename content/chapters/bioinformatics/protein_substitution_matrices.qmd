@@ -155,26 +155,69 @@ M_{ij} = \begin{cases}
 $$
 
 The off-diagonal elements tell you: given that amino acid $i$ is going to mutate, what's the probability it mutates to $j$ specifically? The diagonal elements tell you the probability of no change. This $M$ matrix represents evolution over a tiny time step—just one PAM unit. To model longer evolutionary distances, we'll use a clever mathematical trick based on the Markov property.
+![alt text](<images/Screenshot 2025-10-08 at 10.20.41.png>)
+
+
+<!-- 
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
+import numpy as np
+
+def get_spaced_colors(n, cmap_name='viridis'):
+    """
+    Get n equally spaced hex colors from a matplotlib colormap.
+    
+    Parameters:
+    - n: number of colors to extract
+    - cmap_name: name of the matplotlib colormap (default: 'viridis')
+    
+    Returns:
+    - List of hex color strings
+    """
+    # Get the colormap
+    cmap = plt.cm.get_cmap(cmap_name)
+    
+    # Create n equally spaced values between 0 and 1
+    values = np.linspace(0, 1, n)
+    
+    # Get colors from the colormap and convert to hex
+    hex_colors = [mcolors.to_hex(cmap(value)) for value in values]
+    
+    return hex_colors
+
+# Example usage:
+# Get 5 colors from the 'viridis' colormap
+colors = get_spaced_colors(5, 'viridis')
+print(colors)
+# Output example: ['#440154', '#31688e', '#35b779', '#fde725', '#fde725']
+
+# Get 8 colors from the 'coolwarm' colormap
+colors = get_spaced_colors(8, 'coolwarm')
+print(colors) 
+-->
+
 
 ```{dot}
 //| echo: false
-//} label: fig-pam-construction
+//| label: fig-pam-construct
 //| fig-cap: "PAM matrix construction workflow. Starting from closely related sequences (>85% identity), substitution counts are collected and normalized to build the PAM1 mutation probability matrix. Matrix exponentiation extrapolates to longer evolutionary distances."
-//| fig-width: 7
+//| fig-width: 6
+//| fig-height: 4
 //| fig-format: svg
-//| classes: styled-output
 digraph so 
 {
+    ranksep=0.3;
+    margin="0.1,0.2";
     node[ shape = box fontsize="8pt" ];
 
-    1 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    2 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    3 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    4 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    5 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    6 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    7 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
-    8 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    1 [fixedsize=shape width=1.2 height=0.5 label="Collect closely related\nprotein sequences"];
+    2 [fixedsize=shape width=1.2 height=0.5 label="Count observed\nsubstitutions"];
+    3 [fixedsize=shape width=1.2 height=0.5 label="Calculate relative\nmutabilities"];
+    4 [fixedsize=shape width=1.2 height=0.5 label="Construct\nPAM1 matrix"];
+    5 [fixedsize=shape width=1.2 height=0.5 label="Exponentiate\nPAM1 matrix"];
+    6 [fixedsize=shape width=1.2 height=0.5 label="Compute PAM-n\nmatrix"];
+    7 [fixedsize=shape width=1.2 height=0.5 label="Convert to log-odds\nscores"];
+    8 [fixedsize=shape width=1.2 height=0.5 label="PAM-n scoring matrix\n(e.g., PAM250)"];
 
     { rank = same; 1 2 3 }
     { rank = same; 6 5 4 }
@@ -189,54 +232,54 @@ digraph so
 ```
 
 
-```{python}
-#| echo: false
-#| label: fig-pam-construction
-#| fig-cap: "PAM matrix construction workflow. Starting from closely related sequences (>85% identity), substitution counts are collected and normalized to build the PAM1 mutation probability matrix. Matrix exponentiation extrapolates to longer evolutionary distances."
-#| fig-width: 7
-#| fig-format: svg
-#| classes: styled-output
+```{ojs}
+//| echo: false
+//| label: fig-pam-construction
+//| fig-cap: "PAM matrix construction workflow. Starting from closely related sequences (>85% identity), substitution counts are collected and normalized to build the PAM1 mutation probability matrix. Matrix exponentiation extrapolates to longer evolutionary distances."
+//| fig-width: 7
+//| fig-format: svg
+  {
+    const d3 = await require("d3@7");
+    window.d3 = d3; // Make d3 globally available
+    await import("https://unpkg.com/d3-graphviz@5.0.2/build/d3-graphviz.js");
+    const div = html`<div></div>`;
+    d3.select(div).graphviz()
+      .renderDot(`
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch
+## BEGIN GRAPH #####################
 
-fig, ax = plt.subplots(figsize=(7, 8))
+digraph so 
+{
+    margin="0.1,0.2";
+    node[ shape = box fontsize="8pt" ];
 
-# Define workflow steps
-steps = [
-    {'y': 0.95, 'text': 'Collect closely related\nprotein sequences\n(>85% identity)', 'color': '#e1f5ff'},
-    {'y': 0.83, 'text': 'Count observed\nsubstitutions\nA_ij', 'color': '#fff8e1'},
-    {'y': 0.71, 'text': 'Calculate relative\nmutabilities\nm_i', 'color': '#fff8e1'},
-    {'y': 0.59, 'text': 'Construct PAM1\nmutation matrix\nM', 'color': '#ffe1e1'},
-    {'y': 0.47, 'text': 'Matrix exponentiation\nM^n = M × M × ... × M', 'color': '#fff8e1'},
-    {'y': 0.35, 'text': 'PAM-n mutation\nprobability matrix\nM^(n)', 'color': '#fff8e1'},
-    {'y': 0.23, 'text': 'Convert to log-odds\nscoring matrix\nS^(n)', 'color': '#fff8e1'},
-    {'y': 0.11, 'text': 'PAM-n scoring matrix\n(e.g., PAM250)', 'color': '#e1ffe1'},
-]
+    1 [fixedsize=shape width=1.2 height=0.6 label="Collect closely related\nprotein sequences\n(>85% identity)"];
+    2 [fixedsize=shape width=1.2 height=0.6 label="Count observed\nsubstitutions\nA_ij"];
+    3 [fixedsize=shape width=1.2 height=0.6 label="Calculate relative\nmutabilities\nm_i"];
+    4 [fixedsize=shape width=1.2 height=0.6 label="Construct PAM1\nmutation matrix\nM"];
+    5 [fixedsize=shape width=1.2 height=0.6 label="Matrix exponentiation\nM^n = M × M × ... × M"];
+    6 [fixedsize=shape width=1.2 height=0.6 label="PAM-n mutation\nprobability matrix\nM^(n)"];
+    7 [fixedsize=shape width=1.2 height=0.6 label="Convert to log-odds\nscoring matrix\nS^(n)"];
+    8 [fixedsize=shape width=1.2 height=0.6 label="PAM-n scoring matrix\n(e.g., PAM250)"];
 
-# Draw boxes
-for step in steps:
-    box = FancyBboxPatch((0.3, step['y'] - 0.05), 0.4, 0.10,
-                         boxstyle="round,pad=0.01",
-                         facecolor=step['color'], edgecolor='black', linewidth=2)
-    ax.add_patch(box)
-    ax.text(0.5, step['y'], step['text'], ha='center', va='center',
-           fontsize=10, weight='bold')
+    { rank = same; 1 2 3 }
+    { rank = same; 6 5 4 }
+    { rank = same; 7 8 }
 
-# Draw arrows between steps
-for i in range(len(steps) - 1):
-    y_start = steps[i]['y'] - 0.05
-    y_end = steps[i+1]['y'] + 0.05
-    ax.annotate('', xy=(0.5, y_end), xytext=(0.5, y_start),
-               arrowprops=dict(arrowstyle='->', lw=2.5, color='black'))
+    1 -> 2 -> 3;
+    3 -> 4;
+    6 -> 5 -> 4 [ dir = back ];
+    6 -> 7;
+    7 -> 8;
+}
 
-ax.set_xlim(0, 1)
-ax.set_ylim(0, 1)
-ax.axis('off')
-plt.tight_layout()
-plt.show()
+## END GRAPH #####################
+
+    `);
+    return div;
+}
 ```
+
 
 ### Extrapolating to Higher PAM Distances  {.unnumbered}
 
