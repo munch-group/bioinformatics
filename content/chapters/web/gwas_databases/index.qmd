@@ -18,7 +18,7 @@ Presentation: https://docs.google.com/presentation/d/1jBpBfO7_RGzxD1iHuN0LW8NIQq
 
 The purpose of this exercise is to expose you to the different kinds of information that are stored in databases relevant to bioinformatics. It takes experience and skill to navigate the user interface of these databases. Here, you will see a few important ones, but there are many others. I have put a list at the end of this exercise with some additional relevant ones on Brightspace. Browse them at your heart's content.
  
-Genome-wide association studies (GWAS) are a powerful tool in genetics and genomics research to identify genetic variants associated with diseases or traits. When a significant SNP is identified in a GWAS, it is a genomic signpost tagging an associated genomic region. Still, it only partially reveals the genes causing the disease if the genomic region identified contains several genes or genomic features. Investigating candidate disease genes near a GWAS SNP involves:
+Genome-wide association studies (GWAS) are a powerful tool in genetics and genomics research to identify genetic variants associated with diseases or traits. When a significant SNP is identified in a GWAS, it is a genomic signpost tagging an associated genomic region. Still, it only partially reveals the genes causing the disease. The genomic region identified likely contains several genes or genomic features. Investigating candidate disease genes near a GWAS SNP involves:
 Exploring the genomic region around the SNP.
 Studying nearby genes and regulatory elements.
 Evaluating their potential roles in the disease or trait of interest.
@@ -44,7 +44,10 @@ In this section, we are going to explore our SNP and its surrounding genomic reg
 ![Screenshot of the UCSC genome browser](./images/ucsc_screenshot.png){#fig-ucsc_gwas width=80%}
 
 Now, you see the SNP in a window. You can play around with the zoom function until you start seeing a couple of other SNP IDs. Now we want to look at surrounding genes, so scroll down to the "Genes and Gene predictions" Section. 
-All the options you see here are called "tracks", and they all contain different information about the genome. If you want to look at the annotated gene, select the "GENCODE V44" select "pack" and press refresh on the right side of the section. Play around with the different settings (pack, dense, squish, all). They all give you a different amount of information. Select the one that you are most comfortable with when exploring. You might have to change it for some types of questions. "Pack" is a good place to start. 
+All the options you see here are called "tracks", and they all contain different information about the genome. If you want to look at the annotated gene, select the "GENCODE V48" select "pack" and press refresh on the right side of the section. Play around with the different settings (pack, dense, squish, all). They all give you a different amount of information. Select the one that you are most comfortable with when exploring. You might have to change it for some types of questions. "Pack" is a good place to start. 
+
+If there is too much going on for your liking, you can hide certain tracks at the bottom of the page. Here is a link that will lead you to the browser, with all but the gene and SNP tracks hidden: [UCSC Genome Browser with hidden tracks]
+(https://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&hgsid=407916288_fkUQBcFRTUFVP1XZP2VxzusTgHLA)
 
 #### Exercise
 Play around with the zoom function. To the left of where you inserted the SNP ID is the size of the window you are looking at. The more you zoom out, the more genes you will be able to see.
