@@ -88,15 +88,15 @@ Unfortunately, the Monday recording failed :/
 
 ### Monday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+
+{{< video https://youtu.be/TTB4NbI3UhY >}}
+
  
 ### Wednesday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+
+{{< video https://youtu.be/AuVSh1UwDtI >}}
+
 
 ## Week 9 {.unnumbered}
 
