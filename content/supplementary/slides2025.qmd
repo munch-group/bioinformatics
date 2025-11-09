@@ -37,12 +37,13 @@
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvcHJvdF9zdWJzdF9tYXQucGRm/prot_subst_mat.pdf?ou=185077)
 
 - Week 9
-    - [Monday]() The sound failed on this one, sorry
+    - [Monday]() 
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvQ291bnRpbmdfc3R1ZmYucGRm/Counting_stuff.pdf?ou=185077)
 
 - Week 10
     - [Monday]() CANCELED
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvY2x1c3RlcmluZ19tc2MucGRm/clustering_msc.pdf?ou=185077)
+
 <!-- 
 
 - Week 11
