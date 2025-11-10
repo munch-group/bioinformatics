@@ -302,7 +302,7 @@ From the [project files](supplementary/project_files.qmd) page, you can download
 
 ## Mandatory assignment
 
-@sec-hivproject is a mandatory assignment. The deadline for handing it in is the night before your exercise class in week 46.
+@sec-hivproject is a mandatory assignment. The deadline for handing it in is the night before your exercise class in week 47.
 :::
 
 
