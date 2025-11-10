@@ -44,10 +44,10 @@
     - [Monday]() CANCELED
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvY2x1c3RlcmluZ19tc2MucGRm/clustering_msc.pdf?ou=185077)
 
-<!-- 
 
 - Week 11
-    - [Monday]()
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvQ2x1c3RlcmluZ19hbmRfZmVsc2Vuc3RlaW4ucGRm/Clustering_and_felsenstein.pdf?ou=185077)
+<!-- 
     - [Wednesday]()
 
 - Week 12
