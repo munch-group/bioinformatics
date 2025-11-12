@@ -37,7 +37,7 @@
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvcHJvdF9zdWJzdF9tYXQucGRm/prot_subst_mat.pdf?ou=185077)
 
 - Week 9
-    - [Monday]() 
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvRGF0YWJhc2VzX2FuZF9ibGFzdC5wZGY/Databases_and_blast.pdf?ou=185077) 
     - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvQ291bnRpbmdfc3R1ZmYucGRm/Counting_stuff.pdf?ou=185077)
 
 - Week 10
