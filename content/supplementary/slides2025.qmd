@@ -47,9 +47,9 @@
 
 - Week 11
     - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvQ2x1c3RlcmluZ19hbmRfZmVsc2Vuc3RlaW4ucGRm/Clustering_and_felsenstein.pdf?ou=185077)
-<!-- 
-    - [Wednesday]()
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvR2VuZWZpbmRpbmcucGRm/Genefinding.pdf?ou=185077)
 
+<!-- 
 - Week 12
     - [Monday]()
     - [Wednesday]()
