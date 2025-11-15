@@ -116,15 +116,12 @@ Unfortunately, the Monday recording failed :/
 
 ### Monday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/TTB4NbI3UhY/ >}}
 
 ### Wednesday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/KqOzXY0EvaA >}}
+
 
 ## Week 11 {.unnumbered}
 
@@ -136,9 +133,8 @@ Unfortunately, the Monday recording failed :/
 
 ### Wednesday {.unnumbered}
 
-<!-- 
-{{< video https://youtu.be/ >}}
- -->
+{{< video https://youtu.be/x6zRGbp98Og >}}
+
 
 ## Week 12 {.unnumbered}
 
