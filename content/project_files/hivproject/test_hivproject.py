@@ -573,7 +573,7 @@ class TestGetSimilarities(AnvProgTestCase):
 
     def test_get_similarities_should_return_the_similarity_between_the_unknown_sequence_and_the_other_sequences(self):
         self.assertEqual(project.get_similarities(
-            'acgt', ['acgt', 'acct', 'tgca']), [1.0, 0.75, 0.0])
+            'ACGT', ['ACGT', 'ACCT', 'TGCA']), [1.0, 0.75, 0.0])
 
 
 @unittest.skipIf(function_not_defined(project, 'get_max_similarities'), 'get_max_similarities')
