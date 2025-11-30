@@ -50,6 +50,76 @@
     ]
   },
   {
+    "objectID": "exam.html",
+    "href": "exam.html",
+    "title": "Exam info",
+    "section": "",
+    "text": "Download the course homepage and Python documentation\nDownload the HTML course website for offline viewing at the exam (unzip once downloaded and double-click index.html).\nDownload the HTML Python documentation for offline viewing at the exam (unzip once downloaded and double-click index.html).",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#example-of-exam-assignment",
+    "href": "exam.html#example-of-exam-assignment",
+    "title": "Exam info",
+    "section": "Example of exam assignment",
+    "text": "Example of exam assignment\nThere is no test script for this assignment. You need a data file for this assignment, which you can also get below. Your exam assignment will not need any data from input files.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#about-the-written-exam",
+    "href": "exam.html#about-the-written-exam",
+    "title": "Exam info",
+    "section": "About the written exam",
+    "text": "About the written exam\n\nInformationen på denne side fremgår også af eksamensopgaven.\n\nEksamensopgave består af to dele, som vægtes lige i bedømmelsen:\n\nEt sæt programmeringsopgaver.\nEt sæt bioinformatikopgaver.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#filer-til-brug-ved-eksamen",
+    "href": "exam.html#filer-til-brug-ved-eksamen",
+    "title": "Exam info",
+    "section": "Filer til brug ved eksamen",
+    "text": "Filer til brug ved eksamen\nUdover denne PDF-fil som indeholder eksamensopgaverne, har du også downloaded tre andre filer fra eksamenssystemet, som du skal bruge til at løse eksamensopgaven:\n\nprogexam.py: Det er i denne fil, du skal skrive de Python funktioner, der bedes om i eksamensopgavens programmeringsdel.\ntest_progexam.py: Det er denne fil, du kan bruge til at teste de funktioner du skriver i progexam.py.\nbioinfexam.py: Det er i denne fil, du skriver svarene på eksamensopgavens bioinformatik-del.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#sådan-løser-du-programmeringsopgaverne",
+    "href": "exam.html#sådan-løser-du-programmeringsopgaverne",
+    "title": "Exam info",
+    "section": "Sådan løser du programmeringsopgaverne",
+    "text": "Sådan løser du programmeringsopgaverne\nStart med at åbne din terminal og naviger ind i den folder, som eksamenssystemet har lavet på din computer. Der er muligt at folderens navn indeholder mellemrum. For at navigere ind i en folder der indeholder et mellemrum vha. terminalen, kan man skrive starten af folder-navnet og så trykke på Tab. Så fuldendes navnet automatisk. F.eks.: Hvis folderen hedder “Eksamen Bioinf”, kan man skrive: “cd Eksamen og så trykke Tab. Så fuldendes navnet og man kan trykke Enter.\nSom i programmeringsprojekterne fra kurset skriver du din kode i progexam.py og kører koden sådan her:\npython progexam.py\nSom i programmeringsprojekterne i kurset kan du teste din kode sådan her:\npython test_progexam.py\nTest scriptet er tilgængeligt som en hjælp til at teste din kode, men du har selv det fulde ansvar for rigtigheden af din kode.\nDet er tilladt at bruge løsninger af opgaver til at løse senere opgaver. Man må altså gerne kalde tidligere definerede funktioner inde i andre funktioner, man senere bliver bedt om at skrive.\nFølgende er afgørende for at din eksamensbesvarelse kan evalueres korrekt:\n\nHver funktion skal navngives præcis som angivet i opgaven. Funktioner der ikke er navngivet korrekt, regnes som ikke besvarede.\nDet er ikke tilladt importere kode fra andre filer, du har skrevet eller installeret. Det vil sige, at du ikke må bruge import statements i din fil.\nNår du afleverer progexam.py må den kun indeholde definitioner af de funktioner, der er beskrevet i eksamensopgaven. Al kode udenfor funktionsdefinitioner skal slettes inden du afleverer, så sørg for at teste i god tid inden aflevering, om dine funktioner stadig virker, når du sletter sådan ekstra kode.\n\nAllervigtigst: Funktioner der ikke fuldstænding opfylder opgavens beskrivelse regnes som ikke besvarede. Så sørg for at lave dine funktioner færdige, så de klarer alle tests. Hvis ingen af dine funktioner er helt rigtigt besvaret får du ingen point.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#sådan-løser-du-bioinformatikopgaverne",
+    "href": "exam.html#sådan-løser-du-bioinformatikopgaverne",
+    "title": "Exam info",
+    "section": "Sådan løser du bioinformatikopgaverne",
+    "text": "Sådan løser du bioinformatikopgaverne\nBioinformatikdelen af eksamensopgaven består af et sæt af opgaver, der hver dækker et emne. Hver opgave indeholder flere delopgaver. Der er tre typer delopgaver:\n\nUdsagn der enten er sande eller falske og som skal besvares med True eller False.\nSpørgsmål der skal besvares med et tal (int eller float).\nSpørgsmål der skal besvares med en tekst streng (f.eks. 'Dette er mit bedste svar')\n\nFilen bioinfexam.py er en Python fil og indeholder en variabel for hver delopgave. For eksempel: den variabel der hører til delopgave tre i emne syv hedder emne_7_del_3. Hver variabel har en default værdi som enten er None eller en tom streng (' '):\nemne_7_del_3 = None\nemne_7_del_4 = ' '\n\nDu besvarer sandt/falsk udsagn ved at udskifte None med enten True eller False.\nDu besvarer tal-spørgsmål ved at udskifte None med et tal.\nDu besvarer tekst-opgaver ved at fylde tekst i den tomme streng.\n\nDet er anført i bioinfexam.py om en delopgave skal besvares med True/False, et tal, eller tekst.\nFølgende er afgørende for at din eksamensbesvarelse kan evalueres korrekt: Delopgaver som ikke er besvaret betragtes som forkert besvarede, så du er bedst tjent med at gætte fremfor ikke at svare.\nI nogle af opgaveemnerne refererer statements til en vist illustration. Alt efter størrelsen på din skærm kan du være nødt til at “zoome ind” på illustrationerne i det program du bruger til at vise denne PDF, ellers kan der være detaljer du ikke kan se.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
+    "objectID": "exam.html#sådan-afleverer-du-din-eksamensopgave-i-wiseflow",
+    "href": "exam.html#sådan-afleverer-du-din-eksamensopgave-i-wiseflow",
+    "title": "Exam info",
+    "section": "Sådan afleverer du din eksamensopgave i Wiseflow",
+    "text": "Sådan afleverer du din eksamensopgave i Wiseflow\nInden du afleverer, skal du tjekke at progexam.py kun indeholder definitioner af de funktioner der er beskrevet i eksamensopgaven. Hvis du har skrevet yderligere kode for at teste dine funktioner, skal du slette den inden du oplader din fil.\nDu afleverer din eksamensbesvarelse ved at uploade disse to filer til Wiseflow:\n\nprogexam.py skal afleveres som hoveddokument\nbioinfexam.py skal afleveres som bilag.",
+    "crumbs": [
+      "Exam info"
+    ]
+  },
+  {
     "objectID": "supplementary/slides2025.html",
     "href": "supplementary/slides2025.html",
     "title": "Lecture slides",
