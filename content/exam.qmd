@@ -3,9 +3,9 @@
 
 ## Download the course homepage and Python documentation  {.unnumbered}
 
-**[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=course_page_html.zip) (unzip once downloaded and double-click index.html).**
+**[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvYmlvaW5mb3JtYXRpY3Muemlw/bioinformatics.zip?ou=185077) (unzip once downloaded and double-click index.html).**
 
-**[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
+**[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvcHl0aG9uLTMuMTMtZG9jcy1odG1sLnppcA/python-3.13-docs-html.zip?ou=185077) (unzip once downloaded and double-click index.html).**
 
 
 ## Example of exam assignment  {.unnumbered}

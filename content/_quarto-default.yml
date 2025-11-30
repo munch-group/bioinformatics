@@ -20,6 +20,7 @@ book:
     - index.qmd
     - about.qmd
     - curriculum.qmd
+    - exam.qmd
     - supplementary/slides2025.qmd
     - supplementary/recordings2024.qmd
     - assignments.qmd
