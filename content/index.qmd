@@ -7,50 +7,6 @@ hide-exam: true
 ---
 
 
-<style>
-
-/* #title-block-header {
-  margin-block-end: 1rem;
-  position: relative;
-  margin-top: -1px;
-  height: 100px;
-  background-color: "#36B24A";
-}
-
-.quarto-title-banner {
-  font-family:  Passata;
-  margin-block-end: 1rem;
-  position: relative;
-  margin-top: -10px;
-  height: 100%;
-  background-color: "#36B24A";
-} */
-</style>
-
-
-<!-- 
-<style> 
-* {
-  font-family: Passata;
-} 
-</style>
- -->
-
-
-<!-- 
-::: {.content-hidden when-meta="hide-exam"}
-
-# Exam information
-
-**[Download the HTML course website for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=course_page_html.zip) (unzip once downloaded and double-click index.html).**
-
-**[Download the HTML Python documentation for offline viewing at the exam](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou={orgUnitId}&type=coursefile&fileId=python-3.9.21-docs-html.zip) (unzip once downloaded and double-click index.html).**
-
-
-::: 
--->
-
-
 # Welcome {.unnumbered}
 
 [brightspace]: (https://brightspace.au.dk/d2l/home/185077)
