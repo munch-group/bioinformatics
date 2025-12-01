@@ -14,6 +14,10 @@ hide-exam: true
 This is the homepage for the AU course Bioinformatics and programming (Bioinformatik og programmering). You will find all course content here. The [Brightspace course page][brightspace] is only used for communication, and assignments.
 
 
+# Exam information {.unnumbered}
+
+**<- See "Exam info" in the Content side bar**
+
 
 ::: {.content-visible when-format="html"}
 
