@@ -16,6 +16,14 @@ This is the homepage for the AU course Bioinformatics and programming (Bioinform
 
 # Exam information {.unnumbered}
 
+::: {.callout-important}
+
+## Exam information
+
+You can find information about the exam under Exam in the left sidebar.
+
+:::
+
 **<- See "Exam info" in the Content side bar**
 
 
