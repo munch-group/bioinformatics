@@ -51,17 +51,17 @@
 
 - Week 12
     - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvRXhhbV9QeXRob25fSE1Ncy5wZGY/Exam_Python_HMMs.pdf?ou=185077)
-<!-- 
-    - [Wednesday]()
+    - Wednesday used same slides.
 
 - Week 13
-    - [Monday]()
-    - [Wednesday]()
+    - Monday used same slides as last week.
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvT1JGIEhNTS5wZGY/ORF%20HMM.pdf?ou=185077)
 
 - Week 14
-    - [Monday]()
-    - [Wednesday]()
+    - [Monday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvTmV1cmFsIG5ldHdvcmtzIGFuZCBweXRob24gbGlicmFyaWVzLnBkZg/Neural%20networks%20and%20python%20libraries.pdf?ou=185077)
+    - [Wednesday](https://brightspace.au.dk/d2l/common/viewFile.d2lfile/Content/L2NvbnRlbnQvZW5mb3JjZWQvMTg1MDc3LUxSNTE2NjIvRXZhbHVhdGlvbiBFeGFtLnBkZg/Evaluation%20Exam.pdf?ou=185077)
 
+<!-- 
 - Week 15
     - [Monday]()
     - [Wednesday]()
