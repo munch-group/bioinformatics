@@ -22,6 +22,16 @@ This is the homepage for the AU course Bioinformatics and programming (Bioinform
 
 You can find information about the exam under Exam in the left sidebar.
 
+For your convenience, here is the curriculum for the exam listed in one place:
+
+- Lecture notes: Chapters 1-15, 16-26, 28-33
+- [Chapter 11: Genomewide Association Studies](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002822)
+- [Benefits and limitations of genomewide association studies](https://www.nature.com/articles/s41576-019-0127-1)
+- [Understanding Bioinformatics](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=UnderstandingBioinformatics.pdf) 127-141, 438-448, 117-127, 494-496 
+- [Bioinformatics explained: BLAST (CLCbio)](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=CLC_Bioinformatics_explained_BLAST.pdf)
+- [Compendium of selections from Biological Sequence Analysis](https://brightspace.au.dk/d2l/common/dialogs/quickLink/quickLink.d2l?ou=145685&type=coursefile&fileId=BiologicalSequenceAnalysis.pdf) 192-197, 165-179, 192-202, 46-66
+- [The Theory and Practice of Genome Sequence Assembly](https://www.annualreviews.org/doi/10.1146/annurev-genom-090314-050032) 
+
 :::
 
 **<- See "Exam info" in the Content side bar**
