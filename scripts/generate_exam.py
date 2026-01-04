@@ -1,4 +1,5 @@
 
+from pathlib import Path
 import yaml
 import subprocess
 import sys
@@ -181,13 +182,13 @@ def format_question(question, nr):
     for n in sorted(question['statements']):
         if 'S' in question['statements'][n]:
             assert question['statements'][n]['S'].endswith('.'), ('wrong punctuation:', question['statements'][n]['S'])
-            questions_latex += "\item {} (True/False)\n".format(question['statements'][n]['S'])
+            questions_latex += "\\item {} (True/False)\n".format(question['statements'][n]['S'])
         elif 'Q' in question['statements'][n]:
             assert question['statements'][n]['Q'].endswith('?'), ('wrong punctuation:', question['statements'][n]['Q'])
-            questions_latex += "\item {} (talværdi)\n".format(question['statements'][n]['Q'])
+            questions_latex += "\\item {} (talværdi)\n".format(question['statements'][n]['Q'])
         elif 'F' in question['statements'][n]:
             # assert question['statements'][n]['F'].endswith('.'), ('wrong punctuation:', question['statements'][n]['F'])
-            questions_latex += "\item {} (tekst, max {} karakterer incl. mellemrum)\n".format(question['statements'][n]['F'], MAXCHARS)
+            questions_latex += "\\item {} (tekst, max {} karakterer incl. mellemrum)\n".format(question['statements'][n]['F'], MAXCHARS)
 
     latex = question_tmpl.format(label="Emne {}".format(nr),
         question_header=question_header,
@@ -265,7 +266,12 @@ if __name__ == '__main__':
                         dest='mult_choice_questions',
                         default='None',
                         help="yaml file with multiple choice questions")    
-    parser.add_argument("-o", "--output-pdf-file", 
+    parser.add_argument("-o", "--output-dir", 
+                        type=Path,
+                        dest='output_dir',
+                        default=Path('.'),
+                        help="Output directory for generated files")
+    parser.add_argument("--output-pdf-file", 
                         type=str,
                         dest='output_pdf_file',
                         default='exam_assignment',
@@ -274,14 +280,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     latex_file_name = args.output_pdf_file + '.tex' #'exam_assignment.tex'
-    student_file_dir = '.'
+    student_file_dir = args.output_dir
 
     if not os.path.exists(student_file_dir):
         sys.makedirs(student_file_dir)
 
-    multiple_choice_student_file = open(student_file_dir + '/bioinfexam.py', 'w')
+    multiple_choice_student_file = open(student_file_dir / 'bioinfexam.py', 'w')
 
-    multiple_choice_facit_file = open(student_file_dir + '/bioinformatics_facit.py', 'w')
+    multiple_choice_facit_file = open(student_file_dir / 'bioinformatics_facit.py', 'w')
 
     bioinf_answer_intro = """
 # Dette er en Python fil. Hver variabel nedenfor representerer et 
@@ -302,7 +308,7 @@ if __name__ == '__main__':
 
     problems = re.findall('(?:\n[\t ]*)\"{3}(.*?)\"{3}', open(args.programming_solutions).read(), re.M | re.S)
     intro = problems.pop(0)
-    with open('programming_assignments.md', 'w') as f:
+    with open(args.output_dir / 'programming_assignments.md', 'w') as f:
         print(intro, file=f)
         for problem in problems:
             if '"' in problem:
@@ -312,7 +318,7 @@ if __name__ == '__main__':
             print(f'\n\n## Problem\n\n{textwrap.dedent(problem)}  \n\n', file=f)
 
 
-    with open(latex_file_name, 'w') as tex_file:
+    with open(args.output_dir / latex_file_name, 'w') as tex_file:
         with redirect_stdout(tex_file):
 
             print(bioinf_answer_intro, file=multiple_choice_student_file)
