@@ -51,11 +51,19 @@ pixi run python ./scripts/generate_exam.py \
     && cp ./exam/{{ year }}/progexam_empty.py ./exam/{{ year }}/exam_files/progexam.py
     """
 
-[tasks.decrypt-exam]
+[tasks.decrypt-year]
 args = ["year", "token"]
 cmd = "python ./scripts/encrypt.py --overwrite --decrypt {{ token }} ./exam/{{ year }}"
 
-[tasks.encrypt-exam]
+[tasks.decrypt]
+args = ["token"]
+cmd = "python ./scripts/encrypt.py --overwrite --decrypt {{ token }} ./exam"
+
+[tasks.encrypt-year]
 args = ["year", "token"]
 cmd = "python ./scripts/encrypt.py --overwrite {{ token }} ./exam/{{ year }}"
+
+[tasks.encrypt]
+args = ["token"]
+cmd = "python ./scripts/encrypt.py --overwrite {{ token }} ./exam"
 
