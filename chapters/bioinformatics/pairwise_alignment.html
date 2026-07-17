@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0f91f55e768280f2875a475a35161471.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cf35b1e8b68dd0c452cd246239eb2ea9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-262ef15cebd9ca90c757d27d1a377a34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -578,7 +578,7 @@ Figure&nbsp;27.1
 <div id="fig-alignment-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-alignment-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-alignment-graph-output-1.png" width="496" height="471" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-alignment-graph-output-1.png" width="496" height="470" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-alignment-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.2: The alignment graph for aligning sequences ‘ATC’ and ‘AGC’. Each path from (0,0) to (3,3) represents a possible alignment. Diagonal moves align characters (match/mismatch), horizontal moves insert a gap in the vertical sequence, and vertical moves insert a gap in the horizontal sequence. Two example paths are shown in different colors.
@@ -597,7 +597,7 @@ Figure&nbsp;27.2: The alignment graph for aligning sequences ‘ATC’ and ‘AG
 <div id="fig-complexity-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-complexity-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-complexity-comparison-output-1.png" width="656" height="469" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-complexity-comparison-output-1.png" width="654" height="471" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-complexity-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.3: Comparison of exponential (exhaustive search) versus quadratic (dynamic programming) time complexity for sequence alignment. The number of operations required for exhaustive search grows astronomically with sequence length, while the O(mn) dynamic programming approach remains practical even for moderately long sequences. The shaded region indicates the practical range for typical computers.
@@ -631,7 +631,7 @@ Figure&nbsp;27.3: Comparison of exponential (exhaustive search) versus quadratic
 <div id="fig-blosum-matrix" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-blosum-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-blosum-matrix-output-1.png" width="557" height="471" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-blosum-matrix-output-1.png" width="558" height="470" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blosum-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.4: Partial BLOSUM62 substitution matrix showing scores for a subset of amino acids. Positive scores (green) indicate that observing this pair is evidence for homology, while negative scores (red) suggest the pair is more likely due to chance. The diagonal elements (self-matches) have the highest scores. Notice that chemically similar amino acids (like I and L, both hydrophobic) have positive off-diagonal scores.
@@ -762,7 +762,7 @@ F(0,j) = -j \times d \quad \text{for } j &gt; 0
 <div id="fig-dp-matrix-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dp-matrix-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-dp-matrix-example-output-1.png" width="442" height="372" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-dp-matrix-example-output-1.png" width="446" height="375" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dp-matrix-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.7: A complete dynamic programming matrix for aligning ‘AGC’ with ‘ATC’ using match=+1, mismatch=-1, gap=-2. The matrix is filled row by row using the recurrence relation. Each cell shows the optimal score for aligning the corresponding prefixes. Arrows indicate which predecessor contributed the maximum score: ↖ = diagonal (match/mismatch), ↑ = up (deletion), ← = left (insertion).
@@ -778,7 +778,7 @@ Figure&nbsp;27.7: A complete dynamic programming matrix for aligning ‘AGC’ w
 <div id="fig-traceback-path" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-traceback-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-traceback-path-output-1.png" width="663" height="382" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-traceback-path-output-1.png" width="663" height="381" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traceback-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.8: Traceback visualization showing the optimal path (in bold red) through the DP matrix from (3,3) back to (0,0). Following this path backwards reconstructs the alignment: A-GC vs ATC-, with score -1. The path interpretation: 1. Start at (3,3), 2. ↖ diagonal: C ↔︎ C (match), 3. ↖ diagonal: G ↔︎ T (mismatch), 4. ↑ up: A ↔︎ - (gap in seq2), 5. ↖ diagonal: A ↔︎ A (match)
@@ -822,7 +822,7 @@ for i = 1 to m:
 <div id="fig-algorithm-stages" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-algorithm-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="pairwise_alignment_files/figure-html/fig-algorithm-stages-output-1.png" width="536" height="563" class="figure-img">
+<img src="pairwise_alignment_files/figure-html/fig-algorithm-stages-output-1.png" width="534" height="565" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-algorithm-stages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;27.9: Progressive stages of the Needleman-Wunsch algorithm. (a) Empty matrix, (b) Base cases initialized, (c) After first row computed, (d) Complete matrix with all cells filled. The matrix is filled systematically row by row, with each cell depending only on previously computed neighbors.
