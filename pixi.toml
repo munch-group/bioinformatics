@@ -2,7 +2,7 @@
 authors = ["Kasper Munch <kaspermunch@birc.au.dk>"]
 channels = ["conda-forge", "munch-group"]
 name = "bioinformatics"
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
@@ -35,8 +35,18 @@ xlsxwriter = ">=3.2.6,<4"
 markitdown = ">=0.1.4,<0.2"
 fuzzywuzzy = ">=0.18.0,<0.19"
 vscodenb = ">=0.1.83,<0.2"
-pytutor-widget = ">=0.1.26,<0.2"
 turtle-widget = ">=0.1.24,<0.2"
+codelens-widget = ">=0.1.38,<0.2"
+steps-widget = ">=0.2.1,<0.3"
+puzzle-widget = ">=0.1.10,<0.2"
+iplot = ">=0.1.9,<0.2"
+snippet-cast = ">=0.1.31,<0.2"
+ffmpeg = ">=8.0.1,<9"
+script-widget = ">=0.1.19,<0.2"
+
+[pypi-dependencies]
+piper = ">=0.15.1, <0.16"
+piper-tts = ">=1.5.0, <2"
 
 
 # tasks for running scripts
