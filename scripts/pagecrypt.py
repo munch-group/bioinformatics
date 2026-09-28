@@ -303,13 +303,11 @@ templateHTML = """
 
 
 try:
-    from Crypto import Random
-    from Crypto.Util.py3compat import bchr
-    from Crypto.Cipher import AES
-    from Crypto.Protocol.KDF import PBKDF2
-    from Crypto.Hash import SHA256	
-except:
-    print("install pycrypto: \"pip3 install pycrypto\"")
+    from cryptography.hazmat.primitives import hashes
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+except ImportError:
+    print("install cryptography: \"pip3 install cryptography\"")
     exit(1)
 import os, re
 from base64 import b64encode
@@ -334,24 +332,23 @@ def encrypt_file(inputfile, passphrase):
 
     title = re.search(r'<title.*?>(.+?)</title>', data.decode()).group(1)
 
-    salt = Random.new().read(32)
-    key = PBKDF2(
-        passphrase.encode('utf-8'), 
-        salt, 
-        count=100000,
-        dkLen=32, 
-        hmac_hash_module=SHA256
-    )
-    iv = Random.new().read(16)
+    salt = os.urandom(32)
+    key = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=100000,
+    ).derive(passphrase.encode('utf-8'))
+    iv = os.urandom(16)
 
-    cipher = AES.new(key, AES.MODE_GCM, nonce=iv)
-    encrypted, tag = cipher.encrypt_and_digest(data)
+    # encrypt() appends the 16-byte GCM tag to the ciphertext
+    encrypted = AESGCM(key).encrypt(iv, data, None)
 
     # projectFolder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # with open(os.path.join(projectFolder, "decryptTemplate.html")) as f:
     # 	templateHTML = f.read()
 
-    encryptedPl = f'"{b64encode(salt+iv+encrypted+tag).decode("utf-8")}"'
+    encryptedPl = f'"{b64encode(salt+iv+encrypted).decode("utf-8")}"'
     # encryptedDocument = templateHTML.replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
     encryptedDocument = templateHTML.replace('Password Protected Page', title).replace("/*{{ENCRYPTED_PAYLOAD}}*/\"\"", encryptedPl)
 
